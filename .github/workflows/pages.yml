@@ -1,0 +1,38 @@
+name: Deploy Starframe student site
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: false
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - name: Stage website files
+        shell: bash
+        run: |
+          mkdir -p "$RUNNER_TEMP/starframe-site"
+          cp index.html styles.css app.js lang.js mermaid.min.js "$RUNNER_TEMP/starframe-site/"
+          cp -R data media "$RUNNER_TEMP/starframe-site/"
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+      - name: Upload website
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ${{ runner.temp }}/starframe-site
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
