@@ -1,0 +1,463 @@
+using System;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.UI;
+using TMPro;
+using Starframe.Presentation;
+namespace Starframe.Flight
+{
+    public sealed class RangeHUD:MonoBehaviour
+    {
+        ShipFlightController flight;Camera worldCamera,displayCamera;RenderTexture sceneTexture;
+        Starframe.Combat.RangeCombatWorld combat;
+        TMP_FontAsset font;Canvas canvas;GameObject modal;
+        TextMeshProUGUI info,lockLabel,leadLabel,energyLabel,boostLabel;RawImage energyFill;float nextTelemetry;readonly List<RawImage> glass=new List<RawImage>();readonly List<Material> materials=new List<Material>();
+        readonly List<TextMeshProUGUI> targetLabels=new List<TextMeshProUGUI>();
+        sealed class WeaponGroupHudEntry{public int id;public Image tile;public TextMeshProUGUI label;}
+        readonly List<WeaponGroupHudEntry> weaponGroupHud=new List<WeaponGroupHudEntry>();
+        Starframe.Combat.TargetAimGraphic targetAimGraphic;
+        FlightAimGraphic flightAim;
+        ShipStatusGraphic ownStatus,targetStatus;SphereRadarGraphic radar;
+        TextMeshProUGUI ownCondition,targetIdentity,targetCondition,radarLabel,shieldLabel;
+        RawImage shieldFill;
+        TextMeshProUGUI speedReadout,summaryReadout,diagnosticHint,alertReadout;
+        RawImage telemetryPanel;RectTransform telemetryShadow;
+        bool refinedFlightLayout,diagnosticsExpanded;
+        const float EnergyWidth=316;
+        bool inputOverlayOpen;int ignoreEscapeThroughFrame=-1;
+        public Canvas RootCanvas=>canvas;
+        public Camera WorldCamera=>worldCamera;
+        public bool InputOverlayOpen{get=>inputOverlayOpen;set{inputOverlayOpen=value;ignoreEscapeThroughFrame=Time.frameCount+1;}}
+        public bool ExitDialogOpen=>inputOverlayOpen||(modal&&modal.activeSelf);
+        public event Action ExitConfirmed;
+        public event Action SettingsRequested,PracticeOptionsRequested;
+        public void NotifyWeaponHit(){if(flightAim&&!ExitDialogOpen)flightAim.NotifyWeaponHit();}
+        public void BindCombat(Starframe.Combat.RangeCombatWorld value)
+        {
+            combat=value;
+            if(!combat||!canvas||!displayCamera||!worldCamera)return;
+            var root=(RectTransform)canvas.transform;
+            leadLabel=Text(root,"LeadLegend","",refinedFlightLayout?510:1410,refinedFlightLayout?80:393,refinedFlightLayout?960:478,refinedFlightLayout?28:42,refinedFlightLayout?12:14);leadLabel.alignment=refinedFlightLayout?TextAlignmentOptions.TopLeft:TextAlignmentOptions.TopRight;leadLabel.textWrappingMode=TextWrappingModes.Normal;
+            ownStatus.Bind(combat.Player.ship);radar.Initialize(combat,combat.Targeting.LockRange);
+            targetStatus.SetRelativeObserver(combat.Player.ship.transform);
+            var overlay=new GameObject("TargetAimCanvas",typeof(RectTransform),typeof(Canvas));overlay.layer=5;overlay.transform.SetParent(canvas.transform,false);
+            var targetCanvas=overlay.GetComponent<Canvas>();targetCanvas.renderMode=RenderMode.ScreenSpaceCamera;targetCanvas.worldCamera=displayCamera;targetCanvas.planeDistance=1;
+            var rect=(RectTransform)overlay.transform;rect.anchorMin=Vector2.zero;rect.anchorMax=Vector2.one;rect.offsetMin=rect.offsetMax=Vector2.zero;
+            var graphicObject=new GameObject("TargetAim",typeof(RectTransform),typeof(CanvasRenderer));graphicObject.layer=5;graphicObject.transform.SetParent(overlay.transform,false);
+            var graphicRect=(RectTransform)graphicObject.transform;graphicRect.anchorMin=Vector2.zero;graphicRect.anchorMax=Vector2.one;graphicRect.offsetMin=graphicRect.offsetMax=Vector2.zero;
+            targetAimGraphic=graphicObject.AddComponent<Starframe.Combat.TargetAimGraphic>();targetAimGraphic.Initialize(worldCamera,combat.Targeting);
+            overlay.transform.SetSiblingIndex(modal.transform.GetSiblingIndex());modal.transform.SetAsLastSibling();
+            BuildWeaponGroupHud(root,combat.Player.weapons);modal.transform.SetAsLastSibling();
+        }
+        public void Initialize(Camera camera,ShipFlightController controller,FlightTuning tuning)
+        {
+            flight=controller;worldCamera=camera;worldCamera.cullingMask&=~(1<<5);
+            refinedFlightLayout=Starframe.Presentation.UiTheme.Current.flightLayout;
+            font=L10n.CurrentFont;
+            L10n.Changed+=RefreshLocale;
+            var presenter=new GameObject("Flight HUD Camera");presenter.transform.SetParent(transform,false);
+            displayCamera=presenter.AddComponent<Camera>();displayCamera.orthographic=true;displayCamera.orthographicSize=5.4f;displayCamera.cullingMask=1<<5;displayCamera.depth=10;
+            displayCamera.clearFlags=CameraClearFlags.SolidColor;displayCamera.backgroundColor=Color.black;displayCamera.nearClipPlane=.1f;displayCamera.farClipPlane=10;displayCamera.allowHDR=false;
+            var data=presenter.AddComponent<UnityEngine.Rendering.Universal.UniversalAdditionalCameraData>();data.renderPostProcessing=false;
+            var go=new GameObject("FlightRangeCanvas",typeof(RectTransform),typeof(Canvas),typeof(CanvasScaler),typeof(GraphicRaycaster));
+            go.layer=5;go.transform.SetParent(transform,false);canvas=go.GetComponent<Canvas>();canvas.renderMode=RenderMode.ScreenSpaceCamera;canvas.worldCamera=displayCamera;canvas.planeDistance=1;
+            var scale=go.GetComponent<CanvasScaler>();scale.uiScaleMode=CanvasScaler.ScaleMode.ScaleWithScreenSize;scale.referenceResolution=new Vector2(1920,1080);scale.matchWidthOrHeight=.5f;
+            if(!FindFirstObjectByType<EventSystem>()){var events=new GameObject("FlightEventSystem",typeof(EventSystem),typeof(InputSystemUIInputModule));events.transform.SetParent(transform,false);events.GetComponent<InputSystemUIInputModule>().AssignDefaultActions();}
+            var root=(RectTransform)go.transform;
+            var background=Rect(root,"FlightView",0,0,1920,1080).gameObject.AddComponent<RawImage>();background.raycastTarget=false;glass.Add(background);
+            flightAim=Rect(root,"FlightAim",0,0,1920,1080).gameObject.AddComponent<FlightAimGraphic>();flightAim.Initialize(worldCamera,flight);
+            if(refinedFlightLayout)BuildRefinedFlightLayout(root);
+            else BuildLegacyFlightLayout(root);
+            int radarTop=refinedFlightLayout?32:28;float radarHeight=refinedFlightLayout?240:312;
+            Panel(root,"RadarGlass",1576,radarTop,312,radarHeight);Text(root,"RadarTitle",refinedFlightLayout?"hud.radarTitle":"hud.radarLegacyTitle",1596,radarTop+14,272,25,refinedFlightLayout?16:17);
+            radar=Rect(root,"SphericalRadar",1608,radarTop+(refinedFlightLayout?41:45),248,refinedFlightLayout?164:225).gameObject.AddComponent<SphereRadarGraphic>();
+            radarLabel=Text(root,"RadarContacts","hud.radarInitial",1596,radarTop+(refinedFlightLayout?211:280),272,22,13);
+            if(refinedFlightLayout)
+            {
+                Text(root,"ControlsMovement","hud.movementHelp",410,1002,1100,20,13).alignment=TextAlignmentOptions.Center;
+                Text(root,"ControlsCombat","hud.combatHelp",410,1027,1100,20,13).alignment=TextAlignmentOptions.Center;
+            }
+            else Text(root,"Controls","hud.allHelp",32,1030,1830,28,15);
+            var group=Rect(root,"ExitModal",0,0,1920,1080);modal=group.gameObject;
+            var dim=Rect(group,"ModalBlocker",0,0,1920,1080).gameObject.AddComponent<Image>();dim.color=new Color(0,0,0,.45f);
+            Panel(group,"ExitGlass",600,342,720,396);
+            Text(group,"ExitTitle","hud.exitTitle",636,375,648,45,25);
+            Text(group,"ExitHint","hud.exitHint",636,434,648,68,17);
+            Button(group,"RangeOptions","app.rangeOptions",636,530,310,50,()=>PracticeOptionsRequested?.Invoke());
+            Button(group,"RangeSettings","app.settings",974,530,310,50,()=>SettingsRequested?.Invoke());
+            Button(group,"CancelExit","hud.continue",636,632,310,50,()=>CloseExit(),refinedFlightLayout);
+            Button(group,"ConfirmExit","hud.returnAssembly",974,632,310,50,()=>{CloseExit();ExitConfirmed?.Invoke();});
+            // These values are composed by telemetry each tick, including locale changes.
+            // Their initial placeholders must not overwrite live values on a language switch.
+            foreach(var label in new TMP_Text[]{ownCondition,targetIdentity,targetCondition,radarLabel,shieldLabel,energyLabel,lockLabel,summaryReadout})
+                if(label)L10n.Unbind(label);
+            modal.SetActive(false);Resize();Canvas.ForceUpdateCanvases();
+            foreach(var child in go.GetComponentsInChildren<Transform>(true))child.gameObject.layer=5;
+        }
+        void BuildLegacyFlightLayout(RectTransform root)
+        {
+            Panel(root,"TelemetryGlass",32,32,450,348);
+            Text(root,"Title","hud.rangeTitle",55,49,382,35,23);
+            info=Text(root,"Telemetry","",55,94,396,275,15);info.textWrappingMode=TextWrappingModes.Normal;
+            lockLabel=Text(root,"TargetLockStatus","hud.lockInitial",1410,353,478,30,17);lockLabel.alignment=TextAlignmentOptions.Right;
+            Panel(root,"OwnStatusGlass",32,618,360,266);Text(root,"OwnStatusTitle","hud.ownTitle",54,634,316,28,18);
+            ownStatus=Rect(root,"OwnShipSchematic",52,670,320,173).gameObject.AddComponent<ShipStatusGraphic>();
+            ownCondition=Text(root,"OwnShipCondition","hud.coreOnline",54,852,316,22,14);
+            Panel(root,"EnergyGlass",32,894,360,128);
+            shieldLabel=Text(root,"ShieldValue","hud.shieldInitial",54,904,316,25,14);
+            CreateShieldFill(root,54,932,EnergyWidth,10);
+            energyLabel=Text(root,"EnergyValue","hud.energyInitial",54,944,316,25,14);
+            CreateEnergyFill(root,54,976,EnergyWidth,14);
+            boostLabel=Text(root,"BoostStatus","hud.boost",54,996,316,20,13);boostLabel.color=new Color(.52f,.88f,1,.95f);boostLabel.gameObject.SetActive(false);
+            BuildTargetMonitor(root,1528,726,360,296,1550,742,1548,809,1550,990);
+        }
+        void BuildRefinedFlightLayout(RectTransform root)
+        {
+            telemetryShadow=Panel(root,"TelemetryGlass",32,32,450,310);
+            telemetryPanel=root.Find("TelemetryGlass")?.GetComponent<RawImage>();
+            Text(root,"Title","hud.systemsTitle",54,48,190,24,15).color=GlassUiPalette.Accent;
+            diagnosticHint=Text(root,"DiagnosticHint","hud.diagnosticsOpen",284,48,178,24,12);diagnosticHint.color=GlassUiPalette.Muted;diagnosticHint.alignment=TextAlignmentOptions.Right;
+            speedReadout=Text(root,"SpeedReadout","0.0 m/s",54,77,406,54,34);
+            summaryReadout=Text(root,"FlightSummary","hud.summaryInitial",54,139,406,57,13);summaryReadout.textWrappingMode=TextWrappingModes.Normal;summaryReadout.color=GlassUiPalette.Muted;
+            info=Text(root,"Telemetry","",54,205,406,126,11);info.textWrappingMode=TextWrappingModes.Normal;info.color=GlassUiPalette.Muted;info.lineSpacing=-1;
+            alertReadout=Text(root,"FlightAlert","",54,207,406,22,12);alertReadout.gameObject.SetActive(false);
+            lockLabel=Text(root,"TargetLockStatus","hud.lockHint",510,48,400,28,16);lockLabel.color=GlassUiPalette.Accent;
+            Panel(root,"OwnStatusGlass",32,678,360,238);Text(root,"OwnStatusTitle","hud.ownTitle",54,694,316,25,17);
+            ownStatus=Rect(root,"OwnShipSchematic",52,730,320,124).gameObject.AddComponent<ShipStatusGraphic>();
+            ownCondition=Text(root,"OwnShipCondition","hud.coreOnline",54,876,316,22,13);
+            Panel(root,"EnergyGlass",32,934,360,114);
+            shieldLabel=Text(root,"ShieldValue","hud.shieldInitial",54,942,316,20,13);
+            CreateShieldFill(root,54,965,EnergyWidth,8);
+            energyLabel=Text(root,"EnergyValue","hud.energyInitial",54,979,316,20,13);
+            CreateEnergyFill(root,54,1002,EnergyWidth,10);
+            boostLabel=Text(root,"BoostStatus","hud.boost",54,1020,316,18,12);boostLabel.color=GlassUiPalette.Accent;boostLabel.gameObject.SetActive(false);
+            BuildTargetMonitor(root,1528,678,360,238,1550,694,1548,742,1550,876,12,124,17,27);
+            SetDiagnosticsExpanded(false);
+        }
+        void CreateShieldFill(RectTransform root,float x,float y,float width,float height)
+        {
+            var track=Rect(root,"ShieldTrack",x,y,width,height).gameObject.AddComponent<Image>();track.color=refinedFlightLayout?new Color(GlassUiPalette.Accent.r,GlassUiPalette.Accent.g,GlassUiPalette.Accent.b,.16f):new Color(.035f,.12f,.18f,.9f);track.raycastTarget=false;
+            shieldFill=Rect(root,"ShieldFill",x,y,width,height).gameObject.AddComponent<RawImage>();shieldFill.texture=Texture2D.whiteTexture;shieldFill.color=refinedFlightLayout?GlassUiPalette.Accent:new Color(.4f,.72f,.8f,.95f);shieldFill.raycastTarget=false;
+            shieldFill.rectTransform.anchorMin=shieldFill.rectTransform.anchorMax=new Vector2(x/1920f,(1080f-y-height*.5f)/1080f);shieldFill.rectTransform.pivot=new Vector2(0,.5f);shieldFill.rectTransform.anchoredPosition=Vector2.zero;
+        }
+        void CreateEnergyFill(RectTransform root,float x,float y,float width,float height)
+        {
+            var track=Rect(root,"EnergyTrack",x,y,width,height).gameObject.AddComponent<Image>();track.color=refinedFlightLayout?new Color(GlassUiPalette.Accent.r,GlassUiPalette.Accent.g,GlassUiPalette.Accent.b,.16f):new Color(.035f,.12f,.18f,.9f);track.raycastTarget=false;
+            energyFill=Rect(root,"EnergyFill",x,y,width,height).gameObject.AddComponent<RawImage>();energyFill.texture=Texture2D.whiteTexture;energyFill.color=refinedFlightLayout?GlassUiPalette.Accent:new Color(.28f,.82f,1,.95f);energyFill.raycastTarget=false;
+            energyFill.rectTransform.anchorMin=energyFill.rectTransform.anchorMax=new Vector2(x/1920f,(1080f-y-height*.5f)/1080f);energyFill.rectTransform.pivot=new Vector2(0,.5f);energyFill.rectTransform.anchoredPosition=Vector2.zero;energyFill.rectTransform.sizeDelta=new Vector2(width,height);
+        }
+        void BuildTargetMonitor(RectTransform root,float px,float py,float pw,float ph,float tx,float ty,float sx,float sy,float cx,float cy,float identitySize=15,float schematicHeight=164,float titleSize=18,float identityOffset=35)
+        {
+            Panel(root,"TargetStatusGlass",px,py,pw,ph);Text(root,"TargetStatusTitle","hud.targetTitle",tx,ty,316,28,titleSize);
+            targetIdentity=Text(root,"TargetIdentity","hud.noTarget",tx,ty+identityOffset,316,18,identitySize);targetIdentity.overflowMode=TextOverflowModes.Ellipsis;
+            targetStatus=Rect(root,"TargetShipSchematic",sx,sy,320,schematicHeight).gameObject.AddComponent<ShipStatusGraphic>();
+            targetCondition=Text(root,"TargetShipCondition","hud.targetHint",cx,cy,316,22,14);
+        }
+        void BuildWeaponGroupHud(RectTransform root,Starframe.Combat.ShipWeapons weapons)
+        {
+            foreach(var entry in weaponGroupHud)if(entry.tile)Destroy(entry.tile.gameObject);
+            weaponGroupHud.Clear();
+            if(weapons==null||weapons.Groups==null||weapons.Groups.Count==0)return;
+            const float panelX=32,panelY=476,panelWidth=450,tileWidth=98,tileHeight=28,gap=8;
+            bool secondRow=false;foreach(var group in weapons.Groups)if(group.id>=4&&group.id<8)secondRow=true;
+            float panelHeight=secondRow?118:80;
+            Panel(root,"WeaponGroupHudGlass",panelX,panelY,panelWidth,panelHeight);
+            Text(root,"WeaponGroupHudTitle","hud.weaponGroupsTitle",panelX+14,panelY+8,230,18,12);
+            var hint=Text(root,"WeaponGroupHudHint","hud.weaponGroupsKeyHint",panelX+250,panelY+8,184,18,10);
+            hint.alignment=TextAlignmentOptions.Right;hint.color=GlassUiPalette.Muted;
+            var groups=new List<Starframe.Construction.WeaponGroupRecord>(weapons.Groups);
+            groups.Sort((a,b)=>a.id.CompareTo(b.id));
+            for(int i=0;i<groups.Count&&i<8;i++)
+            {
+                if(groups[i].id<0||groups[i].id>=8)continue;
+                int row=groups[i].id/4,column=groups[i].id%4;
+                float x=panelX+17+column*(tileWidth+gap),y=panelY+34+row*36;
+                var tile=Rect(root,"WeaponGroupHud_"+groups[i].id,x,y,tileWidth,tileHeight).gameObject.AddComponent<Image>();
+                tile.raycastTarget=false;
+                var label=Text(root,"WeaponGroupHudLabel_"+groups[i].id,"",x+3,y+4,tileWidth-6,tileHeight-8,12);
+                label.alignment=TextAlignmentOptions.Center;
+                weaponGroupHud.Add(new WeaponGroupHudEntry{id=groups[i].id,tile=tile,label=label});
+            }
+            RefreshWeaponGroupHud(weapons);
+        }
+        void RefreshWeaponGroupHud(Starframe.Combat.ShipWeapons weapons)
+        {
+            if(weapons==null)return;
+            Color enabled=new Color(GlassUiPalette.Accent.r,GlassUiPalette.Accent.g,GlassUiPalette.Accent.b,.28f);
+            Color disabled=new Color(GlassUiPalette.Ink.r,GlassUiPalette.Ink.g,GlassUiPalette.Ink.b,.07f);
+            for(int i=0;i<weaponGroupHud.Count;i++)
+            {
+                var entry=weaponGroupHud[i];if(!entry.tile||!entry.label)continue;
+                bool active=weapons.IsGroupEnabled(entry.id);int count=weapons.GetGroupGunCount(entry.id,true);
+                entry.tile.color=active?enabled:disabled;
+                entry.label.text=L10n.T("hud.weaponGroupSlot",(long)entry.id+1,L10n.T("hud.weaponGroupGuns",count),L10n.T(active?"hud.weaponGroupOn":"hud.weaponGroupOff"));
+                entry.label.color=active?GlassUiPalette.Ink:GlassUiPalette.Muted;
+            }
+        }
+        void SetDiagnosticsExpanded(bool expanded)
+        {
+            diagnosticsExpanded=expanded;
+            float height=expanded?418:220;
+            SetPanelHeight(telemetryPanel,32,height);SetRect(telemetryShadow,35,36,450,height);
+            SetRect(info.rectTransform,54,205,406,expanded?190:100);
+            SetRect(alertReadout.rectTransform,54,expanded?410:207,406,22);
+            info.gameObject.SetActive(expanded);
+            L10n.Bind(diagnosticHint,expanded?"hud.diagnosticsClose":"hud.diagnosticsOpen");
+        }
+        void SetPanelHeight(RawImage image,float y,float height)
+        {
+            if(!image)return;
+            var rect=image.rectTransform;rect.anchorMin=new Vector2(32/1920f,(1080f-y-height)/1080f);rect.anchorMax=new Vector2((32+450)/1920f,(1080f-y)/1080f);rect.offsetMin=rect.offsetMax=Vector2.zero;
+            var uv=new UnityEngine.Rect(32/1920f,(1080f-y-height)/1080f,450/1920f,height/1080f);image.uvRect=uv;
+            if(image.material)image.material.SetVector("_PanelUVRect",new Vector4(uv.x,uv.y,uv.width,uv.height));
+        }
+        static void SetRect(RectTransform rect,float x,float y,float width,float height)
+        {
+            rect.anchorMin=new Vector2(x/1920f,(1080f-y-height)/1080f);rect.anchorMax=new Vector2((x+width)/1920f,(1080f-y)/1080f);rect.offsetMin=rect.offsetMax=Vector2.zero;
+        }
+        public void OpenExit(){modal.SetActive(true);}
+        public void CloseExit(){modal.SetActive(false);if(EventSystem.current)EventSystem.current.SetSelectedGameObject(null);}
+        void Update()
+        {
+            if(!flight)return;Resize();
+            if(!inputOverlayOpen&&Time.frameCount>ignoreEscapeThroughFrame&&Keyboard.current!=null&&Keyboard.current.escapeKey.wasPressedThisFrame){if(ExitDialogOpen)CloseExit();else OpenExit();}
+            if(refinedFlightLayout&&!ExitDialogOpen&&Keyboard.current!=null&&Keyboard.current.f1Key.wasPressedThisFrame)SetDiagnosticsExpanded(!diagnosticsExpanded);
+            if(Time.unscaledTime<nextTelemetry)return;nextTelemetry=Time.unscaledTime+.12f;
+            var p=flight.Performance;var a=p.accelerationPositive/9.81f;var b=p.accelerationNegative/9.81f;
+            string performanceDetails=L10n.T("hud.performance",p.totalMass,a.z,b.z,a.x,b.x,a.y,b.y,p.angularRate,p.pitchAcceleration,p.rollSpeed);
+            if(!refinedFlightLayout)info.text=L10n.T("hud.speed",flight.CurrentSpeed,p.maxSpeed,performanceDetails);
+            if(speedReadout)speedReadout.text=refinedFlightLayout?$"{flight.CurrentSpeed:0.0} <size=18>m/s</size>  <color=#{ColorUtility.ToHtmlStringRGB(GlassUiPalette.Muted)}>/ {p.maxSpeed:0}</color>":"";
+            if(summaryReadout)summaryReadout.text=L10n.T("hud.summaryWaiting",p.totalMass);
+            float maxEnergy=Mathf.Max(0,flight.MaxEnergy),energy=Mathf.Clamp(flight.Energy,0,maxEnergy),ratio=maxEnergy>0?energy/maxEnergy:0;
+            if(energyLabel)energyLabel.text=maxEnergy>0?L10n.T("hud.energy",ratio,energy,maxEnergy):L10n.T("hud.noPower");
+            if(energyFill)energyFill.rectTransform.sizeDelta=new Vector2(EnergyWidth*ratio,refinedFlightLayout?10:14);
+            if(boostLabel)boostLabel.gameObject.SetActive(flight.IsBoosting);
+            if(refinedFlightLayout){info.text="";if(alertReadout){alertReadout.text="";alertReadout.gameObject.SetActive(false);}}
+            if(combat){var player=combat.Player;int present=0,live=0;foreach(var part in player.ship.Parts)if(part.present)present++;foreach(var bot in combat.Bots)if(bot.ship.IsAlive)live++;
+                RefreshWeaponGroupHud(player.weapons);
+                float capacity=player.ship.Shields.Capacity,charge=player.ship.Shields.Charge;
+                shieldLabel.text=capacity>0?L10n.T("hud.shield",charge,capacity):L10n.T("hud.noShield");
+                shieldFill.rectTransform.sizeDelta=new Vector2(EnergyWidth*(capacity>0?charge/capacity:0),refinedFlightLayout?8:10);
+                var targeting=combat.Targeting;bool locked=targeting&&targeting.HasTarget;
+                if(lockLabel)lockLabel.text=locked?L10n.T("hud.unlock",targeting.TargetDistance):L10n.T("hud.lock");
+                ownStatus.Bind(player.ship);ownCondition.text=Condition(player.ship);ownCondition.color=player.ship.IsAlive?(refinedFlightLayout?GlassUiPalette.Accent:new Color(.48f,.85f,1)):(refinedFlightLayout?Starframe.Presentation.UiTheme.Current.danger:new Color(1,.25f,.2f));
+                var target=locked?targeting.LockedTarget:null;targetStatus.Bind(target);
+                targetIdentity.text=target?L10n.T("hud.targetIdentity",TargetName(target),targeting.TargetDistance):L10n.T("hud.noTarget");
+                L10n.ApplyUserContentFont(targetIdentity);
+                targetCondition.text=target?Condition(target):L10n.T("hud.targetHint");
+                radarLabel.text=L10n.T("hud.radarContacts",live,L10n.T(locked?"hud.locked":"hud.unlocked"));
+                if(leadLabel){var leads=combat.Targeting?combat.Targeting.LeadPoints:null;var labels=new List<string>();if(leads!=null)foreach(var lead in leads)if(lead.weapon){int i=labels.Count;string tint=i%4==0?"4DE0FF":i%4==1?"FFC257":i%4==2?"C2A1FF":"78FFB8";labels.Add($"<color=#{tint}>{i+1}</color> · {lead.weapon.projectileSpeed:0} m/s");}leadLabel.text=string.Join("   ",labels);}
+                string combatDetails=L10n.T("hud.combatDetails",present,player.ship.Parts.Count,player.weapons.ActiveGuns,player.weapons.BlockedGuns,player.ship.DamageDealt,player.ship.DamageTaken,live,combat.Bots.Count,combat.BotKills);
+                string alert=!player.ship.IsAlive?L10n.T("hud.respawn",combat.PlayerRespawnRemaining):live<combat.Bots.Count?L10n.T("hud.rebuilding"):"";
+                if(!refinedFlightLayout)
+                {
+                    info.text+=combatDetails;
+                    if(alert.Length>0)info.text+="\n"+alert;
+                }
+                else
+                {
+                    summaryReadout.text=L10n.T("hud.summary",p.totalMass,player.weapons.ActiveGuns,player.weapons.BlockedGuns,locked?L10n.T("hud.lockDistance",targeting.TargetDistance):L10n.T("hud.unlocked"));
+                    if(diagnosticsExpanded)info.text=performanceDetails+combatDetails;
+                    if(alertReadout&&alert.Length>0){alertReadout.text=alert;alertReadout.color=!player.ship.IsAlive?Starframe.Presentation.UiTheme.Current.danger:Starframe.Presentation.UiTheme.Current.amber;alertReadout.gameObject.SetActive(true);}
+                }
+            }
+        }
+        string TargetName(FlightShipRuntime ship){foreach(var actor in combat.Actors)if(actor.ship==ship)return actor.blueprintName??L10n.T("hud.enemyShip");return L10n.T("hud.enemyShip");}
+        string Condition(FlightShipRuntime ship)
+        {
+            int count=0,damaged=0;foreach(var p in ship.Parts)if(p.present){count++;if(p.hp<p.maxHp-.001f)damaged++;}
+            Color damageColor=damaged>0?(refinedFlightLayout?Starframe.Presentation.UiTheme.Current.danger:new Color(1,.38f,.33f)):GlassUiPalette.Muted;
+            string damageHex=ColorUtility.ToHtmlStringRGB(damageColor);
+            return L10n.T("hud.condition",L10n.T(ship.IsAlive?"hud.coreOnline":"hud.coreDestroyed"),count,ship.Parts.Count,damaged,damageHex);
+        }
+        void RefreshLocale(){font=L10n.CurrentFont;nextTelemetry=0;}
+        void LateUpdate()
+        {
+            if(!combat)return;
+            while(targetLabels.Count<combat.Bots.Count){
+                int i=targetLabels.Count;var label=Text((RectTransform)canvas.transform,"BotMarker"+i,"",0,0,360,28,18);label.alignment=TextAlignmentOptions.Center;label.fontStyle=FontStyles.Bold;
+                label.rectTransform.anchorMin=label.rectTransform.anchorMax=new Vector2(.5f,.5f);label.rectTransform.sizeDelta=new Vector2(360,28);label.transform.SetSiblingIndex(modal.transform.GetSiblingIndex());targetLabels.Add(label);
+            }
+            for(int i=0;i<targetLabels.Count;i++){
+                var label=targetLabels[i];if(i>=combat.Bots.Count){label.gameObject.SetActive(false);continue;}
+                var bot=combat.Bots[i];var point=worldCamera.WorldToScreenPoint(bot.body.position+Vector3.up*(bot.ship.HullRadius+1));
+                bool visible=bot.ship.IsAlive&&point.z>0&&point.x>0&&point.x<Screen.width&&point.y>0&&point.y<Screen.height;label.gameObject.SetActive(visible);
+                if(visible){label.text=bot.blueprintName+" · "+(i+1);L10n.ApplyUserContentFont(label);if(RectTransformUtility.ScreenPointToLocalPointInRectangle((RectTransform)canvas.transform,point,displayCamera,out var local))label.rectTransform.anchoredPosition=local;}
+            }
+        }
+        void Resize()
+        {
+            int w=Mathf.Max(1,Screen.width),h=Mathf.Max(1,Screen.height);
+            if(sceneTexture&&sceneTexture.width==w&&sceneTexture.height==h)return;
+            if(sceneTexture){worldCamera.targetTexture=null;sceneTexture.Release();Destroy(sceneTexture);}
+            sceneTexture=new RenderTexture(w,h,24,RenderTextureFormat.ARGBHalf){name="RangeView",useMipMap=true,autoGenerateMips=true,filterMode=FilterMode.Trilinear};sceneTexture.Create();
+            worldCamera.targetTexture=sceneTexture;worldCamera.aspect=(float)w/h;foreach(var image in glass)image.texture=sceneTexture;
+        }
+        static RectTransform Rect(RectTransform parent,string name,float x,float y,float w,float h)
+        {
+            var go=new GameObject(name,typeof(RectTransform));go.layer=5;var r=(RectTransform)go.transform;r.SetParent(parent,false);
+            r.anchorMin=new Vector2(x/1920,(1080-y-h)/1080);r.anchorMax=new Vector2((x+w)/1920,(1080-y)/1080);r.offsetMin=r.offsetMax=Vector2.zero;return r;
+        }
+        TextMeshProUGUI Text(RectTransform parent,string name,string value,float x,float y,float w,float h,float size)
+        {
+            var t=Rect(parent,name,x,y,w,h).gameObject.AddComponent<TextMeshProUGUI>();t.font=font;t.fontSize=size;t.color=GlassUiPalette.Ink;
+            if(L10n.IsKey(value))L10n.Bind(t,value);else{t.text=value;L10n.ApplyFont(t);}
+            t.raycastTarget=false;t.textWrappingMode=TextWrappingModes.NoWrap;t.overflowMode=TextOverflowModes.Overflow;
+            if(name=="ExitHint"||name.StartsWith("Controls",StringComparison.Ordinal))t.textWrappingMode=TextWrappingModes.Normal;
+            return t;
+        }
+        RectTransform Panel(RectTransform parent,string name,float x,float y,float w,float h)
+        {
+            var shadow=Rect(parent,name+"Shadow",x+3,y+4,w,h).gameObject.AddComponent<Image>();shadow.color=new Color(0,0,0,.08f);shadow.raycastTarget=false;
+            var image=Rect(parent,name,x,y,w,h).gameObject.AddComponent<RawImage>();image.raycastTarget=false;
+            var material=new Material(Shader.Find("Starframe/UI/BackdropBlur"));GlassUiPalette.Apply(material,name=="ExitGlass"?GlassUiPalette.Dialog:GlassUiPalette.Glass);
+            material.SetVector("_PanelUVRect",new Vector4(x/1920,(1080-y-h)/1080,w/1920,h/1080));
+            image.uvRect=new UnityEngine.Rect(x/1920,(1080-y-h)/1080,w/1920,h/1080);image.texture=sceneTexture;image.material=material;materials.Add(material);glass.Add(image);return shadow.rectTransform;
+        }
+        void Button(RectTransform parent,string name,string value,float x,float y,float w,float h,Action action,bool primary=false)
+        {
+            var image=Rect(parent,name,x,y,w,h).gameObject.AddComponent<Image>();image.color=primary?Starframe.Presentation.UiTheme.Current.accent:GlassUiPalette.Button;
+            var button=image.gameObject.AddComponent<UnityEngine.UI.Button>();button.targetGraphic=image;button.navigation=new Navigation{mode=Navigation.Mode.None};button.onClick.AddListener(()=>action());
+            var text=Text(parent,name+"Text",value,x,y+7,w,h-14,17);text.alignment=TextAlignmentOptions.Center;
+            if(primary&&refinedFlightLayout)text.color=new Color(.045f,.075f,.08f,1);
+        }
+        void OnDestroy()
+        {
+            if(worldCamera)worldCamera.targetTexture=null;if(sceneTexture){sceneTexture.Release();Destroy(sceneTexture);}
+            foreach(var m in materials)Destroy(m);
+            L10n.Changed-=RefreshLocale;
+
+        }
+    }
+    [DefaultExecutionOrder(100)]
+    [RequireComponent(typeof(CanvasRenderer))]
+    public sealed class FlightAimGraphic:UnityEngine.UI.Graphic
+    {
+        Camera viewCamera;ShipFlightController flight;Canvas ownerCanvas;
+        Vector2 actualPoint,desiredPoint,displayedOffset;bool positioned,refinedReticle;
+        readonly Starframe.Presentation.ReticleHitFeedback hitFeedback=new Starframe.Presentation.ReticleHitFeedback();
+        public bool NotifyWeaponHit()
+        {
+            var theme=Starframe.Presentation.UiTheme.Current;
+            if(!theme.hitFeedbackEnabled)return false;
+            bool accepted=hitFeedback.TryTrigger(Time.unscaledTimeAsDouble,theme.hitFeedbackMaxRate);
+            if(accepted)SetVerticesDirty();return accepted;
+        }
+        public void Initialize(Camera view,ShipFlightController ship){viewCamera=view;flight=ship;ownerCanvas=GetComponentInParent<Canvas>();raycastTarget=false;color=Color.white;refinedReticle=Starframe.Presentation.UiTheme.Current.aimReticle;}
+        void LateUpdate()
+        {
+            if(!flight||!viewCamera||!ownerCanvas)return;
+            var uiCamera=ownerCanvas.renderMode==RenderMode.ScreenSpaceOverlay?null:ownerCanvas.worldCamera;
+            // Project direction vectors, avoiding parallax from the elevated third-person camera.
+            var forward=Starframe.Combat.AimProjection.ScreenPoint(viewCamera,flight.Forward);
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(rectTransform,forward,uiCamera,out var a);
+            var r=rectTransform.rect;a=Clamp(a,r);
+            if(!positioned){actualPoint=desiredPoint=r.center;positioned=true;}
+            float dt=Mathf.Min(Time.unscaledDeltaTime,.05f),scale=1/Mathf.Max(.01f,ownerCanvas.scaleFactor);
+            actualPoint=a;
+            // Smooth the relative offset, so camera/ship motion moves both markers together.
+            displayedOffset=Vector2.MoveTowards(displayedOffset,Vector2.Lerp(displayedOffset,flight.AimOffsetPixels*scale,1-Mathf.Exp(-flight.Tuning.reticleSharpness*2*dt)),flight.Tuning.reticleMaxSpeed*1.5f*scale*dt);
+            desiredPoint=Clamp(actualPoint+displayedOffset,r);
+            SetVerticesDirty();
+        }
+        protected override void OnPopulateMesh(VertexHelper vh)
+        {
+            vh.Clear();if(!flight||!viewCamera||!ownerCanvas)return;
+            Vector2 a=actualPoint,b=desiredPoint;
+            float s=1/Mathf.Max(.01f,ownerCanvas.scaleFactor);
+            var theme=Starframe.Presentation.UiTheme.Current;
+            hitFeedback.Sample(Time.unscaledTimeAsDouble,theme.hitFeedbackDuration,out float hitStrength,out float extension);
+            if(!theme.hitFeedbackEnabled){hitFeedback.Reset();hitStrength=extension=0;}
+            if(refinedReticle)
+            {
+                // Projection and cursor positions above are shared with the legacy graphic; only the drawing changes.
+                var accent=new Color(theme.accent.r,theme.accent.g,theme.accent.b,.94f);var cursor=new Color(theme.text.r,theme.text.g,theme.text.b,.84f);
+                if(theme.hitFeedbackEnabled)DrawReactiveCross(vh,a,s,theme,hitStrength,accent);
+                else
+                {
+                    DrawOpenCross(vh,a,6*s,15*s,4*s,accent);
+                    Rect(vh,a,new Vector2(4,4)*s,accent);
+                }
+                DrawHitMarker(vh,a,s,theme,hitStrength,extension);
+                bool showCursor=(b-a).sqrMagnitude>=64*s*s;
+                if(showCursor)
+                {
+                    Line(vh,a,b,2*s,new Color(theme.accent.r,theme.accent.g,theme.accent.b,.24f));
+                    float gap=9,edge=13,thickness=3*s;
+                    Line(vh,b+new Vector2(-edge,-edge)*s,b+new Vector2(-gap,-edge)*s,thickness,cursor);
+                    Line(vh,b+new Vector2(-edge,-edge)*s,b+new Vector2(-edge,-gap)*s,thickness,cursor);
+                    Line(vh,b+new Vector2(edge,-edge)*s,b+new Vector2(gap,-edge)*s,thickness,cursor);
+                    Line(vh,b+new Vector2(edge,-edge)*s,b+new Vector2(edge,-gap)*s,thickness,cursor);
+                    Line(vh,b+new Vector2(-edge,edge)*s,b+new Vector2(-gap,edge)*s,thickness,cursor);
+                    Line(vh,b+new Vector2(-edge,edge)*s,b+new Vector2(-edge,gap)*s,thickness,cursor);
+                    Line(vh,b+new Vector2(edge,edge)*s,b+new Vector2(gap,edge)*s,thickness,cursor);
+                    Line(vh,b+new Vector2(edge,edge)*s,b+new Vector2(edge,gap)*s,thickness,cursor);
+                }
+                return;
+            }
+            Line(vh,a,b,2.5f*s);
+            if(theme.hitFeedbackEnabled)
+            {
+                DrawReactiveCross(vh,a,s,theme,hitStrength,Color.white);
+                DrawHitMarker(vh,a,s,theme,hitStrength,extension);
+            }
+            else {Line(vh,a+Vector2.left*12*s,a+Vector2.right*12*s,4*s);Line(vh,a+Vector2.down*12*s,a+Vector2.up*12*s,4*s);}
+            var lowerLeft=b+new Vector2(-8,-8)*s;var upperLeft=b+new Vector2(-8,8)*s;
+            var upperRight=b+new Vector2(8,8)*s;var lowerRight=b+new Vector2(8,-8)*s;
+            Line(vh,lowerLeft,upperLeft,3.5f*s);Line(vh,upperLeft,upperRight,3.5f*s);
+            Line(vh,upperRight,lowerRight,3.5f*s);Line(vh,lowerRight,lowerLeft,3.5f*s);
+        }
+        void DrawReactiveCross(VertexHelper vh,Vector2 center,float scale,Starframe.Presentation.UiTheme theme,float strength,Color tint)
+        {
+            float idle=Mathf.Max(0,theme.reticleIdleGap);
+            float gap=Mathf.Lerp(idle,Mathf.Clamp(theme.reticleHitGap,0,idle),strength)*scale;
+            float outer=gap+Mathf.Max(1,theme.reticleArmLength)*scale;
+            tint=Color.Lerp(tint,Color.white,strength*.65f);
+            DrawOpenCross(vh,center,gap,outer,4*scale,tint);
+            Rect(vh,center,Vector2.one*3*scale,tint);
+        }
+        void DrawOpenCross(VertexHelper vh,Vector2 center,float gap,float outer,float width,Color tint)
+        {
+            Line(vh,center+Vector2.left*outer,center+Vector2.left*gap,width,tint);
+            Line(vh,center+Vector2.right*gap,center+Vector2.right*outer,width,tint);
+            Line(vh,center+Vector2.down*outer,center+Vector2.down*gap,width,tint);
+            Line(vh,center+Vector2.up*gap,center+Vector2.up*outer,width,tint);
+        }
+        void DrawHitMarker(VertexHelper vh,Vector2 center,float scale,Starframe.Presentation.UiTheme theme,float strength,float extension)
+        {
+            if(strength<=.001f)return;
+            float length=Mathf.Lerp(2,Mathf.Max(2,theme.hitMarkerLength),extension)*scale;
+            Color tint=Color.Lerp(theme.hitMarkerColor,Color.white,.22f*strength);tint.a*=strength;
+            Color glow=tint;glow.a*=.18f;
+            for(int x=-1;x<=1;x+=2)for(int y=-1;y<=1;y+=2)
+            {
+                var direction=new Vector2(x,y).normalized;
+                var start=center+direction*15*scale;var end=start+direction*length;
+                Line(vh,start,end,6*scale,glow);Line(vh,start,end,3*scale,tint);
+            }
+        }
+        static Vector2 Clamp(Vector2 p,UnityEngine.Rect r)=>new Vector2(Mathf.Clamp(p.x,r.xMin+14,r.xMax-14),Mathf.Clamp(p.y,r.yMin+14,r.yMax-14));
+        void Line(VertexHelper vh,Vector2 a,Vector2 b,float width)=>Line(vh,a,b,width,Color.white);
+        void Line(VertexHelper vh,Vector2 a,Vector2 b,float width,Color tint)
+        {
+            if((a-b).sqrMagnitude<.000001f)return;
+            Stroke(vh,a,b,width,tint);
+        }
+        void Rect(VertexHelper vh,Vector2 center,Vector2 size,Color tint)
+        {
+            int i=vh.currentVertCount;Vector2 half=size*.5f;
+            vh.AddVert(center+new Vector2(-half.x,-half.y),tint,Vector2.zero);vh.AddVert(center+new Vector2(-half.x,half.y),tint,Vector2.zero);
+            vh.AddVert(center+new Vector2(half.x,half.y),tint,Vector2.zero);vh.AddVert(center+new Vector2(half.x,-half.y),tint,Vector2.zero);
+            vh.AddTriangle(i,i+1,i+2);vh.AddTriangle(i,i+2,i+3);
+        }
+        void Stroke(VertexHelper vh,Vector2 a,Vector2 b,float width,Color tint)
+        {
+            if((a-b).sqrMagnitude<.000001f)return;var d=b-a;var n=new Vector2(-d.y,d.x).normalized*width*.5f;int i=vh.currentVertCount;
+            vh.AddVert(a-n,tint,Vector2.zero);vh.AddVert(a+n,tint,Vector2.zero);vh.AddVert(b+n,tint,Vector2.zero);vh.AddVert(b-n,tint,Vector2.zero);
+            vh.AddTriangle(i,i+1,i+2);vh.AddTriangle(i,i+2,i+3);
+        }
+    }
+}

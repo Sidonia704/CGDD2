@@ -1,0 +1,223 @@
+{
+    "version": 2,
+    "name": "标准靶场试飞船",
+    "hasCore": true,
+    "corePartId": "range-core",
+    "shipForward": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 1.0
+    },
+    "parts": [
+        {
+            "id": "range-core",
+            "shape": 6,
+            "cell": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 0.0,
+                "y": 0.5,
+                "z": 0.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "range-engine-0",
+            "shape": 2,
+            "cell": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 1.0,
+                "y": 0.5,
+                "z": 0.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": -0.7071068286895752,
+                "w": 0.7071068286895752
+            }
+        },
+        {
+            "id": "range-engine-1",
+            "shape": 2,
+            "cell": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -1.0,
+                "y": 0.5,
+                "z": 0.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.7071068286895752,
+                "w": 0.7071068286895752
+            }
+        },
+        {
+            "id": "range-engine-2",
+            "shape": 2,
+            "cell": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 0.0,
+                "y": 1.5,
+                "z": 0.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "range-engine-3",
+            "shape": 2,
+            "cell": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 0.0,
+                "y": -0.5,
+                "z": 0.0
+            },
+            "rotation": {
+                "x": 1.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 0.0
+            }
+        },
+        {
+            "id": "range-engine-4",
+            "shape": 2,
+            "cell": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 0.0,
+                "y": 0.5,
+                "z": 1.0
+            },
+            "rotation": {
+                "x": 0.7071068286895752,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 0.7071068286895752
+            }
+        },
+        {
+            "id": "range-engine-5",
+            "shape": 2,
+            "cell": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 0.0,
+                "y": 0.5,
+                "z": -1.0
+            },
+            "rotation": {
+                "x": -0.7071068286895752,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 0.7071068286895752
+            }
+        },
+        {
+            "id": "range-mount",
+            "shape": 0,
+            "cell": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 1.0,
+                "y": 1.5,
+                "z": 0.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "range-mount-front",
+            "shape": 8,
+            "cell": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 1.0,
+                "y": 1.5,
+                "z": 1.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "range-gun",
+            "shape": 7,
+            "cell": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 1.0,
+                "y": 2.5,
+                "z": 0.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        }
+    ]
+}

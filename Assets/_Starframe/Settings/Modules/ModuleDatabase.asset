@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8287298db17d962428b8b5da3ce473ae, type: 3}
+  m_Name: ModuleDatabase
+  m_EditorClassIdentifier: Starframe.Construction::Starframe.Flight.ModuleDatabase
+  modules:
+  - {fileID: 11400000, guid: 4a33ee3238289eb4d8fe6ba8a9c366a1, type: 2}
+  - {fileID: 11400000, guid: 4db8b79a023a0d746957b78ff4337e2c, type: 2}
+  - {fileID: 11400000, guid: ff13564d92d1ce246bb3897eca50337c, type: 2}
+  - {fileID: 11400000, guid: 6e9386b27990f0a438d5aac2099f9474, type: 2}
+  - {fileID: 11400000, guid: 7f5d424177679f749a229e5126bfc215, type: 2}
+  - {fileID: 11400000, guid: bace4f9c830b316468d046341ce610b4, type: 2}
+  - {fileID: 11400000, guid: 0c74a2bdec2cff4438b09f84d6181515, type: 2}
+  - {fileID: 11400000, guid: f510828348ae2e747962deba5994235b, type: 2}
+  - {fileID: 11400000, guid: deb87f470963cdc42ae66f3c48836eb0, type: 2}
+  - {fileID: 11400000, guid: 4ea0543c30859c942a71ac49549b748f, type: 2}

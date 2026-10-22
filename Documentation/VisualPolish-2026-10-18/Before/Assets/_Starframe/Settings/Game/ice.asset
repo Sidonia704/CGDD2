@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95e9e870a7dceaf4bb886ef330aab8f5, type: 3}
+  m_Name: ice
+  m_EditorClassIdentifier: Starframe.Construction::Starframe.App.MissionDefinition
+  id: ice
+  titleKey: mission.ice.title
+  descriptionKey: mission.ice.description
+  regionKey: mission.ice.region
+  thumbnail: {fileID: 2800000, guid: dd4d2836348c49949b2a4cf8e14b8d81, type: 3}
+  sceneName: 
+  baseBudget: 6000
+  useProvisionalPricing: 1
+  unpricedPartCost: 10
+  maximumMassKg: 0
+  objectivesKeys: []
+  relaxedBudgetMultiplier: 1.25
+  standardBudgetMultiplier: 1
+  expertBudgetMultiplier: 0.75

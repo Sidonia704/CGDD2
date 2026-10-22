@@ -1,0 +1,1790 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: GameUI_en
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: 141967598b049a1429bd9223ee40a685, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 1005584384
+    m_Localized: Cancel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721728
+    m_Localized: Confirm
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721729
+    m_Localized: Save
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721730
+    m_Localized: Load
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721731
+    m_Localized: Delete
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721732
+    m_Localized: Replace
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721733
+    m_Localized: Ship Assembly
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721734
+    m_Localized: BLUEPRINT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721735
+    m_Localized: Assembly Sample
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721736
+    m_Localized: Untitled Blueprint
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721737
+    m_Localized: BUILD
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721738
+    m_Localized: DELETE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721739
+    m_Localized: Module Details
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721740
+    m_Localized: Select a module
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721741
+    m_Localized: Save Blueprint
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721742
+    m_Localized: Load Blueprint
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721743
+    m_Localized: '{0:D4}  PARTS{1}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721744
+    m_Localized: Test Flight
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721745
+    m_Localized: Test Flight
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721746
+    m_Localized: Select a module.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721747
+    m_Localized: "ROTATE {0}\xB0  \xB7  R"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721748
+    m_Localized: "MMB Orbit  \xB7  Shift + MMB Pan  \xB7  Wheel Zoom"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721749
+    m_Localized: "LMB Place  \xB7  X Delete mode  \xB7  R Rotate  \xB7  F Frame ship 
+      \xB7  Shift Fast camera"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721750
+    m_Localized: Blueprint name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721751
+    m_Localized: Enter a name. You can replace an existing blueprint.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721752
+    m_Localized: Select a blueprint. Set a target count for each design.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721753
+    m_Localized: No saved blueprints
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721754
+    m_Localized: Add Target
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721755
+    m_Localized: Remove Target
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721756
+    m_Localized: 'Targets for this blueprint: {0}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721757
+    m_Localized: Save a blueprint with a core first.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721758
+    m_Localized: "   \xB7 Target \xD7 {0}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721759
+    m_Localized: Enter a blueprint name.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721760
+    m_Localized: Could not check this name. {0}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721761
+    m_Localized: Replace blueprint?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721762
+    m_Localized: "A blueprint named \u201C{0}\u201D already exists. Replace it?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721763
+    m_Localized: Delete blueprint?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721764
+    m_Localized: "Delete the saved blueprint \u201C{0}\u201D?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721765
+    m_Localized: Select a module and place it on the grid or a ship surface.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721766
+    m_Localized: 'Delete mode: click a red module to remove it.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721767
+    m_Localized: 'Build mode: click to place a module.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721768
+    m_Localized: Ship forward direction updated.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721769
+    m_Localized: Module removed.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721770
+    m_Localized: 'Cannot remove: the ship would split apart.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721771
+    m_Localized: "Placed {0} \xB7 {1}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721772
+    m_Localized: Cannot place a module here.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721773
+    m_Localized: 'Saved blueprint: {0}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721774
+    m_Localized: Save failed. {0}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721775
+    m_Localized: 'Deleted blueprint: {0}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721776
+    m_Localized: Delete failed. {0}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721777
+    m_Localized: 'Loaded blueprint: {0}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721778
+    m_Localized: Load failed. {0}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721779
+    m_Localized: Add a core before entering the range.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721780
+    m_Localized: Could not enter the range. {0}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721781
+    m_Localized: "Target set: {0} \xD7 {1}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721782
+    m_Localized: This blueprint was removed from the target roster.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721783
+    m_Localized: Could not update the target roster. {0}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721784
+    m_Localized: PREVIEW / {0}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721785
+    m_Localized: Hull
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721786
+    m_Localized: Propulsion
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721787
+    m_Localized: Core
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721788
+    m_Localized: Power
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721789
+    m_Localized: Shields
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721790
+    m_Localized: Weapons
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721791
+    m_Localized: Cube
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721792
+    m_Localized: Wedge
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721793
+    m_Localized: Thruster I
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721794
+    m_Localized: Thruster II
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721795
+    m_Localized: Slab
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721796
+    m_Localized: Pyramid
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721797
+    m_Localized: Rapid Laser Cannon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721798
+    m_Localized: Power Cell
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721799
+    m_Localized: Shield Generator
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721800
+    m_Localized: Ship Core
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721801
+    m_Localized: Cube
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721802
+    m_Localized: Wedge
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721803
+    m_Localized: Drive I
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721804
+    m_Localized: Drive II
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721805
+    m_Localized: Slab
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721806
+    m_Localized: Pyramid
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721807
+    m_Localized: Laser Cannon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721808
+    m_Localized: Power
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721809
+    m_Localized: Shield
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721810
+    m_Localized: Core
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721811
+    m_Localized: Mass  {0:0.#} kg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721812
+    m_Localized: HP  {0:0.#}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721813
+    m_Localized: Thrust  {0:0.#} kN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721814
+    m_Localized: Capacity  {0:0} J
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721815
+    m_Localized: Regen  {0:0} J/s
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721816
+    m_Localized: "Shield  {0:0} \xB7 Radius {1:0.#} m"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721817
+    m_Localized: "Regen  {0:0}/s \xB7 Delay {1:0.#} s"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721818
+    m_Localized: Power  {0:0.##} J/s
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721819
+    m_Localized: Rate  {0:0.##}/s
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721820
+    m_Localized: Damage  {0:0.##}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721821
+    m_Localized: Shot speed  {0:0.##} m/s
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721822
+    m_Localized: Tactical Radar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721823
+    m_Localized: "Tactical Radar \xB7 Plan View"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721824
+    m_Localized: "3 km \xB7 0 contacts"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721825
+    m_Localized: "W/S Forward/back  \xB7  A/D Strafe  \xB7  Space/Ctrl Up/down  \xB7 
+      Q/E Roll  \xB7  Shift Boost  \xB7  Mouse Steer"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721826
+    m_Localized: "LMB Fire  \xB7  F Lock/unlock  \xB7  Wheel Camera  \xB7  Esc Exit 
+      \xB7  F1 Diagnostics"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721827
+    m_Localized: "W/S Forward/back \xB7 A/D Strafe \xB7 Space/Ctrl Up/down \xB7 Q/E
+      Roll \xB7 Shift Boost \xB7 Mouse Steer \xB7 LMB Fire \xB7 F Lock/unlock \xB7
+      Wheel Camera \xB7 Esc Exit"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721828
+    m_Localized: Leave the range?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721829
+    m_Localized: Return to assembly with the blueprint you entered with.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721830
+    m_Localized: Keep Flying
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721831
+    m_Localized: Back to Assembly
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721832
+    m_Localized: Performance Range
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721833
+    m_Localized: Flight Systems
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721834
+    m_Localized: F1  Diagnostics
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721835
+    m_Localized: F1  Hide diagnostics
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721836
+    m_Localized: Ship Status
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721837
+    m_Localized: Target Status
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721838
+    m_Localized: Core online
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721839
+    m_Localized: Core destroyed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721840
+    m_Localized: No target locked
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721841
+    m_Localized: F  Lock a target ahead
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721842
+    m_Localized: F  Lock target ahead
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721843
+    m_Localized: F  Target lock
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721844
+    m_Localized: SHIFT  BOOST
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721845
+    m_Localized: "Mass \u2014 kg\nWeapons \u2014\nRange 3 km \xB7 No lock"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721846
+    m_Localized: Shield  0 / 0
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721847
+    m_Localized: "Energy  100% \xB7 500 / 500"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721848
+    m_Localized: "Mass  {0:0} kg\nAccel g: Fwd {1:0.00}  Back {2:0.00}\n              
+      Right {3:0.00}  Left {4:0.00}\n               Up {5:0.00}  Down {6:0.00}\nPitch/yaw 
+      {7:0}\xB0/s  {8:0}\xB0/s\xB2\nRoll  {9:0}\xB0/s"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721849
+    m_Localized: 'Speed  {0:0.0} / {1:0} m/s
+
+      {2}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721850
+    m_Localized: "Mass  {0:0} kg\nWeapons  Standby\nRange  3 km \xB7 No lock"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721851
+    m_Localized: "Energy  {0:P0} \xB7 {1:0} / {2:0}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721852
+    m_Localized: "No power cell \xB7 Boost/fire unavailable"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721853
+    m_Localized: Shield  {0:0} / {1:0}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721854
+    m_Localized: "No shield \xB7 Add a shield generator"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721855
+    m_Localized: "F  Unlock \xB7 {0:0} m"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721856
+    m_Localized: "F  Lock target ahead \xB7 3 km"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721857
+    m_Localized: "{0}  \xB7  {1:0} m"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721858
+    m_Localized: "3 km \xB7 {0} contacts \xB7 {1}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721859
+    m_Localized: Locked
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721860
+    m_Localized: No lock
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721861
+    m_Localized: "\nParts {0}/{1}  Guns {2} / Blocked {3}\nDamage  Dealt {4:0} /
+      Taken {5:0}\nTargets {6}/{7} \xB7 Destroyed {8}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721862
+    m_Localized: "Core destroyed \xB7 Respawn in {0:0.0}s"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721863
+    m_Localized: Targets rebuilding
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721864
+    m_Localized: "Mass  {0:0} kg\nGuns  {1} ready \xB7 {2} blocked\nRange  3 km \xB7
+      {3}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721865
+    m_Localized: Locked {0:0} m
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721866
+    m_Localized: Enemy Ship
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721867
+    m_Localized: "{0} \xB7 Parts {1}/{2} \xB7 <color=#{4}>Hit {3}</color>"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721868
+    m_Localized: Align the module to the grid.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721869
+    m_Localized: A ship can have only one core.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721870
+    m_Localized: A module or thruster exhaust area is occupied.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721871
+    m_Localized: Connect every module to the ship by a face.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721872
+    m_Localized: Modules overlap.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721873
+    m_Localized: Another module blocks the weapon muzzle.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721874
+    m_Localized: This module would block a weapon's firing path.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721875
+    m_Localized: A blueprint with this name already exists.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721876
+    m_Localized: Blueprint file not found.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721877
+    m_Localized: Blueprint exceeds the 16 MiB size limit.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721878
+    m_Localized: Blueprint data is invalid or unsupported.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721879
+    m_Localized: Cannot access the blueprint folder. Check permissions.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721880
+    m_Localized: Could not read or write the blueprint file.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721881
+    m_Localized: The operation could not be completed. Try again.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721882
+    m_Localized: Weapon groups
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721883
+    m_Localized: Choose a weapon on the ship, then select its group.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721884
+    m_Localized: Add group
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721885
+    m_Localized: Up to 8 groups
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721886
+    m_Localized: Group name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721887
+    m_Localized: Set binding
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721888
+    m_Localized: Unbound
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721889
+    m_Localized: Left mouse
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721890
+    m_Localized: Right mouse
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721891
+    m_Localized: Middle mouse
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721892
+    m_Localized: 'Assigned: {0}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721893
+    m_Localized: Assign selected weapon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721894
+    m_Localized: 'Selected: {0}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721895
+    m_Localized: Select a weapon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721896
+    m_Localized: Weapons on this ship
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721897
+    m_Localized: Select from the ship or the list.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721898
+    m_Localized: Weapon {0}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721899
+    m_Localized: Part {0}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721900
+    m_Localized: Apply changes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721901
+    m_Localized: Back
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721902
+    m_Localized: All changes applied
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721903
+    m_Localized: Unsaved changes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721904
+    m_Localized: This blueprint has no weapons.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721905
+    m_Localized: Group {0}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721906
+    m_Localized: Choose an input
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721907
+    m_Localized: "Press a key or mouse button. Escape cancels. Keys 1\u20138 switch
+      weapon groups."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721908
+    m_Localized: Also used by {0}. Both groups will fire.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721909
+    m_Localized: This input is reserved for flight, menus, or weapon group toggles.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721910
+    m_Localized: Clear binding
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721911
+    m_Localized: Delete group?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721912
+    m_Localized: Its weapons will return to the first group.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721913
+    m_Localized: Leave without applying?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721914
+    m_Localized: Your weapon assignments and input changes have not been applied.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721915
+    m_Localized: Discard changes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721916
+    m_Localized: Keep editing
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721917
+    m_Localized: Cancel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721918
+    m_Localized: "Click a weapon \xB7 Choose a group \xB7 Apply; press 1\u20138 in
+      flight to toggle groups"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721919
+    m_Localized: GROUP {0}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721920
+    m_Localized: Assigned to {0}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721921
+    m_Localized: Groups sharing a binding activate together.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721922
+    m_Localized: Choose a group card to reassign the selected weapon.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721923
+    m_Localized: Choose a mission first.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721924
+    m_Localized: Mission budget or difficulty settings are invalid.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721925
+    m_Localized: Module definitions are unavailable.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721926
+    m_Localized: Choose a ship blueprint.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721927
+    m_Localized: Blueprint name, version, or part list is invalid.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721928
+    m_Localized: 'Part ID is missing or repeated: {0}.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721929
+    m_Localized: Part {0} has no module definition for {1}.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916032
+    m_Localized: Module, cell, or weapon settings are invalid for {0}.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916033
+    m_Localized: "Part {0} must fit the grid and use 90\xB0 rotations."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916034
+    m_Localized: Part {0} overlaps another part's cells.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916035
+    m_Localized: Deployment needs exactly one core. Found {0}.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916036
+    m_Localized: Every part must connect to the core through cell faces.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916037
+    m_Localized: Blueprint cost or mass exceeds the supported numeric range.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916038
+    m_Localized: Cost {0:0.##} exceeds the budget of {1:0.##}.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916039
+    m_Localized: Mass {0:0.##} kg exceeds the limit of {1:0.##} kg.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916040
+    m_Localized: No generation or storage. Powered systems will be unavailable.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916041
+    m_Localized: This blueprint has no weapons.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916042
+    m_Localized: STARFRAME / PREFERENCES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916043
+    m_Localized: Settings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916044
+    m_Localized: Customize your display, audio, and flight controls. Applied preferences
+      are saved on this device.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916045
+    m_Localized: Display
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916046
+    m_Localized: Graphics
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916047
+    m_Localized: Audio
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916048
+    m_Localized: Controls
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916049
+    m_Localized: Accessibility
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916050
+    m_Localized: Language
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916051
+    m_Localized: Choose your display mode and frame pacing. Display changes include
+      a recovery timer.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916052
+    m_Localized: Tune image quality, flight field of view, and bloom.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916053
+    m_Localized: Volume changes preview immediately. Apply to save your mix.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916054
+    m_Localized: Personalize the mouse virtual stick and flight bindings.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916055
+    m_Localized: Reduce bright bloom for a more comfortable view.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916056
+    m_Localized: Choose the language for menus, assembly, and the range HUD.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916057
+    m_Localized: 'Changes are staged until you apply.
+
+
+      Apply saves your preferences.
+
+      Revert
+      restores the applied values.
+
+
+      Esc goes back.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916058
+    m_Localized: Back
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916059
+    m_Localized: Restore Defaults
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916060
+    m_Localized: Apply Changes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916061
+    m_Localized: Revert
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916062
+    m_Localized: Unapplied changes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916063
+    m_Localized: All preferences applied
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916064
+    m_Localized: Preferences saved
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916065
+    m_Localized: Could not read preferences. Defaults were loaded.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916066
+    m_Localized: Could not save preferences. Previous values restored; try again.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916067
+    m_Localized: Enabled
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916068
+    m_Localized: Off
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916069
+    m_Localized: Display mode
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916070
+    m_Localized: Windowed, borderless, or exclusive fullscreen.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916071
+    m_Localized: Windowed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916072
+    m_Localized: Borderless fullscreen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916073
+    m_Localized: Exclusive fullscreen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916074
+    m_Localized: Resolution and refresh rate
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916075
+    m_Localized: Available modes reported by your display.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916076
+    m_Localized: VSync
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916077
+    m_Localized: Synchronize with the display to reduce tearing.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916078
+    m_Localized: Every refresh
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916079
+    m_Localized: Every second refresh
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916080
+    m_Localized: Frame rate limit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916081
+    m_Localized: Used when VSync is off.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916082
+    m_Localized: Unlimited
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916083
+    m_Localized: The Editor preview keeps its current window size. Display modes
+      apply in a standalone build.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916084
+    m_Localized: Quality preset
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916085
+    m_Localized: Use a rendering preset provided by this project.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916086
+    m_Localized: Flight field of view
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916087
+    m_Localized: "A wider view shows more space around your ship. Default: 65\xB0."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916088
+    m_Localized: Bloom
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916089
+    m_Localized: A soft glow around bright lights and thruster trails.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916090
+    m_Localized: Bloom intensity
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916091
+    m_Localized: 'Default: 0.65. Accessibility preferences can cap this further.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916092
+    m_Localized: Master volume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916093
+    m_Localized: Music
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916094
+    m_Localized: A quiet orbital ambient score.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916095
+    m_Localized: Sound effects
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916096
+    m_Localized: Player weapon pulses and nearby impacts.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916097
+    m_Localized: Interface volume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916098
+    m_Localized: Button clicks and interface confirmations.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916099
+    m_Localized: Mute when unfocused
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916100
+    m_Localized: Silence the game while another app is focused.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916101
+    m_Localized: Test your mix
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916102
+    m_Localized: Play SFX
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916103
+    m_Localized: Play UI Cue
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916104
+    m_Localized: Mouse sensitivity
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916105
+    m_Localized: "Mouse travel for the virtual stick. Default: 1.00\xD7."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916106
+    m_Localized: Invert mouse Y
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916107
+    m_Localized: Reverse pitch input when moving the mouse vertically.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916108
+    m_Localized: Aim smoothing
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916109
+    m_Localized: "0 is immediate. 1.00\xD7 preserves the original flight response."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916110
+    m_Localized: Select a binding to change it. Weapon inputs belong to each blueprint's
+      Weapon Groups. Esc and F1 stay reserved for menus and diagnostics.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916111
+    m_Localized: Move forward
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916112
+    m_Localized: Move backward
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916113
+    m_Localized: Strafe left
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916114
+    m_Localized: Strafe right
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916115
+    m_Localized: Move up
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916116
+    m_Localized: Move down
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916117
+    m_Localized: Roll left
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916118
+    m_Localized: Roll right
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916119
+    m_Localized: Boost
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916120
+    m_Localized: Lock / unlock target
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916121
+    m_Localized: Reduce bright bloom
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916122
+    m_Localized: Cap bloom intensity at 0.15, alongside the Graphics bloom switch.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916123
+    m_Localized: Mouse inversion and smoothing are in Controls. Audio offers separate
+      music, effects, and interface levels.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916124
+    m_Localized: Interface language
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916125
+    m_Localized: Apply to switch immediately. Saved blueprint names keep their original
+      text.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916126
+    m_Localized: English and Simplified Chinese are available throughout the game.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916127
+    m_Localized: Back to Brief
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916128
+    m_Localized: Back to Hangar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916129
+    m_Localized: Budget {0}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916130
+    m_Localized: 'Budget remaining: {0}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916131
+    m_Localized: Cost {0} / Budget {1}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916132
+    m_Localized: Cancel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916133
+    m_Localized: Change Ship
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916134
+    m_Localized: Choose an Operation
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916135
+    m_Localized: Confirm Deployment
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916136
+    m_Localized: Deploy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916137
+    m_Localized: Cost {0}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916138
+    m_Localized: CURRENT SHIP
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916139
+    m_Localized: DEPLOYING SHIP
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916140
+    m_Localized: Review your ship setup before deployment.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916141
+    m_Localized: Expert
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916142
+    m_Localized: Relaxed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916143
+    m_Localized: Standard
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916144
+    m_Localized: Choose a Training Mode
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916145
+    m_Localized: Edit Ship
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916146
+    m_Localized: Enter Range
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916147
+    m_Localized: Weapon groups applied.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916148
+    m_Localized: Assembly & Blueprints
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916149
+    m_Localized: Place and connect parts with exactly one core. Save a blueprint
+      to select it for deployment or add it to the training target roster.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916150
+    m_Localized: Weapons & Targets
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916151
+    m_Localized: Assign weapons to groups and set their inputs in Weapon Groups.
+      In the range, choose a training mode and target count.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916152
+    m_Localized: Flight Controls
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916153
+    m_Localized: "{0}/{1} Forward/back  \xB7  {2}/{3} Strafe left/right  \xB7  {4}/{5}
+      Up/down\n{6}/{7} Roll left/right  \xB7  {8} Boost  \xB7  {9} Lock/unlock target\nSteer
+      with the mouse; use the wheel to adjust the camera. Press Esc to return to
+      the hangar."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916154
+    m_Localized: A quick guide to flight, assembly, and weapon groups.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916155
+    m_Localized: Flight Guide
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916156
+    m_Localized: Choose an operation to deploy, or visit the range to get familiar
+      with your ship.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916157
+    m_Localized: Prepare your ship, choose an operation, or visit the training range.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916158
+    m_Localized: Blueprint unavailable
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916159
+    m_Localized: Confirm to load the selected operation.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916160
+    m_Localized: Mass {0} kg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916161
+    m_Localized: Combat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916162
+    m_Localized: Fly Only
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916163
+    m_Localized: Stationary
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916164
+    m_Localized: Stationary Fire
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916165
+    m_Localized: Targets maneuver and attempt to engage.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916166
+    m_Localized: Targets fly without firing.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916167
+    m_Localized: Targets remain stationary.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916168
+    m_Localized: Targets remain stationary and attempt to fire.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916169
+    m_Localized: No saved ship blueprints.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916170
+    m_Localized: No target blueprints available. Save a ship with a core first.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916171
+    m_Localized: This operation is not available yet. Return to the brief or visit
+      the training range.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916172
+    m_Localized: "Middle-drag to orbit  \xB7  Scroll to zoom"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916173
+    m_Localized: '{0} parts'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916174
+    m_Localized: Choose a saved ship. You will be asked before replacing an unsaved
+      draft.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916175
+    m_Localized: Training Range
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916176
+    m_Localized: Prepare
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916177
+    m_Localized: Quit Game
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916178
+    m_Localized: Quit the game? Your current ship and preferences will be saved.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916179
+    m_Localized: Quit the Game?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916180
+    m_Localized: Leave the range to return to the hangar and continue building.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916181
+    m_Localized: The range has no budget limit.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916182
+    m_Localized: Choose a training mode and set up your targets.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916183
+    m_Localized: Training Range
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916184
+    m_Localized: Your ship is ready to deploy.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916185
+    m_Localized: Setup Needs Attention
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916186
+    m_Localized: Ship Ready
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916187
+    m_Localized: DEPLOYMENT CONFIRMED
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916188
+    m_Localized: This ship has unsaved changes. Replacing it will discard them.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916189
+    m_Localized: Replace Ship and Discard Draft?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916190
+    m_Localized: Settings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916191
+    m_Localized: Ship Confirmed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916192
+    m_Localized: Training Targets
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916193
+    m_Localized: "Use + / \u2212 to set the target count for each saved ship."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916194
+    m_Localized: 'Total targets: {0}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916195
+    m_Localized: Weapon Groups
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916196
+    m_Localized: This ship has unsaved changes.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916197
+    m_Localized: This ship is saved.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916198
+    m_Localized: Something Went Wrong
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916199
+    m_Localized: Could not save or read data. Check available space and access, then
+      try again.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916200
+    m_Localized: OK
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916201
+    m_Localized: Training Target
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916202
+    m_Localized: Ice Giant Survey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916203
+    m_Localized: Review the operation brief and prepare a ship for deployment.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916204
+    m_Localized: "ICE GIANT \xB7 OUTER ORBIT"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916205
+    m_Localized: Frontier Operation
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916206
+    m_Localized: Review the frontier brief and prepare a ship for deployment.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916207
+    m_Localized: "THE FRONTIER \xB7 OUTER REACH"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916208
+    m_Localized: Set a binding
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916209
+    m_Localized: 'Binding: {0}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916210
+    m_Localized: 'Press a key or mouse button.
+
+      Escape cancels.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916211
+    m_Localized: "Esc, F1, and keys 1\u20138 are reserved. Choose another input,
+      or press Escape to cancel."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916212
+    m_Localized: Several actions already use this input. Choose another.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916213
+    m_Localized: Input already in use
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916214
+    m_Localized: '{0} is assigned to {1}. Swap the bindings for these two actions?'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916215
+    m_Localized: Swap Bindings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916216
+    m_Localized: Choose Another
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916217
+    m_Localized: Keep these display settings?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916218
+    m_Localized: 'The new display settings are active.
+
+      Previous settings return
+      in {0} seconds unless you keep them.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916219
+    m_Localized: Keep Settings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916220
+    m_Localized: Previous display settings restored
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916221
+    m_Localized: Discard unapplied changes?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916222
+    m_Localized: These preferences have not been applied. Going back discards your
+      staged changes.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916223
+    m_Localized: Discard Changes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916224
+    m_Localized: Keep Editing
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916225
+    m_Localized: Left mouse
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916226
+    m_Localized: Right mouse
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916227
+    m_Localized: Middle mouse
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916228
+    m_Localized: Unbound
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1349717590016
+    m_Localized: '{0} unpriced parts use a provisional cost of {1:0.##} resources
+      each.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6609160896512
+    m_Localized: Built-in Training Target
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6609207033856
+    m_Localized: Range Options
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6609207033857
+    m_Localized: Change the drill for every target immediately. Combat continues
+      while a menu is open; stay aware of your surroundings.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6609207033858
+    m_Localized: "Targets in range: {0} \xB7 Return to the hangar to change blueprints
+      and counts"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6609207033859
+    m_Localized: Reset repairs targets and returns them to their starting positions.
+      Your ship and existing wrecks are preserved.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6609207033860
+    m_Localized: Reset All Targets
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8252371763200
+    m_Localized: This input also fires a weapon group on your current ship. Change
+      the group in Weapon Groups if needed.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8252405317632
+    m_Localized: Share an Input with Weapons?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8252405317633
+    m_Localized: '{0} is already assigned to a weapon group on your current ship.
+      Keeping it will trigger both the flight action and weapons together.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8252405317634
+    m_Localized: Use Shared Input
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30854125453312
+    m_Localized: Operation Report
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30854167396352
+    m_Localized: Review the outcome, then prepare for your next flight.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30854167396353
+    m_Localized: Operation Complete
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30854167396354
+    m_Localized: Ship Lost
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30854167396355
+    m_Localized: Operation Aborted
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30854167396356
+    m_Localized: Time in Operation
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30854167396357
+    m_Localized: Enemy Ships Destroyed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30854167396358
+    m_Localized: Damage Dealt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30854167396359
+    m_Localized: Damage Taken
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30854167396360
+    m_Localized: 'Surviving parts: {0} / {1}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30854167396361
+    m_Localized: Battle damage does not change your saved blueprint. Your ship and
+      budget will be checked again before deployment.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30854167396362
+    m_Localized: Prepare Again
+    m_Metadata:
+      m_Items: []
+  - m_Id: 38849735557120
+    m_Localized: WEAPON GROUPS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 38849790083072
+    m_Localized: "1\u20138 TOGGLE"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 38849790083073
+    m_Localized: "{0}  \xB7  {1}  \xB7  {2}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 38849790083074
+    m_Localized: '{0} WPN'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 38849790083075
+    m_Localized: ON
+    m_Metadata:
+      m_Items: []
+  - m_Id: 38849790083076
+    m_Localized: OFF
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

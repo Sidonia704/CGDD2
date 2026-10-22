@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Localization-Assets-Shared
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: Localization-Assets-Shared
+  m_GUID: 125631572274ffc41be5a803dd211144
+  m_SerializeEntries:
+  - m_GUID: 141967598b049a1429bd9223ee40a685
+    m_Address: Assets/_Starframe/Localization/GameUI Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4316ac2eccf9b1e419f2d0bc5881912d
+    m_Address: Assets/_Starframe/Localization/GameAssets Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 1
+  m_Settings: {fileID: 11400000, guid: 9c5c331be5e59804bbb838edf6bac5e3, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: e1a0c716004e8594199793591e32a3c5, type: 2}
+    - {fileID: 11400000, guid: f9f2a6030841ecc40b9ac300ce7a25b9, type: 2}
+    - {fileID: 11400000, guid: 66a8b6444cb088d4cbe0cfb5d637f4be, type: 2}

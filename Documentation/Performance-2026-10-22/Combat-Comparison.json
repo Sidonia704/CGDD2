@@ -1,0 +1,34 @@
+{
+  "normal": {
+    "optimized": false,
+    "actors": 6,
+    "parts": 1107,
+    "aliveParts": 1107,
+    "samples": 899,
+    "frameP50Ms": 6.030900000041584,
+    "frameP95Ms": 14.512100000047212,
+    "mainMs": 8.898707349665912,
+    "physicsMs": 0.10327619577308124,
+    "projectileMs": 2.7827322580645166,
+    "batches": 2782.6251390433818,
+    "activeProjectiles": 791.119021134594,
+    "totalProjectiles": 2783,
+    "shipBatches": 0
+  },
+  "optimized": {
+    "optimized": true,
+    "actors": 6,
+    "parts": 1107,
+    "aliveParts": 1107,
+    "samples": 1367,
+    "frameP50Ms": 5.290099999911035,
+    "frameP95Ms": 8.599999999660213,
+    "mainMs": 5.847192386530008,
+    "physicsMs": 0.06700226773957564,
+    "projectileMs": 0.5269123628383319,
+    "batches": 325.22384784198977,
+    "activeProjectiles": 792.0694952450623,
+    "totalProjectiles": 2783,
+    "shipBatches": 32
+  }
+}

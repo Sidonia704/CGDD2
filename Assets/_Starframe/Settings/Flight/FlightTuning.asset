@@ -1,0 +1,101 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7b9b9d3fe7c64342b803fc7c3f7da8f, type: 3}
+  m_Name: FlightTuning
+  m_EditorClassIdentifier: Starframe.Construction::Starframe.Flight.FlightTuning
+  database: {fileID: 11400000, guid: a8f876941c51d4f4d96d6e0970239e5e, type: 2}
+  modules:
+  - shape: 0
+    massKg: 300
+    maxHp: 60
+    thrustNewtons: 0
+  - shape: 1
+    massKg: 150
+    maxHp: 30
+    thrustNewtons: 0
+  - shape: 2
+    massKg: 600
+    maxHp: 100
+    thrustNewtons: 320000
+  - shape: 3
+    massKg: 1400
+    maxHp: 200
+    thrustNewtons: 800000
+  - shape: 4
+    massKg: 150
+    maxHp: 30
+    thrustNewtons: 0
+  - shape: 5
+    massKg: 100
+    maxHp: 20
+    thrustNewtons: 0
+  - shape: 6
+    massKg: 2000
+    maxHp: 300
+    thrustNewtons: 0
+  maneuverThrustFraction: 0.2
+  maxSpeed: 250
+  maxLinearAcceleration: 100
+  angularAccelerationGain: 10
+  maxAngularAcceleration: 360
+  angularRateGain: 4
+  maxAngularRate: 150
+  rollRateGain: 5
+  maxRollRate: 180
+  rollBlendTime: 0.25
+  angularAuthorityReferenceAcceleration: 10
+  angularAuthorityExponent: 1.1
+  boostPowerWatts: 100
+  boostMultiplier: 1.5
+  aimSensitivity: 1
+  aimDistance: 1500
+  aimDeadZone: 0.12
+  mouseDegreesPerPixel: 0.085
+  maxAimOffsetDegrees: 25
+  aimInputDeadZone: 0.035
+  aimResponseExponent: 1.6
+  aimInputSmoothing: 0.035
+  turnResponseTime: 0.1
+  minimumTurnAuthority: 0.432
+  reticleSharpness: 18
+  reticleMaxSpeed: 1200
+  cameraDistance: 12
+  minCameraDistance: 6
+  maxCameraDistance: 70
+  cameraHeight: 5
+  cameraLookAhead: 7
+  cameraPositionSharpness: 10
+  cameraRotationSharpness: 14
+  cameraZoomSensitivity: 0.15
+  cameraFieldOfView: 65
+  cameraShipViewportY: 0.3
+  exhaustShader: {fileID: 4800000, guid: 6bfe2c57de945414a85ba6c0e9eb126f, type: 3}
+  exhaustReferenceThrust: 80000
+  exhaustLength: 3.2
+  exhaustMaxLength: 9
+  exhaustWidth: 0.7
+  exhaustIntensity: 3
+  exhaustResponse: 14
+  exhaustFlowSpeed: 1.6
+  exhaustIdle: 0
+  exhaustInnerWidth: 0.38
+  exhaustInnerLength: 0.72
+  exhaustOuterColor: {r: 0.015, g: 0.3, b: 0.85, a: 1}
+  exhaustInnerColor: {r: 0.8, g: 0.95, b: 1.6, a: 1}
+  arenaHalfExtent: 1500
+  boundaryFadeDistance: 220
+  boundaryBrakeAcceleration: 80
+  gridWallSpacing: 200
+  gridCellSize: 4
+  gridFadeNear: 30
+  gridFadeFar: 130
+  gridPatchHalfExtent: 220

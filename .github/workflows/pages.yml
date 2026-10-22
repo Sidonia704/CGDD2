@@ -1,38 +1,42 @@
-name: Deploy Starframe student site
+# Deploy the student site/ folder to GitHub Pages.
+# Repo Settings → Pages → Source: GitHub Actions
+name: Deploy student site to Pages
+
 on:
   push:
-    branches: [main]
+    branches: [main, master]
+    paths:
+      - "site/**"
+      - ".github/workflows/pages.yml"
   workflow_dispatch:
+
 permissions:
   contents: read
   pages: write
   id-token: write
+
 concurrency:
   group: pages
-  cancel-in-progress: false
+  cancel-in-progress: true
+
 jobs:
   deploy:
-    runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
-        with:
-          persist-credentials: false
-      - name: Stage website files
-        shell: bash
-        run: |
-          mkdir -p "$RUNNER_TEMP/starframe-site"
-          cp index.html styles.css app.js lang.js mermaid.min.js "$RUNNER_TEMP/starframe-site/"
-          cp -R data media "$RUNNER_TEMP/starframe-site/"
+        uses: actions/checkout@v4
+
       - name: Configure Pages
         uses: actions/configure-pages@v5
-      - name: Upload website
-        uses: actions/upload-pages-artifact@v3
+
+      - name: Upload site/ artifact
+        uses: actions/upload-pages-artifact@v4
         with:
-          path: ${{ runner.temp }}/starframe-site
+          path: site
+
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v5
+        uses: actions/deploy-pages@v4

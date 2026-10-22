@@ -1,0 +1,729 @@
+{
+  "scope": "Documentation headers only. C# bodies and defaults unchanged.",
+  "scripts": [
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/App/AssemblyAppNavigation.cs",
+      "bodySha256": "da0c912627dc37d4cfeb32b8cdb6e86aef97a35219159e96eec1bfce5a819591",
+      "calls": [
+        "ShipEditorController",
+        "ShipWorkspace",
+        "FlightSession",
+        "GameAudio"
+      ],
+      "tunables": 0
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/App/FrameworkSmokeRun.cs",
+      "bodySha256": "3d14f85d7da96bb3d095c95e2197af24529505a66afe7dc5189a3ccc07052dc6",
+      "calls": [],
+      "tunables": 0
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/App/GameAppBootstrap.cs",
+      "bodySha256": "6f6e4e4905150b38bc9d7091601aedc5f4177359125b82584ffe3f87d75b971f",
+      "calls": [
+        "ShipWorkspace",
+        "MenuSurface",
+        "HangarShipPreview",
+        "GameAppScreens",
+        "GameResultsScreen"
+      ],
+      "tunables": 0
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/App/GameAppScreens.cs",
+      "bodySha256": "87242b1b4115b04242fce9f0c1cb83c4f7a50a29be0e2afddac42beaf48f7c69",
+      "calls": [
+        "DeploymentValidator",
+        "ShipWorkspace",
+        "RangeTargetRoster",
+        "RangePracticeSettings"
+      ],
+      "tunables": 0
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/App/GameAudio.cs",
+      "bodySha256": "b041fb53e7d236e5d17ff07ea2f1b5954a3945749c949976d1da3f75360a2529",
+      "calls": [
+        "GameSettings",
+        "GameAudioTuning"
+      ],
+      "tunables": 0
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/App/GameAudioTuning.cs",
+      "bodySha256": "26480b0ecacac0bc9cd99c065ad3387af97e1a5a3d777c502abc850b16639d72",
+      "calls": [],
+      "tunables": 0
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/App/GameInput.cs",
+      "bodySha256": "32ab36ea8b5c2f4e7d8c1a976637fce38d5b8f96cac5f0df6afb7ccd1a18f1ac",
+      "calls": [
+        "GameSettings"
+      ],
+      "tunables": 0
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/App/GameResultsScreen.cs",
+      "bodySha256": "e5e7e40f05b9bafc6e7d95d7ea6bee0e457051eb97b9f519ad53f168c47e9c30",
+      "calls": [
+        "GameAppBootstrap",
+        "MissionResults",
+        "ShipWorkspace",
+        "UiTheme"
+      ],
+      "tunables": 0
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/App/GameSettings.cs",
+      "bodySha256": "a45a63d856a93a956424745ad4b19a4576501a86df6ca3f5400bb48cd062639a",
+      "calls": [
+        "GameInput",
+        "GameAudio",
+        "L10n"
+      ],
+      "tunables": 0
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/App/HangarShipPreview.cs",
+      "bodySha256": "da5d3237401abbd2461ca1265672b0e716d1567c092e0fe8697c29e4a10fbd49",
+      "calls": [
+        "ShipAssembly"
+      ],
+      "tunables": 0
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/App/MenuSurface.cs",
+      "bodySha256": "37a3e9aeb5c9013d5582d9008f94217eaf13216fb35d00a57aa94269ef589af9",
+      "calls": [
+        "L10n",
+        "GlassUiPalette"
+      ],
+      "tunables": 0
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/App/Missions/DeploymentValidator.cs",
+      "bodySha256": "c53fab2367ff806b0ad03146927b65dd86dbdb1f6aa0a7d86a0f26d147cc9165",
+      "calls": [
+        "BlockPlacement",
+        "MissionDefinition"
+      ],
+      "tunables": 0
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/App/Missions/MissionCatalog.cs",
+      "bodySha256": "f83cd3436a4972fb9dbcc4e8b52351f9067e0a512ad9e742a2e4582973b1f09b",
+      "calls": [],
+      "tunables": 0
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/App/Missions/MissionDefinition.cs",
+      "bodySha256": "d7003041d07b6ede4da29bfbf21e1f5a1bafca46462c6f9724b57870a0943da7",
+      "calls": [],
+      "tunables": 4
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/App/Missions/MissionResults.cs",
+      "bodySha256": "5b66f0261e1ec07510b24a3ca4218b4f9471003a6f8ceb2a3881824ac79d37d9",
+      "calls": [
+        "ShipWorkspace"
+      ],
+      "tunables": 0
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/App/RangeAppNavigation.cs",
+      "bodySha256": "15873e421287e64628a0a92852045446e0ca06c22655021c27d3a68def6dcb90",
+      "calls": [
+        "RangeCombatWorld",
+        "RangeHUD",
+        "MenuSurface",
+        "SettingsScreen"
+      ],
+      "tunables": 0
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/App/SettingsScreen.cs",
+      "bodySha256": "0bb8eeba7b65f5cb175b0fa2597c6a0007a7194824300aae02b8b20163fa58c0",
+      "calls": [
+        "GameSettings",
+        "GameInput",
+        "GameAudio"
+      ],
+      "tunables": 0
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/App/ShipWorkspace.cs",
+      "bodySha256": "486e967e9486e3ee94f023b47382d32ff74cd255603258df27b35e442c83ba91",
+      "calls": [
+        "BlueprintRepository",
+        "DeploymentValidator",
+        "MissionResults",
+        "FlightSession"
+      ],
+      "tunables": 0
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/App/WeaponGroupConnections.cs",
+      "bodySha256": "211e80b741c3c3786ec75f647b6e782aa85fa3f1f8dd7ed44a57b7b73c14b0de",
+      "calls": [],
+      "tunables": 0
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/App/WeaponGroupScreen.cs",
+      "bodySha256": "6849f48b8804468ac509ac613758bf5e37f1d49a75616209386ca3f1f3e99cf0",
+      "calls": [
+        "WeaponGroups",
+        "ShipAssembly",
+        "WeaponGroupConnections",
+        "GameInput"
+      ],
+      "tunables": 0
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/AssemblyShieldPreview.cs",
+      "bodySha256": "d1d68107980606fc2c520a0c9fa4666ef3a81bcccf50ca594ff0e83c5bd88c61",
+      "calls": [
+        "ShipAssembly",
+        "ModuleDatabase",
+        "ShipShieldVisual"
+      ],
+      "tunables": 0
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/BlockConnectivity.cs",
+      "bodySha256": "8286f2f353c8c12da666347afd4c3b2aca1a979f62a077aff8be3a755219ea90",
+      "calls": [
+        "BlockModules"
+      ],
+      "tunables": 0
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/BlockGeometry.cs",
+      "bodySha256": "7a993a63e900a95edba94cc46da584b3a3a7b15033b9fafa8116bcc37f8beea2",
+      "calls": [],
+      "tunables": 0
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/BlockModules.cs",
+      "bodySha256": "136ef01c5c335759ac3d8dfe55b1ef9a67a4a0ee79db66a49ac522bb32ec3533",
+      "calls": [
+        "ModuleDatabase",
+        "BlockPlacement"
+      ],
+      "tunables": 0
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/BlockPlacement.cs",
+      "bodySha256": "be2be41f5d1e65698c0e41cf64ef6c8d107839333eaf53c7f94c55e38ed0b7df",
+      "calls": [],
+      "tunables": 0
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/BlueprintData.cs",
+      "bodySha256": "bdd20f245e2852b7392cd85c5ab1d669d02c477a5009833226c0ac29cebf6d05",
+      "calls": [],
+      "tunables": 0
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/BlueprintRepository.cs",
+      "bodySha256": "177ee2efe0deebc96e48d343e4603651cc63298b741aad269b392370f25ccb67",
+      "calls": [
+        "BlockPlacement",
+        "BlockConnectivity",
+        "WeaponGroups"
+      ],
+      "tunables": 0
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/Combat/AimProjection.cs",
+      "bodySha256": "9b3bb415e20eef0102a97ad47d1a86abb71b3ed0f197156aed5cec32ca8f3818",
+      "calls": [],
+      "tunables": 0
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/Combat/BattleTuning.cs",
+      "bodySha256": "ea19f498e6ce6ed375555feb23b36cc1fe5cb02ffae1a8ad38b4a2818002828d",
+      "calls": [],
+      "tunables": 14
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/Combat/CombatVfxPool.cs",
+      "bodySha256": "c8d0ea2711d5d38013b5fc9628ff7fc4aa6df935a4a7c6d64406668287a06b39",
+      "calls": [
+        "VoxelFxGeometry"
+      ],
+      "tunables": 0
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/Combat/CoreVelocityEstimator.cs",
+      "bodySha256": "88996fa22482c3e74cc36eb3922b65a8d552e8a2670d2fab2ff248b932c402ee",
+      "calls": [],
+      "tunables": 0
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/Combat/CylindricalHitQuery.cs",
+      "bodySha256": "a835e77423897eebef152cce82a1759fa6030c544c9cd750c25ff68bbecc3885",
+      "calls": [],
+      "tunables": 0
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/Combat/DebrisCluster.cs",
+      "bodySha256": "f308fc47fa102c4c6dbbaa9e36496e190e7f06d36089bf4dc5c2ca7626af1f54",
+      "calls": [
+        "DebrisWorld"
+      ],
+      "tunables": 0
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/Combat/DebrisPartHitbox.cs",
+      "bodySha256": "6dfd9f6060ff6430fd224838b1adce64ab32694fbb507d181297d437fdbc88ea",
+      "calls": [
+        "DebrisCluster"
+      ],
+      "tunables": 0
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/Combat/DebrisWorld.cs",
+      "bodySha256": "b5fdada9b8d9e13e2690f3aa4894d7ade2b43c4ec7dfe73b3ad2e6a5b3860d1c",
+      "calls": [
+        "CombatVfxPool",
+        "FlightTuning",
+        "DebrisCluster",
+        "DebrisPartHitbox"
+      ],
+      "tunables": 0
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/Combat/InterceptSolver.cs",
+      "bodySha256": "93a055838dfee3e94a3d187816f647e0331f4ad0e438b28f7a774b35da59a3ac",
+      "calls": [],
+      "tunables": 0
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/Combat/LaserVisualPool.cs",
+      "bodySha256": "7dad957e73e78fb2bf9d3876f3fd3d4b244e42674253a70c68df7c50473087d0",
+      "calls": [
+        "VoxelFxGeometry"
+      ],
+      "tunables": 0
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/Combat/ProjectileWorld.cs",
+      "bodySha256": "c69ebfa1cdcabada30c8ce9cd9818db5a5485b38106a91d021bb540abd5cc4ec",
+      "calls": [
+        "CylindricalHitQuery",
+        "ShipShieldSystem",
+        "FlightShipRuntime",
+        "DebrisPartHitbox",
+        "LaserVisualPool"
+      ],
+      "tunables": 0
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/Combat/RangeBotPilot.cs",
+      "bodySha256": "956e203aedc3e5e6af0e05360cb528a2bc5ea985874fa5e243cc86d8604f6654",
+      "calls": [
+        "InterceptSolver",
+        "CylindricalHitQuery",
+        "ShipWeapons"
+      ],
+      "tunables": 0
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/Combat/RangeBotWeaponInput.cs",
+      "bodySha256": "61020733ac4d2ce1dfb1dea9cf379d4093e562f2bedc6eb7b915f2eb0b85fdfb",
+      "calls": [
+        "ShipWeapons"
+      ],
+      "tunables": 0
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/Combat/RangeCombatWorld.cs",
+      "bodySha256": "f7a128d92c86d754cf544cf6b5f6475968d8037cbe847bcaab097767bb6af2c2",
+      "calls": [
+        "FlightShipRuntime",
+        "RangeBotPilot",
+        "RangeBotWeaponInput",
+        "ShipWeapons",
+        "ProjectileWorld",
+        "DebrisWorld",
+        "ShipFlightController",
+        "RangeTargetRoster",
+        "TargetLockSystem"
+      ],
+      "tunables": 0
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/Combat/RangePracticeSettings.cs",
+      "bodySha256": "956442a60fdbd9c619558ab1b6877f07d0b3966fd489f6eeba42077ee0e18f44",
+      "calls": [],
+      "tunables": 0
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/Combat/RangeTargetRoster.cs",
+      "bodySha256": "8887ed710195cc6d4727106003f8df4bcadad7c5e3cb00bc36def67c497f49f5",
+      "calls": [
+        "BlueprintRepository"
+      ],
+      "tunables": 0
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/Combat/ShieldSurfaceVisibility.cs",
+      "bodySha256": "0fac44fec7fb675c82d8d524dd1b473a1d1fe9ad9fb9eca095caab7b986e72ae",
+      "calls": [],
+      "tunables": 0
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/Combat/ShipInstanceRenderer.cs",
+      "bodySha256": "22a9b35144fe05fa36869f465280c477fecc344e9ce6222b8048583f316b524a",
+      "calls": [
+        "FlightShipRuntime"
+      ],
+      "tunables": 0
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/Combat/ShipPartHitbox.cs",
+      "bodySha256": "850aed2190c0370d9e0e10a57296c6ae8dc7a85bba1e3b4beaa058b9cea6b253",
+      "calls": [
+        "FlightShipRuntime"
+      ],
+      "tunables": 0
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/Combat/ShipPowerBus.cs",
+      "bodySha256": "b2046cbf4272f6c6c451d33082fc562d45c801ee02988768e1cee77b73c07d10",
+      "calls": [],
+      "tunables": 0
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/Combat/ShipShieldSystem.cs",
+      "bodySha256": "6983c72ba7c38f2543db05f70fffb095e65dc653c87094ae641b81b814fef9e6",
+      "calls": [
+        "FlightShipRuntime"
+      ],
+      "tunables": 0
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/Combat/ShipShieldVisual.cs",
+      "bodySha256": "9eb0cd55a1ee979b647b146a7649ff138712e635f5970aed1ae70edec2078035",
+      "calls": [
+        "FlightShipRuntime"
+      ],
+      "tunables": 0
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/Combat/ShipWeapons.cs",
+      "bodySha256": "d13009823bccba2bf688532831ad82409e05d02bf7322808041636aa952b9e72",
+      "calls": [
+        "ProjectileWorld",
+        "WeaponActivationState",
+        "WeaponGroups",
+        "BlockPlacement"
+      ],
+      "tunables": 0
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/Combat/TargetAimGraphic.cs",
+      "bodySha256": "a8e6b26ecb4007171f58c26822d5b7f3038391d1a8a605051d1ddcf6b209bed6",
+      "calls": [
+        "TargetLockSystem",
+        "TargetIndicatorProjection"
+      ],
+      "tunables": 0
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/Combat/TargetIndicatorProjection.cs",
+      "bodySha256": "cc0d001c9fab31b7325c5ce7dbdaac081b38ffd8982aa6f977abd244b18d4679",
+      "calls": [],
+      "tunables": 0
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/Combat/TargetLockSystem.cs",
+      "bodySha256": "e5ead8b38a4f0c126b7080a60ab9f9d51c99f7d691f0e47097995c6e6d55b7d2",
+      "calls": [
+        "RangeCombatWorld",
+        "InterceptSolver",
+        "CoreVelocityEstimator",
+        "ShipWeapons"
+      ],
+      "tunables": 0
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/Combat/VoxelFxGeometry.cs",
+      "bodySha256": "cf3591b9622e43715a5ab237de83dd9817fab381bf43a7102aee1d4c00d5ae9e",
+      "calls": [],
+      "tunables": 0
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/Combat/WeaponClearance.cs",
+      "bodySha256": "f7b5ce3ac574a49accb85426b16823ac7a1b51ca0a0ce0617796a0b4c4d0473c",
+      "calls": [
+        "CylindricalHitQuery"
+      ],
+      "tunables": 0
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/Flight/FlightRangeBootstrap.cs",
+      "bodySha256": "e4fb90e36cb0c35d043c484a08a7be6069c3fabb04af070566ee45979e34bdd1",
+      "calls": [
+        "FlightSession",
+        "ShipAssembly",
+        "FlightShipRuntime",
+        "ShipFlightController",
+        "RangeCombatWorld",
+        "RangeHUD"
+      ],
+      "tunables": 0
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/Flight/FlightSession.cs",
+      "bodySha256": "39c256f47255f1ad16a427a48c4a214ccc55a343dbdc94664ec2404525fbf4e7",
+      "calls": [
+        "BlueprintRepository"
+      ],
+      "tunables": 0
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/Flight/FlightShipRuntime.cs",
+      "bodySha256": "49efefd1260ba64b7d60cf69e024751b347a3377ef2dea75798b1701f3e4433f",
+      "calls": [
+        "ShipAssembly",
+        "BlockConnectivity",
+        "FlightTuning",
+        "ShipPowerBus",
+        "ShipShieldSystem",
+        "ShipInstanceRenderer"
+      ],
+      "tunables": 0
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/Flight/FlightTuning.cs",
+      "bodySha256": "b91352b54dc31963320ec799b110d5e6a227e89080ab7ecbba55e0ff1f6ce68a",
+      "calls": [
+        "ModuleDatabase"
+      ],
+      "tunables": 12
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/Flight/GlassUiPalette.cs",
+      "bodySha256": "252f7ff87437b4b196c69c333bbb34a8020982be2e3f46b3cf9bff66479cdb71",
+      "calls": [
+        "UiTheme"
+      ],
+      "tunables": 0
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/Flight/ModuleDatabase.cs",
+      "bodySha256": "58cc39a251e328fd9707e0c8195b036e00c217f959ccb8f3bd6789120d8b8f1d",
+      "calls": [],
+      "tunables": 0
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/Flight/ModuleDefinition.cs",
+      "bodySha256": "6d368eac4a81d99d8833d967e67aa8013098f952ae577ebedb102a1c209b6f5b",
+      "calls": [],
+      "tunables": 13
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/Flight/RangeEnvironment.cs",
+      "bodySha256": "e11a37a3df49ef820d04381be0e8be2e1c199eaca93ec7e3fc153fbe023a5232",
+      "calls": [],
+      "tunables": 0
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/Flight/RangeHUD.cs",
+      "bodySha256": "43c996ef91505eb10f132541cf2e5005032024f2a43ed3fe24d612bf72429e65",
+      "calls": [
+        "RangeCombatWorld",
+        "ShipFlightController",
+        "ShipStatusGraphic",
+        "SphereRadarGraphic",
+        "TargetAimGraphic",
+        "ReticleHitFeedback"
+      ],
+      "tunables": 0
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/Flight/ShipCollisionSweep.cs",
+      "bodySha256": "bc60394abdbca8e53a6634d71e2825df20ef9077e82491f16be6bed1e8a69f56",
+      "calls": [],
+      "tunables": 0
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/Flight/ShipFlightController.cs",
+      "bodySha256": "d0e9a9bc1ae7b49e4fa2e6dedefd8785b82101dff597a1be0055afd2429bf8b1",
+      "calls": [
+        "FlightShipRuntime",
+        "FlightTuning",
+        "GameInput",
+        "ShipCollisionSweep"
+      ],
+      "tunables": 0
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/Flight/ShipStatusGraphic.cs",
+      "bodySha256": "9528d9423b13defaaf72f449b35f5149f491e69553babfa85bbd759e24469a70",
+      "calls": [
+        "FlightShipRuntime"
+      ],
+      "tunables": 0
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/Flight/SphereRadarGraphic.cs",
+      "bodySha256": "889eb081e278c8d5cde5dc423e79c88472f096aa689a4d23ee39ccd96e9f4552",
+      "calls": [
+        "RangeCombatWorld"
+      ],
+      "tunables": 0
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/Flight/ThrusterExhaust.cs",
+      "bodySha256": "ce346d94723268249f003c13751b80098b32939d0f00c4c2776c491bf511ee5f",
+      "calls": [
+        "FlightShipRuntime",
+        "ShipFlightController",
+        "VoxelFxGeometry"
+      ],
+      "tunables": 0
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/Flight/WeaponDefinition.cs",
+      "bodySha256": "cc7098af5cf2b1312f9dd5394ca2531ba65857ddd8c4b916e2609b0dd64e6643",
+      "calls": [],
+      "tunables": 9
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/ModuleGlowAccents.cs",
+      "bodySha256": "139572e42369892cb21764e3d113499b8aa27b29e49c4cf16cd834da16ac889b",
+      "calls": [
+        "BlockModules",
+        "VoxelFxGeometry"
+      ],
+      "tunables": 0
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/Presentation/L10n.cs",
+      "bodySha256": "ce9002469f34f7bd71f0f63cdf68bc22938ee7aa0c9d949a37584ce0a95dd3aa",
+      "calls": [],
+      "tunables": 0
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/Presentation/LocalizedUiFont.cs",
+      "bodySha256": "9eda90f6f8f5f3ed71337341b59bd221a95c1b57bf4b94c4d13c77cc67016cc5",
+      "calls": [
+        "L10n"
+      ],
+      "tunables": 0
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/Presentation/LocalizedUiText.cs",
+      "bodySha256": "173b046f7916cf9821d7ff3c8fad966abc4bfd7d8c2015fb3a0b07a7b9a33512",
+      "calls": [
+        "L10n"
+      ],
+      "tunables": 0
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/Presentation/ReticleHitFeedback.cs",
+      "bodySha256": "a5cb5fe522c72aedbe92128a43d78331d2a7f1152bdc89572d2783beb4f59b41",
+      "calls": [],
+      "tunables": 0
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/Presentation/UiTheme.cs",
+      "bodySha256": "4cdcb1b2ece13dc9be78537566a491e09dea2272ab1800e5abdbbee3f12b0fb5",
+      "calls": [],
+      "tunables": 0
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/ShapeIconGraphic.cs",
+      "bodySha256": "c7ea9d84b9690afbd64dac23da952227853d70df78b0cffbece4f5f9e214de0c",
+      "calls": [
+        "BlockGeometry"
+      ],
+      "tunables": 0
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/ShipAssembly.cs",
+      "bodySha256": "60d7e151bd23c4d3913f5f95bfe04ba39963fff667d871774a222d5a59ee0553",
+      "calls": [
+        "BlockModules",
+        "BlockConnectivity",
+        "BlockPlacement",
+        "BlockGeometry",
+        "ModuleDatabase",
+        "WeaponClearance",
+        "WeaponGroups"
+      ],
+      "tunables": 0
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/ShipEditorController.cs",
+      "bodySha256": "4168cef7f0d6fb96a81fb236d1783f817f21390f04c040769c2ccfbc97304722",
+      "calls": [
+        "ShipAssembly",
+        "WorkbenchOrbit",
+        "ShipEditorUI",
+        "BlueprintRepository",
+        "FlightSession"
+      ],
+      "tunables": 0
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/ShipEditorUI.cs",
+      "bodySha256": "c1a6fb75b60ceb754bfab88d18a1cfee1e7c738d16032561e65c90ae4be2c7d1",
+      "calls": [
+        "ShipEditorController",
+        "FlightTuning",
+        "L10n",
+        "GlassUiPalette"
+      ],
+      "tunables": 0
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/WeaponGroups/WeaponActivationState.cs",
+      "bodySha256": "3d673ceaf5b1e076195878eb3e17a52d8f1b9c4f8819245f830ca336b0196c6e",
+      "calls": [],
+      "tunables": 0
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/WeaponGroups/WeaponGroupData.cs",
+      "bodySha256": "d4b1e75e8df39d04a93ae0ad82837ace948fd3c73858ee96568eb3472c0466e3",
+      "calls": [],
+      "tunables": 0
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/WeaponGroups/WeaponGroupInputRouter.cs",
+      "bodySha256": "5aa24cacfe09e888d96be51ab816b8cfed693bc565042bb64891b15b27fa7e33",
+      "calls": [
+        "ShipWeapons",
+        "GameAudio"
+      ],
+      "tunables": 0
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/WeaponGroups/WeaponGroups.cs",
+      "bodySha256": "b98bfaa9aaba2ceea0cbb7d5ffa2b5981281932201cf484703eb95853067dbf3",
+      "calls": [
+        "ModuleDatabase",
+        "BlockModules"
+      ],
+      "tunables": 0
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/WorkbenchEnvironment.cs",
+      "bodySha256": "3173d73c0c5a8a17a10ffde890800b27481d8b51b2e79a4a784e925707068b53",
+      "calls": [],
+      "tunables": 0
+    },
+    {
+      "file": "Assets/_Starframe/Scripts/Runtime/Construction/WorkbenchOrbit.cs",
+      "bodySha256": "23d391535d419cacbd29e3285b48ede01e1999ebfaf7637a8c544cd30b6dde2a",
+      "calls": [
+        "ShipEditorUI"
+      ],
+      "tunables": 0
+    }
+  ]
+}

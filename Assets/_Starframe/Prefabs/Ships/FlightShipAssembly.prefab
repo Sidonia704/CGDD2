@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8243907864809150507
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5854828049928951965}
+  - component: {fileID: 7650913408561013403}
+  m_Layer: 0
+  m_Name: FlightShipAssembly
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5854828049928951965
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8243907864809150507}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7650913408561013403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8243907864809150507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 253319080d8b92844b62ba9e592e0338, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Starframe.Construction::Starframe.Construction.ShipAssembly
+  bodyMaterial: {fileID: 2100000, guid: d9721ecab6f09314a9c47aedaaa6ec73, type: 2}
+  edgeMaterial: {fileID: 2100000, guid: e4ed048bec69059428cdd7df42052af9, type: 2}
+  coreMaterial: {fileID: 2100000, guid: f3b9a7c1c9f140d488027e0e353f9e14, type: 2}
+  forwardRayMaterial: {fileID: 2100000, guid: 494c4f54b2a22b64db2320f4cbd90cf5, type: 2}
+  thruster1Mesh: {fileID: 4300000, guid: c1850286fbaeb0740b4320fd8eca707e, type: 2}
+  thruster2Mesh: {fileID: 4300000, guid: 80e9e86e078aae145a2b3c347293f58a, type: 2}
+  thruster1Edges: {fileID: 4300000, guid: b143e528aa06e1243a1966b8aadf0233, type: 2}
+  thruster2Edges: {fileID: 4300000, guid: abb5350fe014f2140bd6327de1b7954e, type: 2}

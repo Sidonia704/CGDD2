@@ -1,0 +1,1744 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: GameUI Shared Data
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.SharedTableData
+  m_TableCollectionName: GameUI
+  m_TableCollectionNameGuidString: 141967598b049a1429bd9223ee40a685
+  m_Entries:
+  - m_Id: 1005584384
+    m_Key: ui.cancel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721728
+    m_Key: ui.confirm
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721729
+    m_Key: ui.save
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721730
+    m_Key: ui.load
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721731
+    m_Key: ui.delete
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721732
+    m_Key: ui.overwrite
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721733
+    m_Key: editor.title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721734
+    m_Key: editor.blueprintCaption
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721735
+    m_Key: editor.blueprintDefault
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721736
+    m_Key: editor.blueprintUntitled
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721737
+    m_Key: editor.mode.place
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721738
+    m_Key: editor.mode.delete
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721739
+    m_Key: editor.moduleInfo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721740
+    m_Key: editor.selectModule
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721741
+    m_Key: editor.saveBlueprint
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721742
+    m_Key: editor.loadBlueprint
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721743
+    m_Key: editor.parts
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721744
+    m_Key: editor.testFlight
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721745
+    m_Key: editor.test
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721746
+    m_Key: editor.selectHint
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721747
+    m_Key: editor.rotation
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721748
+    m_Key: editor.mouseHelp
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721749
+    m_Key: editor.buildHelp
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721750
+    m_Key: editor.namePlaceholder
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721751
+    m_Key: editor.nameHint
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721752
+    m_Key: editor.loadHint
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721753
+    m_Key: editor.emptyBlueprints
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721754
+    m_Key: editor.targetAdd
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721755
+    m_Key: editor.targetRemove
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721756
+    m_Key: editor.targetCount
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721757
+    m_Key: editor.targetNeedsBlueprint
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721758
+    m_Key: editor.fileTargetSuffix
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721759
+    m_Key: editor.nameRequired
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721760
+    m_Key: editor.nameCheckFailed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721761
+    m_Key: editor.overwriteTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721762
+    m_Key: editor.overwriteMessage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721763
+    m_Key: editor.deleteTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721764
+    m_Key: editor.deleteMessage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721765
+    m_Key: editor.status.ready
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721766
+    m_Key: editor.status.deleteMode
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721767
+    m_Key: editor.status.buildMode
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721768
+    m_Key: editor.status.forward
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721769
+    m_Key: editor.status.deletedPart
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721770
+    m_Key: editor.status.cannotDelete
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721771
+    m_Key: editor.status.placed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721772
+    m_Key: editor.status.cannotPlace
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721773
+    m_Key: editor.status.saved
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721774
+    m_Key: editor.status.saveFailed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721775
+    m_Key: editor.status.deleted
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721776
+    m_Key: editor.status.deleteFailed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721777
+    m_Key: editor.status.loaded
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721778
+    m_Key: editor.status.loadFailed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721779
+    m_Key: editor.status.needCore
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721780
+    m_Key: editor.status.rangeFailed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721781
+    m_Key: editor.status.targetSet
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721782
+    m_Key: editor.status.targetCleared
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721783
+    m_Key: editor.status.targetFailed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721784
+    m_Key: editor.preview
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721785
+    m_Key: category.Hull
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721786
+    m_Key: category.Propulsion
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721787
+    m_Key: category.Core
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721788
+    m_Key: category.Power
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721789
+    m_Key: category.Shield
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721790
+    m_Key: category.Weapon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721791
+    m_Key: module.Cube
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721792
+    m_Key: module.Wedge
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721793
+    m_Key: module.Thruster1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721794
+    m_Key: module.Thruster2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721795
+    m_Key: module.Slab
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721796
+    m_Key: module.Pyramid
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721797
+    m_Key: module.Laser
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721798
+    m_Key: module.Power
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721799
+    m_Key: module.Shield
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721800
+    m_Key: module.Core
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721801
+    m_Key: module.short.Cube
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721802
+    m_Key: module.short.Wedge
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721803
+    m_Key: module.short.Thruster1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721804
+    m_Key: module.short.Thruster2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721805
+    m_Key: module.short.Slab
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721806
+    m_Key: module.short.Pyramid
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721807
+    m_Key: module.short.Laser
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721808
+    m_Key: module.short.Power
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721809
+    m_Key: module.short.Shield
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721810
+    m_Key: module.short.Core
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721811
+    m_Key: module.stat.mass
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721812
+    m_Key: module.stat.hp
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721813
+    m_Key: module.stat.thrust
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721814
+    m_Key: module.stat.storage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721815
+    m_Key: module.stat.generation
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721816
+    m_Key: module.stat.shield
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721817
+    m_Key: module.stat.recovery
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721818
+    m_Key: module.stat.power
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721819
+    m_Key: module.stat.rate
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721820
+    m_Key: module.stat.damage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721821
+    m_Key: module.stat.projectile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721822
+    m_Key: hud.radarTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721823
+    m_Key: hud.radarLegacyTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721824
+    m_Key: hud.radarInitial
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721825
+    m_Key: hud.movementHelp
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721826
+    m_Key: hud.combatHelp
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721827
+    m_Key: hud.allHelp
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721828
+    m_Key: hud.exitTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721829
+    m_Key: hud.exitHint
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721830
+    m_Key: hud.continue
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721831
+    m_Key: hud.returnAssembly
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721832
+    m_Key: hud.rangeTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721833
+    m_Key: hud.systemsTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721834
+    m_Key: hud.diagnosticsOpen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721835
+    m_Key: hud.diagnosticsClose
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721836
+    m_Key: hud.ownTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721837
+    m_Key: hud.targetTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721838
+    m_Key: hud.coreOnline
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721839
+    m_Key: hud.coreDestroyed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721840
+    m_Key: hud.noTarget
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721841
+    m_Key: hud.targetHint
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721842
+    m_Key: hud.lockHint
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721843
+    m_Key: hud.lockInitial
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721844
+    m_Key: hud.boost
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721845
+    m_Key: hud.summaryInitial
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721846
+    m_Key: hud.shieldInitial
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721847
+    m_Key: hud.energyInitial
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721848
+    m_Key: hud.performance
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721849
+    m_Key: hud.speed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721850
+    m_Key: hud.summaryWaiting
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721851
+    m_Key: hud.energy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721852
+    m_Key: hud.noPower
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721853
+    m_Key: hud.shield
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721854
+    m_Key: hud.noShield
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721855
+    m_Key: hud.unlock
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721856
+    m_Key: hud.lock
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721857
+    m_Key: hud.targetIdentity
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721858
+    m_Key: hud.radarContacts
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721859
+    m_Key: hud.locked
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721860
+    m_Key: hud.unlocked
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721861
+    m_Key: hud.combatDetails
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721862
+    m_Key: hud.respawn
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721863
+    m_Key: hud.rebuilding
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721864
+    m_Key: hud.summary
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721865
+    m_Key: hud.lockDistance
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721866
+    m_Key: hud.enemyShip
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721867
+    m_Key: hud.condition
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721868
+    m_Key: error.grid
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721869
+    m_Key: error.oneCore
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721870
+    m_Key: error.clearance
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721871
+    m_Key: error.connected
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721872
+    m_Key: error.overlap
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721873
+    m_Key: error.muzzleBlocked
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721874
+    m_Key: error.blocksWeapon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721875
+    m_Key: error.duplicateBlueprint
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721876
+    m_Key: error.fileMissing
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721877
+    m_Key: error.fileTooLarge
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721878
+    m_Key: error.invalidBlueprint
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721879
+    m_Key: error.access
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721880
+    m_Key: error.storage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721881
+    m_Key: error.operation
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721882
+    m_Key: ui.weaponGroups.title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721883
+    m_Key: ui.weaponGroups.subtitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721884
+    m_Key: ui.weaponGroups.add
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721885
+    m_Key: ui.weaponGroups.limit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721886
+    m_Key: ui.weaponGroups.name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721887
+    m_Key: ui.weaponGroups.bind
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721888
+    m_Key: ui.weaponGroups.unbound
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721889
+    m_Key: ui.weaponGroups.mouseLeft
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721890
+    m_Key: ui.weaponGroups.mouseRight
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721891
+    m_Key: ui.weaponGroups.mouseMiddle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721892
+    m_Key: ui.weaponGroups.weapons
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721893
+    m_Key: ui.weaponGroups.assign
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721894
+    m_Key: ui.weaponGroups.selected
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721895
+    m_Key: ui.weaponGroups.pick
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721896
+    m_Key: ui.weaponGroups.roster
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721897
+    m_Key: ui.weaponGroups.rosterHint
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721898
+    m_Key: ui.weaponGroups.gun
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721899
+    m_Key: ui.weaponGroups.shortId
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721900
+    m_Key: ui.weaponGroups.apply
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721901
+    m_Key: ui.weaponGroups.back
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721902
+    m_Key: ui.weaponGroups.saved
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721903
+    m_Key: ui.weaponGroups.dirty
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721904
+    m_Key: ui.weaponGroups.empty
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721905
+    m_Key: ui.weaponGroups.groupDefault
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721906
+    m_Key: ui.weaponGroups.captureTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721907
+    m_Key: ui.weaponGroups.captureHint
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721908
+    m_Key: ui.weaponGroups.conflict
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721909
+    m_Key: ui.weaponGroups.reserved
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721910
+    m_Key: ui.weaponGroups.clearBinding
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721911
+    m_Key: ui.weaponGroups.deleteTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721912
+    m_Key: ui.weaponGroups.deleteHint
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721913
+    m_Key: ui.weaponGroups.discardTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721914
+    m_Key: ui.weaponGroups.discardHint
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721915
+    m_Key: ui.weaponGroups.discard
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721916
+    m_Key: ui.weaponGroups.keepEditing
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721917
+    m_Key: ui.weaponGroups.captureCancel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721918
+    m_Key: ui.weaponGroups.help
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721919
+    m_Key: ui.weaponGroups.groupNumber
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721920
+    m_Key: ui.weaponGroups.assigned
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721921
+    m_Key: ui.weaponGroups.bindingNote
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721922
+    m_Key: ui.weaponGroups.selectionHint
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721923
+    m_Key: deploy.error.noMission
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721924
+    m_Key: deploy.error.missionConfig
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721925
+    m_Key: deploy.error.noDatabase
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721926
+    m_Key: deploy.error.noBlueprint
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721927
+    m_Key: deploy.error.invalidBlueprint
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721928
+    m_Key: deploy.error.partId
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051721929
+    m_Key: deploy.error.moduleMissing
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916032
+    m_Key: deploy.error.moduleConfig
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916033
+    m_Key: deploy.error.gridPose
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916034
+    m_Key: deploy.error.overlap
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916035
+    m_Key: deploy.error.coreCount
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916036
+    m_Key: deploy.error.disconnected
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916037
+    m_Key: deploy.error.totals
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916038
+    m_Key: deploy.error.budget
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916039
+    m_Key: deploy.error.mass
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916040
+    m_Key: deploy.warning.noPower
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916041
+    m_Key: deploy.warning.noWeapons
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916042
+    m_Key: settings.eyebrow
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916043
+    m_Key: settings.title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916044
+    m_Key: settings.subtitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916045
+    m_Key: settings.category.Display
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916046
+    m_Key: settings.category.Graphics
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916047
+    m_Key: settings.category.Audio
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916048
+    m_Key: settings.category.Controls
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916049
+    m_Key: settings.category.Accessibility
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916050
+    m_Key: settings.category.Language
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916051
+    m_Key: settings.description.Display
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916052
+    m_Key: settings.description.Graphics
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916053
+    m_Key: settings.description.Audio
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916054
+    m_Key: settings.description.Controls
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916055
+    m_Key: settings.description.Accessibility
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916056
+    m_Key: settings.description.Language
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916057
+    m_Key: settings.stagedNote
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916058
+    m_Key: settings.back
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916059
+    m_Key: settings.defaults
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916060
+    m_Key: settings.apply
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916061
+    m_Key: settings.revert
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916062
+    m_Key: settings.unsaved
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916063
+    m_Key: settings.applied
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916064
+    m_Key: settings.saved
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916065
+    m_Key: settings.loadFailed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916066
+    m_Key: settings.saveFailed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916067
+    m_Key: settings.enabled
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916068
+    m_Key: settings.off
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916069
+    m_Key: settings.screenMode
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916070
+    m_Key: settings.screenModeHint
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916071
+    m_Key: settings.windowed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916072
+    m_Key: settings.borderless
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916073
+    m_Key: settings.fullscreen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916074
+    m_Key: settings.resolution
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916075
+    m_Key: settings.resolutionHint
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916076
+    m_Key: settings.vsync
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916077
+    m_Key: settings.vsyncHint
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916078
+    m_Key: settings.vsyncOne
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916079
+    m_Key: settings.vsyncTwo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916080
+    m_Key: settings.frameCap
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916081
+    m_Key: settings.frameCapHint
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916082
+    m_Key: settings.unlimited
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916083
+    m_Key: settings.editorDisplayNote
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916084
+    m_Key: settings.quality
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916085
+    m_Key: settings.qualityHint
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916086
+    m_Key: settings.fieldOfView
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916087
+    m_Key: settings.fieldOfViewHint
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916088
+    m_Key: settings.bloom
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916089
+    m_Key: settings.bloomHint
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916090
+    m_Key: settings.bloomIntensity
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916091
+    m_Key: settings.bloomIntensityHint
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916092
+    m_Key: settings.masterVolume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916093
+    m_Key: settings.musicVolume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916094
+    m_Key: settings.musicHint
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916095
+    m_Key: settings.sfxVolume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916096
+    m_Key: settings.sfxHint
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916097
+    m_Key: settings.uiVolume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916098
+    m_Key: settings.uiHint
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916099
+    m_Key: settings.muteUnfocused
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916100
+    m_Key: settings.muteUnfocusedHint
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916101
+    m_Key: settings.testAudio
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916102
+    m_Key: settings.testSfx
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916103
+    m_Key: settings.testUi
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916104
+    m_Key: settings.sensitivity
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916105
+    m_Key: settings.sensitivityHint
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916106
+    m_Key: settings.invertY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916107
+    m_Key: settings.invertYHint
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916108
+    m_Key: settings.smoothing
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916109
+    m_Key: settings.smoothingHint
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916110
+    m_Key: settings.bindingHint
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916111
+    m_Key: settings.action.Forward
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916112
+    m_Key: settings.action.Backward
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916113
+    m_Key: settings.action.Left
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916114
+    m_Key: settings.action.Right
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916115
+    m_Key: settings.action.Up
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916116
+    m_Key: settings.action.Down
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916117
+    m_Key: settings.action.RollLeft
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916118
+    m_Key: settings.action.RollRight
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916119
+    m_Key: settings.action.Boost
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916120
+    m_Key: settings.action.TargetLock
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916121
+    m_Key: settings.reduceFlashes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916122
+    m_Key: settings.reduceFlashesHint
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916123
+    m_Key: settings.accessibilityNote
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916124
+    m_Key: settings.language
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916125
+    m_Key: settings.languageHint
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916126
+    m_Key: settings.languageNote
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916127
+    m_Key: app.backDeployment
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916128
+    m_Key: app.backHangar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916129
+    m_Key: app.budgetFrom
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916130
+    m_Key: app.budgetRemaining
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916131
+    m_Key: app.budgetValue
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916132
+    m_Key: app.cancel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916133
+    m_Key: app.changeShip
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916134
+    m_Key: app.chooseOperation
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916135
+    m_Key: app.confirmDeployment
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916136
+    m_Key: app.confirmLaunch
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916137
+    m_Key: app.cost
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916138
+    m_Key: app.currentShip
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916139
+    m_Key: app.deployingShip
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916140
+    m_Key: app.deploymentSubtitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916141
+    m_Key: app.difficulty.Expert
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916142
+    m_Key: app.difficulty.Relaxed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916143
+    m_Key: app.difficulty.Standard
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916144
+    m_Key: app.drillMode
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916145
+    m_Key: app.editShip
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916146
+    m_Key: app.enterRange
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916147
+    m_Key: app.groupsApplied
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916148
+    m_Key: app.helpAssembly
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916149
+    m_Key: app.helpAssemblyBody
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916150
+    m_Key: app.helpCombat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916151
+    m_Key: app.helpCombatBody
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916152
+    m_Key: app.helpFlight
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916153
+    m_Key: app.helpFlightBody
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916154
+    m_Key: app.helpSubtitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916155
+    m_Key: app.helpTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916156
+    m_Key: app.homeFooter
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916157
+    m_Key: app.homeSubtitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916158
+    m_Key: app.invalidBlueprint
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916159
+    m_Key: app.launchHint
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916160
+    m_Key: app.mass
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916161
+    m_Key: app.mode.Combat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916162
+    m_Key: app.mode.FlyOnly
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916163
+    m_Key: app.mode.Stationary
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916164
+    m_Key: app.mode.StationaryFire
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916165
+    m_Key: app.modeHint.Combat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916166
+    m_Key: app.modeHint.FlyOnly
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916167
+    m_Key: app.modeHint.Stationary
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916168
+    m_Key: app.modeHint.StationaryFire
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916169
+    m_Key: app.noBlueprints
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916170
+    m_Key: app.noTargetBlueprints
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916171
+    m_Key: app.operationUnavailable
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916172
+    m_Key: app.orbitHint
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916173
+    m_Key: app.parts
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916174
+    m_Key: app.pickerSubtitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916175
+    m_Key: app.practiceRange
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916176
+    m_Key: app.prepare
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916177
+    m_Key: app.quit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916178
+    m_Key: app.quitBody
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916179
+    m_Key: app.quitTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916180
+    m_Key: app.rangeExitHint
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916181
+    m_Key: app.rangeNoBudget
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916182
+    m_Key: app.rangeSubtitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916183
+    m_Key: app.rangeTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916184
+    m_Key: app.readinessBody
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916185
+    m_Key: app.readinessFailed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916186
+    m_Key: app.readinessPassed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916187
+    m_Key: app.readyBadge
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916188
+    m_Key: app.replaceDraftBody
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916189
+    m_Key: app.replaceDraftTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916190
+    m_Key: app.settings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916191
+    m_Key: app.shipConfirmed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916192
+    m_Key: app.targetRoster
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916193
+    m_Key: app.targetRosterHint
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916194
+    m_Key: app.targetTotal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916195
+    m_Key: app.weaponGroups
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916196
+    m_Key: app.workspaceDraft
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916197
+    m_Key: app.workspaceSaved
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916198
+    m_Key: app.errorTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916199
+    m_Key: app.storageError
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916200
+    m_Key: app.ok
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916201
+    m_Key: app.defaultTarget
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916202
+    m_Key: mission.ice.title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916203
+    m_Key: mission.ice.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916204
+    m_Key: mission.ice.region
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916205
+    m_Key: mission.frontier.title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916206
+    m_Key: mission.frontier.description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916207
+    m_Key: mission.frontier.region
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916208
+    m_Key: settings.captureTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916209
+    m_Key: settings.captureAction
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916210
+    m_Key: settings.captureHint
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916211
+    m_Key: settings.reserved
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916212
+    m_Key: settings.multipleConflicts
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916213
+    m_Key: settings.conflictTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916214
+    m_Key: settings.conflictHint
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916215
+    m_Key: settings.swap
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916216
+    m_Key: settings.chooseAnother
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916217
+    m_Key: settings.keepDisplay
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916218
+    m_Key: settings.displayCountdown
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916219
+    m_Key: settings.keep
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916220
+    m_Key: settings.displayRestored
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916221
+    m_Key: settings.discardTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916222
+    m_Key: settings.discardHint
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916223
+    m_Key: settings.discard
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916224
+    m_Key: settings.keepEditing
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916225
+    m_Key: settings.mouseLeft
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916226
+    m_Key: settings.mouseRight
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916227
+    m_Key: settings.mouseMiddle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1055916228
+    m_Key: settings.unbound
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1349717590016
+    m_Key: deploy.warning.provisionalCosts
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6609160896512
+    m_Key: app.builtInTarget
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6609207033856
+    m_Key: app.rangeOptions
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6609207033857
+    m_Key: app.rangeLiveHint
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6609207033858
+    m_Key: app.rangeLiveCount
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6609207033859
+    m_Key: app.rangeResetHint
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6609207033860
+    m_Key: app.rangeReset
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8252371763200
+    m_Key: settings.weaponBindingWarning
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8252405317632
+    m_Key: settings.weaponConflictTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8252405317633
+    m_Key: settings.weaponConflictHint
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8252405317634
+    m_Key: settings.useSharedBinding
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30854125453312
+    m_Key: app.resultsTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30854167396352
+    m_Key: app.resultsSubtitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30854167396353
+    m_Key: app.outcome.Victory
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30854167396354
+    m_Key: app.outcome.Defeat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30854167396355
+    m_Key: app.outcome.Aborted
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30854167396356
+    m_Key: app.resultDuration
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30854167396357
+    m_Key: app.resultKills
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30854167396358
+    m_Key: app.resultDamageDealt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30854167396359
+    m_Key: app.resultDamageTaken
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30854167396360
+    m_Key: app.resultSurvivors
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30854167396361
+    m_Key: app.resultBlueprintPreserved
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30854167396362
+    m_Key: app.prepareAgain
+    m_Metadata:
+      m_Items: []
+  - m_Id: 38849735557120
+    m_Key: hud.weaponGroupsTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 38849790083072
+    m_Key: hud.weaponGroupsKeyHint
+    m_Metadata:
+      m_Items: []
+  - m_Id: 38849790083073
+    m_Key: hud.weaponGroupSlot
+    m_Metadata:
+      m_Items: []
+  - m_Id: 38849790083074
+    m_Key: hud.weaponGroupGuns
+    m_Metadata:
+      m_Items: []
+  - m_Id: 38849790083075
+    m_Key: hud.weaponGroupOn
+    m_Metadata:
+      m_Items: []
+  - m_Id: 38849790083076
+    m_Key: hud.weaponGroupOff
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 1322236803525116028
+  references:
+    version: 2
+    RefIds:
+    - rid: 1322236803525116028
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1792290092442

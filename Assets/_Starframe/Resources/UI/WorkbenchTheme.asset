@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af1ee33862bacc14ca868432e1d8920e, type: 3}
+  m_Name: WorkbenchTheme
+  m_EditorClassIdentifier: Starframe.Construction::Starframe.Presentation.UiTheme
+  refinedGlass: 1
+  assemblyLayout: 1
+  flightLayout: 1
+  aimReticle: 1
+  tacticalRadar: 1
+  statusSchematic: 1
+  glassTint: {r: 0.048, g: 0.058, b: 0.065, a: 0.48}
+  dialogTint: {r: 0.055, g: 0.064, b: 0.073, a: 0.74}
+  buttonTint: {r: 0.048, g: 0.064, b: 0.071, a: 0.7}
+  text: {r: 0.93, g: 0.95, b: 0.95, a: 1}
+  muted: {r: 0.64, g: 0.69, b: 0.71, a: 1}
+  accent: {r: 0.66, g: 0.82, b: 0.83, a: 1}
+  amber: {r: 1, g: 0.76, b: 0.43, a: 1}
+  danger: {r: 1, g: 0.35, b: 0.3, a: 1}
+  success: {r: 0.55, g: 0.84, b: 0.7, a: 1}
+  frostedFinish: 1
+  blurRadius: 32
+  grainStrength: 0.0008
+  sheenStrength: 0
+  backdropSaturation: 0.25
+  backdropTransmission: 0.86
+  refractionPixels: 1.6
+  hitFeedbackEnabled: 1
+  hitFeedbackMaxRate: 8
+  hitFeedbackDuration: 0.24
+  reticleIdleGap: 11
+  reticleHitGap: 3
+  reticleArmLength: 10
+  hitMarkerLength: 12
+  hitMarkerColor: {r: 1, g: 0.27, b: 0.19, a: 1}
+  usage: "\u66F4\u6539\u5E03\u5C40\u5F00\u5173\u540E\u91CD\u65B0\u8FDB\u5165\u5BF9\u5E94\u9875\u9762\u5373\u53EF\u751F\u6548\u3002\u5173\u95ED\u67D0\u9879\u53EA\u6062\u590D\u5BF9\u5E94
+    UI \u5916\u89C2\uFF1B\u4E0D\u4F1A\u4FEE\u6539\u6E38\u620F\u53C2\u6570\u6216\u84DD\u56FE\u3002"

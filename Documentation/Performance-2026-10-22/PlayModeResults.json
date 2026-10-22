@@ -1,0 +1,195 @@
+{
+  "status": "completed",
+  "duration": 54.43,
+  "summary": {
+    "total": 26,
+    "passed": 26,
+    "failed": 0,
+    "skipped": 0,
+    "inconclusive": 0
+  },
+  "results": [
+    {
+      "FullName": "Starframe.Tests.AppFlowTests.CompletedOperationReportKeepsTheBlueprintAndPreparesThroughValidationAgain",
+      "Status": "Passed",
+      "Duration": 1.2448679,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.AppFlowTests.DeploymentEditorGroupsAndSettingsRoundTripKeepsOriginalOperationAndDraft",
+      "Status": "Passed",
+      "Duration": 2.9318114,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.AppFlowTests.DeploymentRevalidatesDifficultyAndKeepsConfirmedSnapshotImmutable",
+      "Status": "Passed",
+      "Duration": 0.6417286,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.AppFlowTests.FailedWeaponGroupWriteRetainsTheSameDirtyDraftAndCanBeRetried",
+      "Status": "Passed",
+      "Duration": 0.6173592,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.AppFlowTests.HomeBootShowsIndependentCurrentShipInActualThreeDimensionalPreview",
+      "Status": "Passed",
+      "Duration": 0.5491767,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.AppFlowTests.HomeEditorAndReturnPreserveUnsavedGeometryAndWeaponAssignments",
+      "Status": "Passed",
+      "Duration": 1.2609683,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.AppFlowTests.IndividualWeaponAssignmentAppliesAndSurvivesImportExportAndRepository",
+      "Status": "Passed",
+      "Duration": 0.7255356,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.AppFlowTests.NumberKeysToggleWeaponGroupsOnceAndHudShowsTheSelection",
+      "Status": "Passed",
+      "Duration": 1.002107,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.AppFlowTests.RangeLaunchUsesTheVisibleTargetSelectionFromTheWorkspaceRepository",
+      "Status": "Passed",
+      "Duration": 0.9240873,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.AppFlowTests.SettingsLocaleChangesLabelsAndFontsAndReturnsWithoutSavingPreferences",
+      "Status": "Passed",
+      "Duration": 1.7063456,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.GameAudioTests.BurstLimitDoesNotSilenceDestructionAndVoicesRemainBounded",
+      "Status": "Passed",
+      "Duration": 0.7571671,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.GameAudioTests.PreviewRoutesVolumesAndDoesNotRewritePreferences",
+      "Status": "Passed",
+      "Duration": 0.7557573,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.RangeMenuFlowTests.PracticeButtonsChangeEveryModeAndResetOnlyTargetsWhileWreckageKeepsDrifting",
+      "Status": "Passed",
+      "Duration": 1.14641,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.RangeMenuFlowTests.SettingsBorrowTheHudRenderTargetAndClosingThemPreservesTheExitModalLock",
+      "Status": "Passed",
+      "Duration": 0.6463468,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.AssemblyPreviewUiTests.LibraryWheelAndScrollbarWorkAndShieldsStayNonPhysical",
+      "Status": "Passed",
+      "Duration": 0.5674947,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.FlightAimStabilityTests.FineAimStaysSmoothAndPersistentThenSettlesWhenCentered",
+      "Status": "Passed",
+      "Duration": 2.197836,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.MultiTargetRangeTests.MultipleBlueprintCopiesSpawnSeparatedAndRespawnIndependently",
+      "Status": "Passed",
+      "Duration": 0.6493749,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.MultiTargetRangeTests.ShieldSharesRangePowerAndEnemySchematicTracksRelativeRoll",
+      "Status": "Passed",
+      "Duration": 1.3386813,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.MultiTargetRangeTests.TacticalHudTracksDamageAndKeepsOffscreenLockUntilRangeExceeded",
+      "Status": "Passed",
+      "Duration": 1.4294759,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.RangeLifecycleTests.ActualRangeMovesFiresDiesRespawnsAndReturnsIntactBlueprint",
+      "Status": "Passed",
+      "Duration": 7.9695008,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.RangePracticeModeTests.ClosePursuitCannotKeepTheBotEscapingIndefinitely",
+      "Status": "Passed",
+      "Duration": 0.6248793,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.RangePracticeModeTests.CombatAllowsReactionTimeAndLeavesGapsBetweenRealShots",
+      "Status": "Passed",
+      "Duration": 5.6971926,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.RangePracticeModeTests.CombatPilotLeadsAndDamagesAMovingPlayerUsingActualProjectiles",
+      "Status": "Passed",
+      "Duration": 8.7719109,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.RangePracticeModeTests.StationaryAndFlyOnlyModesRespectTheirDrillAndCombatUsesRealAcceleration",
+      "Status": "Passed",
+      "Duration": 5.637371,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.RangePracticeModeTests.StationaryFireAimsAndShootsWithoutTranslationAndResetRestoresOnlyTargets",
+      "Status": "Passed",
+      "Duration": 3.6893017,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.ShipRenderingLifecycleTests.LargeShipRendersDamageRecoveryWrecksAndRendererFallback",
+      "Status": "Passed",
+      "Duration": 0.8847899,
+      "Message": null,
+      "StackTrace": null
+    }
+  ]
+}

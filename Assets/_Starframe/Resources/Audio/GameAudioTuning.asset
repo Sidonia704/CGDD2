@@ -1,0 +1,171 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf108cd6c95cb5f49baa0be1fe9db9b9, type: 3}
+  m_Name: GameAudioTuning
+  m_EditorClassIdentifier: Starframe.Construction::Starframe.App.GameAudioTuning
+  workbenchMusic: {fileID: 8300000, guid: 141da3a2c2abcbb45a50380d510232bb, type: 3}
+  flightMusic: {fileID: 0}
+  musicGain: 0.6
+  musicCrossfadeSeconds: 1.5
+  menuEffectsMultiplier: 0.4
+  thrusterLoop: {fileID: 8300000, guid: 201f968a908527945b5766a844383e51, type: 3}
+  thrusterGain: 0.52
+  boostVolumeMultiplier: 1.75
+  idlePitch: 0.86
+  fullThrustPitch: 1.08
+  boostPitch: 1.18
+  thrustAttack: 0.12
+  thrustRelease: 0.4
+  effectVoices: 16
+  nearDistance: 12
+  farDistance: 500
+  boundaryWarningDistance: 90
+  boundaryRepeatSeconds: 3
+  criticalHullFraction: 0.25
+  criticalRepeatSeconds: 10
+  cues:
+  - sound: 0
+    clip: {fileID: 8300000, guid: 138ffa75e7b2e974394167f598c0b91e, type: 3}
+    bus: 1
+    gain: 0.42
+    pitch: 1
+    pitchVariation: 0.025
+    minimumInterval: 0.045
+    priority: 64
+  - sound: 1
+    clip: {fileID: 8300000, guid: 92724ec3cab784044a775aaada5a471b, type: 3}
+    bus: 1
+    gain: 0.5
+    pitch: 1
+    pitchVariation: 0
+    minimumInterval: 0.25
+    priority: 48
+  - sound: 2
+    clip: {fileID: 8300000, guid: 3241f7ebd5edbab4595754e9f3e1398c, type: 3}
+    bus: 1
+    gain: 0.42
+    pitch: 1
+    pitchVariation: 0
+    minimumInterval: 0.6
+    priority: 48
+  - sound: 3
+    clip: {fileID: 8300000, guid: c9dc3717c163b4549968a2bedd743077, type: 3}
+    bus: 0
+    gain: 0.62
+    pitch: 1
+    pitchVariation: 0.025
+    minimumInterval: 0.055
+    priority: 128
+  - sound: 4
+    clip: {fileID: 8300000, guid: c9dc3717c163b4549968a2bedd743077, type: 3}
+    bus: 0
+    gain: 0.62
+    pitch: 1
+    pitchVariation: 0.025
+    minimumInterval: 0.055
+    priority: 128
+  - sound: 5
+    clip: {fileID: 8300000, guid: 85a12408a16abe048a3e4c60c24e952e, type: 3}
+    bus: 0
+    gain: 0.54
+    pitch: 1
+    pitchVariation: 0.025
+    minimumInterval: 0.07
+    priority: 128
+  - sound: 6
+    clip: {fileID: 8300000, guid: 16403acaafed39f4f9891bbc552765c9, type: 3}
+    bus: 0
+    gain: 0.3
+    pitch: 1
+    pitchVariation: 0.025
+    minimumInterval: 0.055
+    priority: 144
+  - sound: 7
+    clip: {fileID: 8300000, guid: 38c4e6478d3192d4eb6aca490a58e966, type: 3}
+    bus: 0
+    gain: 0.4
+    pitch: 1
+    pitchVariation: 0
+    minimumInterval: 0.22
+    priority: 80
+  - sound: 8
+    clip: {fileID: 8300000, guid: d6f32d742280f564f897e4955ead6c72, type: 3}
+    bus: 0
+    gain: 0.48
+    pitch: 1
+    pitchVariation: 0
+    minimumInterval: 0.5
+    priority: 80
+  - sound: 9
+    clip: {fileID: 8300000, guid: 58b8286fa03a7014d8c128ea41966329, type: 3}
+    bus: 0
+    gain: 0.48
+    pitch: 1
+    pitchVariation: 0.025
+    minimumInterval: 0.07
+    priority: 112
+  - sound: 10
+    clip: {fileID: 8300000, guid: 3ab1d53f8e104424ab48963e28a902e2, type: 3}
+    bus: 0
+    gain: 0
+    pitch: 1
+    pitchVariation: 0.05
+    minimumInterval: 0.09
+    priority: 136
+  - sound: 11
+    clip: {fileID: 8300000, guid: c30e96d62ac3f6a409d7cfe0b569cf9f, type: 3}
+    bus: 0
+    gain: 0.5
+    pitch: 1
+    pitchVariation: 0
+    minimumInterval: 0.3
+    priority: 48
+  - sound: 12
+    clip: {fileID: 8300000, guid: c30e96d62ac3f6a409d7cfe0b569cf9f, type: 3}
+    bus: 0
+    gain: 0.4
+    pitch: 0.75
+    pitchVariation: 0
+    minimumInterval: 0.3
+    priority: 48
+  - sound: 13
+    clip: {fileID: 8300000, guid: b47ca00c1910fd94ab98d8b9b97f5e25, type: 3}
+    bus: 0
+    gain: 0
+    pitch: 1
+    pitchVariation: 0.02
+    minimumInterval: 0.7
+    priority: 144
+  - sound: 14
+    clip: {fileID: 8300000, guid: 8f0fbb2449ca13b44b6979230903ddb2, type: 3}
+    bus: 0
+    gain: 0.44
+    pitch: 1
+    pitchVariation: 0
+    minimumInterval: 2
+    priority: 40
+  - sound: 15
+    clip: {fileID: 8300000, guid: 6706c71580bfa524cb002b1da22d36f3, type: 3}
+    bus: 0
+    gain: 0.8
+    pitch: 1
+    pitchVariation: 0.025
+    minimumInterval: 0.3
+    priority: 32
+  - sound: 16
+    clip: {fileID: 8300000, guid: 3e2e1efd0ed758b4b92ce137f454c5c1, type: 3}
+    bus: 0
+    gain: 0.45
+    pitch: 1
+    pitchVariation: 0
+    minimumInterval: 0.5
+    priority: 64
