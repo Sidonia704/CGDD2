@@ -439,14 +439,6 @@ h2 span.lang-alt {
   box-shadow: var(--shadow);
 }
 
-.screen video {
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: cover;
-  background: #0c0f0a;
-}
-
 .screen-fallback {
   position: absolute;
   inset: 0;
@@ -458,6 +450,26 @@ h2 span.lang-alt {
   text-align: center;
   padding: 1.4rem;
   background: rgba(12, 15, 10, 0.42);
+}
+
+.recording-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.85rem 1.2rem;
+  border: 1px solid var(--accent, #d6c58a);
+  color: #f4ecd0;
+  background: rgba(12, 15, 10, 0.8);
+  font-family: var(--mono, monospace);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.recording-link:hover,
+.recording-link:focus-visible {
+  color: #0c0f0a;
+  background: #d6c58a;
 }
 
 .screen-fallback p { margin: 0; max-width: 36rem; }

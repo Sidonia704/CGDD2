@@ -25,7 +25,6 @@ if (!data) {
 } else {
   renderDocs();
   renderFlow(data.flow || "");
-  probeRecording();
 }
 
 markNav();
@@ -372,23 +371,6 @@ function renderDevlog(source) {
     item.appendChild(card);
     timelineEl.appendChild(item);
   }
-}
-
-function probeRecording() {
-  const video = document.querySelector("#rec");
-  const fallback = document.querySelector("#screen-fallback");
-  if (!video || !fallback) return;
-  // file:// often blocks fetch/HEAD; leave the poster and skip quietly
-  if (location.protocol === "file:") return;
-  fetch("media/play.mp4", { method: "HEAD" })
-    .then((res) => {
-      if (!res.ok) return;
-      video.poster = "media/poster.svg";
-      video.src = "media/play.mp4";
-      video.hidden = false;
-      fallback.hidden = true;
-    })
-    .catch(() => {});
 }
 
 function markNav() {

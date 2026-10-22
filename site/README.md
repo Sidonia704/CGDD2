@@ -6,7 +6,7 @@ This directory contains the buildless course website inside the Starframe Unity 
 
 1. **Framework**: generated script relationships, individual source files, C# field defaults and the challenge baseline.
 2. **Process**: the current append-only `DEVLOG.md`. EXAMPLE sections remain format samples. Earlier development history has not been invented.
-3. **Playable**: a recording placeholder. The game runs in Unity, not in this webpage. Add a recording at `media/play.mp4` when available.
+3. **Playable**: opens the shared `yizhou1019.mp4` recording in a new tab.
 
 The default diagram shows the core loop. Select a subsystem or all scripts to explore the export. The script selector opens files outside the visible diagram too. EN/中文 switches interface language without replacing current exported documents with an old sample translation. Source code keeps its original language.
 
@@ -23,7 +23,7 @@ The parent `docs/script-flow.mmd` and `docs/tunables.md` are generated too. Do n
 ## Preview
 
 - Double-click `index.html`, or use **CGDD → Open Student Site**. Mermaid and exported data are local and do not need a CDN. External fonts have system fallbacks.
-- To play a recording or preview over HTTP, serve this folder. For example, from the Unity project root: `python -m http.server 8765 --directory site`, then open `http://localhost:8765/`.
+- To preview over HTTP, serve this folder. For example, from the Unity project root: `python -m http.server 8765 --directory site`, then open `http://localhost:8765/`.
 
 ## Save a local Git update
 
