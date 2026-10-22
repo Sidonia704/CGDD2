@@ -1,6 +1,6 @@
 # Starframe / CGDD student site
 
-This directory is a standalone, buildless website and an independent local Git repository. The Unity project itself is not a Git repository. No remote or online deployment is configured yet.
+This directory is a standalone, buildless website and an independent Git repository. The Unity project itself is not a Git repository. The website remote is https://github.com/Sidonia704/CGDD2.git (branch `main`).
 
 ## What this website shows
 
@@ -44,15 +44,16 @@ git config user.email "YOUR EMAIL"
 
 The initial generated-site snapshot uses the automation identity `CGDD Toolkit <cgdd-toolkit@localhost>`, not an invented student identity.
 
-## Connect GitHub later
+## GitHub publication
 
-Create an empty GitHub repository. Inside `site/`, replace the example URL with your actual repository:
+The `origin` remote points to `https://github.com/Sidonia704/CGDD2.git`. After exporting and committing, push updates from this directory:
 
 ```powershell
-git remote add origin https://github.com/YOUR_ACCOUNT/YOUR_REPOSITORY.git
-git push -u origin main
+git push
 ```
 
-Choose **Settings → Pages → Source: GitHub Actions** in that repository. `.github/workflows/pages.yml` publishes this website on pushes to `main`. It stages only website assets, not the Git database, identity config or these instructions. GitHub shows the published URL after a successful run. For subsequent updates: export in Unity, commit here, then `git push`.
+Repository: https://github.com/Sidonia704/CGDD2
+
+Choose **Settings → Pages → Source: GitHub Actions** if Pages has not been enabled. `.github/workflows/pages.yml` publishes this website on pushes to `main`. It stages only website assets, not the Git database, identity config or these instructions. GitHub shows the published URL after a successful run. For subsequent updates: export in Unity, commit here, then `git push`.
 
 Do not initialize a repository in the parent solely to publish this website. If the whole Unity project is versioned later, manage this nested repository deliberately, for example as a submodule.
