@@ -12,7 +12,7 @@ Open the cloned `CGDD2` folder with Unity Hub. Unity will restore packages liste
 
 ## Website
 
-The live course evidence site is published at https://sidonia704.github.io/CGDD2/. Its source is in `site/`. In Unity, use **CGDD → Export Trace Docs**, then commit and push the updated project; GitHub Actions republishes the site when `site/` changes.
+The live course evidence site is published at https://sidonia704.github.io/CGDD2/. Source files are in `site/`; GitHub Pages currently serves the mirrored publication files in `docs/`. After exporting in Unity, copy the website files into `docs/` before committing and pushing so the public site updates.
 
 ## Included files
 
