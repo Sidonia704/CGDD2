@@ -344,6 +344,8 @@ h2 span.lang-alt {
   align-items: flex-start;
 }
 
+.script-head > div { min-width: 0; }
+
 .script-name {
   margin: 0;
   font-family: "IBM Plex Mono", ui-monospace, monospace;
@@ -355,6 +357,7 @@ h2 span.lang-alt {
 .script-path {
   margin: 0.2rem 0 0;
   font-size: 0.86rem;
+  overflow-wrap: anywhere;
 }
 
 .script-path {
@@ -368,7 +371,7 @@ h2 span.lang-alt {
   color: #6a5a28;
 }
 
-.script-close {
+.script-close, #script-close {
   flex: none;
   background: var(--amber);
   color: var(--ink);
