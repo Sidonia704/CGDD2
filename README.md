@@ -54,6 +54,8 @@ git push
 
 Repository: https://github.com/Sidonia704/CGDD2
 
+Published website: https://sidonia704.github.io/CGDD2/
+
 Choose **Settings → Pages → Source: GitHub Actions** if Pages has not been enabled. `.github/workflows/pages.yml` publishes this website on pushes to `main`. It stages only website assets, not the Git database, identity config or these instructions. GitHub shows the published URL after a successful run. For subsequent updates: export in Unity, commit here, then `git push`.
 
 Do not initialize a repository in the parent solely to publish this website. If the whole Unity project is versioned later, manage this nested repository deliberately, for example as a submodule.
