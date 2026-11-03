@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 709e20d8521834845a71b54704f53b46, type: 3}
+  m_Name: Missile3Weapon
+  m_EditorClassIdentifier: Starframe.Construction::Starframe.Flight.WeaponDefinition
+  shotsPerSecond: 0.07692308
+  damage: 32000
+  projectileSpeed: 250
+  projectileDiameter: 0.7
+  firstShotImmediate: 0
+  penetrationDepth: 1
+  secondLayerDamageMultiplier: 0.35
+  range: 3000
+  visualLength: 3.5
+  tailLength: 13
+  visualWidth: 0.52
+  visualIntensity: 5
+  minimumVisualPixels: 0
+  tracerStyle: 0
+  tracerLingerSeconds: 0
+  sustainedPowerWatts: 180
+  energyPerShot: 100
+  delivery: 1
+  effectColor: {r: 1, g: 0.4, b: 0.025, a: 1}
+  missileLockSeconds: 1.4
+  reloadSeconds: 13
+  missileTurnDegrees: 80
+  missileAcceleration: 100
+  missileTurnAcceleration: 240
+  missileGuidanceSeconds: 16
+  missileSeekerConeDegrees: 50
+  missileSeekerLossSeconds: 0.3
+  missileLaunchSpeed: 30
+  explosionRadius: 4.5
+  launcherMesh: {fileID: 4300000, guid: 14bac8bb356afc54f9d9ab530bf3f2d7, type: 2}
+  missileMesh: {fileID: 4300000, guid: 20c2a79822163fe48ba73d0b2ae30059, type: 2}
+  missileLaunchOffsets:
+  - {x: 0, y: 0, z: 0}
+  muzzleOffsets: []
+  projectileMaterial: {fileID: 2100000, guid: 060df83c9f5482f4ea424501392ac7de, type: 2}
+  beamDuration: 0.12
+  beamMesh: {fileID: 0}
+  activationMode: 0
+  chargeSeconds: 1
+  requireTargetLock: 1

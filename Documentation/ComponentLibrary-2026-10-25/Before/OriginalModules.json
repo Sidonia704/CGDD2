@@ -1,0 +1,54 @@
+{
+    "entries": [
+        {
+            "shape": "Cube",
+            "module": "{\"shape\":0,\"displayName\":\"正方体\",\"category\":0,\"cost\":0.0,\"massKg\":300.0,\"maxHp\":60.0,\"recoverySeconds\":6.0,\"thrustNewtons\":0.0,\"occupiedCells\":[{\"x\":0,\"y\":0,\"z\":0}],\"muzzleLocalPosition\":{\"x\":0.0,\"y\":0.27000001072883608,\"z\":1.5199999809265137},\"muzzleClearanceDiameter\":0.25,\"mesh\":{\"instanceID\":69520},\"outline\":{\"instanceID\":69284},\"drawOutline\":false,\"material\":{\"instanceID\":68672},\"icon\":{\"instanceID\":71378},\"selectedIcon\":{\"instanceID\":71380},\"weapon\":{\"instanceID\":0},\"generationWatts\":0.0,\"storageJoules\":0.0,\"thrusterPowerWatts\":0.0,\"shieldPowerWatts\":0.0,\"shieldCapacity\":0.0,\"shieldRadius\":8.0,\"shieldRecoveryDelay\":2.0,\"shieldRecoveryPerSecond\":50.0,\"shieldSurfaceMaterial\":{\"instanceID\":0},\"shieldSurfaceMesh\":{\"instanceID\":0}}",
+            "weapon": ""
+        },
+        {
+            "shape": "Wedge",
+            "module": "{\"shape\":1,\"displayName\":\"斜面三角体\",\"category\":0,\"cost\":0.0,\"massKg\":150.0,\"maxHp\":30.0,\"recoverySeconds\":6.0,\"thrustNewtons\":0.0,\"occupiedCells\":[{\"x\":0,\"y\":0,\"z\":0}],\"muzzleLocalPosition\":{\"x\":0.0,\"y\":0.27000001072883608,\"z\":1.5199999809265137},\"muzzleClearanceDiameter\":0.25,\"mesh\":{\"instanceID\":68822},\"outline\":{\"instanceID\":67878},\"drawOutline\":false,\"material\":{\"instanceID\":70300},\"icon\":{\"instanceID\":71390},\"selectedIcon\":{\"instanceID\":71392},\"weapon\":{\"instanceID\":0},\"generationWatts\":0.0,\"storageJoules\":0.0,\"thrusterPowerWatts\":0.0,\"shieldPowerWatts\":0.0,\"shieldCapacity\":0.0,\"shieldRadius\":8.0,\"shieldRecoveryDelay\":2.0,\"shieldRecoveryPerSecond\":50.0,\"shieldSurfaceMaterial\":{\"instanceID\":0},\"shieldSurfaceMesh\":{\"instanceID\":0}}",
+            "weapon": ""
+        },
+        {
+            "shape": "Thruster1",
+            "module": "{\"shape\":2,\"displayName\":\"推进器 1\",\"category\":1,\"cost\":0.0,\"massKg\":600.0,\"maxHp\":100.0,\"recoverySeconds\":8.0,\"thrustNewtons\":320000.0,\"occupiedCells\":[{\"x\":0,\"y\":0,\"z\":0}],\"muzzleLocalPosition\":{\"x\":0.0,\"y\":0.27000001072883608,\"z\":1.5199999809265137},\"muzzleClearanceDiameter\":0.25,\"mesh\":{\"instanceID\":68520},\"outline\":{\"instanceID\":69730},\"drawOutline\":false,\"material\":{\"instanceID\":69628},\"icon\":{\"instanceID\":71386},\"selectedIcon\":{\"instanceID\":71388},\"weapon\":{\"instanceID\":0},\"generationWatts\":0.0,\"storageJoules\":0.0,\"thrusterPowerWatts\":0.0,\"shieldPowerWatts\":0.0,\"shieldCapacity\":0.0,\"shieldRadius\":8.0,\"shieldRecoveryDelay\":2.0,\"shieldRecoveryPerSecond\":50.0,\"shieldSurfaceMaterial\":{\"instanceID\":0},\"shieldSurfaceMesh\":{\"instanceID\":0}}",
+            "weapon": ""
+        },
+        {
+            "shape": "Thruster2",
+            "module": "{\"shape\":3,\"displayName\":\"推进器 2\",\"category\":1,\"cost\":0.0,\"massKg\":1400.0,\"maxHp\":200.0,\"recoverySeconds\":8.0,\"thrustNewtons\":800000.0,\"occupiedCells\":[{\"x\":0,\"y\":0,\"z\":0},{\"x\":0,\"y\":1,\"z\":0}],\"muzzleLocalPosition\":{\"x\":0.0,\"y\":0.27000001072883608,\"z\":1.5199999809265137},\"muzzleClearanceDiameter\":0.25,\"mesh\":{\"instanceID\":69320},\"outline\":{\"instanceID\":67708},\"drawOutline\":false,\"material\":{\"instanceID\":69628},\"icon\":{\"instanceID\":71370},\"selectedIcon\":{\"instanceID\":71372},\"weapon\":{\"instanceID\":0},\"generationWatts\":0.0,\"storageJoules\":0.0,\"thrusterPowerWatts\":0.0,\"shieldPowerWatts\":0.0,\"shieldCapacity\":0.0,\"shieldRadius\":8.0,\"shieldRecoveryDelay\":2.0,\"shieldRecoveryPerSecond\":50.0,\"shieldSurfaceMaterial\":{\"instanceID\":0},\"shieldSurfaceMesh\":{\"instanceID\":0}}",
+            "weapon": ""
+        },
+        {
+            "shape": "Slab",
+            "module": "{\"shape\":4,\"displayName\":\"半高长方体\",\"category\":0,\"cost\":0.0,\"massKg\":150.0,\"maxHp\":30.0,\"recoverySeconds\":6.0,\"thrustNewtons\":0.0,\"occupiedCells\":[{\"x\":0,\"y\":0,\"z\":0}],\"muzzleLocalPosition\":{\"x\":0.0,\"y\":0.27000001072883608,\"z\":1.5199999809265137},\"muzzleClearanceDiameter\":0.25,\"mesh\":{\"instanceID\":69750},\"outline\":{\"instanceID\":70508},\"drawOutline\":false,\"material\":{\"instanceID\":69874},\"icon\":{\"instanceID\":71354},\"selectedIcon\":{\"instanceID\":71356},\"weapon\":{\"instanceID\":0},\"generationWatts\":0.0,\"storageJoules\":0.0,\"thrusterPowerWatts\":0.0,\"shieldPowerWatts\":0.0,\"shieldCapacity\":0.0,\"shieldRadius\":8.0,\"shieldRecoveryDelay\":2.0,\"shieldRecoveryPerSecond\":50.0,\"shieldSurfaceMaterial\":{\"instanceID\":0},\"shieldSurfaceMesh\":{\"instanceID\":0}}",
+            "weapon": ""
+        },
+        {
+            "shape": "Pyramid",
+            "module": "{\"shape\":5,\"displayName\":\"四棱锥\",\"category\":0,\"cost\":0.0,\"massKg\":100.0,\"maxHp\":20.0,\"recoverySeconds\":6.0,\"thrustNewtons\":0.0,\"occupiedCells\":[{\"x\":0,\"y\":0,\"z\":0}],\"muzzleLocalPosition\":{\"x\":0.0,\"y\":0.27000001072883608,\"z\":1.5199999809265137},\"muzzleClearanceDiameter\":0.25,\"mesh\":{\"instanceID\":71178},\"outline\":{\"instanceID\":68984},\"drawOutline\":false,\"material\":{\"instanceID\":69796},\"icon\":{\"instanceID\":71382},\"selectedIcon\":{\"instanceID\":71384},\"weapon\":{\"instanceID\":0},\"generationWatts\":0.0,\"storageJoules\":0.0,\"thrusterPowerWatts\":0.0,\"shieldPowerWatts\":0.0,\"shieldCapacity\":0.0,\"shieldRadius\":8.0,\"shieldRecoveryDelay\":2.0,\"shieldRecoveryPerSecond\":50.0,\"shieldSurfaceMaterial\":{\"instanceID\":0},\"shieldSurfaceMesh\":{\"instanceID\":0}}",
+            "weapon": ""
+        },
+        {
+            "shape": "Core",
+            "module": "{\"shape\":6,\"displayName\":\"核心\",\"category\":2,\"cost\":0.0,\"massKg\":2000.0,\"maxHp\":50.0,\"recoverySeconds\":8.0,\"thrustNewtons\":0.0,\"occupiedCells\":[{\"x\":0,\"y\":0,\"z\":0}],\"muzzleLocalPosition\":{\"x\":0.0,\"y\":0.27000001072883608,\"z\":1.5199999809265137},\"muzzleClearanceDiameter\":0.25,\"mesh\":{\"instanceID\":70200},\"outline\":{\"instanceID\":71280},\"drawOutline\":false,\"material\":{\"instanceID\":68242},\"icon\":{\"instanceID\":71362},\"selectedIcon\":{\"instanceID\":71364},\"weapon\":{\"instanceID\":0},\"generationWatts\":0.0,\"storageJoules\":0.0,\"thrusterPowerWatts\":0.0,\"shieldPowerWatts\":0.0,\"shieldCapacity\":0.0,\"shieldRadius\":8.0,\"shieldRecoveryDelay\":2.0,\"shieldRecoveryPerSecond\":50.0,\"shieldSurfaceMaterial\":{\"instanceID\":0},\"shieldSurfaceMesh\":{\"instanceID\":0}}",
+            "weapon": ""
+        },
+        {
+            "shape": "Laser",
+            "module": "{\"shape\":7,\"displayName\":\"激光速射炮\",\"category\":3,\"cost\":0.0,\"massKg\":600.0,\"maxHp\":120.0,\"recoverySeconds\":8.0,\"thrustNewtons\":0.0,\"occupiedCells\":[{\"x\":0,\"y\":0,\"z\":0},{\"x\":0,\"y\":0,\"z\":1},{\"x\":0,\"y\":0,\"z\":2}],\"muzzleLocalPosition\":{\"x\":0.008716318756341935,\"y\":0.013466713018715382,\"z\":2.3477392196655275},\"muzzleClearanceDiameter\":0.25,\"mesh\":{\"instanceID\":70110},\"outline\":{\"instanceID\":67500},\"drawOutline\":false,\"material\":{\"instanceID\":69500},\"icon\":{\"instanceID\":71358},\"selectedIcon\":{\"instanceID\":71360},\"weapon\":{\"instanceID\":69044},\"generationWatts\":0.0,\"storageJoules\":0.0,\"thrusterPowerWatts\":0.0,\"shieldPowerWatts\":0.0,\"shieldCapacity\":0.0,\"shieldRadius\":8.0,\"shieldRecoveryDelay\":2.0,\"shieldRecoveryPerSecond\":50.0,\"shieldSurfaceMaterial\":{\"instanceID\":0},\"shieldSurfaceMesh\":{\"instanceID\":0}}",
+            "weapon": "{\"shotsPerSecond\":12.0,\"damage\":25.0,\"projectileSpeed\":1400.0,\"projectileDiameter\":0.699999988079071,\"penetrationDepth\":1.0,\"secondLayerDamageMultiplier\":0.0,\"range\":5000.0,\"visualLength\":18.0,\"tailLength\":10.0,\"visualWidth\":0.75,\"visualIntensity\":5.0,\"sustainedPowerWatts\":50.0,\"energyPerShot\":100.0,\"delivery\":0,\"effectColor\":{\"r\":0.07999999821186066,\"g\":0.6499999761581421,\"b\":1.0,\"a\":1.0},\"missileLockSeconds\":2.0,\"reloadSeconds\":4.0,\"missileTurnDegrees\":110.0,\"missileAcceleration\":60.0,\"missileLaunchSpeed\":25.0,\"explosionRadius\":4.0,\"launcherMesh\":{\"instanceID\":0},\"missileMesh\":{\"instanceID\":0},\"projectileMaterial\":{\"instanceID\":0},\"beamDuration\":0.11999999731779099,\"activationMode\":0,\"chargeSeconds\":1.0,\"requireTargetLock\":false}"
+        },
+        {
+            "shape": "Power",
+            "module": "{\"shape\":8,\"displayName\":\"电源\",\"category\":4,\"cost\":0.0,\"massKg\":600.0,\"maxHp\":100.0,\"recoverySeconds\":6.0,\"thrustNewtons\":0.0,\"occupiedCells\":[{\"x\":0,\"y\":0,\"z\":0}],\"muzzleLocalPosition\":{\"x\":0.0,\"y\":0.27000001072883608,\"z\":1.5199999809265137},\"muzzleClearanceDiameter\":0.25,\"mesh\":{\"instanceID\":67662},\"outline\":{\"instanceID\":69984},\"drawOutline\":false,\"material\":{\"instanceID\":68386},\"icon\":{\"instanceID\":71366},\"selectedIcon\":{\"instanceID\":71368},\"weapon\":{\"instanceID\":0},\"generationWatts\":60.0,\"storageJoules\":500.0,\"thrusterPowerWatts\":0.0,\"shieldPowerWatts\":0.0,\"shieldCapacity\":0.0,\"shieldRadius\":8.0,\"shieldRecoveryDelay\":2.0,\"shieldRecoveryPerSecond\":50.0,\"shieldSurfaceMaterial\":{\"instanceID\":0},\"shieldSurfaceMesh\":{\"instanceID\":0}}",
+            "weapon": ""
+        },
+        {
+            "shape": "Shield",
+            "module": "{\"shape\":9,\"displayName\":\"护盾发生器\",\"category\":5,\"cost\":0.0,\"massKg\":600.0,\"maxHp\":100.0,\"recoverySeconds\":12.0,\"thrustNewtons\":0.0,\"occupiedCells\":[{\"x\":0,\"y\":0,\"z\":0}],\"muzzleLocalPosition\":{\"x\":0.0,\"y\":0.27000001072883608,\"z\":1.5199999809265137},\"muzzleClearanceDiameter\":0.25,\"mesh\":{\"instanceID\":69520},\"outline\":{\"instanceID\":0},\"drawOutline\":false,\"material\":{\"instanceID\":70820},\"icon\":{\"instanceID\":71374},\"selectedIcon\":{\"instanceID\":71376},\"weapon\":{\"instanceID\":0},\"generationWatts\":0.0,\"storageJoules\":0.0,\"thrusterPowerWatts\":0.0,\"shieldPowerWatts\":100.0,\"shieldCapacity\":300.0,\"shieldRadius\":8.0,\"shieldRecoveryDelay\":2.0,\"shieldRecoveryPerSecond\":50.0,\"shieldSurfaceMaterial\":{\"instanceID\":69306},\"shieldSurfaceMesh\":{\"instanceID\":70686}}",
+            "weapon": ""
+        }
+    ]
+}

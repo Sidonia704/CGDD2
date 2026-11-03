@@ -15,13 +15,15 @@ MonoBehaviour:
   shape: 2
   displayName: "\u63A8\u8FDB\u5668 1"
   category: 1
-  cost: 0
-  massKg: 600
-  maxHp: 100
-  recoverySeconds: 8
-  thrustNewtons: 320000
+  cost: 55
+  massKg: 500
+  maxHp: 1007.99994
+  recoverySeconds: 6
+  thrustNewtons: 300000
   occupiedCells:
   - {x: 0, y: 0, z: 0}
+  localExhaustDirections: []
+  localNozzlePositions: []
   muzzleLocalPosition: {x: 0, y: 0.27, z: 1.52}
   muzzleClearanceDiameter: 0.25
   mesh: {fileID: 4300000, guid: c1850286fbaeb0740b4320fd8eca707e, type: 2}
@@ -31,6 +33,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: c72a8d4269be21e43b9e34022bd1af73, type: 3}
   selectedIcon: {fileID: 21300000, guid: cb79e8804e2a5db4695bae5ac57b06fa, type: 3}
   weapon: {fileID: 0}
+  countermeasure: {fileID: 0}
   generationWatts: 0
   storageJoules: 0
   thrusterPowerWatts: 0

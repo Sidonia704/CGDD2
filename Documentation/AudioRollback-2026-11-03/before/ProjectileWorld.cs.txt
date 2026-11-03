@@ -1,0 +1,435 @@
+// @role Resolve faction-scaled swept shots, finite seekers and bounded missile blasts blocked by charged shields.
+// @calls CylindricalHitQuery, ShipShieldSystem, FlightShipRuntime, DebrisPartHitbox, LaserVisualPool, SpecialWeaponVisualPool, VoxelBodyHitbox, VoxelStructureRuntime, MissileGuidance, FlareWorld, ShipFlightController, CombatDamageTuning
+
+using System;
+using System.Collections.Generic;
+using UnityEngine;
+using Unity.Profiling;
+using Starframe.Flight;
+using Starframe.Maps;
+namespace Starframe.Combat
+{
+    public sealed class ProjectileWorld
+    {
+        sealed class Bolt
+        {
+            public WeaponDefinition weapon;public FlightShipRuntime owner;public Vector3 origin,direction;
+            public float distance,speed,radius,damage,range,depth,multiplier,firstHit=-1;
+            public int visual=-1;public bool hitConfirmed,sceneryFeedback;public readonly HashSet<ShipPartState> hitParts=new HashSet<ShipPartState>();
+            public readonly HashSet<VoxelCellState> hitVoxels=new HashSet<VoxelCellState>();
+        }
+        sealed class Missile
+        {
+            public FlightShipRuntime owner,target;public int targetLife,visual=-1,flareId=-1;
+            public ShipFlightController targetFlight;public Rigidbody targetBody;
+            public WeaponDefinition weapon;public Vector3 position,direction;public float speed,distance,age,damage;
+            public readonly MissileGuidance guidance=new MissileGuidance();
+            public readonly HashSet<int> testedFlares=new HashSet<int>();
+        }
+        readonly List<Missile> missiles=new List<Missile>();readonly Stack<Missile> freeMissiles=new Stack<Missile>();
+        readonly HashSet<FlightShipRuntime> blastShieldedShips=new HashSet<FlightShipRuntime>();
+        readonly HashSet<ShipPartState> blastParts=new HashSet<ShipPartState>();
+        readonly HashSet<VoxelStructureRuntime> blastStructures=new HashSet<VoxelStructureRuntime>();
+        struct Contact{public Collider collider;public ShipPartHitbox hitbox;public DebrisPartHitbox debris;public ShipShieldSystem.Field shield;public VoxelStructureRuntime scenery;public VoxelCellState voxel;public float distance;}
+        struct ShieldSample{public ShipShieldSystem.Field field;public Vector3 center;public float radius;}
+        static readonly ProfilerMarker Marker=new ProfilerMarker("Starframe.Projectiles");
+        readonly List<Bolt> bolts=new List<Bolt>();readonly Stack<Bolt> free=new Stack<Bolt>();
+        readonly List<Contact> contacts=new List<Contact>();readonly CylindricalHitQuery geometry=new CylindricalHitQuery();
+        readonly List<FlightShipRuntime> shieldShips=new List<FlightShipRuntime>();
+        readonly List<ShieldSample> shieldSamples=new List<ShieldSample>();
+        readonly List<VoxelContact> voxelContacts=new List<VoxelContact>();
+        readonly HashSet<VoxelStructureRuntime> queriedScenery=new HashSet<VoxelStructureRuntime>();
+        Collider[] candidates=new Collider[64];LaserVisualPool visuals;SpecialWeaponVisualPool specialVisuals;
+        public int ActiveCount=>bolts.Count+missiles.Count;
+        public int ActiveMissileCount=>missiles.Count;
+        public int TotalSpawned{get;private set;}
+        public bool UseShieldGeometryCache{get;set;}=true;
+        public FlareWorld Flares{get;set;}
+        // Explicitly bound by RangeCombatWorld; isolated low-level worlds remain neutral.
+        public CombatDamageTuning DamageTuning{get;set;}
+        public float EnemyDamageMultiplier{get;set;}=1;
+        public float MissileBlastBudgetMultiplier{get;set;}=1.5f;
+        float DamageFor(FlightShipRuntime owner,WeaponDefinition weapon)
+        {
+            float category=DamageTuning?(owner&&owner.Team==0?DamageTuning.GetPlayerMultiplier(weapon.delivery):DamageTuning.GetMultiplier(weapon.delivery)):1;
+            float faction=owner&&owner.Team!=0?CombatDamageTuning.NonNegative(EnemyDamageMultiplier):1;
+            return CombatDamageTuning.NonNegative(weapon.damage)*category*faction;
+        }
+        public event Action<Vector3> Impact;
+        public event Action<Vector3,WeaponDefinition> WeaponImpact,MissileExplosion;
+        public event Action<Vector3,Vector3,WeaponDefinition> MuzzleFlash;
+        public event Action<FlightShipRuntime,Vector3> ShotFired;
+        // One confirmation per projectile, only after a damageable surface actually absorbs damage.
+        public event Action<FlightShipRuntime> HitConfirmed;
+        // The bool is true for voxel scenery; mixed hits prefer combat feedback.
+        public event Action<FlightShipRuntime,bool> HitFeedbackConfirmed;
+        public void Initialize(LaserVisualPool pool)
+        {
+            visuals=pool;
+            if(pool){specialVisuals=pool.GetComponent<SpecialWeaponVisualPool>();if(!specialVisuals)specialVisuals=pool.gameObject.AddComponent<SpecialWeaponVisualPool>();specialVisuals.Initialize();}
+        }
+        public void RegisterShields(FlightShipRuntime ship){if(ship&&!shieldShips.Contains(ship))shieldShips.Add(ship);}
+        public void UnregisterShields(FlightShipRuntime ship){shieldShips.Remove(ship);}
+        public void Fire(FlightShipRuntime owner,WeaponDefinition weapon,Vector3 position,Vector3 direction,Transform muzzleSource=null,Vector3 muzzleLocalPosition=default,FlightShipRuntime lockedTarget=null)
+        {
+            if(!owner||!owner.IsAlive||!weapon||direction.sqrMagnitude<.000001f)return;
+            if(weapon.delivery==WeaponDelivery.GuidedMissile){
+                if(!lockedTarget||!lockedTarget.IsAlive||lockedTarget==owner||lockedTarget.Team==owner.Team)return;
+                var offsets=weapon.missileLaunchOffsets;int count=offsets!=null&&offsets.Length>0?offsets.Length:1;
+                var collider=muzzleSource?muzzleSource.GetComponent<Collider>():null;
+                var matrix=collider?CylindricalHitQuery.PhysicsMatrix(collider):muzzleSource?muzzleSource.localToWorldMatrix:Matrix4x4.Rotate(Quaternion.FromToRotation(Vector3.forward,direction));
+                for(int i=0;i<count;i++){
+                    Vector3 launch=position+matrix.MultiplyVector(offsets!=null&&offsets.Length>0?offsets[i]:Vector3.zero);
+                    MuzzleFlash?.Invoke(launch,direction,weapon);FireMissile(owner,weapon,launch,direction,lockedTarget,1f/count);
+                }
+                return;
+            }
+            MuzzleFlash?.Invoke(position,direction,weapon);
+            if(weapon.delivery==WeaponDelivery.Beam){FireBeam(owner,weapon,position,direction.normalized,muzzleSource,muzzleLocalPosition);return;}
+            var b=free.Count>0?free.Pop():new Bolt();b.weapon=weapon;b.owner=owner;b.origin=position;b.direction=direction.normalized;b.distance=0;b.firstHit=-1;b.hitConfirmed=false;b.hitParts.Clear();b.hitVoxels.Clear();
+            b.speed=Mathf.Max(.01f,weapon.projectileSpeed);b.radius=Mathf.Max(.001f,weapon.projectileDiameter*.5f);b.damage=DamageFor(owner,weapon);b.range=Mathf.Max(.1f,weapon.range);b.depth=Mathf.Max(.001f,weapon.penetrationDepth);b.multiplier=Mathf.Clamp01(weapon.secondLayerDamageMultiplier);
+            b.visual=visuals?visuals.Acquire(position,direction,weapon.projectileDiameter,weapon.visualLength,weapon.tailLength,muzzleSource,muzzleLocalPosition,weapon.visualWidth,weapon.visualIntensity,weapon.effectColor,weapon.minimumVisualPixels,weapon.tracerStyle,weapon.tracerLingerSeconds):-1;bolts.Add(b);TotalSpawned++;
+            ShotFired?.Invoke(owner,position);
+        }
+        /// <summary>Launch exactly one physical tube; ShipWeapons owns the ship-wide stagger clock.</summary>
+        public void FireMissileTube(FlightShipRuntime owner,WeaponDefinition weapon,Transform source,Vector3 localMuzzle,Vector3 direction,FlightShipRuntime target,int tube)
+        {
+            if(!owner||!owner.IsAlive||!weapon||weapon.delivery!=WeaponDelivery.GuidedMissile||!source||!target||!target.IsAlive||target.Team==owner.Team)return;
+            var offsets=weapon.missileLaunchOffsets;int count=offsets!=null&&offsets.Length>0?offsets.Length:1;
+            var collider=source.GetComponent<Collider>();var matrix=collider?CylindricalHitQuery.PhysicsMatrix(collider):source.localToWorldMatrix;
+            Vector3 launch=matrix.MultiplyPoint3x4(localMuzzle+(offsets!=null&&offsets.Length>0?offsets[Mathf.Clamp(tube,0,count-1)]:Vector3.zero));
+            MuzzleFlash?.Invoke(launch,direction,weapon);FireMissile(owner,weapon,launch,direction,target,1f/count);
+        }
+        int Query(Vector3 from,Vector3 to,float radius)
+        {
+            int count;
+            while(true){count=Physics.OverlapCapsuleNonAlloc(from,to,radius,candidates,~(1<<2|1<<5),QueryTriggerInteraction.Ignore);if(count<candidates.Length)return count;Array.Resize(ref candidates,candidates.Length*2);}
+        }
+        public bool OwnPathBlocked(FlightShipRuntime owner,ShipPartState gun,Vector3 position,Vector3 direction,float diameter)
+        {
+            float length=owner.HullRadius*2+2,radius=Mathf.Max(.001f,diameter*.5f);int count=Query(position,position+direction*length,radius);
+            for(int i=0;i<count;i++){var h=candidates[i].GetComponent<ShipPartHitbox>();if(h&&h.Ship==owner&&h.Part!=gun&&h.Part.present&&!Starframe.Construction.BlockModules.IsWeapon(h.Part.record.shape)&&geometry.TryHit(candidates[i],position,direction,radius,0,length,out _))return true;}return false;
+        }
+        public void Step(float dt)
+        {
+            if(dt<=0||float.IsNaN(dt)||float.IsInfinity(dt)||(bolts.Count==0&&missiles.Count==0))return;
+            using(Marker.Auto()){
+            // Physics poses are fixed for this step; shield health is still checked live for every shot.
+            shieldSamples.Clear();
+            foreach(var ship in shieldShips)if(ship&&ship.IsAlive)
+                foreach(var field in ship.Shields.Fields)if(field.Active&&field.charge>0)
+                    shieldSamples.Add(new ShieldSample{field=field,center=UseShieldGeometryCache?field.Center:default,radius=field.definition.shieldRadius});
+            for(int i=bolts.Count-1;i>=0;i--){
+                var b=bolts[i];if(!b.owner||!b.owner.IsAlive){Release(i);continue;}
+                float limit=b.firstHit<0?b.range:Mathf.Min(b.range,b.firstHit+b.depth);
+                float next=Mathf.Min(limit,b.distance+b.speed*dt);contacts.Clear();queriedScenery.Clear();
+                foreach(var sample in shieldSamples){var field=sample.field;
+                    if(field.ship!=b.owner&&field.Active&&field.charge>0&&
+                        ShipShieldSystem.TrySphereEntry(b.origin,b.direction,UseShieldGeometryCache?sample.center:field.Center,sample.radius+b.radius,b.distance,next,out float shieldEntry))
+                        contacts.Add(new Contact{shield=field,distance=shieldEntry});
+                }
+                int count=Query(b.origin+b.direction*b.distance,b.origin+b.direction*next,b.radius);
+                for(int j=0;j<count;j++){
+                    var c=candidates[j];var h=c.GetComponent<ShipPartHitbox>();
+                    if(h&&(h.Ship==b.owner||!h.Ship.IsAlive||!h.Part.present||b.hitParts.Contains(h.Part)))continue;
+                    var debris=c.GetComponent<DebrisPartHitbox>();
+                    if(debris&&(!debris.Part.present||b.hitParts.Contains(debris.HitIdentity)))continue;
+                    var voxelBody=c.GetComponent<VoxelBodyHitbox>();
+                    if(voxelBody){
+                        if(!queriedScenery.Add(voxelBody.Structure))continue;
+                        voxelContacts.Clear();voxelBody.CollectHits(b.origin,b.direction,b.radius,b.distance,next,geometry,voxelContacts);
+                        foreach(var contact in voxelContacts)if(!b.hitVoxels.Contains(contact.cell))contacts.Add(new Contact{scenery=contact.structure,voxel=contact.cell,distance=contact.distance});
+                        continue;
+                    }
+                    if(geometry.TryHit(c,b.origin,b.direction,b.radius,b.distance,next,out float entry))contacts.Add(new Contact{collider=c,hitbox=h,debris=debris,distance=entry});
+                }
+                contacts.Sort((a,c)=>a.distance.CompareTo(c.distance));
+                foreach(var hit in contacts){
+                    if(hit.shield!=null){
+                        var field=hit.shield;if(!field.Active||field.charge<=0||hit.distance>limit)continue;
+                        Vector3 point=b.origin+b.direction*hit.distance;
+                        float absorbed=field.ship.Shields.Absorb(field,b.damage,point);
+                        if(absorbed<=0)continue;
+                        ConfirmHit(b);
+                        EmitImpact(b,point);b.damage=Mathf.Max(0,b.damage-absorbed);
+                        if(b.damage<=.00001f){next=Mathf.Min(next,hit.distance);limit=next;break;}
+                        continue;
+                    }
+                    if(hit.scenery){
+                        if(!hit.voxel.Alive||b.hitVoxels.Contains(hit.voxel))continue;
+                        if(!hit.scenery.damageEnabled){
+                            ConfirmHit(b,true);EmitImpact(b,b.origin+b.direction*hit.distance);
+                            next=Mathf.Min(next,hit.distance);limit=next;break;
+                        }
+                        if(b.firstHit<0){b.firstHit=hit.distance;limit=Mathf.Min(b.range,b.firstHit+b.depth);}
+                        if(hit.distance>=limit-.0001f)continue;
+                        b.hitVoxels.Add(hit.voxel);
+                        float layer=hit.distance-b.firstHit<1-.0001f?1:b.multiplier;
+                        float damage=hit.scenery.ApplyDamage(hit.voxel.position,b.damage*layer);
+                        if(damage>0){b.owner.RecordDamageDealt(damage);ConfirmHit(b,true);EmitImpact(b,b.origin+b.direction*hit.distance);}
+                        continue;
+                    }
+                    if(!hit.hitbox&&!hit.debris){EmitImpact(b,hit.collider.ClosestPoint(b.origin+b.direction*hit.distance));next=Mathf.Min(next,hit.distance);limit=next;break;}
+                    var target=hit.hitbox;var wreck=hit.debris;var collider=hit.collider;
+                    // A core hit can transfer the remaining contacts to wreckage in this very sweep.
+                    if(target&&target.Part.detached){wreck=target.DetachedReplacement;if(!wreck)continue;target=null;collider=wreck.GetComponent<Collider>();}
+                    var part=target?target.Part:wreck.Part;var identity=target?part:wreck.HitIdentity;
+                    if(!part.present||(target&&!target.Ship.IsAlive)||b.hitParts.Contains(identity))continue;
+                    if(b.firstHit<0){b.firstHit=hit.distance;limit=Mathf.Min(b.range,b.firstHit+b.depth);}
+                    if(hit.distance>=limit-.0001f)continue;
+                    float depth=hit.distance-b.firstHit,scale=depth<1-.0001f?1:b.multiplier;
+                    b.hitParts.Add(identity);
+                    EmitImpact(b,collider.ClosestPoint(b.origin+b.direction*hit.distance));
+                    float dealt=target?target.Ship.ApplyDamage(part.record.id,b.damage*scale,b.owner,true):wreck.ApplyDamage(b.damage*scale);
+                    if(dealt>0)ConfirmHit(b);
+                }
+                b.distance=Mathf.Min(next,limit);if(visuals)visuals.Move(b.visual,b.origin+b.direction*b.distance,b.direction);
+                if(b.distance>=limit-.00001f)Release(i);
+            }
+            StepMissiles(dt);
+            }
+        }
+        bool FirstContact(FlightShipRuntime owner,Vector3 origin,Vector3 direction,float length,float radius,out Contact hit)
+        {
+            hit=default;float nearest=length+.001f;bool found=false;
+            foreach(var ship in shieldShips)if(ship&&ship.IsAlive&&ship!=owner)
+                foreach(var field in ship.Shields.Fields)if(field.Active&&field.charge>0&&
+                    ShipShieldSystem.TrySphereEntry(origin,direction,field.Center,field.definition.shieldRadius+radius,0,length,out float entry)&&entry<nearest){
+                        nearest=entry;hit=new Contact{shield=field,distance=entry};found=true;
+                    }
+            queriedScenery.Clear();int count=Query(origin,origin+direction*length,radius);
+            for(int i=0;i<count;i++){
+                var c=candidates[i];if(!c)continue;
+                var h=c.GetComponent<ShipPartHitbox>();if(h&&(h.Ship==owner||!h.Ship.IsAlive||!h.Part.present))continue;
+                var wreck=c.GetComponent<DebrisPartHitbox>();if(wreck&&!wreck.Part.present)continue;
+                var voxel=c.GetComponent<VoxelBodyHitbox>();
+                if(voxel){
+                    if(!queriedScenery.Add(voxel.Structure))continue;
+                    voxelContacts.Clear();voxel.CollectHits(origin,direction,radius,0,length,geometry,voxelContacts);
+                    foreach(var v in voxelContacts)if(v.cell.Alive&&v.distance<nearest){nearest=v.distance;hit=new Contact{scenery=v.structure,voxel=v.cell,distance=v.distance};found=true;}
+                }else if(geometry.TryHit(c,origin,direction,radius,0,length,out float entry)&&entry<nearest){
+                    nearest=entry;hit=new Contact{collider=c,hitbox=h,debris=wreck,distance=entry};found=true;
+                }
+            }
+            return found;
+        }
+        void FireBeam(FlightShipRuntime owner,WeaponDefinition weapon,Vector3 position,Vector3 direction,Transform source,Vector3 localPosition)
+        {
+            float length=Mathf.Max(.1f,weapon.range),damage=DamageFor(owner,weapon);
+            if(FirstContact(owner,position,direction,length,Mathf.Max(.001f,weapon.projectileDiameter*.5f),out var hit)){
+                length=hit.distance;Vector3 point=position+direction*length;float dealt=0;
+                if(hit.shield!=null)dealt=hit.shield.ship.Shields.Absorb(hit.shield,damage,point);
+                else if(hit.scenery){dealt=hit.scenery.ApplyDamage(hit.voxel.position,damage);if(dealt>0)owner.RecordDamageDealt(dealt);}
+                else if(hit.hitbox)dealt=hit.hitbox.Ship.ApplyDamage(hit.hitbox.Part.record.id,damage,owner,true);
+                else if(hit.debris)dealt=hit.debris.ApplyDamage(damage);
+                Impact?.Invoke(point);WeaponImpact?.Invoke(point,weapon);if(dealt>0||(hit.scenery&&!hit.scenery.damageEnabled)){HitConfirmed?.Invoke(owner);HitFeedbackConfirmed?.Invoke(owner,hit.scenery);}
+            }
+            if(specialVisuals)specialVisuals.ShowBeam(weapon,position,direction,length,source,localPosition);
+            TotalSpawned++;ShotFired?.Invoke(owner,position);
+        }
+        void FireMissile(FlightShipRuntime owner,WeaponDefinition weapon,Vector3 position,Vector3 direction,FlightShipRuntime target,float damageScale)
+        {
+            if(!target||!target.IsAlive||target==owner||target.Team==owner.Team)return;
+            var missile=freeMissiles.Count>0?freeMissiles.Pop():new Missile();
+            missile.owner=owner;missile.weapon=weapon;missile.damage=DamageFor(owner,weapon)*damageScale;missile.target=target;missile.targetLife=target.LifeId;
+            missile.targetFlight=target.GetComponent<ShipFlightController>();missile.targetBody=target.GetComponent<Rigidbody>();
+            missile.position=position;missile.direction=direction.normalized;missile.speed=Mathf.Max(.01f,weapon.missileLaunchSpeed);missile.distance=missile.age=0;
+            missile.flareId=-1;missile.testedFlares.Clear();missile.guidance.Reset(missile.direction);
+            missile.visual=specialVisuals?specialVisuals.AcquireMissile(weapon,position,missile.direction):-1;
+            missiles.Add(missile);TotalSpawned++;ShotFired?.Invoke(owner,position);
+        }
+        void StepMissiles(float dt)
+        {
+            for(int i=missiles.Count-1;i>=0;i--){
+                var m=missiles[i];if(!m.owner||!m.owner.IsAlive){ReleaseMissile(i);continue;}
+                m.age+=dt;
+                AdvanceSeeker(m,dt);
+                m.speed=Mathf.MoveTowards(m.speed,Mathf.Max(.01f,m.weapon.projectileSpeed),Mathf.Max(0,m.weapon.missileAcceleration)*dt);
+                float travel=Mathf.Min(m.speed*dt,Mathf.Max(0,m.weapon.range-m.distance));
+                if(FirstContact(m.owner,m.position,m.direction,travel,Mathf.Max(.025f,m.weapon.projectileDiameter*.5f),out var hit)){
+                    Vector3 point=m.position+m.direction*hit.distance;Explode(m,point,hit.shield);ReleaseMissile(i);continue;
+                }
+                m.position+=m.direction*travel;m.distance+=travel;
+                if(specialVisuals)specialVisuals.MoveMissile(m.visual,m.position,m.direction,m.distance);
+                if(m.distance>=m.weapon.range-.0001f||m.age>60){ReleaseMissile(i);}
+            }
+        }
+        void AdvanceSeeker(Missile missile,float dt)
+        {
+            if(!missile.guidance.IsTracking)return;
+            if(missile.age>=Mathf.Max(0,missile.weapon.missileGuidanceSeconds)){
+                missile.guidance.LoseLock();return;
+            }
+            if(missile.age<=MissileGuidance.EjectionSeconds)return;
+            Vector3 target,velocity=Vector3.zero;
+            if(missile.flareId<0){
+                if(!missile.target||!missile.target.IsAlive||missile.target.LifeId!=missile.targetLife){missile.guidance.LoseLock();return;}
+                TryDivertToFlare(missile);
+            }
+            if(missile.flareId>=0){
+                if(!TryGetFlarePosition(missile.flareId,out target)){missile.guidance.LoseLock();return;}
+            }else{
+                target=missile.target.CorePhysicsPosition;
+                velocity=TargetCoreVelocity(missile.targetFlight,missile.targetBody,target);
+            }
+            missile.guidance.Step(missile.weapon,missile.age,target-missile.position,velocity,missile.speed,dt);
+            missile.direction=missile.guidance.Direction;
+        }
+        static Vector3 TargetCoreVelocity(ShipFlightController flight,Rigidbody body,Vector3 core)
+        {
+            if(flight)
+            {
+                // Kinematic flight owns its velocity; Rigidbody.linearVelocity is not its authoritative motion.
+                var rotation=body?body.rotation:flight.transform.rotation;
+                var center=body?body.position:flight.transform.position;
+                var angularWorld=rotation*(flight.AngularVelocity*Mathf.Deg2Rad);
+                return flight.Velocity+Vector3.Cross(angularWorld,core-center);
+            }
+            return body?body.GetPointVelocity(core):Vector3.zero;
+        }
+        void TryDivertToFlare(Missile missile)
+        {
+            if(!Flares)return;
+            foreach(var burst in Flares.Bursts){
+                if(burst==null||!burst.Active||burst.Owner!=missile.target||burst.OwnerLifeId!=missile.targetLife||!burst.Definition||missile.testedFlares.Contains(burst.Id))continue;
+                var offset=burst.Position-missile.position;
+                float radius=Mathf.Max(0,burst.Definition.decoyRadius);
+                if(offset.sqrMagnitude>radius*radius||!missile.guidance.InSeekerCone(offset,missile.weapon))continue;
+                // Twelve rendered flares belong to one burst: exactly one roll per missile/burst pair.
+                missile.testedFlares.Add(burst.Id);
+                float chance=Mathf.Clamp01(burst.Definition.decoyChance);
+                if(chance<=0||(chance<1&&UnityEngine.Random.value>=chance))continue;
+                missile.flareId=burst.Id;return;
+            }
+        }
+        bool TryGetFlarePosition(int id,out Vector3 position)
+        {
+            if(Flares)foreach(var burst in Flares.Bursts)if(burst!=null&&burst.Id==id&&burst.Active){position=burst.Position;return true;}
+            position=default;return false;
+        }
+        /// <summary>Most urgent hostile missile for this life, including credible coasting collision paths.</summary>
+        public bool TryGetIncomingThreat(FlightShipRuntime target,out float distance,out float timeToImpact)
+            =>TryGetIncomingThreat(target,out distance,out timeToImpact,out _,out _,out _);
+        public bool TryGetIncomingThreat(FlightShipRuntime target,out float distance,out float timeToImpact,
+            out Vector3 missilePosition,out Vector3 missileVelocity,out WeaponDefinition weapon)
+        {
+            distance=timeToImpact=float.PositiveInfinity;missilePosition=missileVelocity=default;weapon=null;
+            if(!target||!target.IsAlive)return false;
+            var targetPosition=target.CorePhysicsPosition;
+            var targetBody=target.GetComponent<Rigidbody>();var targetVelocity=TargetCoreVelocity(target.GetComponent<ShipFlightController>(),targetBody,targetPosition);
+            bool found=false;
+            foreach(var missile in missiles){
+                if(!missile.owner||!missile.owner.IsAlive||missile.owner.Team==target.Team||missile.target!=target||missile.targetLife!=target.LifeId)continue;
+                float remaining=Mathf.Max(0,missile.weapon.range-missile.distance);
+                if(remaining<=0)continue;
+                var offset=targetPosition-missile.position;float separation=offset.magnitude,impactTime;
+                bool seekingTarget=missile.guidance.IsTracking&&missile.flareId<0;
+                if(seekingTarget){
+                    float gap=Mathf.Max(0,separation-target.HullRadius);
+                    var radial=separation>.0001f?offset/separation:missile.direction;
+                    float closing=Vector3.Dot(missile.direction*missile.speed-targetVelocity,radial);
+                    float cruiseClosing=missile.weapon.projectileSpeed-Vector3.Dot(targetVelocity,radial);
+                    float accel=Mathf.Max(0,missile.weapon.missileAcceleration);
+                    float powered=accel>.0001f?Mathf.Max(0,missile.weapon.projectileSpeed-missile.speed)/accel:0;
+                    float poweredDistance=closing*powered+.5f*accel*powered*powered;
+                    if(gap<=0)impactTime=0;
+                    else if(accel>.0001f&&powered>0&&poweredDistance>=gap)
+                        impactTime=(-closing+Mathf.Sqrt(closing*closing+2*accel*gap))/accel;
+                    else if(cruiseClosing>.01f)impactTime=powered+Mathf.Max(0,gap-poweredDistance)/cruiseClosing;
+                    else impactTime=60; // A detected seeker with no current radial intercept has low urgency.
+                }
+                else{
+                    var relativeVelocity=missile.direction*missile.speed-targetVelocity;
+                    float speedSquared=relativeVelocity.sqrMagnitude;
+                    if(speedSquared<=.000001f)continue;
+                    impactTime=Vector3.Dot(offset,relativeVelocity)/speedSquared;
+                    float horizon=Mathf.Min(remaining/Mathf.Max(.01f,missile.speed),Mathf.Max(0,60-missile.age));
+                    if(impactTime<0||impactTime>horizon)continue;
+                    float radius=Mathf.Max(0,target.HullRadius)+Mathf.Max(.1f,missile.weapon.explosionRadius)+Mathf.Max(.025f,missile.weapon.projectileDiameter*.5f);
+                    if((offset-relativeVelocity*impactTime).sqrMagnitude>radius*radius)continue;
+                }
+                if(impactTime>timeToImpact+.0001f||(Mathf.Abs(impactTime-timeToImpact)<=.0001f&&separation>=distance))continue;
+                found=true;distance=separation;timeToImpact=impactTime;
+                missilePosition=missile.position;missileVelocity=missile.direction*missile.speed;weapon=missile.weapon;
+            }
+            return found;
+        }
+        void Explode(Missile missile,Vector3 point,ShipShieldSystem.Field interceptField=null)
+        {
+            var owner=missile.owner;var weapon=missile.weapon;
+            float radius=Mathf.Max(.1f,weapon.explosionRadius),maximum=missile.damage,budget=maximum*CombatDamageTuning.NonNegative(MissileBlastBudgetMultiplier);
+            bool confirmed=false,combatConfirmed=false;Impact?.Invoke(point);MissileExplosion?.Invoke(point,weapon);
+            blastShieldedShips.Clear();
+            // A charged field intercepts this entire missile, even if it breaks on this hit.
+            // Later missiles resolve against live charge and can damage the newly exposed hull.
+            foreach(var ship in shieldShips)if(ship&&ship.IsAlive&&ship!=owner){
+                ShipShieldSystem.Field blocking=null;
+                if(interceptField!=null&&interceptField.ship==ship&&interceptField.Active&&interceptField.charge>0)blocking=interceptField;
+                if(blocking==null)
+                foreach(var field in ship.Shields.Fields)if(field.Active&&field.charge>0){
+                    float surface=Mathf.Max(0,Vector3.Distance(point,field.Center)-field.definition.shieldRadius);
+                    if(surface<=radius){blocking=field;break;}
+                }
+                if(blocking==null)continue;
+                float absorbed=ship.Shields.Absorb(blocking,maximum,point);budget=Mathf.Max(0,budget-absorbed);
+                blastShieldedShips.Add(ship);
+                if(absorbed>0)confirmed=combatConfirmed=true;
+            }
+            int count=Query(point,point,radius);
+            contacts.Clear();blastParts.Clear();blastStructures.Clear();
+            for(int i=0;i<count;i++){
+                var c=candidates[i];if(!c)continue;
+                var h=c.GetComponent<ShipPartHitbox>();var d=c.GetComponent<DebrisPartHitbox>();
+                if(h&&(h.Ship==owner||!h.Ship.IsAlive||!h.Part.present))continue;
+                if(d&&!d.Part.present)continue;
+                var voxel=c.GetComponent<VoxelBodyHitbox>();
+                if(voxel){blastStructures.Add(voxel.Structure);continue;}
+                if(!h&&!d)continue;
+                var identity=h?h.Part:d.HitIdentity;if(!blastParts.Add(identity))continue;
+                float distance=Vector3.Distance(c.ClosestPoint(point),point);
+                if(distance<=radius)contacts.Add(new Contact{collider=c,hitbox=h,debris=d,distance=distance});
+            }
+            contacts.Sort((a,b)=>a.distance.CompareTo(b.distance));
+            foreach(var hit in contacts){
+                if(budget<=.00001f)break;
+                float falloff=1-Mathf.Clamp01(hit.distance/radius);
+                float amount=Mathf.Min(budget,maximum*falloff*falloff);
+                var h=hit.hitbox;var d=hit.debris;
+                if(h&&blastShieldedShips.Contains(h.Ship))continue;
+                if(h&&h.Part.detached){d=h.DetachedReplacement;h=null;}
+                float dealt=h&&h.Part.present&&h.Ship.IsAlive?h.Ship.ApplyDamage(h.Part.record.id,amount,owner,true):d&&d.Part.present?d.ApplyDamage(amount):0;
+                budget-=dealt;if(dealt>0)confirmed=combatConfirmed=true;
+            }
+            foreach(var structure in blastStructures){
+                if(!structure)continue;
+                if(!structure.damageEnabled){confirmed=true;continue;}
+                if(budget<=.00001f)continue;
+                // A blast is infrequent; copy the local candidates before fragmentation mutates ownership.
+                var affected=new List<VoxelCellState>();
+                float cell=structure.asset.cellSize;
+                foreach(var pair in structure.Cells)if(pair.Value.Alive&&Vector3.Distance(structure.PhysicsMatrix.MultiplyPoint3x4((Vector3)pair.Key*cell),point)<radius+cell*.5f)affected.Add(pair.Value);
+                foreach(var state in affected){
+                    if(!structure||budget<=.00001f)break;
+                    float distance=Mathf.Max(0,Vector3.Distance(structure.PhysicsMatrix.MultiplyPoint3x4((Vector3)state.position*cell),point)-cell*.5f);
+                    float falloff=1-Mathf.Clamp01(distance/radius);float dealt=structure.ApplyDamage(state.position,Mathf.Min(budget,maximum*falloff*falloff));
+                    budget-=dealt;if(dealt>0){confirmed=true;owner.RecordDamageDealt(dealt);}
+                }
+            }
+            if(confirmed){HitConfirmed?.Invoke(owner);HitFeedbackConfirmed?.Invoke(owner,!combatConfirmed);}
+        }
+        void ReleaseMissile(int index)
+        {
+            var m=missiles[index];if(specialVisuals)specialVisuals.ReleaseMissile(m.visual);
+            m.owner=m.target=null;m.targetFlight=null;m.targetBody=null;m.flareId=-1;m.testedFlares.Clear();missiles[index]=missiles[missiles.Count-1];missiles.RemoveAt(missiles.Count-1);freeMissiles.Push(m);
+        }
+        void EmitImpact(Bolt b,Vector3 position){Impact?.Invoke(position);WeaponImpact?.Invoke(position,b.weapon);}
+        void ConfirmHit(Bolt bolt,bool scenery=false)
+        {
+            if(bolt.hitConfirmed){if(bolt.sceneryFeedback&&!scenery){bolt.sceneryFeedback=false;HitFeedbackConfirmed?.Invoke(bolt.owner,false);}return;}
+            bolt.hitConfirmed=true;bolt.sceneryFeedback=scenery;HitConfirmed?.Invoke(bolt.owner);HitFeedbackConfirmed?.Invoke(bolt.owner,scenery);
+        }
+        void Release(int index){var b=bolts[index];if(visuals)visuals.Release(b.visual);b.owner=null;b.hitParts.Clear();b.hitVoxels.Clear();bolts[index]=bolts[bolts.Count-1];bolts.RemoveAt(bolts.Count-1);free.Push(b);}
+        public void RemoveOwned(FlightShipRuntime owner){for(int i=bolts.Count-1;i>=0;i--)if(bolts[i].owner==owner)Release(i);for(int i=missiles.Count-1;i>=0;i--)if(missiles[i].owner==owner)ReleaseMissile(i);}
+        public void Clear(){for(int i=bolts.Count-1;i>=0;i--)Release(i);for(int i=missiles.Count-1;i>=0;i--)ReleaseMissile(i);shieldSamples.Clear();if(visuals)visuals.Clear();if(specialVisuals)specialVisuals.Clear();}
+    }
+}

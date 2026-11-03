@@ -1,0 +1,38 @@
+// @role Define bounded dust, thin haze and scene-depth atmosphere independently from flight balance.
+// @tune dustLimit:int:0-320:Hard dust-particle cap; low quality caps this at 64.
+// @tune hazeLimit:int:0-16:Hard haze-billboard cap; low quality disables haze.
+// @tune dustRadius:float:10-150:World-space dust emission radius around the camera.
+// @tune dustRate:float:0-40:Dust particles emitted per second.
+// @tune dustPerMetre:float:0-0.5:Additional native particle emission per metre travelled.
+// @tune hazeOpacity:float:0-0.1:Maximum haze opacity before lifetime and texture fading.
+// @tune fogDensity:float:0-0.001:Lightweight exponential-squared haze on opaque scene geometry.
+// @tune skyIntensity:float:0-0.15:Directional warm/cool background radiance, driven by the scene star light.
+// @tune beltFalloff:float:100-3000:Height range over which scenery-belt haze fades into open space.
+// @tune starDirection:Vector3:-1-1:Direction toward the distant sun, shared by sky disk and scene key light.
+
+using UnityEngine;
+namespace Starframe.Flight
+{
+    [CreateAssetMenu(menuName="Starframe/Range Atmosphere")]
+    public sealed class RangeAtmosphereTuning:ScriptableObject
+    {
+        public bool dustEnabled=true,hazeEnabled=true,distanceHaze=true;
+        [Range(0,320)]public int dustLimit=160;
+        [Range(0,16)]public int hazeLimit=12;
+        [Range(10,150)]public float dustRadius=65;
+        [Range(0,40)]public float dustRate=10;
+        [Range(0,.5f)]public float dustPerMetre=.12f;
+        public Vector2 dustSize=new Vector2(.045f,.11f);
+        [Range(0,.1f)]public float hazeOpacity=.028f;
+        [Range(0,.001f)]public float fogDensity=.00016f;
+        public Color fogColor=new Color(.025f,.037f,.055f,1);
+        [Header("Light-responsive space backdrop")]
+        [Range(0,.15f)]public float skyIntensity=.09f;
+        [ColorUsage(false,true)]public Color skyWarm=new Color(.70f,.61f,.46f),skyCool=new Color(.20f,.32f,.42f);
+        public float beltHeightOffset=-200;
+        [Range(100,3000)]public float beltFalloff=1200;
+        public Material dustMaterial,hazeMaterial;
+        [Header("Distant sun (world direction, separate from the planet)")]
+        public Vector3 starDirection=new Vector3(.62f,.52f,.58f);
+    }
+}

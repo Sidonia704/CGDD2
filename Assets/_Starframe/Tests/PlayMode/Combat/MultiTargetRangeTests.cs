@@ -15,7 +15,7 @@ namespace Starframe.Tests
         {
             hadSettings=PlayerPrefs.HasKey(RangeTargetRoster.PreferenceKey);originalSettings=PlayerPrefs.GetString(RangeTargetRoster.PreferenceKey);
             PlayerPrefs.SetString(RangeTargetRoster.PreferenceKey,"{\"entries\":[{\"file\":\"test.json\",\"count\":2}]}");
-            FlightSession.Begin(FlightRangeBootstrap.DefaultShip(),true);yield return SceneManager.LoadSceneAsync(FlightSession.RangeScene);yield return null;
+            FlightSession.Begin(FlightRangeBootstrap.DefaultShip(),true);yield return SceneManager.LoadSceneAsync(FlightSession.RangeScene);yield return TargetLockTestPreparation.WaitForWorld();
         }
         [UnityTearDown]public IEnumerator TearDown()
         {
@@ -33,6 +33,7 @@ namespace Starframe.Tests
             Assert.That(world.Bots.Count,Is.EqualTo(3));Assert.That(world.Bots[2].ship.Parts.Count,Is.EqualTo(additional.parts.Count));
             world.enabled=false;foreach(var actor in world.Actors)actor.flight.enabled=false;
             world.Projectiles.Clear();int life=second.ship.LifeId;int thirdLife=world.Bots[2].ship.LifeId;
+            TargetLockTestPreparation.PointAt(world,first.ship);
             world.Targeting.ToggleLock();Assert.That(world.Targeting.HasTarget,Is.True);
             var locked=world.Targeting.LockedTarget;Assert.That(locked.Team,Is.EqualTo(1));
             var profiles=new System.Collections.Generic.List<WeaponAimProfile>();world.Player.weapons.GetAimProfiles(profiles);
@@ -45,23 +46,24 @@ namespace Starframe.Tests
             world.Targeting.Clear();
             var core=first.ship.Parts.Find(p=>p.record.shape==BlockShape.Core);first.ship.ApplyDamage(core.record.id,100000,world.Player.ship);
             Assert.That(first.ship.IsAlive,Is.False);Assert.That(second.ship.IsAlive,Is.True);Assert.That(world.BotKills,Is.EqualTo(1));
-            world.Step(3.1f);Assert.That(first.ship.IsAlive,Is.True);Assert.That(second.ship.LifeId,Is.EqualTo(life));Assert.That(world.Bots[2].ship.LifeId,Is.EqualTo(thirdLife));
+            world.Step(world.BotRespawnRemaining+.1f);Assert.That(first.ship.IsAlive,Is.True);Assert.That(second.ship.LifeId,Is.EqualTo(life));Assert.That(world.Bots[2].ship.LifeId,Is.EqualTo(thirdLife));
             Assert.That(world.Debris.PartCount,Is.GreaterThan(0));
             foreach(var wreck in world.Debris.Clusters)Assert.That(wreck.WorldBounds.SqrDistance(first.body.position),Is.GreaterThanOrEqualTo(first.ship.HullRadius*first.ship.HullRadius),"Respawn must avoid existing wreckage.");
             foreach(var part in first.ship.Parts){Assert.That(part.present,Is.True);Assert.That(part.hp,Is.EqualTo(part.maxHp));}
             Assert.That(JsonUtility.ToJson(additional),Is.EqualTo(before));
             yield return null;Assert.That(System.Array.Exists(Object.FindFirstObjectByType<RangeHUD>().GetComponentsInChildren<Transform>(true),t=>t.name=="BotMarker2"),Is.True);
         }
-        [UnityTest]public IEnumerator TacticalHudTracksDamageAndKeepsOffscreenLockUntilRangeExceeded()
+        [UnityTest]public IEnumerator TacticalHudTracksDamageAndKeepsOffscreenLockUntilSignatureExitDelayExpires()
         {
             var world=Object.FindFirstObjectByType<RangeCombatWorld>();
             world.enabled=false;foreach(var actor in world.Actors){actor.flight.enabled=false;actor.body.interpolation=RigidbodyInterpolation.None;actor.body.linearVelocity=Vector3.zero;}
-            world.Projectiles.Clear();world.Targeting.ToggleLock();Assert.That(world.Targeting.HasTarget,Is.True);
+            world.Projectiles.Clear();TargetLockTestPreparation.PointAt(world);world.Targeting.ToggleLock();Assert.That(world.Targeting.HasTarget,Is.True);
             var target=world.Targeting.LockedTarget;RangeCombatWorld.Actor locked=null;foreach(var actor in world.Bots)if(actor.ship==target)locked=actor;
             Vector3 coreOffset=target.CorePhysicsPosition-locked.body.position;
-            locked.body.position=world.Player.ship.CorePhysicsPosition-Camera.main.transform.forward*2999f-coreOffset;
-            Physics.SyncTransforms();world.Targeting.RefreshLeadPoints();
-            Assert.That(world.Targeting.HasTarget,Is.True,"Turning away must not drop a lock inside 3 km.");
+            float signatureRange=world.Sensors.DetectionRange(target);
+            locked.body.position=world.Player.ship.CorePhysicsPosition-Camera.main.transform.forward*(signatureRange*.95f)-coreOffset;
+            Physics.SyncTransforms();world.Sensors.Update(world.Actors,0);world.Targeting.RefreshLeadPoints();
+            Assert.That(world.Targeting.HasTarget,Is.True,"Turning away must not drop a lock inside this target's signature range.");
             yield return new WaitForSeconds(.2f);Canvas.ForceUpdateCanvases();
             Assert.That(Object.FindFirstObjectByType<TargetAimGraphic>().EdgeIndicatorVisible,Is.True);
             Assert.That(Object.FindFirstObjectByType<SphereRadarGraphic>().VisibleContactCount,Is.EqualTo(2));
@@ -77,21 +79,36 @@ namespace Starframe.Tests
             world.Player.ship.ApplyDamage(part.record.id,100000,target);
             yield return new WaitForSeconds(.2f);Canvas.ForceUpdateCanvases();
             Assert.That(own.VisiblePartCount,Is.LessThan(before));Assert.That(own.CorePresent,Is.True);
-            locked.body.position=world.Player.ship.CorePhysicsPosition-Camera.main.transform.forward*3001f-coreOffset;
-            Physics.SyncTransforms();world.Targeting.RefreshLeadPoints();Assert.That(world.Targeting.HasTarget,Is.False);
+            locked.body.position=world.Player.ship.CorePhysicsPosition-Camera.main.transform.forward*(signatureRange*world.Sensors.ExitRangeMultiplier+1)-coreOffset;
+            Physics.SyncTransforms();
+            float lossDelay=world.Sensors.LossDelay;
+            if(lossDelay>0){world.Sensors.Update(world.Actors,lossDelay*.9f);world.Targeting.RefreshLeadPoints();Assert.That(world.Targeting.HasTarget,Is.True,"The exit radius must be exceeded continuously for the configured loss delay.");}
+            world.Sensors.Update(world.Actors,Mathf.Max(.01f,lossDelay*.2f));world.Targeting.RefreshLeadPoints();Assert.That(world.Targeting.HasTarget,Is.False);
             yield return new WaitForSeconds(.2f);Assert.That(enemy.Ship,Is.Null);
         }
         [UnityTest]public IEnumerator ShieldSharesRangePowerAndEnemySchematicTracksRelativeRoll()
         {
             var blueprint=FlightRangeBootstrap.DefaultShip();blueprint.parts.Add(new BlockRecord{id="test-shield",shape=BlockShape.Shield,position=new Vector3(-1,1.5f,0),rotation=Quaternion.identity});
-            FlightSession.Begin(blueprint,true);yield return SceneManager.LoadSceneAsync(FlightSession.RangeScene);yield return null;
+            FlightSession.Begin(blueprint,true);yield return SceneManager.LoadSceneAsync(FlightSession.RangeScene);yield return TargetLockTestPreparation.WaitForWorld();
             var world=Object.FindFirstObjectByType<RangeCombatWorld>();
             world.enabled=false;foreach(var a in world.Actors){a.flight.enabled=false;a.body.interpolation=RigidbodyInterpolation.None;}
-            world.Projectiles.Clear();world.Targeting.ToggleLock();Assert.That(world.Targeting.HasTarget,Is.True);
-            var player=world.Player.ship;Assert.That(player.Shields.Capacity,Is.EqualTo(300));
-            player.Shields.Absorb(player.Shields.Fields[0],100,Vector3.zero);float energy=player.Power.Energy;
-            player.BeginStep(2.1f);world.Step(.1f);
-            Assert.That(player.Shields.Charge,Is.EqualTo(205).Within(.01f));Assert.That(player.Power.Energy,Is.EqualTo(energy-4).Within(.01f));
+            world.Projectiles.Clear();TargetLockTestPreparation.PointAt(world);world.Targeting.ToggleLock();Assert.That(world.Targeting.HasTarget,Is.True);
+            // Exercise the installed balance definitions rather than the original prototype's
+            // 300 HP / 2 second / 50 HP/s / 100 W numbers, which are no longer game defaults.
+            var player=world.Player.ship;var definition=player.Tuning.GetDefinition(BlockShape.Shield);
+            world.Player.weapons.ClearGroupInputs();
+            Assert.That(player.Shields.Capacity,Is.EqualTo(definition.shieldCapacity).Within(.01f));
+            const float damage=100,dt=.1f;
+            player.Shields.Absorb(player.Shields.Fields[0],damage,Vector3.zero);float energy=player.Power.Energy;
+            float rate=definition.shieldRecoveryPerSecond*(player.Team==0&&player.Battle?player.Battle.playerShieldRecoveryMultiplier:1);
+            float recovery=Mathf.Min(damage,rate*dt);
+            float demand=definition.shieldPowerWatts*recovery/(rate*dt);
+            float ratio=demand>0?Mathf.Clamp01((player.Power.Generation+energy/dt)/demand):1;
+            float expectedEnergy=Mathf.Clamp(energy+(player.Power.Generation-demand*ratio)*dt,0,player.Power.Capacity);
+            player.BeginStep(definition.shieldRecoveryDelay+.01f);world.Step(dt);
+            Assert.That(player.Power.RequestedPower,Is.EqualTo(demand).Within(.01f),"Shield recovery must request its installed electrical power.");
+            Assert.That(player.Shields.Charge,Is.EqualTo(definition.shieldCapacity-damage+recovery*ratio).Within(.01f));
+            Assert.That(player.Power.Energy,Is.EqualTo(expectedEnergy).Within(.01f),"Recovery must use the shared finite bus, including current generation.");
             var own=GameObject.Find("OwnShipSchematic").GetComponent<ShipStatusGraphic>();
             var enemy=GameObject.Find("TargetShipSchematic").GetComponent<ShipStatusGraphic>();
             yield return new WaitForSeconds(.2f);var ownRotation=own.DisplayRotation;
@@ -102,7 +119,10 @@ namespace Starframe.Tests
             var expected=Quaternion.Inverse(reference)*body.rotation*Quaternion.Inverse(target.CoreRotation);
             Assert.That(Quaternion.Angle(enemy.DisplayRotation,expected),Is.LessThan(.01f));
             Assert.That(Quaternion.Angle(own.DisplayRotation,ownRotation),Is.LessThan(.01f));
-            Assert.That(GameObject.Find("ShieldValue"),Is.Not.Null);Assert.That(GameObject.Find("ShieldFill"),Is.Not.Null);
+            var instrument=Object.FindFirstObjectByType<FlightInstrumentGraphic>();
+            Assert.That(instrument,Is.Not.Null,"The graphical flight instruments replace the old shield text and panel.");
+            Canvas.ForceUpdateCanvases();
+            Assert.That(instrument.canvasRenderer.GetMesh().vertexCount,Is.GreaterThan(0));
         }
     }
 }

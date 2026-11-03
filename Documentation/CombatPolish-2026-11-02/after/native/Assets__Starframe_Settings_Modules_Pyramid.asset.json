@@ -1,0 +1,77 @@
+{
+    "MonoBehaviour": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "Pyramid",
+        "m_EditorClassIdentifier": "Starframe.Construction::Starframe.Flight.ModuleDefinition",
+        "shape": 5,
+        "displayName": "四棱锥",
+        "category": 0,
+        "cost": 0.0,
+        "massKg": 60.0,
+        "maxHp": 188.99998474121095,
+        "recoverySeconds": 25.0,
+        "thrustNewtons": 0.0,
+        "occupiedCells": [
+            {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            }
+        ],
+        "localExhaustDirections": [],
+        "localNozzlePositions": [],
+        "muzzleLocalPosition": {
+            "x": 0.0,
+            "y": 0.27000001072883608,
+            "z": 1.5199999809265137
+        },
+        "muzzleClearanceDiameter": 0.25,
+        "mesh": {
+            "fileID": 4300000,
+            "guid": "8c07fac9dbc63144695397e1f83dea1c",
+            "type": 2
+        },
+        "outline": {
+            "fileID": 4300000,
+            "guid": "b6aadf149669640469a33a0c724cdd80",
+            "type": 2
+        },
+        "drawOutline": false,
+        "material": {
+            "fileID": 2100000,
+            "guid": "4687a7d744e118044908f579267c5455",
+            "type": 2
+        },
+        "icon": {
+            "fileID": 21300000,
+            "guid": "dc5fd292c30e2984e8406544936b9fe8",
+            "type": 3
+        },
+        "selectedIcon": {
+            "fileID": 21300000,
+            "guid": "c31200f15089c7e469a00e3ad3f95618",
+            "type": 3
+        },
+        "weapon": {
+            "instanceID": 0
+        },
+        "countermeasure": {
+            "instanceID": 0
+        },
+        "generationWatts": 0.0,
+        "storageJoules": 0.0,
+        "thrusterPowerWatts": 0.0,
+        "shieldPowerWatts": 0.0,
+        "shieldCapacity": 0.0,
+        "shieldRadius": 8.0,
+        "shieldRecoveryDelay": 2.0,
+        "shieldRecoveryPerSecond": 50.0,
+        "shieldSurfaceMaterial": {
+            "instanceID": 0
+        },
+        "shieldSurfaceMesh": {
+            "instanceID": 0
+        }
+    }
+}

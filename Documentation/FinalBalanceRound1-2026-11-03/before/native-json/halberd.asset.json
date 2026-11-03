@@ -1,0 +1,26 @@
+{
+    "MonoBehaviour": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "halberd",
+        "m_EditorClassIdentifier": "Starframe.Construction::Starframe.Combat.EnemyArchetypeDefinition",
+        "id": "halberd",
+        "nameZh": "长戟强袭巡洋舰",
+        "nameEn": "Halberd Assault Cruiser",
+        "size": 1,
+        "blueprint": {
+            "fileID": 4900000,
+            "guid": "1bdd64277d2ff2547acad4b50927d9ce",
+            "type": 3
+        },
+        "alternateBlueprint": {
+            "instanceID": 0
+        },
+        "score": 1000,
+        "behavior": {
+            "fileID": 11400000,
+            "guid": "556710c0bfb273e47b8380d02b53ea2f",
+            "type": 2
+        }
+    }
+}

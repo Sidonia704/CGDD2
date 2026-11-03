@@ -1,0 +1,68 @@
+{
+    "MonoBehaviour": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "Railgun3Weapon",
+        "m_EditorClassIdentifier": "Starframe.Construction::Starframe.Flight.WeaponDefinition",
+        "shotsPerSecond": 0.800000011920929,
+        "damage": 260.0,
+        "projectileSpeed": 9000.0,
+        "projectileDiameter": 0.2800000011920929,
+        "firstShotImmediate": true,
+        "penetrationDepth": 4.0,
+        "secondLayerDamageMultiplier": 0.4000000059604645,
+        "range": 5200.0,
+        "visualLength": 140.0,
+        "tailLength": 420.0,
+        "visualWidth": 10.0,
+        "visualIntensity": 11.0,
+        "minimumVisualPixels": 5.5,
+        "tracerStyle": 1,
+        "tracerLingerSeconds": 0.09000000357627869,
+        "sustainedPowerWatts": 280.0,
+        "energyPerShot": 100.0,
+        "delivery": 0,
+        "effectColor": {
+            "r": 1.0,
+            "g": 0.6600000262260437,
+            "b": 0.11999999731779099,
+            "a": 1.0
+        },
+        "missileLockSeconds": 2.0,
+        "reloadSeconds": 4.0,
+        "missileTurnDegrees": 110.0,
+        "missileAcceleration": 160.0,
+        "missileTurnAcceleration": 180.0,
+        "missileGuidanceSeconds": 10.0,
+        "missileSeekerConeDegrees": 65.0,
+        "missileSeekerLossSeconds": 0.3499999940395355,
+        "missileLaunchSpeed": 35.0,
+        "explosionRadius": 3.0,
+        "launcherMesh": {
+            "instanceID": 0
+        },
+        "missileMesh": {
+            "instanceID": 0
+        },
+        "missileLaunchOffsets": [
+            {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        ],
+        "muzzleOffsets": [],
+        "projectileMaterial": {
+            "fileID": 2100000,
+            "guid": "8fa010cb395cefc458368aa8f928b19f",
+            "type": 2
+        },
+        "beamDuration": 0.11999999731779099,
+        "beamMesh": {
+            "instanceID": 0
+        },
+        "activationMode": 0,
+        "chargeSeconds": 1.0,
+        "requireTargetLock": false
+    }
+}

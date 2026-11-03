@@ -1,0 +1,60 @@
+{
+    "MonoBehaviour": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "BattleTuning",
+        "m_EditorClassIdentifier": "Starframe.Construction::Starframe.Combat.BattleTuning",
+        "outOfCombatDelay": 20.0,
+        "recoveryTick": 0.10000000149011612,
+        "unlimitedRangePower": false,
+        "laserShader": {
+            "fileID": 4800000,
+            "guid": "6bfe2c57de945414a85ba6c0e9eb126f",
+            "type": 3
+        },
+        "destructionShader": {
+            "fileID": 4800000,
+            "guid": "6bfe2c57de945414a85ba6c0e9eb126f",
+            "type": 3
+        },
+        "particleScale": 1.5,
+        "debrisDriftSpeed": 2.5,
+        "debrisSpinDegreesPerSecond": 25.0,
+        "lockConeDegrees": 35.0,
+        "lockRange": 3000.0,
+        "sensorReferenceRadius": 10.0,
+        "sensorMinimumRange": 1000.0,
+        "sensorMaximumRange": 6000.0,
+        "sensorExitRangeMultiplier": 1.100000023841858,
+        "sensorLossDelay": 0.5,
+        "sensorAcquireRadiusPixels": 80.0,
+        "enemyLockAcquireSeconds": 0.30000001192092898,
+        "leadVelocitySampleWindow": 0.1599999964237213,
+        "leadVelocityResponse": 0.03999999910593033,
+        "defaultTargetBlueprint": {
+            "fileID": 4900000,
+            "guid": "774cbcf76904bb34bb6525387e68bcfb",
+            "type": 3
+        },
+        "botSpawnDistance": 35.0,
+        "botMovementSpeed": 7.0,
+        "botTurnDegreesPerSecond": 55.0,
+        "botAimProbability": 0.6000000238418579,
+        "botDecisionSeconds": 1.2000000476837159,
+        "botRespawnSeconds": 6.0,
+        "playerRespawnSeconds": 5.0,
+        "playerSpawnProtectionSeconds": 4.0,
+        "botCruiseSpeedFraction": 0.6499999761581421,
+        "botAttackSpeedFraction": 0.44999998807907107,
+        "botPilotDecisionSeconds": 0.10000000149011612,
+        "botMaxFireAngleDegrees": 2.200000047683716,
+        "botAttackSeconds": 5.0,
+        "botBreakawaySeconds": 1.600000023841858,
+        "botReactionSeconds": 1.2000000476837159,
+        "botFireBurstSeconds": 0.30000001192092898,
+        "botFirePauseSeconds": 1.7999999523162842,
+        "botEngagementRangeFraction": 0.25,
+        "botStrafeSpeedFraction": 0.10000000149011612,
+        "botFireTargetRadiusFraction": 0.2800000011920929
+    }
+}

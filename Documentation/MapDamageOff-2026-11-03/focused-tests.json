@@ -1,0 +1,41 @@
+{
+  "status": "completed",
+  "duration": 2.48,
+  "summary": {
+    "total": 4,
+    "passed": 4,
+    "failed": 0,
+    "skipped": 0,
+    "inconclusive": 0
+  },
+  "results": [
+    {
+      "FullName": "Starframe.Construction.Tests.MapDestructionDisabledTests.GameplayDefaultRejectsDamageWithoutHealthRecordsOrRebuildAndKeepsDynamicCollision",
+      "Status": "Passed",
+      "Duration": 0.100563,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.MapDestructionDisabledTests.WeaponsHitSolidSceneryWithWhiteFeedbackWithoutDestroyingCells(Projectile)",
+      "Status": "Passed",
+      "Duration": 1.7182583,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.MapDestructionDisabledTests.WeaponsHitSolidSceneryWithWhiteFeedbackWithoutDestroyingCells(Beam)",
+      "Status": "Passed",
+      "Duration": 0.0273189,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.MapDestructionDisabledTests.WeaponsHitSolidSceneryWithWhiteFeedbackWithoutDestroyingCells(GuidedMissile)",
+      "Status": "Passed",
+      "Duration": 0.0337931,
+      "Message": null,
+      "StackTrace": null
+    }
+  ]
+}

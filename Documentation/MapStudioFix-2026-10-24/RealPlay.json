@@ -1,0 +1,31 @@
+{
+  "success": true,
+  "command": "command eval",
+  "data": {
+    "command": "eval",
+    "parameters": {
+      "code": "var map=UnityEngine.Object.FindFirstObjectByType<Starframe.Maps.SpaceMapRuntime>(); if(!map||map.Structures.Count!=map.definition.instances.Count)throw new System.Exception(\"Map did not build all instances.\"); var w=UnityEditor.EditorWindow.GetWindow<Starframe.EditorTools.SpaceMapStudioWindow>(); w.CapturePreview(\"Documentation/MapStudioFix-2026-10-24/MapDuringPlay.png\"); int cells=0;bool dynamic=true; foreach(var b in map.Structures){cells+=b.AliveCount;dynamic&=b.Body&&!b.Body.useGravity&&!b.Body.isKinematic&&(bool)b.GetComponent<UnityEngine.MeshFilter>().sharedMesh;} var flags=System.Reflection.BindingFlags.Instance|System.Reflection.BindingFlags.NonPublic; var library=(UnityEngine.UIElements.VisualElement)w.GetType().GetField(\"library\",flags).GetValue(w); bool disabled=true; foreach(var e in library.Children())if(e is UnityEngine.UIElements.Button b&&(b.text==\"导出地图场景\"||b.text==\"打开物理试玩场景\"))disabled&=!b.enabledSelf;return new{playing=UnityEngine.Application.isPlaying,frame=UnityEngine.Time.frameCount,time=UnityEngine.Time.time,assets=map.Structures.Count,cells,dynamicBodiesValid=dynamic,exportsDisabled=disabled};"
+    },
+    "result": {
+      "output": null,
+      "diagnostics": [],
+      "success": true,
+      "result": {
+        "playing": true,
+        "frame": 15101,
+        "time": 22.5451317,
+        "assets": 21,
+        "cells": 20735,
+        "dynamicBodiesValid": true,
+        "exportsDisabled": true
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7801,
+      "projectPath": "D:\\software\\unity\\CGDD26107"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

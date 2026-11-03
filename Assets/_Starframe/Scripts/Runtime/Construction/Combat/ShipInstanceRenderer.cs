@@ -52,6 +52,9 @@ namespace Starframe.Combat
             foreach (var part in ship.Parts)
             {
                 if (!part.view) continue;
+                var definition=ship.Tuning.GetDefinition(part.record.shape);
+                // Loaded missile racks change their visible mesh during powered reload.
+                if(definition&&definition.weapon&&definition.weapon.delivery==WeaponDelivery.GuidedMissile)continue;
                 foreach (var source in part.view.GetComponentsInChildren<MeshRenderer>(true))
                 {
                     if (!source.enabled || source.HasPropertyBlock()) continue;

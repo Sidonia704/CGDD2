@@ -1,0 +1,84 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "test_status",
+    "parameters": {},
+    "result": {
+      "status": "completed",
+      "duration": 0.71,
+      "summary": {
+        "total": 8,
+        "passed": 8,
+        "failed": 0,
+        "skipped": 0,
+        "inconclusive": 0
+      },
+      "results": [
+        {
+          "FullName": "Starframe.Tests.SpaceMapRuntimeScaleTests.DestroyingAnAnchorReleasesOnlyItsAuthoredContact",
+          "Status": "Passed",
+          "Duration": 0.0623621,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Starframe.Tests.SpaceMapRuntimeScaleTests.DistantLodAndCullLeaveDamageAndCollisionLive",
+          "Status": "Passed",
+          "Duration": 0.0069573,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Starframe.Tests.SpaceMapRuntimeScaleTests.FragmentOwnershipTransfersAStillAliveContactAnchor",
+          "Status": "Passed",
+          "Duration": 0.0151882,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Starframe.Tests.SpaceMapRuntimeScaleTests.FreeCollisionFilterEndsWhenQuantizedCellsSeparate",
+          "Status": "Passed",
+          "Duration": 0.006551,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Starframe.Tests.SpaceMapRuntimeScaleTests.LazyColdBuildUsesBorrowedCoarseButFirstDamageKeepsPhysicalCells",
+          "Status": "Passed",
+          "Duration": 0.2216461,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Starframe.Tests.SpaceMapRuntimeScaleTests.LazyFineGenerationUsesOriginalCellsAndTintAfterSourceEdit",
+          "Status": "Passed",
+          "Duration": 0.1289484,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Starframe.Tests.SpaceMapRuntimeScaleTests.StagedBuildCanCompleteOrCancelWithoutLeavingPartialPhysics",
+          "Status": "Passed",
+          "Duration": 0.006997,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Starframe.Tests.SpaceMapRuntimeScaleTests.StagedStationBodiesStayFrozenUntilJointExistsAndCancelRemovesPartialBodies",
+          "Status": "Passed",
+          "Duration": 0.0035819,
+          "Message": null,
+          "StackTrace": null
+        }
+      ]
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7801,
+      "projectPath": "D:\\software\\unity\\CGDD26107"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

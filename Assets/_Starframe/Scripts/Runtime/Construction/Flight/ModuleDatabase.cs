@@ -15,6 +15,10 @@ namespace Starframe.Flight
         void OnEnable()=>Reindex();
         void OnValidate(){revision++;Reindex();}
         void Reindex(){index.Clear();foreach(var m in modules)if(m)index[m.shape]=m;}
-        public ModuleDefinition Get(BlockShape shape){if(index.Count!=modules.Count)Reindex();return index.TryGetValue(shape,out var definition)?definition:null;}
+        public ModuleDefinition Get(BlockShape shape)
+        {
+            if(index.Count!=modules.Count||!index.TryGetValue(shape,out var cached)||!cached||cached.shape!=shape||!modules.Contains(cached))Reindex();
+            return index.TryGetValue(shape,out var definition)?definition:null;
+        }
     }
 }

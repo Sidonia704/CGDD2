@@ -1,0 +1,524 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bc9fba079fe3c340a9872eaa1911107, type: 3}
+  m_Name: LocalDensityPatch
+  m_EditorClassIdentifier: Starframe.Construction::Starframe.Maps.SpaceMapDefinition
+  size: {x: 2500, y: 2500, z: 2500}
+  playerSpawn: {x: 0, y: 150, z: -250}
+  playerEulerAngles: {x: 0, y: 0, z: 0}
+  enemySpawns:
+  - {x: 0, y: 200, z: 500}
+  instances:
+  - id: msp0003fbed-00
+    label: Rock_Notched 01
+    asset: {fileID: 11400000, guid: 2e0a328ae5903ed47924ac6507a299c8, type: 2}
+    position: {x: 1175.7769, y: -7.6069303, z: -162.03886}
+    eulerAngles: {x: 17.802616, y: 348.9282, z: 67.52663}
+    scale: 1.2683885
+    healthMultiplier: 1
+    driftVelocity: {x: 0.024722954, y: 0.066978194, z: -0.073194765}
+    angularVelocity: {x: 0.0032156613, y: 0.052388478, z: 0.027086986}
+  - id: msp0003fbed-01
+    label: Rock_Notched 02
+    asset: {fileID: 11400000, guid: 2e0a328ae5903ed47924ac6507a299c8, type: 2}
+    position: {x: 655.33844, y: 1.1692384, z: 149.45067}
+    eulerAngles: {x: 121.935585, y: 358.23212, z: 100.10916}
+    scale: 1.2149526
+    healthMultiplier: 1
+    driftVelocity: {x: -0.047346763, y: 0.15403756, z: -0.2141007}
+    angularVelocity: {x: -0.060809672, y: 0.05485565, z: 0.004719969}
+  - id: msp0003fbed-02
+    label: Rock_Ridged 03
+    asset: {fileID: 11400000, guid: 3bac1ed6ee1aa694b95b561b93639edd, type: 2}
+    position: {x: 1020.2521, y: -26.41161, z: -331.85785}
+    eulerAngles: {x: 231.8269, y: 112.91452, z: 337.167}
+    scale: 0.939188
+    healthMultiplier: 1
+    driftVelocity: {x: -0.07440069, y: 0.0986656, z: -0.08988672}
+    angularVelocity: {x: -0.025719795, y: -0.019663693, z: -0.030519892}
+  - id: msp0003fbed-03
+    label: Rock_Ridged 04
+    asset: {fileID: 11400000, guid: 3bac1ed6ee1aa694b95b561b93639edd, type: 2}
+    position: {x: 1195.4095, y: 44.560215, z: -42.67952}
+    eulerAngles: {x: 331.18668, y: 8.589527, z: 6.1971903}
+    scale: 0.9075694
+    healthMultiplier: 1
+    driftVelocity: {x: 0.03365547, y: 0.14242986, z: -0.10572239}
+    angularVelocity: {x: -0.017348068, y: 0.023015583, z: 0.017878026}
+  - id: msp0003fbed-04
+    label: Rock_Notched 05
+    asset: {fileID: 11400000, guid: 2e0a328ae5903ed47924ac6507a299c8, type: 2}
+    position: {x: 863.75885, y: 6.93075, z: 276.2861}
+    eulerAngles: {x: 72.939156, y: 45.32103, z: 243.21486}
+    scale: 1.0405765
+    healthMultiplier: 1
+    driftVelocity: {x: 0.34286734, y: -0.19727711, z: -0.05008436}
+    angularVelocity: {x: -0.018130109, y: -0.04817773, z: -0.0076117017}
+  - id: msp0003fbed-05
+    label: Rock_Ridged 06
+    asset: {fileID: 11400000, guid: 3bac1ed6ee1aa694b95b561b93639edd, type: 2}
+    position: {x: 1180.523, y: -10.488213, z: -258.10596}
+    eulerAngles: {x: 276.79486, y: 47.494156, z: 329.32916}
+    scale: 0.8326644
+    healthMultiplier: 1
+    driftVelocity: {x: -0.09872724, y: 0.25884187, z: -0.19524553}
+    angularVelocity: {x: -0.020223081, y: 0.07921564, z: 0.02240487}
+  - id: msp0003fbed-06
+    label: Rock_Ridged 07
+    asset: {fileID: 11400000, guid: 3bac1ed6ee1aa694b95b561b93639edd, type: 2}
+    position: {x: 828.1703, y: -51.76478, z: 202.71005}
+    eulerAngles: {x: 285.68753, y: 10.524344, z: 20.448025}
+    scale: 0.81235653
+    healthMultiplier: 1
+    driftVelocity: {x: 0.24783224, y: -0.09548784, z: 0.07950531}
+    angularVelocity: {x: 0.0031089094, y: 0.0076028113, z: -0.032727942}
+  - id: msp0003fbed-07
+    label: Rock_Notched 08
+    asset: {fileID: 11400000, guid: 2e0a328ae5903ed47924ac6507a299c8, type: 2}
+    position: {x: 553.0248, y: -47.310326, z: -254.44421}
+    eulerAngles: {x: 94.28287, y: 322.83698, z: 254.12546}
+    scale: 0.88043034
+    healthMultiplier: 1
+    driftVelocity: {x: -0.028075153, y: 0.08481937, z: -0.102622434}
+    angularVelocity: {x: 0.02795253, y: -0.011729691, z: 0.043044444}
+  - id: msp0003fbed-08
+    label: Rock_Ridged 09
+    asset: {fileID: 11400000, guid: 3bac1ed6ee1aa694b95b561b93639edd, type: 2}
+    position: {x: 832.2939, y: 50.54928, z: 211.60864}
+    eulerAngles: {x: 260.75452, y: 246.51076, z: 206.42242}
+    scale: 0.71141696
+    healthMultiplier: 1
+    driftVelocity: {x: 0.16390122, y: -0.21506993, z: 0.09248737}
+    angularVelocity: {x: 0.038946416, y: -0.062319096, z: -0.05565841}
+  - id: msp0003fbed-09
+    label: Rock_Faceted 10
+    asset: {fileID: 11400000, guid: 97f30d12368b4354bb021a13fb8b6f7b, type: 2}
+    position: {x: 720.98444, y: 9.636055, z: 352.01617}
+    eulerAngles: {x: 356.34607, y: 271.09818, z: 196.2802}
+    scale: 1.5888853
+    healthMultiplier: 1
+    driftVelocity: {x: 0.14179853, y: -0.18759628, z: 0.015442245}
+    angularVelocity: {x: 0.034319036, y: -0.023508519, z: -0.023626348}
+  - id: msp0003fbed-10
+    label: Rock_Notched 11
+    asset: {fileID: 11400000, guid: 2e0a328ae5903ed47924ac6507a299c8, type: 2}
+    position: {x: 806.26227, y: -52.959106, z: 281.22302}
+    eulerAngles: {x: 344.77518, y: 176.42087, z: 221.40323}
+    scale: 0.8429714
+    healthMultiplier: 1
+    driftVelocity: {x: 0.15569256, y: -0.1191646, z: -0.015149521}
+    angularVelocity: {x: -0.054403916, y: 0.0792781, z: 0.015652295}
+  - id: msp0003fbed-11
+    label: Rock_Notched 12
+    asset: {fileID: 11400000, guid: 2e0a328ae5903ed47924ac6507a299c8, type: 2}
+    position: {x: 1160.2227, y: -48.991405, z: -83.264336}
+    eulerAngles: {x: 314.7307, y: 31.176666, z: 192.90805}
+    scale: 0.8174592
+    healthMultiplier: 1
+    driftVelocity: {x: -0.039515886, y: 0.27129352, z: -0.10907887}
+    angularVelocity: {x: -0.045329668, y: -0.08053295, z: 0.021486197}
+  - id: msp0003fbed-12
+    label: Rock_Faceted 13
+    asset: {fileID: 11400000, guid: 97f30d12368b4354bb021a13fb8b6f7b, type: 2}
+    position: {x: 776.69324, y: 51.575096, z: 356.2378}
+    eulerAngles: {x: 287.52042, y: 24.298067, z: 184.17882}
+    scale: 1.5313588
+    healthMultiplier: 1
+    driftVelocity: {x: 0.3216879, y: -0.03701286, z: 0.081267916}
+    angularVelocity: {x: -0.039177116, y: 0.0015443554, z: 0.00910255}
+  - id: msp0003fbed-13
+    label: Rock_Ridged 14
+    asset: {fileID: 11400000, guid: 3bac1ed6ee1aa694b95b561b93639edd, type: 2}
+    position: {x: 742.67773, y: 4.6952415, z: 253.36302}
+    eulerAngles: {x: 210.43445, y: 39.664207, z: 210.4895}
+    scale: 0.6655708
+    healthMultiplier: 1
+    driftVelocity: {x: 0.26240057, y: -0.11612352, z: 0.060674835}
+    angularVelocity: {x: -0.072583064, y: 0.0010625842, z: -0.050706677}
+  - id: msp0003fbed-14
+    label: Rock_Faceted 15
+    asset: {fileID: 11400000, guid: 97f30d12368b4354bb021a13fb8b6f7b, type: 2}
+    position: {x: 523.7014, y: 53.11451, z: -211.11026}
+    eulerAngles: {x: 225.92133, y: 232.35657, z: 183.6689}
+    scale: 1.5036633
+    healthMultiplier: 1
+    driftVelocity: {x: -0.041844048, y: 0.15182848, z: -0.07164801}
+    angularVelocity: {x: 0.05317369, y: 0.018795643, z: -0.061850835}
+  - id: msp0003fbed-15
+    label: Rock_Ridged 16
+    asset: {fileID: 11400000, guid: 3bac1ed6ee1aa694b95b561b93639edd, type: 2}
+    position: {x: 860.6161, y: -55.043983, z: 352.53015}
+    eulerAngles: {x: 348.97418, y: 230.95653, z: 270.78125}
+    scale: 0.6094713
+    healthMultiplier: 1
+    driftVelocity: {x: 0.109479964, y: -0.15421373, z: 0.047550905}
+    angularVelocity: {x: 0.025410024, y: 0.016146403, z: -0.010584635}
+  - id: msp0003fbed-16
+    label: Rock_Faceted 17
+    asset: {fileID: 11400000, guid: 97f30d12368b4354bb021a13fb8b6f7b, type: 2}
+    position: {x: 925.5384, y: 53.802208, z: 190.04889}
+    eulerAngles: {x: 320.43372, y: 186.08443, z: 347.37985}
+    scale: 1.3329953
+    healthMultiplier: 1
+    driftVelocity: {x: 0.20650682, y: -0.068648234, z: 0.06239535}
+    angularVelocity: {x: 0.06503214, y: -0.0365576, z: -0.012437624}
+  - id: msp0003fbed-17
+    label: Rock_Notched 18
+    asset: {fileID: 11400000, guid: 2e0a328ae5903ed47924ac6507a299c8, type: 2}
+    position: {x: 525.079, y: -3.80932, z: -145.49536}
+    eulerAngles: {x: 354.44687, y: 188.40523, z: 358.65936}
+    scale: 0.66404116
+    healthMultiplier: 1
+    driftVelocity: {x: 0.04554097, y: 0.13483272, z: -0.14541613}
+    angularVelocity: {x: 0.033884842, y: 0.04023646, z: 0.004640939}
+  - id: msp0003fbed-18
+    label: Rock_Notched 19
+    asset: {fileID: 11400000, guid: 2e0a328ae5903ed47924ac6507a299c8, type: 2}
+    position: {x: 763.4891, y: 0.20694464, z: -313.12247}
+    eulerAngles: {x: 122.956154, y: 230.8339, z: 357.05475}
+    scale: 0.6283582
+    healthMultiplier: 1
+    driftVelocity: {x: -0.0019792346, y: 0.15832525, z: -0.089065924}
+    angularVelocity: {x: 0.027370216, y: -0.017796205, z: 0.032834042}
+  - id: msp0003fbed-19
+    label: Rock_Faceted 20
+    asset: {fileID: 11400000, guid: 97f30d12368b4354bb021a13fb8b6f7b, type: 2}
+    position: {x: 484.9377, y: -52.50898, z: -161.25612}
+    eulerAngles: {x: 279.97183, y: 194.79442, z: 191.03809}
+    scale: 1.1593568
+    healthMultiplier: 1
+    driftVelocity: {x: -0.0033885615, y: 0.09153368, z: -0.06619015}
+    angularVelocity: {x: -0.061381966, y: -0.06055782, z: -0.023507211}
+  - id: msp0003fbed-20
+    label: Rock_Notched 21
+    asset: {fileID: 11400000, guid: 2e0a328ae5903ed47924ac6507a299c8, type: 2}
+    position: {x: 527.52704, y: -55.626347, z: 334.74576}
+    eulerAngles: {x: 240.0895, y: 165.79868, z: 343.55725}
+    scale: 0.60156804
+    healthMultiplier: 1
+    driftVelocity: {x: -0.00027048407, y: 0.20426926, z: -0.059364557}
+    angularVelocity: {x: 0.014599708, y: 0.034818772, z: 0.06361071}
+  - id: msp0003fbed-21
+    label: Rock_Ridged 22
+    asset: {fileID: 11400000, guid: 3bac1ed6ee1aa694b95b561b93639edd, type: 2}
+    position: {x: 517.7001, y: 48.19708, z: -73.45117}
+    eulerAngles: {x: 156.5586, y: 149.30922, z: 36.681976}
+    scale: 0.46588072
+    healthMultiplier: 1
+    driftVelocity: {x: -0.012476945, y: 0.09075687, z: -0.13651042}
+    angularVelocity: {x: -0.027014352, y: 0.069074266, z: 0.0023525925}
+  - id: msp0003fbed-22
+    label: Rock_Notched 23
+    asset: {fileID: 11400000, guid: 2e0a328ae5903ed47924ac6507a299c8, type: 2}
+    position: {x: 1066.9874, y: -49.80237, z: -125.55394}
+    eulerAngles: {x: 339.053, y: 125.09567, z: 88.56549}
+    scale: 0.5535273
+    healthMultiplier: 1
+    driftVelocity: {x: -0.0350056, y: 0.3409735, z: -0.17692308}
+    angularVelocity: {x: 0.013519438, y: 0.03345253, z: -0.010235555}
+  - id: msp0003fbed-23
+    label: Rock_Ridged 24
+    asset: {fileID: 11400000, guid: 3bac1ed6ee1aa694b95b561b93639edd, type: 2}
+    position: {x: 557.14685, y: -5.0714564, z: -203.15044}
+    eulerAngles: {x: 195.0612, y: 125.313576, z: 177.66045}
+    scale: 0.45385846
+    healthMultiplier: 1
+    driftVelocity: {x: 0.0850205, y: 0.30772167, z: -0.1844643}
+    angularVelocity: {x: -0.07919926, y: 0.0071940906, z: 0.0037146113}
+  - id: msp0003fbed-24
+    label: Rock_Notched 25
+    asset: {fileID: 11400000, guid: 2e0a328ae5903ed47924ac6507a299c8, type: 2}
+    position: {x: 1128.9052, y: 48.33925, z: -131.22786}
+    eulerAngles: {x: 184.1973, y: 87.48012, z: 97.083046}
+    scale: 0.53235275
+    healthMultiplier: 1
+    driftVelocity: {x: -0.0398256, y: 0.0990112, z: -0.15327762}
+    angularVelocity: {x: -0.039258547, y: 0.011831641, z: -0.003938326}
+  - id: msp0003fbed-25
+    label: Rock_Notched 26
+    asset: {fileID: 11400000, guid: 2e0a328ae5903ed47924ac6507a299c8, type: 2}
+    position: {x: 613.56885, y: -50.284695, z: -163.63243}
+    eulerAngles: {x: 340.68713, y: 342.39554, z: 61.397266}
+    scale: 0.5313368
+    healthMultiplier: 1
+    driftVelocity: {x: -0.03808479, y: 0.12064375, z: -0.052134465}
+    angularVelocity: {x: -0.046165805, y: -0.022925952, z: -0.016346835}
+  - id: msp0003fbed-26
+    label: Rock_Notched 27
+    asset: {fileID: 11400000, guid: 2e0a328ae5903ed47924ac6507a299c8, type: 2}
+    position: {x: 815.60565, y: 9.904064, z: 343.61603}
+    eulerAngles: {x: 131.18858, y: 62.170063, z: 274.87}
+    scale: 0.5297045
+    healthMultiplier: 1
+    driftVelocity: {x: 0.10967048, y: -0.077267475, z: 0.062990166}
+    angularVelocity: {x: 0.017084332, y: -0.075364575, z: -0.018252544}
+  - id: msp0003fbed-27
+    label: Rock_Notched 28
+    asset: {fileID: 11400000, guid: 2e0a328ae5903ed47924ac6507a299c8, type: 2}
+    position: {x: 527.75824, y: 46.70768, z: -144.62582}
+    eulerAngles: {x: 321.1982, y: 6.7768264, z: 29.74454}
+    scale: 0.51731384
+    healthMultiplier: 1
+    driftVelocity: {x: 0.036335595, y: 0.12870574, z: -0.08550206}
+    angularVelocity: {x: 0.06727463, y: -0.041588962, z: 0.035753734}
+  - id: msp0003fbed-28
+    label: Rock_Notched 29
+    asset: {fileID: 11400000, guid: 2e0a328ae5903ed47924ac6507a299c8, type: 2}
+    position: {x: 764.7352, y: -50.97782, z: 218.54074}
+    eulerAngles: {x: 353.50912, y: 228.51828, z: 17.57231}
+    scale: 0.5151967
+    healthMultiplier: 1
+    driftVelocity: {x: 0.15394552, y: -0.047222815, z: 0.036892097}
+    angularVelocity: {x: 0.03688087, y: -0.023683626, z: -0.05682077}
+  - id: msp0003fbed-29
+    label: Debris_FracturedChunk 30
+    asset: {fileID: 11400000, guid: b7b783f50e33c0e49ba31bad3d2eecfe, type: 2}
+    position: {x: 916.9514, y: 51.00072, z: 248.31174}
+    eulerAngles: {x: 240.85773, y: 127.71278, z: 248.84909}
+    scale: 1.8450646
+    healthMultiplier: 1
+    driftVelocity: {x: 0.23474537, y: -0.15497445, z: 0.06783104}
+    angularVelocity: {x: 0.03271544, y: -0.037652694, z: 0.046942376}
+  - id: msp0003fbed-30
+    label: Rock_Notched 31
+    asset: {fileID: 11400000, guid: 2e0a328ae5903ed47924ac6507a299c8, type: 2}
+    position: {x: 1123.31, y: -6.32326, z: -59.794548}
+    eulerAngles: {x: 172.62474, y: 199.15666, z: 225.0241}
+    scale: 0.5020914
+    healthMultiplier: 1
+    driftVelocity: {x: -0.01818929, y: 0.15968788, z: -0.21515562}
+    angularVelocity: {x: -0.031034617, y: 0.004911554, z: 0.057144694}
+  - id: msp0003fbed-31
+    label: Rock_Notched 32
+    asset: {fileID: 11400000, guid: 2e0a328ae5903ed47924ac6507a299c8, type: 2}
+    position: {x: 1054.1597, y: 29.489855, z: -182.55869}
+    eulerAngles: {x: 192.08585, y: 82.12937, z: 127.18619}
+    scale: 0.49814063
+    healthMultiplier: 1
+    driftVelocity: {x: 0.008724078, y: 0.27057606, z: -0.13120127}
+    angularVelocity: {x: -0.014651208, y: -0.030090742, z: 0.042353116}
+  - id: msp0003fbed-32
+    label: Rock_Notched 33
+    asset: {fileID: 11400000, guid: 2e0a328ae5903ed47924ac6507a299c8, type: 2}
+    position: {x: 633.0184, y: -49.88982, z: -232.27777}
+    eulerAngles: {x: 299.3343, y: 130.8615, z: 134.14413}
+    scale: 0.49433234
+    healthMultiplier: 1
+    driftVelocity: {x: -0.12243852, y: 0.15697657, z: -0.19342229}
+    angularVelocity: {x: -0.017821949, y: 0.027552709, z: -0.014480105}
+  - id: msp0003fbed-33
+    label: Rock_Faceted 34
+    asset: {fileID: 11400000, guid: 97f30d12368b4354bb021a13fb8b6f7b, type: 2}
+    position: {x: 778.98694, y: 7.077117, z: 299.96152}
+    eulerAngles: {x: 114.47136, y: 48.532963, z: 254.07411}
+    scale: 0.9165147
+    healthMultiplier: 1
+    driftVelocity: {x: 0.25404602, y: -0.1293414, z: 0.15361673}
+    angularVelocity: {x: 0.002669807, y: -0.07485459, z: 0.009519093}
+  - id: msp0003fbed-34
+    label: Rock_Notched 35
+    asset: {fileID: 11400000, guid: 2e0a328ae5903ed47924ac6507a299c8, type: 2}
+    position: {x: 825.12897, y: -47.455505, z: 129.24883}
+    eulerAngles: {x: 99.58473, y: 318.6791, z: 8.900814}
+    scale: 0.48651674
+    healthMultiplier: 1
+    driftVelocity: {x: 0.31208828, y: -0.035818443, z: 0.065981686}
+    angularVelocity: {x: -0.0278937, y: 0.05091962, z: -0.06760918}
+  - id: msp0003fbed-35
+    label: Rock_Faceted 36
+    asset: {fileID: 11400000, guid: 97f30d12368b4354bb021a13fb8b6f7b, type: 2}
+    position: {x: 1099.6508, y: -52.831394, z: -239.23262}
+    eulerAngles: {x: 135.33731, y: 148.49199, z: 289.42923}
+    scale: 0.9103933
+    healthMultiplier: 1
+    driftVelocity: {x: 0.04055127, y: 0.11413869, z: -0.08764186}
+    angularVelocity: {x: 0.018347014, y: -0.031832013, z: -0.02162736}
+  - id: msp0003fbed-36
+    label: Rock_Notched 37
+    asset: {fileID: 11400000, guid: 2e0a328ae5903ed47924ac6507a299c8, type: 2}
+    position: {x: 619.1967, y: 50.105064, z: -86.5811}
+    eulerAngles: {x: 269.95383, y: 295.22424, z: 247.15825}
+    scale: 0.47548196
+    healthMultiplier: 1
+    driftVelocity: {x: -0.005768665, y: 0.22330004, z: -0.30995786}
+    angularVelocity: {x: 0.033923566, y: 0.013256909, z: -0.032090046}
+  - id: msp0003fbed-37
+    label: Debris_AngledShard 38
+    asset: {fileID: 11400000, guid: 0612a89f0d6ee6b45b58a0b5e4aaf934, type: 2}
+    position: {x: 522.58325, y: -1.5554886, z: -265.29895}
+    eulerAngles: {x: 356.96832, y: 48.110977, z: 346.12936}
+    scale: 1.9481483
+    healthMultiplier: 1
+    driftVelocity: {x: -0.03993259, y: 0.29836187, z: -0.23894785}
+    angularVelocity: {x: -0.020569036, y: 0.039761737, z: 0.023171538}
+  - id: msp0003fbed-38
+    label: Rock_Faceted 39
+    asset: {fileID: 11400000, guid: 97f30d12368b4354bb021a13fb8b6f7b, type: 2}
+    position: {x: 548.04034, y: -52.0683, z: -127.103386}
+    eulerAngles: {x: 323.2525, y: 307.0847, z: 109.283195}
+    scale: 0.8519275
+    healthMultiplier: 1
+    driftVelocity: {x: -0.022096746, y: 0.10202397, z: -0.08015661}
+    angularVelocity: {x: 0.027223442, y: 0.006474737, z: 0.045701437}
+  - id: msp0003fbed-39
+    label: Rock_Notched 40
+    asset: {fileID: 11400000, guid: 2e0a328ae5903ed47924ac6507a299c8, type: 2}
+    position: {x: 621.6866, y: -56.572544, z: -59.523743}
+    eulerAngles: {x: 272.24863, y: 252.54855, z: 136.49043}
+    scale: 0.45092845
+    healthMultiplier: 1
+    driftVelocity: {x: -0.044508316, y: 0.15737744, z: -0.073042996}
+    angularVelocity: {x: -0.03472647, y: -0.042047046, z: -0.0008673457}
+  - id: msp0003fbed-40
+    label: Rock_Faceted 41
+    asset: {fileID: 11400000, guid: 97f30d12368b4354bb021a13fb8b6f7b, type: 2}
+    position: {x: 802.068, y: 54.033115, z: 307.22195}
+    eulerAngles: {x: 34.503143, y: 99.07533, z: 174.55405}
+    scale: 0.8163396
+    healthMultiplier: 1
+    driftVelocity: {x: 0.25985324, y: -0.06649643, z: 0.005576647}
+    angularVelocity: {x: -0.010709806, y: -0.02149818, z: -0.04303915}
+  - id: msp0003fbed-41
+    label: Rock_Faceted 42
+    asset: {fileID: 11400000, guid: 97f30d12368b4354bb021a13fb8b6f7b, type: 2}
+    position: {x: 807.6567, y: 10.075713, z: 237.84377}
+    eulerAngles: {x: 186.66605, y: 252.93204, z: 64.7137}
+    scale: 0.8095526
+    healthMultiplier: 1
+    driftVelocity: {x: 0.3043932, y: -0.073246576, z: -0.009702799}
+    angularVelocity: {x: 0.005781366, y: -0.051497605, z: -0.02338115}
+  - id: msp0003fbed-42
+    label: Rock_Faceted 43
+    asset: {fileID: 11400000, guid: 97f30d12368b4354bb021a13fb8b6f7b, type: 2}
+    position: {x: 1109.9607, y: -12.640213, z: -20.268936}
+    eulerAngles: {x: 307.94244, y: 83.94336, z: 297.56113}
+    scale: 0.8040587
+    healthMultiplier: 1
+    driftVelocity: {x: 0.0040850607, y: 0.22889851, z: -0.21110189}
+    angularVelocity: {x: 0.020225642, y: -0.078243, z: -0.046491526}
+  - id: msp0003fbed-43
+    label: Debris_FracturedChunk 44
+    asset: {fileID: 11400000, guid: b7b783f50e33c0e49ba31bad3d2eecfe, type: 2}
+    position: {x: 557.75385, y: 52.94718, z: -266.95483}
+    eulerAngles: {x: 264.1366, y: 82.36319, z: 134.14343}
+    scale: 1.4271165
+    healthMultiplier: 1
+    driftVelocity: {x: -0.03630085, y: 0.12685561, z: -0.26509172}
+    angularVelocity: {x: -0.033843726, y: -0.02748405, z: 0.023327403}
+  - id: msp0003fbed-44
+    label: Rock_Faceted 45
+    asset: {fileID: 11400000, guid: 97f30d12368b4354bb021a13fb8b6f7b, type: 2}
+    position: {x: 1204.4282, y: -52.265312, z: -222.23576}
+    eulerAngles: {x: 312.7364, y: 311.82397, z: 222.44598}
+    scale: 0.7153844
+    healthMultiplier: 1
+    driftVelocity: {x: -0.10571829, y: 0.22588852, z: -0.28567868}
+    angularVelocity: {x: -0.09040153, y: -0.011095947, z: -0.016762681}
+  - id: msp0003fbed-45
+    label: Rock_Faceted 46
+    asset: {fileID: 11400000, guid: 97f30d12368b4354bb021a13fb8b6f7b, type: 2}
+    position: {x: 447.49066, y: -3.8606505, z: -118.63301}
+    eulerAngles: {x: 164.15656, y: 253.11385, z: 207.19427}
+    scale: 0.66085297
+    healthMultiplier: 1
+    driftVelocity: {x: -0.029710464, y: 0.25282586, z: -0.28313637}
+    angularVelocity: {x: -0.0051364065, y: -0.029989304, z: -0.01805677}
+  - id: msp0003fbed-46
+    label: Debris_FracturedChunk 47
+    asset: {fileID: 11400000, guid: b7b783f50e33c0e49ba31bad3d2eecfe, type: 2}
+    position: {x: 1108.2717, y: 49.191288, z: -71.53023}
+    eulerAngles: {x: 161.8731, y: 345.3975, z: 82.42407}
+    scale: 1.2494266
+    healthMultiplier: 1
+    driftVelocity: {x: 0.0070989295, y: 0.22524595, z: -0.14769791}
+    angularVelocity: {x: -0.07153526, y: 0.024477033, z: -0.015479468}
+  - id: msp0003fbed-47
+    label: Debris_FracturedChunk 48
+    asset: {fileID: 11400000, guid: b7b783f50e33c0e49ba31bad3d2eecfe, type: 2}
+    position: {x: 808.8287, y: -54.48964, z: 341.857}
+    eulerAngles: {x: 33.631447, y: 12.088158, z: 134.0801}
+    scale: 1.24084
+    healthMultiplier: 1
+    driftVelocity: {x: 0.22110887, y: -0.13362841, z: 0.009721325}
+    angularVelocity: {x: 0.040298384, y: 0.018158691, z: -0.0074828104}
+  - id: msp0003fbed-48
+    label: Debris_FracturedChunk 49
+    asset: {fileID: 11400000, guid: b7b783f50e33c0e49ba31bad3d2eecfe, type: 2}
+    position: {x: 559.1245, y: -49.677647, z: -176.33946}
+    eulerAngles: {x: 253.61908, y: 285.9756, z: 79.64811}
+    scale: 1.1937125
+    healthMultiplier: 1
+    driftVelocity: {x: -0.090248324, y: 0.14490743, z: -0.2267885}
+    angularVelocity: {x: 0.062381472, y: -0.039337505, z: -0.002059145}
+  - id: msp0003fbed-49
+    label: Debris_FracturedChunk 50
+    asset: {fileID: 11400000, guid: b7b783f50e33c0e49ba31bad3d2eecfe, type: 2}
+    position: {x: 498.35715, y: 49.175285, z: -118.20399}
+    eulerAngles: {x: 38.094406, y: 54.16348, z: 301.47256}
+    scale: 1.1786913
+    healthMultiplier: 1
+    driftVelocity: {x: 0.051093288, y: 0.34496427, z: -0.16272068}
+    angularVelocity: {x: -0.044342913, y: 0.03720625, z: -0.025464047}
+  - id: msp0003fbed-50
+    label: Rock_Faceted 51
+    asset: {fileID: 11400000, guid: 97f30d12368b4354bb021a13fb8b6f7b, type: 2}
+    position: {x: 828.4722, y: 52.004543, z: 347.12494}
+    eulerAngles: {x: 62.073418, y: 122.552986, z: 65.31842}
+    scale: 0.59446704
+    healthMultiplier: 1
+    driftVelocity: {x: 0.16527188, y: -0.12792064, z: 0.030204244}
+    angularVelocity: {x: -0.058219068, y: -0.03207034, z: -0.037581887}
+  - id: msp0003fbed-51
+    label: Debris_FracturedChunk 52
+    asset: {fileID: 11400000, guid: b7b783f50e33c0e49ba31bad3d2eecfe, type: 2}
+    position: {x: 1049.8726, y: -12.334437, z: -119.96573}
+    eulerAngles: {x: 293.23743, y: 359.3676, z: 29.019678}
+    scale: 0.9989483
+    healthMultiplier: 1
+    driftVelocity: {x: 0.050785158, y: 0.36664757, z: -0.12599513}
+    angularVelocity: {x: 0.025265554, y: 0.019818055, z: 0.011136625}
+  - id: msp0003fbed-52
+    label: Debris_AngledShard 53
+    asset: {fileID: 11400000, guid: 0612a89f0d6ee6b45b58a0b5e4aaf934, type: 2}
+    position: {x: 1216.4856, y: -49.024315, z: -188.39513}
+    eulerAngles: {x: 50.274532, y: 203.8558, z: 27.553797}
+    scale: 1.0699902
+    healthMultiplier: 1
+    driftVelocity: {x: 0.025169244, y: 0.34229714, z: -0.09246441}
+    angularVelocity: {x: 0.053770483, y: -0.021123536, z: 0.008031782}
+  - id: msp0003fbed-53
+    label: Debris_AngledShard 54
+    asset: {fileID: 11400000, guid: 0612a89f0d6ee6b45b58a0b5e4aaf934, type: 2}
+    position: {x: 1197.6317, y: 55.006153, z: -214.65112}
+    eulerAngles: {x: 122.47138, y: 230.53232, z: 268.64987}
+    scale: 1.0368028
+    healthMultiplier: 1
+    driftVelocity: {x: -0.0232133, y: 0.104406714, z: -0.16070567}
+    angularVelocity: {x: -0.018885864, y: -0.002203485, z: -0.02845472}
+  - id: msp0003fbed-54
+    label: Debris_FracturedChunk 55
+    asset: {fileID: 11400000, guid: b7b783f50e33c0e49ba31bad3d2eecfe, type: 2}
+    position: {x: 505.9651, y: -0.19035387, z: -196.01418}
+    eulerAngles: {x: 202.59781, y: 207.45424, z: 287.43317}
+    scale: 0.79242516
+    healthMultiplier: 1
+    driftVelocity: {x: -0.021170478, y: 0.08700475, z: -0.09378412}
+    angularVelocity: {x: -0.03721868, y: 0.0066774995, z: 0.07800058}
+  - id: msp0003fbed-55
+    label: Debris_AngledShard 56
+    asset: {fileID: 11400000, guid: 0612a89f0d6ee6b45b58a0b5e4aaf934, type: 2}
+    position: {x: 1160.0912, y: -5.0556765, z: -94.79176}
+    eulerAngles: {x: 91.29394, y: 31.53325, z: 190.07251}
+    scale: 0.765532
+    healthMultiplier: 1
+    driftVelocity: {x: 0.028609768, y: 0.22134504, z: -0.25864598}
+    angularVelocity: {x: -0.0030378182, y: 0.08586962, z: -0.026321674}

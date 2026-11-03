@@ -1,0 +1,90 @@
+{
+  "status": "completed",
+  "duration": 40.15,
+  "summary": {
+    "total": 11,
+    "passed": 11,
+    "failed": 0,
+    "skipped": 0,
+    "inconclusive": 0
+  },
+  "results": [
+    {
+      "FullName": "Starframe.Tests.AppFlowTests.CompletedOperationReportKeepsTheBlueprintAndPreparesThroughValidationAgain",
+      "Status": "Passed",
+      "Duration": 1.1814594,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.AppFlowTests.DeploymentEditorGroupsAndSettingsRoundTripKeepsOriginalOperationAndDraft",
+      "Status": "Passed",
+      "Duration": 2.7430801,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.AppFlowTests.DeploymentRevalidatesDifficultyAndKeepsConfirmedSnapshotImmutable",
+      "Status": "Passed",
+      "Duration": 0.6960698,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.AppFlowTests.FailedWeaponGroupWriteRetainsTheSameDirtyDraftAndCanBeRetried",
+      "Status": "Passed",
+      "Duration": 0.6029521,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.AppFlowTests.HomeBootShowsIndependentCurrentShipInActualThreeDimensionalPreview",
+      "Status": "Passed",
+      "Duration": 0.5657544,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.AppFlowTests.HomeEditorAndReturnPreserveUnsavedGeometryAndWeaponAssignments",
+      "Status": "Passed",
+      "Duration": 1.2475196,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.AppFlowTests.IndividualWeaponAssignmentAppliesAndSurvivesImportExportAndRepository",
+      "Status": "Passed",
+      "Duration": 0.8281292,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.AppFlowTests.NumberKeysToggleWeaponGroupsOnceAndHudShowsTheSelection",
+      "Status": "Passed",
+      "Duration": 14.8546016,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.AppFlowTests.RangeLaunchUsesTheVisibleTargetSelectionFromTheWorkspaceRepository",
+      "Status": "Passed",
+      "Duration": 14.6003483,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.AppFlowTests.RangeReadinessWarningCanReturnToAssemblyWithoutLaunching",
+      "Status": "Passed",
+      "Duration": 1.0991548,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.AppFlowTests.SettingsLocaleChangesLabelsAndFontsAndReturnsWithoutSavingPreferences",
+      "Status": "Passed",
+      "Duration": 1.7034615,
+      "Message": null,
+      "StackTrace": null
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "success": true,
+  "command": "command eval",
+  "data": {
+    "command": "eval",
+    "parameters": {
+      "code": "var w=UnityEditor.EditorWindow.GetWindow<Starframe.EditorTools.SpaceMapStudioWindow>(); var flags=System.Reflection.BindingFlags.Instance|System.Reflection.BindingFlags.NonPublic; var root=(UnityEngine.GameObject)w.GetType().GetField(\"previewRoot\",flags).GetValue(w); var bodies=root.GetComponentsInChildren<Starframe.Maps.VoxelStructureRuntime>(); if(bodies.Length!=21)throw new System.Exception(\"Map preview did not recover after Stop.\"); int invalid=0,users=0;var cache=(System.Collections.IDictionary)typeof(Starframe.Maps.VoxelTemplateCache).GetField(\"cache\",System.Reflection.BindingFlags.Static|System.Reflection.BindingFlags.NonPublic).GetValue(null);foreach(System.Collections.DictionaryEntry e in cache){var t=(Starframe.Maps.VoxelTemplateCache.Template)e.Value;if(!t.mesh)invalid++;users+=t.users;} if(invalid>0)throw new System.Exception(\"A dead cached mesh remains.\"); if(w.hasUnsavedChanges)throw new System.Exception(\"Do not close a window with unsaved changes.\"); var position=w.position;bool maximized=w.maximized;w.Close();int remaining=cache.Count;Starframe.EditorTools.SpaceMapStudioWindow.Open();w=UnityEditor.EditorWindow.GetWindow<Starframe.EditorTools.SpaceMapStudioWindow>();w.position=position;w.maximized=maximized;w.OpenMap(UnityEditor.AssetDatabase.LoadAssetAtPath<Starframe.Maps.SpaceMapDefinition>(\"Assets/_Starframe/Maps/Layouts/MapWorkshopDemo.asset\"));w.CapturePreview(\"Documentation/MapStudioFix-2026-10-24/MapAfterReopen.png\");return new{afterStopInstances=bodies.Length,invalidCachedMeshes=invalid,previewOwners=users,cacheEntriesAfterClosing=remaining,reopened=true};"
+    },
+    "result": {
+      "output": null,
+      "diagnostics": [],
+      "success": true,
+      "result": {
+        "afterStopInstances": 21,
+        "invalidCachedMeshes": 0,
+        "previewOwners": 21,
+        "cacheEntriesAfterClosing": 0,
+        "reopened": true
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7801,
+      "projectPath": "D:\\software\\unity\\CGDD26107"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

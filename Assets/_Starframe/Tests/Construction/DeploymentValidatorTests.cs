@@ -101,6 +101,22 @@ namespace Starframe.Construction.Tests
             Assert.That(core.cost, Is.Zero); Assert.That(gun.cost, Is.Zero);
         }
 
+        [Test] public void IntentionalFreeHullIsNeverProvisionalAndArmorRetainsItsPrice()
+        {
+            var hull=database.modules.Find(d=>d.shape==BlockShape.Cube);hull.cost=0;
+            var armor=Own(ScriptableObject.CreateInstance<ModuleDefinition>());
+            armor.shape=BlockShape.Armor1;armor.category=ModuleCategory.Shield;armor.cost=20;
+            armor.massKg=10;armor.occupiedCells=new[]{Vector3Int.zero};database.modules.Add(armor);
+            mission.useProvisionalPricing=true;mission.unpricedPartCost=10;
+            var blueprint=Ship(Part("hull",BlockShape.Cube,-1,0,0),Part("armor",BlockShape.Armor1,1,0,0));
+            var report=Validate(blueprint);
+            Assert.That(report.IsValid,Is.True);
+            Assert.That(mission.CostFor(hull),Is.Zero);Assert.That(mission.CostFor(armor),Is.EqualTo(20));
+            Assert.That(report.Cost,Is.EqualTo(database.Get(BlockShape.Core).cost+armor.cost));
+            Assert.That(report.ProvisionalParts,Is.Zero);
+            Assert.That(Has(report.Warnings,"deploy.warning.provisionalCosts"),Is.False);
+        }
+
         [TestCase(0f)] [TestCase(-1f)] [TestCase(float.NaN)] [TestCase(float.PositiveInfinity)]
         public void EnabledProvisionalPricingRequiresAFinitePositiveRate(float rate)
         {

@@ -1,0 +1,232 @@
+{
+  "version": "terrain-tested-source-manifest/1",
+  "generatedUtc": "2026-11-01T11:52:40.656064+00:00",
+  "unityVersion": "6000.3.25f1",
+  "testTotal": 93,
+  "testPassed": 93,
+  "note": "File identities of the frozen runtime, tests, measured profiler tools/bundle and compiled Unity assemblies. Not a Player-build or realtime performance certification.",
+  "files": [
+    {
+      "path": "Assets/_Starframe/Scripts/Runtime/Construction/Maps/SpaceMapDefinition.cs",
+      "bytes": 2893,
+      "sha256": "6BAE8DE8C6BA0B0EB376E93AFCDA325B531B71844F6068FD445587F975AE0C33"
+    },
+    {
+      "path": "Assets/_Starframe/Scripts/Runtime/Construction/Maps/VoxelBodyHitbox.cs",
+      "bytes": 4599,
+      "sha256": "46E78D4B497A9615C21B0358553351CB297955C574285EAD0F85A82CAFB61C24"
+    },
+    {
+      "path": "Assets/_Starframe/Scripts/Runtime/Construction/Maps/MapSandboxCamera.cs",
+      "bytes": 4128,
+      "sha256": "E7A0F50AAFCF43FA28B80E28E351BA7E4B3C0F47BE0D54B35BB06980371DB84A"
+    },
+    {
+      "path": "Assets/_Starframe/Scripts/Runtime/Construction/Maps/VoxelModelPartition.cs",
+      "bytes": 5285,
+      "sha256": "B6E6EC7A289798C0368440083D27FF6D59B8F51DA2E57EED8DB028F7E9A92135"
+    },
+    {
+      "path": "Assets/_Starframe/Scripts/Runtime/Construction/Maps/VoxelAssetDefinition.cs",
+      "bytes": 4970,
+      "sha256": "03CA11DE9A27064BA2CC1A378C86CDCE2EF5724907590226B91CA6525F3A48F1"
+    },
+    {
+      "path": "Assets/_Starframe/Scripts/Runtime/Construction/Maps/VoxelAuthoring.cs",
+      "bytes": 5389,
+      "sha256": "4F1907B08665844BE51D74CBD4328146A74C6AC28BCA781DE8B204FC7BFE998A"
+    },
+    {
+      "path": "Assets/_Starframe/Scripts/Runtime/Construction/Maps/VoxelTerrainTopology.cs",
+      "bytes": 5698,
+      "sha256": "4AB329B7A3A0AEBD829E496F9911B59132100DFEEE17091305596FCEC2CD406A"
+    },
+    {
+      "path": "Assets/_Starframe/Scripts/Runtime/Construction/Maps/VoxelDetachedVisualFragments.cs",
+      "bytes": 12230,
+      "sha256": "8158B386055652328B54C152B4AB2CD16D6928608F95A8173888ED64254E6715"
+    },
+    {
+      "path": "Assets/_Starframe/Scripts/Runtime/Construction/Maps/SpaceMapRuntime.cs",
+      "bytes": 2222,
+      "sha256": "B0D0541245E019D7563D8F03C0F493B1A8081B7876906CE4BCD0B3E40E71923D"
+    },
+    {
+      "path": "Assets/_Starframe/Scripts/Runtime/Construction/Maps/VoxelGeometry.cs",
+      "bytes": 7715,
+      "sha256": "F996DD55BA6CC2935887B10EB59106B84672DC823251B46C2FE5AC41177F920E"
+    },
+    {
+      "path": "Assets/_Starframe/Scripts/Runtime/Construction/Maps/VoxelHullAppearance.cs",
+      "bytes": 11302,
+      "sha256": "89596CC6B5021EAF5EF333299B73C8B5DDA2A1DDA8330E9CE249A7562E6D07D5"
+    },
+    {
+      "path": "Assets/_Starframe/Scripts/Runtime/Construction/Maps/VoxelTerrainColliders.cs",
+      "bytes": 9468,
+      "sha256": "1D91672ED7E462F3AFBAE6B3680B470A0AE81F4EC71EEF5CCAE034A517EA9341"
+    },
+    {
+      "path": "Assets/_Starframe/Scripts/Runtime/Construction/Maps/VoxelTemplateCache.cs",
+      "bytes": 4660,
+      "sha256": "F922B82A76C2C49B71C6D5C9F28ED8931BBDF76B1D0AE387E3121CF3589FC841"
+    },
+    {
+      "path": "Assets/_Starframe/Scripts/Runtime/Construction/Maps/VoxelStructureRuntime.cs",
+      "bytes": 28827,
+      "sha256": "C4DEB6DFAB71A04E7A2AA1A9C81FAA67867D4A17F5C472F69C11F7459AFCF498"
+    },
+    {
+      "path": "Assets/_Starframe/Scripts/Runtime/Construction/Maps/VoxelTerrainRenderChunks.cs",
+      "bytes": 16221,
+      "sha256": "F3F07A18764955788065878DB3674C5D06DB02992EC81BDDAE2D38E8E9A07905"
+    },
+    {
+      "path": "Assets/_Starframe/Tests/Construction/VoxelMapTests.cs",
+      "bytes": 10502,
+      "sha256": "43571C78DF7476F32C0DA5134EBC09F1F7D1057AB899EB93A26E9367C0CB7879"
+    },
+    {
+      "path": "Assets/_Starframe/Tests/Construction/VoxelHullAppearanceTests.cs",
+      "bytes": 8992,
+      "sha256": "14CDF1C2411140BE0AF0F43CE8C421AC392282C9FF75A99FDACA439EB033978B"
+    },
+    {
+      "path": "Assets/_Starframe/Tests/Construction/VoxelTerrainTopologyColliderTests.cs",
+      "bytes": 12387,
+      "sha256": "D024E0F18333810125049450E6E6AC4C5F667A6AF5C4740A7F459BC966BECFD1"
+    },
+    {
+      "path": "Assets/_Starframe/Tests/Construction/VoxelTerrainRenderEquivalenceTests.cs",
+      "bytes": 54509,
+      "sha256": "0E62AB87834E0A29070E188A4752CC49FD77D3D160A95AFDC3A023F798CA44BC"
+    },
+    {
+      "path": "Assets/_Starframe/Tests/Construction/VoxelTerrainRuntimeSafetyTests.cs",
+      "bytes": 16968,
+      "sha256": "E7BD5F7CDC45AFBC89D3D7074DA8212A13A30CA65385DB1D388AA95DABD77149"
+    },
+    {
+      "path": "Assets/_Starframe/Tests/Construction/VoxelDetachedVisualFragmentsTests.cs",
+      "bytes": 42157,
+      "sha256": "2B781707D609D2D2D8B91FF3216C6C4824ED0F04624D534D009A2CA04D90E403"
+    },
+    {
+      "path": "Assets/_Starframe/Tests/Construction/VoxelTerrainPerformanceTests.cs",
+      "bytes": 50768,
+      "sha256": "3930A94D10A88647386B60E1ABB08CEE6DEDE8D28211E6471B80AA909A83A198"
+    },
+    {
+      "path": "Assets/_Starframe/Scripts/Editor/Maps/VoxelPreviewInstances.cs",
+      "bytes": 5485,
+      "sha256": "4E72465CA3B1B50E0EA3155B6CF931DE34A1428AC82F3AB0FA95F617734761DF"
+    },
+    {
+      "path": "Assets/_Starframe/Scripts/Editor/Maps/SpaceMapStudioViewport.cs",
+      "bytes": 24719,
+      "sha256": "B5239C14B11C5181751D0C567DB29BD2FBF5969752EDFBC71D22CFF926B03BD9"
+    },
+    {
+      "path": "Assets/_Starframe/Tests/Construction/Fixtures/TerrainTestStaging.unity",
+      "bytes": 3539,
+      "sha256": "2DAB5017419A2EE28505C5594DA8F22A492895F3AE30DD8AFC70A6A0C52DDC1A"
+    },
+    {
+      "path": "Library/ScriptAssemblies/Starframe.Construction.dll",
+      "bytes": 510976,
+      "sha256": "55AC03A8D8E04E4B0414D90B07DC00CCCC47BB0E4C9AEAF0AD358449378D1B76"
+    },
+    {
+      "path": "Library/ScriptAssemblies/Starframe.Construction.Tests.dll",
+      "bytes": 345600,
+      "sha256": "F53D5F5E5BFB6E2E2369D13F058163D91769ED86AFEE142E2228A88A40E2C042"
+    },
+    {
+      "path": "tools/TerrainPerformance/Baseline.cs",
+      "bytes": 642,
+      "sha256": "3164A5936702F30182550765575D59A0C292A6FDA01E091585718C671225B1A4"
+    },
+    {
+      "path": "tools/TerrainPerformance/OptimizedMatch.cs",
+      "bytes": 9377,
+      "sha256": "7BBB4DCC4DFF5CFB4DA502AE759EB162F49438274B38BE407E51006007988011"
+    },
+    {
+      "path": "tools/TerrainPerformance/Performance.cs",
+      "bytes": 115309,
+      "sha256": "20394F9BCE0637221467A5BA35F657D425E75407C2C2F3BAB4849E6F0D81A5AA"
+    },
+    {
+      "path": "tools/TerrainPerformance/Bundle.py",
+      "bytes": 1044,
+      "sha256": "B8ECF628ECAEE3D9270AE027E0B74C8FC134E60473B63F8004BCFC9C7E06057D"
+    },
+    {
+      "path": "tools/TerrainPerformance/Summarize.py",
+      "bytes": 130219,
+      "sha256": "74D6A53EE377DACB6E590F8BC2B761FF8572F858BA80338DBA1D94C26DC941D2"
+    },
+    {
+      "path": "tools/MiningStationRound2/Verification.cs",
+      "bytes": 163776,
+      "sha256": "38781837AF5D8158CFE2FE121856B54C509D56E65288F0CC8AF5E4EE6333C0E6"
+    },
+    {
+      "path": "Temp/TerrainPerformance/TerrainPerformance.cs",
+      "bytes": 429351,
+      "sha256": "21D5B23BBEE3F91015D77571CEAC2BB2669A13820E9ACE6BC4AFED07B4721780"
+    },
+    {
+      "path": "ProjectSettings/ProjectVersion.txt",
+      "bytes": 85,
+      "sha256": "4A18B4936A9F83EC28B32CF336E6F62F6B00DDF12A48C792FEAC779ADD1380F3"
+    }
+  ],
+  "reports": [
+    {
+      "path": "Documentation/TerrainPerformance-2026-11-01/tests/voxel-editmode.json",
+      "bytes": 53808,
+      "sha256": "A658E9B5D041A92982B9A46273CBFCAD485D96F6FBDBD412CC0F7E0CB6E7BB19"
+    },
+    {
+      "path": "Documentation/TerrainPerformance-2026-11-01/optimized/report.json",
+      "bytes": 2433394,
+      "sha256": "B81A48FC95121D2173496C4E8C934812A07AB7BE2BFA68CAAD5A21115C3F578A"
+    },
+    {
+      "path": "Documentation/TerrainPerformance-2026-11-01/prewarm-audit.json",
+      "bytes": 4163,
+      "sha256": "A102805169403AA0E0E63515EA9C7B448453BEB6E57E3B721E87D59A96A64307"
+    },
+    {
+      "path": "Documentation/TerrainPerformance-2026-11-01/matched-cache-lease-audit.json",
+      "bytes": 1440,
+      "sha256": "076BEBD899EE16450824560A35279C1924F345903EA9A30B3415A44C3E6F6302"
+    },
+    {
+      "path": "Documentation/TerrainPerformance-2026-11-01/optimized-matched/run-0.json",
+      "bytes": 35358,
+      "sha256": "2E774F9143343CED49EB071D2EA800B00776C061652454EBB969762ECCDD32AA"
+    },
+    {
+      "path": "Documentation/TerrainPerformance-2026-11-01/optimized-matched/run-1.json",
+      "bytes": 35357,
+      "sha256": "081654B657AA40CDE0AF0B8E42D7FE632829A7E4034310BDB6E343F1AF94959E"
+    },
+    {
+      "path": "Documentation/TerrainPerformance-2026-11-01/optimized-matched/run-2.json",
+      "bytes": 35354,
+      "sha256": "861B45690AC11E5E5FD4606B86FE074AA8C8DB13B9B5EC94DA95433B0890A556"
+    },
+    {
+      "path": "Documentation/TerrainPerformance-2026-11-01/optimized-matched/run-3.json",
+      "bytes": 35368,
+      "sha256": "24716562A1B250E9F23C5DFD5EBF1DE199EB1355FCA7390B54EBF6D976B601FD"
+    },
+    {
+      "path": "Documentation/TerrainPerformance-2026-11-01/optimized-matched/run-4.json",
+      "bytes": 35356,
+      "sha256": "FE8D7D5ACD57D60E4B6D27FA9E62C1FA47E67CB6ED25484565AB01CAA95E6D28"
+    }
+  ]
+}

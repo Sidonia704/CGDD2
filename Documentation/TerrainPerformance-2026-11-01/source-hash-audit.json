@@ -1,0 +1,524 @@
+{
+  "schemaVersion": "terrain-source-hash-audit/1",
+  "snapshotUtc": "2026-11-01T10:17:28.926116+00:00",
+  "status": "UNCHANGED_AT_LATEST_COMPARISON",
+  "referenceManifest": "Temp/MiningRound2/source-hashes-before.json",
+  "scope": "Read-only SHA-256 snapshot before this summarizer agent edits any owned files. Does not prove any runtime change or later preservation.",
+  "sourceFiles": [
+    {
+      "path": "Assets/_Starframe/assetsForCodex/scenemodel/mainstru.fbx",
+      "referenceSha256": "49D33FB46D23A1A23D3CF01F5EDBD6B0EDE935309EBE5E03950444107B01D182",
+      "initialSha256": "49D33FB46D23A1A23D3CF01F5EDBD6B0EDE935309EBE5E03950444107B01D182",
+      "matchesReferenceAtSnapshot": true
+    },
+    {
+      "path": "Assets/_Starframe/assetsForCodex/scenemodel/mainstru.fbx.meta",
+      "referenceSha256": "2C1BBC66FF0C826464EB0710D28F6038211BAEA82F1F618AA64F8172AED32AA8",
+      "initialSha256": "2C1BBC66FF0C826464EB0710D28F6038211BAEA82F1F618AA64F8172AED32AA8",
+      "matchesReferenceAtSnapshot": true
+    },
+    {
+      "path": "Assets/_Starframe/assetsForCodex/scenemodel/scatter.fbx",
+      "referenceSha256": "6C3C77F4D0F50B8CF13B3367D4BAECC62AD726285688D0C7B1477F93E916B00E",
+      "initialSha256": "6C3C77F4D0F50B8CF13B3367D4BAECC62AD726285688D0C7B1477F93E916B00E",
+      "matchesReferenceAtSnapshot": true
+    },
+    {
+      "path": "Assets/_Starframe/assetsForCodex/scenemodel/scatter.fbx.meta",
+      "referenceSha256": "793B4774AF379CC03587D4EFCE5FD1B01CA6085656120A9485D17FB50EDA9168",
+      "initialSha256": "793B4774AF379CC03587D4EFCE5FD1B01CA6085656120A9485D17FB50EDA9168",
+      "matchesReferenceAtSnapshot": true
+    },
+    {
+      "path": "Assets/_Starframe/assetsForCodex/scenemodel/debri.fbx",
+      "referenceSha256": "C9EED7058D0310D1B5B41CAFC843707A2EFC27D425EE28B253F671D6994D69B8",
+      "initialSha256": "C9EED7058D0310D1B5B41CAFC843707A2EFC27D425EE28B253F671D6994D69B8",
+      "matchesReferenceAtSnapshot": true
+    },
+    {
+      "path": "Assets/_Starframe/assetsForCodex/scenemodel/debri.fbx.meta",
+      "referenceSha256": "7E59146E47F00360EE0072A0C767205446080AD8F3881699255406735D31911D",
+      "initialSha256": "7E59146E47F00360EE0072A0C767205446080AD8F3881699255406735D31911D",
+      "matchesReferenceAtSnapshot": true
+    },
+    {
+      "path": "Assets/_Starframe/assetsForCodex/scenemodel/astro.fbx",
+      "referenceSha256": "AE43A6A8BF87FD226FB38A2926EF11AC370B7404530B5D0AC3B4B8E034151829",
+      "initialSha256": "AE43A6A8BF87FD226FB38A2926EF11AC370B7404530B5D0AC3B4B8E034151829",
+      "matchesReferenceAtSnapshot": true
+    },
+    {
+      "path": "Assets/_Starframe/assetsForCodex/scenemodel/astro.fbx.meta",
+      "referenceSha256": "283CCBFED1DA5101F7823654D4459E14E7FA524693849400BBF39145DA507699",
+      "initialSha256": "283CCBFED1DA5101F7823654D4459E14E7FA524693849400BBF39145DA507699",
+      "matchesReferenceAtSnapshot": true
+    },
+    {
+      "path": "Assets/_Starframe/Maps/Assets/1.asset",
+      "referenceSha256": "EB9AFB316C1D3C73E66BB5E1BDD04C61ED37EE382B12C23F0D06C4C995E607BC",
+      "initialSha256": "EB9AFB316C1D3C73E66BB5E1BDD04C61ED37EE382B12C23F0D06C4C995E607BC",
+      "matchesReferenceAtSnapshot": true
+    },
+    {
+      "path": "Assets/_Starframe/Maps/Assets/1.asset.meta",
+      "referenceSha256": "1F5F690FE2A9ADF8545EFB90AF24B544CDC0E1C12100443D347C2F04BB0CEE94",
+      "initialSha256": "1F5F690FE2A9ADF8545EFB90AF24B544CDC0E1C12100443D347C2F04BB0CEE94",
+      "matchesReferenceAtSnapshot": true
+    }
+  ],
+  "generatedV04Root": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04",
+  "generatedV04Files": [
+    {
+      "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Assets/Debris_AngledShard.asset",
+      "sha256": "F27E5C8A474DA98AC488B5AFE41912F608491B8671DB10B6292BBEE17852D96B"
+    },
+    {
+      "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Assets/Debris_AngledShard.asset.meta",
+      "sha256": "942E5D2DAE32D0F57E3E9DC6B9836B85D822D0B2B286867AB3A16E0163F7CD74"
+    },
+    {
+      "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Assets/Debris_FracturedChunk.asset",
+      "sha256": "BCBDCE6C187C755265A42ED1F66735E50C7EE46D7DEA02A17ABC4E41BFED9F73"
+    },
+    {
+      "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Assets/Debris_FracturedChunk.asset.meta",
+      "sha256": "93E3597AC0EE714951523AD51FB16A4E1CC1B270D5EE9145D5FD35F546F66A1F"
+    },
+    {
+      "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Assets/Rock_Faceted.asset",
+      "sha256": "AD26C3BEBA396D70DF0D53367788FE8B9E22563D09BDFFCA8EA83519CEFEC27E"
+    },
+    {
+      "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Assets/Rock_Faceted.asset.meta",
+      "sha256": "BE35AE09CE8BE96369285B93B5B5A8E18C6F6798067A4C974AA244A9E98E769C"
+    },
+    {
+      "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Assets/Rock_Notched.asset",
+      "sha256": "E9D55029A379824170ED39329507DFD37DAC529EBFD85BDD0E93B4FDC5F2C7CB"
+    },
+    {
+      "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Assets/Rock_Notched.asset.meta",
+      "sha256": "92E7C4748A8FEA3776BF960B4104E7CE2165A86F218E6E8C3B0257A6909E1478"
+    },
+    {
+      "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Assets/Rock_Ridged.asset",
+      "sha256": "8ADC7B09F1E4F457D62FAAA2BACAE0375EB5A7791C801531D81E27E707B11A5A"
+    },
+    {
+      "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Assets/Rock_Ridged.asset.meta",
+      "sha256": "7254972C2E9F79518D00FA24637ED3DC9565B2D68AE73E99C41702F43F6F217E"
+    },
+    {
+      "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Assets/Station_CapsuleTank.asset",
+      "sha256": "3F55E66297E531DB1E36E0B113ACED4BD4971D1289E8EA68525DC36529B77FDD"
+    },
+    {
+      "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Assets/Station_CapsuleTank.asset.meta",
+      "sha256": "16395CB683573E3CA4440BA6DF0495AFE79C7A3A36A82D01359CC58F4BC2655D"
+    },
+    {
+      "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Assets/Station_EquipmentCage.asset",
+      "sha256": "20A23C221E1951AFE9BCE82C03D35DC940D4DDACAAD86AF0B24D1E2A318B1723"
+    },
+    {
+      "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Assets/Station_EquipmentCage.asset.meta",
+      "sha256": "513E270E2D4D2D166EF5B159EC151FC527AB26F6A802D91311A2E7290A650089"
+    },
+    {
+      "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Assets/Station_NotchedSlab.asset",
+      "sha256": "1F98D852CF9CF1EF5ACB661FAA8E2B478382883DED543086C7F4D39791F9F64F"
+    },
+    {
+      "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Assets/Station_NotchedSlab.asset.meta",
+      "sha256": "24F9FF5839559186AEE9DFC00B7B0372E4816B9F24464AD318327A5190F88ED2"
+    },
+    {
+      "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Assets/Station_OpenTruss.asset",
+      "sha256": "7C853E8AB55EA1016A16ED9572CF9902FB27F53D323605003510577FD9AC14F4"
+    },
+    {
+      "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Assets/Station_OpenTruss.asset.meta",
+      "sha256": "EC70EC987910DC0ABC9515A781231310C40A6031A3EC6DDD0C78558BBBAC3489"
+    },
+    {
+      "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Assets/Station_SphericalTank.asset",
+      "sha256": "A79F9F3FDC8D02F2DF909784CD9158C8D63BDCC606ED0C589B6D7B8F8E82191F"
+    },
+    {
+      "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Assets/Station_SphericalTank.asset.meta",
+      "sha256": "79D584D21CD8F43BD8F28E29C09C1C156960CF612782338A139314D6B40CF693"
+    },
+    {
+      "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Assets.meta",
+      "sha256": "6D237E28EEEECF2A1B51B77CDF5FBAB61C0B28441F7B47ED738F781C36D7C43C"
+    },
+    {
+      "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Layouts/ComponentGallery.asset",
+      "sha256": "849043B8C6BDA56154D6682BEA2569496723A8C8CC502F8748F86B2DB2E80A93"
+    },
+    {
+      "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Layouts/ComponentGallery.asset.meta",
+      "sha256": "2B7B5A24E86A691CEC3C4A5CD8C49F23B9F62EADDF992DA7AEB67AB5F9BB68F1"
+    },
+    {
+      "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Layouts/LocalDensityPatch.asset",
+      "sha256": "28F139E267A505B588D85F9E8F605CD493DA03FBBEA5784654D47813D029D704"
+    },
+    {
+      "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Layouts/LocalDensityPatch.asset.meta",
+      "sha256": "F4C757232AD161608AAD360764B470F34C614D0F7DC57A0EDB6E89454AFAB32D"
+    },
+    {
+      "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Layouts/PartialStationStudy.asset",
+      "sha256": "67BFB77801997407F6A8B17AF9CFA1AD955D8B0F508CC3B3E3DCCF842F37DADA"
+    },
+    {
+      "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Layouts/PartialStationStudy.asset.meta",
+      "sha256": "DFC33C12F4F344A6AD85D850A65F0802C90DB2AB33A6B60D2FB13FD608CFAB13"
+    },
+    {
+      "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Layouts.meta",
+      "sha256": "C2EB5CBF86A32EFBBD08170D7351232110DCEF7ED433D063B8247DE7328AB2CA"
+    },
+    {
+      "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04.meta",
+      "sha256": "688991DE9E03D6D963ACC88DC85BC79C54D5CED71E839C64BCA1B6F242066115"
+    }
+  ],
+  "preservedEvidenceFiles": [
+    {
+      "path": "Documentation/MiningStation-Round2-2026-11-01/v04/README.md",
+      "sha256": "93274259A17C6F5E4C485CB4232F9F593F059B0E3C5E42FE9A993E1387085B6F"
+    },
+    {
+      "path": "Documentation/MiningStation-Round2-2026-11-01/v04/verification-report.json",
+      "sha256": "680BB225EFE4010729987A65764131648F0B2822DB4D03356F0F8CDAC2BAE807"
+    },
+    {
+      "path": "Documentation/MiningStation-Round2-2026-11-01/v04/benchmark-summary.json",
+      "sha256": "5DC53D0D5DC4D9A9C8DF289A0280C043203A023061D82A74D1BE49975429C5C8"
+    },
+    {
+      "path": "Documentation/MiningStation-Round2-2026-11-01/v04/source-hash-audit.json",
+      "sha256": "DF57054EDDF3858B3D1AC6B0A99BF485253ECD0940F2C81E94407660DA2042E1"
+    },
+    {
+      "path": "Documentation/TerrainPerformance-2026-11-01/baseline/run-0.json",
+      "sha256": "37BBD2F24487E5D574CD86120873EB9D8E23E4D01986021D9A29D80287732BBF"
+    },
+    {
+      "path": "Documentation/TerrainPerformance-2026-11-01/baseline/run-1.json",
+      "sha256": "C6473E0EAF50885F53158D63B92FD7885D2E30C30B312A9CE96CAAEFD332A364"
+    },
+    {
+      "path": "Documentation/TerrainPerformance-2026-11-01/baseline/run-2.json",
+      "sha256": "7149900FFD0FD911147E30344E5F40777EBBC9E4878EDD01E6EF544AE0789F85"
+    },
+    {
+      "path": "Documentation/TerrainPerformance-2026-11-01/baseline/run-3.json",
+      "sha256": "F6E82E84A16F5E7C6EB59B61B378738EFC9F0C3A0F4E3F96058A64112D8756E4"
+    },
+    {
+      "path": "Documentation/TerrainPerformance-2026-11-01/baseline/run-4.json",
+      "sha256": "B2CB256C17156BD545BD61BC59EC98EE0B6EE8B04722DF2C2CE650CC9DE4B8A5"
+    }
+  ],
+  "latestComparison": {
+    "checkedUtc": "2026-11-01T11:54:32.915364+00:00",
+    "passed": true,
+    "checkedCount": 48,
+    "changed": [],
+    "missing": [],
+    "generatedV04Added": [],
+    "files": [
+      {
+        "path": "Assets/_Starframe/assetsForCodex/scenemodel/mainstru.fbx",
+        "expectedSha256": "49D33FB46D23A1A23D3CF01F5EDBD6B0EDE935309EBE5E03950444107B01D182",
+        "currentSha256": "49D33FB46D23A1A23D3CF01F5EDBD6B0EDE935309EBE5E03950444107B01D182",
+        "unchanged": true
+      },
+      {
+        "path": "Assets/_Starframe/assetsForCodex/scenemodel/mainstru.fbx.meta",
+        "expectedSha256": "2C1BBC66FF0C826464EB0710D28F6038211BAEA82F1F618AA64F8172AED32AA8",
+        "currentSha256": "2C1BBC66FF0C826464EB0710D28F6038211BAEA82F1F618AA64F8172AED32AA8",
+        "unchanged": true
+      },
+      {
+        "path": "Assets/_Starframe/assetsForCodex/scenemodel/scatter.fbx",
+        "expectedSha256": "6C3C77F4D0F50B8CF13B3367D4BAECC62AD726285688D0C7B1477F93E916B00E",
+        "currentSha256": "6C3C77F4D0F50B8CF13B3367D4BAECC62AD726285688D0C7B1477F93E916B00E",
+        "unchanged": true
+      },
+      {
+        "path": "Assets/_Starframe/assetsForCodex/scenemodel/scatter.fbx.meta",
+        "expectedSha256": "793B4774AF379CC03587D4EFCE5FD1B01CA6085656120A9485D17FB50EDA9168",
+        "currentSha256": "793B4774AF379CC03587D4EFCE5FD1B01CA6085656120A9485D17FB50EDA9168",
+        "unchanged": true
+      },
+      {
+        "path": "Assets/_Starframe/assetsForCodex/scenemodel/debri.fbx",
+        "expectedSha256": "C9EED7058D0310D1B5B41CAFC843707A2EFC27D425EE28B253F671D6994D69B8",
+        "currentSha256": "C9EED7058D0310D1B5B41CAFC843707A2EFC27D425EE28B253F671D6994D69B8",
+        "unchanged": true
+      },
+      {
+        "path": "Assets/_Starframe/assetsForCodex/scenemodel/debri.fbx.meta",
+        "expectedSha256": "7E59146E47F00360EE0072A0C767205446080AD8F3881699255406735D31911D",
+        "currentSha256": "7E59146E47F00360EE0072A0C767205446080AD8F3881699255406735D31911D",
+        "unchanged": true
+      },
+      {
+        "path": "Assets/_Starframe/assetsForCodex/scenemodel/astro.fbx",
+        "expectedSha256": "AE43A6A8BF87FD226FB38A2926EF11AC370B7404530B5D0AC3B4B8E034151829",
+        "currentSha256": "AE43A6A8BF87FD226FB38A2926EF11AC370B7404530B5D0AC3B4B8E034151829",
+        "unchanged": true
+      },
+      {
+        "path": "Assets/_Starframe/assetsForCodex/scenemodel/astro.fbx.meta",
+        "expectedSha256": "283CCBFED1DA5101F7823654D4459E14E7FA524693849400BBF39145DA507699",
+        "currentSha256": "283CCBFED1DA5101F7823654D4459E14E7FA524693849400BBF39145DA507699",
+        "unchanged": true
+      },
+      {
+        "path": "Assets/_Starframe/Maps/Assets/1.asset",
+        "expectedSha256": "EB9AFB316C1D3C73E66BB5E1BDD04C61ED37EE382B12C23F0D06C4C995E607BC",
+        "currentSha256": "EB9AFB316C1D3C73E66BB5E1BDD04C61ED37EE382B12C23F0D06C4C995E607BC",
+        "unchanged": true
+      },
+      {
+        "path": "Assets/_Starframe/Maps/Assets/1.asset.meta",
+        "expectedSha256": "1F5F690FE2A9ADF8545EFB90AF24B544CDC0E1C12100443D347C2F04BB0CEE94",
+        "currentSha256": "1F5F690FE2A9ADF8545EFB90AF24B544CDC0E1C12100443D347C2F04BB0CEE94",
+        "unchanged": true
+      },
+      {
+        "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Assets/Debris_AngledShard.asset",
+        "expectedSha256": "F27E5C8A474DA98AC488B5AFE41912F608491B8671DB10B6292BBEE17852D96B",
+        "currentSha256": "F27E5C8A474DA98AC488B5AFE41912F608491B8671DB10B6292BBEE17852D96B",
+        "unchanged": true
+      },
+      {
+        "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Assets/Debris_AngledShard.asset.meta",
+        "expectedSha256": "942E5D2DAE32D0F57E3E9DC6B9836B85D822D0B2B286867AB3A16E0163F7CD74",
+        "currentSha256": "942E5D2DAE32D0F57E3E9DC6B9836B85D822D0B2B286867AB3A16E0163F7CD74",
+        "unchanged": true
+      },
+      {
+        "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Assets/Debris_FracturedChunk.asset",
+        "expectedSha256": "BCBDCE6C187C755265A42ED1F66735E50C7EE46D7DEA02A17ABC4E41BFED9F73",
+        "currentSha256": "BCBDCE6C187C755265A42ED1F66735E50C7EE46D7DEA02A17ABC4E41BFED9F73",
+        "unchanged": true
+      },
+      {
+        "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Assets/Debris_FracturedChunk.asset.meta",
+        "expectedSha256": "93E3597AC0EE714951523AD51FB16A4E1CC1B270D5EE9145D5FD35F546F66A1F",
+        "currentSha256": "93E3597AC0EE714951523AD51FB16A4E1CC1B270D5EE9145D5FD35F546F66A1F",
+        "unchanged": true
+      },
+      {
+        "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Assets/Rock_Faceted.asset",
+        "expectedSha256": "AD26C3BEBA396D70DF0D53367788FE8B9E22563D09BDFFCA8EA83519CEFEC27E",
+        "currentSha256": "AD26C3BEBA396D70DF0D53367788FE8B9E22563D09BDFFCA8EA83519CEFEC27E",
+        "unchanged": true
+      },
+      {
+        "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Assets/Rock_Faceted.asset.meta",
+        "expectedSha256": "BE35AE09CE8BE96369285B93B5B5A8E18C6F6798067A4C974AA244A9E98E769C",
+        "currentSha256": "BE35AE09CE8BE96369285B93B5B5A8E18C6F6798067A4C974AA244A9E98E769C",
+        "unchanged": true
+      },
+      {
+        "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Assets/Rock_Notched.asset",
+        "expectedSha256": "E9D55029A379824170ED39329507DFD37DAC529EBFD85BDD0E93B4FDC5F2C7CB",
+        "currentSha256": "E9D55029A379824170ED39329507DFD37DAC529EBFD85BDD0E93B4FDC5F2C7CB",
+        "unchanged": true
+      },
+      {
+        "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Assets/Rock_Notched.asset.meta",
+        "expectedSha256": "92E7C4748A8FEA3776BF960B4104E7CE2165A86F218E6E8C3B0257A6909E1478",
+        "currentSha256": "92E7C4748A8FEA3776BF960B4104E7CE2165A86F218E6E8C3B0257A6909E1478",
+        "unchanged": true
+      },
+      {
+        "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Assets/Rock_Ridged.asset",
+        "expectedSha256": "8ADC7B09F1E4F457D62FAAA2BACAE0375EB5A7791C801531D81E27E707B11A5A",
+        "currentSha256": "8ADC7B09F1E4F457D62FAAA2BACAE0375EB5A7791C801531D81E27E707B11A5A",
+        "unchanged": true
+      },
+      {
+        "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Assets/Rock_Ridged.asset.meta",
+        "expectedSha256": "7254972C2E9F79518D00FA24637ED3DC9565B2D68AE73E99C41702F43F6F217E",
+        "currentSha256": "7254972C2E9F79518D00FA24637ED3DC9565B2D68AE73E99C41702F43F6F217E",
+        "unchanged": true
+      },
+      {
+        "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Assets/Station_CapsuleTank.asset",
+        "expectedSha256": "3F55E66297E531DB1E36E0B113ACED4BD4971D1289E8EA68525DC36529B77FDD",
+        "currentSha256": "3F55E66297E531DB1E36E0B113ACED4BD4971D1289E8EA68525DC36529B77FDD",
+        "unchanged": true
+      },
+      {
+        "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Assets/Station_CapsuleTank.asset.meta",
+        "expectedSha256": "16395CB683573E3CA4440BA6DF0495AFE79C7A3A36A82D01359CC58F4BC2655D",
+        "currentSha256": "16395CB683573E3CA4440BA6DF0495AFE79C7A3A36A82D01359CC58F4BC2655D",
+        "unchanged": true
+      },
+      {
+        "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Assets/Station_EquipmentCage.asset",
+        "expectedSha256": "20A23C221E1951AFE9BCE82C03D35DC940D4DDACAAD86AF0B24D1E2A318B1723",
+        "currentSha256": "20A23C221E1951AFE9BCE82C03D35DC940D4DDACAAD86AF0B24D1E2A318B1723",
+        "unchanged": true
+      },
+      {
+        "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Assets/Station_EquipmentCage.asset.meta",
+        "expectedSha256": "513E270E2D4D2D166EF5B159EC151FC527AB26F6A802D91311A2E7290A650089",
+        "currentSha256": "513E270E2D4D2D166EF5B159EC151FC527AB26F6A802D91311A2E7290A650089",
+        "unchanged": true
+      },
+      {
+        "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Assets/Station_NotchedSlab.asset",
+        "expectedSha256": "1F98D852CF9CF1EF5ACB661FAA8E2B478382883DED543086C7F4D39791F9F64F",
+        "currentSha256": "1F98D852CF9CF1EF5ACB661FAA8E2B478382883DED543086C7F4D39791F9F64F",
+        "unchanged": true
+      },
+      {
+        "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Assets/Station_NotchedSlab.asset.meta",
+        "expectedSha256": "24F9FF5839559186AEE9DFC00B7B0372E4816B9F24464AD318327A5190F88ED2",
+        "currentSha256": "24F9FF5839559186AEE9DFC00B7B0372E4816B9F24464AD318327A5190F88ED2",
+        "unchanged": true
+      },
+      {
+        "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Assets/Station_OpenTruss.asset",
+        "expectedSha256": "7C853E8AB55EA1016A16ED9572CF9902FB27F53D323605003510577FD9AC14F4",
+        "currentSha256": "7C853E8AB55EA1016A16ED9572CF9902FB27F53D323605003510577FD9AC14F4",
+        "unchanged": true
+      },
+      {
+        "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Assets/Station_OpenTruss.asset.meta",
+        "expectedSha256": "EC70EC987910DC0ABC9515A781231310C40A6031A3EC6DDD0C78558BBBAC3489",
+        "currentSha256": "EC70EC987910DC0ABC9515A781231310C40A6031A3EC6DDD0C78558BBBAC3489",
+        "unchanged": true
+      },
+      {
+        "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Assets/Station_SphericalTank.asset",
+        "expectedSha256": "A79F9F3FDC8D02F2DF909784CD9158C8D63BDCC606ED0C589B6D7B8F8E82191F",
+        "currentSha256": "A79F9F3FDC8D02F2DF909784CD9158C8D63BDCC606ED0C589B6D7B8F8E82191F",
+        "unchanged": true
+      },
+      {
+        "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Assets/Station_SphericalTank.asset.meta",
+        "expectedSha256": "79D584D21CD8F43BD8F28E29C09C1C156960CF612782338A139314D6B40CF693",
+        "currentSha256": "79D584D21CD8F43BD8F28E29C09C1C156960CF612782338A139314D6B40CF693",
+        "unchanged": true
+      },
+      {
+        "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Assets.meta",
+        "expectedSha256": "6D237E28EEEECF2A1B51B77CDF5FBAB61C0B28441F7B47ED738F781C36D7C43C",
+        "currentSha256": "6D237E28EEEECF2A1B51B77CDF5FBAB61C0B28441F7B47ED738F781C36D7C43C",
+        "unchanged": true
+      },
+      {
+        "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Layouts/ComponentGallery.asset",
+        "expectedSha256": "849043B8C6BDA56154D6682BEA2569496723A8C8CC502F8748F86B2DB2E80A93",
+        "currentSha256": "849043B8C6BDA56154D6682BEA2569496723A8C8CC502F8748F86B2DB2E80A93",
+        "unchanged": true
+      },
+      {
+        "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Layouts/ComponentGallery.asset.meta",
+        "expectedSha256": "2B7B5A24E86A691CEC3C4A5CD8C49F23B9F62EADDF992DA7AEB67AB5F9BB68F1",
+        "currentSha256": "2B7B5A24E86A691CEC3C4A5CD8C49F23B9F62EADDF992DA7AEB67AB5F9BB68F1",
+        "unchanged": true
+      },
+      {
+        "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Layouts/LocalDensityPatch.asset",
+        "expectedSha256": "28F139E267A505B588D85F9E8F605CD493DA03FBBEA5784654D47813D029D704",
+        "currentSha256": "28F139E267A505B588D85F9E8F605CD493DA03FBBEA5784654D47813D029D704",
+        "unchanged": true
+      },
+      {
+        "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Layouts/LocalDensityPatch.asset.meta",
+        "expectedSha256": "F4C757232AD161608AAD360764B470F34C614D0F7DC57A0EDB6E89454AFAB32D",
+        "currentSha256": "F4C757232AD161608AAD360764B470F34C614D0F7DC57A0EDB6E89454AFAB32D",
+        "unchanged": true
+      },
+      {
+        "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Layouts/PartialStationStudy.asset",
+        "expectedSha256": "67BFB77801997407F6A8B17AF9CFA1AD955D8B0F508CC3B3E3DCCF842F37DADA",
+        "currentSha256": "67BFB77801997407F6A8B17AF9CFA1AD955D8B0F508CC3B3E3DCCF842F37DADA",
+        "unchanged": true
+      },
+      {
+        "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Layouts/PartialStationStudy.asset.meta",
+        "expectedSha256": "DFC33C12F4F344A6AD85D850A65F0802C90DB2AB33A6B60D2FB13FD608CFAB13",
+        "currentSha256": "DFC33C12F4F344A6AD85D850A65F0802C90DB2AB33A6B60D2FB13FD608CFAB13",
+        "unchanged": true
+      },
+      {
+        "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Layouts.meta",
+        "expectedSha256": "C2EB5CBF86A32EFBBD08170D7351232110DCEF7ED433D063B8247DE7328AB2CA",
+        "currentSha256": "C2EB5CBF86A32EFBBD08170D7351232110DCEF7ED433D063B8247DE7328AB2CA",
+        "unchanged": true
+      },
+      {
+        "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04.meta",
+        "expectedSha256": "688991DE9E03D6D963ACC88DC85BC79C54D5CED71E839C64BCA1B6F242066115",
+        "currentSha256": "688991DE9E03D6D963ACC88DC85BC79C54D5CED71E839C64BCA1B6F242066115",
+        "unchanged": true
+      },
+      {
+        "path": "Documentation/MiningStation-Round2-2026-11-01/v04/README.md",
+        "expectedSha256": "93274259A17C6F5E4C485CB4232F9F593F059B0E3C5E42FE9A993E1387085B6F",
+        "currentSha256": "93274259A17C6F5E4C485CB4232F9F593F059B0E3C5E42FE9A993E1387085B6F",
+        "unchanged": true
+      },
+      {
+        "path": "Documentation/MiningStation-Round2-2026-11-01/v04/verification-report.json",
+        "expectedSha256": "680BB225EFE4010729987A65764131648F0B2822DB4D03356F0F8CDAC2BAE807",
+        "currentSha256": "680BB225EFE4010729987A65764131648F0B2822DB4D03356F0F8CDAC2BAE807",
+        "unchanged": true
+      },
+      {
+        "path": "Documentation/MiningStation-Round2-2026-11-01/v04/benchmark-summary.json",
+        "expectedSha256": "5DC53D0D5DC4D9A9C8DF289A0280C043203A023061D82A74D1BE49975429C5C8",
+        "currentSha256": "5DC53D0D5DC4D9A9C8DF289A0280C043203A023061D82A74D1BE49975429C5C8",
+        "unchanged": true
+      },
+      {
+        "path": "Documentation/MiningStation-Round2-2026-11-01/v04/source-hash-audit.json",
+        "expectedSha256": "DF57054EDDF3858B3D1AC6B0A99BF485253ECD0940F2C81E94407660DA2042E1",
+        "currentSha256": "DF57054EDDF3858B3D1AC6B0A99BF485253ECD0940F2C81E94407660DA2042E1",
+        "unchanged": true
+      },
+      {
+        "path": "Documentation/TerrainPerformance-2026-11-01/baseline/run-0.json",
+        "expectedSha256": "37BBD2F24487E5D574CD86120873EB9D8E23E4D01986021D9A29D80287732BBF",
+        "currentSha256": "37BBD2F24487E5D574CD86120873EB9D8E23E4D01986021D9A29D80287732BBF",
+        "unchanged": true
+      },
+      {
+        "path": "Documentation/TerrainPerformance-2026-11-01/baseline/run-1.json",
+        "expectedSha256": "C6473E0EAF50885F53158D63B92FD7885D2E30C30B312A9CE96CAAEFD332A364",
+        "currentSha256": "C6473E0EAF50885F53158D63B92FD7885D2E30C30B312A9CE96CAAEFD332A364",
+        "unchanged": true
+      },
+      {
+        "path": "Documentation/TerrainPerformance-2026-11-01/baseline/run-2.json",
+        "expectedSha256": "7149900FFD0FD911147E30344E5F40777EBBC9E4878EDD01E6EF544AE0789F85",
+        "currentSha256": "7149900FFD0FD911147E30344E5F40777EBBC9E4878EDD01E6EF544AE0789F85",
+        "unchanged": true
+      },
+      {
+        "path": "Documentation/TerrainPerformance-2026-11-01/baseline/run-3.json",
+        "expectedSha256": "F6E82E84A16F5E7C6EB59B61B378738EFC9F0C3A0F4E3F96058A64112D8756E4",
+        "currentSha256": "F6E82E84A16F5E7C6EB59B61B378738EFC9F0C3A0F4E3F96058A64112D8756E4",
+        "unchanged": true
+      },
+      {
+        "path": "Documentation/TerrainPerformance-2026-11-01/baseline/run-4.json",
+        "expectedSha256": "B2CB256C17156BD545BD61BC59EC98EE0B6EE8B04722DF2C2CE650CC9DE4B8A5",
+        "currentSha256": "B2CB256C17156BD545BD61BC59EC98EE0B6EE8B04722DF2C2CE650CC9DE4B8A5",
+        "unchanged": true
+      }
+    ]
+  }
+}

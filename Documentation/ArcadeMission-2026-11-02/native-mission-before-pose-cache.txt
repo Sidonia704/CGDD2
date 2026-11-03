@@ -1,0 +1,14 @@
+READY frame=16408, parts=917, native total=67
+LIVE 20s: advancedFrames=1447, wave=1, alive=3, enemy shots=26, hits=26
+PASS pause/resume; F target API smoke follows.
+WAVE 2: kills=8, wreckParts=736, clusters=16
+WAVE 3: kills=20, wreckParts=2270, clusters=40
+WAVE 4: kills=33, wreckParts=4368, clusters=66
+WAVE 5: kills=48, wreckParts=7484, clusters=95
+VICTORY 67=50/15/2; waves=5; score=84950; remaining wreckParts=11590; frameMedianMs=17.5309000005655; frameP95Ms=32.3914000000514; maxMs=203.78730000084
+Operation maxima ms: enemyCreation=111.8875, wreckSpawn=34.0019
+SETTLED wreckage frameMedianMs=23.5085999993316, p95Ms=34.5928999995522, visibleWreckInstances=3171, batches=46, allocatedBytes=3507049798
+PASS retired-source meshes survive; normal swept projectile destroys a wreck block and split processing succeeds.
+PASS results and unchanged confirmed blueprint snapshot.
+PASS reentry and core-loss failure, no practice respawn.
+DONE PASS; storage and preferences restored.

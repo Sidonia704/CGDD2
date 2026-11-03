@@ -20,7 +20,8 @@ namespace Starframe.Construction.Tests
         {
             var source = AssetDatabase.LoadAssetAtPath<ModuleDatabase>("Assets/_Starframe/Settings/Modules/ModuleDatabase.asset");
             Assert.That(source, Is.Not.Null);
-            database = Own(UnityEngine.Object.Instantiate(source));
+            // Build a fresh index after replacing the weapon; no test may mutate a live source asset.
+            database = Own(ScriptableObject.CreateInstance<ModuleDatabase>());
             database.modules = new List<ModuleDefinition>(source.modules);
             var laser = Own(UnityEngine.Object.Instantiate(source.Get(BlockShape.Laser)));
             laser.weapon = Own(UnityEngine.Object.Instantiate(laser.weapon));

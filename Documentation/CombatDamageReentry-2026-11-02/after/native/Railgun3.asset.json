@@ -1,0 +1,192 @@
+{
+    "MonoBehaviour": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "Railgun3",
+        "m_EditorClassIdentifier": "Starframe.Construction::Starframe.Flight.ModuleDefinition",
+        "shape": 30,
+        "displayName": "电磁狙击炮 3",
+        "category": 3,
+        "cost": 690.0,
+        "massKg": 3300.0,
+        "maxHp": 5040.0,
+        "recoverySeconds": 6.0,
+        "thrustNewtons": 0.0,
+        "occupiedCells": [
+            {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            {
+                "x": 1,
+                "y": 0,
+                "z": 0
+            },
+            {
+                "x": 0,
+                "y": 0,
+                "z": 1
+            },
+            {
+                "x": 1,
+                "y": 0,
+                "z": 1
+            },
+            {
+                "x": 0,
+                "y": 0,
+                "z": 2
+            },
+            {
+                "x": 1,
+                "y": 0,
+                "z": 2
+            },
+            {
+                "x": 0,
+                "y": 0,
+                "z": 3
+            },
+            {
+                "x": 1,
+                "y": 0,
+                "z": 3
+            },
+            {
+                "x": 0,
+                "y": 0,
+                "z": 4
+            },
+            {
+                "x": 1,
+                "y": 0,
+                "z": 4
+            },
+            {
+                "x": 0,
+                "y": 0,
+                "z": 5
+            },
+            {
+                "x": 1,
+                "y": 0,
+                "z": 5
+            },
+            {
+                "x": 0,
+                "y": 1,
+                "z": 0
+            },
+            {
+                "x": 1,
+                "y": 1,
+                "z": 0
+            },
+            {
+                "x": 0,
+                "y": 1,
+                "z": 1
+            },
+            {
+                "x": 1,
+                "y": 1,
+                "z": 1
+            },
+            {
+                "x": 0,
+                "y": 1,
+                "z": 2
+            },
+            {
+                "x": 1,
+                "y": 1,
+                "z": 2
+            },
+            {
+                "x": 0,
+                "y": 1,
+                "z": 3
+            },
+            {
+                "x": 1,
+                "y": 1,
+                "z": 3
+            },
+            {
+                "x": 0,
+                "y": 1,
+                "z": 4
+            },
+            {
+                "x": 1,
+                "y": 1,
+                "z": 4
+            },
+            {
+                "x": 0,
+                "y": 1,
+                "z": 5
+            },
+            {
+                "x": 1,
+                "y": 1,
+                "z": 5
+            }
+        ],
+        "localExhaustDirections": [],
+        "localNozzlePositions": [],
+        "muzzleLocalPosition": {
+            "x": 0.44589763879776,
+            "y": 0.28248143196105959,
+            "z": 5.50674295425415
+        },
+        "muzzleClearanceDiameter": 0.2199999988079071,
+        "mesh": {
+            "fileID": 4300000,
+            "guid": "fdfa140bc5e760241969baddb1d82bb2",
+            "type": 2
+        },
+        "outline": {
+            "instanceID": 0
+        },
+        "drawOutline": false,
+        "material": {
+            "fileID": 2100000,
+            "guid": "8fa010cb395cefc458368aa8f928b19f",
+            "type": 2
+        },
+        "icon": {
+            "fileID": 21300000,
+            "guid": "a322c30d332ccdc40b5b9acf6713d661",
+            "type": 3
+        },
+        "selectedIcon": {
+            "fileID": 21300000,
+            "guid": "9389a41a9b414094e85198a084c51a43",
+            "type": 3
+        },
+        "weapon": {
+            "fileID": 11400000,
+            "guid": "e50db2e6ca572014f86c6f0d8fe1277d",
+            "type": 2
+        },
+        "countermeasure": {
+            "instanceID": 0
+        },
+        "generationWatts": 0.0,
+        "storageJoules": 0.0,
+        "thrusterPowerWatts": 0.0,
+        "shieldPowerWatts": 0.0,
+        "shieldCapacity": 0.0,
+        "shieldRadius": 8.0,
+        "shieldRecoveryDelay": 2.0,
+        "shieldRecoveryPerSecond": 50.0,
+        "shieldSurfaceMaterial": {
+            "instanceID": 0
+        },
+        "shieldSurfaceMesh": {
+            "instanceID": 0
+        }
+    }
+}

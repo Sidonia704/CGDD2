@@ -119,21 +119,66 @@ namespace Starframe.Construction.Tests
             Assert.That(weapons.ShotsFired,Is.Zero);
         }
 
+        [Test]public void AlternatingAutomaticGunsSpreadPulsesWithoutChangingSustainedRateAndCanResynchronize()
+        {
+            var weapons=Create(out _,out _,out _,out var definition);definition.firstShotImmediate=true;
+            weapons.AlternatingDirectFire=true;weapons.FireRequested=true;
+            int dualTicks=0;for(int i=0;i<200;i++){int before=weapons.ShotsFired;weapons.Prepare();weapons.Execute(.01f,1);if(weapons.ShotsFired-before>1)dualTicks++;}
+            Assert.That(dualTicks,Is.Zero);Assert.That(weapons.ShotsFired,Is.InRange(17,21));
+            weapons.AlternatingDirectFire=false;bool salvo=false;
+            for(int i=0;i<50;i++){int before=weapons.ShotsFired;weapons.Prepare();weapons.Execute(.01f,1);salvo|=weapons.ShotsFired-before==2;}
+            Assert.That(salvo,Is.True,"Returning to salvo mode must align existing barrel clocks.");
+        }
+        [TestCase(WeaponActivationMode.Press)]
+        [TestCase(WeaponActivationMode.ChargeRelease)]
+        public void AlternatingEdgeWeaponsKeepTheirInputAndChargeButStaggerDischarges(WeaponActivationMode mode)
+        {
+            var weapons=Create(out _,out _,out _,out var definition);definition.activationMode=mode;definition.chargeSeconds=.1f;
+            weapons.AlternatingDirectFire=true;weapons.FireRequested=true;
+            if(mode==WeaponActivationMode.ChargeRelease){for(int i=0;i<15;i++){weapons.Prepare();weapons.Execute(.01f,1);}Assert.That(weapons.ShotsFired,Is.Zero);weapons.FireRequested=false;}
+            var ticks=new List<int>();int previous=weapons.ShotsFired;
+            for(int i=0;i<60;i++){weapons.Prepare();weapons.Execute(.01f,1);int count=weapons.ShotsFired-previous;Assert.That(count,Is.LessThanOrEqualTo(1));if(count>0)ticks.Add(i);previous=weapons.ShotsFired;}
+            Assert.That(ticks.Count,Is.EqualTo(2));Assert.That(ticks[1]-ticks[0],Is.InRange(9,11));
+        }
+        [Test]public void MissileRacksStaggerEveryPhysicalTubeAcrossShipAndStopOnLockLoss()
+        {
+            var weapons=Create(out var owner,out _,out _,out var definition);
+            definition.delivery=WeaponDelivery.GuidedMissile;definition.missileLockSeconds=0;definition.reloadSeconds=10;
+            definition.missileLaunchOffsets=new[]{Vector3.left*.1f,Vector3.right*.1f};definition.range=2000;
+            var host=Own(new GameObject("Stagger target"));host.transform.position=Vector3.forward*1000;
+            var assembly=host.AddComponent<ShipAssembly>();assembly.Configure(owner.Tuning.database);
+            assembly.Place(BlockShape.Core,new Vector3(0,.5f,0),Quaternion.identity);
+            var target=host.AddComponent<FlightShipRuntime>();target.Initialize(assembly,assembly.Export("target"),owner.Tuning);target.Team=1;
+            Physics.SyncTransforms();weapons.Target=target;weapons.HasValidTargetLock=true;weapons.FireRequested=true;
+            var launchTicks=new List<int>();int previous=0;
+            for(int i=0;i<100;i++){weapons.Prepare();weapons.Execute(.01f,1);int count=world.TotalSpawned-previous;Assert.That(count,Is.InRange(0,1));if(count>0)launchTicks.Add(i);previous=world.TotalSpawned;}
+            Assert.That(launchTicks.Count,Is.EqualTo(4));
+            for(int i=1;i<launchTicks.Count;i++)Assert.That(launchTicks[i]-launchTicks[i-1],Is.InRange(16,17));
+            weapons.Reset();weapons.Target=target;weapons.HasValidTargetLock=true;weapons.FireRequested=true;
+            weapons.Prepare();weapons.Execute(.01f,1);int beforeLoss=world.TotalSpawned;
+            weapons.HasValidTargetLock=false;
+            for(int i=0;i<100;i++){weapons.Prepare();weapons.Execute(.01f,1);}
+            Assert.That(world.TotalSpawned,Is.EqualTo(beforeLoss));
+        }
+
         ShipWeapons Create(out FlightShipRuntime runtime,out BlueprintData blueprint,out string rightId,out WeaponDefinition weapon)
         {
             var database=Own(ScriptableObject.CreateInstance<ModuleDatabase>());var tuning=Own(ScriptableObject.CreateInstance<FlightTuning>());tuning.database=database;
             weapon=Own(ScriptableObject.CreateInstance<WeaponDefinition>());weapon.shotsPerSecond=5;weapon.sustainedPowerWatts=50;
             database.modules=new List<ModuleDefinition>();
-            foreach(var shape in new[]{BlockShape.Core,BlockShape.Laser}){
+            foreach(var shape in new[]{BlockShape.Core,BlockShape.Cube,BlockShape.Laser}){
                 var definition=Own(ScriptableObject.CreateInstance<ModuleDefinition>());definition.shape=shape;definition.massKg=10;definition.maxHp=100;
-                definition.occupiedCells=new[]{Vector3Int.zero};definition.category=shape==BlockShape.Laser?ModuleCategory.Weapon:ModuleCategory.Core;
+                definition.occupiedCells=new[]{Vector3Int.zero};definition.category=shape==BlockShape.Laser?ModuleCategory.Weapon:shape==BlockShape.Core?ModuleCategory.Core:ModuleCategory.Hull;
                 if(shape==BlockShape.Laser){definition.weapon=weapon;definition.muzzleLocalPosition=Vector3.forward*.6f;}
                 database.modules.Add(definition);
             }
             var go=Own(new GameObject("Weapon group fixture"));var assembly=go.AddComponent<ShipAssembly>();assembly.Configure(database);
             Assert.That(assembly.Place(BlockShape.Core,new Vector3(0,.5f,0),Quaternion.identity),Is.True);
-            Assert.That(assembly.Place(BlockShape.Laser,new Vector3(-1,.5f,0),Quaternion.identity),Is.True);
-            Assert.That(assembly.Place(BlockShape.Laser,new Vector3(1,.5f,0),Quaternion.identity),Is.True);
+            // Separate hull pedestals retain two independent barrels under the bottom-mount rule.
+            Assert.That(assembly.Place(BlockShape.Cube,new Vector3(-1,.5f,0),Quaternion.identity),Is.True);
+            Assert.That(assembly.Place(BlockShape.Cube,new Vector3(1,.5f,0),Quaternion.identity),Is.True);
+            Assert.That(assembly.Place(BlockShape.Laser,new Vector3(-1,1.5f,0),Quaternion.identity),Is.True);
+            Assert.That(assembly.Place(BlockShape.Laser,new Vector3(1,1.5f,0),Quaternion.identity),Is.True);
             blueprint=assembly.Export("group fixture");rightId=blueprint.parts.Find(p=>p.shape==BlockShape.Laser&&p.position.x>0).id;
             var group=WeaponGroups.AddGroup(blueprint,"Secondary",new WeaponInputBinding{source=WeaponInputSource.MouseRight},database);
             Assert.That(WeaponGroups.Assign(blueprint,rightId,group.id,database),Is.True);

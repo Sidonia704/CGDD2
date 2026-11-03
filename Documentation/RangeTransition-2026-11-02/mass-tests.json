@@ -1,0 +1,41 @@
+{
+  "status": "completed",
+  "duration": 0.39,
+  "summary": {
+    "total": 4,
+    "passed": 4,
+    "failed": 0,
+    "skipped": 0,
+    "inconclusive": 0
+  },
+  "results": [
+    {
+      "FullName": "Starframe.Tests.ShipSceneryCollisionTests.NativeRotationAndMultipleShipCollidersShareFiniteMomentum",
+      "Status": "Passed",
+      "Duration": 0.0471069,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.ShipSceneryCollisionTests.NativeTranslationGivesHeavyStructureFarLessMotionThanLightFragment",
+      "Status": "Passed",
+      "Duration": 0.0037022,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.ShipSceneryCollisionTests.SeveredPiecesKeepScaledMassIndependentPhysicsAndDestructibility",
+      "Status": "Passed",
+      "Duration": 0.0153969,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.ShipSceneryCollisionTests.SweptImpulseIsNotAppliedAgainByNativeOverlapContacts",
+      "Status": "Passed",
+      "Duration": 0.0031334,
+      "Message": null,
+      "StackTrace": null
+    }
+  ]
+}

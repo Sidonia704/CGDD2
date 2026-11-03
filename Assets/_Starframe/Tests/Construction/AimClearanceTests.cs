@@ -87,10 +87,10 @@ namespace Starframe.Construction.Tests
             var alternate = Own(UnityEngine.Object.Instantiate(sourceLaser.weapon));
             alternate.projectileSpeed = 140;
             laser.weapon = rapid;
-            cube.weapon = alternate;
+            var alternateGun = Own(UnityEngine.Object.Instantiate(sourceLaser)); alternateGun.shape = BlockShape.Gun1; alternateGun.weapon = alternate;
 
             var database = Own(ScriptableObject.CreateInstance<ModuleDatabase>());
-            database.modules = new List<ModuleDefinition> { core, cube, laser };
+            database.modules = new List<ModuleDefinition> { core, cube, laser, alternateGun };
             BlockModules.Configure(database);
             var tuning = Own(ScriptableObject.CreateInstance<FlightTuning>());
             tuning.database = database;
@@ -101,16 +101,14 @@ namespace Starframe.Construction.Tests
             var blueprint = new BlueprintData
             {
                 name = "two-weapon-profiles",
-                parts = new List<BlockRecord>
-                {
-                    Record(BlockShape.Core, 0, 0),
-                    Record(BlockShape.Cube, -1, 0),
-                    Record(BlockShape.Cube, 1, 0),
-                    Record(BlockShape.Cube, 0, 1),
-                    Record(BlockShape.Laser, -1, 1),
-                    Record(BlockShape.Laser, 1, 1)
-                }
+                parts = new List<BlockRecord> { Record(BlockShape.Core,0,0) }
             };
+            for(int x=-4;x<=4;x++)if(x!=0)blueprint.parts.Add(Record(BlockShape.Cube,x,0));
+            blueprint.parts.Add(Record(BlockShape.Laser,-4,1,0));
+            blueprint.parts.Add(Record(BlockShape.Laser,-2,1,0));
+            blueprint.parts.Add(Record(BlockShape.Gun1,0,1,0));
+            blueprint.parts.Add(Record(BlockShape.Gun1,2,1,0));
+            blueprint.parts.Add(Record(BlockShape.Gun1,4,1,0));
             assembly.Import(blueprint);
             var runtime = root.AddComponent<FlightShipRuntime>();
             runtime.Initialize(assembly, blueprint, tuning, battle);
@@ -156,43 +154,27 @@ namespace Starframe.Construction.Tests
             var assembly = root.AddComponent<ShipAssembly>();
             assembly.Configure(database);
 
-            // Import legacy geometry directly: CanPlace is the behavior under test, and Import intentionally
-            // remains able to load older blueprints that contain parts now rejected by placement rules.
-            assembly.Import(new BlueprintData
-            {
-                name = "front-obstacle",
-                parts = new List<BlockRecord>
-                {
-                    Record(BlockShape.Core, 0, 0),
-                    Record(BlockShape.Cube, 0, 1),
-                    Record(BlockShape.Cube, 0, 2),
-                    Record(BlockShape.Cube, 1, 2),
-                    Record(BlockShape.Cube, 2, 2),
-                    Record(BlockShape.Cube, 3, 2),
-                    Record(BlockShape.Cube, 3, 1)
-                }
-            });
-            Assert.That(assembly.CanPlace(BlockShape.Laser, new Vector3(1, .5f, 1), Quaternion.Euler(0, 90, 0)), Is.False,
-                "A candidate gun may not be installed with its muzzle aimed through an existing hull part.");
+            var support = new BlueprintData { name = "physically-supported-clearance", parts = new List<BlockRecord> { Record(BlockShape.Core,0,0) } };
+            for(int z=1;z<=4;z++)support.parts.Add(Record(BlockShape.Cube,0,z));
+            support.parts.Add(Record(BlockShape.Cube,0,1,4));
+            assembly.Import(support);
+            Assert.That(assembly.CanPlace(BlockShape.Laser,new Vector3(0,1.5f,0),Quaternion.identity),Is.False,
+                "A physically supported candidate gun may not point through an existing hull part.");
+            Assert.That(assembly.PlacementFailure,Does.Contain("炮口"),"The candidate must reach the muzzle-clearance check, rather than fail attachment or occupancy.");
 
-            assembly.Import(new BlueprintData
-            {
-                name = "legacy-blocked-gun",
-                parts = new List<BlockRecord>
-                {
-                    Record(BlockShape.Core, 0, 0),
-                    Record(BlockShape.Laser, 0, 1),
-                    Record(BlockShape.Cube, 0, 4)
-                }
-            });
-            Assert.That(assembly.CanPlace(BlockShape.Cube, new Vector3(0, .5f, 5), Quaternion.identity), Is.False,
-                "A newly placed part may not block an existing gun's muzzle path.");
-            Assert.That(assembly.CanPlace(BlockShape.Cube, new Vector3(-1, .5f, 4), Quaternion.identity), Is.True,
-                "A side-mounted part outside the actual beam must remain placeable.");
+            support.parts.RemoveAt(support.parts.Count-1);
+            for(int z=0;z<=4;z++)support.parts.Add(Record(BlockShape.Cube,-1,z));
+            support.parts.Add(Record(BlockShape.Laser,0,1,0));
+            assembly.Import(support);
+            Assert.That(assembly.CanPlace(BlockShape.Cube,new Vector3(0,1.5f,4),Quaternion.identity),Is.False,
+                "A physically supported newly placed part may not block an existing gun's muzzle path.");
+            Assert.That(assembly.PlacementFailure,Does.Contain("开火路径"));
+            Assert.That(assembly.CanPlace(BlockShape.Cube,new Vector3(-1,1.5f,4),Quaternion.identity),Is.True,
+                "A supported part beside the actual beam remains placeable.");
         }
 
         [TestCase(1,0,0)][TestCase(-1,0,0)][TestCase(0,1,0)][TestCase(0,-1,0)][TestCase(0,0,1)][TestCase(0,0,-1)]
-        public void FullCellLaserColliderAllowsAdjacentCellOnEveryMountingAxis(int x,int y,int z)
+        public void FullCellLaserColliderPreservesOccupancyOnEveryBottomMountingAxis(int x,int y,int z)
         {
             var database=Asset<ModuleDatabase>("Assets/_Starframe/Settings/Modules/ModuleDatabase.asset");
             var root=Own(new GameObject("Laser placement offset regression"));var assembly=root.AddComponent<ShipAssembly>();assembly.Configure(database);
@@ -201,12 +183,15 @@ namespace Starframe.Construction.Tests
             Assert.That(bounds.min.x,Is.EqualTo(-.5f).Within(.000001f));
             Assert.That(bounds.size,Is.EqualTo(new Vector3(1,1,3)));
             var rotation=BlockPlacement.FaceRotation(new Vector3(x,y,z),0);var position=new Vector3(0,.5f,0);
-            Assert.That(assembly.Place(BlockShape.Cube,position-rotation*Vector3.right,Quaternion.identity),Is.True);
+            Assert.That(assembly.Place(BlockShape.Cube,position-rotation*Vector3.up,Quaternion.identity),Is.True);
             Assert.That(assembly.CanPlace(BlockShape.Laser,position,rotation),Is.True,assembly.PlacementFailure);
+            var gun=new BlockRecord{shape=BlockShape.Laser,position=position,rotation=rotation};
+            var side=new BlockRecord{shape=BlockShape.Cube,position=position-rotation*Vector3.right,rotation=Quaternion.identity};
+            Assert.That(BlockConnectivity.Touches(gun,side),Is.False,"Complete integer collision cells do not turn the weapon's sides into mounting faces.");
         }
 
         [Test]
-        public void TestBlueprintSideMountAllowsWideHitVolumeWithoutBlockingTheMuzzle()
+        public void SupportedWeaponAllowsWideHitVolumeWithoutBlockingTheMuzzle()
         {
             var source=Asset<ModuleDatabase>("Assets/_Starframe/Settings/Modules/ModuleDatabase.asset");
             var database=Own(UnityEngine.Object.Instantiate(source));database.modules=new List<ModuleDefinition>(source.modules);
@@ -214,8 +199,10 @@ namespace Starframe.Construction.Tests
             laser.weapon.projectileDiameter=2;laser.muzzleClearanceDiameter=.25f;
             database.modules.RemoveAll(m=>m.shape==BlockShape.Laser);database.modules.Add(laser);
             var root=Own(new GameObject("Test blueprint side mount regression"));var assembly=root.AddComponent<ShipAssembly>();assembly.Configure(database);
-            var snapshot=Asset<TextAsset>("Assets/_Starframe/Data/RangeTargets/test.json");assembly.Import(JsonUtility.FromJson<BlueprintData>(snapshot.text));
-            var position=new Vector3(-4,-1.5f,2);var rotation=BlockPlacement.FaceRotation(Vector3.forward,1);
+            var fixture=new BlueprintData{name="wide-hit-volume-clearance",parts=new List<BlockRecord>{Record(BlockShape.Core,0,0)}};
+            for(int z=0;z<=4;z++)fixture.parts.Add(Record(BlockShape.Cube,1,z));
+            fixture.parts.Add(Record(BlockShape.Cube,1,1,4));assembly.Import(fixture);
+            var position=new Vector3(0,1.5f,0);var rotation=Quaternion.identity;
             Assert.That(assembly.CanPlace(BlockShape.Laser,position,rotation),Is.True,assembly.PlacementFailure);
             Assert.That(assembly.Place(BlockShape.Laser,position,rotation),Is.True);
             var blueprint=assembly.Export("clear-side-mount");var tuning=Own(ScriptableObject.CreateInstance<FlightTuning>());tuning.database=database;
@@ -228,14 +215,47 @@ namespace Starframe.Construction.Tests
             Assert.That(new WeaponClearance().IsBlockedBy(gun.record,laser,obstacle,cube),Is.True,"A real obstruction directly ahead must still block placement.");
         }
 
+        [Test]
+        public void MultiBarrelPlacementChecksEveryBoreNotOnlyTheAveragedMuzzle()
+        {
+            var db = Asset<ModuleDatabase>("Assets/_Starframe/Settings/Modules/ModuleDatabase.asset");
+            var module = db.Get(BlockShape.Gun1);
+            Assert.That(module.weapon.muzzleOffsets.Length, Is.EqualTo(2), "Gun1 is the two-barrel reference.");
+            var gun = new BlockRecord { shape = BlockShape.Gun1, position = Vector3.zero, rotation = Quaternion.identity };
+            var solid = Own(BlockGeometry.CreateSolid(BlockShape.Cube));
+            var probe = Own(Scaled(solid, .04f));
+            var clearance = new WeaponClearance();
+            foreach (var offset in module.weapon.muzzleOffsets)
+            {
+                var bore = module.muzzleLocalPosition + offset;
+                var obstacle = new BlockRecord { shape = BlockShape.Cube, position = bore + Vector3.forward * 3f };
+                Assert.That(clearance.IsBlockedBy(gun, module, obstacle, probe), Is.True,
+                    "Each individual bore must be checked, not only the average muzzle at " + module.muzzleLocalPosition);
+            }
+            var between = new BlockRecord { shape = BlockShape.Cube, position = module.muzzleLocalPosition + Vector3.forward * 3f };
+            Assert.That(clearance.IsBlockedBy(gun, module, between, probe), Is.False,
+                "A small block between the bores must not be reported as blocking a barrel");
+        }
+
+        static Mesh Scaled(Mesh source, float scale)
+        {
+            var mesh = UnityEngine.Object.Instantiate(source);
+            var vertices = mesh.vertices;
+            for (int i = 0; i < vertices.Length; i++) vertices[i] *= scale;
+            mesh.vertices = vertices;
+            mesh.RecalculateBounds();
+            return mesh;
+        }
+
         T Asset<T>(string path) where T : UnityEngine.Object => AssetDatabase.LoadAssetAtPath<T>(path);
         T Own<T>(T value) where T : UnityEngine.Object { owned.Add(value); return value; }
-        static BlockRecord Record(BlockShape shape, int x, int z) => new BlockRecord
+        static BlockRecord Record(BlockShape shape,int x,int z)=>Record(shape,x,0,z);
+        static BlockRecord Record(BlockShape shape, int x, int y, int z) => new BlockRecord
         {
-            id = shape + "-" + x + "-" + z,
+            id = shape + "-" + x + "-" + y + "-" + z,
             shape = shape,
-            position = new Vector3(x, .5f, z),
-            cell = new Vector3Int(x, 0, z),
+            position = new Vector3(x, y+.5f, z),
+            cell = new Vector3Int(x, y, z),
             rotation = Quaternion.identity
         };
     }

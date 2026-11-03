@@ -1,4 +1,10 @@
 // @role Define sound cues, engine response, music levels and playback limits.
+// @tune missileWarningFarDistance:float:1-5000:Distance for the slowest incoming missile pulse
+// @tune missileWarningNearDistance:float:1-500:Distance for the fastest incoming missile pulse
+// @tune missileWarningFarTimeToImpact:float:0.1-30:Impact estimate for the slowest incoming missile pulse
+// @tune missileWarningNearTimeToImpact:float:0-5:Impact estimate for the fastest incoming missile pulse
+// @tune missileWarningFarInterval:float:0.1-5:Seconds between distant incoming missile pulses
+// @tune missileWarningNearInterval:float:0.1-5:Minimum seconds between imminent incoming missile pulses
 
 using System;
 using UnityEngine;
@@ -9,7 +15,8 @@ namespace Starframe.App
     {
         Select, SaveBlueprint, ConfirmWarning, PlaceHull, PlaceModule, RemovePart,
         RotatePart, InvalidPlacement, CorePowerOn, LaserShot, LaserImpact,
-        LockAcquired, TargetLost, ManeuverJet, BoundaryWarning, CoreDestroyed, Respawn
+        LockAcquired, TargetLost, ManeuverJet, BoundaryWarning, CoreDestroyed, Respawn,
+        EnemyDetected, EnemyLockWarning, MissileIncoming, FlareDeploy
     }
     public enum GameSoundBus { Effects, Interface }
 
@@ -47,12 +54,27 @@ namespace Starframe.App
         [Min(.5f)] public float boundaryRepeatSeconds=3;
         [Range(0,1)] public float criticalHullFraction=.25f;
         [Min(1)] public float criticalRepeatSeconds=10;
+        [Header("Incoming missile warning cadence")]
+        [Min(1)] public float missileWarningFarDistance=600,missileWarningNearDistance=40;
+        [Min(.1f)] public float missileWarningFarTimeToImpact=4;
+        [Min(0)] public float missileWarningNearTimeToImpact=.35f;
+        [Min(.1f)] public float missileWarningFarInterval=.9f,missileWarningNearInterval=.12f;
         [Header("Per event clips, level, pitch, cooldown and bus")]
         public GameSoundCue[] cues=Array.Empty<GameSoundCue>();
         public GameSoundCue Get(GameSound sound)
         {
             foreach(var cue in cues)if(cue!=null&&cue.sound==sound)return cue;
             return null;
+        }
+        /// <summary>One merged alarm uses the more urgent of distance and the missile world's impact estimate.</summary>
+        public float MissileWarningInterval(float distance,float timeToImpact)
+        {
+            float near=Mathf.Max(1,missileWarningNearDistance),far=Mathf.Max(near+1,missileWarningFarDistance);
+            float nearTime=Mathf.Max(0,missileWarningNearTimeToImpact),farTime=Mathf.Max(nearTime+.1f,missileWarningFarTimeToImpact);
+            float distanceUrgency=float.IsNaN(distance)?0:Mathf.InverseLerp(far,near,distance);
+            float impactUrgency=float.IsNaN(timeToImpact)?0:Mathf.InverseLerp(farTime,nearTime,timeToImpact);
+            float fastest=Mathf.Max(.1f,missileWarningNearInterval),slowest=Mathf.Max(fastest,missileWarningFarInterval);
+            return Mathf.Lerp(slowest,fastest,Mathf.Max(distanceUrgency,impactUrgency));
         }
     }
 }

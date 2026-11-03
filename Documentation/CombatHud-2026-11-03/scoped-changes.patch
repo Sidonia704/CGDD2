@@ -1,0 +1,459 @@
+--- before/Flight/RangeHUD.cs
++++ Assets\_Starframe\Scripts\Runtime\Construction\Flight\RangeHUD.cs
+@@ -1,5 +1,5 @@
+ // @role Present a compact flight HUD with peripheral ship monitors, shared glass controls and explicit combat states.
+-// @calls RangeCombatWorld, ShipFlightController, ShipWeapons, ShipStatusGraphic, SphereRadarGraphic, TargetAimGraphic, TargetSilhouetteOutline, ShipCountermeasureController, ReticleHitFeedback, UiStyle, GameSettings
++// @calls RangeCombatWorld, ShipFlightController, ShipWeapons, ShipStatusGraphic, FlightInstrumentGraphic, SphereRadarGraphic, TargetAimGraphic, TargetSilhouetteOutline, ShipCountermeasureController, ReticleHitFeedback, UiStyle, UiTheme, GameSettings
+ 
+ using System;
+ using System.Collections.Generic;
+@@ -32,7 +32,9 @@
+         TextMeshProUGUI speedReadout,summaryReadout,diagnosticHint,alertReadout;
+         RawImage telemetryPanel;RectTransform telemetryShadow;
+         bool refinedFlightLayout,diagnosticsExpanded;
++        FlightInstrumentGraphic instruments;TextMeshProUGUI instrumentShield,instrumentEnergy;
+         const float EnergyWidth=316,TelemetryWidth=360;
++        static readonly Color HudInk=Color.white,HudMuted=new Color(.84f,.84f,.84f,.94f);
+         bool inputOverlayOpen,missionPresentation;int ignoreEscapeThroughFrame=-1;
+         public Canvas RootCanvas=>canvas;
+         public Camera WorldCamera=>worldCamera;
+@@ -72,7 +74,7 @@
+             var silhouette=Rect(root,"LockedTargetSilhouette",0,0,1920,1080).gameObject.AddComponent<Starframe.Combat.TargetSilhouetteOutline>();
+             silhouette.Initialize(worldCamera,combat.Targeting);silhouette.transform.SetSiblingIndex(root.Find("FlightView").GetSiblingIndex()+1);
+             leadLabel=Text(root,"LeadLegend","",refinedFlightLayout?660:1410,refinedFlightLayout?116:393,refinedFlightLayout?600:478,refinedFlightLayout?24:42,refinedFlightLayout?13:14);leadLabel.alignment=refinedFlightLayout?TextAlignmentOptions.Center:TextAlignmentOptions.TopRight;leadLabel.textWrappingMode=TextWrappingModes.Normal;
+-            ownStatus.Bind(combat.Player.ship);radar.Initialize(combat,combat.Sensors!=null?combat.Sensors.MaximumRange:combat.Targeting.LockRange);
++            ownStatus.SetMonochrome(true);targetStatus.SetMonochrome(true);ownStatus.Bind(combat.Player.ship);radar.Initialize(combat,combat.Sensors!=null?combat.Sensors.MaximumRange:combat.Targeting.LockRange);
+             targetStatus.SetRelativeObserver(combat.Player.ship.transform);
+             var overlay=new GameObject("TargetAimCanvas",typeof(RectTransform),typeof(Canvas));overlay.layer=5;overlay.transform.SetParent(canvas.transform,false);
+             var targetCanvas=overlay.GetComponent<Canvas>();targetCanvas.renderMode=RenderMode.ScreenSpaceCamera;targetCanvas.worldCamera=displayCamera;targetCanvas.planeDistance=1;
+@@ -90,7 +92,7 @@
+             missileLockFill=Rect(root,"MissileLockFill",refinedFlightLayout?840:510,missileY+30,240,3).gameObject.AddComponent<UnityEngine.UI.Image>();
+             missileLockFill.raycastTarget=false;missileLockFill.rectTransform.SetParent(missileLockTrack.rectTransform,false);SetProgress(missileLockFill.rectTransform,0);
+             RefreshMissileHud(combat.Player.weapons);
+-            flareLabel=Text(root,"CountermeasureStatus","",refinedFlightLayout?620:510,refinedFlightLayout?902:166,refinedFlightLayout?680:900,26,14);flareLabel.color=GlassUiPalette.Muted;if(refinedFlightLayout)flareLabel.alignment=TextAlignmentOptions.Center;
++            flareLabel=Text(root,"CountermeasureStatus","",refinedFlightLayout?620:510,refinedFlightLayout?902:166,refinedFlightLayout?680:900,26,14);flareLabel.color=HudMuted;if(refinedFlightLayout)flareLabel.alignment=TextAlignmentOptions.Center;
+             threatLabel=Text(root,"ThreatStatus","",refinedFlightLayout?620:510,refinedFlightLayout?44:204,refinedFlightLayout?680:900,30,18);threatLabel.color=UiTheme.Current.danger;if(refinedFlightLayout)threatLabel.alignment=TextAlignmentOptions.Center;
+             modal.transform.SetAsLastSibling();
+         }
+@@ -120,7 +122,7 @@
+             radarLabel=Text(root,"RadarContacts","hud.radarInitial",1596,radarTop+(refinedFlightLayout?211:280),272,22,13);
+             if(refinedFlightLayout)
+             {
+-                var controls=Text(root,"ControlsCombat","hud.combatHelp",420,1048,1080,22,13);controls.alignment=TextAlignmentOptions.Center;controls.color=GlassUiPalette.Muted;
++                var controls=Text(root,"ControlsCombat","hud.combatHelp",420,1048,1080,22,13);controls.alignment=TextAlignmentOptions.Center;controls.color=HudMuted;
+             }
+             else Text(root,"Controls","hud.allHelp",32,1030,1830,28,15);
+             var group=Rect(root,"ExitModal",0,0,1920,1080);modal=group.gameObject;
+@@ -160,13 +162,13 @@
+         {
+             telemetryShadow=Panel(root,"TelemetryGlass",32,32,TelemetryWidth,180);
+             telemetryPanel=root.Find("TelemetryGlass")?.GetComponent<RawImage>();
+-            Text(root,"Title","hud.systemsTitle",54,48,146,24,14).color=GlassUiPalette.Muted;
+-            diagnosticHint=Text(root,"DiagnosticHint","hud.diagnosticsOpen",214,48,156,24,12);diagnosticHint.color=GlassUiPalette.Muted;diagnosticHint.alignment=TextAlignmentOptions.Right;
++            Text(root,"Title","hud.systemsTitle",54,48,146,24,14).color=HudMuted;
++            diagnosticHint=Text(root,"DiagnosticHint","hud.diagnosticsOpen",214,48,156,24,12);diagnosticHint.color=HudMuted;diagnosticHint.alignment=TextAlignmentOptions.Right;
+             speedReadout=Text(root,"SpeedReadout","0.0 m/s",54,80,316,48,34);
+-            summaryReadout=Text(root,"FlightSummary","hud.summaryInitial",54,140,316,45,14);summaryReadout.textWrappingMode=TextWrappingModes.Normal;summaryReadout.color=GlassUiPalette.Muted;
+-            info=Text(root,"Telemetry","",54,204,316,188,12);info.textWrappingMode=TextWrappingModes.Normal;info.color=GlassUiPalette.Muted;
++            summaryReadout=Text(root,"FlightSummary","hud.summaryInitial",54,140,316,45,14);summaryReadout.textWrappingMode=TextWrappingModes.Normal;summaryReadout.color=HudMuted;
++            info=Text(root,"Telemetry","",54,204,316,188,12);info.textWrappingMode=TextWrappingModes.Normal;info.color=HudMuted;
+             alertReadout=Text(root,"FlightAlert","",54,190,316,26,13);alertReadout.gameObject.SetActive(false);
+-            lockLabel=Text(root,"TargetLockStatus","hud.lockHint",660,84,600,26,15);lockLabel.color=GlassUiPalette.Muted;lockLabel.alignment=TextAlignmentOptions.Center;
++            lockLabel=Text(root,"TargetLockStatus","hud.lockHint",660,84,600,26,15);lockLabel.color=HudMuted;lockLabel.alignment=TextAlignmentOptions.Center;
+             Panel(root,"OwnStatusGlass",32,694,360,222);Text(root,"OwnStatusTitle","hud.ownTitle",54,710,316,25,16);
+             ownStatus=Rect(root,"OwnShipSchematic",52,746,320,116).gameObject.AddComponent<ShipStatusGraphic>();
+             ownCondition=Text(root,"OwnShipCondition","hud.coreOnline",54,878,316,22,13);
+@@ -175,20 +177,27 @@
+             CreateShieldFill(root,54,967,EnergyWidth,8);
+             energyLabel=Text(root,"EnergyValue","hud.energyInitial",54,982,316,20,14);
+             CreateEnergyFill(root,54,1008,EnergyWidth,10);
+-            boostLabel=Text(root,"BoostStatus","hud.boost",54,1025,316,18,12);boostLabel.color=GlassUiPalette.Accent;boostLabel.gameObject.SetActive(false);
++            boostLabel=Text(root,"BoostStatus","hud.boost",54,1025,316,18,12);boostLabel.color=HudInk;boostLabel.gameObject.SetActive(false);
+             BuildTargetMonitor(root,1528,694,360,222,1550,710,1548,760,1550,878,13,102,16,30);
+             SetDiagnosticsExpanded(false);
++            instruments=Rect(root,"FlightInstruments",620,340,680,350).gameObject.AddComponent<FlightInstrumentGraphic>();instruments.raycastTarget=false;
++            SetRect(speedReadout.rectTransform,620,662,80,36);speedReadout.fontSize=27;speedReadout.alignment=TextAlignmentOptions.Center;
++            var unit=Text(root,"SpeedUnit","",620,699,80,20,12);unit.text="m/s";unit.alignment=TextAlignmentOptions.Center;
++            instrumentShield=Text(root,"ShieldGaugeValue","",1168,665,64,28,17);instrumentShield.alignment=TextAlignmentOptions.Center;
++            instrumentEnergy=Text(root,"EnergyGaugeValue","",1228,665,64,28,17);instrumentEnergy.alignment=TextAlignmentOptions.Center;
++            foreach(var name in new[]{"Title","FlightSummary","EnergyValue","ShieldValue","ShieldTrack","EnergyTrack"}){var child=root.Find(name);if(child)child.gameObject.SetActive(false);}
++
+         }
+         void CreateShieldFill(RectTransform root,float x,float y,float width,float height)
+         {
+-            var track=Rect(root,"ShieldTrack",x,y,width,height).gameObject.AddComponent<Image>();track.color=refinedFlightLayout?new Color(GlassUiPalette.Accent.r,GlassUiPalette.Accent.g,GlassUiPalette.Accent.b,.16f):new Color(.035f,.12f,.18f,.9f);track.raycastTarget=false;
+-            shieldFill=Rect(root,"ShieldFill",x,y,width,height).gameObject.AddComponent<RawImage>();shieldFill.texture=Texture2D.whiteTexture;shieldFill.color=refinedFlightLayout?GlassUiPalette.Accent:new Color(.4f,.72f,.8f,.95f);shieldFill.raycastTarget=false;
++            var track=Rect(root,"ShieldTrack",x,y,width,height).gameObject.AddComponent<Image>();track.color=refinedFlightLayout?new Color(HudInk.r,HudInk.g,HudInk.b,.16f):new Color(.035f,.12f,.18f,.9f);track.raycastTarget=false;
++            shieldFill=Rect(root,"ShieldFill",x,y,width,height).gameObject.AddComponent<RawImage>();shieldFill.texture=Texture2D.whiteTexture;shieldFill.color=refinedFlightLayout?HudInk:new Color(.4f,.72f,.8f,.95f);shieldFill.raycastTarget=false;
+             shieldFill.rectTransform.SetParent(track.rectTransform,false);SetProgress(shieldFill.rectTransform,0);
+         }
+         void CreateEnergyFill(RectTransform root,float x,float y,float width,float height)
+         {
+-            var track=Rect(root,"EnergyTrack",x,y,width,height).gameObject.AddComponent<Image>();track.color=refinedFlightLayout?new Color(GlassUiPalette.Accent.r,GlassUiPalette.Accent.g,GlassUiPalette.Accent.b,.16f):new Color(.035f,.12f,.18f,.9f);track.raycastTarget=false;
+-            energyFill=Rect(root,"EnergyFill",x,y,width,height).gameObject.AddComponent<RawImage>();energyFill.texture=Texture2D.whiteTexture;energyFill.color=refinedFlightLayout?GlassUiPalette.Accent:new Color(.28f,.82f,1,.95f);energyFill.raycastTarget=false;
++            var track=Rect(root,"EnergyTrack",x,y,width,height).gameObject.AddComponent<Image>();track.color=refinedFlightLayout?new Color(HudInk.r,HudInk.g,HudInk.b,.16f):new Color(.035f,.12f,.18f,.9f);track.raycastTarget=false;
++            energyFill=Rect(root,"EnergyFill",x,y,width,height).gameObject.AddComponent<RawImage>();energyFill.texture=Texture2D.whiteTexture;energyFill.color=refinedFlightLayout?HudInk:new Color(.28f,.82f,1,.95f);energyFill.raycastTarget=false;
+             energyFill.rectTransform.SetParent(track.rectTransform,false);SetProgress(energyFill.rectTransform,0);
+         }
+         void BuildTargetMonitor(RectTransform root,float px,float py,float pw,float ph,float tx,float ty,float sx,float sy,float cx,float cy,float identitySize=15,float schematicHeight=164,float titleSize=18,float identityOffset=35)
+@@ -209,15 +218,16 @@
+             int slots=4;foreach(var group in groups)if(group.id>=0&&group.id<8)slots=Mathf.Max(slots,group.id+1);
+             float panelWidth=slots*(tileWidth+gap)+24,panelX=(1920-panelWidth)*.5f,panelY=refinedFlightLayout?948:476;
+             Panel(root,"WeaponGroupHudGlass",panelX,panelY,panelWidth,86);
+-            Text(root,"WeaponGroupHudTitle","hud.weaponGroupsTitle",panelX+16,panelY+9,panelWidth*.5f,18,12).color=GlassUiPalette.Muted;
++            Text(root,"WeaponGroupHudTitle","hud.weaponGroupsTitle",panelX+16,panelY+9,panelWidth*.5f,18,12).color=HudMuted;
+             var hint=Text(root,"WeaponGroupHudHint","hud.weaponGroupsKeyHint",panelX+panelWidth*.5f,panelY+9,panelWidth*.5f-16,18,12);
+-            hint.alignment=TextAlignmentOptions.Right;hint.color=GlassUiPalette.Muted;
++            hint.alignment=TextAlignmentOptions.Right;hint.color=HudMuted;
+             for(int i=0;i<groups.Count&&i<8;i++)
+             {
+                 if(groups[i].id<0||groups[i].id>=8)continue;
+                 float x=panelX+16+groups[i].id*(tileWidth+gap),y=panelY+32;
+                 var tile=Rect(root,"WeaponGroupHud_"+groups[i].id,x,y,tileWidth,tileHeight).gameObject.AddComponent<Image>();
+                 tile.raycastTarget=false;
++                var activeLine=new GameObject("ActiveLine",typeof(RectTransform),typeof(Image));activeLine.transform.SetParent(tile.transform,false);var lineRect=(RectTransform)activeLine.transform;lineRect.anchorMin=new Vector2(0,0);lineRect.anchorMax=new Vector2(1,0);lineRect.offsetMin=Vector2.zero;lineRect.offsetMax=new Vector2(0,2);activeLine.GetComponent<Image>().raycastTarget=false;
+                 var label=Text(root,"WeaponGroupHudLabel_"+groups[i].id,"",x+5,y+4,tileWidth-10,tileHeight-8,12);
+                 label.alignment=TextAlignmentOptions.Center;label.textWrappingMode=TextWrappingModes.Normal;
+                 weaponGroupHud.Add(new WeaponGroupHudEntry{id=groups[i].id,tile=tile,label=label});
+@@ -227,15 +237,16 @@
+         void RefreshWeaponGroupHud(Starframe.Combat.ShipWeapons weapons)
+         {
+             if(weapons==null)return;
+-            Color enabled=new Color(GlassUiPalette.Accent.r,GlassUiPalette.Accent.g,GlassUiPalette.Accent.b,.18f);
+-            Color disabled=new Color(GlassUiPalette.Ink.r,GlassUiPalette.Ink.g,GlassUiPalette.Ink.b,.07f);
++            Color enabled=new Color(HudInk.r,HudInk.g,HudInk.b,.18f);
++            Color disabled=new Color(HudInk.r,HudInk.g,HudInk.b,.07f);
+             for(int i=0;i<weaponGroupHud.Count;i++)
+             {
+                 var entry=weaponGroupHud[i];if(!entry.tile||!entry.label)continue;
+                 bool active=weapons.IsGroupEnabled(entry.id);int count=weapons.GetGroupGunCount(entry.id,true);
+-                entry.tile.color=active?enabled:disabled;
++                entry.tile.color=Color.clear;
++                var line=entry.tile.transform.Find("ActiveLine")?.GetComponent<Image>();if(line)line.color=active?UiTheme.Current.combatInstrument:disabled;
+                 entry.label.text="<b>"+(entry.id+1)+"  "+L10n.T(active?"hud.weaponGroupOn":"hud.weaponGroupOff")+"</b>\n<size=92%>"+L10n.T("hud.weaponGroupGuns",count)+"</size>";
+-                entry.label.color=active?GlassUiPalette.Ink:GlassUiPalette.Muted;
++                entry.label.color=active?UiTheme.Current.combatInstrument:HudMuted;
+             }
+         }
+         void RefreshMissileHud(Starframe.Combat.ShipWeapons weapons)
+@@ -245,7 +256,7 @@
+             missileLabel.gameObject.SetActive(visible);missileLockTrack.gameObject.SetActive(visible);missileLockFill.gameObject.SetActive(visible);
+             if(!visible)return;
+             float progress=Mathf.Clamp01(weapons.MissileLockProgress),reload=weapons.MissileReloadRemaining;
+-            Color tint=progress>=.999f?GlassUiPalette.Accent:Starframe.Presentation.UiTheme.Current.amber;
++            Color tint=progress>=.999f?UiTheme.Current.combatInstrument:Starframe.Presentation.UiTheme.Current.amber;
+             missileLabel.color=tint;missileLockFill.color=tint;
+             string text=!combat.Targeting||!combat.Targeting.HasTarget?L10n.T("hud.missileNoTarget"):
+                 progress<.999f?L10n.T("hud.missileLocking",progress*100):L10n.T("hud.missileReady");
+@@ -291,7 +302,8 @@
+             var p=flight.Performance;var a=p.accelerationPositive/9.81f;var b=p.accelerationNegative/9.81f;
+             string performanceDetails=(!refinedFlightLayout||diagnosticsExpanded)?L10n.T("hud.performance",p.totalMass,a.z,b.z,a.x,b.x,a.y,b.y,p.angularRate,p.pitchAcceleration,p.rollSpeed):"";
+             if(!refinedFlightLayout)info.text=L10n.T("hud.speed",flight.CurrentSpeed,p.maxSpeed,performanceDetails);
+-            if(speedReadout)speedReadout.text=refinedFlightLayout?$"{flight.CurrentSpeed:0.0} <size=53%>m/s</size>  <color=#{ColorUtility.ToHtmlStringRGB(GlassUiPalette.Muted)}>/ {p.maxSpeed:0}</color>":"";
++            if(speedReadout)speedReadout.text=refinedFlightLayout?$"{flight.CurrentSpeed:0}":"";
++            if(speedReadout)speedReadout.color=UiTheme.Current.combatInstrument;
+             if(summaryReadout)summaryReadout.text=L10n.IsEnglish?$"Mass  {p.totalMass/1000:0.0} t":$"质量  {p.totalMass/1000:0.0} t";
+             float maxEnergy=Mathf.Max(0,flight.MaxEnergy),energy=Mathf.Clamp(flight.Energy,0,maxEnergy),ratio=maxEnergy>0?energy/maxEnergy:0;
+             if(energyLabel)energyLabel.text=maxEnergy>0?L10n.T("hud.energy",ratio,energy,maxEnergy):L10n.T("hud.noPower");
+@@ -313,9 +325,10 @@
+                 float capacity=player.ship.Shields.Capacity,charge=player.ship.Shields.Charge;
+                 shieldLabel.text=capacity>0?L10n.T("hud.shield",charge,capacity):L10n.T("hud.noShield");
+                 SetProgress(shieldFill.rectTransform,capacity>0?charge/capacity:0);
++                if(instruments){instruments.SetTelemetry(flight.CurrentSpeed,p.maxSpeed,ratio,capacity>0?charge/capacity:0,flight.IsBoosting);instrumentShield.text=capacity>0?$"{100*charge/capacity:0}%":"—";instrumentEnergy.text=$"{100*ratio:0}%";instrumentShield.color=instrumentEnergy.color=UiTheme.Current.combatInstrument;}
+                 var targeting=combat.Targeting;bool locked=targeting&&targeting.HasTarget;
+-                if(lockLabel){lockLabel.text=locked?L10n.T("hud.unlock",targeting.TargetDistance):(L10n.IsEnglish?"F  Lock target ahead":"F  锁定前方目标");lockLabel.color=locked?UiTheme.Current.danger:GlassUiPalette.Muted;}
+-                ownStatus.Bind(player.ship);ownCondition.text=Condition(player.ship);ownCondition.color=player.ship.IsAlive?(refinedFlightLayout?GlassUiPalette.Accent:new Color(.48f,.85f,1)):(refinedFlightLayout?Starframe.Presentation.UiTheme.Current.danger:new Color(1,.25f,.2f));
++                if(lockLabel){lockLabel.text=locked?L10n.T("hud.unlock",targeting.TargetDistance):(L10n.IsEnglish?"F  Lock target ahead":"F  锁定前方目标");lockLabel.color=locked?UiTheme.Current.danger:HudMuted;}
++                ownStatus.Bind(player.ship);ownCondition.text=Condition(player.ship);ownCondition.color=player.ship.IsAlive?(refinedFlightLayout?HudInk:new Color(.48f,.85f,1)):(refinedFlightLayout?Starframe.Presentation.UiTheme.Current.danger:new Color(1,.25f,.2f));
+                 var target=locked?targeting.LockedTarget:null;targetStatus.Bind(target);
+                 targetIdentity.text=target?L10n.T("hud.targetIdentity",TargetName(target),targeting.TargetDistance):L10n.T("hud.noTarget");
+                 L10n.ApplyUserContentFont(targetIdentity);
+@@ -324,7 +337,7 @@
+                 float sensorRange=combat.Sensors!=null?combat.Sensors.MaximumRange:targeting?targeting.LockRange:0;
+                 radarLabel.text=L10n.IsEnglish?$"{sensorRange/1000:0.#} km  ·  {detected} contacts":$"{sensorRange/1000:0.#} km  ·  目标 {detected}";
+                 if(leadLabel){var leads=combat.Targeting?combat.Targeting.LeadPoints:null;leadNames.Clear();if(leads!=null&&(leads.Count>1||diagnosticsExpanded))foreach(var lead in leads)if(lead.weapon){int i=leadNames.Count;leadNames.Add($"<color=#FF3D2E>{i+1}</color> · {lead.weapon.projectileSpeed:0} m/s");}leadLabel.text=string.Join("   ",leadNames);}
+-                string combatDetails=L10n.T("hud.combatDetails",present,player.ship.Parts.Count,player.weapons.ActiveGuns,player.weapons.BlockedGuns,player.ship.DamageDealt,player.ship.DamageTaken,live,combat.Bots.Count,combat.BotKills);
++                string combatDetails=(!refinedFlightLayout||diagnosticsExpanded)?L10n.T("hud.combatDetails",present,player.ship.Parts.Count,player.weapons.ActiveGuns,player.weapons.BlockedGuns,player.ship.DamageDealt,player.ship.DamageTaken,live,combat.Bots.Count,combat.BotKills):"";
+                 string alert=missionPresentation?(!player.ship.IsAlive?L10n.T("mission.arcade.shipLost"):""):
+                     !player.ship.IsAlive?L10n.T("hud.respawn",combat.PlayerRespawnRemaining):live<combat.Bots.Count?L10n.T("hud.rebuilding"):"";
+                 if(!refinedFlightLayout)
+@@ -344,7 +357,7 @@
+         string Condition(FlightShipRuntime ship)
+         {
+             int count=0,damaged=0;foreach(var p in ship.Parts)if(p.present){count++;if(p.hp<p.maxHp-.001f)damaged++;}
+-            Color damageColor=damaged>0?(refinedFlightLayout?Starframe.Presentation.UiTheme.Current.danger:new Color(1,.38f,.33f)):GlassUiPalette.Muted;
++            Color damageColor=damaged>0?(refinedFlightLayout?Starframe.Presentation.UiTheme.Current.danger:new Color(1,.38f,.33f)):HudMuted;
+             string damageHex=ColorUtility.ToHtmlStringRGB(damageColor);
+             return L10n.T("hud.condition",L10n.T(ship.IsAlive?"hud.coreOnline":"hud.coreDestroyed"),count,ship.Parts.Count,damaged,damageHex);
+         }
+@@ -384,7 +397,7 @@
+         }
+         TextMeshProUGUI Text(RectTransform parent,string name,string value,float x,float y,float w,float h,float size)
+         {
+-            var t=Rect(parent,name,x,y,w,h).gameObject.AddComponent<TextMeshProUGUI>();t.font=font;t.fontSize=size;t.color=GlassUiPalette.Ink;
++            var t=Rect(parent,name,x,y,w,h).gameObject.AddComponent<TextMeshProUGUI>();t.font=font;t.fontSize=size;t.color=HudInk;
+             if(L10n.IsKey(value))L10n.Bind(t,value);else{t.text=value;L10n.ApplyFont(t);}
+             t.raycastTarget=false;t.textWrappingMode=TextWrappingModes.NoWrap;t.overflowMode=TextOverflowModes.Ellipsis;UiStyle.ApplyText(t,size);
+             if(name=="ExitHint"||name.StartsWith("Controls",StringComparison.Ordinal))t.textWrappingMode=TextWrappingModes.Normal;
+@@ -392,6 +405,9 @@
+         }
+         RectTransform Panel(RectTransform parent,string name,float x,float y,float w,float h)
+         {
++            bool monitor=name=="OwnStatusGlass"||name=="TargetStatusGlass";
++            bool floating=name!="ExitGlass"&&!monitor;
++            if(floating){var empty=Rect(parent,name,x,y,w,h).gameObject.AddComponent<RawImage>();empty.color=Color.clear;empty.raycastTarget=false;return empty.rectTransform;}
+             var shadow=Rect(parent,name+"Shadow",x+3,y+4,w,h).gameObject.AddComponent<Image>();shadow.color=new Color(0,0,0,.08f);shadow.raycastTarget=false;
+             var image=Rect(parent,name,x,y,w,h).gameObject.AddComponent<RawImage>();image.raycastTarget=false;
+             var material=new Material(Shader.Find("Starframe/UI/BackdropBlur"));GlassUiPalette.Apply(material,name=="ExitGlass"?GlassUiPalette.Dialog:GlassUiPalette.Glass);
+@@ -469,7 +485,7 @@
+             if(refinedReticle)
+             {
+                 // Projection and cursor positions above are shared with the legacy graphic; only the drawing changes.
+-                var accent=new Color(theme.accent.r,theme.accent.g,theme.accent.b,.94f);var cursor=new Color(theme.text.r,theme.text.g,theme.text.b,.84f);
++                var accent=theme.combatInstrument;accent.a=.98f;var cursor=new Color(1,1,1,.9f);
+                 if(theme.hitFeedbackEnabled)DrawReactiveCross(vh,a,s,theme,hitStrength,accent);
+                 else
+                 {
+--- before/Flight/ShipStatusGraphic.cs
++++ Assets\_Starframe\Scripts\Runtime\Construction\Flight\ShipStatusGraphic.cs
+@@ -65,6 +65,7 @@
+         float projectionScale = 1f;
+         bool hasCore;
+         bool lastRefinedStyle;
++        bool monochrome;
+         Vector2 corePosition;
+         Quaternion shipLocalRotation = Quaternion.identity;
+         public int VisiblePartCount { get; private set; }
+@@ -74,6 +75,7 @@
+         public FlightShipRuntime Ship => ship;
+         public Quaternion DisplayRotation=>shipLocalRotation;
+         public void SetRelativeObserver(Transform observer){relativeObserver=observer;nextRefresh=0;}
++        public void SetMonochrome(bool value){if(monochrome==value)return;monochrome=value;Rebuild();}
+ 
+         protected override void Awake()
+         {
+@@ -290,7 +292,7 @@
+                 Vector3 faceCenter = (a3 + b3 + c3) / 3f;
+                 Vector2 a = Project(a3), b = Project(b3), c = Project(c3);
+                 float shade=RefinedFaceShade[f%RefinedFaceShade.Length];
+-                Color baseColor=lastRefinedStyle
++                Color baseColor=monochrome ? new Color(.68f*shade,.68f*shade,.68f*shade,.98f) : lastRefinedStyle
+                     ? new Color(theme.accent.r*.36f*shade,theme.accent.g*.62f*shade,theme.accent.b*.80f*shade,.96f)
+                     : FacePalette[f%FacePalette.Length];
+                 Color damageColor=lastRefinedStyle?theme.danger:DamageColor;
+@@ -324,7 +326,7 @@
+             Vector2 side = new Vector2(-direction.y, direction.x) * 0.65f;
+             var theme=Starframe.Presentation.UiTheme.Current;
+             Color color = damaged ? (lastRefinedStyle?theme.danger:DamageColor)
+-                : lastRefinedStyle ? new Color(theme.accent.r*.58f,theme.accent.g*.72f,theme.accent.b*.84f,.62f) : EdgeColor;
++                : monochrome ? new Color(1,1,1,.68f) : lastRefinedStyle ? new Color(theme.accent.r*.58f,theme.accent.g*.72f,theme.accent.b*.84f,.62f) : EdgeColor;
+             float depth = (Depth(a3) + Depth(b3)) * .5f + .0001f;
+             faces.Add(new Face { a = a - side, b = a + side, c = b + side, depth = depth, color = color });
+             faces.Add(new Face { a = a - side, b = b + side, c = b - side, depth = depth, color = color });
+@@ -354,12 +356,12 @@
+                 {
+                     if(refined)
+                     {
+-                        Color halo=new Color(theme.accent.r,theme.accent.g,theme.accent.b,.12f);
++                        Color halo=monochrome?new Color(1,1,1,.12f):new Color(theme.accent.r,theme.accent.g,theme.accent.b,.12f);
+                         AddTriangle(vh,center+Vector2.up*(radius+3f),center+Vector2.right*(radius+3f),center-Vector2.up*(radius+3f),halo,ref vertexCount);
+                         AddTriangle(vh,center+Vector2.up*(radius+3f),center-Vector2.up*(radius+3f),center-Vector2.right*(radius+3f),halo,ref vertexCount);
+                     }
+-                    Color core=refined?theme.accent:CoreColor;
+-                    Color highlight=refined?Color.Lerp(theme.accent,Color.white,.7f):Color.white;
++                    Color core=monochrome?theme.combatInstrument:refined?theme.accent:CoreColor;
++                    Color highlight=monochrome?Color.white:refined?Color.Lerp(theme.accent,Color.white,.7f):Color.white;
+                     AddTriangle(vh, center + new Vector2(0, radius), center + new Vector2(radius, 0), center + new Vector2(0, -radius), core, ref vertexCount);
+                     AddTriangle(vh, center + new Vector2(0, radius), center + new Vector2(0, -radius), center + new Vector2(-radius, 0), core, ref vertexCount);
+                     AddTriangle(vh, center + new Vector2(0, radius * .55f), center + new Vector2(radius * .55f, 0), center + new Vector2(0, -radius * .55f), highlight, ref vertexCount);
+--- before/Flight/SphereRadarGraphic.cs
++++ Assets\_Starframe\Scripts\Runtime\Construction\Flight\SphereRadarGraphic.cs
+@@ -57,7 +57,7 @@
+             var theme = Starframe.Presentation.UiTheme.Current;
+             bool refined = theme.tacticalRadar;
+             Vector2 center = rect.center;
+-            if(refined) DrawRefinedDisk(vh,center,radius,theme.muted,theme.accent);
++            if(refined) DrawRefinedDisk(vh,center,radius,theme.combatInstrument,theme.combatInstrument);
+             else DrawDisk(vh, center, radius);
+ 
+             var player = world.Player;
+@@ -104,7 +104,7 @@
+                 Triangle(vh,point-Vector2.up*markerSize*sign,point+new Vector2(-markerSize,markerSize*sign),point+new Vector2(markerSize,markerSize*sign),tint);
+                 if(refined&&isLocked) DrawContactBrackets(vh,point,markerSize+4f,tint);
+             }
+-            if(refined) DrawRefinedPlayer(vh,center,theme.accent);
++            if(refined) DrawRefinedPlayer(vh,center,theme.combatInstrument);
+             else DrawPlayer(vh,center,radius);
+         }
+ 
+@@ -128,9 +128,9 @@
+ 
+         static void DrawRefinedDisk(VertexHelper vh,Vector2 center,float radius,Color muted,Color accent)
+         {
+-            Color outer=new Color(muted.r,muted.g,muted.b,.31f);
+-            Color middle=new Color(muted.r,muted.g,muted.b,.17f);
+-            Color inner=new Color(muted.r,muted.g,muted.b,.11f);
++            Color outer=new Color(muted.r,muted.g,muted.b,.65f);
++            Color middle=new Color(muted.r,muted.g,muted.b,.4f);
++            Color inner=new Color(muted.r,muted.g,muted.b,.26f);
+             // Preserve the flat three-ring ellipse; the upper and lower ticks clarify forward/back.
+             Ellipse(vh,center,radius,radius*.4f,1.3f,outer);
+             Ellipse(vh,center,radius*.7f,radius*.28f,1f,middle);
+--- before/Combat/MissionHUD.cs
++++ Assets\_Starframe\Scripts\Runtime\Construction\Combat\MissionHUD.cs
+@@ -48,7 +48,7 @@
+             owner.CreateMissionGlass(brief,"MissionBriefGlass",660,278,600,162);
+             title=Label(brief,"WaveBriefTitle",684,294,552,28,21,GlassUiPalette.Ink);
+             hint=Label(brief,"WaveBriefHint",684,334,552,42,15,GlassUiPalette.Muted);hint.textWrappingMode=TextWrappingModes.Normal;
+-            countdown=Label(brief,"WaveCountdown",684,390,280,24,16,GlassUiPalette.Accent);
++            countdown=Label(brief,"WaveCountdown",684,390,280,24,16,UiTheme.Current.combatInstrument);
+             var image=MenuSurface.Rect(brief,"StartNextWave",986,382,250,42).gameObject.AddComponent<UnityEngine.UI.Image>();image.color=GlassUiPalette.Action;
+             next=image.gameObject.AddComponent<UnityEngine.UI.Button>();next.targetGraphic=image;next.colors=UiStyle.ControlColors();
+             next.onClick.AddListener(()=>{if(director&&director.StartNextWave()){GameAudio.PlayUiClick();Refresh();}});
+@@ -94,7 +94,7 @@
+                 outcomeHint.text=L10n.T("mission.arcade.returning");
+             }
+             for(int i=0;i<steps.Length;i++){
+-                Color tint=i<index-1||director.State==ArcadeMissionState.Victory?UiTheme.Current.success:i==index-1?GlassUiPalette.Accent:GlassUiPalette.Muted;
++                Color tint=i<index-1||director.State==ArcadeMissionState.Victory?UiTheme.Current.success:i==index-1?UiTheme.Current.combatInstrument:GlassUiPalette.Muted;
+                 tint.a=i<index?.85f:.18f;steps[i].color=tint;
+             }
+         }
+--- before/Combat/DebrisInstanceRenderer.cs
++++ Assets\_Starframe\Scripts\Runtime\Construction\Combat\DebrisInstanceRenderer.cs
+@@ -1,4 +1,4 @@
+-// @role Batch ordinary opaque wreckage meshes while preserving every destructible part and collider.
++// @role Instance persistent wreckage with cached source descriptors and island bounds while preserving each destructible part and collider.
+ // @calls DebrisWorld, DebrisCluster, DebrisPartHitbox
+ 
+ using System.Collections.Generic;
+@@ -11,9 +11,11 @@
+     public sealed class DebrisInstanceRenderer:MonoBehaviour
+     {
+         const int Capacity=256;
++        static readonly Unity.Profiling.ProfilerMarker DrawMarker=new Unity.Profiling.ProfilerMarker("Starframe.WreckInstances"),RebuildMarker=new Unity.Profiling.ProfilerMarker("Starframe.WreckInstanceRebuild");
+         sealed class Entry
+         {
+             public DebrisPartHitbox part;public DebrisCluster cluster;public MeshRenderer source;public Matrix4x4 local;
++            public (Mesh,Material,int,int,ShadowCastingMode,bool,uint) key;
+         }
+         sealed class Batch
+         {
+@@ -27,38 +29,44 @@
+         readonly Dictionary<DebrisCluster,Matrix4x4> roots=new Dictionary<DebrisCluster,Matrix4x4>();
+         readonly HashSet<DebrisCluster> visible=new HashSet<DebrisCluster>();
+         readonly Plane[] planes=new Plane[6];
++        readonly Dictionary<DebrisPartHitbox,List<Entry>> cachedParts=new Dictionary<DebrisPartHitbox,List<Entry>>();
++        readonly HashSet<DebrisPartHitbox> visited=new HashSet<DebrisPartHitbox>();
++        readonly List<DebrisPartHitbox> retired=new List<DebrisPartHitbox>();
++        readonly Dictionary<(Mesh,Material,int,int,ShadowCastingMode,bool,uint),List<Entry>> groups=new Dictionary<(Mesh,Material,int,int,ShadowCastingMode,bool,uint),List<Entry>>();
++        readonly HashSet<MeshRenderer> sources=new HashSet<MeshRenderer>();
++        readonly List<Batch> allocatedBatches=new List<Batch>();
++        readonly Dictionary<DebrisCluster,Bounds> clusterBounds=new Dictionary<DebrisCluster,Bounds>();
+         DebrisWorld world;int revision=-1;bool dirty=true;
+         public int BatchedRendererCount=>hidden.Count;
+         public int SubmittedBatchCount{get;private set;}
+         public int VisibleInstanceCount{get;private set;}
+-        public void Initialize(DebrisWorld value){Restore();world=value;dirty=true;revision=-1;}
++        public void Initialize(DebrisWorld value){Restore();cachedParts.Clear();world=value;dirty=true;revision=-1;}
+         public void MarkDirty()=>dirty=true;
+         void LateUpdate()
+         {
++            using var sample=DrawMarker.Auto();
+             SubmittedBatchCount=VisibleInstanceCount=0;if(!world)return;
+             if(dirty||revision!=world.TopologyRevision)Rebuild();
+-            roots.Clear();visible.Clear();var camera=Camera.main;
++            roots.Clear();visible.Clear();clusterBounds.Clear();var camera=Camera.main;
+             bool cull=camera&&camera.isActiveAndEnabled;if(cull)GeometryUtility.CalculateFrustumPlanes(camera,planes);
+             foreach(var cluster in world.Clusters)
+             {
+                 if(!cluster||!cluster.gameObject.activeInHierarchy)continue;
+                 var matrix=cluster.transform.localToWorldMatrix;roots[cluster]=matrix;
+                 var bounds=DebrisWorld.TransformBounds(cluster.localBounds,matrix);bounds.Expand(2);
++                clusterBounds[cluster]=bounds;
+                 if(!cull||GeometryUtility.TestPlanesAABB(planes,bounds))visible.Add(cluster);
+             }
+             foreach(var batch in batches)
+             {
+-                int count=0;Bounds bounds=default;
++                int count=0;Bounds bounds=default;DebrisCluster previousCluster=null;
+                 foreach(var entry in batch.entries)
+                 {
+-                    var p=entry.part;
+-                    if(!p||p.Part==null||!p.Part.present||p.Part.hp<=0||!p.gameObject.activeInHierarchy)continue;
+-                    // Splitting/reparenting invalidates the cached local pose. Never draw it against its old island.
+-                    if(p.Cluster!=entry.cluster){dirty=true;continue;}
++                    // Destruction/splitting increments TopologyRevision before LateUpdate. Rebuild already
++                    // removed dead entries and updated island-local poses, so avoid native per-part queries here.
+                     if(!visible.Contains(entry.cluster)||!roots.TryGetValue(entry.cluster,out var root))continue;
+                     var matrix=root*entry.local;batch.matrices[count]=matrix;
+-                    var box=DebrisWorld.TransformBounds(batch.mesh.bounds,matrix);
+-                    if(count==0)bounds=box;else bounds.Encapsulate(box);count++;
++                    if(entry.cluster!=previousCluster){var box=clusterBounds[entry.cluster];if(count==0)bounds=box;else bounds.Encapsulate(box);previousCluster=entry.cluster;}count++;
+                 }
+                 if(count==0)continue;
+                 batch.parameters.worldBounds=bounds;
+@@ -68,17 +76,23 @@
+         }
+         void Rebuild()
+         {
+-            Restore();batches.Clear();dirty=false;revision=world.TopologyRevision;
+-            if(!SystemInfo.supportsInstancing)return;
+-            var groups=new Dictionary<(Mesh,Material,int,int,ShadowCastingMode,bool,uint),List<Entry>>();
++            using var sample=RebuildMarker.Auto();
++            batches.Clear();dirty=false;revision=world.TopologyRevision;
++            if(!SystemInfo.supportsInstancing){Restore();return;}
++            foreach(var entries in groups.Values)entries.Clear();
++            visited.Clear();sources.Clear();int batchIndex=0;
+             foreach(var cluster in world.Clusters)
+             {
+                 if(!cluster)continue;var inverse=cluster.transform.worldToLocalMatrix;
+                 foreach(var part in cluster.Parts)
+                 {
+                     if(!part||part.Part==null||!part.Part.present||!part.gameObject.activeInHierarchy)continue;
+-                    foreach(var source in part.GetComponentsInChildren<MeshRenderer>(true))
++                    visited.Add(part);
++                    if(!cachedParts.TryGetValue(part,out var descriptors))
+                     {
++                      descriptors=new List<Entry>();cachedParts.Add(part,descriptors);
++                      foreach(var source in part.GetComponentsInChildren<MeshRenderer>(true))
++                      {
+                         if(!source.enabled||source.HasPropertyBlock())continue;
+                         var filter=source.GetComponent<MeshFilter>();var mesh=filter?filter.sharedMesh:null;
+                         var shared=source.sharedMaterials;if(!mesh||shared.Length!=mesh.subMeshCount)continue;
+@@ -89,13 +103,14 @@
+                         for(int sub=0;sub<shared.Length;sub++)
+                         {
+                             var key=(mesh,shared[sub],sub,source.gameObject.layer,source.shadowCastingMode,source.receiveShadows,source.renderingLayerMask);
+-                            if(!groups.TryGetValue(key,out var entries))groups.Add(key,entries=new List<Entry>());
+-                            entries.Add(new Entry{part=part,cluster=cluster,source=source,local=inverse*source.transform.localToWorldMatrix});
++                            descriptors.Add(new Entry{part=part,cluster=cluster,source=source,local=inverse*source.transform.localToWorldMatrix,key=key});
+                         }
++                      }
+                     }
++                    foreach(var entry in descriptors){if(!entry.source)continue;if(entry.cluster!=cluster){entry.cluster=cluster;entry.local=inverse*entry.source.transform.localToWorldMatrix;}if(!groups.TryGetValue(entry.key,out var entries))groups.Add(entry.key,entries=new List<Entry>());entries.Add(entry);}
+                 }
+             }
+-            var sources=new HashSet<MeshRenderer>();
++            retired.Clear();foreach(var part in cachedParts.Keys)if(!visited.Contains(part))retired.Add(part);foreach(var part in retired)cachedParts.Remove(part);retired.Clear();
+             foreach(var group in groups)
+             {
+                 if(group.Value.Count<2&&group.Key.Item1.subMeshCount==1)continue;
+@@ -108,13 +123,15 @@
+                     if(batch==null||batch.entries.Count==Capacity)
+                     {
+                         var source=entry.source;
+-                        batch=new Batch{mesh=group.Key.Item1,submesh=group.Key.Item3,parameters=new RenderParams(material){layer=source.gameObject.layer,renderingLayerMask=source.renderingLayerMask,shadowCastingMode=source.shadowCastingMode,receiveShadows=source.receiveShadows,lightProbeUsage=source.lightProbeUsage,reflectionProbeUsage=source.reflectionProbeUsage,motionVectorMode=source.motionVectorGenerationMode}};
++                        if(batchIndex==allocatedBatches.Count)allocatedBatches.Add(new Batch());batch=allocatedBatches[batchIndex++];batch.entries.Clear();batch.mesh=group.Key.Item1;batch.submesh=group.Key.Item3;batch.parameters=new RenderParams(material){layer=source.gameObject.layer,renderingLayerMask=source.renderingLayerMask,shadowCastingMode=source.shadowCastingMode,receiveShadows=source.receiveShadows,lightProbeUsage=source.lightProbeUsage,reflectionProbeUsage=source.reflectionProbeUsage,motionVectorMode=source.motionVectorGenerationMode};
+                         batches.Add(batch);
+                     }
+                     batch.entries.Add(entry);sources.Add(entry.source);
+                 }
+             }
+-            hidden.AddRange(sources);foreach(var source in hidden)if(source)source.enabled=false;
++            for(int i=batchIndex;i<allocatedBatches.Count;i++)allocatedBatches[i].entries.Clear();
++            foreach(var source in hidden)if(source&&!sources.Contains(source))source.enabled=true;
++            hidden.Clear();hidden.AddRange(sources);foreach(var source in hidden)if(source)source.enabled=false;
+         }
+         void Restore(){foreach(var source in hidden)if(source)source.enabled=true;hidden.Clear();}
+         void OnEnable()=>dirty=true;

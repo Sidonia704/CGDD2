@@ -1,0 +1,41 @@
+{
+  "source": "Assets/_Starframe/assetsForCodex/scenemodel/cggd.blend",
+  "sourceCoordinates": "Blender right-handed Z-up; each NPZ vertex is mesh-local and must be multiplied once by its record's matrix_world",
+  "includedSceneObjects": [
+    "Cube.001",
+    "Cylinder.018",
+    "tyFlow_node_515.347",
+    "tyFlow_node_515.521"
+  ],
+  "excludedFromPhysicalBounds": {
+    "scatter collection": "Unplaced, near-origin reusable prototypes; match open field cards to these as needed",
+    "asteroids__0.1038": "Single open decorative triangle at source Y 20.14",
+    "tyFlow_node_515.376": "Closed but degenerate marker, approximately 0.000002 source units wide",
+    "tyFlow_node_515.383": "Closed but degenerate marker, approximately 0.000003 source units wide",
+    "tyFlow_node_515.386": "Closed but degenerate marker, approximately 0.000001 source units wide"
+  },
+  "sourceWorldBounds": {
+    "min": [-8.631466507911682, -9.252996996045113, -0.1574660783862747],
+    "max": [7.839323401451111, 9.484777852892876, 2.051234245300293],
+    "extent": [16.470789909362793, 18.73777484893799, 2.2087003236865677]
+  },
+  "sourceHorizontalCenter": [-0.39607155323028564, 0.11589042842388153],
+  "sourceGroundZ": -0.1574660783862747,
+  "metresPerSourceUnit": 186.78845424372102,
+  "sourceWorldToCanonicalUnityMatrixRows": [
+    [186.78845424372102, 0, 0, 73.98159319779472],
+    [0, 0, 186.78845424372102, 29.412845377592856],
+    [0, -186.78845424372102, 0, 21.64699398693942],
+    [0, 0, 0, 1]
+  ],
+  "matrixConvention": "column vector: canonicalUnity = sourceWorldToCanonicalUnityMatrixRows * sourceWorldHomogeneous; sourceWorld = object.matrix_world * meshLocalHomogeneous",
+  "canonicalUnityExtentMetres": [3076.553387342954, 412.55971934902027, 3500.0],
+  "canonicalUnityBoundsMetres": {
+    "min": [-1538.276693671477, 0, -1750],
+    "max": [1538.276693671477, 412.55971934902027, 1750]
+  },
+  "layoutPlacement": "Apply one further common translation to all physical instances to place this reference slab in the lower half of the map; do not independently re-center source parts.",
+  "meshInventory": "source-meshes/source-meshes.json",
+  "componentInventory": "source-meshes/source-components.json",
+  "topologyInventory": "source-meshes/source-topology.json"
+}

@@ -1,0 +1,26 @@
+{
+    "MonoBehaviour": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "harrier",
+        "m_EditorClassIdentifier": "Starframe.Construction::Starframe.Combat.EnemyArchetypeDefinition",
+        "id": "harrier",
+        "nameZh": "鹞式导弹护卫舰",
+        "nameEn": "Harrier Missile Frigate",
+        "size": 1,
+        "blueprint": {
+            "fileID": 4900000,
+            "guid": "29ffa3f8672229c4088efa2954b70762",
+            "type": 3
+        },
+        "alternateBlueprint": {
+            "instanceID": 0
+        },
+        "score": 800,
+        "behavior": {
+            "fileID": 11400000,
+            "guid": "eaf840f95a86cc142b8e75b86681718f",
+            "type": 2
+        }
+    }
+}

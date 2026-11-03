@@ -1,0 +1,77 @@
+{
+    "MonoBehaviour": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "Slab",
+        "m_EditorClassIdentifier": "Starframe.Construction::Starframe.Flight.ModuleDefinition",
+        "shape": 4,
+        "displayName": "半高长方体",
+        "category": 0,
+        "cost": 0.0,
+        "massKg": 80.0,
+        "maxHp": 273.0,
+        "recoverySeconds": 10.0,
+        "thrustNewtons": 0.0,
+        "occupiedCells": [
+            {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            }
+        ],
+        "localExhaustDirections": [],
+        "localNozzlePositions": [],
+        "muzzleLocalPosition": {
+            "x": 0.0,
+            "y": 0.27000001072883608,
+            "z": 1.5199999809265137
+        },
+        "muzzleClearanceDiameter": 0.25,
+        "mesh": {
+            "fileID": 4300000,
+            "guid": "89cc49d0bb6583747be2bbbc970deb55",
+            "type": 2
+        },
+        "outline": {
+            "fileID": 4300000,
+            "guid": "87e630793be66e340ab10a44393e6204",
+            "type": 2
+        },
+        "drawOutline": false,
+        "material": {
+            "fileID": 2100000,
+            "guid": "bd8ebcf5ebc36784c948a432402c0b2d",
+            "type": 2
+        },
+        "icon": {
+            "fileID": 21300000,
+            "guid": "a2d8cbdf9bea79149a2c1a56a2622b91",
+            "type": 3
+        },
+        "selectedIcon": {
+            "fileID": 21300000,
+            "guid": "c391ccd600acb564387f17331fc1c75a",
+            "type": 3
+        },
+        "weapon": {
+            "instanceID": 0
+        },
+        "countermeasure": {
+            "instanceID": 0
+        },
+        "generationWatts": 0.0,
+        "storageJoules": 0.0,
+        "thrusterPowerWatts": 0.0,
+        "shieldPowerWatts": 0.0,
+        "shieldCapacity": 0.0,
+        "shieldRadius": 8.0,
+        "shieldRecoveryDelay": 2.0,
+        "shieldRecoveryPerSecond": 50.0,
+        "shieldSurfaceMaterial": {
+            "instanceID": 0
+        },
+        "shieldSurfaceMesh": {
+            "instanceID": 0
+        }
+    }
+}

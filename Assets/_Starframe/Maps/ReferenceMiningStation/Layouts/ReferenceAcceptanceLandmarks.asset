@@ -1,0 +1,695 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bc9fba079fe3c340a9872eaa1911107, type: 3}
+  m_Name: ReferenceAcceptanceLandmarks
+  m_EditorClassIdentifier: Starframe.Construction::Starframe.Maps.SpaceMapDefinition
+  size: {x: 3600, y: 3600, z: 3600}
+  playerSpawn: {x: 0, y: 100, z: -1250}
+  playerEulerAngles: {x: 0, y: 0, z: 0}
+  enemySpawns:
+  - {x: 0, y: 100, z: 900}
+  instances:
+  - id: 2f0eaca4688052f5b4dfa3114b0339b5
+    label: ref_0000_0127_00
+    asset: {fileID: 11400000, guid: f5d3bb6e75526964daf45e16952542ae, type: 2}
+    position: {x: 69.58383, y: -163.63748, z: -30.286266}
+    eulerAngles: {x: 271.2343, y: 89.88949, z: 270.00006}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: 0.08, y: 0.015, z: 0.025}
+    angularVelocity: {x: 0, y: 0.015, z: 0}
+  - id: 4985896ac3af569c842eb9cf5d72e02f
+    label: ref_0000_-001_00
+    asset: {fileID: 11400000, guid: 25c58804f95087848b25503cbb562c42, type: 2}
+    position: {x: -25.814287, y: -177.04439, z: 174.53448}
+    eulerAngles: {x: 276.64337, y: 11.245133, z: 285.5558}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: 0.08, y: 0.015, z: 0.025}
+    angularVelocity: {x: 0, y: 0.015, z: 0}
+  - id: aebba65748c85e0db88deb0ad1ac4950
+    label: ref_0000_-001_01
+    asset: {fileID: 11400000, guid: a435cdf089734914ea273108f24fa3f3, type: 2}
+    position: {x: -31.91925, y: -158.20383, z: 292.83817}
+    eulerAngles: {x: 276.64337, y: 11.245133, z: 285.5558}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: -0.08, y: 0.015, z: -0.025}
+    angularVelocity: {x: -0, y: -0.015, z: -0}
+  - id: 45d30fbd99235e038da67ef4497c2795
+    label: ref_0000_-001_02
+    asset: {fileID: 11400000, guid: 97998cab5f07d3f4bae4454ebe6a7c70, type: 2}
+    position: {x: 79.29169, y: -168.44078, z: 219.33083}
+    eulerAngles: {x: 276.64337, y: 11.245133, z: 285.5558}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: -0.08, y: 0.015, z: -0.025}
+    angularVelocity: {x: -0, y: -0.015, z: -0}
+  - id: b401b139b807550c81ef18fd818dd8a0
+    label: ref_0000_-001_03
+    asset: {fileID: 11400000, guid: 85891764c0b28b441bf536f7a7a4ad47, type: 2}
+    position: {x: 32.78251, y: -213.58649, z: 324.13428}
+    eulerAngles: {x: 276.64337, y: 11.245133, z: 285.5558}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: -0.08, y: 0.015, z: -0.025}
+    angularVelocity: {x: -0, y: -0.015, z: -0}
+  - id: e92ce46d8aca53029d214f0c65f4b0f7
+    label: lefttruss_0000_0000_00
+    asset: {fileID: 11400000, guid: 7d386ff1ae0a4a44eba3beb5747fb6c0, type: 2}
+    position: {x: 18.195194, y: -247.5412, z: 7.4459405}
+    eulerAngles: {x: 312.1189, y: 74.2852, z: 270}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: 0.08, y: 0.015, z: 0.025}
+    angularVelocity: {x: 0, y: 0.015, z: 0}
+  - id: 65603d34b87b56eeb08a52bddde8cae3
+    label: righttruss_0000_0134_00
+    asset: {fileID: 11400000, guid: c9f3ba5d0e77340439edd762d24ffead, type: 2}
+    position: {x: 316.07922, y: -169.10841, z: -188.22214}
+    eulerAngles: {x: 270.87646, y: 313.0634, z: 90}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: 0.08, y: 0.015, z: 0.025}
+    angularVelocity: {x: 0, y: 0.015, z: 0}
+  - id: 752546fc165754919135c945a7a01e07
+    label: leftupper_0000_-001_00
+    asset: {fileID: 11400000, guid: ba2fb3e05ad8e2740a1fab98c239d08e, type: 2}
+    position: {x: -126, y: -41, z: -56}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: -0.08, y: 0.015, z: -0.025}
+    angularVelocity: {x: -0, y: -0.015, z: -0}
+  - id: 82a22ef4851c597f824801bd778084d0
+    label: leftupper_0000_-001_01
+    asset: {fileID: 11400000, guid: 580d47e07c0ff224eb114dd2b1241406, type: 2}
+    position: {x: -130, y: -96, z: -236}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: -0.08, y: 0.015, z: -0.025}
+    angularVelocity: {x: -0, y: -0.015, z: -0}
+  - id: 91ac835dbd56568dbfbcc2b6fa61d78c
+    label: leftupper_0000_-001_02
+    asset: {fileID: 11400000, guid: 00b148f290225b64a81b53de6e2df51f, type: 2}
+    position: {x: -50, y: -72, z: -130}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: 0.08, y: 0.015, z: 0.025}
+    angularVelocity: {x: 0, y: 0.015, z: 0}
+  - id: a0c92fd64c1455a9bf2ba37cc4a35a9f
+    label: tank_0000_0570_00
+    asset: {fileID: 11400000, guid: f3028d64c95bfe147b457f7ae9252585, type: 2}
+    position: {x: -80, y: -188, z: 96}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: -0.08, y: 0.015, z: -0.025}
+    angularVelocity: {x: -0, y: -0.015, z: -0}
+  - id: 6c9caab19abe54d28a56302f50966a20
+    label: tank_0000_0571_00
+    asset: {fileID: 11400000, guid: b3d965d7dc04fac48801149a9476d9a4, type: 2}
+    position: {x: -58, y: -194, z: 124}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: 0.08, y: 0.015, z: 0.025}
+    angularVelocity: {x: 0, y: 0.015, z: 0}
+  - id: c5e74ba4ccf354acb20aab6942c88aac
+    label: tank_0000_0572_00
+    asset: {fileID: 11400000, guid: a7c224f09c797934a8294f98013230ed, type: 2}
+    position: {x: -38, y: -198, z: 153}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: 0.08, y: 0.015, z: 0.025}
+    angularVelocity: {x: 0, y: 0.015, z: 0}
+  - id: 5259abf9972d52dca1dd84b49af4505e
+    label: tank_0000_0573_00
+    asset: {fileID: 11400000, guid: 7520d9925c636bc47939081f5c0afc94, type: 2}
+    position: {x: -7, y: -206, z: 194}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: 0.08, y: 0.015, z: 0.025}
+    angularVelocity: {x: 0, y: 0.015, z: 0}
+  - id: b097c8f5979657f2829f6fc6d2532a20
+    label: tank_0000_0574_00
+    asset: {fileID: 11400000, guid: 6d8ef73311f4ac442a2c1e3101bd2a2c, type: 2}
+    position: {x: 38, y: -212, z: 236}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: 0.08, y: 0.015, z: 0.025}
+    angularVelocity: {x: 0, y: 0.015, z: 0}
+  - id: 409c669b116b5498b3ff68bb72785869
+    label: ref_0000_0000_00
+    asset: {fileID: 11400000, guid: 31231cc760deb7748a811a4fce83a625, type: 2}
+    position: {x: 358, y: -168, z: -420}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: 0.08, y: 0.015, z: 0.025}
+    angularVelocity: {x: 0, y: 0.015, z: 0}
+  - id: 6745c43b032450a78d5246029f606bcf
+    label: ref_0000_0001_00
+    asset: {fileID: 11400000, guid: 62a2274f0d57b624aa828ac567fbbde7, type: 2}
+    position: {x: 430, y: -174, z: -428}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: -0.08, y: 0.015, z: -0.025}
+    angularVelocity: {x: -0, y: -0.015, z: -0}
+  - id: 9ba1694c4b1f50339940b5a23e884580
+    label: ref_0000_0002_00
+    asset: {fileID: 11400000, guid: a4ef92122f878ac4d80e0bf1e70abb55, type: 2}
+    position: {x: 463, y: -177, z: -526}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: 0.08, y: 0.015, z: 0.025}
+    angularVelocity: {x: 0, y: 0.015, z: 0}
+  - id: e679696b340f5bbfbc5ec61d4ce53de6
+    label: ref_0000_0003_00
+    asset: {fileID: 11400000, guid: 5857a3406fe87b245a963a1d8bc5da53, type: 2}
+    position: {x: 420, y: -175, z: -548}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: 0.08, y: 0.015, z: 0.025}
+    angularVelocity: {x: 0, y: 0.015, z: 0}
+  - id: 4121306bdc005006997f643ddb3a9338
+    label: ref_0000_0004_00
+    asset: {fileID: 11400000, guid: 9bc318cdcb67efa4d89f2da174225f3d, type: 2}
+    position: {x: 451, y: -176, z: -522}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: 0.08, y: 0.015, z: 0.025}
+    angularVelocity: {x: 0, y: 0.015, z: 0}
+  - id: 943c2949ac23569b9e4007a55660668b
+    label: ref_0000_0005_00
+    asset: {fileID: 11400000, guid: 43cced23ae563c04eac2fdfb9fbc2115, type: 2}
+    position: {x: 488, y: -178, z: -476}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: 0.08, y: 0.015, z: 0.025}
+    angularVelocity: {x: 0, y: 0.015, z: 0}
+  - id: d9254df12e1954ebb0efd7c70a9b323a
+    label: ref_0000_0006_00
+    asset: {fileID: 11400000, guid: 7ab76211005d9be42b56e385c5a5a3b4, type: 2}
+    position: {x: 420, y: -176, z: -532}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: -0.08, y: 0.015, z: -0.025}
+    angularVelocity: {x: -0, y: -0.015, z: -0}
+  - id: da320a308beb5999b521c0ecc435bd22
+    label: ref_0000_0007_00
+    asset: {fileID: 11400000, guid: 6b611e152a96d224d991a15ffe00330d, type: 2}
+    position: {x: 401, y: -175, z: -534}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: -0.08, y: 0.015, z: -0.025}
+    angularVelocity: {x: -0, y: -0.015, z: -0}
+  - id: 2964db86eef45cdb81ee654e09d0f755
+    label: ref_0000_0008_00
+    asset: {fileID: 11400000, guid: 9cb554ad08b6d1f4ca2514b330c9d747, type: 2}
+    position: {x: 362, y: -174, z: -534}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: 0.08, y: 0.015, z: 0.025}
+    angularVelocity: {x: 0, y: 0.015, z: 0}
+  - id: 5ec2405124cf5151997bb60655817991
+    label: ref_0000_0009_00
+    asset: {fileID: 11400000, guid: acaa27ccfe291b94c801a12260a34704, type: 2}
+    position: {x: 349, y: -174, z: -540}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: 0.08, y: 0.015, z: 0.025}
+    angularVelocity: {x: 0, y: 0.015, z: 0}
+  - id: 0894c5f2c3365f7e896184d9dd21f19d
+    label: ref_0000_0010_00
+    asset: {fileID: 11400000, guid: d5b4e9b67c4626543a341422ad07f841, type: 2}
+    position: {x: 362, y: -174, z: -464}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: -0.08, y: 0.015, z: -0.025}
+    angularVelocity: {x: -0, y: -0.015, z: -0}
+  - id: c7e56088edb25d28ac900c54577acbe9
+    label: ref_0000_0011_00
+    asset: {fileID: 11400000, guid: e4bf1a1bce3a4a649905ec3894269e58, type: 2}
+    position: {x: 514, y: -178, z: -533}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: 0.08, y: 0.015, z: 0.025}
+    angularVelocity: {x: 0, y: 0.015, z: 0}
+  - id: e69a279d16975735aab51cac0d85106c
+    label: ref_0000_0012_00
+    asset: {fileID: 11400000, guid: b10ec6b1ed27040479dfa549da5159fe, type: 2}
+    position: {x: 342, y: -174, z: -432}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: 0.08, y: 0.015, z: 0.025}
+    angularVelocity: {x: 0, y: 0.015, z: 0}
+  - id: 2534a9976dd2534e96f40fccb620c59e
+    label: ref_0000_0013_00
+    asset: {fileID: 11400000, guid: 4fe4abf3b47714441aaa22e4ae905d95, type: 2}
+    position: {x: 394, y: -174, z: -516}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: 0.08, y: 0.015, z: 0.025}
+    angularVelocity: {x: 0, y: 0.015, z: 0}
+  - id: 2347b2d5ea88576aa6b718bddb88a8fd
+    label: ref_0000_0014_00
+    asset: {fileID: 11400000, guid: 44c8072ea4af11e499ff76f70daeb9dd, type: 2}
+    position: {x: 408, y: -176, z: -529}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: 0.08, y: 0.015, z: 0.025}
+    angularVelocity: {x: 0, y: 0.015, z: 0}
+  - id: 1ad4a628618156858aab6d7b1145d763
+    label: ref_0000_0015_00
+    asset: {fileID: 11400000, guid: 8cce08982c2410e42a1f0283a4933afb, type: 2}
+    position: {x: 416, y: -175, z: -445}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: -0.08, y: 0.015, z: -0.025}
+    angularVelocity: {x: -0, y: -0.015, z: -0}
+  - id: 7ea0728576aa5a92a5fe2b65a6f11920
+    label: ref_0000_0016_00
+    asset: {fileID: 11400000, guid: 17a830ee357018a4698f59257b7fc44d, type: 2}
+    position: {x: 414, y: -176, z: -440}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: -0.08, y: 0.015, z: -0.025}
+    angularVelocity: {x: -0, y: -0.015, z: -0}
+  - id: 2aabc80348175f23a80f557b1ce3116b
+    label: ref_0000_0017_00
+    asset: {fileID: 11400000, guid: c70b8c292c821874bbca105aad3a649c, type: 2}
+    position: {x: 400, y: -176, z: -446}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: 0.08, y: 0.015, z: 0.025}
+    angularVelocity: {x: 0, y: 0.015, z: 0}
+  - id: 15d193a7ce0151c7b38b696090ffe64f
+    label: ref_0000_0018_00
+    asset: {fileID: 11400000, guid: 9381f914b5fda9c4f8330d80f15765b8, type: 2}
+    position: {x: 372, y: -174, z: -396}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: 0.08, y: 0.015, z: 0.025}
+    angularVelocity: {x: 0, y: 0.015, z: 0}
+  - id: 1d2abbd3f8ce5cda8288073d1aa6283b
+    label: ref_0000_0019_00
+    asset: {fileID: 11400000, guid: 36b0281b7e940e0468d8f2003948e920, type: 2}
+    position: {x: 350, y: -176, z: -512}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: 0.08, y: 0.015, z: 0.025}
+    angularVelocity: {x: 0, y: 0.015, z: 0}
+  - id: aaefdfc405255b538dc7349b407222d5
+    label: ref_0000_0020_00
+    asset: {fileID: 11400000, guid: 15ba0a0c0c2c90f4a957a02d698e60b6, type: 2}
+    position: {x: 422, y: -176, z: -460}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: -0.08, y: 0.015, z: -0.025}
+    angularVelocity: {x: -0, y: -0.015, z: -0}
+  - id: 253cc9a80f3b553981b3093e3ed53cf0
+    label: ref_0000_0021_00
+    asset: {fileID: 11400000, guid: 05e32be660bbe294193e85301058d470, type: 2}
+    position: {x: 591, y: -178, z: -602}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: -0.08, y: 0.015, z: -0.025}
+    angularVelocity: {x: -0, y: -0.015, z: -0}
+  - id: d66440719fb35c9aa61c498837a6ddf2
+    label: ref_0000_0022_00
+    asset: {fileID: 11400000, guid: 1fbadfa57441e074ebcc51b8e8d29ed7, type: 2}
+    position: {x: 396, y: -174, z: -412}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: -0.08, y: 0.015, z: -0.025}
+    angularVelocity: {x: -0, y: -0.015, z: -0}
+  - id: f428c5dff1d15cf29ffa2cca2eb5d67e
+    label: ref_0000_0023_00
+    asset: {fileID: 11400000, guid: b05a17e15888d274d8f0a823a7cf69f2, type: 2}
+    position: {x: 458, y: -176, z: -492}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: -0.08, y: 0.015, z: -0.025}
+    angularVelocity: {x: -0, y: -0.015, z: -0}
+  - id: b2e879c99fce578283198bdebffb47aa
+    label: ref_0000_0024_00
+    asset: {fileID: 11400000, guid: 0b3f9c1e05c40d4468d993fc759a766c, type: 2}
+    position: {x: 354, y: -166, z: -382}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: -0.08, y: 0.015, z: -0.025}
+    angularVelocity: {x: -0, y: -0.015, z: -0}
+  - id: 3246737825235449a87cba16ef0955f0
+    label: ref_0000_0025_00
+    asset: {fileID: 11400000, guid: 03ee90e8c8f99e447a2889890746cf76, type: 2}
+    position: {x: 391, y: -170, z: -430}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: -0.08, y: 0.015, z: -0.025}
+    angularVelocity: {x: -0, y: -0.015, z: -0}
+  - id: 5d6d323fd7805f23b2356eb98891bc15
+    label: ref_0000_0026_00
+    asset: {fileID: 11400000, guid: 48cb6d6681287e04c9ab1f366739aafb, type: 2}
+    position: {x: 335, y: -171, z: -387}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: -0.08, y: 0.015, z: -0.025}
+    angularVelocity: {x: -0, y: -0.015, z: -0}
+  - id: 33606feea7e7594692246da41e3a1c8a
+    label: ref_0000_0027_00
+    asset: {fileID: 11400000, guid: 19d7f5c73959b35468e2b3076867fa0f, type: 2}
+    position: {x: 574, y: -172, z: -610}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: -0.08, y: 0.015, z: -0.025}
+    angularVelocity: {x: -0, y: -0.015, z: -0}
+  - id: 0b52044613345da4b977e508d095bea6
+    label: ref_0000_0028_00
+    asset: {fileID: 11400000, guid: fee7b0881cdd48a489ab4126357b7200, type: 2}
+    position: {x: 386, y: -174, z: -546}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: -0.08, y: 0.015, z: -0.025}
+    angularVelocity: {x: -0, y: -0.015, z: -0}
+  - id: 80484619dc83510994539864744777ec
+    label: ref_0000_0029_00
+    asset: {fileID: 11400000, guid: 59a680c7ff434ac4b89f5808672d8914, type: 2}
+    position: {x: 488, y: -177, z: -464}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: -0.08, y: 0.015, z: -0.025}
+    angularVelocity: {x: -0, y: -0.015, z: -0}
+  - id: 587908467ef65322adfb1ffa6ef046cd
+    label: ref_0000_0030_00
+    asset: {fileID: 11400000, guid: 0c31274ca1fa26e46b1ef8349b3bf550, type: 2}
+    position: {x: 536, y: -176, z: -443}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: 0.08, y: 0.015, z: 0.025}
+    angularVelocity: {x: 0, y: 0.015, z: 0}
+  - id: 0293606e2e7450a4b201e0e7b50f2190
+    label: ref_0000_0031_00
+    asset: {fileID: 11400000, guid: bf1d7cc9b9df56f499122019d5496f29, type: 2}
+    position: {x: 409, y: -177, z: -508}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: 0.08, y: 0.015, z: 0.025}
+    angularVelocity: {x: 0, y: 0.015, z: 0}
+  - id: 3849bc97d5385614a532b36415fcc8a6
+    label: ref_0000_0032_00
+    asset: {fileID: 11400000, guid: 54e7b7ed557c4974c8674a0a95868b82, type: 2}
+    position: {x: 316, y: -174, z: -426}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: 0.08, y: 0.015, z: 0.025}
+    angularVelocity: {x: 0, y: 0.015, z: 0}
+  - id: 3a21a30d1e8351f28594fa61d0f4c9fb
+    label: ref_0000_0033_00
+    asset: {fileID: 11400000, guid: d5811f7ad6db233418d7c276285e63c5, type: 2}
+    position: {x: 316, y: -174, z: -478}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: 0.08, y: 0.015, z: 0.025}
+    angularVelocity: {x: 0, y: 0.015, z: 0}
+  - id: af71336685cb5b7eb967ecd183230dcb
+    label: ref_0000_0034_00
+    asset: {fileID: 11400000, guid: 6c9da956cea024c4cbb231b72bbaedad, type: 2}
+    position: {x: 570, y: -176, z: -579}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: 0.08, y: 0.015, z: 0.025}
+    angularVelocity: {x: 0, y: 0.015, z: 0}
+  - id: 36a88a437c0b5daba7571bf24d160dfc
+    label: ref_0000_0035_00
+    asset: {fileID: 11400000, guid: 755f8dc2942d51b4787d67a7cf4695a4, type: 2}
+    position: {x: 406, y: -174, z: -524}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: -0.08, y: 0.015, z: -0.025}
+    angularVelocity: {x: -0, y: -0.015, z: -0}
+  - id: 5422abb6e8385fceac5260a1c30c6409
+    label: ref_0000_0036_00
+    asset: {fileID: 11400000, guid: 3802d1d63f8e8be4bab331f4f9df4ee0, type: 2}
+    position: {x: 412, y: -172, z: -478}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: 0.08, y: 0.015, z: 0.025}
+    angularVelocity: {x: 0, y: 0.015, z: 0}
+  - id: 224dd16432c05ff5b81acc21427f19fb
+    label: ref_0000_0037_00
+    asset: {fileID: 11400000, guid: 27bea2ca1b1ac874d963590037e01c61, type: 2}
+    position: {x: 448, y: -174, z: -494}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: -0.08, y: 0.015, z: -0.025}
+    angularVelocity: {x: -0, y: -0.015, z: -0}
+  - id: 1bee3eeb50675cebbb3f57f49f9b3ef2
+    label: ref_0000_0038_00
+    asset: {fileID: 11400000, guid: b5199f5729ade5c4fa42ebed30545214, type: 2}
+    position: {x: 456, y: -174, z: -558}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: 0.08, y: 0.015, z: 0.025}
+    angularVelocity: {x: 0, y: 0.015, z: 0}
+  - id: a9559e26757c5c129c2f7a4248a81b3f
+    label: ref_0000_0039_00
+    asset: {fileID: 11400000, guid: 10622e7791668d846b594c90b95842d8, type: 2}
+    position: {x: 466, y: -174, z: -532}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: 0.08, y: 0.015, z: 0.025}
+    angularVelocity: {x: 0, y: 0.015, z: 0}
+  - id: b895a044b0945b9e8226ae8464022935
+    label: ref_0000_0040_00
+    asset: {fileID: 11400000, guid: 09f7ed92de0425b48895acc9ef16e3aa, type: 2}
+    position: {x: 429, y: -174, z: -520}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: 0.08, y: 0.015, z: 0.025}
+    angularVelocity: {x: 0, y: 0.015, z: 0}
+  - id: 41f7000e550e5b5b891b23f3d393b378
+    label: ref_0000_0041_00
+    asset: {fileID: 11400000, guid: 5f9a7c4abb7d93b48885437104316a90, type: 2}
+    position: {x: 458, y: -174, z: -546}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: -0.08, y: 0.015, z: -0.025}
+    angularVelocity: {x: -0, y: -0.015, z: -0}
+  - id: ecea1f32e4f65fccb369af6ce737e9a6
+    label: ref_0000_0042_00
+    asset: {fileID: 11400000, guid: 1f0fb1d63cf996f43bb741da63cddbc4, type: 2}
+    position: {x: 404, y: -174, z: -443}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: -0.08, y: 0.015, z: -0.025}
+    angularVelocity: {x: -0, y: -0.015, z: -0}
+  - id: 95cfa15467c85afab94bd2366d932ea4
+    label: ref_0000_0043_00
+    asset: {fileID: 11400000, guid: bfc7ca47224e4184c9e385bc9713762a, type: 2}
+    position: {x: 392, y: -174, z: -488}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: -0.08, y: 0.015, z: -0.025}
+    angularVelocity: {x: -0, y: -0.015, z: -0}
+  - id: 2b2543f890295024aac582dee29b001c
+    label: ref_0000_0044_00
+    asset: {fileID: 11400000, guid: a59779817153ae9459fe9cbc78ddafe4, type: 2}
+    position: {x: 320, y: -168, z: -455}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: 0.08, y: 0.015, z: 0.025}
+    angularVelocity: {x: 0, y: 0.015, z: 0}
+  - id: a8870829e41a54d4bcb4df6638fb7b0d
+    label: ref_0000_0045_00
+    asset: {fileID: 11400000, guid: 4b7142eb53af86f469da8831f5386b65, type: 2}
+    position: {x: 330, y: -172, z: -516}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: 0.08, y: 0.015, z: 0.025}
+    angularVelocity: {x: 0, y: 0.015, z: 0}
+  - id: b5122331aae65f0ab7ccd2d46df2bac6
+    label: ref_0000_0046_00
+    asset: {fileID: 11400000, guid: 34f6d60e4d73686419519ba9a8cafc41, type: 2}
+    position: {x: 290, y: -170, z: -488}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: -0.08, y: 0.015, z: -0.025}
+    angularVelocity: {x: -0, y: -0.015, z: -0}
+  - id: 57008cbad3615c17a05794f07373bab2
+    label: ref_0000_0047_00
+    asset: {fileID: 11400000, guid: d9ec5b4557ba1c14b946cc85f4370f1d, type: 2}
+    position: {x: 306, y: -170, z: -476}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: -0.08, y: 0.015, z: -0.025}
+    angularVelocity: {x: -0, y: -0.015, z: -0}
+  - id: c3e30daf716458f1ae4ebdf3350d8c5d
+    label: ref_0000_0048_00
+    asset: {fileID: 11400000, guid: 7d37fae3e6ba89745b3af17481b1f5c4, type: 2}
+    position: {x: 355, y: -174, z: -454}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: -0.08, y: 0.015, z: -0.025}
+    angularVelocity: {x: -0, y: -0.015, z: -0}
+  - id: 4cf8c27ce4c25731b5cb704477018333
+    label: ref_0000_0049_00
+    asset: {fileID: 11400000, guid: e81a58fbbb0e5e04ca913ee7f1a8d96a, type: 2}
+    position: {x: 344, y: -172, z: -448}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: -0.08, y: 0.015, z: -0.025}
+    angularVelocity: {x: -0, y: -0.015, z: -0}
+  - id: 052180ad325d5a00bc66ba0e40f30eca
+    label: ref_0000_0050_00
+    asset: {fileID: 11400000, guid: 78efc4c00c319fb4c8033b4cb072a202, type: 2}
+    position: {x: 351, y: -174, z: -434}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: 0.08, y: 0.015, z: 0.025}
+    angularVelocity: {x: 0, y: 0.015, z: 0}
+  - id: 3a959de14d8451e9b8ad93531097eb8c
+    label: ref_0000_0051_00
+    asset: {fileID: 11400000, guid: f3683836aeeee5c43bdecc57c0b9a068, type: 2}
+    position: {x: 318, y: -169, z: -440}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: -0.08, y: 0.015, z: -0.025}
+    angularVelocity: {x: -0, y: -0.015, z: -0}
+  - id: 4dd44374ede9516daf80fa3ac3bcb57a
+    label: ref_0000_0052_00
+    asset: {fileID: 11400000, guid: 9debf43918c73db479a6c80a4ff8ca49, type: 2}
+    position: {x: 321, y: -173, z: -508}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: -0.08, y: 0.015, z: -0.025}
+    angularVelocity: {x: -0, y: -0.015, z: -0}
+  - id: 3bec0bf40f875dfebc4e480def705bfa
+    label: ref_0000_0053_00
+    asset: {fileID: 11400000, guid: 6f158ab59eb325c4085869ae1dbf5804, type: 2}
+    position: {x: 380, y: -170, z: -466}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: 0.08, y: 0.015, z: 0.025}
+    angularVelocity: {x: 0, y: 0.015, z: 0}
+  - id: bad41c9f1bca5162b1c67112a2b4c7a6
+    label: ref_0000_0054_00
+    asset: {fileID: 11400000, guid: 23e59e487a1ca7641bee5c8dddea7189, type: 2}
+    position: {x: 316, y: -170, z: -517}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: 0.08, y: 0.015, z: 0.025}
+    angularVelocity: {x: 0, y: 0.015, z: 0}
+  - id: f038784fd95054078a8228c234499392
+    label: ref_0000_0055_00
+    asset: {fileID: 11400000, guid: 316f5fc4643842b4d92c81752e45f26c, type: 2}
+    position: {x: 446, y: -174, z: -414}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: -0.08, y: 0.015, z: -0.025}
+    angularVelocity: {x: -0, y: -0.015, z: -0}
+  - id: 2dbfad20525b53afa41099cfd29bd186
+    label: ref_0000_0056_00
+    asset: {fileID: 11400000, guid: 354ba52a4ffd40045814c042648134b8, type: 2}
+    position: {x: 411, y: -174, z: -520}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: -0.08, y: 0.015, z: -0.025}
+    angularVelocity: {x: -0, y: -0.015, z: -0}
+  - id: 5c8b42b016735abb8f33fb66e77b30a0
+    label: ref_0000_0057_00
+    asset: {fileID: 11400000, guid: d373b087b15d9284c9c589d8ec7bfe26, type: 2}
+    position: {x: 576, y: -178, z: -502}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: 0.08, y: 0.015, z: 0.025}
+    angularVelocity: {x: 0, y: 0.015, z: 0}
+  - id: 00e50dc3d8725b7f8d6e85a80f379ce2
+    label: ref_0000_0058_00
+    asset: {fileID: 11400000, guid: 3d57f9e2dd8ae02469bc7276de061f6e, type: 2}
+    position: {x: 541, y: -174, z: -543}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: -0.08, y: 0.015, z: -0.025}
+    angularVelocity: {x: -0, y: -0.015, z: -0}
+  - id: 9e9c74441de75d718e1b1ea3eb1599ca
+    label: ref_0000_0059_00
+    asset: {fileID: 11400000, guid: 404b10de5d6836f43985c8d1b0f50efd, type: 2}
+    position: {x: 570, y: -175, z: -564}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: 0.08, y: 0.015, z: 0.025}
+    angularVelocity: {x: 0, y: 0.015, z: 0}

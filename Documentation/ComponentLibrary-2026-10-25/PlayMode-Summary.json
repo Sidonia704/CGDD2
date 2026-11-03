@@ -1,0 +1,38 @@
+{
+  "groups": [
+    {
+      "filter": "AssemblyPreviewUiTests",
+      "total": 1,
+      "passed": 1
+    },
+    {
+      "filter": "MultiTargetRangeTests",
+      "total": 3,
+      "passed": 3
+    },
+    {
+      "filter": "RangeLifecycleTests",
+      "total": 1,
+      "passed": 1
+    },
+    {
+      "filter": "ShipRenderingLifecycleTests",
+      "total": 1,
+      "passed": 1
+    },
+    {
+      "filter": "VoxelPhysicsTests",
+      "total": 3,
+      "passed": 3
+    },
+    {
+      "filter": "AppFlowTests",
+      "total": 10,
+      "passed": 10
+    }
+  ],
+  "total": 19,
+  "passed": 19,
+  "failed": 0,
+  "note": "Related runtime checks only; historical AI moving-target failure was not rerun."
+}

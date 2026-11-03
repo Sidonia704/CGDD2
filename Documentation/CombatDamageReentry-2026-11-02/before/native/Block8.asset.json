@@ -1,0 +1,110 @@
+{
+    "MonoBehaviour": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "Block8",
+        "m_EditorClassIdentifier": "Starframe.Construction::Starframe.Flight.ModuleDefinition",
+        "shape": 13,
+        "displayName": "八格船体",
+        "category": 0,
+        "cost": 0.0,
+        "massKg": 1200.0,
+        "maxHp": 3695.999755859375,
+        "recoverySeconds": 40.0,
+        "thrustNewtons": 0.0,
+        "occupiedCells": [
+            {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            {
+                "x": 1,
+                "y": 0,
+                "z": 0
+            },
+            {
+                "x": 0,
+                "y": 0,
+                "z": 1
+            },
+            {
+                "x": 1,
+                "y": 0,
+                "z": 1
+            },
+            {
+                "x": 0,
+                "y": 1,
+                "z": 0
+            },
+            {
+                "x": 1,
+                "y": 1,
+                "z": 0
+            },
+            {
+                "x": 0,
+                "y": 1,
+                "z": 1
+            },
+            {
+                "x": 1,
+                "y": 1,
+                "z": 1
+            }
+        ],
+        "localExhaustDirections": [],
+        "localNozzlePositions": [],
+        "muzzleLocalPosition": {
+            "x": 0.0,
+            "y": 0.27000001072883608,
+            "z": 1.5199999809265137
+        },
+        "muzzleClearanceDiameter": 0.25,
+        "mesh": {
+            "fileID": 4300000,
+            "guid": "b07da71859cd249429f15794ef6b5dcb",
+            "type": 2
+        },
+        "outline": {
+            "instanceID": 0
+        },
+        "drawOutline": false,
+        "material": {
+            "fileID": 2100000,
+            "guid": "616e66fb515542f4f897bfc5a68a4f4a",
+            "type": 2
+        },
+        "icon": {
+            "fileID": 21300000,
+            "guid": "b302e4ca4e6253744bb043fb3e41ddf3",
+            "type": 3
+        },
+        "selectedIcon": {
+            "fileID": 21300000,
+            "guid": "82de26e0f41cac64f9b17a370fa36cfa",
+            "type": 3
+        },
+        "weapon": {
+            "instanceID": 0
+        },
+        "countermeasure": {
+            "instanceID": 0
+        },
+        "generationWatts": 0.0,
+        "storageJoules": 0.0,
+        "thrusterPowerWatts": 0.0,
+        "shieldPowerWatts": 0.0,
+        "shieldCapacity": 0.0,
+        "shieldRadius": 8.0,
+        "shieldRecoveryDelay": 2.0,
+        "shieldRecoveryPerSecond": 50.0,
+        "shieldSurfaceMaterial": {
+            "instanceID": 0
+        },
+        "shieldSurfaceMesh": {
+            "instanceID": 0
+        }
+    }
+}

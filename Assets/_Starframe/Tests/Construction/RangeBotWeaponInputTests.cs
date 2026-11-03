@@ -57,6 +57,23 @@ namespace Starframe.Construction.Tests
             Assert.That(weapons.ShotsFired, Is.GreaterThan(0));
         }
 
+        [TestCase(WeaponActivationMode.Hold)]
+        [TestCase(WeaponActivationMode.Press)]
+        [TestCase(WeaponActivationMode.Toggle)]
+        [TestCase(WeaponActivationMode.ChargeRelease)]
+        public void OrdinaryBotWeaponsCanFireBeforeTheSeparateSensorLockIsAcquired(WeaponActivationMode mode)
+        {
+            var input = Create(mode, out var weapons, out var definition);
+            definition.requireTargetLock = false;
+            for (int i = 0; i < 150; i++)
+            {
+                input.Apply(true, false, i * .02);
+                weapons.Prepare(); weapons.Execute(.02f, 1);
+            }
+            Assert.That(weapons.HasValidTargetLock, Is.False);
+            Assert.That(weapons.ShotsFired, Is.GreaterThan(0), "An ordinary aimed gun must not wait for the separate missile/sensor lock state.");
+        }
+
         RangeBotWeaponInput Create(WeaponActivationMode mode, out ShipWeapons weapons, out WeaponDefinition weapon)
         {
             var database = Own(ScriptableObject.CreateInstance<ModuleDatabase>());
@@ -76,7 +93,7 @@ namespace Starframe.Construction.Tests
             var root = Own(new GameObject("Range bot weapon input fixture"));
             var assembly = root.AddComponent<ShipAssembly>(); assembly.Configure(database);
             Assert.That(assembly.Place(BlockShape.Core, new Vector3(0, .5f, 0), Quaternion.identity), Is.True);
-            Assert.That(assembly.Place(BlockShape.Laser, new Vector3(1, .5f, 0), Quaternion.identity), Is.True);
+            Assert.That(assembly.Place(BlockShape.Laser, new Vector3(0, 1.5f, 0), Quaternion.identity), Is.True);
             var blueprint = assembly.Export("Bot input fixture");
             var runtime = root.AddComponent<FlightShipRuntime>(); runtime.Initialize(assembly, blueprint, tuning);
             Physics.SyncTransforms(); projectiles = new ProjectileWorld(); projectiles.Initialize(null);

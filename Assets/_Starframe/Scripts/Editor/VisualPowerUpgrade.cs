@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using UnityEngine;
@@ -8,7 +9,6 @@ using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using Starframe.Construction;
 using Starframe.Flight;
-using Starframe.Combat;
 namespace Starframe.EditorTools
 {
     public static class VisualPowerUpgrade
@@ -17,6 +17,11 @@ namespace Starframe.EditorTools
         [MenuItem("Starframe/Apply plastic and power asset upgrade")]
         public static void Apply()
         {
+            if (!PreflightApply(out var missing))
+            {
+                EditorUtility.DisplayDialog("Plastic and power upgrade unavailable", "No project assets were changed. Restore the listed inputs, then run the upgrade again:\n\n" + missing, "OK");
+                return;
+            }
             Folder(Models);Folder(Icons);Folder(Root+"Art/Models/Modules/");Folder(Root+"Art/Materials/Ships/");
             var db=AssetDatabase.LoadAssetAtPath<ModuleDatabase>(Root+"Settings/Modules/ModuleDatabase.asset");
             var plastic=Material(Root+"Art/Materials/Ships/AssemblyPlastic.mat",new Color(.82f,.86f,.86f),.43f);
@@ -34,16 +39,12 @@ namespace Starframe.EditorTools
                 var baked=StoreMesh(Bake(source,rotation,shape),Models+logical+"Mesh.asset");definition.mesh=baked;
                 definition.outline=StoreMesh(BlockGeometry.CreateOutline(shape,.012f),Models+logical+"PreviewEdges.asset");
                 definition.drawOutline=false;definition.material=shape==BlockShape.Core?coreMaterial:plastic;
-                if(shape==BlockShape.Laser){definition.occupiedCells=new[]{Vector3Int.zero,new Vector3Int(0,0,1),new Vector3Int(0,0,2)};var vertices=baked.vertices;var tip=vertices.Where(v=>v.z>baked.bounds.max.z-.025f).ToArray();var muzzle=tip.Aggregate(Vector3.zero,(s,v)=>s+v)/Mathf.Max(1,tip.Length);muzzle.z=baked.bounds.max.z+.025f;definition.muzzleLocalPosition=muzzle;definition.muzzleClearanceDiameter=.25f;definition.weapon.sustainedPowerWatts=50;definition.weapon.visualLength=1.8f;definition.weapon.tailLength=4.5f;EditorUtility.SetDirty(definition.weapon);}
-                if(shape==BlockShape.Power){definition.displayName="电源";definition.category=ModuleCategory.Power;definition.massKg=600;definition.maxHp=100;definition.recoverySeconds=4;definition.occupiedCells=new[]{Vector3Int.zero};definition.storageJoules=500;definition.generationWatts=60;}
+                if(shape==BlockShape.Laser){definition.occupiedCells=new[]{Vector3Int.zero,new Vector3Int(0,0,1),new Vector3Int(0,0,2)};var vertices=baked.vertices;var tip=vertices.Where(v=>v.z>baked.bounds.max.z-.025f).ToArray();var muzzle=tip.Aggregate(Vector3.zero,(s,v)=>s+v)/Mathf.Max(1,tip.Length);muzzle.z=baked.bounds.max.z+.025f;definition.muzzleLocalPosition=muzzle;definition.muzzleClearanceDiameter=.25f;}
+                if(shape==BlockShape.Power){definition.displayName="电源";definition.category=ModuleCategory.Power;definition.occupiedCells=new[]{Vector3Int.zero};}
                 if(!string.IsNullOrEmpty(iconNames[i])){string name=shape==BlockShape.Laser?"LaserCannon":logical;definition.icon=ImportIcon(Sources+iconNames[i]+".png",Icons+name+".png");definition.selectedIcon=ImportIcon(Sources+iconNames[i]+"s.png",Icons+name+"Selected.png");}
                 EditorUtility.SetDirty(definition);
             }
             EditorUtility.SetDirty(db);BlockModules.Configure(db);
-            var voxel=Shader.Find("Starframe/Combat/VoxelGlow");if(!voxel)throw new InvalidOperationException("Voxel glow shader did not compile.");
-            var tuning=AssetDatabase.LoadAssetAtPath<FlightTuning>(Root+"Settings/Flight/FlightTuning.asset");
-            tuning.maxSpeed=250;tuning.maxLinearAcceleration=100;tuning.angularAccelerationGain=10;tuning.maxAngularAcceleration=360;tuning.angularRateGain=4;tuning.maxAngularRate=150;tuning.rollRateGain=5;tuning.maxRollRate=180;tuning.angularAuthorityReferenceAcceleration=10;tuning.angularAuthorityExponent=1.1f;tuning.boostPowerWatts=100;tuning.boostMultiplier=1.5f;tuning.exhaustShader=voxel;tuning.exhaustLength=2.4f;tuning.exhaustMaxLength=6;tuning.exhaustIntensity=3;EditorUtility.SetDirty(tuning);
-            var battle=AssetDatabase.LoadAssetAtPath<BattleTuning>(Root+"Settings/Flight/BattleTuning.asset");battle.unlimitedRangePower=false;battle.laserShader=voxel;battle.destructionShader=voxel;EditorUtility.SetDirty(battle);
             foreach(var guid in AssetDatabase.FindAssets("t:VolumeProfile",new[]{Root})){var profile=AssetDatabase.LoadAssetAtPath<VolumeProfile>(AssetDatabase.GUIDToAssetPath(guid));if(profile.TryGet<Bloom>(out var bloom)){bloom.active=true;bloom.intensity.Override(.7f);bloom.threshold.Override(1.05f);bloom.scatter.Override(.55f);EditorUtility.SetDirty(profile);}}
             foreach(var guid in AssetDatabase.FindAssets("t:Material",new[]{Root+"Art/Materials"})){var material=AssetDatabase.LoadAssetAtPath<Material>(AssetDatabase.GUIDToAssetPath(guid));if(material.shader&&material.shader.name=="Starframe/SpaceSky"){material.SetFloat("_Exposure",1);material.SetFloat("_NebulaStrength",1.2f);material.SetFloat("_StarStrength",3.2f);EditorUtility.SetDirty(material);}}
             Folder(Root+"Data/RangeTargets/");var demo=FlightRangeBootstrap.DefaultShip();File.WriteAllText(Root+"Data/RangeTargets/PoweredRangeDemo.json",JsonUtility.ToJson(demo,true));AssetDatabase.ImportAsset(Root+"Data/RangeTargets/PoweredRangeDemo.json");
@@ -52,6 +53,11 @@ namespace Starframe.EditorTools
         [MenuItem("Starframe/Refresh supplied models only")]
         public static void RefreshModels()
         {
+            if (!PreflightModelRefresh(out var missing))
+            {
+                EditorUtility.DisplayDialog("Model refresh unavailable", "No project assets were changed. Restore the listed inputs, then run the refresh again:\n\n" + missing, "OK");
+                return;
+            }
             var database=AssetDatabase.LoadAssetAtPath<ModuleDatabase>(Root+"Settings/Modules/ModuleDatabase.asset");
             var sourceNames=new[]{"block1","block2","thruster1","thruster2","block3","block4","core","lazer","psu"};
             var logicalNames=new[]{"Cube","Wedge","Thruster1","Thruster2","Slab","Pyramid","Core","Laser","Power"};
@@ -65,6 +71,39 @@ namespace Starframe.EditorTools
                 EditorUtility.SetDirty(definition);
             }
             AssetDatabase.SaveAssets();
+        }
+
+        static bool PreflightApply(out string error)
+        {
+            var sources=new[]{"block1","block2","thruster1","thruster2","block3","block4","core","lazer","psu"};
+            var icons=new[]{"thruster1","thruster2","lazer1","psu1"};
+            var missing=new List<string>();
+            AddMissingSourceFiles(sources,".fbx",missing);
+            foreach(var icon in icons){AddMissingSourceFile(icon+".png",missing);AddMissingSourceFile(icon+"s.png",missing);}
+            var database=AssetDatabase.LoadAssetAtPath<ModuleDatabase>(Root+"Settings/Modules/ModuleDatabase.asset");
+            if(!database)missing.Add(Root+"Settings/Modules/ModuleDatabase.asset");
+            else if(!database.Get(BlockShape.Laser)||!database.Get(BlockShape.Laser).weapon)missing.Add("Laser module weapon definition in " + Root+"Settings/Modules/ModuleDatabase.asset");
+            if(!Shader.Find("Universal Render Pipeline/Lit"))missing.Add("shader Universal Render Pipeline/Lit");
+            error=string.Join("\n",missing);
+            return missing.Count==0;
+        }
+        static bool PreflightModelRefresh(out string error)
+        {
+            var sources=new[]{"block1","block2","thruster1","thruster2","block3","block4","core","lazer","psu"};
+            var missing=new List<string>();
+            AddMissingSourceFiles(sources,".fbx",missing);
+            if(!AssetDatabase.LoadAssetAtPath<ModuleDatabase>(Root+"Settings/Modules/ModuleDatabase.asset"))missing.Add(Root+"Settings/Modules/ModuleDatabase.asset");
+            error=string.Join("\n",missing);
+            return missing.Count==0;
+        }
+        static void AddMissingSourceFiles(string[] names,string extension,List<string> missing)
+        {
+            foreach(var name in names)AddMissingSourceFile(name+extension,missing);
+        }
+        static void AddMissingSourceFile(string name,List<string> missing)
+        {
+            string path=Sources+name;
+            if(!File.Exists(Path.GetFullPath(path)))missing.Add(path);
         }
         [MenuItem("Starframe/Apply reference lighting and materials")]
         public static void ApplyReferenceLook()

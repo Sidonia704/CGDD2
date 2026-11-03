@@ -1,0 +1,77 @@
+{
+    "MonoBehaviour": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "Wedge",
+        "m_EditorClassIdentifier": "Starframe.Construction::Starframe.Flight.ModuleDefinition",
+        "shape": 1,
+        "displayName": "斜面三角体",
+        "category": 0,
+        "cost": 0.0,
+        "massKg": 90.0,
+        "maxHp": 273.0,
+        "recoverySeconds": 25.0,
+        "thrustNewtons": 0.0,
+        "occupiedCells": [
+            {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            }
+        ],
+        "localExhaustDirections": [],
+        "localNozzlePositions": [],
+        "muzzleLocalPosition": {
+            "x": 0.0,
+            "y": 0.27000001072883608,
+            "z": 1.5199999809265137
+        },
+        "muzzleClearanceDiameter": 0.25,
+        "mesh": {
+            "fileID": 4300000,
+            "guid": "f06eb4fec84f2aa44bb832269764541c",
+            "type": 2
+        },
+        "outline": {
+            "fileID": 4300000,
+            "guid": "c5d75580eff55964f9212af959a7ed1f",
+            "type": 2
+        },
+        "drawOutline": false,
+        "material": {
+            "fileID": 2100000,
+            "guid": "fd50ab38fcb845d45a644cc48df29039",
+            "type": 2
+        },
+        "icon": {
+            "fileID": 21300000,
+            "guid": "baf83efac7eb722428184b8dc098d2d4",
+            "type": 3
+        },
+        "selectedIcon": {
+            "fileID": 21300000,
+            "guid": "3b7bb4f4814be7f459f464d5910e23dc",
+            "type": 3
+        },
+        "weapon": {
+            "instanceID": 0
+        },
+        "countermeasure": {
+            "instanceID": 0
+        },
+        "generationWatts": 0.0,
+        "storageJoules": 0.0,
+        "thrusterPowerWatts": 0.0,
+        "shieldPowerWatts": 0.0,
+        "shieldCapacity": 0.0,
+        "shieldRadius": 8.0,
+        "shieldRecoveryDelay": 2.0,
+        "shieldRecoveryPerSecond": 50.0,
+        "shieldSurfaceMaterial": {
+            "instanceID": 0
+        },
+        "shieldSurfaceMesh": {
+            "instanceID": 0
+        }
+    }
+}

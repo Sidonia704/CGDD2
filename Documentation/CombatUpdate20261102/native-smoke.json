@@ -1,0 +1,15 @@
+{
+  "date": "2026-11-02",
+  "unity": "6000.3.25f1",
+  "scope": "Native Editor and actual Play Mode checks; no standalone Player benchmark",
+  "moduleCount": 38,
+  "flareModule": {"shapeId": 37, "occupiedCells": 1, "meshSize": [0.59, 0.29, 0.90], "plasticOutlineEnabled": false},
+  "deploymentFixture": {"launchers": 2, "threePressResults": [true, true, false], "activeSparkCountsAfterSuccessfulPresses": [12, 24], "cooldownSeconds": 10},
+  "targetFixture": {"lockAcquiredThroughNormalSelectionAPI": true, "targetParts": 75, "submittedMaskBatches": 7, "opaqueCoverOutlineVisuallyVerified": true, "offscreenLockRetained": true, "offscreenIndicatorVisible": true},
+  "incomingFixture": {"actualEnemyLockAcquired": true, "incomingThreat": true, "distanceMetres": 100, "timeToImpactSeconds": 4.818051, "note": "Temporary zero-damage slow missile; no production weapon tuning changed"},
+  "productionMissileGuidance": {"tiers": 3, "guidanceSeconds": 10, "coneHalfAngleDegrees": 65, "angularAccelerationDegreesPerSecondSquared": 180},
+  "audio": {"fourNewCuesHaveClips": true, "subjectiveListeningNotClaimed": true},
+  "newShaders": {"supported": 4, "compilerMessages": 0},
+  "finalPreviewConsole": {"errors": 0, "warnings": 0},
+  "userBlueprintsWrittenBySmokeProbe": false
+}

@@ -11,7 +11,7 @@ using Starframe.Flight;
 
 namespace Starframe.App
 {
-    public enum GameAction { Forward, Backward, Left, Right, Up, Down, RollLeft, RollRight, Boost, TargetLock }
+    public enum GameAction { Forward, Backward, Left, Right, Up, Down, RollLeft, RollRight, Boost, TargetLock, Countermeasure, WeaponCadence }
 
     [Serializable]
     public sealed class GameBinding
@@ -28,13 +28,22 @@ namespace Starframe.App
     public static class GameInput
     {
         public static bool Suspended { get; set; }
+        public static bool TextInputFocused
+        {
+            get
+            {
+                var selected=UnityEngine.EventSystems.EventSystem.current?.currentSelectedGameObject;
+                return selected&&selected.TryGetComponent<TMPro.TMP_InputField>(out var input)&&input.isFocused;
+            }
+        }
         public static GameBinding[] DefaultBindings()=>new[]
         {
             new GameBinding(GameAction.Forward,"<Keyboard>/w"),new GameBinding(GameAction.Backward,"<Keyboard>/s"),
             new GameBinding(GameAction.Left,"<Keyboard>/a"),new GameBinding(GameAction.Right,"<Keyboard>/d"),
             new GameBinding(GameAction.Up,"<Keyboard>/space"),new GameBinding(GameAction.Down,"<Keyboard>/leftCtrl","<Keyboard>/rightCtrl"),
             new GameBinding(GameAction.RollLeft,"<Keyboard>/q"),new GameBinding(GameAction.RollRight,"<Keyboard>/e"),
-            new GameBinding(GameAction.Boost,"<Keyboard>/leftShift","<Keyboard>/rightShift"),new GameBinding(GameAction.TargetLock,"<Keyboard>/f")
+            new GameBinding(GameAction.Boost,"<Keyboard>/leftShift","<Keyboard>/rightShift"),new GameBinding(GameAction.TargetLock,"<Keyboard>/f"),
+            new GameBinding(GameAction.Countermeasure,"<Keyboard>/r"),new GameBinding(GameAction.WeaponCadence,"<Keyboard>/v")
         };
 
         public static GameBinding Get(GameAction action, GameSettingsData data=null)
@@ -46,17 +55,25 @@ namespace Starframe.App
 
         public static bool Held(GameAction action)
         {
-            if(Suspended)return false;
+            if(Suspended||TextInputFocused)return false;
             var binding=Get(action);
             return Read(binding.path)?.isPressed==true||Read(binding.alternatePath)?.isPressed==true;
         }
         public static bool Pressed(GameAction action)
         {
-            if(Suspended)return false;
+            if(Suspended||TextInputFocused)return false;
             var binding=Get(action);
             return Read(binding.path)?.wasPressedThisFrame==true||Read(binding.alternatePath)?.wasPressedThisFrame==true;
         }
-        static ButtonControl Read(string path)=>string.IsNullOrEmpty(path)?null:InputSystem.FindControl(path) as ButtonControl;
+        static ButtonControl Read(string path)
+        {
+            if(string.IsNullOrEmpty(path))return null;
+            // Resolve against the active device, matching group toggles and movement input.
+            // FindControl alone can return an older keyboard after hotplug or a test device swap.
+            if(path.StartsWith("<Keyboard>/",StringComparison.OrdinalIgnoreCase))return Keyboard.current?.TryGetChildControl<ButtonControl>(path.Substring(11));
+            if(path.StartsWith("<Mouse>/",StringComparison.OrdinalIgnoreCase))return Mouse.current?.TryGetChildControl<ButtonControl>(path.Substring(8));
+            return InputSystem.FindControl(path) as ButtonControl;
+        }
 
         public static bool IsSupported(string path)
         {

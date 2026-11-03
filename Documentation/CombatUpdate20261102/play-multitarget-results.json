@@ -1,0 +1,34 @@
+{
+  "status": "completed",
+  "duration": 52.03,
+  "summary": {
+    "total": 3,
+    "passed": 3,
+    "failed": 0,
+    "skipped": 0,
+    "inconclusive": 0
+  },
+  "results": [
+    {
+      "FullName": "Starframe.Tests.MultiTargetRangeTests.MultipleBlueprintCopiesSpawnSeparatedAndRespawnIndependently",
+      "Status": "Passed",
+      "Duration": 14.3643416,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.MultiTargetRangeTests.ShieldSharesRangePowerAndEnemySchematicTracksRelativeRoll",
+      "Status": "Passed",
+      "Duration": 22.5722674,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.MultiTargetRangeTests.TacticalHudTracksDamageAndKeepsOffscreenLockUntilSignatureExitDelayExpires",
+      "Status": "Passed",
+      "Duration": 15.0649086,
+      "Message": null,
+      "StackTrace": null
+    }
+  ]
+}

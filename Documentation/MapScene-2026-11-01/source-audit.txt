@@ -1,0 +1,111 @@
+=== mainstru ===
+root pos=(0.263, 0.734, -0.035) rot=(19.515, 179.673, 133.985) scale=(9.6, 9.6, 9.6)
+root lossyScale=(9.6, 9.6, 9.6) children=0 meshObjects=1
+totalTris=64138 totalVerts=62272 distinctMeshes=1
+world bounds size=(0.315, 0.345, 0.536) center=(0.03, -0.053, 0.089) min=(-0.127, -0.225, -0.179) max=(0.187, 0.119, 0.357)
+-- prototypes (mesh reuse) --
+  x1	Cylinder.018	verts=62272	size=(0.315, 0.345, 0.536)
+-- top-level groups --
+  	objects=1	tris=64138	bounds=(0.315, 0.345, 0.536) center=(0.03, -0.053, 0.089)
+-- objects --
+  	obj=(0.263, 0.734, -0.035)	size=(0.315, 0.345, 0.536)	center=(0.03, -0.053, 0.089)	tris=64138	mesh=Cylinder.018
+
+=== debri ===
+root pos=(-1.547, 1.189, -2.379) rot=(65.651, 343.226, 102.673) scale=(0.683, 0.683, 0.683)
+root lossyScale=(0.683, 0.683, 0.683) children=0 meshObjects=1
+totalTris=16176 totalVerts=29131 distinctMeshes=1
+world bounds size=(15.675, 10.724, 4.633) center=(-3.696, -3.088, -0.025) min=(-11.533, -8.45, -2.341) max=(4.142, 2.274, 2.292)
+-- prototypes (mesh reuse) --
+  x1	tyFlow_node_515.521	verts=29131	size=(15.675, 10.724, 4.633)
+-- top-level groups --
+  	objects=1	tris=16176	bounds=(15.675, 10.724, 4.633) center=(-3.696, -3.088, -0.025)
+-- objects --
+  	obj=(-1.547, 1.189, -2.379)	size=(15.675, 10.724, 4.633)	center=(-3.696, -3.088, -0.025)	tris=16176	mesh=tyFlow_node_515.521
+
+=== astro ===
+root pos=(0.232, 1.012, -0.091) rot=(270.02, 0, 0) scale=(100, 100, 100)
+root lossyScale=(100, 100, 100) children=0 meshObjects=1
+totalTris=253870 totalVerts=144576 distinctMeshes=1
+world bounds size=(0.165, 0.187, 0.02) center=(0.002, 0, 0) min=(-0.081, -0.093, -0.01) max=(0.084, 0.094, 0.01)
+-- prototypes (mesh reuse) --
+  x1	Cube.001	verts=144576	size=(0.165, 0.187, 0.02)
+-- top-level groups --
+  	objects=1	tris=253870	bounds=(0.165, 0.187, 0.02) center=(0.002, 0, 0)
+-- objects --
+  	obj=(0.232, 1.012, -0.091)	size=(0.165, 0.187, 0.02)	center=(0.002, 0, 0)	tris=253870	mesh=Cube.001
+
+=== scatter ===
+root pos=(0, 0, 0) rot=(0, 0, 0) scale=(1, 1, 1)
+root lossyScale=(1, 1, 1) children=22 meshObjects=22
+totalTris=47050 totalVerts=23761 distinctMeshes=22
+world bounds size=(0.796, 0.237, 1.121) center=(0.016, 0.736, -12.692) min=(-0.382, 0.617, -13.252) max=(0.413, 0.854, -12.131)
+-- prototypes (mesh reuse) --
+  x1	asteroid 01.005_asteroid.001_0	verts=58	size=(0.001, 0, 0)
+  x1	asteroid 01.006_asteroid.001_0	verts=58	size=(0, 0, 0)
+  x1	asteroid 01.007_asteroid.001_0	verts=58	size=(0.001, 0.001, 0.001)
+  x1	asteroid 01.008_asteroid.001_0	verts=58	size=(0, 0, 0)
+  x1	asteroid 01.009_asteroid.001_0	verts=58	size=(0, 0, 0)
+  x1	asteroid 01.009_asteroid.001_0.001	verts=58	size=(0, 0, 0)
+  x1	Breccia Rocks_Low.001	verts=1995	size=(0.001, 0.001, 0.001)
+  x1	Breccia Rocks_Low.022	verts=5535	size=(0.004, 0.003, 0.002)
+  x1	Breccia Rocks_Low.029	verts=1995	size=(0.002, 0.002, 0.001)
+  x1	Breccia Rocks_Low.034	verts=3016	size=(0.001, 0.001, 0.001)
+  x1	Procedural Brown Rocks.001	verts=661	size=(0.002, 0.002, 0.002)
+  x1	Procedural Brown Rocks.002	verts=513	size=(0.001, 0.001, 0.001)
+  x1	Procedural Brown Rocks.003	verts=433	size=(0.001, 0.001, 0.001)
+  x1	Procedural Brown Rocks.004	verts=1368	size=(0.001, 0.002, 0.001)
+  x1	Procedural Brown Rocks.005	verts=661	size=(0.001, 0.001, 0.001)
+  x1	Procedural Brown Rocks.006	verts=661	size=(0.001, 0.001, 0.001)
+  x1	Procedural Brown Rocks.007	verts=695	size=(0.001, 0.001, 0.001)
+  x1	Procedural Brown Rocks.008	verts=433	size=(0.002, 0.001, 0.001)
+  x1	Procedural Brown Rocks.009	verts=661	size=(0.001, 0.001, 0.001)
+  x1	Procedural Brown Rocks.010	verts=1368	size=(0.001, 0.001, 0.001)
+  x1	Procedural Brown Rocks.011	verts=661	size=(0.001, 0.001, 0.001)
+  x1	tVFX_Dark_Procedural_Rocks_Low.003	verts=2757	size=(0.001, 0.001, 0.001)
+-- top-level groups --
+  Breccia Rocks_Low.022	objects=1	tris=11066	bounds=(0.361, 0.236, 0.31) center=(-0.18, 0.736, -12.286)
+  Breccia Rocks_Low.034	objects=1	tris=6028	bounds=(0.081, 0.081, 0.101) center=(-0.171, 0.756, -12.544)
+  tVFX_Dark_Procedural_Rocks_Low.003	objects=1	tris=5510	bounds=(0.115, 0.07, 0.121) center=(-0.144, 0.738, -12.916)
+  Breccia Rocks_Low.001	objects=1	tris=3986	bounds=(0.115, 0.071, 0.108) center=(0.068, 0.755, -12.309)
+  Breccia Rocks_Low.029	objects=1	tris=3986	bounds=(0.178, 0.11, 0.168) center=(0.255, 0.757, -12.467)
+  Procedural Brown Rocks.004	objects=1	tris=2732	bounds=(0.146, 0.105, 0.18) center=(0.124, 0.737, -12.789)
+  Procedural Brown Rocks.010	objects=1	tris=2732	bounds=(0.102, 0.073, 0.125) center=(0.305, 0.735, -12.8)
+  Procedural Brown Rocks.007	objects=1	tris=1386	bounds=(0.087, 0.077, 0.123) center=(0.22, 0.731, -12.944)
+  Procedural Brown Rocks.001	objects=1	tris=1318	bounds=(0.241, 0.179, 0.218) center=(-0.261, 0.738, -12.71)
+  Procedural Brown Rocks.005	objects=1	tris=1318	bounds=(0.112, 0.083, 0.101) center=(-0.068, 0.734, -13.202)
+  Procedural Brown Rocks.006	objects=1	tris=1318	bounds=(0.112, 0.083, 0.101) center=(0.182, 0.734, -12.642)
+  Procedural Brown Rocks.009	objects=1	tris=1318	bounds=(0.078, 0.058, 0.071) center=(-0.005, 0.733, -13.08)
+  Procedural Brown Rocks.011	objects=1	tris=1318	bounds=(0.149, 0.11, 0.135) center=(0.339, 0.736, -12.64)
+  Procedural Brown Rocks.002	objects=1	tris=1022	bounds=(0.098, 0.075, 0.089) center=(-0.04, 0.734, -12.689)
+  Procedural Brown Rocks.003	objects=1	tris=862	bounds=(0.088, 0.075, 0.076) center=(0.049, 0.731, -12.991)
+  Procedural Brown Rocks.008	objects=1	tris=862	bounds=(0.15, 0.118, 0.124) center=(-0.031, 0.732, -12.845)
+  asteroid 01.005_asteroid.001_0	objects=1	tris=48	bounds=(0.052, 0.043, 0.049) center=(0.191, 0.646, -13.171)
+  asteroid 01.006_asteroid.001_0	objects=1	tris=48	bounds=(0.047, 0.036, 0.046) center=(0.146, 0.646, -13.02)
+  asteroid 01.007_asteroid.001_0	objects=1	tris=48	bounds=(0.12, 0.087, 0.091) center=(0.024, 0.786, -12.521)
+  asteroid 01.008_asteroid.001_0	objects=1	tris=48	bounds=(0.026, 0.027, 0.027) center=(-0.02, 0.65, -12.951)
+  asteroid 01.009_asteroid.001_0	objects=1	tris=48	bounds=(0.031, 0.031, 0.031) center=(-0.076, 0.641, -13.023)
+  asteroid 01.009_asteroid.001_0.001	objects=1	tris=48	bounds=(0.043, 0.044, 0.043) center=(-0.153, 0.639, -13.031)
+-- objects --
+  asteroid 01.005_asteroid.001_0	obj=(0.191, 0.646, -13.169)	size=(0.052, 0.043, 0.049)	center=(0.191, 0.646, -13.171)	tris=48	mesh=asteroid 01.005_asteroid.001_0
+  asteroid 01.006_asteroid.001_0	obj=(0.145, 0.646, -13.021)	size=(0.047, 0.036, 0.046)	center=(0.146, 0.646, -13.02)	tris=48	mesh=asteroid 01.006_asteroid.001_0
+  asteroid 01.007_asteroid.001_0	obj=(0.03, 0.784, -12.521)	size=(0.12, 0.087, 0.091)	center=(0.024, 0.786, -12.521)	tris=48	mesh=asteroid 01.007_asteroid.001_0
+  asteroid 01.008_asteroid.001_0	obj=(-0.021, 0.648, -12.952)	size=(0.026, 0.027, 0.027)	center=(-0.02, 0.65, -12.951)	tris=48	mesh=asteroid 01.008_asteroid.001_0
+  asteroid 01.009_asteroid.001_0	obj=(-0.08, 0.645, -13.028)	size=(0.031, 0.031, 0.031)	center=(-0.076, 0.641, -13.023)	tris=48	mesh=asteroid 01.009_asteroid.001_0
+  asteroid 01.009_asteroid.001_0.001	obj=(-0.159, 0.645, -13.037)	size=(0.043, 0.044, 0.043)	center=(-0.153, 0.639, -13.031)	tris=48	mesh=asteroid 01.009_asteroid.001_0.001
+  Breccia Rocks_Low.001	obj=(0.063, 0.753, -12.313)	size=(0.115, 0.071, 0.108)	center=(0.068, 0.755, -12.309)	tris=3986	mesh=Breccia Rocks_Low.001
+  Breccia Rocks_Low.022	obj=(-0.18, 0.73, -12.278)	size=(0.361, 0.236, 0.31)	center=(-0.18, 0.736, -12.286)	tris=11066	mesh=Breccia Rocks_Low.022
+  Breccia Rocks_Low.029	obj=(0.247, 0.753, -12.473)	size=(0.178, 0.11, 0.168)	center=(0.255, 0.757, -12.467)	tris=3986	mesh=Breccia Rocks_Low.029
+  Breccia Rocks_Low.034	obj=(-0.172, 0.754, -12.55)	size=(0.081, 0.081, 0.101)	center=(-0.171, 0.756, -12.544)	tris=6028	mesh=Breccia Rocks_Low.034
+  Procedural Brown Rocks.001	obj=(-0.267, 0.731, -12.705)	size=(0.241, 0.179, 0.218)	center=(-0.261, 0.738, -12.71)	tris=1318	mesh=Procedural Brown Rocks.001
+  Procedural Brown Rocks.002	obj=(-0.041, 0.73, -12.689)	size=(0.098, 0.075, 0.089)	center=(-0.04, 0.734, -12.689)	tris=1022	mesh=Procedural Brown Rocks.002
+  Procedural Brown Rocks.003	obj=(0.05, 0.73, -12.994)	size=(0.088, 0.075, 0.076)	center=(0.049, 0.731, -12.991)	tris=862	mesh=Procedural Brown Rocks.003
+  Procedural Brown Rocks.004	obj=(0.118, 0.729, -12.79)	size=(0.146, 0.105, 0.18)	center=(0.124, 0.737, -12.789)	tris=2732	mesh=Procedural Brown Rocks.004
+  Procedural Brown Rocks.005	obj=(-0.071, 0.731, -13.199)	size=(0.112, 0.083, 0.101)	center=(-0.068, 0.734, -13.202)	tris=1318	mesh=Procedural Brown Rocks.005
+  Procedural Brown Rocks.006	obj=(0.179, 0.731, -12.64)	size=(0.112, 0.083, 0.101)	center=(0.182, 0.734, -12.642)	tris=1318	mesh=Procedural Brown Rocks.006
+  Procedural Brown Rocks.007	obj=(0.223, 0.729, -12.946)	size=(0.087, 0.077, 0.123)	center=(0.22, 0.731, -12.944)	tris=1386	mesh=Procedural Brown Rocks.007
+  Procedural Brown Rocks.008	obj=(-0.025, 0.729, -12.839)	size=(0.15, 0.118, 0.124)	center=(-0.031, 0.732, -12.845)	tris=862	mesh=Procedural Brown Rocks.008
+  Procedural Brown Rocks.009	obj=(-0.007, 0.73, -13.078)	size=(0.078, 0.058, 0.071)	center=(-0.005, 0.733, -13.08)	tris=1318	mesh=Procedural Brown Rocks.009
+  Procedural Brown Rocks.010	obj=(0.3, 0.729, -12.801)	size=(0.102, 0.073, 0.125)	center=(0.305, 0.735, -12.8)	tris=2732	mesh=Procedural Brown Rocks.010
+  Procedural Brown Rocks.011	obj=(0.336, 0.731, -12.637)	size=(0.149, 0.11, 0.135)	center=(0.339, 0.736, -12.64)	tris=1318	mesh=Procedural Brown Rocks.011
+  tVFX_Dark_Procedural_Rocks_Low.003	obj=(-0.147, 0.732, -12.919)	size=(0.115, 0.07, 0.121)	center=(-0.144, 0.738, -12.916)	tris=5510	mesh=tVFX_Dark_Procedural_Rocks_Low.003
+

@@ -65,6 +65,7 @@ namespace Starframe.Flight
         float projectionScale = 1f;
         bool hasCore;
         bool lastRefinedStyle;
+        bool monochrome;
         Vector2 corePosition;
         Quaternion shipLocalRotation = Quaternion.identity;
         public int VisiblePartCount { get; private set; }
@@ -74,6 +75,7 @@ namespace Starframe.Flight
         public FlightShipRuntime Ship => ship;
         public Quaternion DisplayRotation=>shipLocalRotation;
         public void SetRelativeObserver(Transform observer){relativeObserver=observer;nextRefresh=0;}
+        public void SetMonochrome(bool value){if(monochrome==value)return;monochrome=value;Rebuild();}
 
         protected override void Awake()
         {
@@ -290,7 +292,7 @@ namespace Starframe.Flight
                 Vector3 faceCenter = (a3 + b3 + c3) / 3f;
                 Vector2 a = Project(a3), b = Project(b3), c = Project(c3);
                 float shade=RefinedFaceShade[f%RefinedFaceShade.Length];
-                Color baseColor=lastRefinedStyle
+                Color baseColor=monochrome ? new Color(.68f*shade,.68f*shade,.68f*shade,.98f) : lastRefinedStyle
                     ? new Color(theme.accent.r*.36f*shade,theme.accent.g*.62f*shade,theme.accent.b*.80f*shade,.96f)
                     : FacePalette[f%FacePalette.Length];
                 Color damageColor=lastRefinedStyle?theme.danger:DamageColor;
@@ -324,7 +326,7 @@ namespace Starframe.Flight
             Vector2 side = new Vector2(-direction.y, direction.x) * 0.65f;
             var theme=Starframe.Presentation.UiTheme.Current;
             Color color = damaged ? (lastRefinedStyle?theme.danger:DamageColor)
-                : lastRefinedStyle ? new Color(theme.accent.r*.58f,theme.accent.g*.72f,theme.accent.b*.84f,.62f) : EdgeColor;
+                : monochrome ? new Color(1,1,1,.68f) : lastRefinedStyle ? new Color(theme.accent.r*.58f,theme.accent.g*.72f,theme.accent.b*.84f,.62f) : EdgeColor;
             float depth = (Depth(a3) + Depth(b3)) * .5f + .0001f;
             faces.Add(new Face { a = a - side, b = a + side, c = b + side, depth = depth, color = color });
             faces.Add(new Face { a = a - side, b = b + side, c = b - side, depth = depth, color = color });
@@ -354,12 +356,12 @@ namespace Starframe.Flight
                 {
                     if(refined)
                     {
-                        Color halo=new Color(theme.accent.r,theme.accent.g,theme.accent.b,.12f);
+                        Color halo=monochrome?new Color(1,1,1,.12f):new Color(theme.accent.r,theme.accent.g,theme.accent.b,.12f);
                         AddTriangle(vh,center+Vector2.up*(radius+3f),center+Vector2.right*(radius+3f),center-Vector2.up*(radius+3f),halo,ref vertexCount);
                         AddTriangle(vh,center+Vector2.up*(radius+3f),center-Vector2.up*(radius+3f),center-Vector2.right*(radius+3f),halo,ref vertexCount);
                     }
-                    Color core=refined?theme.accent:CoreColor;
-                    Color highlight=refined?Color.Lerp(theme.accent,Color.white,.7f):Color.white;
+                    Color core=monochrome?theme.combatInstrument:refined?theme.accent:CoreColor;
+                    Color highlight=monochrome?Color.white:refined?Color.Lerp(theme.accent,Color.white,.7f):Color.white;
                     AddTriangle(vh, center + new Vector2(0, radius), center + new Vector2(radius, 0), center + new Vector2(0, -radius), core, ref vertexCount);
                     AddTriangle(vh, center + new Vector2(0, radius), center + new Vector2(0, -radius), center + new Vector2(-radius, 0), core, ref vertexCount);
                     AddTriangle(vh, center + new Vector2(0, radius * .55f), center + new Vector2(radius * .55f, 0), center + new Vector2(0, -radius * .55f), highlight, ref vertexCount);
@@ -439,6 +441,7 @@ namespace Starframe.Flight
         static void GetShapePoints(BlockShape shape, List<Vector3> target)
         {
             target.Clear();
+            if((int)shape>=10){target.AddRange(BlockGeometry.Points(shape));return;}
             switch (shape)
             {
                 case BlockShape.Wedge:

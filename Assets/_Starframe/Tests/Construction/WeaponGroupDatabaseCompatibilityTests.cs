@@ -25,7 +25,7 @@ namespace Starframe.Construction.Tests
                 BlockModules.Configure(database);
                 var blueprint = new BlueprintData { name = "Future weapon grouping", parts = new List<BlockRecord> {
                     new BlockRecord { id = "core", shape = BlockShape.Core, position = new Vector3(0, .5f, 0) },
-                    new BlockRecord { id = "precision", shape = BlockShape.Cube, position = new Vector3(1, .5f, 0) }
+                    new BlockRecord { id = "precision", shape = BlockShape.Cube, position = new Vector3(0, 1.5f, 0) }
                 }};
                 var group = WeaponGroups.AddGroup(blueprint, "Precision", new WeaponInputBinding { source = WeaponInputSource.MouseRight });
                 Assert.That(WeaponGroups.Assign(blueprint, "precision", group.id), Is.True);

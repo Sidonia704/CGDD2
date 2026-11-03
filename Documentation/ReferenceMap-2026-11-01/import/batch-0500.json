@@ -1,0 +1,635 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "run_script",
+    "parameters": {
+      "file": "tools/ReferenceMap20261101/Import.cs",
+      "entry": "ReferenceMapImport.ImportBatch",
+      "args": "[\"Temp/ReferenceMap20261101/geometry-full-scene-final.json\",\"Scene\",500,100]",
+      "timeout_ms": "135000"
+    },
+    "result": {
+      "diagnostics": [],
+      "compileMs": 41,
+      "executeMs": 10494,
+      "assemblyName": "PipelineRunScript_Import_82e19abc7952493bb6e4f1eaebbe6d94",
+      "success": true,
+      "result": {
+        "group": "Scene",
+        "start": 500,
+        "end": 600,
+        "total": 2345,
+        "assets": [
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0192_00.asset",
+            "cells": 23,
+            "lodVertices": 240,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0193_00.asset",
+            "cells": 40,
+            "lodVertices": 328,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0194_00.asset",
+            "cells": 40,
+            "lodVertices": 352,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0195_00.asset",
+            "cells": 5,
+            "lodVertices": 80,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0196_00.asset",
+            "cells": 36,
+            "lodVertices": 352,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0197_00.asset",
+            "cells": 24,
+            "lodVertices": 248,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0198_00.asset",
+            "cells": 9,
+            "lodVertices": 128,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0199_00.asset",
+            "cells": 27,
+            "lodVertices": 256,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0200_00.asset",
+            "cells": 9,
+            "lodVertices": 128,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0201_00.asset",
+            "cells": 40,
+            "lodVertices": 376,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0202_00.asset",
+            "cells": 65,
+            "lodVertices": 656,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0203_00.asset",
+            "cells": 37,
+            "lodVertices": 352,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0204_00.asset",
+            "cells": 27,
+            "lodVertices": 272,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0205_00.asset",
+            "cells": 34,
+            "lodVertices": 320,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0206_00.asset",
+            "cells": 6,
+            "lodVertices": 88,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0207_00.asset",
+            "cells": 40,
+            "lodVertices": 392,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0208_00.asset",
+            "cells": 7,
+            "lodVertices": 96,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0209_00.asset",
+            "cells": 4,
+            "lodVertices": 64,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0210_00.asset",
+            "cells": 35,
+            "lodVertices": 312,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0211_00.asset",
+            "cells": 18,
+            "lodVertices": 192,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0212_00.asset",
+            "cells": 19,
+            "lodVertices": 208,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0213_00.asset",
+            "cells": 37,
+            "lodVertices": 344,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0214_00.asset",
+            "cells": 41,
+            "lodVertices": 336,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0215_00.asset",
+            "cells": 30,
+            "lodVertices": 264,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0216_00.asset",
+            "cells": 43,
+            "lodVertices": 360,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0218_00.asset",
+            "cells": 486,
+            "lodVertices": 2032,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0219_00.asset",
+            "cells": 576,
+            "lodVertices": 2400,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0220_00.asset",
+            "cells": 972,
+            "lodVertices": 3688,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0221_00.asset",
+            "cells": 1745,
+            "lodVertices": 4864,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0222_00.asset",
+            "cells": 1,
+            "lodVertices": 24,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0223_00.asset",
+            "cells": 182,
+            "lodVertices": 1152,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0224_00.asset",
+            "cells": 99,
+            "lodVertices": 720,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0225_00.asset",
+            "cells": 62,
+            "lodVertices": 488,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0226_00.asset",
+            "cells": 180,
+            "lodVertices": 928,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0227_00.asset",
+            "cells": 49,
+            "lodVertices": 456,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0228_00.asset",
+            "cells": 91,
+            "lodVertices": 640,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0229_00.asset",
+            "cells": 28,
+            "lodVertices": 280,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0230_00.asset",
+            "cells": 144,
+            "lodVertices": 904,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0231_00.asset",
+            "cells": 104,
+            "lodVertices": 696,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0232_00.asset",
+            "cells": 110,
+            "lodVertices": 712,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0233_00.asset",
+            "cells": 65,
+            "lodVertices": 536,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0234_00.asset",
+            "cells": 722,
+            "lodVertices": 2664,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0235_00.asset",
+            "cells": 113,
+            "lodVertices": 752,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0236_00.asset",
+            "cells": 63,
+            "lodVertices": 456,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0237_00.asset",
+            "cells": 129,
+            "lodVertices": 904,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0238_00.asset",
+            "cells": 163,
+            "lodVertices": 1216,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0239_00.asset",
+            "cells": 57,
+            "lodVertices": 464,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0240_00.asset",
+            "cells": 349,
+            "lodVertices": 1704,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0241_00.asset",
+            "cells": 195,
+            "lodVertices": 1008,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0242_00.asset",
+            "cells": 1,
+            "lodVertices": 24,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0243_00.asset",
+            "cells": 94,
+            "lodVertices": 632,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0244_00.asset",
+            "cells": 76,
+            "lodVertices": 536,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0245_00.asset",
+            "cells": 65,
+            "lodVertices": 520,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0246_00.asset",
+            "cells": 66,
+            "lodVertices": 528,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0247_00.asset",
+            "cells": 63,
+            "lodVertices": 488,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0248_00.asset",
+            "cells": 173,
+            "lodVertices": 1048,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0249_00.asset",
+            "cells": 127,
+            "lodVertices": 808,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0250_00.asset",
+            "cells": 470,
+            "lodVertices": 2184,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0251_00.asset",
+            "cells": 136,
+            "lodVertices": 752,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0252_00.asset",
+            "cells": 131,
+            "lodVertices": 856,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0253_00.asset",
+            "cells": 158,
+            "lodVertices": 928,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0254_00.asset",
+            "cells": 135,
+            "lodVertices": 896,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0255_00.asset",
+            "cells": 111,
+            "lodVertices": 704,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0256_00.asset",
+            "cells": 100,
+            "lodVertices": 728,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0257_00.asset",
+            "cells": 334,
+            "lodVertices": 1584,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0258_00.asset",
+            "cells": 123,
+            "lodVertices": 824,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0259_00.asset",
+            "cells": 61,
+            "lodVertices": 472,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0260_00.asset",
+            "cells": 78,
+            "lodVertices": 568,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0261_00.asset",
+            "cells": 82,
+            "lodVertices": 568,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0262_00.asset",
+            "cells": 128,
+            "lodVertices": 784,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0263_00.asset",
+            "cells": 79,
+            "lodVertices": 504,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0264_00.asset",
+            "cells": 47,
+            "lodVertices": 432,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0265_00.asset",
+            "cells": 53,
+            "lodVertices": 432,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0266_00.asset",
+            "cells": 64,
+            "lodVertices": 504,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0267_00.asset",
+            "cells": 219,
+            "lodVertices": 1152,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0268_00.asset",
+            "cells": 56,
+            "lodVertices": 464,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0269_00.asset",
+            "cells": 119,
+            "lodVertices": 784,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0270_00.asset",
+            "cells": 3,
+            "lodVertices": 56,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0271_00.asset",
+            "cells": 5,
+            "lodVertices": 80,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0272_00.asset",
+            "cells": 25,
+            "lodVertices": 256,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0273_00.asset",
+            "cells": 30,
+            "lodVertices": 272,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0274_00.asset",
+            "cells": 9,
+            "lodVertices": 112,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0275_00.asset",
+            "cells": 11,
+            "lodVertices": 136,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0276_00.asset",
+            "cells": 23,
+            "lodVertices": 248,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0277_00.asset",
+            "cells": 9,
+            "lodVertices": 128,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0278_00.asset",
+            "cells": 4,
+            "lodVertices": 64,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0279_00.asset",
+            "cells": 42,
+            "lodVertices": 384,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0280_00.asset",
+            "cells": 33,
+            "lodVertices": 304,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0281_00.asset",
+            "cells": 2,
+            "lodVertices": 40,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0282_00.asset",
+            "cells": 8,
+            "lodVertices": 96,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0283_00.asset",
+            "cells": 12,
+            "lodVertices": 128,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0284_00.asset",
+            "cells": 13,
+            "lodVertices": 144,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0285_00.asset",
+            "cells": 28,
+            "lodVertices": 272,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0286_00.asset",
+            "cells": 22,
+            "lodVertices": 248,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0287_00.asset",
+            "cells": 29,
+            "lodVertices": 264,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0288_00.asset",
+            "cells": 40,
+            "lodVertices": 352,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0289_00.asset",
+            "cells": 48,
+            "lodVertices": 384,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0290_00.asset",
+            "cells": 34,
+            "lodVertices": 328,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0291_00.asset",
+            "cells": 6,
+            "lodVertices": 96,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Scene/debris347_0000_0292_00.asset",
+            "cells": 47,
+            "lodVertices": 408,
+            "islands": 1
+          }
+        ]
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "D:\\software\\unity\\CGDD26107"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

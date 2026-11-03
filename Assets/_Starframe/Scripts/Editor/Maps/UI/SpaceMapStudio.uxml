@@ -1,0 +1,16 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements">
+    <ui:Style src="SpaceMapStudio.uss" />
+    <ui:VisualElement name="studio" class="studio">
+        <ui:VisualElement name="toolbar" class="toolbar" />
+        <ui:VisualElement class="body">
+            <ui:VisualElement name="library" class="library" />
+            <ui:VisualElement class="viewport-pane">
+                <ui:VisualElement name="viewportTools" class="viewport-tools" />
+                <ui:IMGUIContainer name="viewport" class="viewport" />
+                <ui:Label name="viewportInfo" class="viewport-info" />
+            </ui:VisualElement>
+            <ui:ScrollView name="details" class="details" />
+        </ui:VisualElement>
+        <ui:Label name="status" class="status" />
+    </ui:VisualElement>
+</ui:UXML>

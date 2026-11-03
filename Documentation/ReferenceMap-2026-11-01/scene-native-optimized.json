@@ -1,0 +1,33 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "run_script",
+    "parameters": {
+      "file": "tools/ReferenceMap20261101/Scene.cs",
+      "entry": "ReferenceMapScene.Create",
+      "timeout_ms": "105000"
+    },
+    "result": {
+      "diagnostics": [],
+      "compileMs": 333,
+      "executeMs": 15906,
+      "assemblyName": "PipelineRunScript_Scene_a8fde290627f4bb0afc24ea32ad76918",
+      "success": true,
+      "result": {
+        "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Scenes/ReferenceMiningStation3500.unity",
+        "instances": 2854,
+        "lazy": true,
+        "staged": true,
+        "preservedEditorContext": null
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "D:\\software\\unity\\CGDD26107"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

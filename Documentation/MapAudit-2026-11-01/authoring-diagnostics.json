@@ -1,0 +1,35 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "run_script",
+    "parameters": {
+      "file": "tools/MapAudit20261101.cs",
+      "entry": "MapAudit20261101.Diagnostics"
+    },
+    "result": {
+      "diagnostics": [],
+      "compileMs": 1821,
+      "executeMs": 37,
+      "assemblyName": "PipelineRunScript_MapAudit20261101_42c4000778a04576899880614759abbe",
+      "success": true,
+      "result": {
+        "disconnectedAssets": 8,
+        "affectedInstances": 28,
+        "initialIslandBodies": 1482,
+        "legacyApplyReady": false,
+        "legacyRefreshReady": false,
+        "applyMissing": "Assets/_Starframe/assetsForCodex/block1.fbx\nAssets/_Starframe/assetsForCodex/block2.fbx\nAssets/_Starframe/assetsForCodex/thruster1.fbx\nAssets/_Starframe/assetsForCodex/thruster2.fbx\nAssets/_Starframe/assetsForCodex/block3.fbx\nAssets/_Starframe/assetsForCodex/block4.fbx\nAssets/_Starframe/assetsForCodex/core.fbx\nAssets/_Starframe/assetsForCodex/lazer.fbx\nAssets/_Starframe/assetsForCodex/psu.fbx\nAssets/_Starframe/assetsForCodex/thruster1.png\nAssets/_Starframe/assetsForCodex/thruster1s.png\nAssets/_Starframe/assetsForCodex/thruster2.png\nAssets/_Starframe/assetsForCodex/thruster2s.png\nAssets/_Starframe/assetsForCodex/lazer1.png\nAssets/_Starframe/assetsForCodex/lazer1s.png\nAssets/_Starframe/assetsForCodex/psu1.png\nAssets/_Starframe/assetsForCodex/psu1s.png",
+        "refreshMissing": "Assets/_Starframe/assetsForCodex/block1.fbx\nAssets/_Starframe/assetsForCodex/block2.fbx\nAssets/_Starframe/assetsForCodex/thruster1.fbx\nAssets/_Starframe/assetsForCodex/thruster2.fbx\nAssets/_Starframe/assetsForCodex/block3.fbx\nAssets/_Starframe/assetsForCodex/block4.fbx\nAssets/_Starframe/assetsForCodex/core.fbx\nAssets/_Starframe/assetsForCodex/lazer.fbx\nAssets/_Starframe/assetsForCodex/psu.fbx",
+        "note": "Only inspected cached diagnostics and preflights; did not execute legacy upgrades or mutate assets."
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7801,
+      "projectPath": "D:\\software\\unity\\CGDD26107"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

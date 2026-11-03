@@ -71,7 +71,7 @@ namespace Starframe.App
             public void Dispose(){if(disposed)return;disposed=true;storageRoot=oldRoot;current=oldSnapshot;}
         }
     }
-    public enum AppPage{Home,Deployment,WeaponGroups,RangeSetup,Settings,Help,MissionReady,Results}
+    public enum AppPage{Home,Deployment,WeaponGroups,RangeSetup,Settings,Help,MissionReady,Results,BlueprintLibrary}
     public static class AppNavigation
     {
         public const string HomeScene="Hangar";
@@ -82,6 +82,7 @@ namespace Starframe.App
         public static bool RangeReturnToEditor;
         public static bool SettingsReturnToEditor;
         public static bool WeaponGroupsReturnToEditor;
+        public static bool BlueprintsReturnToEditor;
         public static AppPage EditorResumePage=AppPage.Home;
         public static void OpenHome(AppPage page=AppPage.Home)
         {

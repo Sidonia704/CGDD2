@@ -1,4 +1,4 @@
-// @role Render shared weapon-impact and ship-destruction effects.
+// @role Pool coloured muzzle flashes, weapon impacts, missile explosions and destruction fragments.
 // @calls VoxelFxGeometry
 
 using System.Collections.Generic;
@@ -18,6 +18,8 @@ namespace Starframe.Combat
             public MaterialPropertyBlock properties;
             public Vector3 velocity, spin;
             public float age, duration, size, intensity;
+            public Color startColor, endColor;
+            public bool transitionsColor;
             public bool active, fragment;
         }
         readonly List<Effect> effects = new List<Effect>();
@@ -59,6 +61,48 @@ namespace Starframe.Combat
             }
         }
 
+        public void EmitMuzzle(Vector3 position,Vector3 direction,Starframe.Flight.WeaponDefinition weapon)
+        {
+            if(!glow||!weapon)return;
+            bool rail=weapon.tracerStyle==Starframe.Flight.TracerStyle.Continuous;
+            float width=rail?Mathf.Clamp(weapon.projectileDiameter*weapon.visualWidth*.45f,.45f,1.8f):Mathf.Clamp(weapon.projectileDiameter*.7f,.1f,.65f);
+            float coreDuration=weapon.delivery==Starframe.Flight.WeaponDelivery.GuidedMissile?.14f:rail?.09f:.07f;
+            Emit(position+direction*(width*.42f),width*.58f,coreDuration,Vector3.zero,false,Color.white,rail?12:8,weapon.effectColor);
+            if(rail)Emit(position+direction*(width*.65f),width*.52f,.055f,direction*8,false,new Color(1,.9f,.55f),12);
+            int count=weapon.delivery==Starframe.Flight.WeaponDelivery.GuidedMissile?7:rail?12:2;
+            for(int i=0;i<count;i++){
+                float size=rail?Random.Range(.12f,.24f)*Mathf.Clamp(width,.7f,1.8f):Random.Range(.045f,.1f);
+                Vector3 velocity=rail?direction*Random.Range(24,50)+Random.insideUnitSphere*5:direction*Random.Range(3,10)+Random.insideUnitSphere*1.5f;
+                Emit(position+direction*width,size,rail?Random.Range(.09f,.2f):Random.Range(.07f,.16f),velocity,false,weapon.effectColor,rail?7:3);
+            }
+        }
+        public void EmitWeaponHit(Vector3 position,Starframe.Flight.WeaponDefinition weapon)
+        {
+            if(!glow||!weapon)return;
+            bool rail=weapon.tracerStyle==Starframe.Flight.TracerStyle.Continuous;
+            float size=Mathf.Clamp(Mathf.Sqrt(Mathf.Max(0,weapon.damage))*(rail?.11f:.15f),rail?.85f:.6f,rail?4.4f:2.3f);
+            Emit(position,size,.18f,Vector3.zero,false,Color.Lerp(weapon.effectColor,Color.white,rail?.6f:.7f),rail?12:9);
+            Emit(position,size*.52f,.1f,Vector3.zero,false,rail?new Color(1,.94f,.7f):new Color(1,.9f,.6f),rail?15:12);
+            int count=Mathf.Clamp(Mathf.RoundToInt(size*(rail?11:16)),rail?18:10,rail?36:26);
+            for(int i=0;i<count;i++){
+                Vector3 direction=Random.onUnitSphere;
+                float particle=rail?Random.Range(.18f,.42f)*Mathf.Clamp(size/1.4f,1,2.2f):Random.Range(.09f,.24f)*Mathf.Clamp(size/1.2f,1,1.6f);
+                Emit(position+direction*.1f,particle,Random.Range(.18f,.4f),direction*(rail?Random.Range(8,18):Random.Range(4,11))*visualScale,false,weapon.effectColor,rail?8:6);
+            }
+        }
+        public void EmitMissileExplosion(Vector3 position,Starframe.Flight.WeaponDefinition weapon)
+        {
+            if(!glow||!weapon)return;
+            float radius=Mathf.Clamp(weapon.explosionRadius,.5f,10);
+            Emit(position,radius*.5f,.16f,Vector3.zero,false,new Color(1,.85f,.4f),7);
+            int count=Mathf.Clamp(Mathf.RoundToInt(radius*7),16,48);
+            for(int i=0;i<count;i++){
+                Vector3 direction=Random.onUnitSphere;
+                Emit(position+direction*Random.Range(.05f,radius*.2f),Random.Range(.12f,.4f),Random.Range(.25f,.6f),direction*Random.Range(radius*1.3f,radius*3.5f),false,Color.Lerp(new Color(1,.68f,.07f),new Color(1,.14f,.015f),Random.value),Random.Range(2.2f,5.5f));
+            }
+            for(int i=0;i<10;i++)Emit(position+Random.insideUnitSphere*radius*.15f,Random.Range(.12f,.3f),Random.Range(.5f,.9f),Random.onUnitSphere*Random.Range(2,radius*2),true,new Color(.35f,.32f,.28f),1);
+        }
+
         public void EmitShipDestroyed(Vector3 position, float radius, Vector3 inheritedVelocity)
         {
             if (!glow) return;
@@ -78,12 +122,13 @@ namespace Starframe.Combat
             }
         }
 
-        void Emit(Vector3 position, float size, float duration, Vector3 velocity, bool fragment, Color color, float intensity)
+        void Emit(Vector3 position, float size, float duration, Vector3 velocity, bool fragment, Color color, float intensity,Color? endColor=null)
         {
             int index = free.Count > 0 ? free.Pop() : effects.Count < Mathf.Max(32,maximumVoxels) ? CreateSlot() : recycleCursor++ % effects.Count;
             var e = effects[index];
             e.active = true; e.fragment = fragment; e.age = 0; e.duration = duration; e.size = size*visualScale;
             e.velocity = velocity; e.spin = Random.onUnitSphere * Random.Range(100,320); e.intensity = intensity;
+            e.startColor=color;e.endColor=endColor??color;e.transitionsColor=endColor.HasValue;
             e.transform.SetPositionAndRotation(position, fragment ? Random.rotation : Quaternion.identity);
             e.transform.localScale = Vector3.one * e.size;
             e.renderer.sharedMaterial=fragment&&fragmentMaterial?fragmentMaterial:glow;
@@ -102,9 +147,9 @@ namespace Starframe.Combat
             return effects.Count - 1;
         }
 
-        void Update()
+        public void StepVisuals(float dt)
         {
-            float dt = Time.deltaTime;
+            dt=Mathf.Max(0,dt);
             for (int i = 0; i < effects.Count; i++)
             {
                 var e = effects[i];
@@ -116,11 +161,18 @@ namespace Starframe.Combat
                 float shrink = e.fragment ? Mathf.Lerp(1,.05f,Mathf.Clamp01((t-.55f)/.45f)) : Mathf.Lerp(1,.1f,t);
                 e.transform.localScale = Vector3.one * (e.size * shrink);
                 e.properties.SetFloat(OpacityId,(1-t)*(1-t));
+                if(e.transitionsColor)
+                {
+                    var tint=Color.Lerp(e.startColor,e.endColor,Mathf.SmoothStep(0,1,t));
+                    e.properties.SetColor(ColorId,tint);e.properties.SetColor(BaseColorId,tint);
+                }
                 e.renderer.SetPropertyBlock(e.properties);
                 if (t < 1) continue;
                 e.active = false; e.renderer.enabled = false; free.Push(i);
             }
         }
+
+        void Update()=>StepVisuals(Time.deltaTime);
 
         void OnDestroy() => ReleaseResources();
         void ReleaseResources()

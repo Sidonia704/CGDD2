@@ -1,0 +1,28 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "run_script",
+    "parameters": {
+      "file": "tools/ReferenceMap20261101/AssemblyImport.cs",
+      "entry": "ReferenceMapAssemblyImport.VerifyWorld",
+      "timeout_ms": "105000"
+    },
+    "result": {
+      "diagnostics": [],
+      "compileMs": 284,
+      "executeMs": 1389,
+      "assemblyName": "PipelineRunScript_AssemblyImport_57b32cc6bf7447f7a81aa5db02da7856",
+      "success": false,
+      "error": "Runtime Error",
+      "errorDetails": "InvalidOperationException: Native unique asset or placed cell count differs from frozen audit.\n  at ReferenceMapAssemblyImport.VerifyWorld () [0x0078c] in D:\\software\\unity\\CGDD26107\\tools\\ReferenceMap20261101\\AssemblyImport.cs:247 \r\n  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)\r\n  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <d49d4cb128564ee1b54a84338c98d353>:0 "
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7801,
+      "projectPath": "D:\\software\\unity\\CGDD26107"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

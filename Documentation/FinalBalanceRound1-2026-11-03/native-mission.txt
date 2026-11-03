@@ -1,0 +1,18 @@
+START 2026-11-02T21:11:15.0970224Z; one isolated t4 reference, 53 enemies = 40 small / 12 large / 1 capital.
+READY frame=5291, player=t4/301 parts, budget=30000, cost=9421, finitePower=True, total=53.
+LIVE realSeconds=30.01, simulationSeconds=30.02, advancedFrames=1995, wave=1, peakAlive=5, enemyShots=120, confirmedDamageHits=69, minObservedEnemyEnergy=2691.202, greatestObservedTravelMetres=1412.14. Player invulnerable: hits are not an accuracy measurement.
+PASS SaturnRing combat audio bound to actual world; damage0.6/0.25 with enemy0.5 is active.
+PASS native authored enemy automatically emitted actual flare burst against controlled incoming missiles; physical launchers/cooldowns remain authoritative.
+PASS native pause/resume; simulation clock frozen behind the actual exit menu.
+LIFECYCLE accelerated scheduling only: runtime clone, actual 10/3/3 caps, actual entry grace, real native ships/damage/debris; forced core kills below are not combat-duration evidence.
+WAVE 2: defeated=7, wreckParts=698, clusters=7
+WAVE 3: defeated=17, wreckParts=2002, clusters=17
+WAVE 4: defeated=29, wreckParts=3898, clusters=29
+WAVE 5: defeated=40, wreckParts=5943, clusters=40
+VICTORY lifecycle=53/40/12/1, waves=5, perType=needle:19,viper:8,wasp:13,bastion:5,harrier:4,halberd:3,citadel:1, peakAlive/large/capital=10/3/1, score=58700, wreckParts=8533.
+DIAGNOSTIC forced-kill Editor frame median/p95/max ms=18.29/34.40/95.26; enemyCreationMaxMs=46.5977; wreckSpawnMaxMs=14.8198. Not a Player benchmark or balance-duration test.
+PASS retired-source collider ownership and real swept-projectile wreck destruction.
+PASS native result page and unchanged confirmed t4 snapshot.
+PASS native reentry starts clean; core loss defeats without practice respawn; all original player files remain byte-identical.
+LIMITS: one invulnerable t4 observes AI only. The three-t4 player baseline and fifteen-minute human challenge duration were not measured; forced kills prove finite-wave lifecycle only.
+DONE PASS; original storage root/snapshot, navigation, flight/session/result state, best score, input/cursor/time state restored. Isolated files retained at D:\software\unity\CGDD26107\Temp\FinalBalanceRound1Probe\5454c4bc177c406ead74b296dc9bd33b. Owned Play ends in a cleanup scene; Stop Play restores the Editor scene.

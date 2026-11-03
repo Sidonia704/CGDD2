@@ -408,7 +408,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1051721824
-    m_Localized: "3 km \xB7 0 contacts"
+    m_Localized: Scanning...
     m_Metadata:
       m_Items: []
   - m_Id: 1051721825
@@ -417,14 +417,14 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1051721826
-    m_Localized: "LMB Fire  \xB7  F Lock/unlock  \xB7  Wheel Camera  \xB7  Esc Exit 
-      \xB7  F1 Diagnostics"
+    m_Localized: "LMB Fire \xB7 F Lock/unlock \xB7 R Deploy flares \xB7 Wheel Camera
+      \xB7 Esc Exit \xB7 F1 Diagnostics"
     m_Metadata:
       m_Items: []
   - m_Id: 1051721827
     m_Localized: "W/S Forward/back \xB7 A/D Strafe \xB7 Space/Ctrl Up/down \xB7 Q/E
       Roll \xB7 Shift Boost \xB7 Mouse Steer \xB7 LMB Fire \xB7 F Lock/unlock \xB7
-      Wheel Camera \xB7 Esc Exit"
+      R Deploy flares \xB7 Wheel Camera \xB7 Esc Exit"
     m_Metadata:
       m_Items: []
   - m_Id: 1051721828
@@ -544,7 +544,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1051721856
-    m_Localized: "F  Lock target ahead \xB7 3 km"
+    m_Localized: "F \xB7 Aim at a red marker to lock"
     m_Metadata:
       m_Items: []
   - m_Id: 1051721857
@@ -552,7 +552,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1051721858
-    m_Localized: "3 km \xB7 {0} contacts \xB7 {1}"
+    m_Localized: "{2:0} m \xB7 {0} contacts \xB7 {1}"
     m_Metadata:
       m_Items: []
   - m_Id: 1051721859
@@ -1346,9 +1346,8 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 1055916153
     m_Localized: "{0}/{1} Forward/back  \xB7  {2}/{3} Strafe left/right  \xB7  {4}/{5}
-      Up/down\n{6}/{7} Roll left/right  \xB7  {8} Boost  \xB7  {9} Lock/unlock target\nSteer
-      with the mouse; use the wheel to adjust the camera. Press Esc to return to
-      the hangar."
+      Up/down\n{6}/{7} Roll left/right  \xB7  {8} Boost  \xB7  {9} Lock/unlock target 
+      \xB7  {10} Deploy countermeasures"
     m_Metadata:
       m_Items: []
   - m_Id: 1055916154
@@ -1548,15 +1547,16 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1055916202
-    m_Localized: Ice Giant Survey
+    m_Localized: Saturn Ring Sweep
     m_Metadata:
       m_Items: []
   - m_Id: 1055916203
-    m_Localized: Review the operation brief and prepare a ship for deployment.
+    m_Localized: Clear five enemy waves around the mining station. Break apart heavy
+      warships in a combat sortie lasting about fifteen minutes.
     m_Metadata:
       m_Items: []
   - m_Id: 1055916204
-    m_Localized: "ICE GIANT \xB7 OUTER ORBIT"
+    m_Localized: "SATURN \xB7 RING MINING SECTOR"
     m_Metadata:
       m_Items: []
   - m_Id: 1055916205
@@ -1783,6 +1783,513 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 38849790083076
     m_Localized: OFF
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2641704682258432
+    m_Localized: Ribbed Hull
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2641704711618560
+    m_Localized: Ribbed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2641704711618561
+    m_Localized: Corner Hull
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2641704711618562
+    m_Localized: Corner
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2641704711618563
+    m_Localized: Double Hull
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2641704711618564
+    m_Localized: Double
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2641704711618565
+    m_Localized: Large Hull
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2641704711618566
+    m_Localized: Large Hull
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2641704711618567
+    m_Localized: Wide Thruster
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2641704711618568
+    m_Localized: Drive III
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2641704711618569
+    m_Localized: Long Thruster
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2641704711618570
+    m_Localized: Drive IV
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2641704711618571
+    m_Localized: Heavy Thruster
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2641704711618572
+    m_Localized: Drive V
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2641704711618573
+    m_Localized: Large Power Cell
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2641704711618574
+    m_Localized: Large Power
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2641704711618575
+    m_Localized: Large Shield Generator
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2641704711618576
+    m_Localized: Large Shield
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2641704711618577
+    m_Localized: Armor Plate I
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2641704711618578
+    m_Localized: Armor I
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2641704711618579
+    m_Localized: Armor Plate II
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2641704711618580
+    m_Localized: Armor II
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2641704711618581
+    m_Localized: Armor Plate III
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2641704711618582
+    m_Localized: Armor III
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2641704711618583
+    m_Localized: Armor Plate IV
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2641704711618584
+    m_Localized: Armor IV
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2641704711618585
+    m_Localized: Light Autocannon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2641704711618586
+    m_Localized: Cannon I
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2641704711618587
+    m_Localized: Twin Autocannon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2641704711618588
+    m_Localized: Cannon II
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2641704711618589
+    m_Localized: Heavy Autocannon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2641704711618590
+    m_Localized: Cannon III
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2641704711618591
+    m_Localized: Twin Rapid Laser
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2641704711618592
+    m_Localized: Laser II
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2641704711618593
+    m_Localized: Heavy Rapid Laser
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2641704711618594
+    m_Localized: Laser III
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2641704711618595
+    m_Localized: Light Railgun
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2641704711618596
+    m_Localized: Railgun I
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2641704711618597
+    m_Localized: Medium Railgun
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2641704711618598
+    m_Localized: Railgun II
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2641704711618599
+    m_Localized: Heavy Railgun
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2641704711618600
+    m_Localized: Railgun III
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2641704711618601
+    m_Localized: Light Guided Missile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2641704711618602
+    m_Localized: Missile I
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2641704711618603
+    m_Localized: Twin Guided Missile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2641704711618604
+    m_Localized: Missile II
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2641704711618605
+    m_Localized: Heavy Guided Missile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2641704711618606
+    m_Localized: Missile III
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2641704711618607
+    m_Localized: Beam Sword I
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2641704711618608
+    m_Localized: Sword I
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2641704711618609
+    m_Localized: Beam Sword II
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2641704711618610
+    m_Localized: Sword II
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2641704711618611
+    m_Localized: Cells  {0}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2641704711618612
+    m_Localized: Range  {0:0} m
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2641704711618613
+    m_Localized: Lock  {0:0.#} s (no power)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2641704711618614
+    m_Localized: Reload  {0:0.#} s
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2641704711618615
+    m_Localized: 'Mount: underside only'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2641704711618616
+    m_Localized: "Armor: underside connection \xB7 no energy field"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2641704711618617
+    m_Localized: "MISSILE \xB7 SELECT TARGET"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2641704711618618
+    m_Localized: "MISSILE \xB7 ACQUIRING {0:0}%"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2641704711618619
+    m_Localized: "MISSILE \xB7 LOCKED / READY"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2641704711618620
+    m_Localized: "MISSILE \xB7 RELOADING {0:0.0}s"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2641704711618621
+    m_Localized: READY {0}/{1}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2668114125783040
+    m_Localized: Five-way Maneuvering Thruster
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2668114176114688
+    m_Localized: Drive VI
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2668114176114689
+    m_Localized: "Mount: underside only \xB7 half-cell nozzle judgment (blocks may
+      sit flush)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2668114176114690
+    m_Localized: "{0} directions \xB7 {1:0.#} kN per nozzle \xB7 {2:0.#} cell judgment"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5323905970470912
+    m_Localized: Flare Launcher
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5323906029191168
+    m_Localized: Flares
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5323906029191169
+    m_Localized: Deploy countermeasures
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5323906029191170
+    m_Localized: "Salvo {0} \xB7 cooldown {1:0.#} s"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5323906029191171
+    m_Localized: Missile decoy chance {0:0}%
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5323906029191172
+    m_Localized: Keep the +Y cell column clear to the hull edge
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5323906029191173
+    m_Localized: "{0}\xB7FLARES \u2014 NOT FITTED"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5323906029191174
+    m_Localized: "{0}\xB7FLARES {1}/{2} READY\xB7{3:0.0}s"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5323906029191175
+    m_Localized: "MISSILE INCOMING\xB7{0:0}m"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5323906029191176
+    m_Localized: TARGETED BY {0} HOSTILE(S)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5389796582096896
+    m_Localized: Cost  {0:0.##}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5389796607262720
+    m_Localized: "Cost {0:N0} \xB7 Guide {1:N0} \xB7 Hull free"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5389796607262721
+    m_Localized: "Generation {0:0.#} W \xB7 Battery {1:0.#} J\\nAll weapons {2:0.#}
+      W \xB7 Boost {3:0.#} W"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5389796607262722
+    m_Localized: Before test flight
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5389796607262723
+    m_Localized: Continue to range
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5442298463649792
+    m_Localized: Free hull
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5442298493009920
+    m_Localized: Handling
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5442298493009921
+    m_Localized: Assembly handling preview
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5442298493009922
+    m_Localized: "Speed cap {0:0} m/s \xB7 Boost accel/turn \xD7{1:0.##}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5442298493009923
+    m_Localized: "Accel F / B {0:0.#} / {1:0.#} m/s\xB2"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5442298493009924
+    m_Localized: "Accel L / R {0:0.#} / {1:0.#} m/s\xB2"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5442298493009925
+    m_Localized: "Accel U / D {0:0.#} / {1:0.#} m/s\xB2"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5442298493009926
+    m_Localized: Stop F / L / U {0} / {1} / {2} m
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5442298493009927
+    m_Localized: Stop B / R / D {0} / {1} / {2} m
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5442298493009928
+    m_Localized: "Turn P / Y / R {0:0.#} / {1:0.#} / {2:0.#} \xB0/s"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5442298493009929
+    m_Localized: Turn radius P / Y at shared speed {0} / {1} m
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5442298497204224
+    m_Localized: "\u221E"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5521535967166464
+    m_Localized: IN DEVELOPMENT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5521536017498112
+    m_Localized: Prepare and confirm your ship. The operation scene is still in development.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5521536017498113
+    m_Localized: Difficulty
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5521536017498114
+    m_Localized: Deployment budget
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5521536017498115
+    m_Localized: Search ship blueprints
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5521536017498116
+    m_Localized: '{0} blueprints'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5521536017498117
+    m_Localized: No matching blueprints.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5521536017498118
+    m_Localized: Ship systems
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5521536017498119
+    m_Localized: Text size
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5521536017498120
+    m_Localized: Adjust text size. Longer labels fit within their available space.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5521536017498121
+    m_Localized: Glass blur
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5521536017498122
+    m_Localized: Soften the scene behind panels without blurring the game view.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5521536017498123
+    m_Localized: HUD animation
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5521536021692416
+    m_Localized: Adjust the intensity of reticle feedback and interface motion.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5521536021692417
+    m_Localized: Interface & readability
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5626035138723840
+    m_Localized: Saturn Ring Sweep
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5626035159695360
+    m_Localized: WAVE {0} / {1}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5626035159695361
+    m_Localized: "{0} PTS \xB7 \xD7{1}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5626035159695362
+    m_Localized: "{0} active \xB7 {1} incoming"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5626035159695363
+    m_Localized: Next wave in {0}s
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5626035159695364
+    m_Localized: Enemy formation approaching
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5626035159695365
+    m_Localized: "Enter \xB7 Start next wave"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5626035159695366
+    m_Localized: "Preparing operation report\u2026"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5626035159695367
+    m_Localized: "Core offline \xB7 sortie lost"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5626035159695368
+    m_Localized: End this sortie?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5626035159695369
+    m_Localized: End the operation and view your report. Your deployment blueprint
+      will be preserved.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5626035159695370
+    m_Localized: End sortie
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5626035159695371
+    m_Localized: Operation score
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5626035159695372
+    m_Localized: Waves completed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5626035159695373
+    m_Localized: "Small {0}   \xB7   Large {1}   \xB7   Capital {2}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5626035159695374
+    m_Localized: "Best kill multiplier \xD7{0}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5626035159695375
+    m_Localized: Personal best  {0} PTS
     m_Metadata:
       m_Items: []
   references:

@@ -1,0 +1,20 @@
+{
+  "status": "completed",
+  "duration": 9.52,
+  "summary": {
+    "total": 1,
+    "passed": 0,
+    "failed": 1,
+    "skipped": 0,
+    "inconclusive": 0
+  },
+  "results": [
+    {
+      "FullName": "Starframe.Tests.RangePracticeModeTests.CombatPilotLeadsAndDamagesAMovingPlayerUsingActualProjectiles",
+      "Status": "Failed",
+      "Duration": 9.4911075,
+      "Message": "  Full combat must land shared projectiles, not merely generate manoeuvres and trigger requests.\r\n  Expected: True\r\n  But was:  False\r\n",
+      "StackTrace": "at Starframe.Tests.RangePracticeModeTests+<CombatPilotLeadsAndDamagesAMovingPlayerUsingActualProjectiles>d__10.MoveNext () [0x00233] in D:\\software\\unity\\CGDD26107\\Assets\\_Starframe\\Tests\\PlayMode\\Combat\\RangePracticeModeTests.cs:168\r\nat UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in .\\Library\\PackageCache\\com.unity.test-framework@bd7f943e9647\\UnityEngine.TestRunner\\NUnitExtensions\\Attributes\\TestEnumerator.cs:44\r\n"
+    }
+  ]
+}

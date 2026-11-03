@@ -1,0 +1,97 @@
+{
+  "status": "completed",
+  "duration": 0.32,
+  "summary": {
+    "total": 12,
+    "passed": 12,
+    "failed": 0,
+    "skipped": 0,
+    "inconclusive": 0
+  },
+  "results": [
+    {
+      "FullName": "Starframe.Tests.VoxelMapTests.CollisionMergingDoesNotFillEmptyHoles",
+      "Status": "Passed",
+      "Duration": 0.004898,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelMapTests.DestroyedCellsNeverHealAndSourceAssetIsImmutable",
+      "Status": "Passed",
+      "Duration": 0.0041257,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelMapTests.DestroyingBridgeCreatesIndependentCollidableFragmentsWithoutRemovingSurvivors",
+      "Status": "Passed",
+      "Duration": 0.0036909,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelMapTests.DuplicateCellsAndMissingMapAssetsAreRejected",
+      "Status": "Passed",
+      "Duration": 0.0013764,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelMapTests.EachHitRefreshesItsOwnResetDeadline",
+      "Status": "Passed",
+      "Duration": 0.0011392,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelMapTests.ExistingLaserPenetratesTwoMapCellsAndConfirmsOnlyOnce",
+      "Status": "Passed",
+      "Duration": 0.0860224,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelMapTests.FragmentKeepsItsRecentDamageAndCanStillBeDestroyed",
+      "Status": "Passed",
+      "Duration": 0.0023251,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelMapTests.GeneratorIsDeterministicAndMapCopyGetsIndependentIdentity",
+      "Status": "Passed",
+      "Duration": 0.0024965,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelMapTests.IntactInstancesShareMeshButDamageOnlyChangesOneInstance",
+      "Status": "Passed",
+      "Duration": 0.0009389,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelMapTests.OnlyRecentlyHitCellsHaveHealthRecordsAndResetIsInstant",
+      "Status": "Passed",
+      "Duration": 0.0011771,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelMapTests.PickUsesRotatedScaledAssetSpace",
+      "Status": "Passed",
+      "Duration": 0.0016953,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelMapTests.SolidBoxUsesOneDynamicBodyAndOneExactCompoundBox",
+      "Status": "Passed",
+      "Duration": 0.0009232,
+      "Message": null,
+      "StackTrace": null
+    }
+  ]
+}

@@ -1,0 +1,1813 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bc9fba079fe3c340a9872eaa1911107, type: 3}
+  m_Name: MiningStationAsteroidField
+  m_EditorClassIdentifier: Starframe.Construction::Starframe.Maps.SpaceMapDefinition
+  size: {x: 3000, y: 3000, z: 3000}
+  playerSpawn: {x: 0, y: 160, z: -1150}
+  playerEulerAngles: {x: -6, y: 0, z: 0}
+  enemySpawns:
+  - {x: -760, y: 220, z: 480}
+  - {x: 700, y: 160, z: 560}
+  - {x: 40, y: 320, z: 1020}
+  instances:
+  - id: 3648a5b948a947c1a13ec5bc64e3371e
+    label: S3 platform west
+    asset: {fileID: 11400000, guid: 2204bdee6a95a3e4a9530d063c85ce33, type: 2}
+    position: {x: -40, y: -55, z: 0}
+    eulerAngles: {x: 0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 1b1342a074654084a4aebd6e5d714ae3
+    label: S3 platform east
+    asset: {fileID: 11400000, guid: 2204bdee6a95a3e4a9530d063c85ce33, type: 2}
+    position: {x: 130, y: -50, z: 10}
+    eulerAngles: {x: 0, y: 6, z: -2}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 7c50619553094978855e1969a23f2ae6
+    label: S3 hex deck
+    asset: {fileID: 11400000, guid: 4af931c8fe1c37248983208154a86825, type: 2}
+    position: {x: 20, y: -18, z: 20}
+    eulerAngles: {x: 0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 48371a39517c4480a9dadf686341ff4f
+    label: S2 main dome
+    asset: {fileID: 11400000, guid: 4069d5c532e4faa44bf66f4bf15c1fcf, type: 2}
+    position: {x: 55, y: 43, z: 25}
+    eulerAngles: {x: 0, y: 12, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: ea4637ee7b294a779b07455e2636e2da
+    label: S2 secondary dome
+    asset: {fileID: 11400000, guid: 7a1782a634f82424cb8afd535f11ba52, type: 2}
+    position: {x: -130, y: 20, z: 60}
+    eulerAngles: {x: 0, y: 40, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 0ab36a1508c84a17a666c1b3352274b8
+    label: S2 capsule tank
+    asset: {fileID: 11400000, guid: a1000a71500263e4d80e5ec0c5812bb0, type: 2}
+    position: {x: -55, y: 12, z: -45}
+    eulerAngles: {x: 0, y: 8, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 71d712bf9d464c87adf68a215682883b
+    label: S2 cylinder tank
+    asset: {fileID: 11400000, guid: 74cf522c05ed1d8499f3284fc97251d0, type: 2}
+    position: {x: 170, y: -2, z: 45}
+    eulerAngles: {x: 0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 761150b5a05340d98666cfa3d3775406
+    label: S5 machinery cage
+    asset: {fileID: 11400000, guid: b6c8d9aaac250d64fa48c77cea28b8d6, type: 2}
+    position: {x: -30, y: 8, z: 12}
+    eulerAngles: {x: 0, y: 18, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 106cf0930a4a46b89b38c9d3af5f5e15
+    label: S5 machinery cage 2
+    asset: {fileID: 11400000, guid: b6c8d9aaac250d64fa48c77cea28b8d6, type: 2}
+    position: {x: 95, y: 6, z: -25}
+    eulerAngles: {x: 0, y: 62, z: 0}
+    scale: 0.8
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 82d233c98cea46fc9f7c6ad888f3d008
+    label: S4 girder west
+    asset: {fileID: 11400000, guid: 3d4e16bca7e258641a358db839217566, type: 2}
+    position: {x: -95, y: -30, z: 10}
+    eulerAngles: {x: 0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 31946d5680a149fc9d554f8d36872cc9
+    label: S4 girder east
+    asset: {fileID: 11400000, guid: 3d4e16bca7e258641a358db839217566, type: 2}
+    position: {x: 95, y: -28, z: 30}
+    eulerAngles: {x: 0, y: 24, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: e99fb0da20c343e6a6446e21a486abd3
+    label: S4 girder cross
+    asset: {fileID: 11400000, guid: 3d4e16bca7e258641a358db839217566, type: 2}
+    position: {x: 10, y: 30, z: -55}
+    eulerAngles: {x: 0, y: 90, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: ac6478df8ebe4db486a13cedb760b417
+    label: S4 riser west
+    asset: {fileID: 11400000, guid: 1a89c1dc559fb064f9cb225032c79d87, type: 2}
+    position: {x: -70, y: 25, z: 55}
+    eulerAngles: {x: 0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 025f094c97234ceca9a7e518e6e40ed5
+    label: S4 riser east
+    asset: {fileID: 11400000, guid: 1a89c1dc559fb064f9cb225032c79d87, type: 2}
+    position: {x: 140, y: 30, z: -60}
+    eulerAngles: {x: 0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 81848899701d4f5c904e3b0341cf5853
+    label: S1 deck wing
+    asset: {fileID: 11400000, guid: 2204bdee6a95a3e4a9530d063c85ce33, type: 2}
+    position: {x: -150, y: 20, z: -70}
+    eulerAngles: {x: 0, y: 62, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: cb1a10d07a2c4a28ba859b3534639300
+    label: S2 tank wing
+    asset: {fileID: 11400000, guid: 74cf522c05ed1d8499f3284fc97251d0, type: 2}
+    position: {x: -185, y: -10, z: 30}
+    eulerAngles: {x: 0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 028ceed5c8c04a5c8b34b1b56f8800e6
+    label: S5 cage upper
+    asset: {fileID: 11400000, guid: b6c8d9aaac250d64fa48c77cea28b8d6, type: 2}
+    position: {x: 120, y: 40, z: 60}
+    eulerAngles: {x: 0, y: 30, z: 0}
+    scale: 0.7
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 74c36a948d304ddba5990fc2e34d2ecc
+    label: S5 pipe run main
+    asset: {fileID: 11400000, guid: 48ab79b18f83be042a09962d77f6c223, type: 2}
+    position: {x: 10, y: -34, z: -20}
+    eulerAngles: {x: 0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: d8700d34c6114bb5aa2dfad27834d6bc
+    label: S5 pipe run east
+    asset: {fileID: 11400000, guid: 48ab79b18f83be042a09962d77f6c223, type: 2}
+    position: {x: 80, y: 6, z: 40}
+    eulerAngles: {x: 0, y: 74, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: d0e9da9e50ad413e9a448b5a215d291f
+    label: S3 railing west
+    asset: {fileID: 11400000, guid: edc1b0a49932d4c4cb3a648e506832e1, type: 2}
+    position: {x: -40, y: -30, z: 40}
+    eulerAngles: {x: 0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 5cb47164dc9d4d368214da9eb1559216
+    label: S3 railing east
+    asset: {fileID: 11400000, guid: edc1b0a49932d4c4cb3a648e506832e1, type: 2}
+    position: {x: 120, y: -26, z: -45}
+    eulerAngles: {x: 0, y: 90, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 6662377aefe14ec88c5c4589a235ed7a
+    label: S2 radiator
+    asset: {fileID: 11400000, guid: b1a4fb96b99c3da47a11fc076e0bb5e4, type: 2}
+    position: {x: -105, y: 12, z: -55}
+    eulerAngles: {x: 0, y: 20, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: b258fce1cae7421b9dc108ca5219f59c
+    label: S2 radiator 2
+    asset: {fileID: 11400000, guid: b1a4fb96b99c3da47a11fc076e0bb5e4, type: 2}
+    position: {x: 155, y: 30, z: -20}
+    eulerAngles: {x: 0, y: 110, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 31721b834315409b9827dd828df49f05
+    label: S6 break debris 1
+    asset: {fileID: 11400000, guid: f6bcf12c020ac70479bbf0221d1c1584, type: 2}
+    position: {x: -20.426525, y: 5.7016563, z: 48.37824}
+    eulerAngles: {x: 4.5931816, y: 299.1479, z: -34.234325}
+    scale: 1.9868293
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: a244b96d40b446208a770125dc8d5ce5
+    label: S6 break debris 2
+    asset: {fileID: 11400000, guid: 2ac19e10bd9f47f4eaf9cfe08706cebf, type: 2}
+    position: {x: -21.075396, y: 36.374252, z: 70.10332}
+    eulerAngles: {x: 16.50424, y: 170.63036, z: 15.6090975}
+    scale: 2.401228
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 4c78253279dc42f0a3e34e4f5b6a2fc6
+    label: S6 break debris 3
+    asset: {fileID: 11400000, guid: f6bcf12c020ac70479bbf0221d1c1584, type: 2}
+    position: {x: -14.409888, y: 31.13003, z: 67.46568}
+    eulerAngles: {x: 10.072452, y: 193.01562, z: 43.18664}
+    scale: 1.9581648
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: f461662161e84213b03d6f9c1c35eac3
+    label: S6 break debris 4
+    asset: {fileID: 11400000, guid: 2ac19e10bd9f47f4eaf9cfe08706cebf, type: 2}
+    position: {x: 31.19214, y: 44.523075, z: 14.309511}
+    eulerAngles: {x: -4.275951, y: 38.147552, z: 6.1369896}
+    scale: 2.8699098
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 9d81ce64644e4ad6832a15eb35d1a630
+    label: S6 break debris 5
+    asset: {fileID: 11400000, guid: f6bcf12c020ac70479bbf0221d1c1584, type: 2}
+    position: {x: -29.774008, y: 59.51226, z: -59.352955}
+    eulerAngles: {x: 44.369316, y: 359.2399, z: -5.139029}
+    scale: 1.9723817
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 189cdf2729b04d8c9831583e4539e7f4
+    label: S6 break debris 6
+    asset: {fileID: 11400000, guid: 2ac19e10bd9f47f4eaf9cfe08706cebf, type: 2}
+    position: {x: 35.981846, y: 51.429737, z: 1.1028624}
+    eulerAngles: {x: 23.818897, y: 17.565027, z: -13.649977}
+    scale: 3.0209086
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 803c557327804d5cb01ebf4e86b74870
+    label: S6 break debris 7
+    asset: {fileID: 11400000, guid: f6bcf12c020ac70479bbf0221d1c1584, type: 2}
+    position: {x: 36.060875, y: 33.500053, z: 62.36226}
+    eulerAngles: {x: -13.152414, y: 178.61794, z: 25.062937}
+    scale: 1.9797299
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: ababf28f5bcd4497a30ca7b25b4bac44
+    label: S6 break debris 8
+    asset: {fileID: 11400000, guid: 2ac19e10bd9f47f4eaf9cfe08706cebf, type: 2}
+    position: {x: -17.129528, y: 10.806723, z: 24.699278}
+    eulerAngles: {x: -46.396206, y: 83.66119, z: 32.097816}
+    scale: 2.5264533
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 17f5213061c54a30baaf550221480ca5
+    label: S6 break debris 9
+    asset: {fileID: 11400000, guid: f6bcf12c020ac70479bbf0221d1c1584, type: 2}
+    position: {x: 19.532158, y: -8.707043, z: -55.80939}
+    eulerAngles: {x: 22.500097, y: 214.66328, z: 9.859973}
+    scale: 1.3472073
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 23a10b1e41a646209926c0df1d9313c0
+    label: S6 break debris 10
+    asset: {fileID: 11400000, guid: 2ac19e10bd9f47f4eaf9cfe08706cebf, type: 2}
+    position: {x: 39.920593, y: 50.91017, z: 45.41588}
+    eulerAngles: {x: -2.391541, y: 74.69326, z: -30.506989}
+    scale: 2.547217
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 3c941c248e694d799a18de315d43218c
+    label: S6 break debris 11
+    asset: {fileID: 11400000, guid: f6bcf12c020ac70479bbf0221d1c1584, type: 2}
+    position: {x: 43.610386, y: 11.4767685, z: 68.00569}
+    eulerAngles: {x: -1.2637198, y: 204.61182, z: 1.6934693}
+    scale: 3.3176062
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 1d0bf65a6e964053a83056d6bf0d6591
+    label: S6 break debris 12
+    asset: {fileID: 11400000, guid: 2ac19e10bd9f47f4eaf9cfe08706cebf, type: 2}
+    position: {x: -45.67008, y: 39.967033, z: -55.797653}
+    eulerAngles: {x: 10.980452, y: 291.86658, z: -9.537276}
+    scale: 3.1860166
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: c0798e86b4d1478390981659ae605e41
+    label: S6 break debris 13
+    asset: {fileID: 11400000, guid: f6bcf12c020ac70479bbf0221d1c1584, type: 2}
+    position: {x: 3.3171968, y: 17.467354, z: 75.22484}
+    eulerAngles: {x: 26.549643, y: 225.94736, z: 24.814928}
+    scale: 1.4783794
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: ba7ed688db804572b59f0d99633e061e
+    label: S6 break debris 14
+    asset: {fileID: 11400000, guid: 2ac19e10bd9f47f4eaf9cfe08706cebf, type: 2}
+    position: {x: 18.17781, y: 5.5701594, z: -67.88992}
+    eulerAngles: {x: -4.7495127, y: 275.3642, z: 26.077324}
+    scale: 3.3346817
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 7c7c63b100764321afb1e15a87f101e0
+    label: S6 break debris 15
+    asset: {fileID: 11400000, guid: f6bcf12c020ac70479bbf0221d1c1584, type: 2}
+    position: {x: 47.366848, y: -19.408514, z: 72.7826}
+    eulerAngles: {x: -21.132036, y: 200.05173, z: 24.205135}
+    scale: 2.372094
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 1f05b88b2ab444bda1ee145b8c97a817
+    label: S6 break debris 16
+    asset: {fileID: 11400000, guid: 2ac19e10bd9f47f4eaf9cfe08706cebf, type: 2}
+    position: {x: 69.128944, y: 42.93349, z: 17.78802}
+    eulerAngles: {x: 16.402603, y: 109.45564, z: 14.038509}
+    scale: 2.3034227
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 6178787fe6484281ae10b21c67656f66
+    label: Field Rock_Large 1
+    asset: {fileID: 11400000, guid: 4088a2db9c23e1b4e80361270d1c9f7f, type: 2}
+    position: {x: 647.1524, y: 81.37482, z: -0.29828984}
+    eulerAngles: {x: -18.361649, y: 59.10396, z: -13.106125}
+    scale: 0.9053037
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: af58107ae715497f953b48b44099c977
+    label: Field Rock_Large 2
+    asset: {fileID: 11400000, guid: 4088a2db9c23e1b4e80361270d1c9f7f, type: 2}
+    position: {x: 267.8281, y: 15.55191, z: -633.1176}
+    eulerAngles: {x: -3.19315, y: 174.90067, z: -18.26189}
+    scale: 0.8337713
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 130077b4ef8841de85cbf5ee9f6ab9ab
+    label: Field Rock_Large 3
+    asset: {fileID: 11400000, guid: 4088a2db9c23e1b4e80361270d1c9f7f, type: 2}
+    position: {x: 371.0974, y: 87.10903, z: -515.1997}
+    eulerAngles: {x: 15.369687, y: 357.2058, z: -12.940121}
+    scale: 0.72362643
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: bc48d9970338400bbf540f8073d510c0
+    label: Field Rock_Large 4
+    asset: {fileID: 11400000, guid: 4088a2db9c23e1b4e80361270d1c9f7f, type: 2}
+    position: {x: 219.96365, y: -88.38677, z: 627.92175}
+    eulerAngles: {x: 9.754551, y: 133.18735, z: -0.37465274}
+    scale: 0.9375022
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: f7b7fd0657d043aa9d62e49f3e8f7141
+    label: Field Rock_Medium 1
+    asset: {fileID: 11400000, guid: 6ba8be159caed7e44b5234fd625b967e, type: 2}
+    position: {x: -292.161, y: -66.451805, z: 357.80594}
+    eulerAngles: {x: -23.53415, y: 224.99294, z: -24.713486}
+    scale: 1.5689402
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 2b2c69dba38a4e8695a07e905b6badf5
+    label: Field Rock_Medium 2
+    asset: {fileID: 11400000, guid: 6ba8be159caed7e44b5234fd625b967e, type: 2}
+    position: {x: 498.02292, y: 12.696953, z: -371.5262}
+    eulerAngles: {x: 5.7957354, y: 247.94829, z: -0.5117583}
+    scale: 1.0625074
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 932a20e5078b4a55b3dc5699c316b757
+    label: Field Rock_Medium 3
+    asset: {fileID: 11400000, guid: 6ba8be159caed7e44b5234fd625b967e, type: 2}
+    position: {x: -21.312286, y: 128.95471, z: 545.38635}
+    eulerAngles: {x: 22.799238, y: 184.97421, z: 21.633617}
+    scale: 0.97988707
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 10caeaf51ae64bc295771903dec27faf
+    label: Field Rock_Medium 4
+    asset: {fileID: 11400000, guid: 6ba8be159caed7e44b5234fd625b967e, type: 2}
+    position: {x: -304.0429, y: 124.241196, z: -408.39316}
+    eulerAngles: {x: 18.213194, y: 285.86575, z: 1.8303001}
+    scale: 1.3122466
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: b8d79b88cb2d4ff5916a5a68479d1714
+    label: Field Rock_Medium 5
+    asset: {fileID: 11400000, guid: 6ba8be159caed7e44b5234fd625b967e, type: 2}
+    position: {x: -585.2297, y: -87.99629, z: 171.1661}
+    eulerAngles: {x: -9.659001, y: 309.9077, z: -23.548405}
+    scale: 1.2908157
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 25d707b74f004f67b26ba41a414b5d4d
+    label: Field Rock_Medium 6
+    asset: {fileID: 11400000, guid: 6ba8be159caed7e44b5234fd625b967e, type: 2}
+    position: {x: 528.4154, y: -95.58791, z: -166.7287}
+    eulerAngles: {x: -20.426044, y: 109.25752, z: 17.571638}
+    scale: 1.5142785
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 7aa09e46980b466e956b3ca73102babb
+    label: Field Rock_Medium 7
+    asset: {fileID: 11400000, guid: 6ba8be159caed7e44b5234fd625b967e, type: 2}
+    position: {x: 607.8416, y: -123.24067, z: 55.802547}
+    eulerAngles: {x: -5.6184196, y: 11.818821, z: 3.5713398}
+    scale: 0.99199504
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 4fb16daf4b5849e6866b90ac2dc78d9e
+    label: Field Rock_Medium 8
+    asset: {fileID: 11400000, guid: 6ba8be159caed7e44b5234fd625b967e, type: 2}
+    position: {x: -438.44785, y: -126.334854, z: -149.25836}
+    eulerAngles: {x: -27.628124, y: 288.8578, z: 24.056185}
+    scale: 1.7249568
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: be334cb8ed1f4779a3e1adb00cec5559
+    label: Field Rock_Medium 9
+    asset: {fileID: 11400000, guid: 6ba8be159caed7e44b5234fd625b967e, type: 2}
+    position: {x: 69.99459, y: -96.52538, z: -556.82684}
+    eulerAngles: {x: -16.143461, y: 334.30728, z: -21.244928}
+    scale: 1.7730955
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 0168b8de8f884cf883f83e065d4966a0
+    label: Field Rock_Medium 10
+    asset: {fileID: 11400000, guid: 6ba8be159caed7e44b5234fd625b967e, type: 2}
+    position: {x: -475.2192, y: -111.83148, z: -434.98352}
+    eulerAngles: {x: -6.9370756, y: 45.013325, z: 15.682965}
+    scale: 1.4164293
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: ec8ca6178c6d47f0bb41bf226d1af9ed
+    label: Field Rock_Medium 11
+    asset: {fileID: 11400000, guid: 6ba8be159caed7e44b5234fd625b967e, type: 2}
+    position: {x: -100.17154, y: -52.173576, z: -601.5527}
+    eulerAngles: {x: -1.1666733, y: 316.5837, z: -2.8140736}
+    scale: 0.89677244
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: b47572d6c1a949699bf01db44f053b00
+    label: Field Rock_Medium 12
+    asset: {fileID: 11400000, guid: 6ba8be159caed7e44b5234fd625b967e, type: 2}
+    position: {x: 381.1854, y: -95.93734, z: 532.1399}
+    eulerAngles: {x: -18.419611, y: 128.58595, z: -5.8466005}
+    scale: 1.8205982
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 2a92e1eab286469aa411edf23328416a
+    label: Field Rock_Medium 13
+    asset: {fileID: 11400000, guid: 6ba8be159caed7e44b5234fd625b967e, type: 2}
+    position: {x: -317.3862, y: 53.758392, z: 589.7264}
+    eulerAngles: {x: 6.7732534, y: 139.46042, z: -23.10217}
+    scale: 1.7576233
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: ec2250e4d9934c38932fc36f01b9c8d6
+    label: Field Rock_Medium 14
+    asset: {fileID: 11400000, guid: 6ba8be159caed7e44b5234fd625b967e, type: 2}
+    position: {x: -607.4666, y: 125.08589, z: -200.06386}
+    eulerAngles: {x: 15.12429, y: 329.21793, z: -27.540003}
+    scale: 1.87841
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: bc02c89d5f6f48a3a7b0822462f83195
+    label: Field Rock_Small 1
+    asset: {fileID: 11400000, guid: 01b4a1253f9fab7409f7afd6d70b3688, type: 2}
+    position: {x: 200.0199, y: -104.56709, z: 415.82404}
+    eulerAngles: {x: 28.320776, y: 320.58093, z: 26.535759}
+    scale: 3.0179498
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 798f705e23eb45958959ee22ffc264b4
+    label: Field Rock_Small 2
+    asset: {fileID: 11400000, guid: 01b4a1253f9fab7409f7afd6d70b3688, type: 2}
+    position: {x: 340.40186, y: 122.63106, z: 186.78357}
+    eulerAngles: {x: -3.899036, y: 11.207841, z: 26.52582}
+    scale: 1.8720592
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: d7e18cf3e3484d29bbafb3ae4405f9ac
+    label: Field Rock_Small 3
+    asset: {fileID: 11400000, guid: 01b4a1253f9fab7409f7afd6d70b3688, type: 2}
+    position: {x: 407.7879, y: 136.61148, z: 20.928282}
+    eulerAngles: {x: 23.98239, y: 283.32654, z: 24.618366}
+    scale: 2.6016529
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: ecb1659cdc1c46ee941df44d1469de7b
+    label: Field Rock_Small 4
+    asset: {fileID: 11400000, guid: 01b4a1253f9fab7409f7afd6d70b3688, type: 2}
+    position: {x: 510.30624, y: -19.693928, z: 338.27103}
+    eulerAngles: {x: -6.702837, y: 139.61906, z: 25.517557}
+    scale: 3.26596
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 44f5f417036842c9bebd6bac2a6147e0
+    label: Field Rock_Small 5
+    asset: {fileID: 11400000, guid: 01b4a1253f9fab7409f7afd6d70b3688, type: 2}
+    position: {x: -110.34891, y: -94.02975, z: -451.33755}
+    eulerAngles: {x: -18.73718, y: 174.8587, z: -25.875862}
+    scale: 2.438123
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 6c9a0a15171f471f86d184ae0aec8575
+    label: Field Rock_Small 6
+    asset: {fileID: 11400000, guid: 01b4a1253f9fab7409f7afd6d70b3688, type: 2}
+    position: {x: 380.12726, y: 118.7681, z: 385.25952}
+    eulerAngles: {x: 11.522527, y: 56.124966, z: -3.8941348}
+    scale: 2.5376062
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 0d20cf1a4dc7487fab9f55c9f6279137
+    label: Field Rock_Small 7
+    asset: {fileID: 11400000, guid: 01b4a1253f9fab7409f7afd6d70b3688, type: 2}
+    position: {x: -99.40512, y: 93.05533, z: -444.0533}
+    eulerAngles: {x: 25.072159, y: 39.488773, z: 20.060184}
+    scale: 1.4695115
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 4d0e836afd0e41879a405c6e9981da26
+    label: Field Rock_Small 8
+    asset: {fileID: 11400000, guid: 01b4a1253f9fab7409f7afd6d70b3688, type: 2}
+    position: {x: 512.1951, y: 38.319798, z: 149.86485}
+    eulerAngles: {x: 25.889608, y: 45.191944, z: 4.646909}
+    scale: 2.567327
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: ab5b6283150b45f1ae16b5d135ac0e8b
+    label: Field Rock_Small 9
+    asset: {fileID: 11400000, guid: 01b4a1253f9fab7409f7afd6d70b3688, type: 2}
+    position: {x: -280.23325, y: 147.30934, z: -181.74002}
+    eulerAngles: {x: 28.301407, y: 9.071739, z: 14.127825}
+    scale: 3.2107246
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 4228418a1b094f1192073c3430ffe2b6
+    label: Field Rock_Small 10
+    asset: {fileID: 11400000, guid: 01b4a1253f9fab7409f7afd6d70b3688, type: 2}
+    position: {x: 68.08051, y: -67.5323, z: 648.1675}
+    eulerAngles: {x: 25.105341, y: 283.76974, z: -11.468031}
+    scale: 2.4341702
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 998b300cdfbb461ba37754eeb38747cf
+    label: Field Rock_Small 11
+    asset: {fileID: 11400000, guid: 01b4a1253f9fab7409f7afd6d70b3688, type: 2}
+    position: {x: -474.66266, y: 8.132801, z: -327.749}
+    eulerAngles: {x: 11.977322, y: 125.883064, z: -28.71794}
+    scale: 2.0789542
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: d8edc364623743969906b80f465fc959
+    label: Field Rock_Small 12
+    asset: {fileID: 11400000, guid: 01b4a1253f9fab7409f7afd6d70b3688, type: 2}
+    position: {x: -131.08376, y: -99.13016, z: 353.95044}
+    eulerAngles: {x: 15.309144, y: 229.39691, z: -22.683357}
+    scale: 2.9239225
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 99572f466f01483d95e4dae38fec4d93
+    label: Field Rock_Small 13
+    asset: {fileID: 11400000, guid: 01b4a1253f9fab7409f7afd6d70b3688, type: 2}
+    position: {x: -236.29028, y: -88.32738, z: -489.68283}
+    eulerAngles: {x: 0.110177994, y: 359.8009, z: -10.713492}
+    scale: 2.3803942
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 6885e3c003d1450eacd110baa72a659d
+    label: Field Rock_Small 14
+    asset: {fileID: 11400000, guid: 01b4a1253f9fab7409f7afd6d70b3688, type: 2}
+    position: {x: 278.52716, y: 97.35689, z: 456.38538}
+    eulerAngles: {x: -24.339937, y: 83.4737, z: 16.55148}
+    scale: 2.5764108
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 0c294d23255d4df39c2d1592ef8697b6
+    label: Field Rock_Small 15
+    asset: {fileID: 11400000, guid: 01b4a1253f9fab7409f7afd6d70b3688, type: 2}
+    position: {x: -600.76, y: 20.761776, z: -52.965176}
+    eulerAngles: {x: 20.101158, y: 309.62885, z: 13.57835}
+    scale: 2.6682425
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: fcc6f7a8a9c6456e9600e59de3bd9192
+    label: Field Rock_Small 16
+    asset: {fileID: 11400000, guid: 01b4a1253f9fab7409f7afd6d70b3688, type: 2}
+    position: {x: -213.8694, y: -161.16492, z: 582.20935}
+    eulerAngles: {x: -16.304398, y: 149.85306, z: -11.062292}
+    scale: 3.7496197
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 500accfb22954ea0b3215c98908e2fe9
+    label: Field Rock_Small 17
+    asset: {fileID: 11400000, guid: 01b4a1253f9fab7409f7afd6d70b3688, type: 2}
+    position: {x: 306.47696, y: -42.626534, z: -212.22726}
+    eulerAngles: {x: -26.693308, y: 61.65399, z: -18.861687}
+    scale: 1.1390157
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: dab2afc910a24a5591b283947cf6335b
+    label: Field Rock_Small 18
+    asset: {fileID: 11400000, guid: 01b4a1253f9fab7409f7afd6d70b3688, type: 2}
+    position: {x: -75.60296, y: -55.266113, z: 516.29517}
+    eulerAngles: {x: -9.741714, y: 109.90866, z: -21.83017}
+    scale: 3.8666282
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: eb8f9052060242a293a83d481b76794d
+    label: Field Rock_Small 19
+    asset: {fileID: 11400000, guid: 01b4a1253f9fab7409f7afd6d70b3688, type: 2}
+    position: {x: -215.71931, y: -101.78872, z: -354.28052}
+    eulerAngles: {x: 26.153923, y: 333.15924, z: -13.973124}
+    scale: 1.7740643
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 43fda9d0aaa34e52985108717c385dab
+    label: Field Rock_Small 20
+    asset: {fileID: 11400000, guid: 01b4a1253f9fab7409f7afd6d70b3688, type: 2}
+    position: {x: -536.20886, y: 88.371086, z: 308.64236}
+    eulerAngles: {x: 7.9092083, y: 111.617035, z: 6.0546865}
+    scale: 1.1001655
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 27f0494a988049f4bb027d93f04f884c
+    label: Field Rock_Small 21
+    asset: {fileID: 11400000, guid: 01b4a1253f9fab7409f7afd6d70b3688, type: 2}
+    position: {x: 343.80408, y: -73.589005, z: -184.68132}
+    eulerAngles: {x: 16.872086, y: 143.15672, z: -2.135843}
+    scale: 1.3617648
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 642041abed734b759df055039c39ead4
+    label: Field Rock_Small 22
+    asset: {fileID: 11400000, guid: 01b4a1253f9fab7409f7afd6d70b3688, type: 2}
+    position: {x: -52.523735, y: 42.97903, z: -285.45328}
+    eulerAngles: {x: 16.175291, y: 203.51062, z: -12.573499}
+    scale: 2.1621337
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: c13031d98a8342b284badafee1339e61
+    label: Field Rock_Small 23
+    asset: {fileID: 11400000, guid: 01b4a1253f9fab7409f7afd6d70b3688, type: 2}
+    position: {x: 504.1672, y: 83.601494, z: 419.4356}
+    eulerAngles: {x: -8.120785, y: 134.95639, z: 15.126328}
+    scale: 1.3074046
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 4198b22ec85a4f898e018d915f4640ee
+    label: Field Rock_Small 24
+    asset: {fileID: 11400000, guid: 01b4a1253f9fab7409f7afd6d70b3688, type: 2}
+    position: {x: 275.74942, y: -85.10552, z: -467.07394}
+    eulerAngles: {x: 9.684853, y: 297.28168, z: 9.700306}
+    scale: 3.1909614
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: e2b1df93cf7944a4b8041462c22ced4c
+    label: Field Rock_Small 25
+    asset: {fileID: 11400000, guid: 01b4a1253f9fab7409f7afd6d70b3688, type: 2}
+    position: {x: 244.12358, y: -148.71588, z: 256.2223}
+    eulerAngles: {x: -28.823662, y: 179.43956, z: -29.391092}
+    scale: 2.9206014
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 125b7cee865b46b29af2526d1c5da73c
+    label: Field Rock_Small 26
+    asset: {fileID: 11400000, guid: 01b4a1253f9fab7409f7afd6d70b3688, type: 2}
+    position: {x: -656.43976, y: -130.7941, z: -60.775475}
+    eulerAngles: {x: 27.733204, y: 206.99158, z: 26.605392}
+    scale: 3.8301456
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 63130915622d4bcba9ecd26288a8a990
+    label: Field Rock_Small 27
+    asset: {fileID: 11400000, guid: 01b4a1253f9fab7409f7afd6d70b3688, type: 2}
+    position: {x: -471.57736, y: 142.66295, z: -441.41116}
+    eulerAngles: {x: -1.2892485, y: 348.39236, z: -11.44107}
+    scale: 3.8304646
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: c141b525b1a8471a86038c4405dbafa8
+    label: Field Rock_Small 28
+    asset: {fileID: 11400000, guid: 01b4a1253f9fab7409f7afd6d70b3688, type: 2}
+    position: {x: -591.28345, y: 96.3159, z: 110.60664}
+    eulerAngles: {x: 21.013563, y: 335.6753, z: -16.663761}
+    scale: 2.7520251
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 86d635984e274a01bff3717bcedc0b70
+    label: Field Rock_Small 29
+    asset: {fileID: 11400000, guid: 01b4a1253f9fab7409f7afd6d70b3688, type: 2}
+    position: {x: -409.87027, y: 135.11797, z: 435.32962}
+    eulerAngles: {x: 27.044449, y: 79.58489, z: 4.002607}
+    scale: 3.0408063
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: e72b383fbdfa433b82fb02b6297093e3
+    label: Field Rock_Small 30
+    asset: {fileID: 11400000, guid: 01b4a1253f9fab7409f7afd6d70b3688, type: 2}
+    position: {x: -321.95523, y: -113.384865, z: -537.07245}
+    eulerAngles: {x: 3.1746018, y: 30.164331, z: 9.985579}
+    scale: 2.457992
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: f93973accd22434388bc8b808b134ae1
+    label: Field Rock_Small 31
+    asset: {fileID: 11400000, guid: 01b4a1253f9fab7409f7afd6d70b3688, type: 2}
+    position: {x: -387.58292, y: 50.442448, z: -55.86364}
+    eulerAngles: {x: 25.328596, y: 212.80492, z: -15.88736}
+    scale: 3.6018763
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 5e79fac0006b491aa510a4e2c5bf48a6
+    label: Field Rock_Small 32
+    asset: {fileID: 11400000, guid: 01b4a1253f9fab7409f7afd6d70b3688, type: 2}
+    position: {x: -416.07852, y: 121.1327, z: 147.92455}
+    eulerAngles: {x: -19.720179, y: 86.47017, z: 3.4132075}
+    scale: 2.747494
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: f263334ad814496e87f476e51521ffca
+    label: Field Rock_Small 33
+    asset: {fileID: 11400000, guid: 01b4a1253f9fab7409f7afd6d70b3688, type: 2}
+    position: {x: -368.59177, y: -46.23088, z: 484.00406}
+    eulerAngles: {x: -27.026686, y: 347.38022, z: -17.804117}
+    scale: 1.8026316
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: c4c74faa80dc4f87a88e7a3a79c482d5
+    label: Field Rock_Small 34
+    asset: {fileID: 11400000, guid: 01b4a1253f9fab7409f7afd6d70b3688, type: 2}
+    position: {x: -406.04355, y: 53.904724, z: -512.9165}
+    eulerAngles: {x: -12.101042, y: 110.570656, z: -24.558586}
+    scale: 2.2999344
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 432fab6f5c5f41138e1633ed1665f051
+    label: Field Rock_Small 35
+    asset: {fileID: 11400000, guid: 01b4a1253f9fab7409f7afd6d70b3688, type: 2}
+    position: {x: 202.53789, y: 32.266064, z: 326.568}
+    eulerAngles: {x: -26.132202, y: 19.25452, z: 15.485845}
+    scale: 3.592082
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 4526810a20724876bca12dff1ec2ef08
+    label: Field Rock_Small 36
+    asset: {fileID: 11400000, guid: 01b4a1253f9fab7409f7afd6d70b3688, type: 2}
+    position: {x: 317.24808, y: 54.219685, z: 35.955315}
+    eulerAngles: {x: 6.164725, y: 153.0796, z: 2.256503}
+    scale: 2.7372842
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 6c5ad6a8e7f2488683f6a133fc33c83e
+    label: Field Rock_Small 37
+    asset: {fileID: 11400000, guid: 01b4a1253f9fab7409f7afd6d70b3688, type: 2}
+    position: {x: 424.57208, y: 116.35126, z: -191.94249}
+    eulerAngles: {x: -19.411274, y: 314.4271, z: 22.706554}
+    scale: 2.3999934
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: f029c5106b664554bbf41d019a52a780
+    label: Field Rock_Small 38
+    asset: {fileID: 11400000, guid: 01b4a1253f9fab7409f7afd6d70b3688, type: 2}
+    position: {x: 340.87747, y: 141.76118, z: -309.3236}
+    eulerAngles: {x: -10.028179, y: 49.968513, z: -7.2104}
+    scale: 3.2058778
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 6bb66583710248a198b4e7769ac7033e
+    label: Field Rock_Small 39
+    asset: {fileID: 11400000, guid: 01b4a1253f9fab7409f7afd6d70b3688, type: 2}
+    position: {x: 408.22556, y: 50.015545, z: 184.944}
+    eulerAngles: {x: -12.705721, y: 70.86923, z: 23.807327}
+    scale: 2.5757384
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 7801a18f61104ce8a4d748a663ceda1e
+    label: Field Rock_Small 40
+    asset: {fileID: 11400000, guid: 01b4a1253f9fab7409f7afd6d70b3688, type: 2}
+    position: {x: -528.2977, y: 58.541718, z: 193.09529}
+    eulerAngles: {x: -13.046522, y: 245.53297, z: 20.121506}
+    scale: 2.2093008
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: fe58fdfe9bc749a58d3a31e8cf6421e0
+    label: Field Rock_Small 41
+    asset: {fileID: 11400000, guid: 01b4a1253f9fab7409f7afd6d70b3688, type: 2}
+    position: {x: 228.50217, y: 36.38815, z: -369.6417}
+    eulerAngles: {x: -2.8261023, y: 54.368565, z: 21.85488}
+    scale: 3.5993404
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 34a337c7a3504c65a8c0dca3ea87edd1
+    label: Field Rock_Small 42
+    asset: {fileID: 11400000, guid: 01b4a1253f9fab7409f7afd6d70b3688, type: 2}
+    position: {x: 499.17352, y: -148.54295, z: -398.98813}
+    eulerAngles: {x: -18.289858, y: 337.28183, z: 16.643682}
+    scale: 2.2714622
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: f13fe46d064d48a4819e7de293d857a8
+    label: Field Rock_Small 43
+    asset: {fileID: 11400000, guid: 01b4a1253f9fab7409f7afd6d70b3688, type: 2}
+    position: {x: -511.47748, y: 9.681816, z: 75.61235}
+    eulerAngles: {x: -27.709135, y: 242.0795, z: 18.797565}
+    scale: 2.3082247
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 59cdbb4c4273457d9393399a868ef7da
+    label: Field Rock_Small 44
+    asset: {fileID: 11400000, guid: 01b4a1253f9fab7409f7afd6d70b3688, type: 2}
+    position: {x: 263.58606, y: -25.078535, z: -159.74365}
+    eulerAngles: {x: -10.175275, y: 21.120762, z: -15.740937}
+    scale: 2.0605264
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 9220510d08d64cc3b07bee3d01074c88
+    label: Field Rock_Small 45
+    asset: {fileID: 11400000, guid: 01b4a1253f9fab7409f7afd6d70b3688, type: 2}
+    position: {x: 76.641975, y: 134.63957, z: 425.96912}
+    eulerAngles: {x: -27.21773, y: 197.7969, z: 14.978446}
+    scale: 2.896081
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 4a5aa2c760794a4f90659c6f4bb0fb65
+    label: Field Rock_Small 46
+    asset: {fileID: 11400000, guid: 01b4a1253f9fab7409f7afd6d70b3688, type: 2}
+    position: {x: 391.61166, y: -26.076307, z: -454.39435}
+    eulerAngles: {x: 21.810743, y: 353.87994, z: -29.769602}
+    scale: 1.2858163
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 871446f844d3486985f930414fafcb31
+    label: Field Rock_Far_Large 1
+    asset: {fileID: 11400000, guid: 2aad336eb41c2dc498a5e062a3fb875b, type: 2}
+    position: {x: -319.80972, y: 96.195435, z: 1061.6669}
+    eulerAngles: {x: -19.900686, y: 22.967056, z: 5.371088}
+    scale: 0.9210002
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: dcaa33a63b5240bdbb1f1659e8f4f21b
+    label: Field Rock_Far_Large 2
+    asset: {fileID: 11400000, guid: 2aad336eb41c2dc498a5e062a3fb875b, type: 2}
+    position: {x: -1108.6743, y: -125.8879, z: 205.65022}
+    eulerAngles: {x: 13.571845, y: 187.73537, z: -28.77335}
+    scale: 1.5912802
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: ad7b9379026f4dd2b2ba6e7762e60367
+    label: Field Rock_Far_Large 3
+    asset: {fileID: 11400000, guid: 2aad336eb41c2dc498a5e062a3fb875b, type: 2}
+    position: {x: 604.0381, y: -129.70181, z: 924.23553}
+    eulerAngles: {x: -12.300392, y: 169.21754, z: -17.37312}
+    scale: 1.2062275
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 3483707eefa54ac4ac0782db95b25e75
+    label: Field Rock_Far_Large 4
+    asset: {fileID: 11400000, guid: 2aad336eb41c2dc498a5e062a3fb875b, type: 2}
+    position: {x: 381.26007, y: 81.98795, z: -1070.556}
+    eulerAngles: {x: 12.951354, y: 17.710682, z: -16.590963}
+    scale: 1.729804
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 4a13b4baa7af4c7f9f21831eee2eb9f1
+    label: Field Rock_Far_Large 5
+    asset: {fileID: 11400000, guid: 2aad336eb41c2dc498a5e062a3fb875b, type: 2}
+    position: {x: -1022.22974, y: -97.52203, z: -447.40485}
+    eulerAngles: {x: 3.0237222, y: 106.10699, z: -12.191221}
+    scale: 0.8255808
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 8c36fca6e2764015a8ce9a99befeca0a
+    label: Field Rock_Far_Large 6
+    asset: {fileID: 11400000, guid: 2aad336eb41c2dc498a5e062a3fb875b, type: 2}
+    position: {x: -597.6456, y: 2.5733376, z: -1007.28046}
+    eulerAngles: {x: -23.676702, y: 228.67917, z: -5.2360563}
+    scale: 1.4962249
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 068c37d89a5348629f52fa3646ff9252
+    label: Field Rock_Far_Large 7
+    asset: {fileID: 11400000, guid: 2aad336eb41c2dc498a5e062a3fb875b, type: 2}
+    position: {x: 1098.8748, y: -5.035286, z: 223.93398}
+    eulerAngles: {x: 24.46524, y: 166.69377, z: -4.8661423}
+    scale: 1.1905689
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 3892a95aee1c4344b3d73071d52c5e23
+    label: Field Rock_Far_Large 8
+    asset: {fileID: 11400000, guid: 2aad336eb41c2dc498a5e062a3fb875b, type: 2}
+    position: {x: 970.17645, y: 111.11294, z: -799.95184}
+    eulerAngles: {x: -21.770065, y: 323.9827, z: 17.225143}
+    scale: 1.2154858
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 6bb964381a6f4c02aa6e7b1ae0573c26
+    label: Field Rock_Far_Large 9
+    asset: {fileID: 11400000, guid: 2aad336eb41c2dc498a5e062a3fb875b, type: 2}
+    position: {x: -687.0877, y: -86.175995, z: 770.6132}
+    eulerAngles: {x: -8.255909, y: 295.46533, z: 23.904877}
+    scale: 1.0407718
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: c3cdebfb167c4642a525b86b48f5f47b
+    label: Field Rock_Far_Large 13
+    asset: {fileID: 11400000, guid: 2aad336eb41c2dc498a5e062a3fb875b, type: 2}
+    position: {x: 1159.9537, y: -35.55292, z: -288.47217}
+    eulerAngles: {x: 2.951485, y: 138.78355, z: 11.005587}
+    scale: 1.0615369
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 8036bea79576481d80e0f54f32bf317b
+    label: Field Rock_Far_Large 14
+    asset: {fileID: 11400000, guid: 2aad336eb41c2dc498a5e062a3fb875b, type: 2}
+    position: {x: 114.669395, y: -142.83, z: 1123.9607}
+    eulerAngles: {x: -25.658846, y: 321.04984, z: 12.414089}
+    scale: 0.96061283
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 2c370d8886f84678923e566e4c74a06f
+    label: Field Rock_Far_Large 16
+    asset: {fileID: 11400000, guid: 2aad336eb41c2dc498a5e062a3fb875b, type: 2}
+    position: {x: 994.0363, y: -137.5408, z: 682.0763}
+    eulerAngles: {x: -5.420172, y: 199.58304, z: 25.08032}
+    scale: 0.62802494
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: ef7c3ef3b25b456d938b49944e2266fd
+    label: Field Rock_Far_Large 20
+    asset: {fileID: 11400000, guid: 2aad336eb41c2dc498a5e062a3fb875b, type: 2}
+    position: {x: -827.07745, y: 146.28156, z: -559.7052}
+    eulerAngles: {x: -6.2641435, y: 90.20528, z: 10.773039}
+    scale: 0.6778002
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 8eca5a56a55f455492dccfbd20ce6677
+    label: Field Rock_Far_Large 21
+    asset: {fileID: 11400000, guid: 2aad336eb41c2dc498a5e062a3fb875b, type: 2}
+    position: {x: -67.03429, y: 45.25139, z: 795.2736}
+    eulerAngles: {x: 0.02445817, y: 187.28346, z: 10.624155}
+    scale: 0.66677487
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 4d0386cd6efc486d819ba0151ce13c14
+    label: Field Rock_Far_Medium 1
+    asset: {fileID: 11400000, guid: 7cfb6bb6bfe13a048ad13ffc3d0fc86a, type: 2}
+    position: {x: -1027.0988, y: -89.67309, z: 681.51587}
+    eulerAngles: {x: 18.029902, y: 102.541046, z: 5.992162}
+    scale: 0.8346179
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 768d5fd5bedf4084b9253b4e0fc2e00d
+    label: Field Rock_Far_Medium 2
+    asset: {fileID: 11400000, guid: 7cfb6bb6bfe13a048ad13ffc3d0fc86a, type: 2}
+    position: {x: -132.40663, y: 97.46075, z: -848.6036}
+    eulerAngles: {x: -13.738528, y: 152.42656, z: -25.099068}
+    scale: 2.165281
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: cea21f6d439542d994c256aeead478dc
+    label: Field Rock_Far_Medium 3
+    asset: {fileID: 11400000, guid: 7cfb6bb6bfe13a048ad13ffc3d0fc86a, type: 2}
+    position: {x: -716.6036, y: 143.01414, z: 236.43513}
+    eulerAngles: {x: 7.385312, y: 335.70737, z: -9.678675}
+    scale: 1.6221741
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 47901356375645d79494e15d4f26d9b0
+    label: Field Rock_Far_Medium 4
+    asset: {fileID: 11400000, guid: 7cfb6bb6bfe13a048ad13ffc3d0fc86a, type: 2}
+    position: {x: -130.22011, y: -129.42929, z: -1208.792}
+    eulerAngles: {x: 3.0984306, y: 35.654762, z: -3.3878303}
+    scale: 2.292273
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 91a190769ad2450d8111c8c3eb7e412f
+    label: Field Rock_Far_Medium 5
+    asset: {fileID: 11400000, guid: 7cfb6bb6bfe13a048ad13ffc3d0fc86a, type: 2}
+    position: {x: -789.598, y: -41.63868, z: -326.3915}
+    eulerAngles: {x: -25.247175, y: 328.56323, z: -4.3567333}
+    scale: 0.92934924
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: e9c5fe0d8d1c4534972465fc25a22451
+    label: Field Rock_Far_Medium 6
+    asset: {fileID: 11400000, guid: 7cfb6bb6bfe13a048ad13ffc3d0fc86a, type: 2}
+    position: {x: 701.1068, y: -97.47127, z: -450.7045}
+    eulerAngles: {x: 22.471075, y: 277.79395, z: 2.829634}
+    scale: 2.1745589
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 23a718344b6d420385fe3126ab018bef
+    label: Field Rock_Far_Medium 7
+    asset: {fileID: 11400000, guid: 7cfb6bb6bfe13a048ad13ffc3d0fc86a, type: 2}
+    position: {x: 247.16634, y: 51.95631, z: 788.5374}
+    eulerAngles: {x: 13.562029, y: 243.08362, z: 4.8209276}
+    scale: 1.874832
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: afc5f860d2494070a4fd93bf32a39d21
+    label: Field Rock_Far_Medium 8
+    asset: {fileID: 11400000, guid: 7cfb6bb6bfe13a048ad13ffc3d0fc86a, type: 2}
+    position: {x: 723.21454, y: 76.05501, z: 498.14835}
+    eulerAngles: {x: 28.790571, y: 339.47382, z: 19.256187}
+    scale: 2.4685662
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: b438c2726d27429a8c4f31a88ea1250d
+    label: Field Rock_Far_Medium 9
+    asset: {fileID: 11400000, guid: 7cfb6bb6bfe13a048ad13ffc3d0fc86a, type: 2}
+    position: {x: 302.99704, y: 71.735596, z: 1216.2733}
+    eulerAngles: {x: -26.362549, y: 223.65567, z: -15.255764}
+    scale: 1.1355056
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 8ab47497eec3450ca40a24ff85254722
+    label: Field Rock_Far_Medium 10
+    asset: {fileID: 11400000, guid: 7cfb6bb6bfe13a048ad13ffc3d0fc86a, type: 2}
+    position: {x: 829.47375, y: 9.154968, z: -240.55292}
+    eulerAngles: {x: 12.270159, y: 2.900859, z: -23.185564}
+    scale: 1.3149873
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 76e27f60c85a489cb1a68b35b9b47ab5
+    label: Field Rock_Far_Medium 12
+    asset: {fileID: 11400000, guid: 7cfb6bb6bfe13a048ad13ffc3d0fc86a, type: 2}
+    position: {x: 432.72165, y: -140.82211, z: -555.8345}
+    eulerAngles: {x: -29.722654, y: 35.619785, z: 27.88512}
+    scale: 1.0196321
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 7af56f0cbcbb495fba1439d11eaec622
+    label: Field Rock_Far_Medium 14
+    asset: {fileID: 11400000, guid: 7cfb6bb6bfe13a048ad13ffc3d0fc86a, type: 2}
+    position: {x: -843.4332, y: 130.96707, z: -104.38624}
+    eulerAngles: {x: 26.878067, y: 291.31006, z: 13.636301}
+    scale: 1.7074716
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: dad06f60dda2404e9986aea6bec6497f
+    label: Field Rock_Far_Medium 16
+    asset: {fileID: 11400000, guid: 7cfb6bb6bfe13a048ad13ffc3d0fc86a, type: 2}
+    position: {x: -1147.1827, y: 127.29898, z: -236.26051}
+    eulerAngles: {x: 2.8670633, y: 12.094225, z: 9.809139}
+    scale: 1.3610039
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 04bbdea80e274fc1ad3c07a42a8fe76a
+    label: Field Rock_Far_Medium 17
+    asset: {fileID: 11400000, guid: 7cfb6bb6bfe13a048ad13ffc3d0fc86a, type: 2}
+    position: {x: 1038.9888, y: 114.40584, z: 639.4035}
+    eulerAngles: {x: 13.898095, y: 12.463603, z: 11.808565}
+    scale: 1.2056298
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: b92c2f31dbc040fd86fdbee526823356
+    label: Field Rock_Far_Medium 19
+    asset: {fileID: 11400000, guid: 7cfb6bb6bfe13a048ad13ffc3d0fc86a, type: 2}
+    position: {x: -405.52835, y: -161.73695, z: 933.97797}
+    eulerAngles: {x: 17.057562, y: 241.35568, z: 29.569427}
+    scale: 1.0186824
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 2c92eaa6a602404f8474db5e1a585a07
+    label: Field Rock_Far_Medium 20
+    asset: {fileID: 11400000, guid: 7cfb6bb6bfe13a048ad13ffc3d0fc86a, type: 2}
+    position: {x: -610.71, y: -157.63098, z: 423.54477}
+    eulerAngles: {x: 7.9718685, y: 131.46509, z: -10.075581}
+    scale: 1.2983478
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 1ed42e0ba6064b6fb1b5a7eb9d4fa8d4
+    label: Field Rock_Far_Medium 21
+    asset: {fileID: 11400000, guid: 7cfb6bb6bfe13a048ad13ffc3d0fc86a, type: 2}
+    position: {x: 797.9384, y: -126.98346, z: -57.31457}
+    eulerAngles: {x: -9.056012, y: 139.41992, z: -5.0217943}
+    scale: 1.5933714
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 6e866aa5336b4d10a4f13586899959cb
+    label: Field Rock_Far_Medium 22
+    asset: {fileID: 11400000, guid: 7cfb6bb6bfe13a048ad13ffc3d0fc86a, type: 2}
+    position: {x: 711.8862, y: 39.587536, z: 201.17091}
+    eulerAngles: {x: 22.753716, y: 341.19897, z: 14.838245}
+    scale: 0.93787426
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 6b157b3d09484ca58ed2d02ba31a7ec7
+    label: Field Rock_Far_Medium 25
+    asset: {fileID: 11400000, guid: 7cfb6bb6bfe13a048ad13ffc3d0fc86a, type: 2}
+    position: {x: -1065.0222, y: 100.57173, z: 605.4619}
+    eulerAngles: {x: 9.376098, y: 320.7795, z: -27.928272}
+    scale: 1.3793856
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: c0e228c43d0c474194bab418df4c5681
+    label: Field Rock_Far_Medium 27
+    asset: {fileID: 11400000, guid: 7cfb6bb6bfe13a048ad13ffc3d0fc86a, type: 2}
+    position: {x: 172.60974, y: 144.0352, z: 1028.7509}
+    eulerAngles: {x: 8.679832, y: 252.03427, z: -15.831208}
+    scale: 1.1922753
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 6801c748d0994da3bb3b5baf70c38897
+    label: Field Rock_Far_Medium 28
+    asset: {fileID: 11400000, guid: 7cfb6bb6bfe13a048ad13ffc3d0fc86a, type: 2}
+    position: {x: -585.9283, y: -98.84889, z: 1109.8568}
+    eulerAngles: {x: 2.6735795, y: 316.20847, z: -18.146284}
+    scale: 1.2480825
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: e1a5b4214f12491ca0a9436dcf4859b1
+    label: Field Rock_Far_Medium 29
+    asset: {fileID: 11400000, guid: 7cfb6bb6bfe13a048ad13ffc3d0fc86a, type: 2}
+    position: {x: -669.8062, y: -166.72247, z: -553.08154}
+    eulerAngles: {x: -8.466343, y: 90.11681, z: -19.465858}
+    scale: 1.7720414
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 58e50e4bad04430b8bfa1712d5abaee2
+    label: Field Rock_Far_Medium 30
+    asset: {fileID: 11400000, guid: 7cfb6bb6bfe13a048ad13ffc3d0fc86a, type: 2}
+    position: {x: -971.3507, y: 59.189453, z: -783.1385}
+    eulerAngles: {x: 26.898636, y: 91.41581, z: 23.069462}
+    scale: 1.4525278
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 9b1c4fa605a6428c9763408b68e6341a
+    label: Field Rock_Far_Medium 31
+    asset: {fileID: 11400000, guid: 7cfb6bb6bfe13a048ad13ffc3d0fc86a, type: 2}
+    position: {x: 893.5178, y: 108.62448, z: 847.47546}
+    eulerAngles: {x: -5.3468103, y: 103.85228, z: -5.027643}
+    scale: 1.534769
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 88fa1efac62944fdbb950a534f8fc46a
+    label: Field Rock_Far_Medium 32
+    asset: {fileID: 11400000, guid: 7cfb6bb6bfe13a048ad13ffc3d0fc86a, type: 2}
+    position: {x: -228.76825, y: -161.98291, z: -869.7355}
+    eulerAngles: {x: -5.221328, y: 228.7034, z: 8.928329}
+    scale: 1.1893773
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 7336f45a0e094dd9a0a3f295f7e3e8fa
+    label: Field Rock_Far_Medium 33
+    asset: {fileID: 11400000, guid: 7cfb6bb6bfe13a048ad13ffc3d0fc86a, type: 2}
+    position: {x: -283.50992, y: -61.83262, z: -664.5954}
+    eulerAngles: {x: 24.73929, y: 69.908035, z: 1.0066223}
+    scale: 0.7111729
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: adf908fe89c14bbca5bdcdc10b0bf2f3
+    label: Field Rock_Far_Medium 34
+    asset: {fileID: 11400000, guid: 7cfb6bb6bfe13a048ad13ffc3d0fc86a, type: 2}
+    position: {x: -883.3714, y: -137.37546, z: -747.4762}
+    eulerAngles: {x: 12.193516, y: 97.54579, z: -17.225431}
+    scale: 1.0793312
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 6896708f76ac4deeb19bd34b4ec5d4a1
+    label: Field Rock_Far_Medium 41
+    asset: {fileID: 11400000, guid: 7cfb6bb6bfe13a048ad13ffc3d0fc86a, type: 2}
+    position: {x: -304.03534, y: -75.451035, z: 776.7067}
+    eulerAngles: {x: -28.91607, y: 313.30334, z: 25.203152}
+    scale: 1.3441783
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: be0fd1d8cd8849e9ab5746500dcb5d65
+    label: Field Rock_Far_Medium 46
+    asset: {fileID: 11400000, guid: 7cfb6bb6bfe13a048ad13ffc3d0fc86a, type: 2}
+    position: {x: -187.1284, y: -157.42767, z: 1116.09}
+    eulerAngles: {x: -24.451294, y: 94.74533, z: 2.2020543}
+    scale: 0.86790866
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 483acb8eda6c497da014a5db18bfc207
+    label: Field Rock_Far_Medium 49
+    asset: {fileID: 11400000, guid: 7cfb6bb6bfe13a048ad13ffc3d0fc86a, type: 2}
+    position: {x: -6.453844, y: 134.12222, z: 1227.8376}
+    eulerAngles: {x: 17.083584, y: 330.469, z: -15.32057}
+    scale: 1.340028
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 8ad27191afd24fc8b83e728870149d74
+    label: Field Rock_Far_Medium 52
+    asset: {fileID: 11400000, guid: 7cfb6bb6bfe13a048ad13ffc3d0fc86a, type: 2}
+    position: {x: -685.20984, y: 58.56352, z: 485.62418}
+    eulerAngles: {x: 17.644386, y: 205.11348, z: -11.244961}
+    scale: 0.8923895
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 364dda8001da49e09369c7038112fd93
+    label: Field Rock_Far_Small 1
+    asset: {fileID: 11400000, guid: 85326156b6cedb54caaba860fe287de8, type: 2}
+    position: {x: -1006.0249, y: 1.86306, z: -201.56133}
+    eulerAngles: {x: 18.224962, y: 263.36142, z: 26.75207}
+    scale: 2.3112464
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 0eb84e82623b48af8479c2d810221fd8
+    label: Field Rock_Far_Small 2
+    asset: {fileID: 11400000, guid: 85326156b6cedb54caaba860fe287de8, type: 2}
+    position: {x: 62.850655, y: -112.20158, z: -760.1411}
+    eulerAngles: {x: 16.044548, y: 234.71071, z: 25.472275}
+    scale: 3.3010852
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: e979a213235645bc9847a6b03a33753e
+    label: Field Rock_Far_Small 3
+    asset: {fileID: 11400000, guid: 85326156b6cedb54caaba860fe287de8, type: 2}
+    position: {x: 742.5257, y: -126.22096, z: 189.20538}
+    eulerAngles: {x: -29.807432, y: 191.84981, z: -1.643377}
+    scale: 3.267059
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 2fc7caadd7d648188b13a6e21948c97d
+    label: Field Rock_Far_Small 5
+    asset: {fileID: 11400000, guid: 85326156b6cedb54caaba860fe287de8, type: 2}
+    position: {x: 1105.8525, y: -164.3029, z: -598.8587}
+    eulerAngles: {x: 18.780659, y: 145.3097, z: 3.9889383}
+    scale: 1.36193
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 28f5a79384cb41539145be539f827244
+    label: Field Rock_Far_Small 6
+    asset: {fileID: 11400000, guid: 85326156b6cedb54caaba860fe287de8, type: 2}
+    position: {x: -955.3357, y: 135.79486, z: 820.9502}
+    eulerAngles: {x: -2.4528372, y: 73.23805, z: -29.700464}
+    scale: 3.2152524
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 41e144cecace4aff95c7621dd088ad79
+    label: Field Rock_Far_Small 7
+    asset: {fileID: 11400000, guid: 85326156b6cedb54caaba860fe287de8, type: 2}
+    position: {x: -640.65326, y: 9.8807335, z: -468.90692}
+    eulerAngles: {x: 0.7564616, y: 33.813133, z: -4.7799234}
+    scale: 1.4234878
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 02d51b69e2794510adcba843fd96d25f
+    label: Field Rock_Far_Small 9
+    asset: {fileID: 11400000, guid: 85326156b6cedb54caaba860fe287de8, type: 2}
+    position: {x: 375.92273, y: 118.9806, z: 575.1933}
+    eulerAngles: {x: 19.20256, y: 54.515045, z: -20.567713}
+    scale: 2.760695
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 8c84ffe3968e4e26be05532e4dda5b22
+    label: Field Rock_Far_Small 10
+    asset: {fileID: 11400000, guid: 85326156b6cedb54caaba860fe287de8, type: 2}
+    position: {x: -809.55817, y: -90.38403, z: -171.27425}
+    eulerAngles: {x: 8.83711, y: 24.283266, z: -23.607897}
+    scale: 3.391527
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: c7f4eeac16cd4e3e840829d0ac020869
+    label: Field Rock_Far_Small 11
+    asset: {fileID: 11400000, guid: 85326156b6cedb54caaba860fe287de8, type: 2}
+    position: {x: -1145.123, y: -154.44104, z: -205.54422}
+    eulerAngles: {x: 14.321054, y: 300.15042, z: -2.8055477}
+    scale: 2.0190508
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 4be6afd04ceb45379f99542bd295bc94
+    label: Field Rock_Far_Small 12
+    asset: {fileID: 11400000, guid: 85326156b6cedb54caaba860fe287de8, type: 2}
+    position: {x: -639.06006, y: 128.73245, z: 1018.66}
+    eulerAngles: {x: -18.373354, y: 347.59338, z: 10.351614}
+    scale: 2.3952584
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: c9e735a495ad48178363b1172f8fce75
+    label: Field Rock_Far_Small 13
+    asset: {fileID: 11400000, guid: 85326156b6cedb54caaba860fe287de8, type: 2}
+    position: {x: 726.60724, y: 135.18593, z: -534.93304}
+    eulerAngles: {x: -2.0243044, y: 181.99786, z: -11.814614}
+    scale: 2.6876402
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: f9bc250bf0b2461db9d82cc661fcca2f
+    label: Field Rock_Far_Small 16
+    asset: {fileID: 11400000, guid: 85326156b6cedb54caaba860fe287de8, type: 2}
+    position: {x: -825.1446, y: 122.70569, z: 574.1302}
+    eulerAngles: {x: -9.751044, y: 293.76505, z: -28.659557}
+    scale: 2.3306499
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 274b9410fc794c188f8b9fe71f17cd7d
+    label: Field Rock_Far_Small 17
+    asset: {fileID: 11400000, guid: 85326156b6cedb54caaba860fe287de8, type: 2}
+    position: {x: -74.060844, y: 119.62549, z: -1152.2952}
+    eulerAngles: {x: 6.417346, y: 251.32176, z: -24.401867}
+    scale: 3.020184
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: a18ce0d6245a44e086b143a195bb71e0
+    label: Field Rock_Far_Small 20
+    asset: {fileID: 11400000, guid: 85326156b6cedb54caaba860fe287de8, type: 2}
+    position: {x: 493.00534, y: -2.9255486, z: -640.7188}
+    eulerAngles: {x: -10.763147, y: 328.1618, z: -22.653984}
+    scale: 2.476089
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 2f25ec6b4477470da826e2ef825682f9
+    label: Field Rock_Far_Small 23
+    asset: {fileID: 11400000, guid: 85326156b6cedb54caaba860fe287de8, type: 2}
+    position: {x: -506.83017, y: 129.30615, z: -624.76953}
+    eulerAngles: {x: -5.8199177, y: 215.31474, z: -4.782729}
+    scale: 3.1467218
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: adfbe0a014a646ec97f92ba8e1e47c57
+    label: Field Rock_Far_Small 25
+    asset: {fileID: 11400000, guid: 85326156b6cedb54caaba860fe287de8, type: 2}
+    position: {x: -1195.7579, y: -31.581402, z: -338.7678}
+    eulerAngles: {x: -7.029099, y: 230.51982, z: -24.05026}
+    scale: 1.2671094
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: bcea18fa493b489db846da1784722e49
+    label: Field Rock_Far_Small 26
+    asset: {fileID: 11400000, guid: 85326156b6cedb54caaba860fe287de8, type: 2}
+    position: {x: 789.7967, y: 142.08467, z: -87.70967}
+    eulerAngles: {x: -2.9335284, y: 320.6736, z: 3.047372}
+    scale: 1.3314085
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 6658d77deb4a486d9d12ed1a2a20db4e
+    label: Field Rock_Far_Small 27
+    asset: {fileID: 11400000, guid: 85326156b6cedb54caaba860fe287de8, type: 2}
+    position: {x: 933.499, y: 146.59161, z: -361.34055}
+    eulerAngles: {x: 20.782907, y: 281.4978, z: 15.589367}
+    scale: 1.2339027
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 56d71e13c4c34f019c146c6da1796cdf
+    label: Field Rock_Far_Small 28
+    asset: {fileID: 11400000, guid: 85326156b6cedb54caaba860fe287de8, type: 2}
+    position: {x: 814.0936, y: 120.24057, z: 62.425163}
+    eulerAngles: {x: 15.732859, y: 328.50342, z: -0.3426504}
+    scale: 2.2170305
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: f4799a45f5154a59bb0087d647f86ea0
+    label: Field Rock_Far_Small 29
+    asset: {fileID: 11400000, guid: 85326156b6cedb54caaba860fe287de8, type: 2}
+    position: {x: -1066.5289, y: 143.60767, z: -372.53595}
+    eulerAngles: {x: 14.715796, y: 258.55408, z: 16.671974}
+    scale: 1.8659687
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: c35be888d61340f19f9679b1c1477f6d
+    label: Field Rock_Far_Small 32
+    asset: {fileID: 11400000, guid: 85326156b6cedb54caaba860fe287de8, type: 2}
+    position: {x: -408.26938, y: 114.487724, z: 796.47076}
+    eulerAngles: {x: 16.58161, y: 306.96228, z: 1.5848136}
+    scale: 1.7529151
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 69ab2f4fc175451992b86e0677bfbfa9
+    label: Field Rock_Far_Small 35
+    asset: {fileID: 11400000, guid: 85326156b6cedb54caaba860fe287de8, type: 2}
+    position: {x: -516.4548, y: 141.22159, z: 658.7573}
+    eulerAngles: {x: 10.865797, y: 27.538235, z: -28.225075}
+    scale: 2.0443878
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: c0fe3f4a470f40f1a802b50ddf4e7da1
+    label: Field Rock_Far_Small 36
+    asset: {fileID: 11400000, guid: 85326156b6cedb54caaba860fe287de8, type: 2}
+    position: {x: -914.25214, y: -119.81307, z: 582.31757}
+    eulerAngles: {x: 4.995514, y: 192.56013, z: 0.19745708}
+    scale: 2.5336199
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: b001f8114bc24b64a34ff0c002e3c70b
+    label: Field Rock_Far_Small 37
+    asset: {fileID: 11400000, guid: 85326156b6cedb54caaba860fe287de8, type: 2}
+    position: {x: 602.1422, y: 69.394, z: -175.8402}
+    eulerAngles: {x: 15.790118, y: 63.24214, z: 26.348665}
+    scale: 2.7771509
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 91998c3799cd48e292b1065ea5c190fc
+    label: Field Rock_Far_Small 38
+    asset: {fileID: 11400000, guid: 85326156b6cedb54caaba860fe287de8, type: 2}
+    position: {x: -1118.2584, y: -41.24961, z: -236.01154}
+    eulerAngles: {x: 20.490221, y: 35.283474, z: 13.418104}
+    scale: 1.7827003
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: e96eb7051ea846579e5522fccb935dba
+    label: Field Rock_Far_Small 40
+    asset: {fileID: 11400000, guid: 85326156b6cedb54caaba860fe287de8, type: 2}
+    position: {x: -501.87567, y: -42.86318, z: -609.26483}
+    eulerAngles: {x: 26.820585, y: 157.36998, z: -3.5741687}
+    scale: 2.6890469
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: d2ee64b10167499c9365413e58bef89b
+    label: Field Rock_Far_Small 42
+    asset: {fileID: 11400000, guid: 85326156b6cedb54caaba860fe287de8, type: 2}
+    position: {x: 907.081, y: -167.04501, z: 469.72824}
+    eulerAngles: {x: -21.821636, y: 317.1717, z: 25.014275}
+    scale: 2.7344916
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 3b13eff963814126ba3bc053f686caec
+    label: Field Rock_Far_Small 43
+    asset: {fileID: 11400000, guid: 85326156b6cedb54caaba860fe287de8, type: 2}
+    position: {x: -68.21818, y: 122.5927, z: 982.603}
+    eulerAngles: {x: -23.584839, y: 35.170788, z: 17.621351}
+    scale: 1.4242691
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 2bcc3e73298b4260927330d17caaf90b
+    label: Field Rock_Far_Small 46
+    asset: {fileID: 11400000, guid: 85326156b6cedb54caaba860fe287de8, type: 2}
+    position: {x: 992.9485, y: 65.39646, z: -93.153694}
+    eulerAngles: {x: 5.853263, y: 44.511757, z: 19.744566}
+    scale: 1.4374377
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 572a1952c84a4462bc4d0b13828f3a4c
+    label: Field Rock_Far_Small 47
+    asset: {fileID: 11400000, guid: 85326156b6cedb54caaba860fe287de8, type: 2}
+    position: {x: 537.00433, y: -135.23344, z: -694.68207}
+    eulerAngles: {x: -12.486466, y: 244.98111, z: -17.759157}
+    scale: 1.2916976
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 665c6e61b80b4ecdbfac13f8830095d2
+    label: Field Rock_Far_Small 52
+    asset: {fileID: 11400000, guid: 85326156b6cedb54caaba860fe287de8, type: 2}
+    position: {x: 489.65234, y: 140.71011, z: 1154.5785}
+    eulerAngles: {x: -18.906599, y: 163.09297, z: -25.204268}
+    scale: 3.9638808
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 82d2147b287c434285be3e063e7a7638
+    label: Field Rock_Far_Small 53
+    asset: {fileID: 11400000, guid: 85326156b6cedb54caaba860fe287de8, type: 2}
+    position: {x: -245.60281, y: 78.35007, z: -1150.9481}
+    eulerAngles: {x: 0.9102702, y: 136.90146, z: 10.214592}
+    scale: 2.0008197
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 3f5ddeb6d6fb44979054bcec728920ac
+    label: Field Rock_Far_Small 55
+    asset: {fileID: 11400000, guid: 85326156b6cedb54caaba860fe287de8, type: 2}
+    position: {x: -652.229, y: -43.91798, z: -191.13695}
+    eulerAngles: {x: -8.683626, y: 39.681343, z: -5.596772}
+    scale: 1.839603
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 63d30af774f8476588a3a554c0923d66
+    label: Field Rock_Far_Small 57
+    asset: {fileID: 11400000, guid: 85326156b6cedb54caaba860fe287de8, type: 2}
+    position: {x: 693.49805, y: -164.6755, z: -727.0568}
+    eulerAngles: {x: 22.968575, y: 276.07587, z: 1.345017}
+    scale: 3.0948133
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: a1af6a80b81c4e7a810f8f838fc85073
+    label: Field Rock_Far_Small 63
+    asset: {fileID: 11400000, guid: 85326156b6cedb54caaba860fe287de8, type: 2}
+    position: {x: 501.28525, y: 70.539795, z: 681.8637}
+    eulerAngles: {x: -18.015562, y: 279.93973, z: -25.398996}
+    scale: 1.6885651
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: ecd839f6376f410896582663d4e48297
+    label: Field Rock_Far_Small 70
+    asset: {fileID: 11400000, guid: 85326156b6cedb54caaba860fe287de8, type: 2}
+    position: {x: 186.33809, y: -166.57451, z: 790.5547}
+    eulerAngles: {x: 24.141119, y: 229.58452, z: 20.582756}
+    scale: 2.1792722
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: f74534185e5341b3aa1a2a985bf6b383
+    label: Field Rock_Far_Small 71
+    asset: {fileID: 11400000, guid: 85326156b6cedb54caaba860fe287de8, type: 2}
+    position: {x: 241.88683, y: -141.54437, z: -665.4286}
+    eulerAngles: {x: 27.064377, y: 255.70023, z: -3.1492658}
+    scale: 2.4713664
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 6fd05f5fed984dfeb5351244b49c211f
+    label: Field Rock_Far_Small 72
+    asset: {fileID: 11400000, guid: 85326156b6cedb54caaba860fe287de8, type: 2}
+    position: {x: 793.28925, y: -155.25409, z: -932.4397}
+    eulerAngles: {x: -7.248234, y: 110.76442, z: 1.1798}
+    scale: 2.6184034
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 59e5bbb33ec74d41a7c333f3995ab671
+    label: Field Rock_Far_Small 73
+    asset: {fileID: 11400000, guid: 85326156b6cedb54caaba860fe287de8, type: 2}
+    position: {x: 71.77568, y: 46.847572, z: 629.90485}
+    eulerAngles: {x: -22.870329, y: 345.02512, z: -12.340454}
+    scale: 2.004737
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 43451e704a1841fdbdd488dbfd0039bc
+    label: Field Rock_Far_Small 74
+    asset: {fileID: 11400000, guid: 85326156b6cedb54caaba860fe287de8, type: 2}
+    position: {x: 1054.2544, y: -169.20647, z: -674.9271}
+    eulerAngles: {x: 4.902173, y: 301.36188, z: -3.6062284}
+    scale: 1.281379
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 94d14a21d45640bd80494e729705e4be
+    label: Field Rock_Far_Small 75
+    asset: {fileID: 11400000, guid: 85326156b6cedb54caaba860fe287de8, type: 2}
+    position: {x: 924.63367, y: 77.38552, z: -32.217503}
+    eulerAngles: {x: -27.057959, y: 114.85765, z: -25.928102}
+    scale: 1.8083624
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 3f10caf4ad794122ba5835d67e0e04d9
+    label: Field Rock_Far_Small 76
+    asset: {fileID: 11400000, guid: 85326156b6cedb54caaba860fe287de8, type: 2}
+    position: {x: 29.642357, y: 113.93869, z: -737.0666}
+    eulerAngles: {x: -26.823673, y: 211.4873, z: -29.073322}
+    scale: 1.1709038
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 78c6627c52ae42efb0c3553a4a12490c
+    label: Field Rock_Far_Small 78
+    asset: {fileID: 11400000, guid: 85326156b6cedb54caaba860fe287de8, type: 2}
+    position: {x: 656.16156, y: 123.94859, z: -307.22443}
+    eulerAngles: {x: 20.418423, y: 110.49389, z: -27.61249}
+    scale: 1.9511192
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 13bceb3160064ce7ac4ec3bbcd1847c4
+    label: Field Rock_Far_Small 80
+    asset: {fileID: 11400000, guid: 85326156b6cedb54caaba860fe287de8, type: 2}
+    position: {x: -481.02176, y: -28.37285, z: 568.4565}
+    eulerAngles: {x: 15.974043, y: 68.10245, z: -13.74107}
+    scale: 2.2485957
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: e1b26b70968a42899b9c2e58ba4eb15a
+    label: Field Rock_Far_Small 82
+    asset: {fileID: 11400000, guid: 85326156b6cedb54caaba860fe287de8, type: 2}
+    position: {x: 604.4264, y: -165.91676, z: 284.1088}
+    eulerAngles: {x: -13.627396, y: 215.58832, z: -28.682737}
+    scale: 2.6544518
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 630394329f4e44f58a942022d5c92dcd
+    label: Field Rock_Far_Small 83
+    asset: {fileID: 11400000, guid: 85326156b6cedb54caaba860fe287de8, type: 2}
+    position: {x: 1255.3248, y: 119.04219, z: -46.95735}
+    eulerAngles: {x: 24.612673, y: 17.787394, z: 19.554193}
+    scale: 1.1038355
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: ff7a1cc345654a92ab6335cbb9408ad0
+    label: Field Rock_Far_Small 86
+    asset: {fileID: 11400000, guid: 85326156b6cedb54caaba860fe287de8, type: 2}
+    position: {x: -1058.0128, y: -0.8990097, z: -675.0758}
+    eulerAngles: {x: -24.284092, y: 65.74117, z: -28.248665}
+    scale: 1.3727626
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 259c003df01046c7b4dde6f1c058b1d6
+    label: Field Rock_Far_Small 87
+    asset: {fileID: 11400000, guid: 85326156b6cedb54caaba860fe287de8, type: 2}
+    position: {x: -38.540897, y: -126.91564, z: -909.55774}
+    eulerAngles: {x: 3.9774227, y: 295.34015, z: 10.391622}
+    scale: 2.9984422
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: a1c0421b852c4fe386a2382a86ff73bd
+    label: Field Rock_Far_Small 90
+    asset: {fileID: 11400000, guid: 85326156b6cedb54caaba860fe287de8, type: 2}
+    position: {x: -890.3345, y: 129.74672, z: -331.76746}
+    eulerAngles: {x: -6.1413913, y: 129.84853, z: -7.5499463}
+    scale: 2.8226602
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: d449b2fb39d249b78db6e5b2b208290d
+    label: Field Rock_Far_Small 92
+    asset: {fileID: 11400000, guid: 85326156b6cedb54caaba860fe287de8, type: 2}
+    position: {x: 122.15129, y: 106.8421, z: -647.0654}
+    eulerAngles: {x: -21.80636, y: 286.66077, z: 5.5997047}
+    scale: 2.8816328
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 39c7967abb84428dae2f104803dedc2e
+    label: Field Rock_Far_Small 95
+    asset: {fileID: 11400000, guid: 85326156b6cedb54caaba860fe287de8, type: 2}
+    position: {x: -913.0561, y: 38.81096, z: 619.6536}
+    eulerAngles: {x: -2.075674, y: 138.5299, z: 12.345003}
+    scale: 1.808167
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}

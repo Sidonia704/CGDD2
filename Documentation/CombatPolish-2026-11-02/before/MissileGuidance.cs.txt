@@ -1,0 +1,63 @@
+// @role Limit a missile's turn acceleration and permanently end its seeker after timeout or sustained cone loss.
+// @calls WeaponDefinition
+
+using UnityEngine;
+using Starframe.Flight;
+
+namespace Starframe.Combat
+{
+    public sealed class MissileGuidance
+    {
+        public const float EjectionSeconds=.12f;
+        public Vector3 Direction { get; private set; }=Vector3.forward;
+        public Vector3 AngularVelocityDegrees { get; private set; }
+        public bool IsTracking { get; private set; }
+        public float OutsideConeSeconds { get; private set; }
+
+        public void Reset(Vector3 direction)
+        {
+            Direction=direction.sqrMagnitude>.000001f?direction.normalized:Vector3.forward;
+            AngularVelocityDegrees=Vector3.zero;OutsideConeSeconds=0;IsTracking=true;
+        }
+
+        public void LoseLock()
+        {
+            IsTracking=false;AngularVelocityDegrees=Vector3.zero;
+        }
+
+        public bool InSeekerCone(Vector3 offset,WeaponDefinition weapon)
+        {
+            return offset.sqrMagnitude<=.000001f||Vector3.Dot(Direction,offset.normalized)>=
+                Mathf.Cos(Mathf.Clamp(weapon.missileSeekerConeDegrees,1,179)*Mathf.Deg2Rad);
+        }
+
+        public void Step(WeaponDefinition weapon,float age,Vector3 targetOffset,Vector3 targetVelocity,float speed,float dt)
+        {
+            if(!IsTracking||!weapon||dt<=0||float.IsNaN(dt)||float.IsInfinity(dt))return;
+            if(age>=Mathf.Max(0,weapon.missileGuidanceSeconds)){LoseLock();return;}
+            if(age<=EjectionSeconds)return;
+            dt=Mathf.Min(dt,age-EjectionSeconds);
+            // Cone loss is measured against the target itself, not the velocity lead point.
+            OutsideConeSeconds=InSeekerCone(targetOffset,weapon)?0:OutsideConeSeconds+dt;
+            if(OutsideConeSeconds>0&&OutsideConeSeconds+.000001f>=Mathf.Max(0,weapon.missileSeekerLossSeconds)){
+                LoseLock();return;
+            }
+            float lead=Mathf.Min(1.2f,targetOffset.magnitude/Mathf.Max(1,speed));
+            var desired=targetOffset+targetVelocity*lead;
+            if(desired.sqrMagnitude<=.000001f)return;
+            desired.Normalize();float angle=Vector3.Angle(Direction,desired);
+            var axis=Vector3.Cross(Direction,desired);
+            if(axis.sqrMagnitude<=.000001f&&angle>90)
+                axis=Vector3.Cross(Direction,Mathf.Abs(Direction.y)<.9f?Vector3.up:Vector3.right);
+            float acceleration=Mathf.Max(0,weapon.missileTurnAcceleration);
+            // Start braking before alignment. A changing turn axis must accelerate too.
+            float rate=Mathf.Min(Mathf.Max(0,weapon.missileTurnDegrees),Mathf.Sqrt(2*acceleration*angle));
+            var requested=axis.sqrMagnitude>.000001f?axis.normalized*rate:Vector3.zero;
+            var previous=AngularVelocityDegrees;
+            AngularVelocityDegrees=Vector3.MoveTowards(previous,requested,acceleration*dt);
+            var average=(previous+AngularVelocityDegrees)*.5f;
+            float rotation=average.magnitude*dt;
+            if(rotation>.000001f)Direction=(Quaternion.AngleAxis(rotation,average.normalized)*Direction).normalized;
+        }
+    }
+}

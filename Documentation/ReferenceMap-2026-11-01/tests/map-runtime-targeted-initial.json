@@ -1,0 +1,56 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "test_status",
+    "parameters": {},
+    "result": {
+      "status": "completed",
+      "duration": 0.58,
+      "summary": {
+        "total": 4,
+        "passed": 2,
+        "failed": 2,
+        "skipped": 0,
+        "inconclusive": 0
+      },
+      "results": [
+        {
+          "FullName": "Starframe.Tests.SpaceMapRuntimeScaleTests.DistantLodAndCullLeaveDamageAndCollisionLive",
+          "Status": "Passed",
+          "Duration": 0.0482722,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Starframe.Tests.SpaceMapRuntimeScaleTests.LazyColdBuildUsesBorrowedCoarseButFirstDamageKeepsPhysicalCells",
+          "Status": "Failed",
+          "Duration": 0.2229988,
+          "Message": "  Delayed chunks must include the original protrusion removed from the source asset.\r\n  Expected: greater than 8.48999977f\r\n  But was:  8.48999977f\r\n",
+          "StackTrace": "at Starframe.Tests.SpaceMapRuntimeScaleTests.LazyColdBuildUsesBorrowedCoarseButFirstDamageKeepsPhysicalCells () [0x00219] in D:\\software\\unity\\CGDD26107\\Assets\\_Starframe\\Tests\\Construction\\SpaceMapRuntimeScaleTests.cs:163\r\n"
+        },
+        {
+          "FullName": "Starframe.Tests.SpaceMapRuntimeScaleTests.LazyFineGenerationUsesOriginalCellsAndTintAfterSourceEdit",
+          "Status": "Failed",
+          "Duration": 0.0438392,
+          "Message": "  Expected: greater than 8.48999977f\r\n  But was:  8.48999977f\r\n",
+          "StackTrace": "at Starframe.Tests.SpaceMapRuntimeScaleTests.LazyFineGenerationUsesOriginalCellsAndTintAfterSourceEdit () [0x000b8] in D:\\software\\unity\\CGDD26107\\Assets\\_Starframe\\Tests\\Construction\\SpaceMapRuntimeScaleTests.cs:180\r\n"
+        },
+        {
+          "FullName": "Starframe.Tests.SpaceMapRuntimeScaleTests.StagedBuildCanCompleteOrCancelWithoutLeavingPartialPhysics",
+          "Status": "Passed",
+          "Duration": 0.0059215,
+          "Message": null,
+          "StackTrace": null
+        }
+      ]
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "D:\\software\\unity\\CGDD26107"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

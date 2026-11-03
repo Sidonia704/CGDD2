@@ -1,0 +1,72 @@
+{
+    "MonoBehaviour": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "Missile1Weapon",
+        "m_EditorClassIdentifier": "Starframe.Construction::Starframe.Flight.WeaponDefinition",
+        "shotsPerSecond": 0.125,
+        "damage": 280.0,
+        "projectileSpeed": 240.0,
+        "projectileDiameter": 0.699999988079071,
+        "firstShotImmediate": false,
+        "penetrationDepth": 1.0,
+        "secondLayerDamageMultiplier": 0.3499999940395355,
+        "range": 2200.0,
+        "visualLength": 1.5,
+        "tailLength": 7.0,
+        "visualWidth": 0.3199999928474426,
+        "visualIntensity": 5.0,
+        "minimumVisualPixels": 0.0,
+        "tracerStyle": 0,
+        "tracerLingerSeconds": 0.0,
+        "sustainedPowerWatts": 70.0,
+        "energyPerShot": 100.0,
+        "delivery": 1,
+        "effectColor": {
+            "r": 1.0,
+            "g": 0.4000000059604645,
+            "b": 0.02500000037252903,
+            "a": 1.0
+        },
+        "missileLockSeconds": 1.399999976158142,
+        "reloadSeconds": 8.0,
+        "missileTurnDegrees": 135.0,
+        "missileAcceleration": 120.0,
+        "missileTurnAcceleration": 450.0,
+        "missileGuidanceSeconds": 12.0,
+        "missileSeekerConeDegrees": 70.0,
+        "missileSeekerLossSeconds": 0.44999998807907107,
+        "missileLaunchSpeed": 30.0,
+        "explosionRadius": 2.5,
+        "launcherMesh": {
+            "fileID": 4300000,
+            "guid": "3e750829b7bd07f4fac9f167a2ad4d6a",
+            "type": 2
+        },
+        "missileMesh": {
+            "fileID": 4300000,
+            "guid": "cbae2e4781d929f4f8630952360dce86",
+            "type": 2
+        },
+        "missileLaunchOffsets": [
+            {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        ],
+        "muzzleOffsets": [],
+        "projectileMaterial": {
+            "fileID": 2100000,
+            "guid": "060df83c9f5482f4ea424501392ac7de",
+            "type": 2
+        },
+        "beamDuration": 0.11999999731779099,
+        "beamMesh": {
+            "instanceID": 0
+        },
+        "activationMode": 0,
+        "chargeSeconds": 1.0,
+        "requireTargetLock": true
+    }
+}

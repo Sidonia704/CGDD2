@@ -1,0 +1,26 @@
+{
+    "MonoBehaviour": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "needle",
+        "m_EditorClassIdentifier": "Starframe.Construction::Starframe.Combat.EnemyArchetypeDefinition",
+        "id": "needle",
+        "nameZh": "针刺截击机",
+        "nameEn": "Needle Interceptor",
+        "size": 0,
+        "blueprint": {
+            "fileID": 4900000,
+            "guid": "747d52752c3ec4842a83864e86a16909",
+            "type": 3
+        },
+        "alternateBlueprint": {
+            "instanceID": 0
+        },
+        "score": 100,
+        "behavior": {
+            "fileID": 11400000,
+            "guid": "a7d0053942b54a148a1f6bd8980b2091",
+            "type": 2
+        }
+    }
+}

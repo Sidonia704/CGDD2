@@ -1,0 +1,32 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "run_script",
+    "parameters": {
+      "file": "tools/ReferenceMap20261101/Import.cs",
+      "entry": "ReferenceMapImport.CreateLayout",
+      "args": "[\"Temp/ReferenceMap20261101/geometry-full-scene-final.json\",\"Scene\",\"ReferenceMiningStation3500\"]",
+      "timeout_ms": "135000"
+    },
+    "result": {
+      "diagnostics": [],
+      "compileMs": 39,
+      "executeMs": 6525,
+      "assemblyName": "PipelineRunScript_Import_457de33b25b748e49d063b32bc8f0705",
+      "success": true,
+      "result": {
+        "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Layouts/ReferenceMiningStation3500.asset",
+        "instances": 2854,
+        "cells": 3123469
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "D:\\software\\unity\\CGDD26107"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

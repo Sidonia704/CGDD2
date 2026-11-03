@@ -1,0 +1,70 @@
+{
+    "MonoBehaviour": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "Sword1Weapon",
+        "m_EditorClassIdentifier": "Starframe.Construction::Starframe.Flight.WeaponDefinition",
+        "shotsPerSecond": 12.0,
+        "damage": 25.0,
+        "projectileSpeed": 1400.0,
+        "projectileDiameter": 0.550000011920929,
+        "firstShotImmediate": false,
+        "penetrationDepth": 1.0,
+        "secondLayerDamageMultiplier": 0.3499999940395355,
+        "range": 45.0,
+        "visualLength": 40.0,
+        "tailLength": 0.0,
+        "visualWidth": 0.44999998807907107,
+        "visualIntensity": 5.0,
+        "minimumVisualPixels": 0.0,
+        "tracerStyle": 0,
+        "tracerLingerSeconds": 0.0,
+        "sustainedPowerWatts": 120.0,
+        "energyPerShot": 100.0,
+        "delivery": 2,
+        "effectColor": {
+            "r": 0.10000000149011612,
+            "g": 0.5699999928474426,
+            "b": 1.0,
+            "a": 1.0
+        },
+        "missileLockSeconds": 2.0,
+        "reloadSeconds": 4.0,
+        "missileTurnDegrees": 110.0,
+        "missileAcceleration": 160.0,
+        "missileTurnAcceleration": 180.0,
+        "missileGuidanceSeconds": 10.0,
+        "missileSeekerConeDegrees": 65.0,
+        "missileSeekerLossSeconds": 0.3499999940395355,
+        "missileLaunchSpeed": 35.0,
+        "explosionRadius": 3.0,
+        "launcherMesh": {
+            "instanceID": 0
+        },
+        "missileMesh": {
+            "instanceID": 0
+        },
+        "missileLaunchOffsets": [
+            {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        ],
+        "muzzleOffsets": [],
+        "projectileMaterial": {
+            "fileID": 2100000,
+            "guid": "06381e101fc192540a489ce251be5e65",
+            "type": 2
+        },
+        "beamDuration": 0.11999999731779099,
+        "beamMesh": {
+            "fileID": 4300000,
+            "guid": "f67b121cb1d9606428c55cfaeffda14c",
+            "type": 2
+        },
+        "activationMode": 0,
+        "chargeSeconds": 1.0,
+        "requireTargetLock": false
+    }
+}

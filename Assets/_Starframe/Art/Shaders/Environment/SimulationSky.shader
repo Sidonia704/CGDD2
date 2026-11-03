@@ -1,0 +1,52 @@
+Shader "Starframe/Environment/Simulation Sky"
+{
+ Properties {
+  _Background("Simulation blue",Color)=(0.012,0.038,0.105,1)
+  _GridColor("Calibration lines",Color)=(0.04,0.09,0.18,1)
+  _PlanetColor("Orange emission",Color)=(1.5,0.31,0.035,1)
+  _ShowPlanet("Planet",Float)=1
+  _PlanetWorldRadius("World radius",Float)=20000000
+  _PlanetCenterWS("Center",Vector)=(-20300000,-400000,800000,0)
+ }
+ SubShader { Tags {"Queue"="Background" "RenderType"="Background" "RenderPipeline"="UniversalPipeline"}
+ Pass { Cull Off ZWrite Off ZTest LEqual
+ HLSLPROGRAM
+ #pragma vertex Vert
+ #pragma fragment Frag
+ #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
+ CBUFFER_START(UnityPerMaterial)
+ float4 _Background,_GridColor,_PlanetColor,_PlanetCenterWS;
+ float _ShowPlanet,_PlanetWorldRadius;
+ CBUFFER_END
+ float4 _StarframeRangeSkyState,_StarframeRangeSkyLight;
+ struct A{float4 p:POSITION;};struct V{float4 p:SV_POSITION;float3 ray:TEXCOORD0;};
+ V Vert(A i){V o;o.p=TransformObjectToHClip(i.p.xyz);o.p.z=o.p.w*UNITY_RAW_FAR_CLIP_VALUE;o.ray=i.p.xyz;return o;}
+ half4 Frag(V i):SV_Target{
+ float3 ray=normalize(i.ray);
+ // A restrained calibration lattice follows the world instead of the screen.
+ float3 q=ray/max(.18,abs(ray.y));float2 uv=q.xz*3;
+ float2 f=abs(frac(uv-.5)-.5)/max(fwidth(uv),.0001);
+ float lines=(1-saturate(min(f.x,f.y)))*smoothstep(.08,.3,abs(ray.y));
+ float3 sky=_Background.rgb+_GridColor.rgb*lines*.15;
+ // A true distant source: no sphere parallax and no nearby emissive object perched on Saturn.
+ float3 sunDirection=normalize(_StarframeRangeSkyLight.xyz+float3(0,.00001,0));
+ float sunAlignment=dot(ray,sunDirection);
+ float sunDisk=smoothstep(.999976,.999992,sunAlignment);
+ float sunHalo=pow(saturate(sunAlignment),1800)*.14;
+ sky+=float3(1,.88,.68)*(sunDisk*2.5+sunHalo)*saturate(_StarframeRangeSkyState.x)*_ShowPlanet;
+ if(_ShowPlanet<.5)return half4(sky,1);
+ float3 center=(_PlanetCenterWS.xyz-_WorldSpaceCameraPos)/max(1,_PlanetWorldRadius);
+ float b=-dot(center,ray),c=dot(center,center)-1,d=b*b-c;
+ if(d<0||-b-sqrt(max(0,d))<=0)return half4(sky,1);
+ float3 normal=normalize(ray*(-b-sqrt(d))-center);
+ float facing=saturate(-dot(normal,ray));
+ // Monochrome, quantized luminance: no photographic surface or star texture.
+ float3 keyDirection=normalize(lerp(float3(.6,.5,.7),sunDirection,saturate(_StarframeRangeSkyState.x)));
+ float light=.66+.26*saturate(dot(normal,keyDirection));
+ light=floor(light*12)/12;
+ float rim=pow(1-facing,5);
+ return half4(_PlanetColor.rgb*(light+rim*.35),1);
+ }
+ ENDHLSL
+ }}
+}

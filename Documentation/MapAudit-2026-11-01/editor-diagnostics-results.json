@@ -1,0 +1,77 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "test_status",
+    "parameters": {},
+    "result": {
+      "status": "completed",
+      "duration": 2.09,
+      "summary": {
+        "total": 7,
+        "passed": 7,
+        "failed": 0,
+        "skipped": 0,
+        "inconclusive": 0
+      },
+      "results": [
+        {
+          "FullName": "Starframe.Tests.SpaceMapStudioPreviewTests.AcquiringAfterNativeMeshWasDestroyedBuildsAUsableReplacement",
+          "Status": "Passed",
+          "Duration": 0.0415489,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Starframe.Tests.SpaceMapStudioPreviewTests.ClosingAndReopeningWindowDoesNotReuseADeadMesh",
+          "Status": "Passed",
+          "Duration": 0.9454616,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Starframe.Tests.SpaceMapStudioPreviewTests.ConnectivityWarningsCacheByGeometryRevisionAndCountMapAssetsAndInstances",
+          "Status": "Passed",
+          "Duration": 0.0033188,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Starframe.Tests.SpaceMapStudioPreviewTests.DamagedPreviewDisposesItsPrivateMeshAndDoesNotModifyTheSource",
+          "Status": "Passed",
+          "Duration": 0.0599217,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Starframe.Tests.SpaceMapStudioPreviewTests.ManagedCacheMeshSurvivesUnusedResourceUnloadingUntilItsLastOwnerReleasesIt",
+          "Status": "Passed",
+          "Duration": 0.1673823,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Starframe.Tests.SpaceMapStudioPreviewTests.PreviewCanRecoverAfterAPlayTransitionDestroysItsNativeResources",
+          "Status": "Passed",
+          "Duration": 0.1170949,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "Starframe.Tests.SpaceMapStudioPreviewTests.RepeatedAssetMapSwitchesReleasePreviewOwnershipAndKeepAllMeshesVisible",
+          "Status": "Passed",
+          "Duration": 0.5177479,
+          "Message": null,
+          "StackTrace": null
+        }
+      ]
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7801,
+      "projectPath": "D:\\software\\unity\\CGDD26107"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

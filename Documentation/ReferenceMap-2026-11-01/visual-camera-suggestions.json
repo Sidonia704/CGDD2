@@ -1,0 +1,23 @@
+{
+  "coordinateSystem": "Saved map Unity world metres, after the single -420 m vertical translation",
+  "captureAspectRatio": 1.6,
+  "recommendedNearStation": {
+    "position": [450, 150, -650],
+    "lookAt": [55, -290, -160],
+    "verticalFieldOfViewDegrees": 70,
+    "cameraToLookAtDistanceMetres": 768,
+    "minimumDistanceToAnyStationAssetAabbMetres": 346.7,
+    "projectedStationBoundsNormalized": {
+      "x": [-0.59, 0.65],
+      "y": [-0.94, 0.67]
+    },
+    "note": "Frames the 250-instance station at about 62% of capture width and 81% of height. The eye is outside every station asset bound."
+  },
+  "sourceStationAabbMetres": {
+    "min": [-302.5, -420.5, -667.5],
+    "max": [411.865, -10.5, 348.484]
+  },
+  "diagnosticNearEye": [220, -150, -250],
+  "diagnosticNearTarget": [180, -180, -50],
+  "diagnosticNote": "The diagnostic eye is outside the right dome but within the 70 m exact-hull upgrade distance and looking directly at its surface."
+}

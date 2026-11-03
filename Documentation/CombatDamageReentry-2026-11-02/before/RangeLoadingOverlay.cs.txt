@@ -1,0 +1,138 @@
+// @role Show real scene and scenery-build progress before enabling flight and combat.
+// @calls FlightRangeBootstrap, SpaceMapRuntime, GameInput, L10n, GlassUiPalette, UiStyle
+using System.Collections;
+using TMPro;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using Starframe.App;
+using Starframe.Maps;
+using Starframe.Presentation;
+
+namespace Starframe.Flight
+{
+    public sealed class RangeLoadingOverlay : MonoBehaviour
+    {
+        static RangeLoadingOverlay current;
+        UnityEngine.UI.Image fill;
+        TextMeshProUGUI title,stage,percentage,hint;
+        bool previousSuspended,closing;
+        float progress;
+        double opened;
+        public static bool IsLoading=>current;
+        public static float Progress=>current?current.progress:1;
+        bool HasView=>isActiveAndEnabled&&fill&&title&&stage&&percentage&&hint;
+
+        public static void LoadScene(string sceneName)
+        {
+            if(current&&!current.closing&&current.HasView)return;
+            var overlay=Show();overlay.StartCoroutine(overlay.Load(sceneName));
+        }
+        static RangeLoadingOverlay Show()
+        {
+            bool restoreSuspended=GameInput.Suspended;
+            if(current)
+            {
+                if(!current.closing&&current.HasView)return current;
+                var retired=current;
+                // A replacement inherits the original input state, not the temporary loading suspension.
+                restoreSuspended=retired.previousSuspended;
+                current=null;
+                retired.StopAllCoroutines();
+                retired.gameObject.SetActive(false);
+                Destroy(retired.gameObject);
+            }
+            var root=new GameObject("Range Loading",typeof(RectTransform),typeof(Canvas),typeof(UnityEngine.UI.CanvasScaler),typeof(UnityEngine.UI.GraphicRaycaster));
+            DontDestroyOnLoad(root);current=root.AddComponent<RangeLoadingOverlay>();current.Build(restoreSuspended);return current;
+        }
+        void Build(bool restoreSuspended)
+        {
+            previousSuspended=restoreSuspended;GameInput.Suspended=true;opened=Time.realtimeSinceStartupAsDouble;
+            var canvas=GetComponent<Canvas>();canvas.renderMode=RenderMode.ScreenSpaceOverlay;canvas.sortingOrder=32000;
+            var scaler=GetComponent<UnityEngine.UI.CanvasScaler>();scaler.uiScaleMode=UnityEngine.UI.CanvasScaler.ScaleMode.ScaleWithScreenSize;
+            scaler.referenceResolution=new Vector2(1920,1080);scaler.matchWidthOrHeight=.5f;UiStyle.ApplyScaler(scaler);
+            var root=(RectTransform)transform;
+            Image(root,"Dim",0,0,1920,1080,new Color(.018f,.024f,.03f,.94f)).raycastTarget=true;
+            Image(root,"Glass",558,346,804,388,GlassUiPalette.Dialog);
+            var eyebrow=Label(root,"Eyebrow",606,382,708,24,13,GlassUiPalette.Muted);eyebrow.text=L10n.IsEnglish?"FLIGHT SYSTEMS":"飞行系统";
+            title=Label(root,"Title",606,426,708,48,30,GlassUiPalette.Ink);
+            stage=Label(root,"Stage",606,498,708,32,18,GlassUiPalette.Ink);
+            var track=Image(root,"ProgressTrack",606,556,604,6,new Color(1,1,1,.09f));
+            fill=Image(root,"ProgressFill",606,556,604,6,GlassUiPalette.Accent);
+            fill.rectTransform.SetParent(track.rectTransform,false);
+            fill.rectTransform.anchorMin=Vector2.zero;fill.rectTransform.anchorMax=new Vector2(0,1);fill.rectTransform.offsetMin=fill.rectTransform.offsetMax=Vector2.zero;
+            percentage=Label(root,"Percentage",1226,540,88,32,15,GlassUiPalette.Muted);percentage.alignment=TextAlignmentOptions.Right;
+            hint=Label(root,"Hint",606,604,708,68,15,GlassUiPalette.Muted);
+            UpdateProgress(0,false,0,0);
+        }
+        IEnumerator Load(string sceneName)
+        {
+            // Present a frame before starting asset deserialization.
+            yield return null;yield return null;
+            AsyncOperation load=null;
+            try{load=SceneManager.LoadSceneAsync(sceneName);}
+            catch(System.Exception error){Debug.LogException(error);ShowError();}
+            while(load!=null&&!load.isDone){UpdateProgress(Mathf.Clamp01(load.progress/.9f)*.18f,false,0,0);yield return null;}
+        }
+        public static IEnumerator PrepareMap(SpaceMapRuntime map)
+        {
+            Show();
+            yield return L10n.EnsureReady();
+            bool started=map&&map.BuildIsPending;
+            while(map&&!map.BuildIsComplete)
+            {
+                // Resolve the active view after each yield; a previous range may have finished closing meanwhile.
+                var overlay=Show();
+                if(!map.definition||!map.enabled||map.BuildError!=null||(started&&!map.BuildIsPending)){overlay.ShowError();yield break;}
+                started|=map.BuildIsPending;
+                int total=map.BuildTotalInstanceCount,built=map.BuiltInstanceCount;
+                overlay.UpdateProgress(.18f+.80f*(total>0?(float)built/total:0),true,built,total);
+                yield return null;
+            }
+        }
+        void UpdateProgress(float value,bool scenery,int built,int total)
+        {
+            progress=Mathf.Max(progress,Mathf.Clamp01(value));
+            bool english=L10n.IsEnglish;
+            title.text=english?"Preparing flight range":"正在载入靶场";
+            stage.text=scenery?(english?"Preparing the environment":"正在准备地图环境"):(english?"Loading scene":"正在读取场景");
+            // Stages have different costs; show an honest stage index rather than an invented overall percentage.
+            percentage.text=scenery?"02 / 02":"01 / 02";
+            float elapsed=(float)(Time.realtimeSinceStartupAsDouble-opened);
+            hint.text=(english?"First launch may take a little longer.":"首次进入需要稍候。")+"\n"+(english?"Elapsed ":"已用时 ")+Mathf.FloorToInt(elapsed)+" s";
+            if(scenery&&total>0)stage.text+="  "+built.ToString("N0")+" / "+total.ToString("N0");
+            fill.rectTransform.anchorMax=new Vector2(progress,1);
+            var font=L10n.CurrentFont;if(font){title.font=stage.font=percentage.font=hint.font=font;}
+        }
+        public static void Complete()
+        {
+            if(!current||current.closing)return;
+            current.closing=true;current.UpdateProgress(1,true,0,0);
+            current.stage.text=L10n.IsEnglish?"Ready":"准备完成";
+            current.StartCoroutine(current.Close());
+        }
+        void ShowError()
+        {
+            if(!UnityEngine.EventSystems.EventSystem.current)
+            {
+                var events=new GameObject("Loading Event System",typeof(UnityEngine.EventSystems.EventSystem),typeof(UnityEngine.InputSystem.UI.InputSystemUIInputModule));
+                events.transform.SetParent(transform,false);events.GetComponent<UnityEngine.InputSystem.UI.InputSystemUIInputModule>().AssignDefaultActions();
+            }
+            stage.text=L10n.IsEnglish?"The environment could not be loaded.":"地图环境未能载入。";
+            hint.text=L10n.IsEnglish?"Return to assembly and try again.":"请返回装配页面后重试。";
+            var image=Image((RectTransform)transform,"Return",606,676,708,40,GlassUiPalette.Button);
+            var button=image.gameObject.AddComponent<UnityEngine.UI.Button>();image.raycastTarget=true;button.targetGraphic=image;button.colors=UiStyle.ControlColors();
+            var label=Label(image.rectTransform,"Label",0,0,1920,1080,17,GlassUiPalette.Ink);label.text=L10n.IsEnglish?"Back to assembly":"返回装配";label.alignment=TextAlignmentOptions.Center;
+            button.onClick.AddListener(()=>{FlightSession.Return();SceneManager.LoadSceneAsync(FlightSession.EditorScene);Destroy(gameObject);});
+        }
+        IEnumerator Close(){yield return new WaitForSecondsRealtime(.15f);Destroy(gameObject);}
+        void OnDestroy(){if(object.ReferenceEquals(current,this)){GameInput.Suspended=previousSuspended;current=null;}}
+        static UnityEngine.UI.Image Image(RectTransform parent,string name,float x,float y,float w,float h,Color color)
+        {
+            var image=MenuSurface.Rect(parent,name,x,y,w,h).gameObject.AddComponent<UnityEngine.UI.Image>();image.color=color;image.raycastTarget=false;return image;
+        }
+        static TextMeshProUGUI Label(RectTransform parent,string name,float x,float y,float w,float h,float size,Color color)
+        {
+            var text=MenuSurface.Rect(parent,name,x,y,w,h).gameObject.AddComponent<TextMeshProUGUI>();text.font=L10n.CurrentFont;text.fontSize=size;text.color=color;text.raycastTarget=false;text.textWrappingMode=TextWrappingModes.Normal;text.overflowMode=TextOverflowModes.Ellipsis;UiStyle.ApplyText(text,size);return text;
+        }
+    }
+}

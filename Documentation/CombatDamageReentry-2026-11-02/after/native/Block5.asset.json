@@ -1,0 +1,75 @@
+{
+    "MonoBehaviour": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "Block5",
+        "m_EditorClassIdentifier": "Starframe.Construction::Starframe.Flight.ModuleDefinition",
+        "shape": 10,
+        "displayName": "切角方块",
+        "category": 0,
+        "cost": 0.0,
+        "massKg": 120.0,
+        "maxHp": 377.9999694824219,
+        "recoverySeconds": 4.0,
+        "thrustNewtons": 0.0,
+        "occupiedCells": [
+            {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            }
+        ],
+        "localExhaustDirections": [],
+        "localNozzlePositions": [],
+        "muzzleLocalPosition": {
+            "x": 0.0,
+            "y": 0.27000001072883608,
+            "z": 1.5199999809265137
+        },
+        "muzzleClearanceDiameter": 0.25,
+        "mesh": {
+            "fileID": 4300000,
+            "guid": "801f26e62451edb40857b54c62b6ce17",
+            "type": 2
+        },
+        "outline": {
+            "instanceID": 0
+        },
+        "drawOutline": false,
+        "material": {
+            "fileID": 2100000,
+            "guid": "616e66fb515542f4f897bfc5a68a4f4a",
+            "type": 2
+        },
+        "icon": {
+            "fileID": 21300000,
+            "guid": "854e7696b0758434abf93e3b1235e334",
+            "type": 3
+        },
+        "selectedIcon": {
+            "fileID": 21300000,
+            "guid": "11e6a35ebabc1df4d9ce99d1fc50a45d",
+            "type": 3
+        },
+        "weapon": {
+            "instanceID": 0
+        },
+        "countermeasure": {
+            "instanceID": 0
+        },
+        "generationWatts": 0.0,
+        "storageJoules": 0.0,
+        "thrusterPowerWatts": 0.0,
+        "shieldPowerWatts": 0.0,
+        "shieldCapacity": 0.0,
+        "shieldRadius": 8.0,
+        "shieldRecoveryDelay": 2.0,
+        "shieldRecoveryPerSecond": 50.0,
+        "shieldSurfaceMaterial": {
+            "instanceID": 0
+        },
+        "shieldSurfaceMesh": {
+            "instanceID": 0
+        }
+    }
+}

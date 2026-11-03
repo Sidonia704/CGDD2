@@ -22,6 +22,7 @@ namespace Starframe.App
         public int vSyncCount,targetFrameRate=-1,qualityLevel=1;
         public float fieldOfView=65,bloomIntensity=.65f;
         public bool bloomEnabled=true,reduceFlashes;
+        public float uiScale=1,glassBlur=.75f,hudMotion=1;
         public float masterVolume=.8f,musicVolume=.22f,sfxVolume=.6f,uiVolume=.6f;
         public bool muteWhenUnfocused=true;
         public float mouseSensitivity=1,aimSmoothing=1;
@@ -41,6 +42,7 @@ namespace Starframe.App
             qualityLevel=Mathf.Max(0,qualityLevel);
             fieldOfView=Finite(fieldOfView,65,45,100);bloomIntensity=Finite(bloomIntensity,.65f,0,2);
             mouseSensitivity=Finite(mouseSensitivity,1,.2f,3);aimSmoothing=Finite(aimSmoothing,1,0,3);
+            uiScale=Finite(uiScale,1,.85f,1.25f);glassBlur=Finite(glassBlur,.75f,0,1);hudMotion=Finite(hudMotion,1,0,1);
             masterVolume=Finite(masterVolume,.8f,0,1);musicVolume=Finite(musicVolume,.22f,0,1);
             sfxVolume=Finite(sfxVolume,.6f,0,1);uiVolume=Finite(uiVolume,.6f,0,1);
             bindings=GameInput.Normalize(bindings);

@@ -1,0 +1,2468 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "run_script",
+    "parameters": {
+      "file": "tools/MapAudit20261101.cs",
+      "entry": "MapAudit20261101.Run",
+      "timeout_ms": "75000"
+    },
+    "result": {
+      "diagnostics": [],
+      "compileMs": 216,
+      "executeMs": 766,
+      "assemblyName": "PipelineRunScript_MapAudit20261101_459d6be4fef142e691f670966249180b",
+      "success": true,
+      "result": {
+        "project": "D:/software/unity/CGDD26107/Assets",
+        "unity": "6000.3.25f1",
+        "playing": false,
+        "scene": "",
+        "assets": [
+          {
+            "path": "Assets/_Starframe/Maps/Assets/1.asset",
+            "valid": true,
+            "error": null,
+            "records": 24,
+            "cellSize": 1,
+            "bounds": {
+              "center": [
+                -0.5,
+                0.5,
+                -2
+              ],
+              "size": [
+                4,
+                2,
+                3
+              ]
+            },
+            "blockHealth": 100,
+            "damageResetSeconds": 2,
+            "massPerCell": 100,
+            "faceConnectedIslands": 1,
+            "estimatedMergedBoxColliders": 1,
+            "shapes": [
+              {
+                "shape": "Cube",
+                "count": 24
+              }
+            ],
+            "invalidSurfaces": 0,
+            "hullDatabase": "Assets/_Starframe/Settings/Modules/ModuleDatabase.asset"
+          },
+          {
+            "path": "Assets/_Starframe/Maps/Assets/Asteroid.asset",
+            "valid": true,
+            "error": null,
+            "records": 1373,
+            "cellSize": 1,
+            "bounds": {
+              "center": [
+                -0.5,
+                -0.5,
+                -0.5
+              ],
+              "size": [
+                18,
+                12,
+                16
+              ]
+            },
+            "blockHealth": 100,
+            "damageResetSeconds": 2,
+            "massPerCell": 100,
+            "faceConnectedIslands": 4,
+            "estimatedMergedBoxColliders": 177,
+            "shapes": [
+              {
+                "shape": "Cube",
+                "count": 1373
+              }
+            ],
+            "invalidSurfaces": 0,
+            "hullDatabase": "Assets/_Starframe/Settings/Modules/ModuleDatabase.asset"
+          },
+          {
+            "path": "Assets/_Starframe/Maps/Assets/Fragment.asset",
+            "valid": true,
+            "error": null,
+            "records": 10,
+            "cellSize": 1,
+            "bounds": {
+              "center": [
+                0,
+                -0.5,
+                -1
+              ],
+              "size": [
+                3,
+                2,
+                3
+              ]
+            },
+            "blockHealth": 100,
+            "damageResetSeconds": 2,
+            "massPerCell": 100,
+            "faceConnectedIslands": 1,
+            "estimatedMergedBoxColliders": 4,
+            "shapes": [
+              {
+                "shape": "Cube",
+                "count": 9
+              },
+              {
+                "shape": "Wedge",
+                "count": 1
+              }
+            ],
+            "invalidSurfaces": 0,
+            "hullDatabase": "Assets/_Starframe/Settings/Modules/ModuleDatabase.asset"
+          },
+          {
+            "path": "Assets/_Starframe/Maps/Assets/MiningPlatform.asset",
+            "valid": true,
+            "error": null,
+            "records": 2424,
+            "cellSize": 1,
+            "bounds": {
+              "center": [
+                -0.5,
+                1,
+                -0.5
+              ],
+              "size": [
+                36,
+                9,
+                24
+              ]
+            },
+            "blockHealth": 100,
+            "damageResetSeconds": 2,
+            "massPerCell": 100,
+            "faceConnectedIslands": 1,
+            "estimatedMergedBoxColliders": 11,
+            "shapes": [
+              {
+                "shape": "Cube",
+                "count": 2424
+              }
+            ],
+            "invalidSurfaces": 0,
+            "hullDatabase": "Assets/_Starframe/Settings/Modules/ModuleDatabase.asset"
+          },
+          {
+            "path": "Assets/_Starframe/Maps/Assets/Rock.asset",
+            "valid": true,
+            "error": null,
+            "records": 90,
+            "cellSize": 1,
+            "bounds": {
+              "center": [
+                0.5,
+                0,
+                -0.5
+              ],
+              "size": [
+                6,
+                5,
+                6
+              ]
+            },
+            "blockHealth": 100,
+            "damageResetSeconds": 2,
+            "massPerCell": 100,
+            "faceConnectedIslands": 1,
+            "estimatedMergedBoxColliders": 18,
+            "shapes": [
+              {
+                "shape": "Cube",
+                "count": 65
+              },
+              {
+                "shape": "Wedge",
+                "count": 25
+              }
+            ],
+            "invalidSurfaces": 0,
+            "hullDatabase": "Assets/_Starframe/Settings/Modules/ModuleDatabase.asset"
+          },
+          {
+            "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Assets/Debris_AngledShard.asset",
+            "valid": true,
+            "error": null,
+            "records": 288,
+            "cellSize": 1,
+            "bounds": {
+              "center": [
+                0,
+                0,
+                0
+              ],
+              "size": [
+                13,
+                9,
+                5
+              ]
+            },
+            "blockHealth": 100,
+            "damageResetSeconds": 2,
+            "massPerCell": 100,
+            "faceConnectedIslands": 1,
+            "estimatedMergedBoxColliders": 36,
+            "shapes": [
+              {
+                "shape": "Cube",
+                "count": 118
+              },
+              {
+                "shape": "Block8",
+                "count": 136
+              },
+              {
+                "shape": "Slab",
+                "count": 23
+              },
+              {
+                "shape": "Wedge",
+                "count": 11
+              }
+            ],
+            "invalidSurfaces": 0,
+            "hullDatabase": "Assets/_Starframe/Settings/Modules/ModuleDatabase.asset"
+          },
+          {
+            "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Assets/Debris_FracturedChunk.asset",
+            "valid": true,
+            "error": null,
+            "records": 516,
+            "cellSize": 1,
+            "bounds": {
+              "center": [
+                0,
+                0,
+                0
+              ],
+              "size": [
+                13,
+                13,
+                7
+              ]
+            },
+            "blockHealth": 100,
+            "damageResetSeconds": 2,
+            "massPerCell": 100,
+            "faceConnectedIslands": 1,
+            "estimatedMergedBoxColliders": 56,
+            "shapes": [
+              {
+                "shape": "Cube",
+                "count": 201
+              },
+              {
+                "shape": "Slab",
+                "count": 47
+              },
+              {
+                "shape": "Wedge",
+                "count": 28
+              },
+              {
+                "shape": "Block8",
+                "count": 240
+              }
+            ],
+            "invalidSurfaces": 0,
+            "hullDatabase": "Assets/_Starframe/Settings/Modules/ModuleDatabase.asset"
+          },
+          {
+            "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Assets/Rock_Faceted.asset",
+            "valid": true,
+            "error": null,
+            "records": 883,
+            "cellSize": 1.75,
+            "bounds": {
+              "center": [
+                0,
+                0,
+                0
+              ],
+              "size": [
+                26.25,
+                19.25,
+                19.25
+              ]
+            },
+            "blockHealth": 100,
+            "damageResetSeconds": 2,
+            "massPerCell": 100,
+            "faceConnectedIslands": 1,
+            "estimatedMergedBoxColliders": 67,
+            "shapes": [
+              {
+                "shape": "Cube",
+                "count": 262
+              },
+              {
+                "shape": "Wedge",
+                "count": 35
+              },
+              {
+                "shape": "Block8",
+                "count": 560
+              },
+              {
+                "shape": "Slab",
+                "count": 26
+              }
+            ],
+            "invalidSurfaces": 0,
+            "hullDatabase": "Assets/_Starframe/Settings/Modules/ModuleDatabase.asset"
+          },
+          {
+            "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Assets/Rock_Notched.asset",
+            "valid": true,
+            "error": null,
+            "records": 2047,
+            "cellSize": 2.5,
+            "bounds": {
+              "center": [
+                0,
+                0,
+                0
+              ],
+              "size": [
+                47.5,
+                37.5,
+                37.5
+              ]
+            },
+            "blockHealth": 100,
+            "damageResetSeconds": 2,
+            "massPerCell": 100,
+            "faceConnectedIslands": 1,
+            "estimatedMergedBoxColliders": 117,
+            "shapes": [
+              {
+                "shape": "Cube",
+                "count": 557
+              },
+              {
+                "shape": "Block8",
+                "count": 1352
+              },
+              {
+                "shape": "Slab",
+                "count": 68
+              },
+              {
+                "shape": "Wedge",
+                "count": 70
+              }
+            ],
+            "invalidSurfaces": 0,
+            "hullDatabase": "Assets/_Starframe/Settings/Modules/ModuleDatabase.asset"
+          },
+          {
+            "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Assets/Rock_Ridged.asset",
+            "valid": true,
+            "error": null,
+            "records": 1892,
+            "cellSize": 3,
+            "bounds": {
+              "center": [
+                0,
+                0,
+                0
+              ],
+              "size": [
+                63,
+                45,
+                39
+              ]
+            },
+            "blockHealth": 100,
+            "damageResetSeconds": 2,
+            "massPerCell": 100,
+            "faceConnectedIslands": 1,
+            "estimatedMergedBoxColliders": 125,
+            "shapes": [
+              {
+                "shape": "Cube",
+                "count": 545
+              },
+              {
+                "shape": "Slab",
+                "count": 121
+              },
+              {
+                "shape": "Wedge",
+                "count": 66
+              },
+              {
+                "shape": "Block8",
+                "count": 1160
+              }
+            ],
+            "invalidSurfaces": 0,
+            "hullDatabase": "Assets/_Starframe/Settings/Modules/ModuleDatabase.asset"
+          },
+          {
+            "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Assets/Station_CapsuleTank.asset",
+            "valid": true,
+            "error": null,
+            "records": 5517,
+            "cellSize": 1.5,
+            "bounds": {
+              "center": [
+                0,
+                0,
+                0
+              ],
+              "size": [
+                85.5,
+                16.5,
+                16.5
+              ]
+            },
+            "blockHealth": 100,
+            "damageResetSeconds": 2,
+            "massPerCell": 100,
+            "faceConnectedIslands": 1,
+            "estimatedMergedBoxColliders": 42,
+            "shapes": [
+              {
+                "shape": "Cube",
+                "count": 1563
+              },
+              {
+                "shape": "Wedge",
+                "count": 32
+              },
+              {
+                "shape": "Block8",
+                "count": 3496
+              },
+              {
+                "shape": "Slab",
+                "count": 426
+              }
+            ],
+            "invalidSurfaces": 0,
+            "hullDatabase": "Assets/_Starframe/Settings/Modules/ModuleDatabase.asset"
+          },
+          {
+            "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Assets/Station_EquipmentCage.asset",
+            "valid": true,
+            "error": null,
+            "records": 1872,
+            "cellSize": 1.25,
+            "bounds": {
+              "center": [
+                0,
+                0,
+                0
+              ],
+              "size": [
+                36.25,
+                23.75,
+                23.75
+              ]
+            },
+            "blockHealth": 100,
+            "damageResetSeconds": 2,
+            "massPerCell": 100,
+            "faceConnectedIslands": 1,
+            "estimatedMergedBoxColliders": 270,
+            "shapes": [
+              {
+                "shape": "Cube",
+                "count": 1048
+              },
+              {
+                "shape": "Block8",
+                "count": 824
+              }
+            ],
+            "invalidSurfaces": 0,
+            "hullDatabase": "Assets/_Starframe/Settings/Modules/ModuleDatabase.asset"
+          },
+          {
+            "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Assets/Station_NotchedSlab.asset",
+            "valid": true,
+            "error": null,
+            "records": 3995,
+            "cellSize": 2,
+            "bounds": {
+              "center": [
+                0,
+                0,
+                0
+              ],
+              "size": [
+                78,
+                34,
+                14
+              ]
+            },
+            "blockHealth": 100,
+            "damageResetSeconds": 2,
+            "massPerCell": 100,
+            "faceConnectedIslands": 1,
+            "estimatedMergedBoxColliders": 4,
+            "shapes": [
+              {
+                "shape": "Cube",
+                "count": 859
+              },
+              {
+                "shape": "Block8",
+                "count": 3136
+              }
+            ],
+            "invalidSurfaces": 0,
+            "hullDatabase": "Assets/_Starframe/Settings/Modules/ModuleDatabase.asset"
+          },
+          {
+            "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Assets/Station_OpenTruss.asset",
+            "valid": true,
+            "error": null,
+            "records": 2403,
+            "cellSize": 1,
+            "bounds": {
+              "center": [
+                0,
+                0,
+                0
+              ],
+              "size": [
+                39,
+                17,
+                15
+              ]
+            },
+            "blockHealth": 100,
+            "damageResetSeconds": 2,
+            "massPerCell": 100,
+            "faceConnectedIslands": 1,
+            "estimatedMergedBoxColliders": 356,
+            "shapes": [
+              {
+                "shape": "Cube",
+                "count": 1099
+              },
+              {
+                "shape": "Block8",
+                "count": 1304
+              }
+            ],
+            "invalidSurfaces": 0,
+            "hullDatabase": "Assets/_Starframe/Settings/Modules/ModuleDatabase.asset"
+          },
+          {
+            "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Assets/Station_SphericalTank.asset",
+            "valid": true,
+            "error": null,
+            "records": 1659,
+            "cellSize": 2,
+            "bounds": {
+              "center": [
+                0,
+                0,
+                0
+              ],
+              "size": [
+                30,
+                30,
+                30
+              ]
+            },
+            "blockHealth": 100,
+            "damageResetSeconds": 2,
+            "massPerCell": 100,
+            "faceConnectedIslands": 1,
+            "estimatedMergedBoxColliders": 74,
+            "shapes": [
+              {
+                "shape": "Slab",
+                "count": 42
+              },
+              {
+                "shape": "Cube",
+                "count": 427
+              },
+              {
+                "shape": "Block8",
+                "count": 1176
+              },
+              {
+                "shape": "Wedge",
+                "count": 14
+              }
+            ],
+            "invalidSurfaces": 0,
+            "hullDatabase": "Assets/_Starframe/Settings/Modules/ModuleDatabase.asset"
+          },
+          {
+            "path": "Assets/_Starframe/Maps/MiningStationRound3/Assets/Debris_Chunk.asset",
+            "valid": true,
+            "error": null,
+            "records": 706,
+            "cellSize": 1,
+            "bounds": {
+              "center": [
+                0,
+                0,
+                -0.5
+              ],
+              "size": [
+                17,
+                9,
+                16
+              ]
+            },
+            "blockHealth": 100,
+            "damageResetSeconds": 2,
+            "massPerCell": 100,
+            "faceConnectedIslands": 35,
+            "estimatedMergedBoxColliders": 257,
+            "shapes": [
+              {
+                "shape": "Cube",
+                "count": 588
+              },
+              {
+                "shape": "Wedge",
+                "count": 118
+              }
+            ],
+            "invalidSurfaces": 0,
+            "hullDatabase": "Assets/_Starframe/Settings/Modules/ModuleDatabase.asset"
+          },
+          {
+            "path": "Assets/_Starframe/Maps/MiningStationRound3/Assets/Debris_Shard.asset",
+            "valid": true,
+            "error": null,
+            "records": 136,
+            "cellSize": 1,
+            "bounds": {
+              "center": [
+                0,
+                0,
+                0
+              ],
+              "size": [
+                11,
+                5,
+                11
+              ]
+            },
+            "blockHealth": 100,
+            "damageResetSeconds": 2,
+            "massPerCell": 100,
+            "faceConnectedIslands": 12,
+            "estimatedMergedBoxColliders": 64,
+            "shapes": [
+              {
+                "shape": "Cube",
+                "count": 116
+              },
+              {
+                "shape": "Wedge",
+                "count": 20
+              }
+            ],
+            "invalidSurfaces": 0,
+            "hullDatabase": "Assets/_Starframe/Settings/Modules/ModuleDatabase.asset"
+          },
+          {
+            "path": "Assets/_Starframe/Maps/MiningStationRound3/Assets/Rock_Far_Large.asset",
+            "valid": true,
+            "error": null,
+            "records": 899,
+            "cellSize": 6,
+            "bounds": {
+              "center": [
+                3,
+                0,
+                0
+              ],
+              "size": [
+                84,
+                78,
+                90
+              ]
+            },
+            "blockHealth": 100,
+            "damageResetSeconds": 2,
+            "massPerCell": 100,
+            "faceConnectedIslands": 1,
+            "estimatedMergedBoxColliders": 135,
+            "shapes": [
+              {
+                "shape": "Cube",
+                "count": 899
+              }
+            ],
+            "invalidSurfaces": 0,
+            "hullDatabase": "Assets/_Starframe/Settings/Modules/ModuleDatabase.asset"
+          },
+          {
+            "path": "Assets/_Starframe/Maps/MiningStationRound3/Assets/Rock_Far_Medium.asset",
+            "valid": true,
+            "error": null,
+            "records": 443,
+            "cellSize": 4,
+            "bounds": {
+              "center": [
+                0,
+                0,
+                0
+              ],
+              "size": [
+                44,
+                44,
+                44
+              ]
+            },
+            "blockHealth": 100,
+            "damageResetSeconds": 2,
+            "massPerCell": 100,
+            "faceConnectedIslands": 1,
+            "estimatedMergedBoxColliders": 88,
+            "shapes": [
+              {
+                "shape": "Cube",
+                "count": 443
+              }
+            ],
+            "invalidSurfaces": 0,
+            "hullDatabase": "Assets/_Starframe/Settings/Modules/ModuleDatabase.asset"
+          },
+          {
+            "path": "Assets/_Starframe/Maps/MiningStationRound3/Assets/Rock_Far_Small.asset",
+            "valid": true,
+            "error": null,
+            "records": 159,
+            "cellSize": 3,
+            "bounds": {
+              "center": [
+                0,
+                0,
+                0
+              ],
+              "size": [
+                21,
+                21,
+                21
+              ]
+            },
+            "blockHealth": 100,
+            "damageResetSeconds": 2,
+            "massPerCell": 100,
+            "faceConnectedIslands": 1,
+            "estimatedMergedBoxColliders": 22,
+            "shapes": [
+              {
+                "shape": "Cube",
+                "count": 159
+              }
+            ],
+            "invalidSurfaces": 0,
+            "hullDatabase": "Assets/_Starframe/Settings/Modules/ModuleDatabase.asset"
+          },
+          {
+            "path": "Assets/_Starframe/Maps/MiningStationRound3/Assets/Rock_Large.asset",
+            "valid": true,
+            "error": null,
+            "records": 7638,
+            "cellSize": 2,
+            "bounds": {
+              "center": [
+                0,
+                1,
+                0
+              ],
+              "size": [
+                78,
+                76,
+                78
+              ]
+            },
+            "blockHealth": 100,
+            "damageResetSeconds": 2,
+            "massPerCell": 100,
+            "faceConnectedIslands": 1,
+            "estimatedMergedBoxColliders": 1351,
+            "shapes": [
+              {
+                "shape": "Cube",
+                "count": 7638
+              }
+            ],
+            "invalidSurfaces": 0,
+            "hullDatabase": "Assets/_Starframe/Settings/Modules/ModuleDatabase.asset"
+          },
+          {
+            "path": "Assets/_Starframe/Maps/MiningStationRound3/Assets/Rock_Medium.asset",
+            "valid": true,
+            "error": null,
+            "records": 1191,
+            "cellSize": 3,
+            "bounds": {
+              "center": [
+                0,
+                -1.5,
+                -1.5
+              ],
+              "size": [
+                51,
+                48,
+                48
+              ]
+            },
+            "blockHealth": 100,
+            "damageResetSeconds": 2,
+            "massPerCell": 100,
+            "faceConnectedIslands": 1,
+            "estimatedMergedBoxColliders": 211,
+            "shapes": [
+              {
+                "shape": "Cube",
+                "count": 1191
+              }
+            ],
+            "invalidSurfaces": 0,
+            "hullDatabase": "Assets/_Starframe/Settings/Modules/ModuleDatabase.asset"
+          },
+          {
+            "path": "Assets/_Starframe/Maps/MiningStationRound3/Assets/Rock_Small.asset",
+            "valid": true,
+            "error": null,
+            "records": 678,
+            "cellSize": 2,
+            "bounds": {
+              "center": [
+                0,
+                0,
+                -1
+              ],
+              "size": [
+                26,
+                22,
+                24
+              ]
+            },
+            "blockHealth": 100,
+            "damageResetSeconds": 2,
+            "massPerCell": 100,
+            "faceConnectedIslands": 1,
+            "estimatedMergedBoxColliders": 101,
+            "shapes": [
+              {
+                "shape": "Cube",
+                "count": 678
+              }
+            ],
+            "invalidSurfaces": 0,
+            "hullDatabase": "Assets/_Starframe/Settings/Modules/ModuleDatabase.asset"
+          },
+          {
+            "path": "Assets/_Starframe/Maps/MiningStationRound3/Assets/Station_CapsuleTank.asset",
+            "valid": true,
+            "error": null,
+            "records": 5056,
+            "cellSize": 1.5,
+            "bounds": {
+              "center": [
+                0,
+                0,
+                0
+              ],
+              "size": [
+                118.5,
+                34.5,
+                34.5
+              ]
+            },
+            "blockHealth": 100,
+            "damageResetSeconds": 2,
+            "massPerCell": 100,
+            "faceConnectedIslands": 24,
+            "estimatedMergedBoxColliders": 28,
+            "shapes": [
+              {
+                "shape": "Cube",
+                "count": 2900
+              },
+              {
+                "shape": "Wedge",
+                "count": 2156
+              }
+            ],
+            "invalidSurfaces": 0,
+            "hullDatabase": "Assets/_Starframe/Settings/Modules/ModuleDatabase.asset"
+          },
+          {
+            "path": "Assets/_Starframe/Maps/MiningStationRound3/Assets/Station_CylinderTank.asset",
+            "valid": true,
+            "error": null,
+            "records": 6240,
+            "cellSize": 1.5,
+            "bounds": {
+              "center": [
+                0,
+                0,
+                0
+              ],
+              "size": [
+                43.5,
+                97.5,
+                43.5
+              ]
+            },
+            "blockHealth": 100,
+            "damageResetSeconds": 2,
+            "massPerCell": 100,
+            "faceConnectedIslands": 12,
+            "estimatedMergedBoxColliders": 33,
+            "shapes": [
+              {
+                "shape": "Cube",
+                "count": 3216
+              },
+              {
+                "shape": "Wedge",
+                "count": 3024
+              }
+            ],
+            "invalidSurfaces": 0,
+            "hullDatabase": "Assets/_Starframe/Settings/Modules/ModuleDatabase.asset"
+          },
+          {
+            "path": "Assets/_Starframe/Maps/MiningStationRound3/Assets/Station_DomeLarge.asset",
+            "valid": true,
+            "error": null,
+            "records": 28384,
+            "cellSize": 2,
+            "bounds": {
+              "center": [
+                0,
+                0,
+                0
+              ],
+              "size": [
+                118,
+                122,
+                122
+              ]
+            },
+            "blockHealth": 100,
+            "damageResetSeconds": 2,
+            "massPerCell": 100,
+            "faceConnectedIslands": 1,
+            "estimatedMergedBoxColliders": 3116,
+            "shapes": [
+              {
+                "shape": "Cube",
+                "count": 25658
+              },
+              {
+                "shape": "Slab",
+                "count": 2726
+              }
+            ],
+            "invalidSurfaces": 0,
+            "hullDatabase": "Assets/_Starframe/Settings/Modules/ModuleDatabase.asset"
+          },
+          {
+            "path": "Assets/_Starframe/Maps/MiningStationRound3/Assets/Station_DomeSmall.asset",
+            "valid": true,
+            "error": null,
+            "records": 12464,
+            "cellSize": 2,
+            "bounds": {
+              "center": [
+                0,
+                0,
+                0
+              ],
+              "size": [
+                78,
+                86,
+                78
+              ]
+            },
+            "blockHealth": 100,
+            "damageResetSeconds": 2,
+            "massPerCell": 100,
+            "faceConnectedIslands": 1,
+            "estimatedMergedBoxColliders": 1348,
+            "shapes": [
+              {
+                "shape": "Cube",
+                "count": 11147
+              },
+              {
+                "shape": "Slab",
+                "count": 1317
+              }
+            ],
+            "invalidSurfaces": 0,
+            "hullDatabase": "Assets/_Starframe/Settings/Modules/ModuleDatabase.asset"
+          },
+          {
+            "path": "Assets/_Starframe/Maps/MiningStationRound3/Assets/Station_HexDeck.asset",
+            "valid": true,
+            "error": null,
+            "records": 6216,
+            "cellSize": 2,
+            "bounds": {
+              "center": [
+                0,
+                2,
+                0
+              ],
+              "size": [
+                134,
+                6,
+                134
+              ]
+            },
+            "blockHealth": 100,
+            "damageResetSeconds": 2,
+            "massPerCell": 100,
+            "faceConnectedIslands": 49,
+            "estimatedMergedBoxColliders": 146,
+            "shapes": [
+              {
+                "shape": "Slab",
+                "count": 2072
+              },
+              {
+                "shape": "Cube",
+                "count": 3475
+              },
+              {
+                "shape": "Wedge",
+                "count": 158
+              },
+              {
+                "shape": "Block7",
+                "count": 511
+              }
+            ],
+            "invalidSurfaces": 0,
+            "hullDatabase": "Assets/_Starframe/Settings/Modules/ModuleDatabase.asset"
+          },
+          {
+            "path": "Assets/_Starframe/Maps/MiningStationRound3/Assets/Station_MachineryCage.asset",
+            "valid": true,
+            "error": null,
+            "records": 864,
+            "cellSize": 2,
+            "bounds": {
+              "center": [
+                0,
+                -1,
+                0
+              ],
+              "size": [
+                58,
+                60,
+                58
+              ]
+            },
+            "blockHealth": 100,
+            "damageResetSeconds": 2,
+            "massPerCell": 100,
+            "faceConnectedIslands": 3,
+            "estimatedMergedBoxColliders": 82,
+            "shapes": [
+              {
+                "shape": "Cube",
+                "count": 80
+              },
+              {
+                "shape": "Slab",
+                "count": 782
+              },
+              {
+                "shape": "Pyramid",
+                "count": 2
+              }
+            ],
+            "invalidSurfaces": 0,
+            "hullDatabase": "Assets/_Starframe/Settings/Modules/ModuleDatabase.asset"
+          },
+          {
+            "path": "Assets/_Starframe/Maps/MiningStationRound3/Assets/Station_PipeRun.asset",
+            "valid": true,
+            "error": null,
+            "records": 1305,
+            "cellSize": 2,
+            "bounds": {
+              "center": [
+                0,
+                0,
+                0
+              ],
+              "size": [
+                90,
+                14,
+                14
+              ]
+            },
+            "blockHealth": 100,
+            "damageResetSeconds": 2,
+            "massPerCell": 100,
+            "faceConnectedIslands": 1,
+            "estimatedMergedBoxColliders": 5,
+            "shapes": [
+              {
+                "shape": "Cube",
+                "count": 757
+              },
+              {
+                "shape": "Wedge",
+                "count": 548
+              }
+            ],
+            "invalidSurfaces": 0,
+            "hullDatabase": "Assets/_Starframe/Settings/Modules/ModuleDatabase.asset"
+          },
+          {
+            "path": "Assets/_Starframe/Maps/MiningStationRound3/Assets/Station_Radiator.asset",
+            "valid": true,
+            "error": null,
+            "records": 202,
+            "cellSize": 2,
+            "bounds": {
+              "center": [
+                0,
+                -1,
+                0
+              ],
+              "size": [
+                54,
+                32,
+                2
+              ]
+            },
+            "blockHealth": 100,
+            "damageResetSeconds": 2,
+            "massPerCell": 100,
+            "faceConnectedIslands": 1,
+            "estimatedMergedBoxColliders": 26,
+            "shapes": [
+              {
+                "shape": "Cube",
+                "count": 80
+              },
+              {
+                "shape": "Slab",
+                "count": 117
+              },
+              {
+                "shape": "Pyramid",
+                "count": 5
+              }
+            ],
+            "invalidSurfaces": 0,
+            "hullDatabase": "Assets/_Starframe/Settings/Modules/ModuleDatabase.asset"
+          },
+          {
+            "path": "Assets/_Starframe/Maps/MiningStationRound3/Assets/Station_Railing.asset",
+            "valid": true,
+            "error": null,
+            "records": 42,
+            "cellSize": 2,
+            "bounds": {
+              "center": [
+                0,
+                1,
+                0
+              ],
+              "size": [
+                66,
+                4,
+                2
+              ]
+            },
+            "blockHealth": 100,
+            "damageResetSeconds": 2,
+            "massPerCell": 100,
+            "faceConnectedIslands": 1,
+            "estimatedMergedBoxColliders": 17,
+            "shapes": [
+              {
+                "shape": "Cube",
+                "count": 18
+              },
+              {
+                "shape": "Slab",
+                "count": 24
+              }
+            ],
+            "invalidSurfaces": 0,
+            "hullDatabase": "Assets/_Starframe/Settings/Modules/ModuleDatabase.asset"
+          },
+          {
+            "path": "Assets/_Starframe/Maps/MiningStationRound3/Assets/Station_SlabDeck.asset",
+            "valid": true,
+            "error": null,
+            "records": 8585,
+            "cellSize": 2,
+            "bounds": {
+              "center": [
+                0,
+                2,
+                0
+              ],
+              "size": [
+                170,
+                6,
+                86
+              ]
+            },
+            "blockHealth": 100,
+            "damageResetSeconds": 2,
+            "massPerCell": 100,
+            "faceConnectedIslands": 1,
+            "estimatedMergedBoxColliders": 241,
+            "shapes": [
+              {
+                "shape": "Slab",
+                "count": 3655
+              },
+              {
+                "shape": "Cube",
+                "count": 4678
+              },
+              {
+                "shape": "Wedge",
+                "count": 252
+              }
+            ],
+            "invalidSurfaces": 0,
+            "hullDatabase": "Assets/_Starframe/Settings/Modules/ModuleDatabase.asset"
+          },
+          {
+            "path": "Assets/_Starframe/Maps/MiningStationRound3/Assets/Station_TrussGirder.asset",
+            "valid": true,
+            "error": null,
+            "records": 536,
+            "cellSize": 2,
+            "bounds": {
+              "center": [
+                0,
+                0,
+                0
+              ],
+              "size": [
+                98,
+                22,
+                22
+              ]
+            },
+            "blockHealth": 100,
+            "damageResetSeconds": 2,
+            "massPerCell": 100,
+            "faceConnectedIslands": 200,
+            "estimatedMergedBoxColliders": 302,
+            "shapes": [
+              {
+                "shape": "Cube",
+                "count": 224
+              },
+              {
+                "shape": "Slab",
+                "count": 312
+              }
+            ],
+            "invalidSurfaces": 0,
+            "hullDatabase": "Assets/_Starframe/Settings/Modules/ModuleDatabase.asset"
+          },
+          {
+            "path": "Assets/_Starframe/Maps/MiningStationRound3/Assets/Station_TrussRiser.asset",
+            "valid": true,
+            "error": null,
+            "records": 536,
+            "cellSize": 2,
+            "bounds": {
+              "center": [
+                0,
+                0,
+                0
+              ],
+              "size": [
+                22,
+                98,
+                22
+              ]
+            },
+            "blockHealth": 100,
+            "damageResetSeconds": 2,
+            "massPerCell": 100,
+            "faceConnectedIslands": 200,
+            "estimatedMergedBoxColliders": 272,
+            "shapes": [
+              {
+                "shape": "Cube",
+                "count": 224
+              },
+              {
+                "shape": "Slab",
+                "count": 312
+              }
+            ],
+            "invalidSurfaces": 0,
+            "hullDatabase": "Assets/_Starframe/Settings/Modules/ModuleDatabase.asset"
+          }
+        ],
+        "layouts": [
+          {
+            "path": "Assets/_Starframe/Maps/Layouts/MapWorkshopDemo.asset",
+            "valid": true,
+            "error": null,
+            "size": [
+              3000,
+              3000,
+              3000
+            ],
+            "spawn": [
+              0,
+              150,
+              -250
+            ],
+            "instances": 22,
+            "records": 24378,
+            "estimatedMergedBoxColliders": 2283,
+            "bounds": {
+              "center": [
+                -14.2489319,
+                -241.007813,
+                67.5527954
+              ],
+              "size": [
+                839.7176,
+                182.380127,
+                707.2527
+              ]
+            },
+            "movingAtStart": 0,
+            "parts": [
+              {
+                "path": "Assets/_Starframe/Maps/Assets/Rock.asset",
+                "instances": 7,
+                "records": 90
+              },
+              {
+                "path": "Assets/_Starframe/Maps/Assets/Asteroid.asset",
+                "instances": 12,
+                "records": 1373
+              },
+              {
+                "path": "Assets/_Starframe/Maps/Assets/MiningPlatform.asset",
+                "instances": 3,
+                "records": 2424
+              }
+            ]
+          },
+          {
+            "path": "Assets/_Starframe/Maps/Layouts/MiningStationAsteroidField.asset",
+            "valid": true,
+            "error": null,
+            "size": [
+              3000,
+              3000,
+              3000
+            ],
+            "spawn": [
+              0,
+              160,
+              -1150
+            ],
+            "instances": 199,
+            "records": 218303,
+            "estimatedMergedBoxColliders": 28531,
+            "bounds": {
+              "center": [
+                27.62732,
+                -11.2425232,
+                -2.08532715
+              ],
+              "size": [
+                2488.22827,
+                435.666382,
+                2555.14478
+              ]
+            },
+            "movingAtStart": 0,
+            "parts": [
+              {
+                "path": "Assets/_Starframe/Maps/MiningStationRound3/Assets/Station_SlabDeck.asset",
+                "instances": 3,
+                "records": 8585
+              },
+              {
+                "path": "Assets/_Starframe/Maps/MiningStationRound3/Assets/Station_HexDeck.asset",
+                "instances": 1,
+                "records": 6216
+              },
+              {
+                "path": "Assets/_Starframe/Maps/MiningStationRound3/Assets/Station_DomeLarge.asset",
+                "instances": 1,
+                "records": 28384
+              },
+              {
+                "path": "Assets/_Starframe/Maps/MiningStationRound3/Assets/Station_DomeSmall.asset",
+                "instances": 1,
+                "records": 12464
+              },
+              {
+                "path": "Assets/_Starframe/Maps/MiningStationRound3/Assets/Station_CapsuleTank.asset",
+                "instances": 1,
+                "records": 5056
+              },
+              {
+                "path": "Assets/_Starframe/Maps/MiningStationRound3/Assets/Station_CylinderTank.asset",
+                "instances": 2,
+                "records": 6240
+              },
+              {
+                "path": "Assets/_Starframe/Maps/MiningStationRound3/Assets/Station_MachineryCage.asset",
+                "instances": 3,
+                "records": 864
+              },
+              {
+                "path": "Assets/_Starframe/Maps/MiningStationRound3/Assets/Station_TrussGirder.asset",
+                "instances": 3,
+                "records": 536
+              },
+              {
+                "path": "Assets/_Starframe/Maps/MiningStationRound3/Assets/Station_TrussRiser.asset",
+                "instances": 2,
+                "records": 536
+              },
+              {
+                "path": "Assets/_Starframe/Maps/MiningStationRound3/Assets/Station_PipeRun.asset",
+                "instances": 2,
+                "records": 1305
+              },
+              {
+                "path": "Assets/_Starframe/Maps/MiningStationRound3/Assets/Station_Railing.asset",
+                "instances": 2,
+                "records": 42
+              },
+              {
+                "path": "Assets/_Starframe/Maps/MiningStationRound3/Assets/Station_Radiator.asset",
+                "instances": 2,
+                "records": 202
+              },
+              {
+                "path": "Assets/_Starframe/Maps/MiningStationRound3/Assets/Debris_Chunk.asset",
+                "instances": 8,
+                "records": 706
+              },
+              {
+                "path": "Assets/_Starframe/Maps/MiningStationRound3/Assets/Debris_Shard.asset",
+                "instances": 8,
+                "records": 136
+              },
+              {
+                "path": "Assets/_Starframe/Maps/MiningStationRound3/Assets/Rock_Large.asset",
+                "instances": 4,
+                "records": 7638
+              },
+              {
+                "path": "Assets/_Starframe/Maps/MiningStationRound3/Assets/Rock_Medium.asset",
+                "instances": 14,
+                "records": 1191
+              },
+              {
+                "path": "Assets/_Starframe/Maps/MiningStationRound3/Assets/Rock_Small.asset",
+                "instances": 46,
+                "records": 678
+              },
+              {
+                "path": "Assets/_Starframe/Maps/MiningStationRound3/Assets/Rock_Far_Large.asset",
+                "instances": 14,
+                "records": 899
+              },
+              {
+                "path": "Assets/_Starframe/Maps/MiningStationRound3/Assets/Rock_Far_Medium.asset",
+                "instances": 31,
+                "records": 443
+              },
+              {
+                "path": "Assets/_Starframe/Maps/MiningStationRound3/Assets/Rock_Far_Small.asset",
+                "instances": 51,
+                "records": 159
+              }
+            ]
+          },
+          {
+            "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Layouts/ComponentGallery.asset",
+            "valid": true,
+            "error": null,
+            "size": [
+              2500,
+              2500,
+              2500
+            ],
+            "spawn": [
+              0,
+              150,
+              -250
+            ],
+            "instances": 10,
+            "records": 21072,
+            "estimatedMergedBoxColliders": 1147,
+            "bounds": {
+              "center": [
+                3.75,
+                0,
+                82.25
+              ],
+              "size": [
+                670.5,
+                45,
+                194.5
+              ]
+            },
+            "movingAtStart": 0,
+            "parts": [
+              {
+                "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Assets/Station_SphericalTank.asset",
+                "instances": 1,
+                "records": 1659
+              },
+              {
+                "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Assets/Station_CapsuleTank.asset",
+                "instances": 1,
+                "records": 5517
+              },
+              {
+                "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Assets/Station_OpenTruss.asset",
+                "instances": 1,
+                "records": 2403
+              },
+              {
+                "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Assets/Station_EquipmentCage.asset",
+                "instances": 1,
+                "records": 1872
+              },
+              {
+                "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Assets/Station_NotchedSlab.asset",
+                "instances": 1,
+                "records": 3995
+              },
+              {
+                "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Assets/Rock_Ridged.asset",
+                "instances": 1,
+                "records": 1892
+              },
+              {
+                "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Assets/Rock_Notched.asset",
+                "instances": 1,
+                "records": 2047
+              },
+              {
+                "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Assets/Rock_Faceted.asset",
+                "instances": 1,
+                "records": 883
+              },
+              {
+                "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Assets/Debris_FracturedChunk.asset",
+                "instances": 1,
+                "records": 516
+              },
+              {
+                "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Assets/Debris_AngledShard.asset",
+                "instances": 1,
+                "records": 288
+              }
+            ]
+          },
+          {
+            "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Layouts/LocalDensityPatch.asset",
+            "valid": true,
+            "error": null,
+            "size": [
+              2500,
+              2500,
+              2500
+            ],
+            "spawn": [
+              0,
+              150,
+              -250
+            ],
+            "instances": 56,
+            "records": 77657,
+            "estimatedMergedBoxColliders": 5112,
+            "bounds": {
+              "center": [
+                833.4861,
+                -3.37609863,
+                7.8263855
+              ],
+              "size": [
+                791.5215,
+                155.898071,
+                748.622864
+              ]
+            },
+            "movingAtStart": 56,
+            "parts": [
+              {
+                "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Assets/Rock_Notched.asset",
+                "instances": 21,
+                "records": 2047
+              },
+              {
+                "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Assets/Rock_Ridged.asset",
+                "instances": 9,
+                "records": 1892
+              },
+              {
+                "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Assets/Rock_Faceted.asset",
+                "instances": 14,
+                "records": 883
+              },
+              {
+                "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Assets/Debris_FracturedChunk.asset",
+                "instances": 8,
+                "records": 516
+              },
+              {
+                "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Assets/Debris_AngledShard.asset",
+                "instances": 4,
+                "records": 288
+              }
+            ]
+          },
+          {
+            "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Layouts/PartialStationStudy.asset",
+            "valid": true,
+            "error": null,
+            "size": [
+              2500,
+              2500,
+              2500
+            ],
+            "spawn": [
+              0,
+              150,
+              -250
+            ],
+            "instances": 5,
+            "records": 15446,
+            "estimatedMergedBoxColliders": 746,
+            "bounds": {
+              "center": [
+                46.23839,
+                31.757967,
+                91.90908
+              ],
+              "size": [
+                148.222427,
+                110.479973,
+                175.193192
+              ]
+            },
+            "movingAtStart": 0,
+            "parts": [
+              {
+                "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Assets/Station_SphericalTank.asset",
+                "instances": 1,
+                "records": 1659
+              },
+              {
+                "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Assets/Station_CapsuleTank.asset",
+                "instances": 1,
+                "records": 5517
+              },
+              {
+                "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Assets/Station_OpenTruss.asset",
+                "instances": 1,
+                "records": 2403
+              },
+              {
+                "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Assets/Station_EquipmentCage.asset",
+                "instances": 1,
+                "records": 1872
+              },
+              {
+                "path": "Assets/_Starframe/Maps/MiningStationRound2/Generated_v04/Assets/Station_NotchedSlab.asset",
+                "instances": 1,
+                "records": 3995
+              }
+            ]
+          }
+        ],
+        "modules": [
+          {
+            "path": "Assets/_Starframe/Settings/Modules/Cube.asset",
+            "shape": "Cube",
+            "mesh": true,
+            "material": true,
+            "icon": true,
+            "selectedIcon": true
+          },
+          {
+            "path": "Assets/_Starframe/Settings/Modules/Wedge.asset",
+            "shape": "Wedge",
+            "mesh": true,
+            "material": true,
+            "icon": true,
+            "selectedIcon": true
+          },
+          {
+            "path": "Assets/_Starframe/Settings/Modules/Thruster1.asset",
+            "shape": "Thruster1",
+            "mesh": true,
+            "material": true,
+            "icon": true,
+            "selectedIcon": true
+          },
+          {
+            "path": "Assets/_Starframe/Settings/Modules/Thruster2.asset",
+            "shape": "Thruster2",
+            "mesh": true,
+            "material": true,
+            "icon": true,
+            "selectedIcon": true
+          },
+          {
+            "path": "Assets/_Starframe/Settings/Modules/Slab.asset",
+            "shape": "Slab",
+            "mesh": true,
+            "material": true,
+            "icon": true,
+            "selectedIcon": true
+          },
+          {
+            "path": "Assets/_Starframe/Settings/Modules/Pyramid.asset",
+            "shape": "Pyramid",
+            "mesh": true,
+            "material": true,
+            "icon": true,
+            "selectedIcon": true
+          },
+          {
+            "path": "Assets/_Starframe/Settings/Modules/Core.asset",
+            "shape": "Core",
+            "mesh": true,
+            "material": true,
+            "icon": true,
+            "selectedIcon": true
+          },
+          {
+            "path": "Assets/_Starframe/Settings/Modules/Laser.asset",
+            "shape": "Laser",
+            "mesh": true,
+            "material": true,
+            "icon": true,
+            "selectedIcon": true
+          },
+          {
+            "path": "Assets/_Starframe/Settings/Modules/Power.asset",
+            "shape": "Power",
+            "mesh": true,
+            "material": true,
+            "icon": true,
+            "selectedIcon": true
+          },
+          {
+            "path": "Assets/_Starframe/Settings/Modules/Shield.asset",
+            "shape": "Shield",
+            "mesh": true,
+            "material": true,
+            "icon": true,
+            "selectedIcon": true
+          },
+          {
+            "path": "Assets/_Starframe/Settings/Modules/Block5.asset",
+            "shape": "Block5",
+            "mesh": true,
+            "material": true,
+            "icon": true,
+            "selectedIcon": true
+          },
+          {
+            "path": "Assets/_Starframe/Settings/Modules/Block6.asset",
+            "shape": "Block6",
+            "mesh": true,
+            "material": true,
+            "icon": true,
+            "selectedIcon": true
+          },
+          {
+            "path": "Assets/_Starframe/Settings/Modules/Block7.asset",
+            "shape": "Block7",
+            "mesh": true,
+            "material": true,
+            "icon": true,
+            "selectedIcon": true
+          },
+          {
+            "path": "Assets/_Starframe/Settings/Modules/Block8.asset",
+            "shape": "Block8",
+            "mesh": true,
+            "material": true,
+            "icon": true,
+            "selectedIcon": true
+          },
+          {
+            "path": "Assets/_Starframe/Settings/Modules/Thruster3.asset",
+            "shape": "Thruster3",
+            "mesh": true,
+            "material": true,
+            "icon": true,
+            "selectedIcon": true
+          },
+          {
+            "path": "Assets/_Starframe/Settings/Modules/Thruster4.asset",
+            "shape": "Thruster4",
+            "mesh": true,
+            "material": true,
+            "icon": true,
+            "selectedIcon": true
+          },
+          {
+            "path": "Assets/_Starframe/Settings/Modules/Thruster5.asset",
+            "shape": "Thruster5",
+            "mesh": true,
+            "material": true,
+            "icon": true,
+            "selectedIcon": true
+          },
+          {
+            "path": "Assets/_Starframe/Settings/Modules/Power2.asset",
+            "shape": "Power2",
+            "mesh": true,
+            "material": true,
+            "icon": true,
+            "selectedIcon": true
+          },
+          {
+            "path": "Assets/_Starframe/Settings/Modules/Shield2.asset",
+            "shape": "Shield2",
+            "mesh": true,
+            "material": true,
+            "icon": true,
+            "selectedIcon": true
+          },
+          {
+            "path": "Assets/_Starframe/Settings/Modules/Armor1.asset",
+            "shape": "Armor1",
+            "mesh": true,
+            "material": true,
+            "icon": true,
+            "selectedIcon": true
+          },
+          {
+            "path": "Assets/_Starframe/Settings/Modules/Armor2.asset",
+            "shape": "Armor2",
+            "mesh": true,
+            "material": true,
+            "icon": true,
+            "selectedIcon": true
+          },
+          {
+            "path": "Assets/_Starframe/Settings/Modules/Armor3.asset",
+            "shape": "Armor3",
+            "mesh": true,
+            "material": true,
+            "icon": true,
+            "selectedIcon": true
+          },
+          {
+            "path": "Assets/_Starframe/Settings/Modules/Armor4.asset",
+            "shape": "Armor4",
+            "mesh": true,
+            "material": true,
+            "icon": true,
+            "selectedIcon": true
+          },
+          {
+            "path": "Assets/_Starframe/Settings/Modules/Gun1.asset",
+            "shape": "Gun1",
+            "mesh": true,
+            "material": true,
+            "icon": true,
+            "selectedIcon": true
+          },
+          {
+            "path": "Assets/_Starframe/Settings/Modules/Gun2.asset",
+            "shape": "Gun2",
+            "mesh": true,
+            "material": true,
+            "icon": true,
+            "selectedIcon": true
+          },
+          {
+            "path": "Assets/_Starframe/Settings/Modules/Gun3.asset",
+            "shape": "Gun3",
+            "mesh": true,
+            "material": true,
+            "icon": true,
+            "selectedIcon": true
+          },
+          {
+            "path": "Assets/_Starframe/Settings/Modules/Laser2.asset",
+            "shape": "Laser2",
+            "mesh": true,
+            "material": true,
+            "icon": true,
+            "selectedIcon": true
+          },
+          {
+            "path": "Assets/_Starframe/Settings/Modules/Laser3.asset",
+            "shape": "Laser3",
+            "mesh": true,
+            "material": true,
+            "icon": true,
+            "selectedIcon": true
+          },
+          {
+            "path": "Assets/_Starframe/Settings/Modules/Railgun1.asset",
+            "shape": "Railgun1",
+            "mesh": true,
+            "material": true,
+            "icon": true,
+            "selectedIcon": true
+          },
+          {
+            "path": "Assets/_Starframe/Settings/Modules/Railgun2.asset",
+            "shape": "Railgun2",
+            "mesh": true,
+            "material": true,
+            "icon": true,
+            "selectedIcon": true
+          },
+          {
+            "path": "Assets/_Starframe/Settings/Modules/Railgun3.asset",
+            "shape": "Railgun3",
+            "mesh": true,
+            "material": true,
+            "icon": true,
+            "selectedIcon": true
+          },
+          {
+            "path": "Assets/_Starframe/Settings/Modules/Missile1.asset",
+            "shape": "Missile1",
+            "mesh": true,
+            "material": true,
+            "icon": true,
+            "selectedIcon": true
+          },
+          {
+            "path": "Assets/_Starframe/Settings/Modules/Missile2.asset",
+            "shape": "Missile2",
+            "mesh": true,
+            "material": true,
+            "icon": true,
+            "selectedIcon": true
+          },
+          {
+            "path": "Assets/_Starframe/Settings/Modules/Missile3.asset",
+            "shape": "Missile3",
+            "mesh": true,
+            "material": true,
+            "icon": true,
+            "selectedIcon": true
+          },
+          {
+            "path": "Assets/_Starframe/Settings/Modules/Sword1.asset",
+            "shape": "Sword1",
+            "mesh": true,
+            "material": true,
+            "icon": true,
+            "selectedIcon": true
+          },
+          {
+            "path": "Assets/_Starframe/Settings/Modules/Sword2.asset",
+            "shape": "Sword2",
+            "mesh": true,
+            "material": true,
+            "icon": true,
+            "selectedIcon": true
+          },
+          {
+            "path": "Assets/_Starframe/Settings/Modules/Thruster6.asset",
+            "shape": "Thruster6",
+            "mesh": true,
+            "material": true,
+            "icon": true,
+            "selectedIcon": true
+          }
+        ],
+        "references": [
+          {
+            "path": "Assets/_Starframe/assetsForCodex/scenemodel/astro.fbx",
+            "meshes": 1,
+            "exactVertices": false,
+            "rootPosition": [
+              0.231946573,
+              1.01230669,
+              -0.09097997
+            ],
+            "rootRotationEuler": [
+              270.019775,
+              0,
+              0
+            ],
+            "rootScale": [
+              100,
+              100,
+              100
+            ],
+            "rootLocalBounds": {
+              "center": [
+                0.00164125115,
+                0.0002491027,
+                0.000393634662
+              ],
+              "size": [
+                0.1647079,
+                0.187377721,
+                0.0199912768
+              ]
+            },
+            "unityWorldBounds": {
+              "center": [
+                0.3960724,
+                1.05167007,
+                -0.1158905
+              ],
+              "size": [
+                16.47079,
+                1.99913025,
+                18.7377739
+              ]
+            },
+            "importerScale": 1
+          },
+          {
+            "path": "Assets/_Starframe/assetsForCodex/scenemodel/debri.fbx",
+            "meshes": 1,
+            "exactVertices": false,
+            "rootPosition": [
+              -1.546654,
+              1.18920445,
+              -2.37862849
+            ],
+            "rootRotationEuler": [
+              65.65123,
+              343.226,
+              102.672455
+            ],
+            "rootScale": [
+              0.682607,
+              0.6826071,
+              0.6826072
+            ],
+            "rootLocalBounds": {
+              "center": [
+                -3.69554234,
+                -3.08810472,
+                -0.0248017311
+              ],
+              "size": [
+                15.675478,
+                10.7235422,
+                4.633131
+              ]
+            },
+            "unityWorldBounds": {
+              "center": [
+                1.479837,
+                0.380578756,
+                -3.375523
+              ],
+              "size": [
+                11.7842045,
+                7.84748745,
+                13.1390753
+              ]
+            },
+            "importerScale": 1
+          },
+          {
+            "path": "Assets/_Starframe/assetsForCodex/scenemodel/mainstru.fbx",
+            "meshes": 1,
+            "exactVertices": false,
+            "rootPosition": [
+              0.262916058,
+              0.7339236,
+              -0.0345399976
+            ],
+            "rootRotationEuler": [
+              19.51454,
+              179.672943,
+              133.985168
+            ],
+            "rootScale": [
+              9.599648,
+              9.599648,
+              9.599648
+            ],
+            "rootLocalBounds": {
+              "center": [
+                0.0302331746,
+                -0.0530494153,
+                0.08943647
+              ],
+              "size": [
+                0.314515471,
+                0.34475714,
+                0.5360441
+              ]
+            },
+            "unityWorldBounds": {
+              "center": [
+                0.103745937,
+                0.9773029,
+                -1.03260207
+              ],
+              "size": [
+                4.505433,
+                5.93291855,
+                6.34521151
+              ]
+            },
+            "importerScale": 1
+          },
+          {
+            "path": "Assets/_Starframe/assetsForCodex/scenemodel/scatter.fbx",
+            "meshes": 22,
+            "exactVertices": false,
+            "rootPosition": [
+              0,
+              0,
+              0
+            ],
+            "rootRotationEuler": [
+              0,
+              0,
+              0
+            ],
+            "rootScale": [
+              1,
+              1,
+              1
+            ],
+            "rootLocalBounds": {
+              "center": [
+                0.015722841,
+                0.735914946,
+                -12.691659
+              ],
+              "size": [
+                0.7955273,
+                0.236980915,
+                1.1211834
+              ]
+            },
+            "unityWorldBounds": {
+              "center": [
+                0.015722841,
+                0.735914946,
+                -12.691659
+              ],
+              "size": [
+                0.7955273,
+                0.236980915,
+                1.1211834
+              ]
+            },
+            "importerScale": 1
+          }
+        ],
+        "missingReferences": [
+          {
+            "guid": "60f3b30c03e6ba64d9a27dc9dba8f28d",
+            "resolved": "",
+            "owners": [
+              "Assets/Settings/DefaultVolumeProfile.asset"
+            ]
+          },
+          {
+            "guid": "0fd9ee276a1023e439cf7a9c393195fa",
+            "resolved": "",
+            "owners": [
+              "Assets/Settings/DefaultVolumeProfile.asset"
+            ]
+          },
+          {
+            "guid": "5a00a63fdd6bd2a45ab1f2d869305ffd",
+            "resolved": "",
+            "owners": [
+              "Assets/Settings/DefaultVolumeProfile.asset"
+            ]
+          },
+          {
+            "guid": "74955a4b0b4243bc87231e8b59ed9140",
+            "resolved": "",
+            "owners": [
+              "Assets/Settings/DefaultVolumeProfile.asset"
+            ]
+          },
+          {
+            "guid": "e5c6678ed2aaa91408dd3df699057aae",
+            "resolved": "",
+            "owners": [
+              "Assets/Settings/PC_Renderer.asset"
+            ]
+          },
+          {
+            "guid": "03cfc4915c15d504a9ed85ecc404e607",
+            "resolved": "",
+            "owners": [
+              "Assets/Settings/PC_Renderer.asset"
+            ]
+          },
+          {
+            "guid": "53a11f4ebaebf4049b3638ef78dc9664",
+            "resolved": "",
+            "owners": [
+              "Assets/Settings/PC_Renderer.asset"
+            ]
+          },
+          {
+            "guid": "8f96cd657dc40064aa21efcc7e50a2e7",
+            "resolved": "",
+            "owners": [
+              "Assets/Settings/PC_Renderer.asset"
+            ]
+          },
+          {
+            "guid": "57d7c4c16e2765b47a4d2069b311bffe",
+            "resolved": "",
+            "owners": [
+              "Assets/Settings/PC_Renderer.asset"
+            ]
+          },
+          {
+            "guid": "24ec0e140fb444a44ab96ee80844e18e",
+            "resolved": "",
+            "owners": [
+              "Assets/Settings/PC_Renderer.asset"
+            ]
+          },
+          {
+            "guid": "b9a23f869c4fd45f19c5ada54dd82176",
+            "resolved": "",
+            "owners": [
+              "Assets/Settings/PC_Renderer.asset"
+            ]
+          },
+          {
+            "guid": "8b8c8a10edf94ddc8cc4cc4fcd5696a9",
+            "resolved": "",
+            "owners": [
+              "Assets/TextMesh Pro/Examples & Extras/Materials/Ground - Logo Scene.mat",
+              "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Bangers SDF Logo - URP.mat",
+              "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Bangers SDF Logo.mat"
+            ]
+          },
+          {
+            "guid": "c45cd05946364f32aba704f0853a975b",
+            "resolved": "",
+            "owners": [
+              "Assets/TextMesh Pro/Examples & Extras/Materials/Ground - Surface Shader Scene.mat",
+              "Assets/TextMesh Pro/Examples & Extras/Materials/Ground - URP.mat"
+            ]
+          },
+          {
+            "guid": "f5f67c52d1564df4a8936ccd202a3bd8",
+            "resolved": "",
+            "owners": [
+              "Assets/TextMesh Pro/Examples & Extras/Prefabs/Text Popup.prefab",
+              "Assets/TextMesh Pro/Examples & Extras/Scenes/05 - Style Tags.unity",
+              "Assets/TextMesh Pro/Examples & Extras/Scenes/06 - Extra Rich Text Examples.unity",
+              "Assets/TextMesh Pro/Examples & Extras/Scenes/08 - Improved Text Alignment.unity",
+              "Assets/TextMesh Pro/Examples & Extras/Scenes/09 - Margin Tag Example.unity",
+              "Assets/TextMesh Pro/Examples & Extras/Scenes/10 - Bullets & Numbered List Example.unity",
+              "Assets/TextMesh Pro/Examples & Extras/Scenes/11 - The Style Tag.unity",
+              "Assets/TextMesh Pro/Examples & Extras/Scenes/12 - Link Example.unity",
+              "Assets/TextMesh Pro/Examples & Extras/Scenes/13 - Soft Hyphenation.unity",
+              "Assets/TextMesh Pro/Examples & Extras/Scenes/15 - Inline Graphics & Sprites.unity",
+              "Assets/TextMesh Pro/Examples & Extras/Scenes/16 - Linked text overflow mode example.unity",
+              "Assets/TextMesh Pro/Examples & Extras/Scenes/17 - Old Computer Terminal.unity",
+              "Assets/TextMesh Pro/Examples & Extras/Scenes/18 - ScrollRect & Masking & Layout.unity",
+              "Assets/TextMesh Pro/Examples & Extras/Scenes/19 - Masking Texture & Soft Mask.unity",
+              "Assets/TextMesh Pro/Examples & Extras/Scenes/20 - Input Field with Scrollbar.unity",
+              "Assets/TextMesh Pro/Examples & Extras/Scenes/22 - Basic Scripting Example.unity",
+              "Assets/TextMesh Pro/Examples & Extras/Scenes/23 - Animating Vertex Attributes.unity",
+              "Assets/TextMesh Pro/Examples & Extras/Scenes/25 - Sunny Days Example.unity"
+            ]
+          },
+          {
+            "guid": "316f956b856b45c448987b5018ec3ef4",
+            "resolved": "",
+            "owners": [
+              "Assets/TextMesh Pro/Examples & Extras/Prefabs/Text Popup.prefab",
+              "Assets/TextMesh Pro/Examples & Extras/Scenes/18 - ScrollRect & Masking & Layout.unity"
+            ]
+          },
+          {
+            "guid": "5cb611ed8508d904ebba194afcee9c98",
+            "resolved": "",
+            "owners": [
+              "Assets/TextMesh Pro/Examples & Extras/Scenes/01-  Single Line TextMesh Pro.unity"
+            ]
+          },
+          {
+            "guid": "2bf015e748557a84c8fa6bfc44e4d685",
+            "resolved": "",
+            "owners": [
+              "Assets/TextMesh Pro/Examples & Extras/Scenes/02 - Multi-line TextMesh Pro.unity"
+            ]
+          },
+          {
+            "guid": "56510bd4b3627c840a063bd270324c89",
+            "resolved": "",
+            "owners": [
+              "Assets/TextMesh Pro/Examples & Extras/Scenes/03 - Line Justification.unity"
+            ]
+          },
+          {
+            "guid": "088d960ecbf7a1d4a8f94993c066a0ff",
+            "resolved": "",
+            "owners": [
+              "Assets/TextMesh Pro/Examples & Extras/Scenes/04 - Word Wrapping.unity"
+            ]
+          },
+          {
+            "guid": "6a9165d4abc743c469f4e1f2ee39605c",
+            "resolved": "",
+            "owners": [
+              "Assets/TextMesh Pro/Examples & Extras/Scenes/05 - Style Tags.unity",
+              "Assets/TextMesh Pro/Examples & Extras/Scenes/06 - Extra Rich Text Examples.unity",
+              "Assets/TextMesh Pro/Examples & Extras/Scenes/08 - Improved Text Alignment.unity",
+              "Assets/TextMesh Pro/Examples & Extras/Scenes/09 - Margin Tag Example.unity"
+            ]
+          },
+          {
+            "guid": "955cc2a4737565a4293837beb489fb59",
+            "resolved": "",
+            "owners": [
+              "Assets/TextMesh Pro/Examples & Extras/Scenes/07 - Superscript & Subscript Example.unity"
+            ]
+          },
+          {
+            "guid": "500878462c972a14d87cb770d2b59923",
+            "resolved": "",
+            "owners": [
+              "Assets/TextMesh Pro/Examples & Extras/Scenes/12a - Text Interactions.unity"
+            ]
+          },
+          {
+            "guid": "6b9a46634d3f3f0498640b1a019d5853",
+            "resolved": "",
+            "owners": [
+              "Assets/TextMesh Pro/Examples & Extras/Scenes/14 - Multi Font & Sprites.unity"
+            ]
+          },
+          {
+            "guid": "a9df86876be30af4e9b5f5975d8ee7d8",
+            "resolved": "",
+            "owners": [
+              "Assets/TextMesh Pro/Examples & Extras/Scenes/15 - Inline Graphics & Sprites.unity"
+            ]
+          },
+          {
+            "guid": "0b4bdfba56924184bbe7c948f934fb70",
+            "resolved": "",
+            "owners": [
+              "Assets/TextMesh Pro/Examples & Extras/Scenes/17 - Old Computer Terminal.unity"
+            ]
+          },
+          {
+            "guid": "92bb8874fcf329247bea65570fd7532a",
+            "resolved": "",
+            "owners": [
+              "Assets/TextMesh Pro/Examples & Extras/Scenes/24 - Surface Shader Example URP.unity",
+              "Assets/TextMesh Pro/Examples & Extras/Scenes/24 - Surface Shader Example.unity"
+            ]
+          },
+          {
+            "guid": "f70555f144d8491a825f0804e09c671c",
+            "resolved": "",
+            "owners": [
+              "Assets/TextMesh Pro/Examples & Extras/Scenes/26 - Dropdown Placeholder Example.unity"
+            ]
+          },
+          {
+            "guid": "73c176f402d2c2f4d929aa5da7585d17",
+            "resolved": "",
+            "owners": [
+              "Assets/TextMesh Pro/Examples & Extras/Scenes/28 - HDRP Shader Example.unity"
+            ]
+          },
+          {
+            "guid": "7a68c43fe1f2a47cfa234b5eeaa98012",
+            "resolved": "",
+            "owners": [
+              "Assets/TextMesh Pro/Examples & Extras/Scenes/28 - HDRP Shader Example.unity"
+            ]
+          },
+          {
+            "guid": "e31164aa529c1144b9f1820dbd4d2aca",
+            "resolved": "",
+            "owners": [
+              "Assets/TextMesh Pro/Examples & Extras/Scenes/28 - HDRP Shader Example.unity"
+            ]
+          },
+          {
+            "guid": "23c1ce4fb46143f46bc5cb5224c934f6",
+            "resolved": "",
+            "owners": [
+              "Assets/TextMesh Pro/Examples & Extras/Scenes/28 - HDRP Shader Example.unity"
+            ]
+          },
+          {
+            "guid": "f8caea216d5e7af42872b30cd96a235f",
+            "resolved": "",
+            "owners": [
+              "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Bangers SDF Logo - URP.mat",
+              "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Bangers SDF Logo.mat"
+            ]
+          },
+          {
+            "guid": "da692e001514ec24dbc4cca1949ff7e8",
+            "resolved": "",
+            "owners": [
+              "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Roboto-Bold SDF - HDRP Unlit.mat",
+              "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Unity SDF - HDRP LIT - Bloom.mat",
+              "Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Unity SDF - HDRP LIT - Outline.mat"
+            ]
+          },
+          {
+            "guid": "0d7593b3a9277ac4696b20006c21dde2",
+            "resolved": "",
+            "owners": [
+              "Assets/TextMesh Pro/Examples & Extras/Scenes/28 - HDRP Shader Example/Sky and Fog Volume Profile.asset"
+            ]
+          }
+        ],
+        "activeTemplateReferenceOwners": [
+          "Assets/Settings/PC_Renderer.asset"
+        ],
+        "note": "YAML reference scan excludes files over 12 MB; builtin GUIDs ignored. Model bounds use readable vertices (or conservative transformed AABB if exactVertices=false), imported prefab root-local vs Unity world, root scale and rotation applied once. No map runtime was constructed."
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "D:\\software\\unity\\CGDD26107"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

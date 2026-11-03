@@ -1,0 +1,34 @@
+{
+  "status": "completed",
+  "duration": 3.55,
+  "summary": {
+    "total": 3,
+    "passed": 3,
+    "failed": 0,
+    "skipped": 0,
+    "inconclusive": 0
+  },
+  "results": [
+    {
+      "FullName": "Starframe.Tests.UIIterationTests.EightWeaponGroupsFitTheSafePlaneAndIndividualAssignmentsStayStaged",
+      "Status": "Passed",
+      "Duration": 2.0739682,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.UIIterationTests.InterfacePreferencesAreRealStagedControlsAndDiscardLeavesSavedPreferencesUntouched",
+      "Status": "Passed",
+      "Duration": 0.4223941,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.UIIterationTests.SingleOperationAndBlueprintSearchRemainReadableInBothLocalesAtLargeTextSize",
+      "Status": "Passed",
+      "Duration": 1.03515,
+      "Message": null,
+      "StackTrace": null
+    }
+  ]
+}

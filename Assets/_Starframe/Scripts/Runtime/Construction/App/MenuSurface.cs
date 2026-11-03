@@ -23,6 +23,11 @@ namespace Starframe.App
         public event Action<Exception> OperationFailed;
         readonly List<Material> materials=new List<Material>();
         readonly List<RawImage> backgrounds=new List<RawImage>();
+        readonly Vector3[] panelCorners=new Vector3[4];
+        int geometryWidth,geometryHeight;
+        Vector2 geometryCanvasSize;
+        UiControlHint hintOwner;string hintMessage;float hintDeadline;Vector2 hintPosition;
+        RectTransform hintPanel;TextMeshProUGUI hintText;
         public void Initialize(Camera world)
         {
             worldCamera=world;world.cullingMask&=~(1<<5);
@@ -32,13 +37,13 @@ namespace Starframe.App
             cameraObject.AddComponent<UnityEngine.Rendering.Universal.UniversalAdditionalCameraData>().renderPostProcessing=false;
             var go=new GameObject("GameMenuCanvas",typeof(RectTransform),typeof(Canvas),typeof(CanvasScaler),typeof(GraphicRaycaster));go.layer=5;go.transform.SetParent(transform,false);
             Canvas=go.GetComponent<Canvas>();Canvas.renderMode=RenderMode.ScreenSpaceCamera;Canvas.worldCamera=DisplayCamera;Canvas.planeDistance=1;
-            var scaler=go.GetComponent<CanvasScaler>();scaler.uiScaleMode=CanvasScaler.ScaleMode.ScaleWithScreenSize;scaler.referenceResolution=new Vector2(1920,1080);scaler.matchWidthOrHeight=.5f;
+            UiStyle.ApplyScaler(go.GetComponent<CanvasScaler>());
             var backdrop=Rect((RectTransform)go.transform,"WorldView",0,0,1920,1080).gameObject.AddComponent<RawImage>();backdrop.raycastTarget=false;backgrounds.Add(backdrop);
             Root=Rect((RectTransform)go.transform,"Page",0,0,1920,1080);
             if(!FindFirstObjectByType<EventSystem>()){
                 var events=new GameObject("MenuEventSystem",typeof(EventSystem),typeof(InputSystemUIInputModule));events.transform.SetParent(transform,false);events.GetComponent<InputSystemUIInputModule>().AssignDefaultActions();
             }
-            Resize();
+            Resize();GameSettings.Changed+=RefreshStyle;
         }
         public void InitializeOverlay(Canvas owner,Camera world)
         {
@@ -46,9 +51,12 @@ namespace Starframe.App
             Root=GetComponent<RectTransform>();if(!Root)throw new InvalidOperationException("Overlay requires a RectTransform.");
             Root.SetParent(owner.transform,false);Root.anchorMin=Vector2.zero;Root.anchorMax=Vector2.one;Root.offsetMin=Root.offsetMax=Vector2.zero;Root.SetAsLastSibling();
             var blocker=gameObject.AddComponent<UnityEngine.UI.Image>();blocker.color=new Color(0,0,0,.55f);blocker.raycastTarget=true;
+            UiModalScope.Protect((RectTransform)owner.transform,Root);
+            GameSettings.Changed+=RefreshStyle;
         }
         public void Clear()
         {
+            hintOwner=null;hintPanel=null;hintText=null;
             for(int i=Root.childCount-1;i>=0;i--){var child=Root.GetChild(i).gameObject;child.SetActive(false);Destroy(child);}
             foreach(var value in materials)if(value)Destroy(value);materials.Clear();
             backgrounds.RemoveAll(x=>!x||x.name!="WorldView");
@@ -67,11 +75,42 @@ namespace Starframe.App
         {
             var label=Rect(Root,name,x,y,w,h).gameObject.AddComponent<TextMeshProUGUI>();ConfigureText(label,text,size,color??GlassUiPalette.Ink);return label;
         }
+        public void Hint(Component control,string message)
+        {
+            var hint=control.GetComponent<UiControlHint>();if(!hint)hint=control.gameObject.AddComponent<UiControlHint>();
+            hint.surface=this;hint.message=message;
+        }
+        public void ScheduleHint(UiControlHint owner,string message,Vector2 position)
+        {
+            hintOwner=owner;hintMessage=message;hintPosition=position;hintDeadline=Time.unscaledTime+.55f;
+            if(hintPanel)hintPanel.gameObject.SetActive(false);
+        }
+        public void HideHint(UiControlHint owner)
+        {
+            if(owner!=hintOwner)return;hintOwner=null;if(hintPanel)hintPanel.gameObject.SetActive(false);
+        }
+        void UpdateHint()
+        {
+            if(!hintOwner||string.IsNullOrEmpty(hintMessage)||Time.unscaledTime<hintDeadline)return;
+            if(!hintPanel)
+            {
+                hintPanel=Panel("ControlHelpGlass",0,0,376,84,true);
+                hintText=Label("ControlHelp","",0,0,340,60,16);
+                var rect=hintText.rectTransform;rect.SetParent(hintPanel,false);rect.anchorMin=Vector2.zero;rect.anchorMax=Vector2.one;
+                rect.offsetMin=new Vector2(18,12);rect.offsetMax=new Vector2(-18,-12);
+            }
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(Root,hintPosition,DisplayCamera,out var point);
+            float x=Mathf.Clamp((point.x-Root.rect.xMin)/Root.rect.width*1920+16,16,1528);
+            float y=Mathf.Clamp((Root.rect.yMax-point.y)/Root.rect.height*1080+24,16,980);
+            hintPanel.anchorMin=new Vector2(x/1920,1-(y+84)/1080);hintPanel.anchorMax=new Vector2((x+376)/1920,1-y/1080);
+            hintPanel.offsetMin=hintPanel.offsetMax=Vector2.zero;hintText.text=hintMessage;hintPanel.SetAsLastSibling();hintPanel.gameObject.SetActive(true);
+        }
         static void ConfigureText(TextMeshProUGUI label,string text,float size,Color color)
         {
             label.font=L10n.CurrentFont;label.text=text;label.fontSize=size;label.color=color;label.raycastTarget=false;
             L10n.ApplyUserContentFont(label);
             label.textWrappingMode=TextWrappingModes.Normal;label.overflowMode=TextOverflowModes.Ellipsis;label.enableAutoSizing=false;label.characterWidthAdjustment=0;
+            label.extraPadding=true;UiStyle.ApplyText(label,size);
         }
         public RectTransform Panel(string name,float x,float y,float w,float h,bool dialog=false)
         {
@@ -84,8 +123,9 @@ namespace Starframe.App
         {
             var rect=Rect(Root,name,x,y,w,h);var image=rect.gameObject.AddComponent<UnityEngine.UI.Image>();image.color=primary?GlassUiPalette.Action:GlassUiPalette.Button;
             var button=rect.gameObject.AddComponent<UnityEngine.UI.Button>();button.targetGraphic=image;button.navigation=new Navigation{mode=Navigation.Mode.Automatic};
-            var colors=button.colors;colors.highlightedColor=new Color(1.16f,1.19f,1.19f,1);colors.selectedColor=colors.highlightedColor;colors.pressedColor=new Color(.76f,.85f,.86f,1);colors.disabledColor=new Color(.5f,.52f,.55f,.4f);colors.fadeDuration=.12f;button.colors=colors;
-            var label=Local(rect,name+"Label",Vector2.zero,Vector2.one,new Vector2(14,4),new Vector2(-14,-4)).gameObject.AddComponent<TextMeshProUGUI>();ConfigureText(label,text,17,primary?GlassUiPalette.ActionInk:GlassUiPalette.Ink);label.alignment=TextAlignmentOptions.Center;label.textWrappingMode=TextWrappingModes.NoWrap;
+            button.colors=UiStyle.ControlColors();
+            float padding=w<=64?3:14;
+            var label=Local(rect,name+"Label",Vector2.zero,Vector2.one,new Vector2(padding,3),new Vector2(-padding,-3)).gameObject.AddComponent<TextMeshProUGUI>();ConfigureText(label,text,17,primary?GlassUiPalette.ActionInk:GlassUiPalette.Ink);label.alignment=TextAlignmentOptions.Center;label.textWrappingMode=TextWrappingModes.NoWrap;
             button.onClick.AddListener(()=>{GameAudio.PlayUiClick();try{action?.Invoke();}catch(Exception error)when(error is System.IO.IOException||error is System.IO.InvalidDataException||error is UnauthorizedAccessException){if(OperationFailed!=null)OperationFailed(error);else Debug.LogWarning(error.Message);}});return button;
         }
         public TMP_InputField Input(string name,string value,float x,float y,float w,float h,Action<string> changed)
@@ -136,16 +176,39 @@ namespace Starframe.App
             var label=Local(rect,"Label",Vector2.zero,Vector2.one,new Vector2(38,0),Vector2.zero).gameObject.AddComponent<TextMeshProUGUI>();ConfigureText(label,text,16,GlassUiPalette.Ink);label.alignment=TextAlignmentOptions.MidlineLeft;
             var toggle=rect.gameObject.AddComponent<UnityEngine.UI.Toggle>();toggle.targetGraphic=bg;toggle.graphic=image;toggle.isOn=value;toggle.onValueChanged.AddListener(v=>changed?.Invoke(v));return toggle;
         }
-        void Update()=>Resize();
+        void Update(){Resize();UpdateHint();RefreshPanelUvs();}
+        void RefreshStyle()
+        {
+            foreach(var image in backgrounds)if(image&&image.name!="WorldView"&&image.material)
+                GlassUiPalette.Apply(image.material,image.material.GetColor("_Tint"));
+        }
+        void RefreshPanelUvs()
+        {
+            // Panels sample their true screen rectangle, including ultrawide safe margins and overlays.
+            foreach(var image in backgrounds)
+            {
+                if(!image||image.name=="WorldView")continue;
+                image.rectTransform.GetWorldCorners(panelCorners);
+                var lower=RectTransformUtility.WorldToScreenPoint(DisplayCamera,panelCorners[0]);
+                var upper=RectTransformUtility.WorldToScreenPoint(DisplayCamera,panelCorners[2]);
+                var uv=new UnityEngine.Rect(lower.x/Mathf.Max(1,Screen.width),lower.y/Mathf.Max(1,Screen.height),(upper.x-lower.x)/Mathf.Max(1,Screen.width),(upper.y-lower.y)/Mathf.Max(1,Screen.height));
+                if(image.uvRect==uv)continue;
+                image.uvRect=uv;image.material.SetVector("_PanelUVRect",new Vector4(uv.x,uv.y,uv.width,uv.height));
+            }
+        }
         void Resize()
         {
             if(!ownsScene){if(worldCamera&&scene!=worldCamera.targetTexture){scene=worldCamera.targetTexture;foreach(var image in backgrounds)if(image)image.texture=scene;}return;}
-            if(!worldCamera)return;int width=Mathf.Max(1,Screen.width),height=Mathf.Max(1,Screen.height);if(scene&&scene.width==width&&scene.height==height)return;
+            if(!worldCamera)return;int width=Mathf.Max(1,Screen.width),height=Mathf.Max(1,Screen.height);
+            var canvasSize=((RectTransform)Canvas.transform).rect.size;
+            if(geometryWidth!=width||geometryHeight!=height||geometryCanvasSize!=canvasSize){geometryWidth=width;geometryHeight=height;geometryCanvasSize=canvasSize;UiStyle.FitSafePlane(Root);}
+            if(scene&&scene.width==width&&scene.height==height)return;
             if(scene){worldCamera.targetTexture=null;scene.Release();Destroy(scene);}scene=new RenderTexture(width,height,24,RenderTextureFormat.ARGBHalf){name="GameMenuView",useMipMap=true,autoGenerateMips=true,filterMode=FilterMode.Trilinear};scene.Create();worldCamera.targetTexture=scene;worldCamera.aspect=(float)width/height;
             foreach(var image in backgrounds)if(image)image.texture=scene;
         }
         void OnDestroy()
         {
+            GameSettings.Changed-=RefreshStyle;
             if(ownsScene){if(worldCamera&&worldCamera.targetTexture==scene)worldCamera.targetTexture=null;if(scene){scene.Release();Destroy(scene);}}foreach(var material in materials)if(material)Destroy(material);
         }
     }

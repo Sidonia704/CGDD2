@@ -1,0 +1,79 @@
+{
+    "MonoBehaviour": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "Gun1Weapon",
+        "m_EditorClassIdentifier": "Starframe.Construction::Starframe.Flight.WeaponDefinition",
+        "shotsPerSecond": 16.0,
+        "damage": 6.0,
+        "projectileSpeed": 1600.0,
+        "projectileDiameter": 0.3499999940395355,
+        "firstShotImmediate": false,
+        "penetrationDepth": 1.0,
+        "secondLayerDamageMultiplier": 0.3499999940395355,
+        "range": 1500.0,
+        "visualLength": 4.0,
+        "tailLength": 100.0,
+        "visualWidth": 2.200000047683716,
+        "visualIntensity": 6.5,
+        "minimumVisualPixels": 2.200000047683716,
+        "tracerStyle": 0,
+        "tracerLingerSeconds": 0.0,
+        "sustainedPowerWatts": 18.0,
+        "energyPerShot": 100.0,
+        "delivery": 0,
+        "effectColor": {
+            "r": 1.0,
+            "g": 0.6200000047683716,
+            "b": 0.054999999701976779,
+            "a": 1.0
+        },
+        "missileLockSeconds": 2.0,
+        "reloadSeconds": 4.0,
+        "missileTurnDegrees": 110.0,
+        "missileAcceleration": 160.0,
+        "missileTurnAcceleration": 180.0,
+        "missileGuidanceSeconds": 10.0,
+        "missileSeekerConeDegrees": 65.0,
+        "missileSeekerLossSeconds": 0.3499999940395355,
+        "missileLaunchSpeed": 35.0,
+        "explosionRadius": 3.0,
+        "launcherMesh": {
+            "instanceID": 0
+        },
+        "missileMesh": {
+            "instanceID": 0
+        },
+        "missileLaunchOffsets": [
+            {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        ],
+        "muzzleOffsets": [
+            {
+                "x": -0.13002851605415345,
+                "y": -0.000021591782569885254,
+                "z": 0.0
+            },
+            {
+                "x": 0.13002851605415345,
+                "y": 0.00002158433198928833,
+                "z": 0.0
+            }
+        ],
+        "projectileMaterial": {
+            "fileID": 2100000,
+            "guid": "060df83c9f5482f4ea424501392ac7de",
+            "type": 2
+        },
+        "beamDuration": 0.11999999731779099,
+        "beamMesh": {
+            "instanceID": 0
+        },
+        "activationMode": 0,
+        "chargeSeconds": 1.0,
+        "requireTargetLock": false
+    }
+}

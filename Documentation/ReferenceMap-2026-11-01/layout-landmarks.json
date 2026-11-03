@@ -1,0 +1,31 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "run_script",
+    "parameters": {
+      "file": "tools/ReferenceMap20261101/Import.cs",
+      "entry": "ReferenceMapImport.CreateLayout",
+      "args": "[\"Temp/ReferenceMap20261101/geometry-landmarks-catalog.json\",\"Landmarks\",\"ReferenceAcceptanceLandmarks\"]"
+    },
+    "result": {
+      "diagnostics": [],
+      "compileMs": 1141,
+      "executeMs": 1593,
+      "assemblyName": "PipelineRunScript_Import_1e3881947b87446497b19647bf6f112c",
+      "success": true,
+      "result": {
+        "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Layouts/ReferenceAcceptanceLandmarks.asset",
+        "instances": 75,
+        "cells": 522536
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "D:\\software\\unity\\CGDD26107"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

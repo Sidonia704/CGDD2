@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2979d4754e35dc43a668a974595a374, type: 3}
+  m_Name: bastion-behavior
+  m_EditorClassIdentifier: Starframe.Construction::Starframe.Combat.BotBehaviorProfile
+  role: 3
+  preferredRange: 550
+  cruiseSpeedFraction: 0.56
+  attackSpeedFraction: 0.3
+  strafeFraction: 0.16
+  attackPass: 0
+  minimumAttackSeconds: 2
+  attackSeconds: 6
+  breakawaySeconds: 2
+  reactionSeconds: 1
+  fireBurstSeconds: 0.8
+  firePauseSeconds: 1.5
+  aimErrorDegrees: 0.3
+  velocityResponseSeconds: 0.7
+  steeringResponseSeconds: 0.16
+  weaponHoldSeconds: 1.4
+  terrainLookaheadSeconds: 2
+  terrainProbeSeconds: 0.18

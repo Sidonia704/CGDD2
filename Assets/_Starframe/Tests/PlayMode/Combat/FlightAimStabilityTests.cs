@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Reflection;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -14,7 +15,8 @@ namespace Starframe.Tests
         {
             hadSettings=PlayerPrefs.HasKey(RangeTargetRoster.PreferenceKey);settings=PlayerPrefs.GetString(RangeTargetRoster.PreferenceKey);
             PlayerPrefs.SetString(RangeTargetRoster.PreferenceKey,"{\"entries\":[]}");
-            FlightSession.Begin(FlightRangeBootstrap.DefaultShip(),false);yield return SceneManager.LoadSceneAsync(FlightSession.RangeScene);yield return null;
+            FlightSession.Begin(FlightRangeBootstrap.DefaultShip(),false);yield return SceneManager.LoadSceneAsync(FlightSession.RangeScene);
+            yield return TargetLockTestPreparation.WaitForWorld(30);
         }
         [UnityTearDown]public IEnumerator TearDown()
         {
@@ -32,7 +34,11 @@ namespace Starframe.Tests
             }
             Assert.That(total,Is.GreaterThan(.5f));Assert.That(total,Is.LessThan(5));Assert.That(maxStep,Is.LessThan(.2f),"Fine input must not jump at a physics step.");
             flight.SetExternalInput(Vector3.zero,Vector2.zero);yield return new WaitForSeconds(.5f);var settled=player.body.rotation;
-            yield return new WaitForSeconds(.25f);Assert.That(AngularDifference(settled,player.body.rotation),Is.LessThan(.03f));
+            yield return new WaitForSeconds(.25f);
+            float drift=AngularDifference(settled,player.body.rotation);
+            var angularVelocity=(Vector3)typeof(ShipFlightController).GetField("angularVelocity",BindingFlags.Instance|BindingFlags.NonPublic).GetValue(flight);
+            var rotationDemand=(Vector3)typeof(ShipFlightController).GetField("rotationDemand",BindingFlags.Instance|BindingFlags.NonPublic).GetValue(flight);
+            Assert.That(drift,Is.LessThan(.03f),$"settled drift={drift:R}deg; angularVelocity={angularVelocity:R}deg/s; velocity={flight.Velocity:R}m/s; rotationDemand={rotationDemand:R}");
         }
         // Quaternion.Angle snaps tiny per-step rotations to zero; atan2 retains the precision needed for fine aim.
         static float AngularDifference(Quaternion a,Quaternion b){var d=Quaternion.Inverse(a)*b;return 2*Mathf.Atan2(new Vector3(d.x,d.y,d.z).magnitude,Mathf.Abs(d.w))*Mathf.Rad2Deg;}

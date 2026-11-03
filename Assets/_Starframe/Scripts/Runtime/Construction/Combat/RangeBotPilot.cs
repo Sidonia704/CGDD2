@@ -1,5 +1,5 @@
-// @role Steer range opponents, avoid obstacles and plan firing opportunities.
-// @calls InterceptSolver, CylindricalHitQuery, ShipWeapons
+// @role Continuously steer range and mission opponents using role-based attack runs, bounded terrain probes and shared ship capabilities.
+// @calls BotBehaviorProfile, InterceptSolver, CylindricalHitQuery, ShipWeapons
 
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,6 +14,13 @@ namespace Starframe.Combat
     public sealed class RangeBotPilot
     {
         readonly List<WeaponAimProfile> profiles = new List<WeaponAimProfile>();
+        readonly RaycastHit[] terrainHits = new RaycastHit[24];
+        readonly Collider[] nearTerrain = new Collider[12];
+        BotBehaviorProfile behavior;
+        bool attackPermission = true, hasDesiredVelocity, hasSteering, cachedTerrainClear = true;
+        Vector3 smoothDirection, smoothedAvoidance, terrainAvoidance;
+        double nextWeaponSelection, nextTerrainProbe, nextFireProbe, phaseStarted;
+        int terrainMask = -1;
         ShipPartState gun;
         ModuleDefinition module;
         WeaponDefinition weapon;
@@ -21,6 +28,9 @@ namespace Starframe.Combat
         Quaternion previousRotation;
         Vector3 measuredAngularVelocity, avoidance, waypoint, flank, previousAimDirection;
         bool hasRotation, hasAimDirection;
+        Vector3 perceivedTargetVelocity;
+        double nextVelocitySample;
+        bool hasVelocitySample;
         int targetLife = -1;
         double nextDecision, phaseUntil, attackStarted,engageStarted;
         public RangeBotPhase Phase { get; private set; }
@@ -28,12 +38,41 @@ namespace Starframe.Combat
         public Vector3 AimPoint { get; private set; }
         public bool Fire { get; private set; }
         public bool Boost { get; private set; }
+        public BotBehaviorProfile Behavior => behavior;
+        public bool AttackPermitted => attackPermission;
+        Vector3 missionCenter;
+        float missionRadius;
+        public void SetMissionArea(Vector3 center,float radius){missionCenter=center;missionRadius=Mathf.Max(0,radius);}
+        public static Vector3 CentralCombatVelocity(Vector3 position,Vector3 velocity,Vector3 center,float radius,float speed,int slot)
+        {
+            if(radius<=0)return velocity;
+            Vector3 delta=position-center;
+            float blend=Mathf.SmoothStep(0,1,Mathf.InverseLerp(radius*.65f,radius,delta.magnitude));
+            if(blend<=0)return velocity;
+            // Distinct inward headings avoid collecting the whole fleet at a single return point.
+            Vector3 destination=center+new Vector3(Mathf.Sin(slot*2.399963f),.2f*Mathf.Sin(slot),Mathf.Cos(slot*2.399963f))*radius*.22f;
+            return Vector3.Lerp(velocity,(destination-position).normalized*speed,blend);
+        }
+
+        public void SetBehavior(BotBehaviorProfile value)
+        {
+            if (behavior == value) return;
+            behavior = value;
+            nextWeaponSelection = nextTerrainProbe = nextFireProbe = 0;
+        }
+
+        // The director grants firing opportunities independently of navigation. Losing a slot must not cause a turn.
+        public void SetAttackPermission(bool value) => attackPermission = value;
 
         public void Reset()
         {
             gun = null; module = null; weapon = null; targetLife = -1;
-            hasRotation = hasAimDirection = false; lastMode = (RangeBotMode)(-1); nextDecision = phaseUntil = 0;
-            measuredAngularVelocity = avoidance = DesiredVelocity = Vector3.zero;
+            hasRotation = hasAimDirection = hasDesiredVelocity = hasSteering = false;
+            hasVelocitySample=false;nextVelocitySample=0;perceivedTargetVelocity=Vector3.zero;
+            lastMode = (RangeBotMode)(-1); nextDecision = phaseUntil = 0;
+            nextWeaponSelection = nextTerrainProbe = nextFireProbe = phaseStarted = 0;
+            measuredAngularVelocity = avoidance = smoothedAvoidance = terrainAvoidance = DesiredVelocity = Vector3.zero;
+            cachedTerrainClear = true;
             Fire = Boost = false;
         }
 
@@ -59,9 +98,10 @@ namespace Starframe.Combat
             if (changed)
             {
                 lastMode = mode; targetLife = life; nextDecision = 0;
-                hasAimDirection = false;attackStarted=engageStarted=time;
+                hasAimDirection = hasVelocitySample = false;attackStarted=engageStarted=phaseStarted=time;
                 Phase = mode == RangeBotMode.FlyOnly ? RangeBotPhase.Cruise : RangeBotPhase.Attack;
-                phaseUntil = mode == RangeBotMode.FlyOnly || !targetAlive ? time : time + Mathf.Max(.2f, rules.botAttackSeconds);
+                phaseUntil = mode == RangeBotMode.FlyOnly || !targetAlive ? time : time + AttackSeconds(rules);
+                nextWeaponSelection = nextFireProbe = 0;
             }
             bool stationary = mode == RangeBotMode.Stationary || mode == RangeBotMode.StationaryFire;
             if (time >= nextDecision)
@@ -69,15 +109,36 @@ namespace Starframe.Combat
                 // The slot offset spreads expensive weapon/obstacle decisions across physics steps.
                 float interval = Mathf.Clamp(rules.botPilotDecisionSeconds, .05f, .5f);
                 nextDecision = time + interval * (.75f + .5f * ((self.spawnSlot * .61803399f) % 1));
-                SelectWeapon(self, targetAlive ? target : null, targetCoreVelocity);
+                if (time >= nextWeaponSelection || gun == null || !gun.present)
+                {
+                    SelectWeapon(self, targetAlive ? target : null, targetCoreVelocity);
+                    nextWeaponSelection = time + (behavior ? behavior.weaponHoldSeconds : 1.2f);
+                }
                 Plan(self, target, targetAlive, rules, tuning, mode, time);
                 avoidance = stationary ? Vector3.zero : AvoidObstacles(self, actors, wrecks);
             }
+            if (!stationary && time >= nextTerrainProbe)
+            {
+                nextTerrainProbe = time + (behavior ? behavior.terrainProbeSeconds : .2f)
+                    * (.9f + .2f * ((self.spawnSlot * .61803399f) % 1));
+                terrainAvoidance = AvoidTerrain(self);
+            }
+            smoothedAvoidance = Vector3.Lerp(smoothedAvoidance, stationary ? Vector3.zero : avoidance + terrainAvoidance, ResponseWeight(.16f, dt));
 
             Vector3 desiredDirection = self.body.rotation * Vector3.forward;
             Vector3 aimOrigin = self.ship.CorePhysicsPosition;
             Vector3 barrelDirection = desiredDirection;
             bool hasIntercept = false;
+            bool impreciseDirect=self.ship.Team!=0&&weapon&&weapon.delivery!=WeaponDelivery.GuidedMissile;
+            Vector3 aimVelocity=targetCoreVelocity;
+            if(impreciseDirect&&targetAlive){
+                // React to changes in target motion at human-scale intervals instead of perfect per-step lead.
+                if(!hasVelocitySample||time>=nextVelocitySample){
+                    perceivedTargetVelocity=targetCoreVelocity;hasVelocitySample=true;
+                    nextVelocitySample=time+Mathf.Max(.01f,rules.botDirectVelocitySampleSeconds);
+                }
+                aimVelocity=perceivedTargetVelocity;
+            }
             AimPoint = targetAlive ? target.ship.CorePhysicsPosition : self.body.position + desiredDirection * 100;
             if (targetAlive && gun != null && gun.present && module && weapon)
             {
@@ -85,11 +146,26 @@ namespace Starframe.Combat
                 aimOrigin = matrix.MultiplyPoint3x4(module.muzzleLocalPosition);
                 barrelDirection = matrix.MultiplyVector(Vector3.forward).normalized;
                 hasIntercept = InterceptSolver.TrySolve(aimOrigin, target.ship.CorePhysicsPosition,
-                    targetCoreVelocity, weapon.projectileSpeed, weapon.range, out var intercept, out _);
+                    aimVelocity, weapon.projectileSpeed, weapon.range, out var intercept, out _);
                 if (hasIntercept) AimPoint = intercept;
             }
 
-            float cruise = self.ship.Performance.maxSpeed * Mathf.Clamp01(rules.botCruiseSpeedFraction);
+            float aimError=behavior?behavior.aimErrorDegrees:impreciseDirect?.3f:0;
+            if(impreciseDirect)aimError=Mathf.Max(.2f,aimError)*Mathf.Max(1,rules.botDirectAimErrorMultiplier);
+            if (targetAlive && aimError > 0)
+            {
+                // Slow continuous error has a direction and persistence; it is not white noise every physics frame.
+                Vector2 errorAngles = PersistentAimError(time, self.spawnSlot, aimError);
+                Vector3 line = AimPoint - aimOrigin;
+                if (line.sqrMagnitude > .001f)
+                {
+                    Quaternion frame = Quaternion.LookRotation(line.normalized,
+                        Mathf.Abs(Vector3.Dot(line.normalized, Vector3.up)) > .98f ? Vector3.right : Vector3.up);
+                    AimPoint = aimOrigin + frame * Quaternion.Euler(errorAngles.y, errorAngles.x, 0) * Vector3.forward * line.magnitude;
+                }
+            }
+
+            float cruise = self.ship.Performance.maxSpeed * Mathf.Clamp01(behavior ? behavior.cruiseSpeedFraction : rules.botCruiseSpeedFraction);
             bool boundaryTurn = false;
             if (stationary)
             {
@@ -105,13 +181,18 @@ namespace Starframe.Combat
                     route = AimPoint - self.body.position;
                     float separation = Vector3.Distance(self.ship.CorePhysicsPosition, target.ship.CorePhysicsPosition);
                     float preferred = PreferredRange(self, target, weapon,rules);
-                    float speed = self.ship.Performance.maxSpeed * Mathf.Clamp01(rules.botAttackSpeedFraction);
-                    // Match the target's motion and hold firing distance instead of always charging past it.
-                    float closingSpeed=Mathf.Clamp((separation-preferred)*.9f,-speed*.35f,speed);
-                    requestedVelocity=target.flight.Velocity+route.normalized*closingSpeed
-                        +flank*speed*Mathf.Clamp01(rules.botStrafeSpeedFraction);
+                    float speed = self.ship.Performance.maxSpeed * Mathf.Clamp01(behavior ? behavior.attackSpeedFraction : rules.botAttackSpeedFraction);
+                    requestedVelocity = AttackVelocity(route, target.flight.Velocity, separation, preferred, speed,
+                        flank, behavior ? behavior.strafeFraction : rules.botStrafeSpeedFraction);
                 }
-                DesiredVelocity = Vector3.ClampMagnitude(requestedVelocity + avoidance, cruise);
+                if(missionRadius>0){
+                    requestedVelocity=CentralCombatVelocity(self.body.position,requestedVelocity,missionCenter,missionRadius,cruise,self.spawnSlot);
+                    if((self.body.position-missionCenter).sqrMagnitude>missionRadius*missionRadius*.64f)boundaryTurn=true;
+                }
+                if (!hasDesiredVelocity) { DesiredVelocity = self.flight.Velocity; hasDesiredVelocity = true; }
+                DesiredVelocity = BlendVelocity(DesiredVelocity,
+                    Vector3.ClampMagnitude(requestedVelocity + smoothedAvoidance, cruise),
+                    behavior ? behavior.velocityResponseSeconds : .35f, dt);
                 float braking = Mathf.Max(.2f, self.ship.Performance.assistAcceleration / 3);
                 Vector3 unconstrained = DesiredVelocity;
                 DesiredVelocity = ConstrainToArena(self.body.position, DesiredVelocity, self.flight.Velocity,
@@ -126,25 +207,42 @@ namespace Starframe.Combat
             if (aiming) desiredDirection = (AimPoint - aimOrigin).normalized;
             Vector3 from = aiming && gun != null && gun.present ? barrelDirection : self.body.rotation * Vector3.forward;
             if (mode == RangeBotMode.Stationary) desiredDirection = from;
+            if (!hasSteering) { smoothDirection = from; hasSteering = true; }
+            // The physical flight controller already filters stick/rate requests. Filtering a live firing
+            // sightline again creates a permanent lag behind a fast crossing target; feed-forward then tracks
+            // the delayed line instead of the actual intercept. Smooth navigation transitions, but track the
+            // continuous measured intercept directly while aiming. Actual turning remains engine-limited.
+            smoothDirection = aiming ? desiredDirection : BlendDirection(smoothDirection, desiredDirection,
+                behavior ? behavior.steeringResponseSeconds : .12f, dt);
+            desiredDirection = smoothDirection;
             float error = Vector3.Angle(from, desiredDirection);
-            if (engage && hasIntercept)
+            if (engage && hasIntercept && attackPermission)
             {
                 var profile = new WeaponAimProfile { weapon = weapon, origin = aimOrigin, direction = barrelDirection };
-                Fire = TryFiringSolution(profile, target.ship.CorePhysicsPosition, targetCoreVelocity,
+                // Trigger against the bot's imperfect aim, rather than secretly waiting for true core alignment.
+                Fire = TryFiringSolution(profile, impreciseDirect?AimPoint:target.ship.CorePhysicsPosition, impreciseDirect?Vector3.zero:aimVelocity,
                     rules.botMaxFireAngleDegrees, out _,Mathf.Clamp(target.ship.HullRadius*rules.botFireTargetRadiusFraction,.4f,8))
                     && ClearFireLane(self, target, actors, wrecks, aimOrigin, AimPoint);
+                if (Fire && time >= nextFireProbe)
+                {
+                    nextFireProbe = time + (behavior ? behavior.terrainProbeSeconds : .2f);
+                    cachedTerrainClear = ClearTerrainLane(aimOrigin, AimPoint, Mathf.Max(.05f, weapon.projectileDiameter * .5f));
+                }
+                Fire &= cachedTerrainClear;
             }
             if(Fire&&mode==RangeBotMode.Combat)
             {
                 // Give the player predictable gaps instead of perfect, uninterrupted battery fire.
-                double elapsed=time-engageStarted-Mathf.Max(0,rules.botReactionSeconds)-self.spawnSlot%5*.2f;
-                float burst=Mathf.Max(.05f,rules.botFireBurstSeconds),pause=Mathf.Max(0,rules.botFirePauseSeconds);
+                double elapsed=time-engageStarted-Mathf.Max(0,behavior ? behavior.reactionSeconds : rules.botReactionSeconds)-self.spawnSlot%5*.2f;
+                float burst=Mathf.Max(.05f,behavior ? behavior.fireBurstSeconds : rules.botFireBurstSeconds),
+                    pause=Mathf.Max(0,behavior ? behavior.firePauseSeconds : rules.botFirePauseSeconds);
+                burst = EffectiveBurstSeconds(burst, weapon);
                 Fire=elapsed>=0&&elapsed%(burst+pause)<burst;
             }
             float reserve = Mathf.Max(0, tuning.boostPowerWatts) * .5f;
             bool boostPower = rules.unlimitedRangePower || self.ship.Power.Energy > reserve
                 || self.ship.Power.Generation >= tuning.boostPowerWatts;
-            Boost = !stationary && boostPower && error < 38 && avoidance.sqrMagnitude < cruise * cruise * .16f
+            Boost = !stationary && boostPower && error < 38 && smoothedAvoidance.sqrMagnitude < cruise * cruise * .16f
                 && (Phase == RangeBotPhase.Breakaway || Phase == RangeBotPhase.Reposition || Phase == RangeBotPhase.Cruise
                     || (Phase==RangeBotPhase.Attack&&targetAlive&&Vector3.Distance(self.body.position,target.body.position)>PreferredRange(self,target,weapon,rules)*1.4f))
                 && DesiredVelocity.magnitude > self.flight.CurrentSpeed + 3;
@@ -190,6 +288,10 @@ namespace Starframe.Combat
             {
                 if (!profile.weapon) continue;
                 float score = profile.gunCount;
+                bool missileRole = behavior && (behavior.role == BotCombatRole.Missile || behavior.role == BotCombatRole.Frigate);
+                bool guided = profile.weapon.delivery == WeaponDelivery.GuidedMissile;
+                // Direct-fire vessels keep a direct-fire reference even if the auxiliary missiles outnumber their guns.
+                if (missileRole == guided) score += 180;
                 if (target != null)
                 {
                     bool solution = InterceptSolver.TrySolve(profile.origin, target.ship.CorePhysicsPosition,
@@ -238,28 +340,87 @@ namespace Starframe.Combat
             float distance = radial.magnitude;
             float closing = Vector3.Dot(self.flight.Velocity - target.flight.Velocity, -radial.normalized);
             float stopping = closing > 0 ? closing * closing / (2 * Mathf.Max(.5f, self.ship.Performance.assistAcceleration)) : 0;
-            if(Phase==RangeBotPhase.Attack&&distance>preferred*1.4f)phaseUntil=time+Mathf.Max(.2f,rules.botAttackSeconds);
-            if (Phase == RangeBotPhase.Attack && (distance<collisionDistance
-                || (time-attackStarted>.9f&&distance<close+Mathf.Min(stopping,preferred*.12f)) || time>=phaseUntil))
+            bool pass = behavior && behavior.attackPass;
+            float minimumAttack = behavior ? Mathf.Max(.2f, behavior.minimumAttackSeconds) : 1.8f;
+            bool unsafeApproach = distance < collisionDistance + Mathf.Min(stopping, preferred * .2f);
+            bool completedPass = pass && time - phaseStarted >= minimumAttack
+                && (distance < close + Mathf.Min(stopping, preferred * .12f)
+                    || (time >= phaseUntil && distance < preferred * 1.35f));
+            // Preserve the practice pilot's bounded close-pursuit escape, without forcing safe standoff ships away on a timer.
+            if (!behavior && time - attackStarted > .9f && distance < close + Mathf.Min(stopping, preferred * .12f))
+                completedPass = true;
+            if (Phase == RangeBotPhase.Attack && (unsafeApproach || completedPass))
             {
                 Phase = RangeBotPhase.Breakaway;
-                phaseUntil = time + Mathf.Max(.2f, rules.botBreakawaySeconds);
-                waypoint = centre + (radial.normalized + flank * .8f).normalized * Mathf.Max(preferred, close * 1.5f);
+                phaseStarted = time;
+                phaseUntil = time + Mathf.Max(.5f, behavior ? behavior.breakawaySeconds : rules.botBreakawaySeconds);
+                // Continue along the existing pass before bending around, rather than instantly ordering reverse thrust.
+                Vector3 travel = self.flight.Velocity.sqrMagnitude > 4 ? self.flight.Velocity.normalized : self.body.rotation * Vector3.forward;
+                Vector3 exitDirection = (travel + flank * .55f + radial.normalized * .3f).normalized;
+                waypoint = self.body.position + exitDirection * Mathf.Max(preferred * .7f, self.flight.CurrentSpeed * 2);
             }
             else if ((Phase == RangeBotPhase.Breakaway||Phase==RangeBotPhase.Reposition) && time>=phaseUntil)
             {
                 // A pursuer must not keep the bot stuck in an indefinite escape waiting for separation.
                 Phase = RangeBotPhase.Attack;
-                attackStarted=time;
-                phaseUntil = time + Mathf.Max(.2f, rules.botAttackSeconds) + .2f * (self.spawnSlot % 4);
+                attackStarted=phaseStarted=time;
+                phaseUntil = time + AttackSeconds(rules) + .2f * (self.spawnSlot % 4);
             }
             waypoint = ClampWaypoint(waypoint, tuning.arenaHalfExtent, self.ship.HullRadius);
         }
 
-        static float PreferredRange(RangeCombatWorld.Actor self, RangeCombatWorld.Actor target, WeaponDefinition weapon,BattleTuning rules)
+        float AttackSeconds(BattleTuning rules) => Mathf.Max(.2f, behavior ? behavior.attackSeconds : rules.botAttackSeconds);
+
+        float PreferredRange(RangeCombatWorld.Actor self, RangeCombatWorld.Actor target, WeaponDefinition weapon,BattleTuning rules)
         {
             float clearance = self.ship.HullRadius + target.ship.HullRadius + 30;
+            if (behavior) return Mathf.Max(clearance, weapon ? Mathf.Min(behavior.preferredRange, weapon.range * .7f) : behavior.preferredRange);
             return weapon ? Mathf.Max(clearance, Mathf.Min(weapon.range * Mathf.Clamp(rules.botEngagementRangeFraction,.1f,.6f), 320)) : Mathf.Max(clearance, 120);
+        }
+
+        public static Vector3 AttackVelocity(Vector3 route, Vector3 targetVelocity, float separation,
+            float preferredRange, float speed, Vector3 flankDirection, float strafeFraction)
+        {
+            float closingSpeed = Mathf.Clamp((separation - preferredRange) * .65f, -speed * .45f, speed);
+            // Following some target motion prevents overshoot; clamping still respects the bot's own speed capability.
+            return targetVelocity + route.normalized * closingSpeed + flankDirection * speed * Mathf.Clamp(strafeFraction, 0, .5f);
+        }
+
+        public static Vector3 BlendVelocity(Vector3 previous, Vector3 requested, float responseSeconds, float dt)
+            => Vector3.Lerp(previous, requested, ResponseWeight(responseSeconds, dt));
+
+        public static Vector3 BlendDirection(Vector3 previous, Vector3 requested, float responseSeconds, float dt)
+        {
+            if (requested.sqrMagnitude < .000001f) return previous;
+            if (previous.sqrMagnitude < .000001f) return requested.normalized;
+            Vector3 from = previous.normalized, to = requested.normalized;
+            float weight = ResponseWeight(responseSeconds, dt), cosine = Vector3.Dot(from, to);
+            // Unity's RotateTowards can quantize away sub-degree steps near alignment. Linear interpolation is
+            // well-conditioned in this small cone, preserves those corrections and cannot approach a zero vector.
+            if (cosine > .99f) return Vector3.Lerp(from, to, weight).normalized;
+            // Outside that cone, RotateTowards retains a stable antipodal path instead of lerping through zero.
+            float angle = Mathf.Atan2(Vector3.Cross(from, to).magnitude, cosine);
+            return Vector3.RotateTowards(from, to, angle * weight, 0).normalized;
+        }
+
+        static float ResponseWeight(float seconds, float dt) => dt <= 0 ? 0 : 1 - Mathf.Exp(-dt / Mathf.Max(.005f, seconds));
+
+        public static Vector2 PersistentAimError(double time, int slot, float amplitudeDegrees)
+        {
+            float phase = slot * 2.399963f;
+            float t = (float)(time % 100000);
+            return new Vector2(Mathf.Sin(t * .71f + phase), Mathf.Sin(t * .53f + phase * 1.37f)) * Mathf.Max(0, amplitudeDegrees);
+        }
+
+        public static float EffectiveBurstSeconds(float requested, WeaponDefinition selected)
+        {
+            float seconds = Mathf.Max(.05f, requested);
+            if (!selected) return seconds;
+            if (selected.activationMode == WeaponActivationMode.ChargeRelease)
+                seconds = Mathf.Max(seconds, selected.chargeSeconds + .2f);
+            if (selected.delivery == WeaponDelivery.GuidedMissile)
+                seconds = Mathf.Max(seconds, selected.missileLockSeconds + .25f);
+            return seconds;
         }
 
         static Vector3 ClampWaypoint(Vector3 point, float halfExtent, float radius)
@@ -304,6 +465,71 @@ namespace Starframe.Combat
                 result += away.normalized * speed * 1.4f;
             }
             return result;
+        }
+
+        int TerrainMask
+        {
+            get
+            {
+                if (terrainMask >= 0) return terrainMask;
+                int layer = LayerMask.NameToLayer("BudgetedScenery");
+                terrainMask = layer < 0 ? 0 : 1 << layer;
+                return terrainMask;
+            }
+        }
+
+        Vector3 AvoidTerrain(RangeCombatWorld.Actor self)
+        {
+            int mask = TerrainMask;
+            if (mask == 0) return Vector3.zero;
+            float speed = Mathf.Max(12, self.flight.CurrentSpeed);
+            float radius = Mathf.Max(.5f, self.ship.HullRadius + 3);
+            float horizon = behavior ? behavior.terrainLookaheadSeconds : 2;
+            Vector3 travel = self.flight.Velocity.sqrMagnitude > 4 ? self.flight.Velocity.normalized
+                : self.body.rotation * Vector3.forward;
+            float distance = Mathf.Clamp(speed * horizon + radius, radius + 12, 1000);
+            int count = Physics.SphereCastNonAlloc(self.body.position, radius, travel, terrainHits,
+                distance, mask, QueryTriggerInteraction.Ignore);
+            float nearest = float.PositiveInfinity;
+            RaycastHit obstacle = default;
+            for (int i = 0; i < count; i++)
+            {
+                var hit = terrainHits[i];
+                if (!hit.collider || hit.distance >= nearest) continue;
+                nearest = hit.distance; obstacle = hit;
+            }
+            Vector3 result = Vector3.zero;
+            if (!float.IsInfinity(nearest))
+            {
+                Vector3 normal = obstacle.normal.sqrMagnitude > .01f ? obstacle.normal.normalized : -travel;
+                Vector3 side = Vector3.ProjectOnPlane(travel, normal);
+                if (side.sqrMagnitude < .02f) side = Vector3.Cross(normal,
+                    Mathf.Abs(Vector3.Dot(normal, Vector3.up)) > .9f ? Vector3.right : Vector3.up)
+                    * (self.spawnSlot % 2 == 0 ? 1 : -1);
+                float urgency = Mathf.Clamp01(1 - nearest / distance);
+                result = (normal * .9f + side.normalized * .8f) * speed * urgency * 1.7f;
+            }
+            // A cast starts outside geometry; a small overlap probe also handles a body already touching a proxy.
+            count = Physics.OverlapSphereNonAlloc(self.body.position, radius, nearTerrain, mask, QueryTriggerInteraction.Ignore);
+            for (int i = 0; i < count; i++)
+            {
+                var collider = nearTerrain[i];
+                if (!collider) continue;
+                Vector3 away = self.body.position - collider.ClosestPoint(self.body.position);
+                if (away.sqrMagnitude < .001f) away = self.body.position - collider.bounds.center;
+                if (away.sqrMagnitude < .001f) away = Vector3.up;
+                result += away.normalized * speed;
+            }
+            return Vector3.ClampMagnitude(result, speed * 2);
+        }
+
+        bool ClearTerrainLane(Vector3 origin, Vector3 point, float radius)
+        {
+            int mask = TerrainMask;
+            Vector3 path = point - origin;
+            if (mask == 0 || path.sqrMagnitude < .001f) return true;
+            return Physics.SphereCastNonAlloc(origin, Mathf.Min(radius, 1), path.normalized, terrainHits,
+                path.magnitude, mask, QueryTriggerInteraction.Ignore) == 0;
         }
 
         static bool ClearFireLane(RangeCombatWorld.Actor self, RangeCombatWorld.Actor target,

@@ -14,8 +14,10 @@ namespace Starframe.Construction.Tests
 
         static BlueprintData Example()=>new BlueprintData{name="Weapon groups",parts=new List<BlockRecord>{
             new BlockRecord{id="core",shape=BlockShape.Core,position=new Vector3(0,.5f,0)},
-            new BlockRecord{id="left",shape=BlockShape.Laser,position=new Vector3(-1,.5f,0)},
-            new BlockRecord{id="right",shape=BlockShape.Laser,position=new Vector3(1,.5f,0)}
+            new BlockRecord{id="mount-left",shape=BlockShape.Cube,position=new Vector3(-1,.5f,0)},
+            new BlockRecord{id="mount-right",shape=BlockShape.Cube,position=new Vector3(1,.5f,0)},
+            new BlockRecord{id="left",shape=BlockShape.Laser,position=new Vector3(-1,1.5f,0)},
+            new BlockRecord{id="right",shape=BlockShape.Laser,position=new Vector3(1,1.5f,0)}
         }};
 
         [TestCase(1)][TestCase(2)]

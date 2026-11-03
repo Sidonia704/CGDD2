@@ -1,0 +1,82 @@
+using System.Collections;
+using NUnit.Framework;
+using UnityEngine;
+using UnityEngine.TestTools;
+using UnityEngine.SceneManagement;
+using Starframe.App;
+using Starframe.Flight;
+
+namespace Starframe.Tests
+{
+    public sealed class RangeLoadingOverlayTests
+    {
+        bool originalSuspended;
+
+        [UnitySetUp] public IEnumerator SetUp()
+        {
+            originalSuspended=GameInput.Suspended;
+            // Previous integration fixtures can leave an editor-scene initialization coroutine pending.
+            // Unload its callbacks before testing this overlay's input ownership in isolation.
+            var isolated=SceneManager.CreateScene("LoadingOverlayIsolation_"+System.Guid.NewGuid().ToString("N"));
+            SceneManager.SetActiveScene(isolated);
+            for(int i=SceneManager.sceneCount-1;i>=0;i--)
+            {
+                var scene=SceneManager.GetSceneAt(i);
+                if(scene!=isolated&&scene.path.StartsWith("Assets/_Starframe/Scenes/",System.StringComparison.Ordinal))yield return SceneManager.UnloadSceneAsync(scene);
+            }
+            DestroyOverlays();
+            yield return null;yield return null;
+        }
+
+        [UnityTearDown] public IEnumerator TearDown()
+        {
+            DestroyOverlays();
+            yield return null;
+            GameInput.Suspended=originalSuspended;
+        }
+
+        [UnityTest] public IEnumerator ImmediateReentryDuringClosingOwnsANewViewAndRestoresTheOriginalInputState()
+        {
+            foreach(bool initiallySuspended in new[]{false,true})
+            {
+                GameInput.Suspended=initiallySuspended;
+                // Advance only the public overlay-creation phase; no map, scene or localization load is required.
+                var firstPreparation=RangeLoadingOverlay.PrepareMap(null);
+                Assert.That(firstPreparation.MoveNext(),Is.True);
+                var first=Object.FindFirstObjectByType<RangeLoadingOverlay>();
+                Assert.That(first,Is.Not.Null);
+                Assert.That(GameInput.Suspended,Is.True);
+                RangeLoadingOverlay.Complete();
+                Assert.That(RangeLoadingOverlay.Progress,Is.EqualTo(1));
+
+                var secondPreparation=RangeLoadingOverlay.PrepareMap(null);
+                Assert.That(secondPreparation.MoveNext(),Is.True);
+                var replacement=Object.FindFirstObjectByType<RangeLoadingOverlay>();
+                Assert.That(replacement,Is.Not.Null);
+                Assert.That(replacement,Is.Not.SameAs(first));
+                Assert.That(first.gameObject.activeSelf,Is.False);
+                Assert.That(RangeLoadingOverlay.Progress,Is.Zero,"A new range must have a fresh progress view.");
+
+                yield return new WaitForSecondsRealtime(.2f);
+                Assert.That(first==null,Is.True);
+                Assert.That(replacement,Is.Not.Null);
+                Assert.That(RangeLoadingOverlay.IsLoading,Is.True);
+                Assert.That(GameInput.Suspended,Is.True,"Retiring the old overlay must not restore input owned by its replacement.");
+                // Complete writes all progress widgets after the old close delay, exposing stale/destroyed UI references.
+                RangeLoadingOverlay.Complete();
+                yield return new WaitForSecondsRealtime(.2f);
+                Assert.That(replacement==null,Is.True);
+                Assert.That(RangeLoadingOverlay.IsLoading,Is.False);
+                Assert.That(GameInput.Suspended,Is.EqualTo(initiallySuspended),"The last overlay restores the state from before the loading chain.");
+                (firstPreparation as System.IDisposable)?.Dispose();
+                (secondPreparation as System.IDisposable)?.Dispose();
+            }
+        }
+
+        static void DestroyOverlays()
+        {
+            foreach(var overlay in Object.FindObjectsByType<RangeLoadingOverlay>(FindObjectsInactive.Include,FindObjectsSortMode.None))
+                if(overlay)Object.Destroy(overlay.gameObject);
+        }
+    }
+}

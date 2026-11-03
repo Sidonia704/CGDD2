@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 353dcccc0cd8dab498e509ddeba6f6b7, type: 3}
+  m_Name: FlareLauncherCountermeasure
+  m_EditorClassIdentifier: Starframe.Construction::Starframe.Flight.FlareDefinition
+  burstCount: 12
+  cooldownSeconds: 10
+  spreadHalfAngleDegrees: 22
+  emissionSpeed: 24
+  lifetime: 3
+  decoyChance: 0.5
+  decoyRadius: 150
+  sparkSize: 0.22
+  glowIntensity: 5

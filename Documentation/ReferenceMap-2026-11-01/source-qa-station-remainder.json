@@ -1,0 +1,261 @@
+{
+  "sourceObject": "Cylinder.018",
+  "occupancyMode": "authoredHollowShell",
+  "families": [
+    {
+      "family": "left_supports",
+      "sourceShells": 6,
+      "assets": 5,
+      "cells": 67640,
+      "maxAssetCells": 18630,
+      "maxBoundaryErrorMetres": 0.9446947507630057,
+      "boundaryDeltaMinMetres": [
+        -0.08138154496398897,
+        -0.8345215153400147,
+        -0.9051139131121317
+      ],
+      "boundaryDeltaMaxMetres": [
+        0.2707289914462905,
+        0.9446947507630057,
+        0.5881003064509969
+      ],
+      "allAssetsInitiallyConnected": true
+    },
+    {
+      "family": "left_box_grid",
+      "sourceShells": 94,
+      "assets": 79,
+      "cells": 140100,
+      "maxAssetCells": 9486,
+      "maxBoundaryErrorMetres": 0.9292471253465635,
+      "boundaryDeltaMinMetres": [
+        -0.4609341765843169,
+        -0.4328256096270451,
+        -0.7230359307353638
+      ],
+      "boundaryDeltaMaxMetres": [
+        0.16371225218047414,
+        0.9292471253465635,
+        0.11415386100056679
+      ],
+      "allAssetsInitiallyConnected": true
+    },
+    {
+      "family": "left_tank_cluster",
+      "sourceShells": 8,
+      "assets": 5,
+      "cells": 61857,
+      "maxAssetCells": 16000,
+      "maxBoundaryErrorMetres": 0.8962543038552937,
+      "boundaryDeltaMinMetres": [
+        -0.14746489856571543,
+        -0.20918812824504585,
+        -0.12513697089423204
+      ],
+      "boundaryDeltaMaxMetres": [
+        0.8962543038552937,
+        0.7938771845621773,
+        0.22830987022729232
+      ],
+      "allAssetsInitiallyConnected": true
+    },
+    {
+      "family": "right_rock_fittings",
+      "sourceShells": 5,
+      "assets": 3,
+      "cells": 124378,
+      "maxAssetCells": 97931,
+      "maxBoundaryErrorMetres": 0.9229514146799147,
+      "boundaryDeltaMinMetres": [
+        -0.9229514146799147,
+        -0.601064878579308,
+        -0.2899458695138861
+      ],
+      "boundaryDeltaMaxMetres": [
+        0.051891026158784825,
+        0.2626738979784591,
+        0.250338504006578
+      ],
+      "allAssetsInitiallyConnected": true
+    },
+    {
+      "family": "right_station_fixtures",
+      "sourceShells": 65,
+      "assets": 44,
+      "cells": 122514,
+      "maxAssetCells": 35632,
+      "maxBoundaryErrorMetres": 0.8230489377909578,
+      "boundaryDeltaMinMetres": [
+        -0.8230489377909578,
+        -0.19358193609389218,
+        -0.19103794391298834
+      ],
+      "boundaryDeltaMaxMetres": [
+        0.044812969307429285,
+        0.693943299824042,
+        0.4029052753975719
+      ],
+      "allAssetsInitiallyConnected": true
+    },
+    {
+      "family": "left_radiator_bank",
+      "sourceShells": 42,
+      "assets": 13,
+      "cells": 101925,
+      "maxAssetCells": 16845,
+      "maxBoundaryErrorMetres": 0.9068556680754938,
+      "boundaryDeltaMinMetres": [
+        -0.31857039474365934,
+        -0.9068556680754938,
+        -0.639867129463596
+      ],
+      "boundaryDeltaMaxMetres": [
+        0.2894822838269988,
+        0.004746783736948146,
+        0.1538139018551874
+      ],
+      "allAssetsInitiallyConnected": true
+    },
+    {
+      "family": "right_radiator_bank",
+      "sourceShells": 43,
+      "assets": 12,
+      "cells": 104050,
+      "maxAssetCells": 47347,
+      "maxBoundaryErrorMetres": 0.806471683724368,
+      "boundaryDeltaMinMetres": [
+        -0.7401479203116423,
+        -0.806471683724368,
+        -0.394510373536491
+      ],
+      "boundaryDeltaMaxMetres": [
+        0.7468326139784836,
+        0.5899628882443722,
+        0.8053177888002097
+      ],
+      "allAssetsInitiallyConnected": true
+    },
+    {
+      "family": "cantilever_network",
+      "sourceShells": 55,
+      "assets": 25,
+      "cells": 48097,
+      "maxAssetCells": 17986,
+      "maxBoundaryErrorMetres": 0.9444428345274929,
+      "boundaryDeltaMinMetres": [
+        -0.09771319451165539,
+        -0.9444428345274929,
+        -0.00593280367445459
+      ],
+      "boundaryDeltaMaxMetres": [
+        0.5042585853940977,
+        0.6015357160206634,
+        0.17839132721773865
+      ],
+      "allAssetsInitiallyConnected": true
+    },
+    {
+      "family": "outer_equipment_a",
+      "sourceShells": 58,
+      "assets": 8,
+      "cells": 12669,
+      "maxAssetCells": 7943,
+      "maxBoundaryErrorMetres": 0.9106169596714153,
+      "boundaryDeltaMinMetres": [
+        -0.5381893255419357,
+        -0.45446371841256905,
+        -0.4405018434097201
+      ],
+      "boundaryDeltaMaxMetres": [
+        0.042110841179351155,
+        0.9106169596714153,
+        0.24242150643046045
+      ],
+      "allAssetsInitiallyConnected": true
+    },
+    {
+      "family": "outer_equipment_b",
+      "sourceShells": 52,
+      "assets": 14,
+      "cells": 19337,
+      "maxAssetCells": 5050,
+      "maxBoundaryErrorMetres": 0.986302074370144,
+      "boundaryDeltaMinMetres": [
+        -0.8339586400224448,
+        -0.4064245404559017,
+        -0.986302074370144
+      ],
+      "boundaryDeltaMaxMetres": [
+        0.28266196959918943,
+        0.196311785051563,
+        0.08006309110045606
+      ],
+      "allAssetsInitiallyConnected": true
+    },
+    {
+      "family": "crossing_booms",
+      "sourceShells": 47,
+      "assets": 19,
+      "cells": 95239,
+      "maxAssetCells": 15987,
+      "maxBoundaryErrorMetres": 0.8277883611320931,
+      "boundaryDeltaMinMetres": [
+        -0.19241840909199937,
+        -0.17667232757537477,
+        -0.8277883611320931
+      ],
+      "boundaryDeltaMaxMetres": [
+        0.73786453627838,
+        0.19686308121623597,
+        0.20570979216466867
+      ],
+      "allAssetsInitiallyConnected": true
+    },
+    {
+      "family": "deck_understructure",
+      "sourceShells": 18,
+      "assets": 5,
+      "cells": 62083,
+      "maxAssetCells": 55521,
+      "maxBoundaryErrorMetres": 0.9819456603151764,
+      "boundaryDeltaMinMetres": [
+        -0.7692240436578004,
+        -0.5,
+        -0.6743448724381551
+      ],
+      "boundaryDeltaMaxMetres": [
+        0.5151990789162966,
+        0.9819456603151764,
+        0.28322963123645195
+      ],
+      "allAssetsInitiallyConnected": true
+    },
+    {
+      "family": "deck_post_601",
+      "sourceShells": 1,
+      "assets": 1,
+      "cells": 383,
+      "maxAssetCells": 383,
+      "maxBoundaryErrorMetres": 0.9987773204797463,
+      "boundaryDeltaMinMetres": [
+        -0.9987773204797463,
+        -0.1622637786153973,
+        -0.16240461339941703
+      ],
+      "boundaryDeltaMaxMetres": [
+        0.6238859766536962,
+        0.7278014881034949,
+        0.3954120722564767
+      ],
+      "allAssetsInitiallyConnected": true
+    }
+  ],
+  "coveredShellCount": 494,
+  "alreadyAuthoredShellCount": 108,
+  "coveredAndAlreadyDisjoint": true,
+  "all602ShellsAccountedFor": true,
+  "assetCount": 233,
+  "cellRecords": 960272,
+  "allAssetsInitiallyConnected": true,
+  "maxBoundaryErrorMetres": 0.9987773204797463
+}

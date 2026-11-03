@@ -1,0 +1,26 @@
+{
+    "MonoBehaviour": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "bastion",
+        "m_EditorClassIdentifier": "Starframe.Construction::Starframe.Combat.EnemyArchetypeDefinition",
+        "id": "bastion",
+        "nameZh": "堡垒重装炮艇",
+        "nameEn": "Bastion Gunship",
+        "size": 1,
+        "blueprint": {
+            "fileID": 4900000,
+            "guid": "9e41e8063f781af4b87e4f596830d4c2",
+            "type": 3
+        },
+        "alternateBlueprint": {
+            "instanceID": 0
+        },
+        "score": 600,
+        "behavior": {
+            "fileID": 11400000,
+            "guid": "cc7170d9b9ef07c4c99bf81850634709",
+            "type": 2
+        }
+    }
+}

@@ -1,0 +1,41 @@
+{
+  "status": "completed",
+  "duration": 55.07,
+  "summary": {
+    "total": 4,
+    "passed": 4,
+    "failed": 0,
+    "skipped": 0,
+    "inconclusive": 0
+  },
+  "results": [
+    {
+      "FullName": "Starframe.Tests.BalancedShipControlTests.AssaultReferenceFliesStraightOnAllSixAxes",
+      "Status": "Passed",
+      "Duration": 13.7712514,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.BalancedShipControlTests.CurrentPlayerShipFliesStraightOnAllSixAxes",
+      "Status": "Passed",
+      "Duration": 13.75393,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.BalancedShipControlTests.HeavyReferenceFliesStraightOnAllSixAxes",
+      "Status": "Passed",
+      "Duration": 13.7588929,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.BalancedShipControlTests.ManeuverReferenceFliesStraightOnAllSixAxes",
+      "Status": "Passed",
+      "Duration": 13.7588775,
+      "Message": null,
+      "StackTrace": null
+    }
+  ]
+}

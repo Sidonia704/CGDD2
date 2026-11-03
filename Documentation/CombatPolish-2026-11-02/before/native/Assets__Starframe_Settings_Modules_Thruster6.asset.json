@@ -1,0 +1,127 @@
+{
+    "MonoBehaviour": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "Thruster6",
+        "m_EditorClassIdentifier": "Starframe.Construction::Starframe.Flight.ModuleDefinition",
+        "shape": 36,
+        "displayName": "五向微调推进器",
+        "category": 1,
+        "cost": 30.0,
+        "massKg": 250.0,
+        "maxHp": 755.9999389648438,
+        "recoverySeconds": 12.0,
+        "thrustNewtons": 65000.0,
+        "occupiedCells": [
+            {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            }
+        ],
+        "localExhaustDirections": [
+            {
+                "x": 0.0,
+                "y": 1.0,
+                "z": 0.0
+            },
+            {
+                "x": 1.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            {
+                "x": -1.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 1.0
+            },
+            {
+                "x": 0.0,
+                "y": 0.0,
+                "z": -1.0
+            }
+        ],
+        "localNozzlePositions": [
+            {
+                "x": -0.000612311065196991,
+                "y": 0.4680000841617584,
+                "z": 0.0032646581530570986
+            },
+            {
+                "x": 0.4570103585720062,
+                "y": 0.14876940846443177,
+                "z": 0.004682458937168121
+            },
+            {
+                "x": -0.45701032876968386,
+                "y": 0.14876948297023774,
+                "z": 0.003865167498588562
+            },
+            {
+                "x": -0.0006123408675193787,
+                "y": 0.14876945316791535,
+                "z": 0.4575088918209076
+            },
+            {
+                "x": -0.0006123706698417664,
+                "y": 0.15085171163082124,
+                "z": -0.4575088322162628
+            }
+        ],
+        "muzzleLocalPosition": {
+            "x": 0.0,
+            "y": 0.27000001072883608,
+            "z": 1.5199999809265137
+        },
+        "muzzleClearanceDiameter": 0.25,
+        "mesh": {
+            "fileID": 4300000,
+            "guid": "903c865e39d70674f9e6bcb7ff4015cd",
+            "type": 2
+        },
+        "outline": {
+            "instanceID": 0
+        },
+        "drawOutline": false,
+        "material": {
+            "fileID": 2100000,
+            "guid": "ac43167d730c15e429cf0ff298cf0763",
+            "type": 2
+        },
+        "icon": {
+            "fileID": 21300000,
+            "guid": "6cf0adab26f26d240a2f6e6ebcb6e56a",
+            "type": 3
+        },
+        "selectedIcon": {
+            "fileID": 21300000,
+            "guid": "cf5006d5097158f459098bbc287dc0ae",
+            "type": 3
+        },
+        "weapon": {
+            "instanceID": 0
+        },
+        "countermeasure": {
+            "instanceID": 0
+        },
+        "generationWatts": 0.0,
+        "storageJoules": 0.0,
+        "thrusterPowerWatts": 0.0,
+        "shieldPowerWatts": 0.0,
+        "shieldCapacity": 0.0,
+        "shieldRadius": 8.0,
+        "shieldRecoveryDelay": 2.0,
+        "shieldRecoveryPerSecond": 50.0,
+        "shieldSurfaceMaterial": {
+            "instanceID": 0
+        },
+        "shieldSurfaceMesh": {
+            "instanceID": 0
+        }
+    }
+}

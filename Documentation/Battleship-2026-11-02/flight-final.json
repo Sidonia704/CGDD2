@@ -1,0 +1,34 @@
+{
+  "status": "completed",
+  "duration": 14.42,
+  "summary": {
+    "total": 3,
+    "passed": 3,
+    "failed": 0,
+    "skipped": 0,
+    "inconclusive": 0
+  },
+  "results": [
+    {
+      "FullName": "Starframe.Tests.FlightWrenchClosedLoopTests.CombinedForwardAndYawInputRemainsFiniteAndSettlesAfterRelease",
+      "Status": "Passed",
+      "Duration": 4.4064499,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.FlightWrenchClosedLoopTests.LargeHeavyBattleshipSettlesWithoutLargeCrossAxisReversals",
+      "Status": "Passed",
+      "Duration": 4.9954113,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.FlightWrenchClosedLoopTests.LargeManeuverBattleshipSettlesWithoutLargeCrossAxisReversals",
+      "Status": "Passed",
+      "Duration": 4.9976203,
+      "Message": null,
+      "StackTrace": null
+    }
+  ]
+}

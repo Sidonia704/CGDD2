@@ -1,0 +1,118 @@
+{
+  "hex_deck": {
+    "shapeCellCounts": {
+      "Cube": 9043,
+      "Wedge": 2483,
+      "Slab": 130,
+      "Pyramid": 143,
+      "Block5": 941,
+      "Block6": 42503,
+      "Block7": 344,
+      "Block8": 53864
+    },
+    "shapeOffsetCounts": {
+      "Cube": {
+        "(0, 0, 0)": 9043
+      },
+      "Wedge": {
+        "(0, 0, 0)": 2483
+      },
+      "Slab": {
+        "(0, 0, 0)": 130
+      },
+      "Pyramid": {
+        "(0, 0, 0)": 143
+      },
+      "Block5": {
+        "(0, 0, 0)": 941
+      },
+      "Block6": {
+        "(0, 0, 0)": 42503
+      },
+      "Block7": {
+        "(0, 0, 0)": 172,
+        "(0, 0, 1)": 172
+      },
+      "Block8": {
+        "(0, 0, 0)": 6733,
+        "(0, 0, 1)": 6733,
+        "(0, 1, 0)": 6733,
+        "(0, 1, 1)": 6733,
+        "(1, 0, 0)": 6733,
+        "(1, 0, 1)": 6733,
+        "(1, 1, 0)": 6733,
+        "(1, 1, 1)": 6733
+      }
+    },
+    "distinctQuarterTurns": {
+      "Cube": 1,
+      "Wedge": 12,
+      "Slab": 5,
+      "Pyramid": 6,
+      "Block5": 8,
+      "Block6": 8,
+      "Block7": 9,
+      "Block8": 1
+    },
+    "block7CellCountDivisibleBy2": true,
+    "block8CellCountDivisibleBy8": true
+  },
+  "truss": {
+    "shapeCellCounts": {
+      "Cube": 6260,
+      "Wedge": 526,
+      "Slab": 68,
+      "Pyramid": 70,
+      "Block5": 159,
+      "Block6": 12665,
+      "Block7": 128,
+      "Block8": 18264
+    },
+    "shapeOffsetCounts": {
+      "Cube": {
+        "(0, 0, 0)": 6260
+      },
+      "Wedge": {
+        "(0, 0, 0)": 526
+      },
+      "Slab": {
+        "(0, 0, 0)": 68
+      },
+      "Pyramid": {
+        "(0, 0, 0)": 70
+      },
+      "Block5": {
+        "(0, 0, 0)": 159
+      },
+      "Block6": {
+        "(0, 0, 0)": 12665
+      },
+      "Block7": {
+        "(0, 0, 0)": 64,
+        "(0, 0, 1)": 64
+      },
+      "Block8": {
+        "(0, 0, 0)": 2283,
+        "(0, 0, 1)": 2283,
+        "(0, 1, 0)": 2283,
+        "(0, 1, 1)": 2283,
+        "(1, 0, 0)": 2283,
+        "(1, 0, 1)": 2283,
+        "(1, 1, 0)": 2283,
+        "(1, 1, 1)": 2283
+      }
+    },
+    "distinctQuarterTurns": {
+      "Cube": 1,
+      "Wedge": 11,
+      "Slab": 4,
+      "Pyramid": 4,
+      "Block5": 6,
+      "Block6": 8,
+      "Block7": 6,
+      "Block8": 1
+    },
+    "block7CellCountDivisibleBy2": true,
+    "block8CellCountDivisibleBy8": true
+  }
+}

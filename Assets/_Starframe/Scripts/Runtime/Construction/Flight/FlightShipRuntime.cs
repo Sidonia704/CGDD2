@@ -1,4 +1,4 @@
-// @role Track surviving parts, detachments, recovery, power and current ship performance.
+// @role Track surviving parts, detachments, power and nozzle availability; actual hull damage delays only the affected part recovery.
 // @calls ShipAssembly, BlockConnectivity, FlightTuning, ShipPowerBus, ShipShieldSystem, ShipInstanceRenderer
 
 using System;
@@ -19,8 +19,9 @@ namespace Starframe.Flight
         readonly HashSet<int> missing=new HashSet<int>(),damaged=new HashSet<int>();
         readonly List<int> ready=new List<int>(),healed=new List<int>();
         readonly List<ShipPartState> detachedParts=new List<ShipPartState>();
-        List<int>[] neighbors;bool[] visited;int[] queue,partEpochs;
-        FlightTuning tuning;BattleTuning battle;int tuningRevision,definitionRevision,coreIndex=-1,recoveryEpoch;
+        List<int>[] neighbors;bool[] visited;int[] queue;double[] partLastDamage;
+        readonly Collider[] rebuildOverlaps=new Collider[64];
+        FlightTuning tuning;BattleTuning battle;int tuningRevision,definitionRevision,coreIndex=-1;
         bool structureDirty,dead;
         double clock,lastDamage=double.NegativeInfinity;
         public Quaternion CoreRotation{get;private set;}=Quaternion.identity;
@@ -36,10 +37,13 @@ namespace Starframe.Flight
         public Vector3 CorePhysicsPosition{get{if(coreIndex>=0&&Parts[coreIndex].view){var collider=Parts[coreIndex].view.GetComponent<Collider>();if(collider)return CylindricalHitQuery.PhysicsMatrix(collider).MultiplyPoint3x4(Vector3.zero);}return CorePosition;}}
         public float DamageTaken{get;private set;}
         public float DamageDealt{get;private set;}
+        public void RecordDamageDealt(float amount){if(amount>0&&!float.IsNaN(amount)&&!float.IsInfinity(amount))DamageDealt+=amount;}
         public float InvulnerableUntil;
         public float HullRadius{get;private set;}=1;
         public double CombatTime=>clock;
+        public double LastDamageTime=>lastDamage;
         public FlightTuning Tuning=>tuning;
+        public BattleTuning Battle=>battle;
         public BlueprintData BlueprintSnapshot{get;private set;}
         public event Action PerformanceChanged,Died;
         public event Action<ShipPartState> PartChanged;
@@ -66,7 +70,8 @@ namespace Starframe.Flight
         }
         void BuildTopology()
         {
-            neighbors=new List<int>[Parts.Count];visited=new bool[Parts.Count];queue=new int[Parts.Count];partEpochs=new int[Parts.Count];
+            neighbors=new List<int>[Parts.Count];visited=new bool[Parts.Count];queue=new int[Parts.Count];partLastDamage=new double[Parts.Count];
+            for(int i=0;i<partLastDamage.Length;i++)partLastDamage[i]=double.NegativeInfinity;
             for(int i=0;i<neighbors.Length;i++)neighbors[i]=new List<int>();
             var pairs=new HashSet<ulong>();
             foreach(var entry in cellOwners)foreach(var direction in Directions){
@@ -83,16 +88,21 @@ namespace Starframe.Flight
             var p=Parts[index];if(!p.present)return 0;
             float actual=Mathf.Min(p.hp,amount);if(actual<=0)return 0;
             p.hp-=actual;DamageTaken+=actual;HealthRevision++;if(source)source.DamageDealt+=actual;
-            lastDamage=clock;recoveryEpoch++;
+            NotifyIncomingDamage();partLastDamage[index]=clock;p.rebuildProgress=0;
             if(Performance!=null)Performance.currentHp=Mathf.Max(0,Performance.currentHp-actual);
             if(p.hp<=0){Remove(index);if(index==coreIndex)Die();}else damaged.Add(index);
             if(!deferStructure)FlushChanges();return actual;
+        }
+        public void NotifyIncomingDamage()
+        {
+            if(!IsAlive)return;
+            lastDamage=clock;
         }
         void Remove(int index,bool detached=false)
         {
             var part=Parts[index];if(!part.present)return;
             Shields.PartRemoved(part);
-            part.detached=detached;part.present=false;part.hp=0;part.rebuildProgress=0;damaged.Remove(index);missing.Add(index);
+            partLastDamage[index]=clock;part.detached=detached;part.present=false;part.hp=0;part.rebuildProgress=0;damaged.Remove(index);missing.Add(index);
             if(part.view)part.view.SetActive(false);structureDirty=true;PartChanged?.Invoke(part);
         }
         void Die()
@@ -130,33 +140,56 @@ namespace Starframe.Flight
             else{var p=Parts[index];p.detached=false;p.present=true;p.hp=p.maxHp;p.rebuildProgress=0;if(p.view)p.view.SetActive(true);missing.Remove(index);structureDirty=true;PartChanged?.Invoke(p);}
             FlushChanges();
         }
-        public float GetRebuildProgress(string id)=>byId.TryGetValue(id,out int i)&&partEpochs[i]==recoveryEpoch?Parts[i].rebuildProgress:0;
+        public float GetRebuildProgress(string id)=>byId.TryGetValue(id,out int i)?Parts[i].rebuildProgress:0;
         public void AdvanceRecovery(float dt)
         {
             if(!IsAlive||dt<=0)return;
-            double idle=clock-lastDamage-(battle?battle.outOfCombatDelay:1);
-            if(idle<=0)return;
-            float activeDt=(float)Math.Min(dt,idle);
+
             using(RecoveryMarker.Auto()){
                 healed.Clear();bool healthChanged=false;
-                foreach(int i in damaged){var p=Parts[i];if(!p.present){healed.Add(i);continue;}var d=tuning.GetDefinition(p.record.shape);float seconds=d?d.recoverySeconds:3;float increase=Mathf.Min(p.maxHp-p.hp,p.maxHp/Mathf.Max(.01f,seconds)*activeDt);p.hp+=increase;Performance.currentHp+=increase;healthChanged|=increase>0;if(p.hp>=p.maxHp)healed.Add(i);}
+                foreach(int i in damaged){var p=Parts[i];if(!p.present){healed.Add(i);continue;}float activeDt=RecoveryDelta(i,dt);var d=tuning.GetDefinition(p.record.shape);float seconds=d?d.recoverySeconds:3;float increase=Mathf.Min(p.maxHp-p.hp,p.maxHp/Mathf.Max(.01f,seconds)*activeDt);p.hp+=increase;Performance.currentHp+=increase;healthChanged|=increase>0;if(p.hp>=p.maxHp)healed.Add(i);}
                 if(healthChanged)HealthRevision++;
                 foreach(int i in healed)damaged.Remove(i);
                 ready.Clear();
                 // Evaluate all support against the same snapshot; submit new blocks only afterwards.
-                foreach(int i in missing){var p=Parts[i];if(partEpochs[i]!=recoveryEpoch){p.rebuildProgress=0;partEpochs[i]=recoveryEpoch;}
+                foreach(int i in missing){var p=Parts[i];float activeDt=RecoveryDelta(i,dt);
                     bool supported=false;foreach(int neighbor in neighbors[i])if(Parts[neighbor].present){supported=true;break;}
                     if(!supported){p.rebuildProgress=0;continue;}
                     var d=tuning.GetDefinition(p.record.shape);float seconds=d?d.recoverySeconds:3;
-                    p.rebuildProgress+=activeDt;if(p.rebuildProgress+.00001f>=Mathf.Max(.01f,seconds))ready.Add(i);
+                    p.rebuildProgress=Mathf.Min(Mathf.Max(.01f,seconds),p.rebuildProgress+activeDt);if(p.rebuildProgress+.00001f>=Mathf.Max(.01f,seconds)&&RebuildSpaceClear(p))ready.Add(i);
                 }
                 foreach(int i in ready){var p=Parts[i];p.detached=false;p.present=true;p.hp=p.maxHp;p.rebuildProgress=0;missing.Remove(i);if(p.view)p.view.SetActive(true);structureDirty=true;PartChanged?.Invoke(p);}
             }
             FlushChanges();
         }
+        float RecoveryDelta(int index,float dt)=> (float)Math.Min(dt,Math.Max(0,clock-partLastDamage[index]-(battle?battle.outOfCombatDelay:1)));
+        bool RebuildSpaceClear(ShipPartState part)
+        {
+            // Only completed reconstructions query physics. Shrink each integer cell slightly
+            // so touching faces and the ship's own supported hull do not count as obstruction.
+            var body=GetComponent<Rigidbody>();
+            var assembly=part.view?part.view.transform.parent:transform;
+            var matrix=assembly.localToWorldMatrix;
+            var rotation=assembly.rotation;
+            if(body){matrix=Matrix4x4.TRS(body.position,body.rotation,transform.lossyScale)*transform.worldToLocalMatrix*matrix;rotation=body.rotation*Quaternion.Inverse(transform.rotation)*rotation;}
+            var scale=assembly.lossyScale;
+            var half=Vector3.Scale(Vector3.one*.46f,new Vector3(Mathf.Abs(scale.x),Mathf.Abs(scale.y),Mathf.Abs(scale.z)));
+            foreach(var cell in BlockModules.BodyCells(part.record))
+            {
+                int count=Physics.OverlapBoxNonAlloc(matrix.MultiplyPoint3x4((Vector3)cell+Vector3.up*.5f),half,rebuildOverlaps,rotation,~0,QueryTriggerInteraction.Ignore);
+                if(count==rebuildOverlaps.Length)return false;
+                for(int i=0;i<count;i++)
+                {
+                    var hit=rebuildOverlaps[i];
+                    if(!hit||hit.transform.IsChildOf(transform))continue;
+                    return false;
+                }
+            }
+            return true;
+        }
         public void Respawn()
         {
-            dead=coreIndex<0;LifeId++;recoveryEpoch++;lastDamage=double.NegativeInfinity;missing.Clear();damaged.Clear();DamageTaken=DamageDealt=0;
+            dead=coreIndex<0;LifeId++;for(int i=0;i<partLastDamage.Length;i++)partLastDamage[i]=double.NegativeInfinity;lastDamage=double.NegativeInfinity;missing.Clear();damaged.Clear();DamageTaken=DamageDealt=0;
             foreach(var p in Parts){p.detached=false;p.present=true;p.hp=p.maxHp;p.rebuildProgress=0;if(p.view)p.view.SetActive(true);PartChanged?.Invoke(p);}
             structureDirty=true;FlushChanges();RefreshPower(true);Shields.Configure(this,true);
         }
@@ -164,9 +197,19 @@ namespace Starframe.Flight
         void RefreshPower(bool fill=false){float capacity=0,generation=0;foreach(var p in Parts)if(p.present){var d=tuning.GetDefinition(p.record.shape);if(d){capacity+=d.storageJoules;generation+=d.generationWatts;}}Power.Configure(capacity,generation,fill);}
         void RefreshThrusters()
         {
-            foreach(var p in Parts){p.thrustAvailable=p.present;if(!p.present||!BlockModules.IsThruster(p.record.shape))continue;
-                var anchor=BlockPlacement.GridHint(p.record.position);var direction=BlockModules.Direction(p.record.rotation);
-                for(int i=0;i<BlockModules.Clearance(p.record.shape);i++)if(cellOwners.TryGetValue(anchor+direction*(BlockModules.BodyLength(p.record.shape)+i),out int owner)&&Parts[owner].present){p.thrustAvailable=false;break;}
+            foreach(var part in Parts)
+            {
+                part.thrustAvailable=part.present;part.availableExhaustMask=part.present?-1:0;
+                if(!part.present||!BlockModules.IsThruster(part.record.shape))continue;
+                int mask=0;var nozzles=BlockModules.LocalExhaustDirections(part.record.shape);
+                for(int nozzle=0;nozzle<nozzles.Length&&nozzle<31;nozzle++)
+                {
+                    bool blocked=false;
+                    foreach(var cell in BlockModules.ExhaustCells(part.record,nozzle))
+                        if(cellOwners.TryGetValue(cell,out int owner)&&Parts[owner].present){blocked=true;break;}
+                    if(!blocked)mask|=1<<nozzle;
+                }
+                part.availableExhaustMask=mask;part.thrustAvailable=mask!=0;
             }
         }
         public void Recalculate()

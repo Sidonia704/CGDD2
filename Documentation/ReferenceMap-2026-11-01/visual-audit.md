@@ -1,0 +1,11 @@
+# Reference-map visual diagnosis
+
+The diagnostic near-station image shows a repeated grid of triangular dents on the right rounded station mass. The diagnostic camera is at `(220, -150, -250)` and looks at `(180, -180, -50)`. It sits outside the right mass, about 50 m beyond its front voxel bound, and aims directly at the surface. The artifact is therefore visible surface geometry, not a camera-inside-rock view.
+
+`Geometry.py` fits each exposed voxel independently to one of the eight exact native hull models. Its nearest-source-vertex normal and halfspace score do not enforce smooth alignment between neighbouring hull faces. On the right mass, 6,689 of 6,746 exposed cells (99.2%) have a non-cube shape, including 3,908 Block6 and 1,911 Block8 cells. Their individual recesses and seams repeat at the 4 m cell pitch. `SpaceMapVisuals.Refresh` switches a borrowed exterior-cube preview to those exact hull visuals within 70 m, so this camera deliberately reveals the pattern. The selection is deterministic; it is not a random shader fault.
+
+For this presentation pass, keep the existing exterior-cube visual on the two giant solid masses even when close, while retaining all eight authored physical hull IDs, offsets, HP, and collision. Small station structures can keep their exact hull visuals. This removes the pronounced triangular dents but still leaves voxel steps at the large masses' silhouettes. A later geometry rebuild can fit connected boundary patches or use a smoother voxel surface while retaining the eight physical cell types.
+
+The overview image places the station too small in frame. `visual-camera-suggestions.json` specifies a 768 m oblique near view with vertical FOV 70°. The eye is 346.7 m from the nearest station asset AABB, and all 250 station asset bounds fit in the 1440×900 projected frame. The camera shows the whole station and its grid without entering a rounded mass.
+
+The overall grey look also follows the importer: it sets `baseColor` and `surfaceColors` to white for every generated asset and uses the native hull-module materials. It does not preserve the source's warm station, reddish debris, and varied rock colours. Category tints or lighting can improve that appearance without changing occupancy data.

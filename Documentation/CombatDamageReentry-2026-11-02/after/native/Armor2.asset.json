@@ -1,0 +1,80 @@
+{
+    "MonoBehaviour": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "Armor2",
+        "m_EditorClassIdentifier": "Starframe.Construction::Starframe.Flight.ModuleDefinition",
+        "shape": 20,
+        "displayName": "装甲 2",
+        "category": 5,
+        "cost": 34.0,
+        "massKg": 500.0,
+        "maxHp": 2604.0,
+        "recoverySeconds": 6.0,
+        "thrustNewtons": 0.0,
+        "occupiedCells": [
+            {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            {
+                "x": 0,
+                "y": 0,
+                "z": 1
+            }
+        ],
+        "localExhaustDirections": [],
+        "localNozzlePositions": [],
+        "muzzleLocalPosition": {
+            "x": 0.0,
+            "y": 0.27000001072883608,
+            "z": 1.5199999809265137
+        },
+        "muzzleClearanceDiameter": 0.25,
+        "mesh": {
+            "fileID": 4300000,
+            "guid": "d4156c22bd574024ebc875761bf69699",
+            "type": 2
+        },
+        "outline": {
+            "instanceID": 0
+        },
+        "drawOutline": false,
+        "material": {
+            "fileID": 2100000,
+            "guid": "99848a6c5dc6755448dccad0b8158cdd",
+            "type": 2
+        },
+        "icon": {
+            "fileID": 21300000,
+            "guid": "4200610497edc4d468bbe975bd970682",
+            "type": 3
+        },
+        "selectedIcon": {
+            "fileID": 21300000,
+            "guid": "1a66f0a07f53ab548b112fba9e9e5915",
+            "type": 3
+        },
+        "weapon": {
+            "instanceID": 0
+        },
+        "countermeasure": {
+            "instanceID": 0
+        },
+        "generationWatts": 0.0,
+        "storageJoules": 0.0,
+        "thrusterPowerWatts": 0.0,
+        "shieldPowerWatts": 0.0,
+        "shieldCapacity": 0.0,
+        "shieldRadius": 8.0,
+        "shieldRecoveryDelay": 2.0,
+        "shieldRecoveryPerSecond": 50.0,
+        "shieldSurfaceMaterial": {
+            "instanceID": 0
+        },
+        "shieldSurfaceMesh": {
+            "instanceID": 0
+        }
+    }
+}

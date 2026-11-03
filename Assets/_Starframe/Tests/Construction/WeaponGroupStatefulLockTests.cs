@@ -64,13 +64,13 @@ namespace Starframe.Construction.Tests
             locked.activationMode = mode; locked.requireTargetLock = true; locked.chargeSeconds = .25f;
             var ordinary = Own(ScriptableObject.CreateInstance<WeaponDefinition>()); ordinary.shotsPerSecond = 1;
             database.modules = new List<ModuleDefinition>();
-            foreach (var shape in new[] { BlockShape.Core, BlockShape.Laser, BlockShape.Thruster1 })
+            foreach (var shape in new[] { BlockShape.Core, BlockShape.Cube, BlockShape.Laser, BlockShape.Thruster1 })
             {
                 var definition = Own(ScriptableObject.CreateInstance<ModuleDefinition>());
                 definition.shape = shape; definition.massKg = 10; definition.maxHp = 100;
                 definition.occupiedCells = new[] { Vector3Int.zero };
-                definition.category = shape == BlockShape.Core ? ModuleCategory.Core : ModuleCategory.Weapon;
-                if (shape != BlockShape.Core)
+                definition.category = shape == BlockShape.Core ? ModuleCategory.Core : shape == BlockShape.Cube ? ModuleCategory.Hull : ModuleCategory.Weapon;
+                if (shape == BlockShape.Laser || shape == BlockShape.Thruster1)
                 {
                     definition.weapon = shape == BlockShape.Laser ? locked : ordinary;
                     definition.muzzleLocalPosition = Vector3.forward * .6f;
@@ -80,8 +80,10 @@ namespace Starframe.Construction.Tests
             var root = Own(new GameObject("Stateful weapon group lock fixture"));
             var assembly = root.AddComponent<ShipAssembly>(); assembly.Configure(database);
             Assert.That(assembly.Place(BlockShape.Core, new Vector3(0, .5f, 0), Quaternion.identity), Is.True);
-            Assert.That(assembly.Place(BlockShape.Laser, new Vector3(-1, .5f, 0), Quaternion.identity), Is.True);
-            Assert.That(assembly.Place(BlockShape.Thruster1, new Vector3(1, .5f, 0), Quaternion.identity), Is.True);
+            Assert.That(assembly.Place(BlockShape.Cube, new Vector3(-1, .5f, 0), Quaternion.identity), Is.True);
+            Assert.That(assembly.Place(BlockShape.Cube, new Vector3(1, .5f, 0), Quaternion.identity), Is.True);
+            Assert.That(assembly.Place(BlockShape.Laser, new Vector3(-1, 1.5f, 0), Quaternion.identity), Is.True);
+            Assert.That(assembly.Place(BlockShape.Thruster1, new Vector3(1, 1.5f, 0), Quaternion.identity), Is.True);
             var blueprint = assembly.Export("Stateful group lock fixture");
             lockedPart = blueprint.parts.Find(part => part.shape == BlockShape.Laser).id;
             var independent = blueprint.parts.Find(part => part.shape == BlockShape.Thruster1).id;

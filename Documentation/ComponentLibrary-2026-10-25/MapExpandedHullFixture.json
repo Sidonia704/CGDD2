@@ -1,0 +1,332 @@
+{
+    "category": "岩石",
+    "cellSize": 1.0,
+    "blockHealth": 100.0,
+    "damageResetSeconds": 2.0,
+    "massPerCell": 100.0,
+    "fragmentSeparationSpeed": 0.5,
+    "surfaces": [],
+    "hullModules": {
+        "instanceID": 69396
+    },
+    "baseColor": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0,
+        "a": 1.0
+    },
+    "surfaceColors": [
+        {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0,
+            "a": 1.0
+        }
+    ],
+    "cells": [
+        {
+            "position": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "surface": 0,
+            "shape": 0,
+            "quarterTurns": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "modelOffset": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            }
+        },
+        {
+            "position": {
+                "x": 4,
+                "y": 0,
+                "z": 0
+            },
+            "surface": 0,
+            "shape": 1,
+            "quarterTurns": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "modelOffset": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            }
+        },
+        {
+            "position": {
+                "x": 8,
+                "y": 0,
+                "z": 0
+            },
+            "surface": 0,
+            "shape": 4,
+            "quarterTurns": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "modelOffset": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            }
+        },
+        {
+            "position": {
+                "x": 12,
+                "y": 0,
+                "z": 0
+            },
+            "surface": 0,
+            "shape": 5,
+            "quarterTurns": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "modelOffset": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            }
+        },
+        {
+            "position": {
+                "x": 0,
+                "y": 0,
+                "z": 5
+            },
+            "surface": 0,
+            "shape": 10,
+            "quarterTurns": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "modelOffset": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            }
+        },
+        {
+            "position": {
+                "x": 4,
+                "y": 0,
+                "z": 5
+            },
+            "surface": 0,
+            "shape": 11,
+            "quarterTurns": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "modelOffset": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            }
+        },
+        {
+            "position": {
+                "x": 8,
+                "y": 0,
+                "z": 5
+            },
+            "surface": 0,
+            "shape": 12,
+            "quarterTurns": {
+                "x": 0,
+                "y": 1,
+                "z": 0
+            },
+            "modelOffset": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            }
+        },
+        {
+            "position": {
+                "x": 9,
+                "y": 0,
+                "z": 5
+            },
+            "surface": 0,
+            "shape": 12,
+            "quarterTurns": {
+                "x": 0,
+                "y": 1,
+                "z": 0
+            },
+            "modelOffset": {
+                "x": 0,
+                "y": 0,
+                "z": 1
+            }
+        },
+        {
+            "position": {
+                "x": 12,
+                "y": 0,
+                "z": 5
+            },
+            "surface": 0,
+            "shape": 13,
+            "quarterTurns": {
+                "x": 0,
+                "y": 1,
+                "z": 0
+            },
+            "modelOffset": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            }
+        },
+        {
+            "position": {
+                "x": 12,
+                "y": 0,
+                "z": 4
+            },
+            "surface": 0,
+            "shape": 13,
+            "quarterTurns": {
+                "x": 0,
+                "y": 1,
+                "z": 0
+            },
+            "modelOffset": {
+                "x": 1,
+                "y": 0,
+                "z": 0
+            }
+        },
+        {
+            "position": {
+                "x": 13,
+                "y": 0,
+                "z": 5
+            },
+            "surface": 0,
+            "shape": 13,
+            "quarterTurns": {
+                "x": 0,
+                "y": 1,
+                "z": 0
+            },
+            "modelOffset": {
+                "x": 0,
+                "y": 0,
+                "z": 1
+            }
+        },
+        {
+            "position": {
+                "x": 13,
+                "y": 0,
+                "z": 4
+            },
+            "surface": 0,
+            "shape": 13,
+            "quarterTurns": {
+                "x": 0,
+                "y": 1,
+                "z": 0
+            },
+            "modelOffset": {
+                "x": 1,
+                "y": 0,
+                "z": 1
+            }
+        },
+        {
+            "position": {
+                "x": 12,
+                "y": 1,
+                "z": 5
+            },
+            "surface": 0,
+            "shape": 13,
+            "quarterTurns": {
+                "x": 0,
+                "y": 1,
+                "z": 0
+            },
+            "modelOffset": {
+                "x": 0,
+                "y": 1,
+                "z": 0
+            }
+        },
+        {
+            "position": {
+                "x": 12,
+                "y": 1,
+                "z": 4
+            },
+            "surface": 0,
+            "shape": 13,
+            "quarterTurns": {
+                "x": 0,
+                "y": 1,
+                "z": 0
+            },
+            "modelOffset": {
+                "x": 1,
+                "y": 1,
+                "z": 0
+            }
+        },
+        {
+            "position": {
+                "x": 13,
+                "y": 1,
+                "z": 5
+            },
+            "surface": 0,
+            "shape": 13,
+            "quarterTurns": {
+                "x": 0,
+                "y": 1,
+                "z": 0
+            },
+            "modelOffset": {
+                "x": 0,
+                "y": 1,
+                "z": 1
+            }
+        },
+        {
+            "position": {
+                "x": 13,
+                "y": 1,
+                "z": 4
+            },
+            "surface": 0,
+            "shape": 13,
+            "quarterTurns": {
+                "x": 0,
+                "y": 1,
+                "z": 0
+            },
+            "modelOffset": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+            }
+        }
+    ]
+}

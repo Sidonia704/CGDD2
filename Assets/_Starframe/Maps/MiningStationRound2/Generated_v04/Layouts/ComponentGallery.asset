@@ -1,0 +1,109 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bc9fba079fe3c340a9872eaa1911107, type: 3}
+  m_Name: ComponentGallery
+  m_EditorClassIdentifier: Starframe.Construction::Starframe.Maps.SpaceMapDefinition
+  size: {x: 2500, y: 2500, z: 2500}
+  playerSpawn: {x: 0, y: 150, z: -250}
+  playerEulerAngles: {x: 0, y: 0, z: 0}
+  enemySpawns: []
+  instances:
+  - id: r2-gallery-0
+    label: Station_SphericalTank
+    asset: {fileID: 11400000, guid: 53e0d35cf8298d44c96c70f41b57ef4d, type: 2}
+    position: {x: -300, y: 0, z: 0}
+    eulerAngles: {x: 0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: r2-gallery-1
+    label: Station_CapsuleTank
+    asset: {fileID: 11400000, guid: fa6d78ad34b45204f83134d516d1ec8c, type: 2}
+    position: {x: -150, y: 0, z: 0}
+    eulerAngles: {x: 0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: r2-gallery-2
+    label: Station_OpenTruss
+    asset: {fileID: 11400000, guid: 4181d4bac806640428a553d7abe30445, type: 2}
+    position: {x: 0, y: 0, z: 0}
+    eulerAngles: {x: 0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: r2-gallery-3
+    label: Station_EquipmentCage
+    asset: {fileID: 11400000, guid: a9b910e11cacbca46852b59b5f831786, type: 2}
+    position: {x: 150, y: 0, z: 0}
+    eulerAngles: {x: 0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: r2-gallery-4
+    label: Station_NotchedSlab
+    asset: {fileID: 11400000, guid: dcc33e89bc4218748bca9dfcc469e8c4, type: 2}
+    position: {x: 300, y: 0, z: 0}
+    eulerAngles: {x: 0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: r2-gallery-5
+    label: Rock_Ridged
+    asset: {fileID: 11400000, guid: 3bac1ed6ee1aa694b95b561b93639edd, type: 2}
+    position: {x: -300, y: 0, z: 160}
+    eulerAngles: {x: 0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: r2-gallery-6
+    label: Rock_Notched
+    asset: {fileID: 11400000, guid: 2e0a328ae5903ed47924ac6507a299c8, type: 2}
+    position: {x: -150, y: 0, z: 160}
+    eulerAngles: {x: 0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: r2-gallery-7
+    label: Rock_Faceted
+    asset: {fileID: 11400000, guid: 97f30d12368b4354bb021a13fb8b6f7b, type: 2}
+    position: {x: 0, y: 0, z: 160}
+    eulerAngles: {x: 0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: r2-gallery-8
+    label: Debris_FracturedChunk
+    asset: {fileID: 11400000, guid: b7b783f50e33c0e49ba31bad3d2eecfe, type: 2}
+    position: {x: 150, y: 0, z: 160}
+    eulerAngles: {x: 0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: r2-gallery-9
+    label: Debris_AngledShard
+    asset: {fileID: 11400000, guid: 0612a89f0d6ee6b45b58a0b5e4aaf934, type: 2}
+    position: {x: 300, y: 0, z: 160}
+    eulerAngles: {x: 0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}

@@ -90,6 +90,9 @@ namespace Starframe.Construction
             {
                 bool attached=false;foreach(var b in blocks.Values)if(BlockConnectivity.Touches(candidate,b.Record)){attached=true;break;}
                 if(!attached)return Reject("必须与现有船体通过面连接。");
+                var existing=new List<BlockRecord>();foreach(var b in blocks.Values)existing.Add(b.Record);
+                if((BlockModules.IsWeapon(shape)||BlockModules.IsArmor(shape))&&!BlockConnectivity.HasCompleteMount(candidate,existing))
+                    return Reject("武器或装甲的宽度方向需要全部底部接触面。");
             }
             probe.sharedMesh=Collision(shape);
             var world=transform.TransformPoint(position);var q=transform.rotation*rotation;
@@ -128,7 +131,7 @@ namespace Starframe.Construction
             go.transform.SetParent(transform,false);var view=go.AddComponent<BlockView>();
             var definition=moduleDatabase?moduleDatabase.Get(record.shape):null;
             view.Initialize(record,Solid(record.shape),definition&&!definition.drawOutline?null:Outline(record.shape),MaterialFor(record.shape),edgeMaterial,true,Collision(record.shape));
-            ModuleGlowAccents.Attach(go.transform,record.shape,Solid(record.shape),null,definition?definition.muzzleLocalPosition:(Vector3?)null);
+            ModuleGlowAccents.Attach(go.transform,record.shape,Solid(record.shape),null,definition?definition.muzzleLocalPosition:(Vector3?)null,definition&&definition.weapon?definition.weapon.muzzleOffsets:null);
             if(record.shape==BlockShape.Core){
                 var rayObject=new GameObject("ShipForwardRay");rayObject.transform.SetParent(go.transform,false);
                 var ray=rayObject.AddComponent<LineRenderer>();ray.useWorldSpace=false;ray.positionCount=2;
@@ -182,16 +185,28 @@ namespace Starframe.Construction
         void ValidateGeometry(BlueprintData data)
         {
             float radius=Solid(BlockShape.Cube).bounds.extents.magnitude*MaxScale();
-            for(int i=0;i<data.parts.Count;i++)
+            int count=data.parts.Count;
+            var worldPositions=new Vector3[count];
+            var worldRotations=new Quaternion[count];
+            var assemblyTransform=transform;var assemblyRotation=assemblyTransform.rotation;
+            // The assembly pose cannot change during this synchronous validation. Cache each transformed
+            // part once instead of crossing into native Transform APIs again for every candidate pair.
+            for(int i=0;i<count;i++)
+            {
+                var part=data.parts[i];
+                worldPositions[i]=assemblyTransform.TransformPoint(part.position);
+                worldRotations[i]=assemblyRotation*part.rotation;
+            }
+            for(int i=0;i<count;i++)
             {
                 var a=data.parts[i];probe.sharedMesh=Collision(a.shape);
-                var aPosition=transform.TransformPoint(a.position);var aRotation=transform.rotation*a.rotation;
+                var aPosition=worldPositions[i];var aRotation=worldRotations[i];
                 for(int j=0;j<i;j++)
                 {
-                    var b=data.parts[j];var bPosition=transform.TransformPoint(b.position);
+                    var b=data.parts[j];var bPosition=worldPositions[j];
                     if((aPosition-bPosition).sqrMagnitude>radius*radius*4)continue;
                     secondProbe.sharedMesh=Collision(b.shape);
-                    if(Physics.ComputePenetration(probe,aPosition,aRotation,secondProbe,bPosition,transform.rotation*b.rotation,
+                    if(Physics.ComputePenetration(probe,aPosition,aRotation,secondProbe,bPosition,worldRotations[j],
                         out _,out float depth)&&depth>.001f)throw new System.IO.InvalidDataException("Blueprint parts overlap.");
                 }
             }

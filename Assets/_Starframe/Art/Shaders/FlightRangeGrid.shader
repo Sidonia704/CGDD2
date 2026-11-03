@@ -1,6 +1,6 @@
 Shader "Starframe/Flight/RangeGrid"
 {
- Properties { _PlaneAxis("Axis",Float)=2 _Boundary("Boundary",Float)=0 _CellSize("Cell",Float)=4
+ Properties { _PlaneAxis("Axis",Float)=2 _Boundary("Boundary",Float)=0 _CellSize("Cell",Float)=12 _Opacity("Opacity",Range(0,1))=.42
   _FadeNear("Near",Float)=30 _FadeFar("Far",Float)=130 _BoundaryFadeDistance("Boundary Fade",Float)=220 _PlayerPosition("Player",Vector)=(0,0,0,0) }
  SubShader
  {
@@ -13,7 +13,7 @@ Shader "Starframe/Flight/RangeGrid"
    #pragma fragment Frag
    #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
    CBUFFER_START(UnityPerMaterial)
-   float _PlaneAxis,_Boundary,_CellSize,_FadeNear,_FadeFar,_BoundaryFadeDistance;float4 _PlayerPosition;
+   float _PlaneAxis,_Boundary,_CellSize,_FadeNear,_FadeFar,_BoundaryFadeDistance,_Opacity;float4 _PlayerPosition;
    CBUFFER_END
    struct A{float4 p:POSITION;};struct V{float4 p:SV_POSITION;float3 world:TEXCOORD0;};
    V Vert(A v){V o;o.world=TransformObjectToWorld(v.p.xyz);o.p=TransformWorldToHClip(o.world);return o;}
@@ -34,8 +34,9 @@ Shader "Starframe/Flight/RangeGrid"
      float playerPosition=_PlaneAxis<.5?_PlayerPosition.x:_PlaneAxis<1.5?_PlayerPosition.y:_PlayerPosition.z;
      alpha=(.025+grid)*(1-smoothstep(0,_BoundaryFadeDistance,abs(planePosition-playerPosition)));
     }
+    alpha*=_Opacity;
     clip(alpha-.001);
-    return half4(.52,.85,1.45,saturate(alpha));
+    return half4(lerp(float3(.36,.56,.78),float3(.52,.85,1.2),_Boundary),saturate(alpha));
    }
    ENDHLSL
   }

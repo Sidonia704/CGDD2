@@ -1,0 +1,32 @@
+{
+  "success": true,
+  "command": "command eval",
+  "data": {
+    "command": "eval",
+    "parameters": {
+      "code": "var map=UnityEngine.Object.FindFirstObjectByType<Starframe.Maps.SpaceMapRuntime>(); var item=map.Structures[1]; var marker=UnityEngine.GameObject.Find(\"_StudioMotionSample\"); var cell=item.asset.cells[0].position; return new{frame=UnityEngine.Time.frameCount,time=UnityEngine.Time.time,movedMetres=UnityEngine.Vector3.Distance(marker.transform.position,item.Body.position),velocity=item.Body.linearVelocity.ToString(),healthAfterQuiet=item.GetHealth(cell),sparseRecords=item.RecentDamageCount,sourceCells=item.asset.cells.Count,aliveCells=item.AliveCount};"
+    },
+    "result": {
+      "output": null,
+      "diagnostics": [],
+      "success": true,
+      "result": {
+        "frame": 53818,
+        "time": 74.59945,
+        "movedMetres": 113.275391,
+        "velocity": "(3.00, 0.00, 0.00)",
+        "healthAfterQuiet": 100,
+        "sparseRecords": 0,
+        "sourceCells": 66,
+        "aliveCells": 66
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7801,
+      "projectPath": "D:\\software\\unity\\CGDD26107"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

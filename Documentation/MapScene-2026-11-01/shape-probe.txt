@@ -1,0 +1,72 @@
+Block5 verts=256 bounds=(0.98, 0.97, 0.98) min=(-0.49, -0.50, -0.49) max=(0.49, 0.47, 0.49)
+  octant -X-Y-Z verts=48
+  octant +X-Y-Z verts=48
+  octant -X+Y-Z verts=0
+  octant +X+Y-Z verts=64
+  octant -X-Y+Z verts=48
+  octant +X-Y+Z verts=48
+  octant -X+Y+Z verts=0
+  octant +X+Y+Z verts=0
+  corner -X-Y-Z verticesWithin18%=48
+  corner +X-Y-Z verticesWithin18%=48
+  corner -X+Y-Z verticesWithin18%=0
+  corner +X+Y-Z verticesWithin18%=64
+  corner -X-Y+Z verticesWithin18%=48
+  corner +X-Y+Z verticesWithin18%=48
+  corner -X+Y+Z verticesWithin18%=0
+  corner +X+Y+Z verticesWithin18%=0
+
+Block6 verts=192 bounds=(0.97, 0.97, 0.97) min=(-0.48, -0.50, -0.48) max=(0.48, 0.47, 0.48)
+  octant -X-Y-Z verts=48
+  octant +X-Y-Z verts=48
+  octant -X+Y-Z verts=0
+  octant +X+Y-Z verts=48
+  octant -X-Y+Z verts=0
+  octant +X-Y+Z verts=48
+  octant -X+Y+Z verts=0
+  octant +X+Y+Z verts=0
+  corner -X-Y-Z verticesWithin18%=48
+  corner +X-Y-Z verticesWithin18%=48
+  corner -X+Y-Z verticesWithin18%=0
+  corner +X+Y-Z verticesWithin18%=48
+  corner -X-Y+Z verticesWithin18%=0
+  corner +X-Y+Z verticesWithin18%=48
+  corner -X+Y+Z verticesWithin18%=0
+  corner +X+Y+Z verticesWithin18%=0
+
+Block7 verts=362 bounds=(0.98, 0.49, 0.98) min=(-0.49, -0.50, -0.48) max=(0.49, -0.01, 0.50)
+  octant -X-Y-Z verts=141
+  octant +X-Y-Z verts=141
+  octant -X+Y-Z verts=0
+  octant +X+Y-Z verts=0
+  octant -X-Y+Z verts=40
+  octant +X-Y+Z verts=40
+  octant -X+Y+Z verts=0
+  octant +X+Y+Z verts=0
+  corner -X-Y-Z verticesWithin18%=70
+  corner +X-Y-Z verticesWithin18%=71
+  corner -X+Y-Z verticesWithin18%=71
+  corner +X+Y-Z verticesWithin18%=70
+  corner -X-Y+Z verticesWithin18%=20
+  corner +X-Y+Z verticesWithin18%=20
+  corner -X+Y+Z verticesWithin18%=20
+  corner +X+Y+Z verticesWithin18%=20
+
+Block8 verts=146 bounds=(0.99, 1.00, 0.99) min=(-0.49, -0.50, -0.49) max=(0.50, 0.50, 0.50)
+  octant -X-Y-Z verts=70
+  octant +X-Y-Z verts=18
+  octant -X+Y-Z verts=18
+  octant +X+Y-Z verts=7
+  octant -X-Y+Z verts=18
+  octant +X-Y+Z verts=7
+  octant -X+Y+Z verts=5
+  octant +X+Y+Z verts=3
+  corner -X-Y-Z verticesWithin18%=70
+  corner +X-Y-Z verticesWithin18%=18
+  corner -X+Y-Z verticesWithin18%=18
+  corner +X+Y-Z verticesWithin18%=7
+  corner -X-Y+Z verticesWithin18%=18
+  corner +X-Y+Z verticesWithin18%=7
+  corner -X+Y+Z verticesWithin18%=5
+  corner +X+Y+Z verticesWithin18%=3
+

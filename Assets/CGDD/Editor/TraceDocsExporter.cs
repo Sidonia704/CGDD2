@@ -223,7 +223,7 @@ public static class TraceDocsExporter
         var declarationRx = new Regex(@"\b" + Regex.Escape(type) + @"\s+([^;{}\r\n]+);");
         foreach (Match declaration in declarationRx.Matches(source))
         {
-            foreach (string field in declaration.Groups[1].Value.Split(','))
+            foreach (string field in SplitFieldInitializers(declaration.Groups[1].Value))
             {
                 var named = Regex.Match(field, @"^\s*" + Regex.Escape(name) + @"\s*(?:=\s*(.+))?\s*$");
                 if (!named.Success) continue;
@@ -237,10 +237,23 @@ public static class TraceDocsExporter
                         System.Globalization.CultureInfo.InvariantCulture, out double number))
                         return number.ToString("G", System.Globalization.CultureInfo.InvariantCulture);
                 }
-                return "—";
+                return value.Replace("|", "&#124;");
             }
         }
         return "—";
+    }
+
+    static IEnumerable<string> SplitFieldInitializers(string declaration)
+    {
+        int depth=0,start=0;
+        for(int i=0;i<declaration.Length;i++)
+        {
+            char c=declaration[i];
+            if(c=='('||c=='[')depth++;
+            else if(c==')'||c==']')depth--;
+            else if(c==','&&depth==0){yield return declaration.Substring(start,i-start);start=i+1;}
+        }
+        yield return declaration.Substring(start);
     }
 
     static string TrimNum(string value)

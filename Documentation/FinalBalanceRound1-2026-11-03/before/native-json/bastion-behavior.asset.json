@@ -1,0 +1,26 @@
+{
+    "MonoBehaviour": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "bastion-behavior",
+        "m_EditorClassIdentifier": "Starframe.Construction::Starframe.Combat.BotBehaviorProfile",
+        "role": 3,
+        "preferredRange": 550.0,
+        "cruiseSpeedFraction": 0.5600000023841858,
+        "attackSpeedFraction": 0.30000001192092898,
+        "strafeFraction": 0.1599999964237213,
+        "attackPass": false,
+        "minimumAttackSeconds": 2.0,
+        "attackSeconds": 6.0,
+        "breakawaySeconds": 2.0,
+        "reactionSeconds": 1.0,
+        "fireBurstSeconds": 0.800000011920929,
+        "firePauseSeconds": 1.5,
+        "aimErrorDegrees": 0.30000001192092898,
+        "velocityResponseSeconds": 0.699999988079071,
+        "steeringResponseSeconds": 0.1599999964237213,
+        "weaponHoldSeconds": 1.399999976158142,
+        "terrainLookaheadSeconds": 2.0,
+        "terrainProbeSeconds": 0.18000000715255738
+    }
+}

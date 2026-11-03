@@ -1,0 +1,79 @@
+{
+    "MonoBehaviour": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "Shield",
+        "m_EditorClassIdentifier": "Starframe.Construction::Starframe.Flight.ModuleDefinition",
+        "shape": 9,
+        "displayName": "护盾发生器",
+        "category": 5,
+        "cost": 100.0,
+        "massKg": 550.0,
+        "maxHp": 1092.0,
+        "recoverySeconds": 20.0,
+        "thrustNewtons": 0.0,
+        "occupiedCells": [
+            {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            }
+        ],
+        "localExhaustDirections": [],
+        "localNozzlePositions": [],
+        "muzzleLocalPosition": {
+            "x": 0.0,
+            "y": 0.27000001072883608,
+            "z": 1.5199999809265137
+        },
+        "muzzleClearanceDiameter": 0.25,
+        "mesh": {
+            "fileID": 4300000,
+            "guid": "754731938e4f0a04fbd35ea7b45316b2",
+            "type": 2
+        },
+        "outline": {
+            "instanceID": 0
+        },
+        "drawOutline": false,
+        "material": {
+            "fileID": 2100000,
+            "guid": "83f032bf8aa04bc4ab0f191766d8ed5a",
+            "type": 2
+        },
+        "icon": {
+            "fileID": 21300000,
+            "guid": "457b0c7e8d4b94a45b608787006c949a",
+            "type": 3
+        },
+        "selectedIcon": {
+            "fileID": 21300000,
+            "guid": "d69fb2df92769094bbfc9dcf664a3cf3",
+            "type": 3
+        },
+        "weapon": {
+            "instanceID": 0
+        },
+        "countermeasure": {
+            "instanceID": 0
+        },
+        "generationWatts": 0.0,
+        "storageJoules": 0.0,
+        "thrusterPowerWatts": 0.0,
+        "shieldPowerWatts": 180.0,
+        "shieldCapacity": 2729.999755859375,
+        "shieldRadius": 8.0,
+        "shieldRecoveryDelay": 4.5,
+        "shieldRecoveryPerSecond": 90.0,
+        "shieldSurfaceMaterial": {
+            "fileID": 2100000,
+            "guid": "de4e6baad4d3432418b085aa6160942e",
+            "type": 2
+        },
+        "shieldSurfaceMesh": {
+            "fileID": 4300000,
+            "guid": "9fcf57056c63631459c7affa3094fa8f",
+            "type": 2
+        }
+    }
+}

@@ -1,0 +1,9 @@
+# Weapon cadence and player balance — 2026-11-03
+
+- V (rebindable Settings action WeaponCadence) switches player direct Projectile weapons between synchronized and alternating fire. Default synchronized each new sortie. Choice survives Reset; Initialize creates fresh default. Existing group enable/fire bindings still gate inputs.
+- Automatic weapons use phase-shifted activation clocks, preserving nominal per-barrel sustained rate. Press/charge-release weapons defer already earned discharge by phase; charge still must finish and release. Returning to salvo aligns clocks after one cycle, not a free instant volley. Beams and missiles do not use V.
+- Missile tubes round-robin between ready mounts using one ship-wide clock, default6 physical missiles/s, bounded to one launch per simulation tick with no accumulated idle/catch-up backlog. Twin rack damage still split over its tubes. Reload begins first tube; continuation requires valid same-live-target lock, clear mount and power. Lock loss/disable/reset cancels remaining tubes. No general ProjectileWorld.Fire semantics changed for isolated tools; gameplay ShipWeapons uses FireMissileTube.
+- Shared CombatDamageTuning category knobs stay0.60/0.25. Player-only multipliers1.10(nonmissile)/0.85(missile) yield raw factors0.66/0.2125. Enemy faction scaling is unchanged; raw weapon definitions damage untouched. Assembly details show final player product.
+- Native Railgun1/2/3 shots/s1.20/1.00/0.80 ->1.50/1.25/1.00 (+25%), all factions. Sustained rated watts unchanged.
+- Native installer tools/SessionNov03/InstallWeapons.cs entrySessionNov03WeaponInstall.Main explicitly saves new fields and three rates, preserves category knobs. Backups weapon-before/ (first-write only).
+- Root owns compilation/test execution and final evidence. No Unity tests invoked by this agent.

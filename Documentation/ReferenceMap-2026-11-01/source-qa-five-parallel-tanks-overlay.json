@@ -1,0 +1,23 @@
+{
+  "TOP XZ": {
+    "sourcePixels": 24127,
+    "voxelPixels": 25399,
+    "intersection": 24127,
+    "union": 25399,
+    "silhouetteIoU": 0.9499
+  },
+  "FRONT XY": {
+    "sourcePixels": 12920,
+    "voxelPixels": 13366,
+    "intersection": 12920,
+    "union": 13366,
+    "silhouetteIoU": 0.9666
+  },
+  "SIDE ZY": {
+    "sourcePixels": 9286,
+    "voxelPixels": 9698,
+    "intersection": 9286,
+    "union": 9698,
+    "silhouetteIoU": 0.9575
+  }
+}

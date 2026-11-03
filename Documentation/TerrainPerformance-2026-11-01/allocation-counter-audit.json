@@ -1,0 +1,18 @@
+{
+  "version": "terrain-allocation-counter-audit/1",
+  "unityVersion": "6000.3.25f1",
+  "counter": "System.GC.GetAllocatedBytesForCurrentThread",
+  "positiveControlBytes": 1048576,
+  "observedBeforeBytes": 0,
+  "observedAfterBytes": 0,
+  "observedDeltaBytes": 0,
+  "allocationCounterAvailable": false,
+  "zeroAllocationClaimSupported": false,
+  "heapUsedDeltaBytes": 1052672,
+  "heapUsedDeltaMeaning": "Profiler.GetMonoUsedSizeLong difference is only corroborating evidence that the 1 MiB buffer existed. It is not an allocation counter and is not substituted for allocation measurements.",
+  "unavailableAllocationSentinel": -1,
+  "disclosure": "This Unity Editor returns zero even after an intentionally retained 1 MiB allocation. Allocation counter results are unavailable, not zero. All profiler allocation metrics are suppressed when unavailable. Idle functional tests still assert disabled scheduling, stable meshes/colliders/revisions and no rebuilds; they cannot prove zero managed allocation on this Editor. CPU durations and separately labelled mesh-memory measurements remain valid.",
+  "rawProbe": "Temp/TerrainPerformance/allocation-counter-probe.json",
+  "initialInvalidPrewarmArchive": "Temp/TerrainPerformance/prewarm-audit-unsupported-counter-draft.json",
+  "preservedBaselineUnaffected": true
+}

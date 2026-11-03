@@ -1,4 +1,4 @@
-// @role Apply hold, press, charge and toggle modes using allocated power.
+// @role Apply hold, press, charge and toggle modes using allocated power and a persistent immediate-shot cadence.
 
 using System;
 using Starframe.Flight;
@@ -15,7 +15,7 @@ namespace Starframe.Combat
     /// <summary>Prepare requests watts; Advance applies the allocated fraction once and returns shot pulses.</summary>
     public sealed class WeaponActivationState
     {
-        double progress,charge;
+        double progress,charge,cooldown;
         bool previousHeld,toggled,pending,charging,active,releaseReady;
         WeaponActivationMode mode;
         public bool RequestsPower{get;private set;}
@@ -24,8 +24,8 @@ namespace Starframe.Combat
 
         public bool Prepare(WeaponDefinition definition,WeaponInputState input,bool canActivate)
         {
-            if(!definition||!canActivate){Clear();return false;}
-            if(mode!=definition.activationMode){Clear();mode=definition.activationMode;}
+            if(!definition||!canActivate){Cancel();return false;}
+            if(mode!=definition.activationMode){Cancel();mode=definition.activationMode;}
             // Edge modes require an explicit press. Clearing focus/lock must not
             // switch a toggle back on merely because the physical key is still held.
             bool pressed=input.pressed;
@@ -33,7 +33,8 @@ namespace Starframe.Combat
             previousHeld=input.held;RequestsPower=false;active=false;
             switch(mode){
                 case WeaponActivationMode.Hold:
-                    active=input.held;if(!active)progress=0;RequestsPower=active;return active;
+                    active=input.held;if(!active)progress=0;
+                    RequestsPower=active;return active;
                 case WeaponActivationMode.Toggle:
                     if(pressed)toggled=!toggled;active=toggled;if(!active)progress=0;RequestsPower=active;return active;
                 case WeaponActivationMode.Press:
@@ -53,19 +54,53 @@ namespace Starframe.Combat
         {
             if(!definition||dt<=0||float.IsNaN(dt)||float.IsInfinity(dt))return 0;
             double ratio=float.IsNaN(powerRatio)||float.IsInfinity(powerRatio)?0:Mathf.Clamp01(powerRatio);
+            bool immediateHold=mode==WeaponActivationMode.Hold&&definition.firstShotImmediate;
+            if(!immediateHold)AdvanceInactive(dt);
             if(mode==WeaponActivationMode.ChargeRelease){
                 if(releaseReady){releaseReady=false;return 1;}
                 if(charging){float seconds=definition.chargeSeconds;if(float.IsNaN(seconds)||float.IsInfinity(seconds))return 0;charge=Math.Min(1,charge+dt*ratio/Math.Max(.01,seconds));if(charge>=1-1e-7)charge=1;}
                 return 0;
             }
-            if(!active&&!pending)return 0;
+            if(!active&&!pending){if(immediateHold)AdvanceInactive(dt);return 0;}
+            if(ratio<=0)return 0;
             float rate=definition.shotsPerSecond;if(rate<=0||float.IsNaN(rate)||float.IsInfinity(rate))return 0;
+            if(immediateHold){
+                // One clock owns the entire cycle. Do not add a second powered
+                // progress cycle after cooling, or sustained cadence is halved.
+                // The initial shot is retained until power is actually allocated.
+                if(cooldown>0)cooldown-=dt*ratio;
+                if(cooldown>1e-6)return 0;
+                int pulses=(int)Math.Min(int.MaxValue,1+Math.Floor(Math.Max(0,-cooldown)*rate+1e-7));
+                cooldown+=pulses/(double)rate;
+                return pulses;
+            }
             progress+=dt*ratio*rate;
             if(progress<1-1e-7)return 0;
             if(mode==WeaponActivationMode.Press){pending=false;progress=0;RequestsPower=false;return 1;}
-            int count=(int)Math.Min(int.MaxValue,Math.Floor(progress+1e-7));progress=Math.Max(0,progress-count);return count;
+            int count=(int)Math.Min(int.MaxValue,Math.Floor(progress+1e-7));progress=Math.Max(0,progress-count);
+            return count;
         }
 
-        public void Clear(){progress=charge=0;previousHeld=toggled=pending=charging=active=releaseReady=RequestsPower=false;}
+        /// <summary>Cancel input/charge without granting another immediate shot.</summary>
+        public void Cancel(){progress=charge=0;previousHeld=toggled=pending=charging=active=releaseReady=RequestsPower=false;}
+
+        /// <summary>Unselected and released weapons cool without firing or banking shot pulses.</summary>
+        public void AdvanceInactive(float dt)
+        {
+            if(dt>0&&!float.IsNaN(dt)&&!float.IsInfinity(dt))cooldown=Math.Max(0,cooldown-dt);
+        }
+
+        /// <summary>Offset a newly started automatic cycle without changing its sustained per-gun rate.</summary>
+        public void DelayCycle(WeaponDefinition definition,float seconds)
+        {
+            seconds=Mathf.Max(0,seconds);
+            if(definition.activationMode==WeaponActivationMode.Hold&&definition.firstShotImmediate)cooldown+=seconds;
+            else progress-=seconds*Mathf.Max(.01f,definition.shotsPerSecond);
+        }
+        public void SynchronizeCycle(WeaponDefinition definition)
+        {
+            progress=0;cooldown=1/Math.Max(.01,definition.shotsPerSecond);
+        }
+        public void Clear(){Cancel();cooldown=0;}
     }
 }

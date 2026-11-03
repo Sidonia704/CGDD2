@@ -1,0 +1,55 @@
+{
+  "success": true,
+  "command": "command run_script",
+  "data": {
+    "command": "run_script",
+    "parameters": {
+      "file": "Temp/MapEditBenchmark.cs",
+      "entry": "MapEditBenchmark.Run",
+      "timeout_ms": "75000"
+    },
+    "result": {
+      "diagnostics": [],
+      "compileMs": 96,
+      "executeMs": 2767,
+      "assemblyName": "PipelineRunScript_MapEditBenchmark_97da915f72834fd28ac6117199fde118",
+      "success": true,
+      "result": {
+        "scope": "Map editor only; synchronous preview build and one-cell edit",
+        "results": [
+          {
+            "cells": 1000,
+            "buildMs": 65.1216,
+            "editMs": 0.2957,
+            "refreshMs": 69.6504,
+            "vertices": 384384,
+            "colliderComponents": 4
+          },
+          {
+            "cells": 4096,
+            "buildMs": 362.9145,
+            "editMs": 0.5698,
+            "refreshMs": 362.3494,
+            "vertices": 1573248,
+            "colliderComponents": 4
+          },
+          {
+            "cells": 10000,
+            "buildMs": 1012.6523,
+            "editMs": 0.962,
+            "refreshMs": 757.3071,
+            "vertices": 3840384,
+            "colliderComponents": 4
+          }
+        ]
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7801,
+      "projectPath": "D:\\software\\unity\\CGDD26107"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

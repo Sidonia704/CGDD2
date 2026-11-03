@@ -15,18 +15,18 @@ RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 10
   m_Fog: 0
-  m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  m_FogColor: {r: 0.012, g: 0.032, b: 0.075, a: 1}
   m_FogMode: 3
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.16, g: 0.21, b: 0.29, a: 1}
-  m_AmbientEquatorColor: {r: 0.08, g: 0.11, b: 0.16, a: 1}
-  m_AmbientGroundColor: {r: 0.04, g: 0.06, b: 0.1, a: 1}
+  m_AmbientSkyColor: {r: 0.27, g: 0.39, b: 0.62, a: 1}
+  m_AmbientEquatorColor: {r: 0.14, g: 0.22, b: 0.38, a: 1}
+  m_AmbientGroundColor: {r: 0.06, g: 0.1, b: 0.19, a: 1}
   m_AmbientIntensity: 1
   m_AmbientMode: 1
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: f100fc25de2cd5844a8adb4bc3eb6ba9, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: ef97e6c486805d44c9c3b0a09e742a52, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -489,8 +489,8 @@ Camera:
   m_GameObject: {fileID: 1005377214}
   m_Enabled: 0
   serializedVersion: 2
-  m_ClearFlags: 2
-  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0.035, g: 0.1, b: 0.23, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -853,7 +853,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.035, g: 0.1, b: 0.23, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0

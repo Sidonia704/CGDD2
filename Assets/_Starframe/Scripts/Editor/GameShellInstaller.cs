@@ -24,7 +24,7 @@ namespace Starframe.EditorTools
             AssetDatabase.Refresh();
             var catalog=AssetDatabase.LoadAssetAtPath<MissionCatalog>(SettingsRoot+"/Missions.asset");
             if(!catalog){catalog=ScriptableObject.CreateInstance<MissionCatalog>();AssetDatabase.CreateAsset(catalog,SettingsRoot+"/Missions.asset");}
-            foreach(var spec in new[]{new[]{"ice","6000"},new[]{"frontier","10000"}}){
+            foreach(var spec in new[]{new[]{"ice","30000"},new[]{"frontier","10000"}}){
                 string id=spec[0],path=SettingsRoot+"/"+id+".asset";var mission=AssetDatabase.LoadAssetAtPath<MissionDefinition>(path);
                 if(!mission){mission=ScriptableObject.CreateInstance<MissionDefinition>();mission.id=id;mission.titleKey="mission."+id+".title";mission.descriptionKey="mission."+id+".description";mission.regionKey="mission."+id+".region";mission.baseBudget=float.Parse(spec[1],System.Globalization.CultureInfo.InvariantCulture);mission.useProvisionalPricing=true;mission.unpricedPartCost=10;AssetDatabase.CreateAsset(mission,path);}
                 if(!catalog.missions.Contains(mission))catalog.missions.Add(mission);

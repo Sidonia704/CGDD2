@@ -1,7 +1,12 @@
-// @role Create and simulate persistent, destructible detached ship wreckage.
-// @calls CombatVfxPool, FlightTuning, DebrisCluster, DebrisPartHitbox
+// @role Simulate destructible ship wreckage and clear it 90 simulation seconds after detachment, including later fragments.
+// @calls CombatVfxPool, FlightTuning, DebrisCluster, DebrisPartHitbox, DebrisInstanceRenderer
+// @tune physicsBudgetInterval:float:0.05-2:Seconds between whole-island distance evaluations against living ships.
+// @tune farPhysicsDistance:float:350+:Distance from every living ship before disabling speculative CCD and render interpolation.
+// @tune nearPhysicsDistance:float:1+:Distance to any living ship that restores speculative CCD and interpolation, expanded for closing speed.
+// @tune lifetimeSeconds:float:1+:Wreck lifetime after detachment; splitting never extends the deadline.
 
 using System.Collections.Generic;
+using Unity.Profiling;
 using UnityEngine;
 using Starframe.Construction;
 using Starframe.Flight;
@@ -11,15 +16,36 @@ namespace Starframe.Combat
     public sealed class DebrisWorld:MonoBehaviour
     {
         static readonly Vector3Int[] Directions={Vector3Int.right,Vector3Int.left,Vector3Int.up,Vector3Int.down,Vector3Int.forward,Vector3Int.back};
+        static readonly ProfilerMarker SpawnMarker=new ProfilerMarker("Starframe.SpawnWreckage");
         readonly List<DebrisCluster> clusters=new List<DebrisCluster>();
         readonly HashSet<DebrisCluster> changed=new HashSet<DebrisCluster>();
+        readonly Dictionary<DebrisCluster,bool> farPhysics=new Dictionary<DebrisCluster,bool>();
+        readonly Dictionary<Mesh,Mesh> persistentMeshes=new Dictionary<Mesh,Mesh>();
+        struct PhysicsObserver{public Vector3 position;public float radius,speed;}
+        readonly List<PhysicsObserver> observerSamples=new List<PhysicsObserver>();
+        IReadOnlyList<RangeCombatWorld.Actor> physicsObservers;
+        float physicsBudgetElapsed;
+        double clock;
+        [Min(1)]public float lifetimeSeconds=90;
+        [Range(.05f,2)]public float physicsBudgetInterval=.5f;
+        [Min(1)]public float farPhysicsDistance=800,nearPhysicsDistance=350;
         BattleTuning tuning;CombatVfxPool effects;
+        public int TopologyRevision{get;private set;}
+        public double MaximumSpawnMilliseconds{get;private set;}
+        public int FarPhysicsClusterCount{get{int count=0;foreach(var pair in farPhysics)if(pair.Key&&pair.Value)count++;return count;}}
         public IReadOnlyList<DebrisCluster> Clusters=>clusters;
         public int PartCount{get{int count=0;foreach(var cluster in clusters)if(cluster)count+=cluster.PartCount;return count;}}
-        public void Initialize(BattleTuning rules,CombatVfxPool visuals){tuning=rules;effects=visuals;}
+        public void Initialize(BattleTuning rules,CombatVfxPool visuals){tuning=rules;effects=visuals;var renderer=GetComponent<DebrisInstanceRenderer>();if(!renderer)renderer=gameObject.AddComponent<DebrisInstanceRenderer>();renderer.Initialize(this);}
+        public void SetPhysicsObservers(IReadOnlyList<RangeCombatWorld.Actor> observers)
+        {
+            physicsObservers=observers;physicsBudgetElapsed=Mathf.Max(.05f,physicsBudgetInterval);
+            if(observers==null)RestoreNearPhysics();
+        }
 
         public void Spawn(IReadOnlyList<ShipPartState> detached,FlightTuning definitions,Vector3 velocity,Vector3 sourceCenter,FlightShipRuntime sourceShip=null)
         {
+            using var spawnSample=SpawnMarker.Auto();
+            long started=System.Diagnostics.Stopwatch.GetTimestamp();
             var parts=new List<DebrisPartHitbox>(detached.Count);
             foreach(var source in detached){
                 if(!source.view||source.hp<=0)continue;
@@ -28,16 +54,16 @@ namespace Starframe.Combat
                 var go=new GameObject("Wreck_"+source.record.id,typeof(MeshFilter),typeof(MeshRenderer),typeof(MeshCollider),typeof(DebrisPartHitbox));
                 var pose=CylindricalHitQuery.PhysicsMatrix(collider);
                 go.SetActive(false);go.layer=0;go.transform.SetParent(transform,false);CopyMatrix(pose,go.transform);
-                go.GetComponent<MeshFilter>().sharedMesh=filter.sharedMesh;CopyRenderer(renderer,go.GetComponent<MeshRenderer>());
+                go.GetComponent<MeshFilter>().sharedMesh=OwnMesh(filter.sharedMesh);CopyRenderer(renderer,go.GetComponent<MeshRenderer>());
                 var hit=go.GetComponent<DebrisPartHitbox>();hit.Part=new ShipPartState{record=BlockPlacement.Copy(source.record),view=go,hp=source.hp,maxHp=source.maxHp,detached=true,thrustAvailable=false};
                 hit.HitIdentity=source;hit.MassKg=Mathf.Max(1,definitions.Get(source.record.shape).massKg);
                 var originalHitbox=source.view.GetComponent<ShipPartHitbox>();if(originalHitbox)originalHitbox.DetachedReplacement=hit;
-                var physics=go.GetComponent<MeshCollider>();physics.sharedMesh=collider.sharedMesh;physics.convex=true;physics.sharedMaterial=collider.sharedMaterial;
+                var physics=go.GetComponent<MeshCollider>();physics.sharedMesh=OwnMesh(collider.sharedMesh);physics.convex=true;physics.sharedMaterial=collider.sharedMaterial;
                 foreach(var child in source.view.GetComponentsInChildren<MeshFilter>(true)){
                     if(child==filter||child.name=="VoxelThrusterExhaust"||child.name=="ModuleGlowAccent")continue;
                     var visual=child.GetComponent<MeshRenderer>();if(!visual)continue;
                     var copy=new GameObject(child.name,typeof(MeshFilter),typeof(MeshRenderer));copy.transform.SetParent(go.transform,false);CopyMatrix(pose*source.view.transform.worldToLocalMatrix*child.transform.localToWorldMatrix,copy.transform);
-                    copy.GetComponent<MeshFilter>().sharedMesh=child.sharedMesh;CopyRenderer(visual,copy.GetComponent<MeshRenderer>());
+                    copy.GetComponent<MeshFilter>().sharedMesh=OwnMesh(child.sharedMesh);CopyRenderer(visual,copy.GetComponent<MeshRenderer>());
                 }
                 parts.Add(hit);
             }
@@ -48,8 +74,9 @@ namespace Starframe.Combat
                 var drift=(outward.normalized+Random.onUnitSphere*.65f).normalized*(tuning?tuning.debrisDriftSpeed:2.5f);
                 CreateCluster(island,velocity+drift,Random.onUnitSphere*(tuning?tuning.debrisSpinDegreesPerSecond:25)*Mathf.Deg2Rad,sourceShip,sourceColliders);
             }
+            MaximumSpawnMilliseconds=System.Math.Max(MaximumSpawnMilliseconds,(System.Diagnostics.Stopwatch.GetTimestamp()-started)*1000.0/System.Diagnostics.Stopwatch.Frequency);
         }
-        internal void MarkChanged(DebrisCluster cluster)=>changed.Add(cluster);
+        internal void MarkChanged(DebrisCluster cluster){changed.Add(cluster);TopologyRevision++;}
         internal void EmitDestroyedPart(DebrisPartHitbox part,Vector3 velocity)
         {
             if(!effects)return;var mesh=part.GetComponent<MeshFilter>().sharedMesh;var material=part.GetComponent<MeshRenderer>().sharedMaterial;
@@ -58,22 +85,80 @@ namespace Starframe.Combat
         }
         public void Step(float dt)
         {
+            if(dt>0&&!float.IsNaN(dt)&&!float.IsInfinity(dt))clock+=dt;
+            for(int i=clusters.Count-1;i>=0;i--)if(clusters[i]&&clock>=clusters[i].expiresAt)Remove(clusters[i]);
             if(changed.Count>0){var pending=new List<DebrisCluster>(changed);changed.Clear();foreach(var cluster in pending)if(cluster)Split(cluster);}
-            // Healthy parts persist until destroyed or the scene is unloaded.
             for(int i=clusters.Count-1;i>=0;i--){var cluster=clusters[i];if(!cluster){clusters.RemoveAt(i);continue;}UpdateSeparation(cluster);}
+            UpdatePhysicsBudget(dt);
         }
+        void UpdatePhysicsBudget(float dt)
+        {
+            if(physicsObservers==null)return;
+            float interval=Mathf.Clamp(physicsBudgetInterval,.05f,2);
+            physicsBudgetElapsed+=Mathf.Max(0,dt);if(physicsBudgetElapsed<interval)return;physicsBudgetElapsed=0;
+            observerSamples.Clear();
+            foreach(var actor in physicsObservers)
+            {
+                if(actor==null||!actor.ship||!actor.ship.IsAlive)continue;
+                float speed=actor.flight?actor.flight.Velocity.magnitude:actor.body?actor.body.linearVelocity.magnitude:0;
+                observerSamples.Add(new PhysicsObserver{position=actor.ship.CorePhysicsPosition,radius=actor.ship.HullRadius,speed=speed});
+            }
+            float near=Mathf.Max(1,nearPhysicsDistance),far=Mathf.Max(near+1,farPhysicsDistance);
+            foreach(var cluster in clusters)
+            {
+                if(!cluster||!cluster.Body)continue;
+                var bounds=cluster.WorldBounds;var body=cluster.Body;
+                float wreckSpeed=body.linearVelocity.magnitude+body.angularVelocity.magnitude*bounds.extents.magnitude;
+                bool allFar=true,anyNear=false;
+                foreach(var observer in observerSamples)
+                {
+                    float gap=Mathf.Max(0,Mathf.Sqrt(bounds.SqrDistance(observer.position))-observer.radius);
+                    float restoreDistance=Mathf.Max(near,(wreckSpeed+observer.speed)*interval+20);
+                    if(gap<restoreDistance){anyNear=true;allFar=false;break;}
+                    if(gap<=far)allFar=false;
+                }
+                farPhysics.TryGetValue(cluster,out bool wasFar);
+                bool useFar=anyNear?false:allFar?true:wasFar;
+                if(useFar!=wasFar)
+                {
+                    body.collisionDetectionMode=useFar?CollisionDetectionMode.Discrete:CollisionDetectionMode.ContinuousSpeculative;
+                    body.interpolation=useFar?RigidbodyInterpolation.None:RigidbodyInterpolation.Interpolate;
+                }
+                farPhysics[cluster]=useFar;
+            }
+        }
+        void RestoreNearPhysics()
+        {
+            foreach(var pair in farPhysics)if(pair.Key&&pair.Value&&pair.Key.Body){pair.Key.Body.collisionDetectionMode=CollisionDetectionMode.ContinuousSpeculative;pair.Key.Body.interpolation=RigidbodyInterpolation.Interpolate;}
+            farPhysics.Clear();
+        }
+        void OnDisable()=>RestoreNearPhysics();
+        Mesh OwnMesh(Mesh source)
+        {
+            if(!source)return null;
+            if(!persistentMeshes.TryGetValue(source,out var copy)||!copy)
+            {
+                // ShipAssembly owns even its complete-cell collision meshes. Wreckage must
+                // survive that assembly's retirement and must never destroy or modify its source.
+                copy=Instantiate(source);copy.name=source.name+" (persistent wreckage)";copy.hideFlags=HideFlags.DontSave;
+                persistentMeshes[source]=copy;
+            }
+            return copy;
+        }
+        void OnDestroy(){foreach(var mesh in persistentMeshes.Values)if(mesh)Release(mesh);persistentMeshes.Clear();}
         void Split(DebrisCluster cluster)
         {
             var groups=Islands(cluster.parts);if(groups.Count==0){Remove(cluster);return;}
             if(groups.Count==1){cluster.parts.RemoveAll(p=>!p||!p.Part.present);Recenter(cluster);return;}
             var body=cluster.Body;
-            foreach(var group in groups){var center=Center(group);CreateCluster(group,body.GetPointVelocity(center),body.angularVelocity,cluster.SuppressSourceCollisions?cluster.SourceShip:null,cluster.ignoredSourceColliders);}
+            foreach(var group in groups){var center=Center(group);CreateCluster(group,body.GetPointVelocity(center),body.angularVelocity,cluster.SuppressSourceCollisions?cluster.SourceShip:null,cluster.ignoredSourceColliders,cluster.expiresAt);}
             cluster.parts.Clear();Remove(cluster);
         }
-        DebrisCluster CreateCluster(List<DebrisPartHitbox> parts,Vector3 velocity,Vector3 spin,FlightShipRuntime sourceShip=null,List<Collider> sourceColliders=null)
+        DebrisCluster CreateCluster(List<DebrisPartHitbox> parts,Vector3 velocity,Vector3 spin,FlightShipRuntime sourceShip=null,List<Collider> sourceColliders=null,double deadline=-1)
         {
             var go=new GameObject("DriftingWreckage",typeof(Rigidbody),typeof(DebrisCluster));go.transform.SetParent(transform,false);go.transform.position=Center(parts);
             var cluster=go.GetComponent<DebrisCluster>();cluster.world=this;cluster.Body=go.GetComponent<Rigidbody>();cluster.Body.isKinematic=true;cluster.Body.useGravity=false;
+            cluster.expiresAt=deadline>=0?deadline:clock+Mathf.Max(1,lifetimeSeconds);
             // New rigidbodies otherwise keep their original physics pose until the next transform sync.
             cluster.Body.position=go.transform.position;cluster.Body.rotation=go.transform.rotation;
             foreach(var part in parts){part.transform.SetParent(go.transform,true);part.Cluster=cluster;cluster.parts.Add(part);part.gameObject.SetActive(true);}
@@ -83,7 +168,7 @@ namespace Starframe.Combat
             float radius=1;foreach(var part in parts){var mesh=part.GetComponent<MeshCollider>().sharedMesh;radius=Mathf.Max(radius,Vector3.Distance(go.transform.position,part.transform.TransformPoint(mesh.bounds.center))+mesh.bounds.extents.magnitude);}
             // Large islands must separate before their outer edge tumbles back into the remaining core.
             float maxSpin=Mathf.Max(.02f,(tuning?tuning.debrisDriftSpeed:2.5f)*.5f/radius);
-            body.isKinematic=false;body.linearVelocity=velocity;body.angularVelocity=Vector3.ClampMagnitude(spin,maxSpin);clusters.Add(cluster);return cluster;
+            body.isKinematic=false;body.linearVelocity=velocity;body.angularVelocity=Vector3.ClampMagnitude(spin,maxSpin);clusters.Add(cluster);TopologyRevision++;return cluster;
         }
         static void Recenter(DebrisCluster cluster)
         {
@@ -128,9 +213,9 @@ namespace Starframe.Combat
         static void SetIgnored(DebrisCluster cluster,Collider source,bool ignored){foreach(var part in cluster.parts)if(part&&part.Part.present){var collider=part.GetComponent<Collider>();if(collider)Physics.IgnoreCollision(source,collider,ignored);}}
         static void RestoreSourceCollisions(DebrisCluster cluster){foreach(var source in cluster.ignoredSourceColliders)if(source)SetIgnored(cluster,source,false);cluster.ignoredSourceColliders.Clear();cluster.SuppressSourceCollisions=false;}
         internal static Bounds TransformBounds(Bounds bounds,Matrix4x4 matrix){var x=matrix.MultiplyVector(new Vector3(bounds.extents.x,0,0));var y=matrix.MultiplyVector(new Vector3(0,bounds.extents.y,0));var z=matrix.MultiplyVector(new Vector3(0,0,bounds.extents.z));return new Bounds(matrix.MultiplyPoint3x4(bounds.center),new Vector3(Mathf.Abs(x.x)+Mathf.Abs(y.x)+Mathf.Abs(z.x),Mathf.Abs(x.y)+Mathf.Abs(y.y)+Mathf.Abs(z.y),Mathf.Abs(x.z)+Mathf.Abs(y.z)+Mathf.Abs(z.z))*2);}
-        void Remove(DebrisCluster cluster){clusters.Remove(cluster);changed.Remove(cluster);if(cluster){RestoreSourceCollisions(cluster);cluster.gameObject.SetActive(false);Release(cluster.gameObject);}}
+        void Remove(DebrisCluster cluster){clusters.Remove(cluster);changed.Remove(cluster);farPhysics.Remove(cluster);TopologyRevision++;if(cluster){RestoreSourceCollisions(cluster);cluster.gameObject.SetActive(false);Release(cluster.gameObject);}}
         static void CopyMatrix(Matrix4x4 pose,Transform target){target.SetPositionAndRotation(pose.MultiplyPoint3x4(Vector3.zero),pose.rotation);var parent=target.parent?target.parent.lossyScale:Vector3.one;var scale=pose.lossyScale;target.localScale=new Vector3(scale.x/parent.x,scale.y/parent.y,scale.z/parent.z);}
-        static void CopyRenderer(MeshRenderer source,MeshRenderer target){target.sharedMaterials=source.sharedMaterials;target.shadowCastingMode=source.shadowCastingMode;target.receiveShadows=source.receiveShadows;var properties=new MaterialPropertyBlock();source.GetPropertyBlock(properties);target.SetPropertyBlock(properties);}
+        static void CopyRenderer(MeshRenderer source,MeshRenderer target){target.sharedMaterials=source.sharedMaterials;target.shadowCastingMode=source.shadowCastingMode;target.receiveShadows=source.receiveShadows;target.renderingLayerMask=source.renderingLayerMask;target.lightProbeUsage=source.lightProbeUsage;target.reflectionProbeUsage=source.reflectionProbeUsage;target.motionVectorGenerationMode=source.motionVectorGenerationMode;if(source.HasPropertyBlock()){var properties=new MaterialPropertyBlock();source.GetPropertyBlock(properties);target.SetPropertyBlock(properties);}}
         static void Release(Object target){if(Application.isPlaying)Destroy(target);else DestroyImmediate(target);}
     }
 }

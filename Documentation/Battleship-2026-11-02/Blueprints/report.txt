@@ -1,0 +1,20 @@
+Reference ship blueprints (generated from the live ModuleDatabase)
+3500-cost battleship references: 300-600 parts, 6-8 weapons, four real bound groups. Free hull mass trades against paid functions and armor. Validation: native connectivity, complete mounts, deployment, weapon/flare clearance, and all exhaust masks. Performance is a candidate, not a human-validated three-minute TTK.
+Building Battleship-Heavy...
+Battleship-Heavy.json: 545 parts, cost 3435, mass 99140 kg, +Z 1.99g, -Z 0.97g, side 0.97g, vertical 0.51g, turn 30.1 deg/s
+  angular rates +XYZ=30.10/33.38/45.19; -XYZ=33.10/33.75/45.19 deg/s; stop +XYZ=3291.5/6270.4/3291.5; -XYZ=3291.5/6270.4/1603.4m; turn radius pitch/yaw=12540.9/6582.9m at 250m/s.
+  role costs: weapons=1160, propulsion=680, power=450, shield=400, armor=540, core/misc=205; weapon units/groups=6/4; free hull parts=486
+  demand/generation=376/850W; shield recovery=720W; storage=12800J; shield=12600; summed part HP=308952 (not core TTK).
+  D:\software\unity\CGDD26107\Documentation\Battleship-2026-11-02\Blueprints\Battleship-Heavy.json
+Building Battleship-Maneuver...
+Battleship-Maneuver.json: 314 parts, cost 3418, mass 61270 kg, +Z 2.77g, -Z 2.07g, side 2.07g, vertical 1.15g, turn 46.7 deg/s
+  angular rates +XYZ=46.67/47.72/59.35; -XYZ=46.87/47.72/59.35 deg/s; stop +XYZ=1539.9/2767.2/1539.9; -XYZ=1539.9/2767.2/1152.3m; turn radius pitch/yaw=5534.5/3079.7m at 250m/s.
+  role costs: weapons=1250, propulsion=825, power=450, shield=400, armor=288, core/misc=205; weapon units/groups=8/4; free hull parts=256
+  demand/generation=424/850W; shield recovery=720W; storage=12800J; shield=10920; summed part HP=187530 (not core TTK).
+  D:\software\unity\CGDD26107\Documentation\Battleship-2026-11-02\Blueprints\Battleship-Maneuver.json
+Building Battleship-Assault...
+Battleship-Assault.json: 504 parts, cost 3487, mass 93330 kg, +Z 3.37g, -Z 0.66g, side 0.66g, vertical 0.34g, turn 26.3 deg/s
+  angular rates +XYZ=26.26/32.78/38.96; -XYZ=34.65/28.50/38.96 deg/s; stop +XYZ=4799.5/9286.5/4799.5; -XYZ=4799.5/9286.5/945.2m; turn radius pitch/yaw=18573.1/9599.0m at 250m/s.
+  role costs: weapons=1330, propulsion=850, power=450, shield=400, armor=252, core/misc=205; weapon units/groups=8/4; free hull parts=462
+  demand/generation=441/850W; shield recovery=720W; storage=12800J; shield=10920; summed part HP=276108 (not core TTK).
+  D:\software\unity\CGDD26107\Documentation\Battleship-2026-11-02\Blueprints\Battleship-Assault.json

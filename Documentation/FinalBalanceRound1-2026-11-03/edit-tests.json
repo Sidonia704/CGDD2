@@ -1,0 +1,3940 @@
+{
+  "status": "completed",
+  "duration": 62.85,
+  "summary": {
+    "total": 561,
+    "passed": 551,
+    "failed": 10,
+    "skipped": 0,
+    "inconclusive": 0
+  },
+  "results": [
+    {
+      "FullName": "Starframe.Construction.Tests.AimClearanceTests.AimProfilesMergeGunsByWeaponDefinitionAndKeepDifferentSpeedsSeparate",
+      "Status": "Passed",
+      "Duration": 0.1273172,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.AimClearanceTests.AligningReticleWithLeadHitsMovingTargetDespiteThirdPersonCameraOffset(50.0f)",
+      "Status": "Passed",
+      "Duration": 0.0023341,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.AimClearanceTests.AligningReticleWithLeadHitsMovingTargetDespiteThirdPersonCameraOffset(500.0f)",
+      "Status": "Passed",
+      "Duration": 9.5E-05,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.AimClearanceTests.AligningReticleWithLeadHitsMovingTargetDespiteThirdPersonCameraOffset(900.0f)",
+      "Status": "Passed",
+      "Duration": 6.21E-05,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.AimClearanceTests.CanPlaceChecksNewGunAndExistingGunClearanceAgainstRealAssets",
+      "Status": "Passed",
+      "Duration": 0.0098836,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.AimClearanceTests.FasterProjectilesProduceEarlierAndCloserInterceptPoints",
+      "Status": "Passed",
+      "Duration": 0.0004508,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.AimClearanceTests.FullCellLaserColliderPreservesOccupancyOnEveryBottomMountingAxis(1,0,0)",
+      "Status": "Passed",
+      "Duration": 0.0065425,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.AimClearanceTests.FullCellLaserColliderPreservesOccupancyOnEveryBottomMountingAxis(-1,0,0)",
+      "Status": "Passed",
+      "Duration": 0.0037502,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.AimClearanceTests.FullCellLaserColliderPreservesOccupancyOnEveryBottomMountingAxis(0,1,0)",
+      "Status": "Passed",
+      "Duration": 0.0028949,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.AimClearanceTests.FullCellLaserColliderPreservesOccupancyOnEveryBottomMountingAxis(0,-1,0)",
+      "Status": "Passed",
+      "Duration": 0.0027467,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.AimClearanceTests.FullCellLaserColliderPreservesOccupancyOnEveryBottomMountingAxis(0,0,1)",
+      "Status": "Passed",
+      "Duration": 0.002773,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.AimClearanceTests.FullCellLaserColliderPreservesOccupancyOnEveryBottomMountingAxis(0,0,-1)",
+      "Status": "Passed",
+      "Duration": 0.0026653,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.AimClearanceTests.InterceptSolverReturnsOnlyReachableIntercepts(0.0f,10.0f,0.0f,0.0f,100.0f,True)",
+      "Status": "Passed",
+      "Duration": 0.0010999,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.AimClearanceTests.InterceptSolverReturnsOnlyReachableIntercepts(0.0f,10.0f,0.0f,2.0f,100.0f,True)",
+      "Status": "Passed",
+      "Duration": 0.0001579,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.AimClearanceTests.InterceptSolverReturnsOnlyReachableIntercepts(0.0f,10.0f,-2.0f,0.0f,100.0f,True)",
+      "Status": "Passed",
+      "Duration": 8.05E-05,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.AimClearanceTests.InterceptSolverReturnsOnlyReachableIntercepts(0.0f,10.0f,2.0f,0.0f,100.0f,True)",
+      "Status": "Passed",
+      "Duration": 7.14E-05,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.AimClearanceTests.InterceptSolverReturnsOnlyReachableIntercepts(0.0f,10.0f,100.0f,0.0f,100.0f,False)",
+      "Status": "Passed",
+      "Duration": 6.12E-05,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.AimClearanceTests.InterceptSolverReturnsOnlyReachableIntercepts(0.0f,10.0f,0.0f,0.0f,9.0f,False)",
+      "Status": "Passed",
+      "Duration": 5.39E-05,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.AimClearanceTests.MultiBarrelPlacementChecksEveryBoreNotOnlyTheAveragedMuzzle",
+      "Status": "Passed",
+      "Duration": 0.001802,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.AimClearanceTests.RealMeshClearanceAllowsSideTangencyButBlocksTheForwardPath",
+      "Status": "Passed",
+      "Duration": 0.0030122,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.AimClearanceTests.SupportedWeaponAllowsWideHitVolumeWithoutBlockingTheMuzzle",
+      "Status": "Passed",
+      "Duration": 0.0091654,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.ArcadeWaveProgressTests.DelayedReinforcementsPreventPrematureWaveClear",
+      "Status": "Passed",
+      "Duration": 0.0012004,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.ArcadeWaveProgressTests.DuplicateSpawnDoesNotConsumeQueueAndNewWaveClearsOldLives",
+      "Status": "Passed",
+      "Duration": 0.0004377,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.CombatBalanceWiringTests.BotForecastPreservesRoofObstructionAndSpendsNothingUntilTheMountIsClear",
+      "Status": "Passed",
+      "Duration": 0.0231214,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.CombatBalanceWiringTests.BotSpacesFollowupBurstsAcrossInstalledLaunchersAndRetainsTheirCooldowns",
+      "Status": "Failed",
+      "Duration": 0.0079464,
+      "Message": "System.IO.InvalidDataException : 蓝图必须通过面连接组成一个整体。",
+      "StackTrace": "  at Starframe.Construction.BlueprintRepository.Validate (Starframe.Construction.BlueprintData data) [0x0047a] in D:\\software\\unity\\CGDD26107\\Assets\\_Starframe\\Scripts\\Runtime\\Construction\\BlueprintRepository.cs:148 \r\n  at Starframe.Construction.BlueprintRepository.Upgrade (Starframe.Construction.BlueprintData data) [0x00000] in D:\\software\\unity\\CGDD26107\\Assets\\_Starframe\\Scripts\\Runtime\\Construction\\BlueprintRepository.cs:97 \r\n  at Starframe.Construction.ShipAssembly.Import (Starframe.Construction.BlueprintData data) [0x00000] in D:\\software\\unity\\CGDD26107\\Assets\\_Starframe\\Scripts\\Runtime\\Construction\\ShipAssembly.cs:178 \r\n  at Starframe.Construction.Tests.CombatBalanceWiringTests.Ship (UnityEngine.Vector3 position, System.Int32 team, System.Boolean launcher, System.Int32 launcherCount) [0x00126] in D:\\software\\unity\\CGDD26107\\Assets\\_Starframe\\Tests\\Construction\\CombatBalanceWiringTests.cs:200 \r\n  at Starframe.Construction.Tests.CombatBalanceWiringTests.BotSpacesFollowupBurstsAcrossInstalledLaunchersAndRetainsTheirCooldowns () [0x0001e] in D:\\software\\unity\\CGDD26107\\Assets\\_Starframe\\Tests\\Construction\\CombatBalanceWiringTests.cs:118 \r\n  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)\r\n  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <d49d4cb128564ee1b54a84338c98d353>:0 "
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.CombatBalanceWiringTests.BotUsesOnlyItsRealIncomingThreatAfterReactionAndInsideFlareReach",
+      "Status": "Passed",
+      "Duration": 0.0058803,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.CombatBalanceWiringTests.DeploymentRejectsMalformedLiveMissileFieldsButIgnoresUnusedMissileSettingsOnDirectWeapons",
+      "Status": "Passed",
+      "Duration": 0.0018055,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.CombatBalanceWiringTests.FastIncomingMissileTriggersARealAnticipatoryBurstAndCanBeDiverted(240.0f)",
+      "Status": "Passed",
+      "Duration": 0.0177658,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.CombatBalanceWiringTests.FastIncomingMissileTriggersARealAnticipatoryBurstAndCanBeDiverted(245.0f)",
+      "Status": "Passed",
+      "Duration": 0.0073054,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.CombatBalanceWiringTests.FastIncomingMissileTriggersARealAnticipatoryBurstAndCanBeDiverted(250.0f)",
+      "Status": "Passed",
+      "Duration": 0.0065708,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.CombatBalanceWiringTests.MissingLauncherNeverCreatesAFreeAiBurst",
+      "Status": "Passed",
+      "Duration": 0.0049198,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.CombatMechanicsTests.DamageReducesHpWithoutChangingMassOrFunctionUntilPartIsLost",
+      "Status": "Passed",
+      "Duration": 0.0109563,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.CombatMechanicsTests.DeadCoreStopsRecoveryAndEmitsDeathOnlyOnce",
+      "Status": "Passed",
+      "Duration": 0.0051646,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.CombatMechanicsTests.DestroyedAndRestoredPowerModuleUpdatesGenerationAndCapacity",
+      "Status": "Passed",
+      "Duration": 0.0029938,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.CombatMechanicsTests.DestroyingBridgeCullsDisconnectedPartsAndTheirMassAndThrust",
+      "Status": "Passed",
+      "Duration": 0.0032384,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.CombatMechanicsTests.ExistingPartRecoversAfterOneSecondOutOfCombat",
+      "Status": "Passed",
+      "Duration": 0.0027636,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.CombatMechanicsTests.LaserOccupancyRotatesAndUsesOnePartIdentity",
+      "Status": "Passed",
+      "Duration": 0.0037227,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.CombatMechanicsTests.MissingPartRebuildsWhenSupportedByPresentNeighbour",
+      "Status": "Passed",
+      "Duration": 0.0028744,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.CombatMechanicsTests.NewRebuildCannotSupportNextPartUntilFollowingTick",
+      "Status": "Passed",
+      "Duration": 0.0032861,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.CombatMechanicsTests.OverkillAndRepeatedHitsCountOnlyHpActuallyRemoved",
+      "Status": "Passed",
+      "Duration": 0.0027549,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.CombatMechanicsTests.PowerBusClampsShrunkCapacityAndDoesNotChargeForRecovery",
+      "Status": "Passed",
+      "Duration": 0.0001908,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.CombatMechanicsTests.PowerBusScalesDemandAndHandlesFreeDemandAndNoSupply",
+      "Status": "Passed",
+      "Duration": 0.0003239,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.CombatMechanicsTests.RespawnRestoresFullShipKeepsPartIdsAndDoesNotEditBlueprint",
+      "Status": "Passed",
+      "Duration": 0.0028619,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.CombatMechanicsTests.TakingDamageResetsMissingPartProgressButPreservesRecoveredHp",
+      "Status": "Passed",
+      "Duration": 0.0029675,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.CombatMechanicsTests.ThousandPartBlueprintRoundTripsAndRuntimeDisconnectsAndRebuildsBridge",
+      "Status": "Passed",
+      "Duration": 0.1324641,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.CombatMechanicsTests.ThrusterKeepsForceWhileDamagedAndLosesAndRegainsItWithPresence",
+      "Status": "Passed",
+      "Duration": 0.0033937,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.ContinuousRailTracerTests.ContinuousTracerHasSolidCoverageBetweenTailAndHead",
+      "Status": "Passed",
+      "Duration": 0.0049166,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.ContinuousRailTracerTests.GrowingBeamClipsAtMovingMuzzleAndImpactFadeFreezesBothEndpoints",
+      "Status": "Passed",
+      "Duration": 0.0015207,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.ContinuousRailTracerTests.OneStepFourteenThousandSpeedHitRetainsVisibleTraceThenFadesAndRecycles",
+      "Status": "Passed",
+      "Duration": 0.0088001,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.CoreLeadBallisticsTests.CorePhysicsPositionTracksOffsetAssemblyAndRigidBodyRotation",
+      "Status": "Passed",
+      "Duration": 0.0093624,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.CoreLeadBallisticsTests.RepresentativeMuzzleInterceptDamagesAnOffsetMovingCore(80.0f)",
+      "Status": "Passed",
+      "Duration": 0.0202485,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.CoreLeadBallisticsTests.RepresentativeMuzzleInterceptDamagesAnOffsetMovingCore(400.0f)",
+      "Status": "Passed",
+      "Duration": 0.0142753,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.CoreLeadBallisticsTests.TestBlueprintAimProfileUsesOneActualPhysicsMuzzleInsteadOfTheirAverage",
+      "Status": "Passed",
+      "Duration": 0.0128382,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.CountermeasureDeploymentTests.EmptySalvoIsRejectedAndValidZeroIntensityCountermeasureSettingsRemainUsable",
+      "Status": "Passed",
+      "Duration": 0.0018935,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.CountermeasureDeploymentTests.FlareLauncherWithoutItsCountermeasureDefinitionCannotDeploy",
+      "Status": "Passed",
+      "Duration": 0.0001994,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.CountermeasureDeploymentTests.InvalidCountermeasureNumbersAreRejectedBeforeEnteringTheRange(\"cooldownSeconds\",-1.0f)",
+      "Status": "Passed",
+      "Duration": 0.0007474,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.CountermeasureDeploymentTests.InvalidCountermeasureNumbersAreRejectedBeforeEnteringTheRange(\"cooldownSeconds\",float.NaN)",
+      "Status": "Passed",
+      "Duration": 0.0002661,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.CountermeasureDeploymentTests.InvalidCountermeasureNumbersAreRejectedBeforeEnteringTheRange(\"emissionSpeed\",float.PositiveInfinity)",
+      "Status": "Passed",
+      "Duration": 0.0002163,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.CountermeasureDeploymentTests.InvalidCountermeasureNumbersAreRejectedBeforeEnteringTheRange(\"spreadHalfAngleDegrees\",-1.0f)",
+      "Status": "Passed",
+      "Duration": 0.0002012,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.CountermeasureDeploymentTests.InvalidCountermeasureNumbersAreRejectedBeforeEnteringTheRange(\"spreadHalfAngleDegrees\",90.0f)",
+      "Status": "Passed",
+      "Duration": 0.0002152,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.CountermeasureDeploymentTests.InvalidCountermeasureNumbersAreRejectedBeforeEnteringTheRange(\"lifetime\",0.0f)",
+      "Status": "Passed",
+      "Duration": 0.0001953,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.CountermeasureDeploymentTests.InvalidCountermeasureNumbersAreRejectedBeforeEnteringTheRange(\"decoyChance\",-1.0f)",
+      "Status": "Passed",
+      "Duration": 0.0001883,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.CountermeasureDeploymentTests.InvalidCountermeasureNumbersAreRejectedBeforeEnteringTheRange(\"decoyChance\",1.01f)",
+      "Status": "Passed",
+      "Duration": 0.0001841,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.CountermeasureDeploymentTests.InvalidCountermeasureNumbersAreRejectedBeforeEnteringTheRange(\"decoyRadius\",-1.0f)",
+      "Status": "Passed",
+      "Duration": 0.0001783,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.CountermeasureDeploymentTests.InvalidCountermeasureNumbersAreRejectedBeforeEnteringTheRange(\"sparkSize\",0.0f)",
+      "Status": "Passed",
+      "Duration": 0.000173,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.CountermeasureDeploymentTests.InvalidCountermeasureNumbersAreRejectedBeforeEnteringTheRange(\"glowIntensity\",float.NaN)",
+      "Status": "Passed",
+      "Duration": 0.0001585,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.CountermeasureDeploymentTests.NormalizationRemovesLegacyFlareAssignmentButPreservesTheGunGroup",
+      "Status": "Passed",
+      "Duration": 0.0014568,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.CountermeasureDeploymentTests.ValidCountermeasureDeploysWithoutPretendingToBeAnOffensiveWeapon",
+      "Status": "Passed",
+      "Duration": 0.0005737,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.DeploymentValidatorTests.CatalogFindIsStableAndToleratesUnfilledAssetSlots",
+      "Status": "Passed",
+      "Duration": 0.0017945,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.DeploymentValidatorTests.CostAndMassCountAMultiCellPartOnceAndNeverRequireVisualAssets",
+      "Status": "Passed",
+      "Duration": 0.0009913,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.DeploymentValidatorTests.DifficultyMultipliersAreConfigurableAndEmptySceneRemainsAValidContentHook",
+      "Status": "Passed",
+      "Duration": 0.0012061,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.DeploymentValidatorTests.EnabledProvisionalPricingRequiresAFinitePositiveRate(0.0f)",
+      "Status": "Passed",
+      "Duration": 0.0008847,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.DeploymentValidatorTests.EnabledProvisionalPricingRequiresAFinitePositiveRate(-1.0f)",
+      "Status": "Passed",
+      "Duration": 0.0002975,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.DeploymentValidatorTests.EnabledProvisionalPricingRequiresAFinitePositiveRate(float.NaN)",
+      "Status": "Passed",
+      "Duration": 0.000213,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.DeploymentValidatorTests.EnabledProvisionalPricingRequiresAFinitePositiveRate(float.PositiveInfinity)",
+      "Status": "Passed",
+      "Duration": 0.0002043,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.DeploymentValidatorTests.ExactlyOneCoreIsRequiredEvenWhenMetadataClaimsOtherwise(0)",
+      "Status": "Passed",
+      "Duration": 0.0024532,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.DeploymentValidatorTests.ExactlyOneCoreIsRequiredEvenWhenMetadataClaimsOtherwise(2)",
+      "Status": "Passed",
+      "Duration": 0.0006832,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.DeploymentValidatorTests.FaceConnectionUsesRotatedCompleteBodyCellsAndRejectsDiagonalContact",
+      "Status": "Passed",
+      "Duration": 0.001446,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.DeploymentValidatorTests.FractionalOffAxisAndNonfinitePosesAreRejected(0)",
+      "Status": "Passed",
+      "Duration": 0.0015932,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.DeploymentValidatorTests.FractionalOffAxisAndNonfinitePosesAreRejected(1)",
+      "Status": "Passed",
+      "Duration": 0.0004381,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.DeploymentValidatorTests.FractionalOffAxisAndNonfinitePosesAreRejected(2)",
+      "Status": "Passed",
+      "Duration": 0.000284,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.DeploymentValidatorTests.IntentionalFreeHullIsNeverProvisionalAndArmorRetainsItsPrice",
+      "Status": "Passed",
+      "Duration": 0.0015554,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.DeploymentValidatorTests.InvalidMissionAndModuleNumbersFailWithoutNaNReportTotals",
+      "Status": "Passed",
+      "Duration": 0.0007294,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.DeploymentValidatorTests.LegacyMigrationUsesCopiesAndIgnoresLegacyUninitializedFullPose",
+      "Status": "Passed",
+      "Duration": 0.0005985,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.DeploymentValidatorTests.MissingDefinitionsDuplicateIdsAndMissingWeaponConfigurationBlockDeployment",
+      "Status": "Passed",
+      "Duration": 0.0008771,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.DeploymentValidatorTests.ModuleCellDefinitionsMustBeNonemptyUniqueAndConnected(0)",
+      "Status": "Passed",
+      "Duration": 0.0004823,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.DeploymentValidatorTests.ModuleCellDefinitionsMustBeNonemptyUniqueAndConnected(1)",
+      "Status": "Passed",
+      "Duration": 0.000145,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.DeploymentValidatorTests.ModuleCellDefinitionsMustBeNonemptyUniqueAndConnected(2)",
+      "Status": "Passed",
+      "Duration": 0.0001234,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.DeploymentValidatorTests.OptionalMassIsTheOnlyAdditionalShipConstraintAndWarningsDoNotBlock",
+      "Status": "Passed",
+      "Duration": 0.0003463,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.DeploymentValidatorTests.ProvisionalPricesAreOptInAndOnlyReplaceZeroCostDefinitions",
+      "Status": "Passed",
+      "Duration": 0.0009054,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.DeploymentValidatorTests.RangeReadinessHasNoMissionBudgetProvisionalOrAggregateMassGate",
+      "Status": "Passed",
+      "Duration": 0.0005943,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.DeploymentValidatorTests.ThousandPlusPartsValidateWithoutAHiddenCapOrMutatingSource",
+      "Status": "Passed",
+      "Duration": 0.0053766,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.EnemyFleetTests.ApprovedFleetRetainsExactSourcesPartCountsAndArmament",
+      "Status": "Failed",
+      "Duration": 0.0165089,
+      "Message": "  needle\r\n  Expected: equivalent to < Gun1, Gun2 >\r\n  But was:  < Gun2, Gun1, FlareLauncher >\r\n",
+      "StackTrace": "at NUnit.Framework.CollectionAssert.AreEquivalent (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0\r\nat Starframe.Construction.Tests.EnemyFleetTests.ApprovedFleetRetainsExactSourcesPartCountsAndArmament () [0x0015d] in D:\\software\\unity\\CGDD26107\\Assets\\_Starframe\\Tests\\Construction\\EnemyFleetTests.cs:86\r\n"
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.EnemyFleetTests.FinalBehaviorProfilesFollowTheApprovedBatteryTypes",
+      "Status": "Passed",
+      "Duration": 0.0025104,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.EnemyFleetTests.FinalWaveRosterUsesTheApprovedCompositionAndNativeBudget",
+      "Status": "Passed",
+      "Duration": 0.0030819,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.EnemyFleetTests.NativeFleetHasSupportedWeaponsClearNozzlesAndSixAxisFlight(\"needle\",False)",
+      "Status": "Failed",
+      "Duration": 0.0175803,
+      "Message": "  Blocked nozzle Thruster6 (-2, 1, 2)\r\n  Expected: False\r\n  But was:  True\r\n",
+      "StackTrace": "at Starframe.Construction.Tests.EnemyFleetTests.NativeFleetHasSupportedWeaponsClearNozzlesAndSixAxisFlight (System.String id, System.Boolean alternate) [0x0029f] in D:\\software\\unity\\CGDD26107\\Assets\\_Starframe\\Tests\\Construction\\EnemyFleetTests.cs:58\r\n"
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.EnemyFleetTests.NativeFleetHasSupportedWeaponsClearNozzlesAndSixAxisFlight(\"viper\",False)",
+      "Status": "Failed",
+      "Duration": 0.0828706,
+      "Message": "  Blocked nozzle Thruster6 (1, -1, 3)\r\n  Expected: False\r\n  But was:  True\r\n",
+      "StackTrace": "at Starframe.Construction.Tests.EnemyFleetTests.NativeFleetHasSupportedWeaponsClearNozzlesAndSixAxisFlight (System.String id, System.Boolean alternate) [0x0029f] in D:\\software\\unity\\CGDD26107\\Assets\\_Starframe\\Tests\\Construction\\EnemyFleetTests.cs:58\r\n"
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.EnemyFleetTests.NativeFleetHasSupportedWeaponsClearNozzlesAndSixAxisFlight(\"wasp\",False)",
+      "Status": "Failed",
+      "Duration": 0.0085043,
+      "Message": "  Blocked nozzle Thruster6 (-2, -2, -3)\r\n  Expected: False\r\n  But was:  True\r\n",
+      "StackTrace": "at Starframe.Construction.Tests.EnemyFleetTests.NativeFleetHasSupportedWeaponsClearNozzlesAndSixAxisFlight (System.String id, System.Boolean alternate) [0x0029f] in D:\\software\\unity\\CGDD26107\\Assets\\_Starframe\\Tests\\Construction\\EnemyFleetTests.cs:58\r\n"
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.EnemyFleetTests.NativeFleetHasSupportedWeaponsClearNozzlesAndSixAxisFlight(\"bastion\",False)",
+      "Status": "Failed",
+      "Duration": 0.0250429,
+      "Message": "  Blocked nozzle Thruster6 (0, -1, 6)\r\n  Expected: False\r\n  But was:  True\r\n",
+      "StackTrace": "at Starframe.Construction.Tests.EnemyFleetTests.NativeFleetHasSupportedWeaponsClearNozzlesAndSixAxisFlight (System.String id, System.Boolean alternate) [0x0029f] in D:\\software\\unity\\CGDD26107\\Assets\\_Starframe\\Tests\\Construction\\EnemyFleetTests.cs:58\r\n"
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.EnemyFleetTests.NativeFleetHasSupportedWeaponsClearNozzlesAndSixAxisFlight(\"harrier\",False)",
+      "Status": "Failed",
+      "Duration": 0.0217166,
+      "Message": "  Blocked nozzle Thruster6 (0, -1, 6)\r\n  Expected: False\r\n  But was:  True\r\n",
+      "StackTrace": "at Starframe.Construction.Tests.EnemyFleetTests.NativeFleetHasSupportedWeaponsClearNozzlesAndSixAxisFlight (System.String id, System.Boolean alternate) [0x0029f] in D:\\software\\unity\\CGDD26107\\Assets\\_Starframe\\Tests\\Construction\\EnemyFleetTests.cs:58\r\n"
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.EnemyFleetTests.NativeFleetHasSupportedWeaponsClearNozzlesAndSixAxisFlight(\"halberd\",False)",
+      "Status": "Failed",
+      "Duration": 0.0274722,
+      "Message": "  Blocked nozzle Thruster6 (0, -1, 6)\r\n  Expected: False\r\n  But was:  True\r\n",
+      "StackTrace": "at Starframe.Construction.Tests.EnemyFleetTests.NativeFleetHasSupportedWeaponsClearNozzlesAndSixAxisFlight (System.String id, System.Boolean alternate) [0x0029f] in D:\\software\\unity\\CGDD26107\\Assets\\_Starframe\\Tests\\Construction\\EnemyFleetTests.cs:58\r\n"
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.EnemyFleetTests.NativeFleetHasSupportedWeaponsClearNozzlesAndSixAxisFlight(\"citadel\",False)",
+      "Status": "Failed",
+      "Duration": 0.0289941,
+      "Message": "  Blocked nozzle Thruster6 (0, -1, 6)\r\n  Expected: False\r\n  But was:  True\r\n",
+      "StackTrace": "at Starframe.Construction.Tests.EnemyFleetTests.NativeFleetHasSupportedWeaponsClearNozzlesAndSixAxisFlight (System.String id, System.Boolean alternate) [0x0029f] in D:\\software\\unity\\CGDD26107\\Assets\\_Starframe\\Tests\\Construction\\EnemyFleetTests.cs:58\r\n"
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.EnemyFleetTests.NativeFleetHasSupportedWeaponsClearNozzlesAndSixAxisFlight(\"citadel\",True)",
+      "Status": "Failed",
+      "Duration": 0.0287947,
+      "Message": "  Blocked nozzle Thruster6 (0, -1, 6)\r\n  Expected: False\r\n  But was:  True\r\n",
+      "StackTrace": "at Starframe.Construction.Tests.EnemyFleetTests.NativeFleetHasSupportedWeaponsClearNozzlesAndSixAxisFlight (System.String id, System.Boolean alternate) [0x0029f] in D:\\software\\unity\\CGDD26107\\Assets\\_Starframe\\Tests\\Construction\\EnemyFleetTests.cs:58\r\n"
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.EnemyFleetTests.SevenDistinctArchetypesHaveEditableIndependentCopies",
+      "Status": "Passed",
+      "Duration": 0.0666562,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.ExpandedWeaponTests.BeamDamagesImmediatelyWithinReachAndStopsAtFirstSurface",
+      "Status": "Passed",
+      "Duration": 0.0081447,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.ExpandedWeaponTests.CategoryAndFactionDamageApplyExactlyOnce(Projectile,0,60)",
+      "Status": "Passed",
+      "Duration": 0.0048221,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.ExpandedWeaponTests.CategoryAndFactionDamageApplyExactlyOnce(Projectile,1,30)",
+      "Status": "Passed",
+      "Duration": 0.0040775,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.ExpandedWeaponTests.CategoryAndFactionDamageApplyExactlyOnce(Beam,0,60)",
+      "Status": "Passed",
+      "Duration": 0.0041571,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.ExpandedWeaponTests.CategoryAndFactionDamageApplyExactlyOnce(Beam,1,30)",
+      "Status": "Passed",
+      "Duration": 0.0052455,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.ExpandedWeaponTests.CategoryAndFactionDamageApplyExactlyOnce(GuidedMissile,0,25)",
+      "Status": "Passed",
+      "Duration": 0.0066545,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.ExpandedWeaponTests.CategoryAndFactionDamageApplyExactlyOnce(GuidedMissile,1,12.5f)",
+      "Status": "Passed",
+      "Duration": 0.0050104,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.ExpandedWeaponTests.ChangingTargetsRestartsMissileAcquisitionAndNoPowerPausesReload",
+      "Status": "Passed",
+      "Duration": 0.0086005,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.ExpandedWeaponTests.ExpiredSeekerOnlyWarnsWhileItsCoastingPathCanStillHitTheOriginalTarget",
+      "Status": "Passed",
+      "Duration": 0.004823,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.ExpandedWeaponTests.FlareBurstRollsOnlyOnceForEachMissileAcrossLaterFrames",
+      "Status": "Passed",
+      "Duration": 0.0054377,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.ExpandedWeaponTests.GuidedMissileTurnsTowardsOffsetTargetAndDealsExplosiveDamage",
+      "Status": "Passed",
+      "Duration": 0.0044384,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.ExpandedWeaponTests.InFlightMissileKeepsItsLaunchDamageWhenTuningChanges",
+      "Status": "Passed",
+      "Duration": 0.0048107,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.ExpandedWeaponTests.MissileBlastIsAbsorbedByShieldWithoutLeakingIntoHull",
+      "Status": "Passed",
+      "Duration": 0.0065282,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.ExpandedWeaponTests.MissileBreakingLastPointOfShieldCannotHurtHullButNextMissileCan",
+      "Status": "Passed",
+      "Duration": 0.0050578,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.ExpandedWeaponTests.MissilePassesEmptyProxyVolumeAndExplodesAtTheFirstOccupiedVoxel",
+      "Status": "Passed",
+      "Duration": 0.0260506,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.ExpandedWeaponTests.MissileRequiresTwoSecondsOnSameTargetAndReloadCannotBeBypassedByReleasing",
+      "Status": "Passed",
+      "Duration": 0.0051971,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.ExpandedWeaponTests.MultipleBarrelsAlternateActualShotOriginsWithoutMultiplyingCadence",
+      "Status": "Passed",
+      "Duration": 0.0033108,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.ExpandedWeaponTests.SuccessfulFlareDiversionCoastsAfterExpiryWithoutReacquiringTheShip",
+      "Status": "Passed",
+      "Duration": 0.0047335,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.ExpandedWeaponTests.TargetRespawnCannotRestoreTheOldMissilesSeekerOrWarning",
+      "Status": "Passed",
+      "Duration": 0.0047549,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.ExpandedWeaponTests.TwinRackFiresTwoMissilesWithOneVolleyDamageBudget",
+      "Status": "Passed",
+      "Duration": 0.005017,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.IncomingMissileCadenceTests.ClosingThreatAcceleratesWithinBoundsAndUnknownImpactDoesNotInventUrgency",
+      "Status": "Passed",
+      "Duration": 0.0007556,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.IncomingMissileCadenceTests.EitherNearbyDistanceOrShortImpactTimeRaisesTheSingleAlarm(600,100,0.9f)",
+      "Status": "Passed",
+      "Duration": 0.0019886,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.IncomingMissileCadenceTests.EitherNearbyDistanceOrShortImpactTimeRaisesTheSingleAlarm(40,100,0.12f)",
+      "Status": "Passed",
+      "Duration": 0.0007002,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.IncomingMissileCadenceTests.EitherNearbyDistanceOrShortImpactTimeRaisesTheSingleAlarm(1000,0.35f,0.12f)",
+      "Status": "Passed",
+      "Duration": 0.000385,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.IncomingMissileCadenceTests.ReversedInspectorThresholdsAndZeroIntervalsCannotCreateAnUnboundedAlarm",
+      "Status": "Passed",
+      "Duration": 0.0005242,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.MissileGuidanceTests.AcceleratingMissileInterceptsACrossingTargetBeforeItsSeekerExpires(240,135,450,120,12,1)",
+      "Status": "Passed",
+      "Duration": 0.004681,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.MissileGuidanceTests.AcceleratingMissileInterceptsACrossingTargetBeforeItsSeekerExpires(245,115,360,110,14,-1)",
+      "Status": "Passed",
+      "Duration": 0.0008509,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.MissileGuidanceTests.AcceleratingMissileInterceptsACrossingTargetBeforeItsSeekerExpires(250,95,280,100,16,1)",
+      "Status": "Passed",
+      "Duration": 0.0005306,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.MissileGuidanceTests.AngularSpeedAndAccelerationStayBoundedWhenTheTurnAxisChanges",
+      "Status": "Passed",
+      "Duration": 0.0029681,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.MissileGuidanceTests.CloseLateralCrossingCanOvershootAndPermanentlyLoseTheSeeker(240,110,360,60)",
+      "Status": "Passed",
+      "Duration": 0.0033652,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.MissileGuidanceTests.CloseLateralCrossingCanOvershootAndPermanentlyLoseTheSeeker(245,95,300,55)",
+      "Status": "Passed",
+      "Duration": 0.0004721,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.MissileGuidanceTests.CloseLateralCrossingCanOvershootAndPermanentlyLoseTheSeeker(250,80,240,50)",
+      "Status": "Passed",
+      "Duration": 0.0003387,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.MissileGuidanceTests.ConeGraceMustBeContinuousAndLostLockCannotResume",
+      "Status": "Passed",
+      "Duration": 0.0007929,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.MissileGuidanceTests.CrossingCaptureRemainsAccurateAtThirtyAndOneHundredTwentyUpdatesPerSecond",
+      "Status": "Passed",
+      "Duration": 0.0012762,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.MissileGuidanceTests.EjectionDelayDoesNotSpendTurnAccelerationOrConeGrace",
+      "Status": "Passed",
+      "Duration": 0.0008847,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.MissileGuidanceTests.GuidanceExpiryKeepsTheLastDirectionEvenWhenTargetReturnsToTheCone",
+      "Status": "Passed",
+      "Duration": 0.0010118,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.MissileGuidanceTests.OutrunningTargetCannotCauseTeleportationOrGuidancePastItsLifetime",
+      "Status": "Passed",
+      "Duration": 0.0007256,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.MissileGuidanceTests.SmallAlignmentErrorConvergesWithoutPersistentSideToSideHunting",
+      "Status": "Passed",
+      "Duration": 0.0006317,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.MissileGuidanceTests.TunedSeekersStillCaptureAPredictableDistantCrossing(240,110,360,60)",
+      "Status": "Passed",
+      "Duration": 0.0005232,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.MissileGuidanceTests.TunedSeekersStillCaptureAPredictableDistantCrossing(245,95,300,55)",
+      "Status": "Passed",
+      "Duration": 0.0003761,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.MissileGuidanceTests.TunedSeekersStillCaptureAPredictableDistantCrossing(250,80,240,50)",
+      "Status": "Passed",
+      "Duration": 0.0002611,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.MissileGuidanceTests.UnseenTargetCannotReverseAngularMomentumDuringConeGrace",
+      "Status": "Passed",
+      "Duration": 0.0005488,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.PowerBoostTests.AShipWithoutReverseNozzlesKeepsItsMomentumWhenThePilotReleases",
+      "Status": "Passed",
+      "Duration": 0.0181842,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.PowerBoostTests.BoostPreservesVirtualStickOffsetAndScalesAngularMotionOnce",
+      "Status": "Passed",
+      "Duration": 0.0035325,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.PowerBoostTests.GeneratorBalancesLaserAndProportionallySharesBoostAfterBatteryEmpties",
+      "Status": "Passed",
+      "Duration": 0.0002624,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.PowerBoostTests.LaserDrawsFiftyWattsIndependentOfItsConfiguredFireRate(2.0f)",
+      "Status": "Passed",
+      "Duration": 0.0040734,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.PowerBoostTests.LaserDrawsFiftyWattsIndependentOfItsConfiguredFireRate(5.0f)",
+      "Status": "Passed",
+      "Duration": 0.003452,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.PowerBoostTests.LaserDrawsFiftyWattsIndependentOfItsConfiguredFireRate(20.0f)",
+      "Status": "Passed",
+      "Duration": 0.0027654,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.PowerBoostTests.LosingAllTorqueNozzlesDoesNotEraseStoredAngularMomentum",
+      "Status": "Passed",
+      "Duration": 0.0029765,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.PowerBoostTests.LowerMassAndHigherThrustRemainDistinctBeyondTheFormerAngularHardCaps",
+      "Status": "Passed",
+      "Duration": 0.0012178,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.PowerBoostTests.ZeroEnergyKeepsBaseFlightAndBrakingWhileBoostScalesOnlyWithItsAllocation",
+      "Status": "Passed",
+      "Duration": 0.0033319,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.ProjectileMechanicsTests.DestroyedWeaponStopsFiringAndRestoredWeaponCanFireAgain",
+      "Status": "Passed",
+      "Duration": 0.0098079,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.ProjectileMechanicsTests.FiniteCylinderDiameterControlsHits",
+      "Status": "Passed",
+      "Duration": 0.007152,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.ProjectileMechanicsTests.FinitePowerReducesFiveShotPerSecondRateWithoutChangingProjectileDamage",
+      "Status": "Passed",
+      "Duration": 0.0055861,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.ProjectileMechanicsTests.FlatCylinderEndDoesNotAcceptCapsuleOnlyCornerContact",
+      "Status": "Passed",
+      "Duration": 0.0006147,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.ProjectileMechanicsTests.LargeStepStillHitsTargetAlongEntireSegment",
+      "Status": "Passed",
+      "Duration": 0.0046903,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.ProjectileMechanicsTests.LaserBodyAndTailStayAheadOfLaunchAndMovingMuzzle(0.0f,10.0f,1000.0f)",
+      "Status": "Passed",
+      "Duration": 0.0026461,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.ProjectileMechanicsTests.LaserBodyAndTailStayAheadOfLaunchAndMovingMuzzle(0.1f,1000.0f,1000.0f)",
+      "Status": "Passed",
+      "Duration": 0.0010333,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.ProjectileMechanicsTests.LaserBodyAndTailStayAheadOfLaunchAndMovingMuzzle(10.0f,1.0f,1000.0f)",
+      "Status": "Passed",
+      "Duration": 0.0008421,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.ProjectileMechanicsTests.LaserBodyAndTailStayAheadOfLaunchAndMovingMuzzle(100.0f,10.0f,0.0f)",
+      "Status": "Passed",
+      "Duration": 0.000845,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.ProjectileMechanicsTests.MissesEnvironmentAndZeroDamageDoNotConfirmHits",
+      "Status": "Passed",
+      "Duration": 0.0050879,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.ProjectileMechanicsTests.MultipleComponentsAtSameDepthAreAllHitButOnePartIdIsDamagedOnce",
+      "Status": "Passed",
+      "Duration": 0.005047,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.ProjectileMechanicsTests.ObliqueSweepHitsRotatedBoxOnlyWithinTheRequestedSegment",
+      "Status": "Passed",
+      "Duration": 0.0005072,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.ProjectileMechanicsTests.PenetrationDamagesFirstLayerFullySecondAtHalfAndStopsBeforeThird",
+      "Status": "Passed",
+      "Duration": 0.0052232,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.ProjectileMechanicsTests.ProjectileNeverDamagesOwnerAndOwnHullBlocksWeaponFire",
+      "Status": "Passed",
+      "Duration": 0.0055004,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.ProjectileMechanicsTests.ReleasedVisualHandleCannotMoveReusedPoolSlot",
+      "Status": "Passed",
+      "Duration": 0.0008704,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.RangeBotWeaponInputTests.AimedBotUsesOrdinaryTriggerEdgesAndImmediatelyStopsWhenAimIsUnsafe(Hold)",
+      "Status": "Passed",
+      "Duration": 0.0069192,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.RangeBotWeaponInputTests.AimedBotUsesOrdinaryTriggerEdgesAndImmediatelyStopsWhenAimIsUnsafe(Press)",
+      "Status": "Passed",
+      "Duration": 0.0026741,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.RangeBotWeaponInputTests.AimedBotUsesOrdinaryTriggerEdgesAndImmediatelyStopsWhenAimIsUnsafe(Toggle)",
+      "Status": "Passed",
+      "Duration": 0.0024725,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.RangeBotWeaponInputTests.AimedBotUsesOrdinaryTriggerEdgesAndImmediatelyStopsWhenAimIsUnsafe(ChargeRelease)",
+      "Status": "Passed",
+      "Duration": 0.002562,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.RangeBotWeaponInputTests.BotLockRequirementAndChargeProgressStillUseSharedWeaponRules",
+      "Status": "Passed",
+      "Duration": 0.0025015,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.RangeBotWeaponInputTests.OrdinaryBotWeaponsCanFireBeforeTheSeparateSensorLockIsAcquired(Hold)",
+      "Status": "Passed",
+      "Duration": 0.0051605,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.RangeBotWeaponInputTests.OrdinaryBotWeaponsCanFireBeforeTheSeparateSensorLockIsAcquired(Press)",
+      "Status": "Passed",
+      "Duration": 0.002743,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.RangeBotWeaponInputTests.OrdinaryBotWeaponsCanFireBeforeTheSeparateSensorLockIsAcquired(Toggle)",
+      "Status": "Passed",
+      "Duration": 0.0024442,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.RangeBotWeaponInputTests.OrdinaryBotWeaponsCanFireBeforeTheSeparateSensorLockIsAcquired(ChargeRelease)",
+      "Status": "Passed",
+      "Duration": 0.0023356,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.ShipCollisionSweepTests.BufferGrowthDoesNotLoseAnObstacleInADenseScene",
+      "Status": "Passed",
+      "Duration": 0.0024872,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.ShipCollisionSweepTests.ClearSpaceSkipsTheCompoundSweepDespiteItsOwnColliders",
+      "Status": "Passed",
+      "Duration": 0.0005443,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.ShipCollisionSweepTests.DetectsObstaclesAtTheFarEndOfTravelAndAfterTeleportOrRotation",
+      "Status": "Passed",
+      "Duration": 0.0010079,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.ShipRenderingTests.BatchingPreservesIndividualFullCellCollisionAndSharedAssets",
+      "Status": "Passed",
+      "Duration": 0.0254054,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.ShipRenderingTests.DamageAndRespawnChangeInstancesWithoutReplacingHitboxes",
+      "Status": "Passed",
+      "Duration": 0.0146632,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.ShipRenderingTests.DamagedHealthRevisionAdvancesDuringHealingButNotIdleSteps",
+      "Status": "Passed",
+      "Duration": 0.013546,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.TargetMarkerGraphicTests.DiscoveredTriangleTipMatchesTheSelectableCoreProjectionAndPointsDown",
+      "Status": "Passed",
+      "Duration": 0.0050852,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.TargetMarkerGraphicTests.LeadMarkersUseFourDifferentShapesWhileKeepingOneEnemyColor",
+      "Status": "Passed",
+      "Duration": 0.0028785,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.TargetSensorWorldTests.BothTeamsUseTheTargetsSizeAndDiscoveryDoesNotRequireFacing",
+      "Status": "Passed",
+      "Duration": 0.0156171,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.TargetSensorWorldTests.DeathRespawnAndExplicitCancellationCannotInheritEnemyLocks",
+      "Status": "Passed",
+      "Duration": 0.007397,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.TargetSensorWorldTests.EnemyLockNeedsDiscoveryFacingAndContinuousAcquisitionThenSurvivesLookingAway",
+      "Status": "Passed",
+      "Duration": 0.0062208,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.TargetSensorWorldTests.EntryExitBandAndContinuousLossDelayAreSharedAndDiscoveryEventsOnlyReportTransitions",
+      "Status": "Passed",
+      "Duration": 0.0065682,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.TargetSensorWorldTests.FirstFreshPressAndBackToBackCompletedTapsRemainResponsive",
+      "Status": "Passed",
+      "Duration": 0.00903,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.TargetSensorWorldTests.GeometryIsCachedUntilARealPartOrPerformanceRevision",
+      "Status": "Passed",
+      "Duration": 0.0029375,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.TargetSensorWorldTests.HeldEdgesRearmAcrossEntryAndModalsWithoutDependingOnTransientPressFlags",
+      "Status": "Passed",
+      "Duration": 0.0058297,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.TargetSensorWorldTests.MaximumRangeUsesTheSameLiveSanitizedBoundsAsDiscovery",
+      "Status": "Passed",
+      "Duration": 0.0003488,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.TargetSensorWorldTests.MissedAcquisitionAndEitherShipsRespawnCannotPoisonLaterLockAttempts",
+      "Status": "Passed",
+      "Duration": 0.005874,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.TargetSensorWorldTests.QueuedPressCanAcquireAtTheShipReticleWhileTheSteeringCursorIsOffset",
+      "Status": "Passed",
+      "Duration": 0.00547,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.TargetSensorWorldTests.QueuedTogglesUseTheVisibleSmoothedCursorAndRemainReusable",
+      "Status": "Passed",
+      "Duration": 0.0353109,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.TargetSensorWorldTests.SelectionUsesVisibleMarkerNearestTheVirtualCursorInsteadOfFirstOrMostForwardShip",
+      "Status": "Passed",
+      "Duration": 0.0090441,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.TargetSensorWorldTests.SignatureRangeUsesSquareRootAndClamps(0,1000)",
+      "Status": "Passed",
+      "Duration": 0.0003384,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.TargetSensorWorldTests.SignatureRangeUsesSquareRootAndClamps(1,1000)",
+      "Status": "Passed",
+      "Duration": 0.0001388,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.TargetSensorWorldTests.SignatureRangeUsesSquareRootAndClamps(10,3000)",
+      "Status": "Passed",
+      "Duration": 8.61E-05,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.TargetSensorWorldTests.SignatureRangeUsesSquareRootAndClamps(40,6000)",
+      "Status": "Passed",
+      "Duration": 7.25E-05,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.TargetSensorWorldTests.SignatureRangeUsesSquareRootAndClamps(160,6000)",
+      "Status": "Passed",
+      "Duration": 6.64E-05,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.TargetSensorWorldTests.SignatureTracksAttachedSurvivorsDespiteStaleHullRadiusAndDisabledRenderers",
+      "Status": "Passed",
+      "Duration": 0.0061745,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.TargetSilhouetteGeometryTests.CachedMatricesRemainLocalWhenTheWholeShipMovesAndRotates",
+      "Status": "Passed",
+      "Duration": 0.002159,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.TargetSilhouetteGeometryTests.CaptureIncludesInstancingHiddenHullAndExcludesChildEffects",
+      "Status": "Passed",
+      "Duration": 0.0005101,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.TargetSilhouetteGeometryTests.DamageRemovesDestroyedAndDetachedPartsWithoutLeavingGhostGeometry",
+      "Status": "Passed",
+      "Duration": 0.0005522,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.TargetSilhouetteGeometryTests.NonReadableImportedMeshesAndAllTriangleSubmeshesCanBeCapturedWithoutCpuVertexCopies",
+      "Status": "Passed",
+      "Duration": 0.0038349,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.TracerReadabilityTests.ExtremeDistanceCapsExpansionAndZeroPixelsRetainsAuthoredWidth",
+      "Status": "Passed",
+      "Duration": 0.0012755,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.TracerReadabilityTests.ReadableWidthProjectsToRequestedPixelsInBothCameraModes(False)",
+      "Status": "Passed",
+      "Duration": 0.0008466,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.TracerReadabilityTests.ReadableWidthProjectsToRequestedPixelsInBothCameraModes(True)",
+      "Status": "Passed",
+      "Duration": 0.0001107,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponActivationTests.ChargeUsesPowerAndOnlyCompletedChargeFiresOnceOnRelease",
+      "Status": "Passed",
+      "Duration": 0.0006927,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponActivationTests.HoldScalesCycleByPowerAndDiscardsUnfinishedCycleOnRelease",
+      "Status": "Passed",
+      "Duration": 0.0002631,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponActivationTests.LosingRequiredGateCancelsChargeAndClearCancelsPendingPress",
+      "Status": "Passed",
+      "Duration": 0.0002377,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponActivationTests.PressCreatesOnePoweredCycleAndDoesNotRepeatWhileHeld",
+      "Status": "Passed",
+      "Duration": 0.0002432,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponActivationTests.ToggleSurvivesReleaseAndClearsOnSecondPressOrInvalidActivation",
+      "Status": "Passed",
+      "Duration": 0.0003105,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponBindingConflictTests.KeyboardConflictsUseControlIdentityWithoutAnAttachedDevice(\"<Keyboard>/1\",\"Digit1\",True)",
+      "Status": "Passed",
+      "Duration": 0.0008235,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponBindingConflictTests.KeyboardConflictsUseControlIdentityWithoutAnAttachedDevice(\"<KEYBOARD>/dIgIt1\",\"Digit1\",True)",
+      "Status": "Passed",
+      "Duration": 7.26E-05,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponBindingConflictTests.KeyboardConflictsUseControlIdentityWithoutAnAttachedDevice(\"<Keyboard>/0\",\"Digit0\",True)",
+      "Status": "Passed",
+      "Duration": 4.3E-05,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponBindingConflictTests.KeyboardConflictsUseControlIdentityWithoutAnAttachedDevice(\"<Keyboard>/leftControl\",\"LeftCtrl\",True)",
+      "Status": "Passed",
+      "Duration": 4.15E-05,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponBindingConflictTests.KeyboardConflictsUseControlIdentityWithoutAnAttachedDevice(\"<Keyboard>/CTRL\",\"RightCtrl\",True)",
+      "Status": "Passed",
+      "Duration": 0.0001109,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponBindingConflictTests.KeyboardConflictsUseControlIdentityWithoutAnAttachedDevice(\"<Keyboard>/rightCtrl\",\"LeftCtrl\",False)",
+      "Status": "Passed",
+      "Duration": 6.2E-05,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponBindingConflictTests.KeyboardConflictsUseControlIdentityWithoutAnAttachedDevice(\"<Keyboard>/55\",\"LeftCtrl\",False)",
+      "Status": "Passed",
+      "Duration": 4.29E-05,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponBindingConflictTests.KeyboardConflictsUseControlIdentityWithoutAnAttachedDevice(\"<Mouse>/leftButton\",\"Digit1\",False)",
+      "Status": "Passed",
+      "Duration": 7.06E-05,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponBindingConflictTests.LegacyMetadataUsesDefaultWhileOptionalDatabaseRecognizesFutureWeaponModules",
+      "Status": "Passed",
+      "Duration": 0.0014055,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponBindingConflictTests.MouseConflictMatchesCaseAndOnlyGroupsWithExistingWeaponsWarn",
+      "Status": "Passed",
+      "Duration": 0.0008589,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponGroupDatabaseCompatibilityTests.ConfiguredWeaponModuleKeepsItsGroupThroughUpgradeAndRepositoryRoundTrip",
+      "Status": "Passed",
+      "Duration": 0.0035105,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponGroupDataTests.GroupEditsRejectUnknownPartsAndRemovingGroupReturnsWeaponsToDefault",
+      "Status": "Passed",
+      "Duration": 0.0016772,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponGroupDataTests.KeyboardBindingSurvivesSerializationAndInvalidKeyBecomesUnbound",
+      "Status": "Passed",
+      "Duration": 0.0004262,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponGroupDataTests.NormalizeRepairsIdsAndDropsUnknownDeletedAndNonWeaponAssignments",
+      "Status": "Passed",
+      "Duration": 0.0018228,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponGroupDataTests.OldJsonWithoutOptionalFieldsGetsOneLeftMouseGroup(1)",
+      "Status": "Passed",
+      "Duration": 0.0010563,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponGroupDataTests.OldJsonWithoutOptionalFieldsGetsOneLeftMouseGroup(2)",
+      "Status": "Passed",
+      "Duration": 0.0002459,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponGroupDataTests.RepositoryRoundTripKeepsIndividualAssignmentsNamesAndMouseBindings",
+      "Status": "Passed",
+      "Duration": 0.0282902,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponGroupDataTests.UpgradeAndCopyDoNotShareMetadataObjectsWithSource",
+      "Status": "Passed",
+      "Duration": 0.0012511,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponGroupRuntimeTests.AimProfilesFilterToHeldGroupAndRecoverAllWhenReleased",
+      "Status": "Passed",
+      "Duration": 0.0048704,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponGroupRuntimeTests.ClearingInputsStopsLatchedToggleAndRouterBlockedStateStopsLegacyRequest",
+      "Status": "Passed",
+      "Duration": 0.0032416,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponGroupRuntimeTests.DisablingBetweenPowerPreparationAndExecutionStopsTheShot",
+      "Status": "Passed",
+      "Duration": 0.0030181,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponGroupRuntimeTests.DisablingCancelsLatchedOrChargingWeapon(Toggle)",
+      "Status": "Passed",
+      "Duration": 0.0078523,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponGroupRuntimeTests.DisablingCancelsLatchedOrChargingWeapon(Press)",
+      "Status": "Passed",
+      "Duration": 0.0030181,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponGroupRuntimeTests.DisablingCancelsLatchedOrChargingWeapon(ChargeRelease)",
+      "Status": "Passed",
+      "Duration": 0.0027173,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponGroupRuntimeTests.GroupsStartEnabledAndDisabledGroupsDoNotFireDrawPowerOrProduceLeadPoints",
+      "Status": "Passed",
+      "Duration": 0.0072902,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponGroupRuntimeTests.IdenticalWeaponPartsCanFireIndependentlyOrTogether",
+      "Status": "Passed",
+      "Duration": 0.0028829,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponGroupRuntimeTests.LegacyAiInputStillFiresEveryWeaponRegardlessOfAssignments",
+      "Status": "Passed",
+      "Duration": 0.0034093,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponGroupRuntimeTests.LockRequiredWeaponDrawsNothingUntilLockAndCannotFireAfterLockLost",
+      "Status": "Passed",
+      "Duration": 0.0034947,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponGroupRuntimeTests.PressEdgesSurviveMultipleRenderUpdatesAndAreConsumedOnce",
+      "Status": "Passed",
+      "Duration": 0.0039357,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponGroupRuntimeTests.RuntimeUsesSnapshotAndDestroyedGroupWeaponKeepsItsAssignmentForRecovery",
+      "Status": "Passed",
+      "Duration": 0.0041301,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponGroupStatefulLockTests.LockLostAfterPreparationCancelsStatefulShotWithoutStoppingIndependentGroup(Press)",
+      "Status": "Passed",
+      "Duration": 0.0071356,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponGroupStatefulLockTests.LockLostAfterPreparationCancelsStatefulShotWithoutStoppingIndependentGroup(Toggle)",
+      "Status": "Passed",
+      "Duration": 0.0043659,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponGroupStatefulLockTests.LockLostAfterPreparationCancelsStatefulShotWithoutStoppingIndependentGroup(ChargeRelease)",
+      "Status": "Passed",
+      "Duration": 0.0049101,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponImmediateCadenceTests.ContinuousImmediateHoldSustainsAuthoredRate(1.0f)",
+      "Status": "Passed",
+      "Duration": 0.0014081,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponImmediateCadenceTests.ContinuousImmediateHoldSustainsAuthoredRate(2.5f)",
+      "Status": "Passed",
+      "Duration": 0.0001791,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponImmediateCadenceTests.ContinuousImmediateHoldSustainsAuthoredRate(5.0f)",
+      "Status": "Passed",
+      "Duration": 0.0001684,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponImmediateCadenceTests.IdleTimeDoesNotBankAdditionalImmediateShots",
+      "Status": "Passed",
+      "Duration": 0.0003064,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponImmediateCadenceTests.ImmediateFirstShotWaitsForPowerWithoutBeingConsumed",
+      "Status": "Passed",
+      "Duration": 0.0004161,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponImmediateCadenceTests.ImmediateSustainedCadenceScalesByAllocatedPower",
+      "Status": "Passed",
+      "Duration": 0.0004407,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponImmediateCadenceTests.ReleasingAndCancellingPreserveTheRemainingCycle",
+      "Status": "Passed",
+      "Duration": 0.0003624,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponImmediateCadenceTests.RuntimeGroupSwitchAndInputClearCannotGrantAnExtraImmediateShot",
+      "Status": "Passed",
+      "Duration": 0.0079155,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponImmediateCadenceTests.RuntimeReleasedTriggerLetsImmediateWeaponCool",
+      "Status": "Passed",
+      "Duration": 0.0108671,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WorkspaceSessionTests.CorruptPrimaryWorkspaceRecoversPreviousValidBackup",
+      "Status": "Passed",
+      "Duration": 0.0200338,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WorkspaceSessionTests.CorruptWorkspaceAndBackupFallBackToAnIsolatedNamedBlueprint",
+      "Status": "Passed",
+      "Duration": 0.0232566,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WorkspaceSessionTests.DeploymentSnapshotIsIndependentOfInputEventPayloadAndEveryGetter",
+      "Status": "Passed",
+      "Duration": 0.0093224,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WorkspaceSessionTests.FailedConfirmationClearsThePreviousRequestWithoutLaunchingAgain",
+      "Status": "Passed",
+      "Duration": 0.001869,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WorkspaceSessionTests.FailedWorkspaceWritePreservesMemoryDiskMetadataAndChangeNotifications",
+      "Status": "Passed",
+      "Duration": 0.0292459,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WorkspaceSessionTests.InvalidGeometryNamedBlueprintIsSkippedWhenRecoveringWorkspace",
+      "Status": "Passed",
+      "Duration": 0.008717,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WorkspaceSessionTests.LegacyWorkspaceAndMissionSnapshotsUpgradeWithoutMutatingTheirInput",
+      "Status": "Passed",
+      "Duration": 0.0042992,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WorkspaceSessionTests.MissionReportIsImmutableEmitsOnceAndNeverWritesTheWorkspace",
+      "Status": "Passed",
+      "Duration": 0.0055733,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WorkspaceSessionTests.MissionReportRequiresAConfirmedFlightAndClampsInvalidMetrics",
+      "Status": "Passed",
+      "Duration": 0.0013418,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WorkspaceSessionTests.NestedStorageScopeRestoresThePreviousInMemoryWorkspace",
+      "Status": "Passed",
+      "Duration": 0.0041241,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WorkspaceSessionTests.SelectingAndEditingAnIsolatedBlueprintNeverRewritesItsNamedFile",
+      "Status": "Passed",
+      "Duration": 0.0214611,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WorkspaceSessionTests.WellFormedWorkspaceWithInvalidGeometryRecoversBackupWithoutReplacingEitherFile",
+      "Status": "Passed",
+      "Duration": 0.0100113,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WorkspaceSessionTests.WorkspaceCopiesInputsAndGettersAndPersistsDirtySourceMetadata",
+      "Status": "Passed",
+      "Duration": 0.0083048,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.BalancedFlightAxisTests.DamageRecalculationCannotIntroduceUncommandedRotation",
+      "Status": "Passed",
+      "Duration": 0.0012771,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.BalancedFlightAxisTests.EachSingleTranslationMatchesItsPublishedCapacityAndNeverInjectsTorque",
+      "Status": "Passed",
+      "Duration": 0.0004689,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.BalancedFlightAxisTests.RotationHasEqualOpposingAuthorityAndNoOtherMotionChannels",
+      "Status": "Passed",
+      "Duration": 0.0008204,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.BlueprintRepositoryTests.BaseAndQuarterTurnUseTheSelectedFaceNormal(1,0,0)",
+      "Status": "Passed",
+      "Duration": 0.0040159,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.BlueprintRepositoryTests.BaseAndQuarterTurnUseTheSelectedFaceNormal(-1,0,0)",
+      "Status": "Passed",
+      "Duration": 0.0003367,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.BlueprintRepositoryTests.BaseAndQuarterTurnUseTheSelectedFaceNormal(0,1,0)",
+      "Status": "Passed",
+      "Duration": 0.0002215,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.BlueprintRepositoryTests.BaseAndQuarterTurnUseTheSelectedFaceNormal(0,-1,0)",
+      "Status": "Passed",
+      "Duration": 0.0001838,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.BlueprintRepositoryTests.BaseAndQuarterTurnUseTheSelectedFaceNormal(0,0,1)",
+      "Status": "Passed",
+      "Duration": 0.0002205,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.BlueprintRepositoryTests.BaseAndQuarterTurnUseTheSelectedFaceNormal(0,0,-1)",
+      "Status": "Passed",
+      "Duration": 0.0001813,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.BlueprintRepositoryTests.DuplicateNameNeverOverwritesExistingBlueprint",
+      "Status": "Passed",
+      "Duration": 0.0357213,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.BlueprintRepositoryTests.DuplicatePoseRejectedBeforeChangingExistingBlueprint",
+      "Status": "Passed",
+      "Duration": 0.0131273,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.BlueprintRepositoryTests.EmptyBlueprintAndUnsupportedVersion",
+      "Status": "Passed",
+      "Duration": 0.0087916,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.BlueprintRepositoryTests.LegacyBlueprintMigrationPreservesGeometryWithoutMutatingSource",
+      "Status": "Passed",
+      "Duration": 0.0085628,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.BlueprintRepositoryTests.NormalizedWheelZoomExceedsFivefoldMinimum",
+      "Status": "Passed",
+      "Duration": 0.0016264,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.BlueprintRepositoryTests.PrimitiveMeshHasExpectedVolume(Cube,1.0f)",
+      "Status": "Passed",
+      "Duration": 0.0006398,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.BlueprintRepositoryTests.PrimitiveMeshHasExpectedVolume(Wedge,0.5f)",
+      "Status": "Passed",
+      "Duration": 0.0001404,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.BlueprintRepositoryTests.RealColliderProbesAllowContactAndRejectPenetration",
+      "Status": "Passed",
+      "Duration": 0.0031691,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.BlueprintRepositoryTests.RoundTripPreservesFullThreeDimensionalPose",
+      "Status": "Passed",
+      "Duration": 0.0021324,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.BlueprintRepositoryTests.SlopedFaceIsRejectedButAxisFaceUsesAdjacentCell",
+      "Status": "Passed",
+      "Duration": 0.0014829,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.BlueprintRepositoryTests.TraversalUnsupportedShapeAndInvalidQuaternionAreRejected",
+      "Status": "Passed",
+      "Duration": 0.0005163,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.BotBehaviorTests.AimErrorIsSlowPersistentAndDifferentBetweenPilots",
+      "Status": "Passed",
+      "Duration": 0.0010686,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.BotBehaviorTests.AllSevenRolesHaveFiniteUsefulRangesAndDifferentFlightStyles",
+      "Status": "Passed",
+      "Duration": 0.0011527,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.BotBehaviorTests.AttackVelocityHoldsDistanceAndMatchesMovingTargetsWithoutAnAutomaticEscape",
+      "Status": "Passed",
+      "Duration": 0.0008542,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.BotBehaviorTests.SteeringCanReverseWithoutAZeroVectorOrInstantHalfTurn",
+      "Status": "Passed",
+      "Duration": 0.0018979,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.BotBehaviorTests.TerrainBlocksTheFiringLaneButAnOffsetObstacleDoesNot",
+      "Status": "Passed",
+      "Duration": 0.0016292,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.BotBehaviorTests.VelocityResponseIsContinuousAndIndependentOfPhysicsStepSubdivision",
+      "Status": "Passed",
+      "Duration": 0.0003512,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.BotBehaviorTests.WeaponWindowsAllowChargeAndGuidedAcquisitionInsteadOfResettingTooEarly",
+      "Status": "Passed",
+      "Duration": 0.0002883,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.CoreVelocityEstimatorTests.MultiSampleEstimateTracksConstantMotionAndIgnoresRepeatedPhysicsTime",
+      "Status": "Passed",
+      "Duration": 0.0007701,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.CoreVelocityEstimatorTests.OffsetCoreRotationContributesToItsMeasuredVelocity",
+      "Status": "Passed",
+      "Duration": 0.0004951,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.CoreVelocityEstimatorTests.SamplingSmoothsSmallFrameNoiseAndResetsForNewTarget",
+      "Status": "Passed",
+      "Duration": 0.0005259,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.DebrisBoundsTests.LongSpinningWreckBoundsAcceptSlightlyNonUnitNativeRotationsWithoutPoseMutation",
+      "Status": "Passed",
+      "Duration": 0.0130982,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.DebrisMechanicsTests.CoreDeathTransfersSurvivorsBeforeDeathAndRespawnDoesNotAlterTheirHealth(False)",
+      "Status": "Passed",
+      "Duration": 0.0209048,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.DebrisMechanicsTests.CoreDeathTransfersSurvivorsBeforeDeathAndRespawnDoesNotAlterTheirHealth(True)",
+      "Status": "Passed",
+      "Duration": 0.0046923,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.DebrisMechanicsTests.CorePiercingShotStillDamagesTheNextBlockAfterItBecomesWreckage",
+      "Status": "Passed",
+      "Duration": 0.0078976,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.DebrisMechanicsTests.DestroyingDebrisBridgeSplitsItIntoIndependentDriftingBodies",
+      "Status": "Passed",
+      "Duration": 0.0047558,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.DebrisMechanicsTests.DetachedIslandRetainsHealthAndCollisionButLosesShipFunctions",
+      "Status": "Passed",
+      "Duration": 0.0051721,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.DebrisMechanicsTests.EnclosedCoreIsIgnoredOnlyUntilWreckageClearsItsSourceShip",
+      "Status": "Passed",
+      "Duration": 0.0046804,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.DebrisMechanicsTests.HealthyWreckageSurvivesElapsedTimeAndDriftingBeyondTheRange",
+      "Status": "Passed",
+      "Duration": 0.0042939,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.DebrisMechanicsTests.LasersDamageAndDestroyDebrisUsingTheNormalProjectileSweep",
+      "Status": "Passed",
+      "Duration": 0.0043198,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.DebrisMechanicsTests.WreckBatchingKeepsNativeHitboxesAndRestoresSourceRenderersWhenDisabled",
+      "Status": "Passed",
+      "Duration": 0.0126949,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.DebrisMechanicsTests.WreckOwnsSharedMeshCopiesAfterSourceAssemblyAndItsGeneratedMeshesAreDestroyed",
+      "Status": "Passed",
+      "Duration": 0.0047676,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.DebrisMechanicsTests.WreckSplitInvalidatesBatchedPoseAndRetainsWorldPositions",
+      "Status": "Passed",
+      "Duration": 0.0045975,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.DebrisPhysicsBudgetTests.DistantBudgetOnlyChangesCollisionModeAndInterpolationThenRestoresNearAnyShip",
+      "Status": "Passed",
+      "Duration": 0.0077215,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.DebrisPhysicsBudgetTests.FastApproachRestoresBeforeNextHalfSecondEvaluationCanReachTheIsland",
+      "Status": "Passed",
+      "Duration": 0.0043629,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.DebrisPhysicsBudgetTests.HysteresisAvoidsSwitchingInTheMiddleBandAndObserverRemovalRestoresFineMode",
+      "Status": "Passed",
+      "Duration": 0.004269,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.EnemyFleetLibraryTests.AnInvalidTemplateStopsThePackBeforeAnyFilesAreWritten",
+      "Status": "Passed",
+      "Duration": 0.0042919,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.EnemyFleetLibraryTests.ImportNumbersDuplicateNamesAndPreservesTheWorkingShipAndSources",
+      "Status": "Passed",
+      "Duration": 0.0419528,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.ExpandedComponentAssetTests.ArmorIsPassiveDurabilityAndMissilesHaveSeparateLoadedAndFlyingMeshes",
+      "Status": "Passed",
+      "Duration": 0.0015072,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.ExpandedComponentAssetTests.CurrentApprovedKineticAndRailRolesKeepPulsesReadable",
+      "Status": "Passed",
+      "Duration": 0.0008567,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.ExpandedComponentAssetTests.CurrentApprovedLaserAndPowerBalanceHasTieredTradeoffs",
+      "Status": "Passed",
+      "Duration": 0.0004043,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.ExpandedComponentAssetTests.EveryShapeHasCompleteProductionAssetsAndAlignedOccupancy",
+      "Status": "Passed",
+      "Duration": 0.1810441,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.ExpandedComponentAssetTests.MultiBarrelWeaponsGetOneGlowAccentPerBore",
+      "Status": "Passed",
+      "Duration": 0.0071949,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.ExpandedComponentAssetTests.RepackedAndRefilledPartsFillTheirReservedCellsWithoutSpareColumns",
+      "Status": "Passed",
+      "Duration": 0.0010984,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.ExpandedComponentAssetTests.ReplacingDefinitionInClonedDatabaseKeepsProductionAssetsIsolated",
+      "Status": "Passed",
+      "Duration": 0.0006646,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.ExpandedComponentAssetTests.WeaponsExposeRealBarrelMuzzlesAndIndependentEnergyBlades",
+      "Status": "Passed",
+      "Duration": 0.0005573,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.ExpandedHullPlacementTests.ActualArmorFootIsAlignedToClickedCubeForEveryMountingRotation(Armor3)",
+      "Status": "Passed",
+      "Duration": 0.0061566,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.ExpandedHullPlacementTests.ArmorHasOneMountingFaceInEveryOrientation(Armor1)",
+      "Status": "Passed",
+      "Duration": 0.0016219,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.ExpandedHullPlacementTests.ArmorHasOneMountingFaceInEveryOrientation(Armor2)",
+      "Status": "Passed",
+      "Duration": 0.0007049,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.ExpandedHullPlacementTests.ArmorHasOneMountingFaceInEveryOrientation(Armor3)",
+      "Status": "Passed",
+      "Duration": 0.0010716,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.ExpandedHullPlacementTests.ArmorHasOneMountingFaceInEveryOrientation(Armor4)",
+      "Status": "Passed",
+      "Duration": 0.0015116,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.ExpandedHullPlacementTests.LargeEngineReservesTheWholeNozzleWidthAndOnlyBeyondItsBody(Thruster3)",
+      "Status": "Passed",
+      "Duration": 0.0009459,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.ExpandedHullPlacementTests.LargeEngineReservesTheWholeNozzleWidthAndOnlyBeyondItsBody(Thruster4)",
+      "Status": "Passed",
+      "Duration": 0.0001244,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.ExpandedHullPlacementTests.LargeEngineReservesTheWholeNozzleWidthAndOnlyBeyondItsBody(Thruster5)",
+      "Status": "Passed",
+      "Duration": 7.36E-05,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.ExpandedHullPlacementTests.MultiCellMapHullKeepsRotatedDimensionsAndModelOffsetsThroughSerialization(Block7,2)",
+      "Status": "Passed",
+      "Duration": 0.0256995,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.ExpandedHullPlacementTests.MultiCellMapHullKeepsRotatedDimensionsAndModelOffsetsThroughSerialization(Block8,8)",
+      "Status": "Passed",
+      "Duration": 0.008118,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.ExpandedHullPlacementTests.OpposingWeaponMountsCannotBypassEquipmentStackingRule",
+      "Status": "Passed",
+      "Duration": 0.0002464,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.ExpandedHullPlacementTests.PerCellPartitionStaysClosedAndInsideItsOwnOccupiedCell",
+      "Status": "Passed",
+      "Duration": 0.006638,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.ExpandedHullPlacementTests.PowerTopCarriesARegularBlock(Power)",
+      "Status": "Passed",
+      "Duration": 0.0005117,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.ExpandedHullPlacementTests.PowerTopCarriesARegularBlock(Power2)",
+      "Status": "Passed",
+      "Duration": 0.0001846,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.ExpandedHullPlacementTests.ThinTopHasNoFloatingConnectionWhileSideAndBottomRemainMountable(Slab)",
+      "Status": "Passed",
+      "Duration": 0.0006833,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.ExpandedHullPlacementTests.ThinTopHasNoFloatingConnectionWhileSideAndBottomRemainMountable(Block7)",
+      "Status": "Passed",
+      "Duration": 0.0003681,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.ExpandedHullPlacementTests.WeaponMountsOnlyThroughItsBottom(Laser)",
+      "Status": "Passed",
+      "Duration": 0.0018748,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.ExpandedHullPlacementTests.WeaponMountsOnlyThroughItsBottom(Gun1)",
+      "Status": "Passed",
+      "Duration": 0.000577,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.ExpandedHullPlacementTests.WeaponMountsOnlyThroughItsBottom(Railgun1)",
+      "Status": "Passed",
+      "Duration": 0.0003687,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.ExpandedHullPlacementTests.WeaponMountsOnlyThroughItsBottom(Missile1)",
+      "Status": "Passed",
+      "Duration": 0.0003339,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.ExpandedHullPlacementTests.WeaponMountsOnlyThroughItsBottom(Sword1)",
+      "Status": "Passed",
+      "Duration": 0.0004324,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.ExpandedHullPlacementTests.WideWeaponOrArmorRequiresSupportUnderBothBottomColumns(Gun2)",
+      "Status": "Passed",
+      "Duration": 0.0019671,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.ExpandedHullPlacementTests.WideWeaponOrArmorRequiresSupportUnderBothBottomColumns(Armor4)",
+      "Status": "Passed",
+      "Duration": 0.0028713,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.FlareCountermeasureTests.AssemblyRejectsRoofBeforeOrAfterLauncherWithoutRejectingSideTower(False)",
+      "Status": "Passed",
+      "Duration": 0.0061278,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.FlareCountermeasureTests.AssemblyRejectsRoofBeforeOrAfterLauncherWithoutRejectingSideTower(True)",
+      "Status": "Passed",
+      "Duration": 0.0027047,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.FlareCountermeasureTests.DestroyedLaunchersAreSkippedAndRespawnClearsIndependentCooldowns",
+      "Status": "Passed",
+      "Duration": 0.0048537,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.FlareCountermeasureTests.EveryMountingRotationChecksOnlyTheOneCellWideUpwardColumnIncludingOtherWeapons",
+      "Status": "Passed",
+      "Duration": 0.0009203,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.FlareCountermeasureTests.EverySparkInheritsShipVelocityAndStaysInsideTheRotatedLaunchCone",
+      "Status": "Passed",
+      "Duration": 0.0030938,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.FlareCountermeasureTests.FlareDefaultsAreOneTwelveSparkSalvoWithTenSecondIndependentCooldown",
+      "Status": "Passed",
+      "Duration": 0.0008027,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.FlareCountermeasureTests.FlareIsMountedEquipmentButNeverEntersPrimaryWeaponsOrAimProfiles",
+      "Status": "Passed",
+      "Duration": 0.0029129,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.FlareCountermeasureTests.PressesRotateLaunchersAndEachWaitsForItsOwnCooldown",
+      "Status": "Passed",
+      "Duration": 0.004437,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.FlareCountermeasureTests.RuntimeBlockedLauncherSpendsNoCooldownAndFiresImmediatelyWhenCleared",
+      "Status": "Passed",
+      "Duration": 0.0030106,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.FlareCountermeasureTests.SalvoSharesOneMovingBurstAndTwelvePooledVoxelsWithoutPhysicsComponents",
+      "Status": "Passed",
+      "Duration": 0.0040737,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.FlareCountermeasureTests.SavedShapeAndActionNumbersStayStableAndOldBindingsGainRWithoutChangingF",
+      "Status": "Passed",
+      "Duration": 0.0009274,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.FlareCountermeasureTests.ThreatForecastRejectsRecedingUnreachableAndOutOfConeBurstsWithoutSpendingCooldown",
+      "Status": "Passed",
+      "Duration": 0.0032195,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.GameSettingsTests.ApplicationFallbackRecoversUnsupportedVersionWithoutChangingTheFileOrDefaults",
+      "Status": "Passed",
+      "Duration": 0.0073193,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.GameSettingsTests.AtomicReplacementRoundTripsAndKeepsPreviousSnapshot",
+      "Status": "Passed",
+      "Duration": 0.0038411,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.GameSettingsTests.BindingValidationRepairsMissingReservedAndUnknownControls",
+      "Status": "Passed",
+      "Duration": 0.0008745,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.GameSettingsTests.ConflictDetectionIncludesSecondaryModifierBindings",
+      "Status": "Passed",
+      "Duration": 0.0030894,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.GameSettingsTests.DraftCloneDoesNotModifyAppliedSettings",
+      "Status": "Passed",
+      "Duration": 0.0006272,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.GameSettingsTests.MissingPreferencesReturnIndependentFallback",
+      "Status": "Passed",
+      "Duration": 0.0006026,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.GameSettingsTests.NumericValidationRejectsNonFiniteAndOutOfRangeValues",
+      "Status": "Passed",
+      "Duration": 0.0006994,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.GameSettingsTests.UnsupportedVersionsAreRejectedWithoutOverwritingTheFile",
+      "Status": "Passed",
+      "Duration": 0.0015477,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.GridConnectivityTests.DestroyingOneBridgeKeepsHullConnectedThroughTheSlabSide",
+      "Status": "Passed",
+      "Duration": 0.013008,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.GridConnectivityTests.MultiCellBodyConnectsAtItsFarEndButExhaustClearanceDoesNot",
+      "Status": "Passed",
+      "Duration": 0.000532,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.GridConnectivityTests.OnlyRealPlanarFacesProvideStructuralSupport(Wedge)",
+      "Status": "Passed",
+      "Duration": 0.0072159,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.GridConnectivityTests.OnlyRealPlanarFacesProvideStructuralSupport(Slab)",
+      "Status": "Passed",
+      "Duration": 0.0031052,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.GridConnectivityTests.OnlyRealPlanarFacesProvideStructuralSupport(Pyramid)",
+      "Status": "Passed",
+      "Duration": 0.0016934,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.GridConnectivityTests.ProductionTestShipDamageMatchesSurfaceConnectedFloodFill",
+      "Status": "Passed",
+      "Duration": 0.0354779,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.HitFeedbackTests.DenseHitsAreCappedAndDoNotQueueDelayedFlashes",
+      "Status": "Passed",
+      "Duration": 0.0004631,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.HitFeedbackTests.HitSegmentsGrowWhileCrossContractsThenReturnToIdle",
+      "Status": "Passed",
+      "Duration": 0.0003864,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.RailgunFireTests.ProductionRailgunsSpawnProjectilesWhenSupportedAndClear(Railgun1)",
+      "Status": "Passed",
+      "Duration": 0.0088605,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.RailgunFireTests.ProductionRailgunsSpawnProjectilesWhenSupportedAndClear(Railgun2)",
+      "Status": "Passed",
+      "Duration": 0.0047332,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.RailgunFireTests.ProductionRailgunsSpawnProjectilesWhenSupportedAndClear(Railgun3)",
+      "Status": "Passed",
+      "Duration": 0.0044471,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.RangeBotPilotTests.AlignedTrackingKeepsTheCrossingSightlineRateThroughTheSharedStickResponse",
+      "Status": "Passed",
+      "Duration": 0.0021126,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.RangeBotPilotTests.BoundarySteeringReturnsInwardBeforeStoppingDistanceAndProtectsAllThreeFaces",
+      "Status": "Passed",
+      "Duration": 0.0009741,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.RangeBotPilotTests.CombatFireCanCoverTheHullWithoutRequiringExactCoreAlignment",
+      "Status": "Passed",
+      "Duration": 0.0005872,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.RangeBotPilotTests.DistantFireRejectsAVisibleGeometricMissAndAcceptsASubDegreeHit",
+      "Status": "Passed",
+      "Duration": 0.0004838,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.RangeBotPilotTests.FineAimAndLowAuthorityHalfTurnsProduceFiniteBoundedSteering(0.01f,80)",
+      "Status": "Passed",
+      "Duration": 0.0020542,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.RangeBotPilotTests.FineAimAndLowAuthorityHalfTurnsProduceFiniteBoundedSteering(-0.01f,80)",
+      "Status": "Passed",
+      "Duration": 0.0005076,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.RangeBotPilotTests.FineAimAndLowAuthorityHalfTurnsProduceFiniteBoundedSteering(0.01f,0.002f)",
+      "Status": "Passed",
+      "Duration": 0.0002345,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.RangeBotPilotTests.FineAimAndLowAuthorityHalfTurnsProduceFiniteBoundedSteering(180,80)",
+      "Status": "Passed",
+      "Duration": 0.0012659,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.RangeBotPilotTests.FiringRequiresAnAchievableInterceptAndActualBarrelAlignment",
+      "Status": "Passed",
+      "Duration": 0.0008338,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.RangeBotPilotTests.LongRangeFireToleranceShrinksToTheTargetInsteadOfUsingABroadRandomCone",
+      "Status": "Passed",
+      "Duration": 0.0004515,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.RangeBotPilotTests.MovementUsesOnlySurvivingDirectionalEnginesAndLeavesUnavailableAxesToSharedBraking",
+      "Status": "Passed",
+      "Duration": 0.0012817,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.RangeBotPilotTests.PracticeModePersistsWithoutReplacingBlueprintRosterPreferences",
+      "Status": "Passed",
+      "Duration": 0.0015012,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.RangeTargetRosterTests.CountsPersistForMultipleBlueprintsWithoutChangingBlueprintFiles",
+      "Status": "Passed",
+      "Duration": 0.0169434,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.RangeTargetRosterTests.DefaultUsesSnapshotOnlyWhenSavedTestIsMissingAndRejectsShipsWithoutCore",
+      "Status": "Passed",
+      "Duration": 0.0116548,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.RangeTargetRosterTests.InvalidGeometryAndMissingCoreOptionsDoNotHideValidRosterEntries",
+      "Status": "Passed",
+      "Duration": 0.0080642,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.RangeTargetRosterTests.MissingSavedTestHasAVisibleBuiltInOptionThatCanBeClearedAndRestoredAcrossReloads",
+      "Status": "Passed",
+      "Duration": 0.001584,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.RangeTargetRosterTests.SavedTestRemainsTheCompatibleSelectionAndTakesPrecedenceOverTheBuiltInOption",
+      "Status": "Passed",
+      "Duration": 0.0087068,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.ShieldMechanicsTests.HullHitsKeepEmptyShieldFieldsFromRegeneratingDuringContinuousCombat",
+      "Status": "Passed",
+      "Duration": 0.0107463,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.ShieldMechanicsTests.RecoveryWaitsTwoSecondsDrawsPowerAndStopsWhenEmpty",
+      "Status": "Passed",
+      "Duration": 0.0056659,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.ShieldMechanicsTests.RemovedGeneratorDropsShieldAndRespawnRestoresIt",
+      "Status": "Passed",
+      "Duration": 0.0055196,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.ShieldMechanicsTests.SameStepVolleyUsesRemainingShieldHealthForEachProjectile",
+      "Status": "Passed",
+      "Duration": 0.0069902,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.ShieldMechanicsTests.ShieldDamageInterruptsHullHealingUntilAnotherFullQuietInterval",
+      "Status": "Passed",
+      "Duration": 0.0031534,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.ShieldMechanicsTests.ShieldDamageResetsPartialDestroyedPartReconstruction",
+      "Status": "Passed",
+      "Duration": 0.0030747,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.ShieldMechanicsTests.ShieldInterceptsSweptFastShotBeforeHullAndIgnoresOwnOutgoingShot",
+      "Status": "Passed",
+      "Duration": 0.0057766,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.ShieldMechanicsTests.ShieldOverkillContinuesWithOnlyRemainingDamage",
+      "Status": "Passed",
+      "Duration": 0.0066646,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.ShieldMechanicsTests.ShieldSamplesFollowMovementBetweenPhysicsSteps",
+      "Status": "Passed",
+      "Duration": 0.0061054,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.ShieldMechanicsTests.SphereEntryHandlesGrazingInsideAndMisses",
+      "Status": "Passed",
+      "Duration": 0.0003112,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.ShipSceneryCollisionTests.NativeRotationAndMultipleShipCollidersShareFiniteMomentum",
+      "Status": "Passed",
+      "Duration": 0.0136043,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.ShipSceneryCollisionTests.NativeTranslationGivesHeavyStructureFarLessMotionThanLightFragment",
+      "Status": "Passed",
+      "Duration": 0.0050745,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.ShipSceneryCollisionTests.SeveredPiecesKeepScaledMassIndependentPhysicsAndDestructibility",
+      "Status": "Passed",
+      "Duration": 0.0084489,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.ShipSceneryCollisionTests.SweptImpulseIsNotAppliedAgainByNativeOverlapContacts",
+      "Status": "Passed",
+      "Duration": 0.0080655,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.SpaceMapRuntimeScaleTests.BudgetedBoundsProxyKeepsDriftAndDoesNotTurnEmptySpaceIntoProjectileDamage",
+      "Status": "Passed",
+      "Duration": 0.0097558,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.SpaceMapRuntimeScaleTests.BudgetedFineModelMapsDoNotOptIntoExteriorOnlyDamage",
+      "Status": "Passed",
+      "Duration": 0.0102925,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.SpaceMapRuntimeScaleTests.BudgetedLargeHullPrewarmsHiddenExteriorAndKeepsDamageAndOriginalSourceGeneration",
+      "Status": "Passed",
+      "Duration": 0.0091535,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.SpaceMapRuntimeScaleTests.CoarseIntactModeDoesNotPromoteNearSceneryUntilExplicitlyDisabled",
+      "Status": "Passed",
+      "Duration": 0.0379351,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.SpaceMapRuntimeScaleTests.DeferredCollisionPolicyFollowsPhysicalFragments",
+      "Status": "Passed",
+      "Duration": 0.0022531,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.SpaceMapRuntimeScaleTests.DeferredDamageUpdatesExactBoxesBeforeTheyAreMaterialized",
+      "Status": "Passed",
+      "Duration": 0.0019053,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.SpaceMapRuntimeScaleTests.DestroyingAnAnchorReleasesOnlyItsAuthoredContact",
+      "Status": "Passed",
+      "Duration": 0.0035662,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.SpaceMapRuntimeScaleTests.DistantLodAndCullLeaveDamageAndCollisionLive",
+      "Status": "Passed",
+      "Duration": 0.0029476,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.SpaceMapRuntimeScaleTests.DistinctLazyAssetsShareFrozenModelGenerationUntilLastOwnerReleasesIt",
+      "Status": "Passed",
+      "Duration": 0.0013898,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.SpaceMapRuntimeScaleTests.FragmentOwnershipTransfersAStillAliveContactAnchor",
+      "Status": "Passed",
+      "Duration": 0.0026298,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.SpaceMapRuntimeScaleTests.FreeCollisionFilterEndsWhenQuantizedCellsSeparate",
+      "Status": "Passed",
+      "Duration": 0.0031021,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.SpaceMapRuntimeScaleTests.LazyColdBuildUsesBorrowedCoarseButFirstDamageKeepsPhysicalCells",
+      "Status": "Passed",
+      "Duration": 0.0422604,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.SpaceMapRuntimeScaleTests.LazyFineGenerationUsesOriginalCellsAndTintAfterSourceEdit",
+      "Status": "Passed",
+      "Duration": 0.132654,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.SpaceMapRuntimeScaleTests.MovingMapPromotionStaysWithinThePerFrameCreationBudgetWithoutLosingCollision",
+      "Status": "Passed",
+      "Duration": 0.0021701,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.SpaceMapRuntimeScaleTests.PartialColliderPreparationKeepsProxyAndSurvivesDamageBeforeActivation",
+      "Status": "Passed",
+      "Duration": 0.0013061,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.SpaceMapRuntimeScaleTests.PhysicsBudgetSelectsNearDetailedBoxesAndDamagePreservesTheSelectedMode",
+      "Status": "Passed",
+      "Duration": 0.0023687,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.SpaceMapRuntimeScaleTests.StagedBuildCanCompleteOrCancelWithoutLeavingPartialPhysics",
+      "Status": "Passed",
+      "Duration": 0.0022239,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.SpaceMapRuntimeScaleTests.StagedStationBodiesStayFrozenUntilJointExistsAndCancelRemovesPartialBodies",
+      "Status": "Passed",
+      "Duration": 0.0019536,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.SpaceMapStudioPreviewTests.AcquiringAfterNativeMeshWasDestroyedBuildsAUsableReplacement",
+      "Status": "Passed",
+      "Duration": 0.0016378,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.SpaceMapStudioPreviewTests.ClosingAndReopeningWindowDoesNotReuseADeadMesh",
+      "Status": "Passed",
+      "Duration": 7.2355221,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.SpaceMapStudioPreviewTests.ConnectivityWarningsCacheByGeometryRevisionAndCountMapAssetsAndInstances",
+      "Status": "Passed",
+      "Duration": 0.0027366,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.SpaceMapStudioPreviewTests.DamagedPreviewDisposesItsPrivateMeshAndDoesNotModifyTheSource",
+      "Status": "Passed",
+      "Duration": 0.2030887,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.SpaceMapStudioPreviewTests.ManagedCacheMeshSurvivesUnusedResourceUnloadingUntilItsLastOwnerReleasesIt",
+      "Status": "Passed",
+      "Duration": 0.1373516,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.SpaceMapStudioPreviewTests.PreviewCanRecoverAfterAPlayTransitionDestroysItsNativeResources",
+      "Status": "Passed",
+      "Duration": 0.5947101,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.SpaceMapStudioPreviewTests.RepeatedAssetMapSwitchesReleasePreviewOwnershipAndKeepAllMeshesVisible",
+      "Status": "Passed",
+      "Duration": 2.7598836,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.TargetIndicatorProjectionTests.DirectlyBehindTargetPointsDownWithoutInvalidCoordinates",
+      "Status": "Passed",
+      "Duration": 0.0011144,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.TargetIndicatorProjectionTests.InViewTargetDoesNotRequestEdgeIndicator",
+      "Status": "Passed",
+      "Duration": 0.000332,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.TargetIndicatorProjectionTests.OffscreenTargetsAboveAndBelowPointToCorrespondingEdges",
+      "Status": "Passed",
+      "Duration": 0.0003859,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.TargetIndicatorProjectionTests.RearRightTargetKeepsRightwardEdgeDirection",
+      "Status": "Passed",
+      "Duration": 0.0002429,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.Thruster6AssetTests.FiveMeasuredMouthsMatchTheirExhaustAxesAndKeepTheSideOffset",
+      "Status": "Passed",
+      "Duration": 0.0008972,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.Thruster6AssetTests.NativeNamesAndLibrarySlotAreReadyInBothLanguageDataAndRuntime",
+      "Status": "Passed",
+      "Duration": 0.1182966,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.Thruster6AssetTests.SuppliedThruster6SourceFilesRemainUnchanged",
+      "Status": "Passed",
+      "Duration": 0.0021105,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.Thruster6AssetTests.Thruster6AppendsStableShapeAndHasCompleteSingleCellAssets",
+      "Status": "Passed",
+      "Duration": 0.0018569,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.Thruster6Tests.AFlushBlockIsPlaceableButStillClosesOnlyItsNozzle",
+      "Status": "Passed",
+      "Duration": 0.0063058,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.Thruster6Tests.AssemblyPreviewUsesTheSameNozzleOcclusionAndMassAsFlightRuntime",
+      "Status": "Passed",
+      "Duration": 0.0037721,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.Thruster6Tests.DefaultFlightSampleIsConnectedHasClearPlumesAndProvidesSixAxisAuthority",
+      "Status": "Passed",
+      "Duration": 0.0059554,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.Thruster6Tests.EachRotatedNozzleKeepsItsRuntimeCellWhilePlacementUsesAHalfCellJudgement",
+      "Status": "Passed",
+      "Duration": 0.0030921,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.Thruster6Tests.EccentricNozzlesCannotMultiplyOneModulesBudgetForTheSameTorqueAxis",
+      "Status": "Passed",
+      "Duration": 0.0006924,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.Thruster6Tests.FiveAlternativeNozzlesContributeOnlyOneThrustRating",
+      "Status": "Passed",
+      "Duration": 0.000385,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.Thruster6Tests.FiveDirectionsRotateWithTheModuleAndLeaveOnlyItsMountingAxisWithoutMainThrust",
+      "Status": "Passed",
+      "Duration": 0.001537,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.Thruster6Tests.FivePlumesUsePhysicalMouthsAndDirectionsAndStayInsideTheSingleReservedCell",
+      "Status": "Passed",
+      "Duration": 0.0074812,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.Thruster6Tests.IndependentEnginesAddTheirFullThrustToTheAllocatedAcceleration",
+      "Status": "Passed",
+      "Duration": 0.000964,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.Thruster6Tests.MultiNozzleModuleSharesItsRatedBudgetAcrossSimultaneousAxes",
+      "Status": "Passed",
+      "Duration": 0.0004715,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.Thruster6Tests.OffCentreThrustProducesTorqueAndBodyMassChangesTheInertia",
+      "Status": "Passed",
+      "Duration": 0.0004776,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.Thruster6Tests.OneObstructedNozzleLosesOnlyItsAxisAndRemovingOrRestoringTheBlockerRefreshesThatNozzle",
+      "Status": "Passed",
+      "Duration": 0.0036922,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VisualPowerAssetTests.CoreVisualIsSmallerButEveryColliderUsesCompleteCells",
+      "Status": "Passed",
+      "Duration": 0.0036379,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VisualPowerAssetTests.ProductionDatabaseIncludesPowerAndFiniteEnergy",
+      "Status": "Passed",
+      "Duration": 0.0011503,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelDetachedVisualFragmentsTests.AdmissionCreatesNoGameObjectsPhysicsOrHealthAndSubmitsFromOneManager",
+      "Status": "Passed",
+      "Duration": 0.0123493,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelDetachedVisualFragmentsTests.AuthoredDisconnectedIslandStaysPhysicalEvenWhenItWouldFitTheTinyPolicy",
+      "Status": "Passed",
+      "Duration": 0.0067564,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelDetachedVisualFragmentsTests.BirthPoseIsExactUnderRotatedScaledOwnerAndOffsetPivot",
+      "Status": "Passed",
+      "Duration": 0.0061106,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelDetachedVisualFragmentsTests.ElapsedAgeAndDistanceNeverDeleteOrFadeFragments",
+      "Status": "Passed",
+      "Duration": 0.0036916,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelDetachedVisualFragmentsTests.InvalidAdmissionIsRejectedWithoutChangingTalliesOrClones",
+      "Status": "Passed",
+      "Duration": 0.0032488,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelDetachedVisualFragmentsTests.ManagerCountsAreManagerWideAcrossIndependentSources",
+      "Status": "Passed",
+      "Duration": 0.0038177,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelDetachedVisualFragmentsTests.ManagerTalliesStayManagerWideAndConserveCellsAcrossSourceBodies",
+      "Status": "Passed",
+      "Duration": 0.0073491,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelDetachedVisualFragmentsTests.MapClearReleasesOwnedResourcesOnceAndKeepsBorrowedMaterials",
+      "Status": "Passed",
+      "Duration": 0.004498,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelDetachedVisualFragmentsTests.MaterialClonesSurviveSourceRuntimeTintDisposal",
+      "Status": "Passed",
+      "Duration": 0.0055357,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelDetachedVisualFragmentsTests.OwnerDeltaTranslatesRotatesAndScalesFragmentAndWorldBounds",
+      "Status": "Passed",
+      "Duration": 0.0083252,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelDetachedVisualFragmentsTests.PreviewOnlyRuntimeNeverAdmitsRenderOnlyFragments",
+      "Status": "Passed",
+      "Duration": 0.003517,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelDetachedVisualFragmentsTests.RootSourcesShareOneStableSceneOwnerWithoutPerFragmentObjects",
+      "Status": "Passed",
+      "Duration": 0.0044057,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelDetachedVisualFragmentsTests.SpinIsRadiansPerSecondAndDriftIsAnalyticAcrossFramePartitions",
+      "Status": "Passed",
+      "Duration": 0.0028922,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelDetachedVisualFragmentsTests.TinyPolicyAdmitsOnlyNewlyDetachedIslandsWithinCellAndWorldLimits(3,1.0f,4,True)",
+      "Status": "Passed",
+      "Duration": 0.0058291,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelDetachedVisualFragmentsTests.TinyPolicyAdmitsOnlyNewlyDetachedIslandsWithinCellAndWorldLimits(4,1.0f,4,True)",
+      "Status": "Passed",
+      "Duration": 0.0031459,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelDetachedVisualFragmentsTests.TinyPolicyAdmitsOnlyNewlyDetachedIslandsWithinCellAndWorldLimits(5,1.0f,4,False)",
+      "Status": "Passed",
+      "Duration": 0.0032663,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelDetachedVisualFragmentsTests.TinyPolicyAdmitsOnlyNewlyDetachedIslandsWithinCellAndWorldLimits(1,2.0f,4,True)",
+      "Status": "Passed",
+      "Duration": 0.0028566,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelDetachedVisualFragmentsTests.TinyPolicyAdmitsOnlyNewlyDetachedIslandsWithinCellAndWorldLimits(1,2.01f,4,False)",
+      "Status": "Passed",
+      "Duration": 0.003017,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelDetachedVisualFragmentsTests.TinyPolicyAdmitsOnlyNewlyDetachedIslandsWithinCellAndWorldLimits(1,1.0f,0,False)",
+      "Status": "Passed",
+      "Duration": 0.0028615,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelHullAppearanceTests.AdjacentBevelledModelsKeepTheFacesVisibleThroughTheirRealSeamGap",
+      "Status": "Passed",
+      "Duration": 0.0035157,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelHullAppearanceTests.ColourChannelsCloneOnlyTintedMaterialsAndNeverChangeShipMaterials",
+      "Status": "Passed",
+      "Duration": 0.0020716,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelHullAppearanceTests.DenseBevelledModelsRetainClosedCellsBehindSurfaceSeams",
+      "Status": "Passed",
+      "Duration": 0.002933,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelHullAppearanceTests.FractureRetainsEachSurvivorsShapeOrientationAndTint",
+      "Status": "Passed",
+      "Duration": 0.0033141,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelHullAppearanceTests.HalfHeightTopIsStillVisibleWhenTheCellAboveContainsACube",
+      "Status": "Passed",
+      "Duration": 0.0015919,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelHullAppearanceTests.IsolatedHullCellUsesTheExactShipModelNormalsAndMaterial(Cube)",
+      "Status": "Passed",
+      "Duration": 0.0033692,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelHullAppearanceTests.IsolatedHullCellUsesTheExactShipModelNormalsAndMaterial(Wedge)",
+      "Status": "Passed",
+      "Duration": 0.0018967,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelHullAppearanceTests.IsolatedHullCellUsesTheExactShipModelNormalsAndMaterial(Slab)",
+      "Status": "Passed",
+      "Duration": 0.0023432,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelHullAppearanceTests.IsolatedHullCellUsesTheExactShipModelNormalsAndMaterial(Pyramid)",
+      "Status": "Passed",
+      "Duration": 0.0016412,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelHullAppearanceTests.MixedShapesKeepOneCompleteCellCollisionAndOneBodyPerAsset",
+      "Status": "Passed",
+      "Duration": 0.0039536,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelHullAppearanceTests.ShapeAndRotationSurviveCopiesSerializationAndFallbackRendering",
+      "Status": "Passed",
+      "Duration": 0.0013158,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelMapTests.CollisionMergingDoesNotFillEmptyHoles",
+      "Status": "Passed",
+      "Duration": 0.0017875,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelMapTests.DestroyedCellsNeverHealAndSourceAssetIsImmutable",
+      "Status": "Passed",
+      "Duration": 0.0007216,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelMapTests.DestroyingBridgeCreatesIndependentCollidableFragmentsWithoutRemovingSurvivors",
+      "Status": "Passed",
+      "Duration": 0.0015524,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelMapTests.DuplicateCellsAndMissingMapAssetsAreRejected",
+      "Status": "Passed",
+      "Duration": 0.0003194,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelMapTests.EachHitRefreshesItsOwnResetDeadline",
+      "Status": "Passed",
+      "Duration": 0.0005096,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelMapTests.ExistingLaserPenetratesTwoMapCellsAndConfirmsOnlyOnce",
+      "Status": "Passed",
+      "Duration": 0.003857,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelMapTests.FragmentKeepsItsRecentDamageAndCanStillBeDestroyed",
+      "Status": "Passed",
+      "Duration": 0.0018886,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelMapTests.GeneratorIsDeterministicAndMapCopyGetsIndependentIdentity",
+      "Status": "Passed",
+      "Duration": 0.0013846,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelMapTests.IntactInstancesShareMeshButDamageOnlyChangesOneInstance",
+      "Status": "Passed",
+      "Duration": 0.0009024,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelMapTests.OnlyRecentlyHitCellsHaveHealthRecordsAndResetIsInstant",
+      "Status": "Passed",
+      "Duration": 0.0014322,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelMapTests.PickUsesRotatedScaledAssetSpace",
+      "Status": "Passed",
+      "Duration": 0.0017447,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelMapTests.SolidBoxUsesOneDynamicBodyAndOneExactCompoundBox",
+      "Status": "Passed",
+      "Duration": 0.0007674,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelTerrainPerformanceTests.DataOnlyPreviewAcquiresNoTemplateChunkCacheOrRenderObjects",
+      "Status": "Passed",
+      "Duration": 0.00766,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelTerrainPerformanceTests.DetachedVisualManagerMovesAnalyticallyOwnsResourcesAndSharesOneOwner",
+      "Status": "Passed",
+      "Duration": 0.0041375,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelTerrainPerformanceTests.IntactLargeHullChunksAreSharedAndDamageOnlyActivatesTheDamagedInstance",
+      "Status": "Passed",
+      "Duration": 0.0807941,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelTerrainPerformanceTests.LargeIntactHullKeepsOneSharedRootRendererAndActivatesChunksOnlyOnFirstLethalHit",
+      "Status": "Passed",
+      "Duration": 7.0831146,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelTerrainPerformanceTests.PhysicalSplitsConserveUniqueOwnersRecentHealthAndSourceData",
+      "Status": "Passed",
+      "Duration": 0.005484,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelTerrainPerformanceTests.SparseHealthAndQuietExpiryKeepMeshesCollidersAndRevisionStable",
+      "Status": "Passed",
+      "Duration": 0.008826,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelTerrainPerformanceTests.TerrainRuntimeContractConstantsAndEditModeDefaultsAreFixed",
+      "Status": "Passed",
+      "Duration": 0.0026023,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelTerrainPerformanceTests.TinyPolicyAboveTheCellThresholdStaysPhysical",
+      "Status": "Passed",
+      "Duration": 0.0068147,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelTerrainPerformanceTests.TinyPolicyAlsoRequiresWorldExtentAndRetainedSmallObjectsStayPhysical(2.0f,True)",
+      "Status": "Passed",
+      "Duration": 0.0059331,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelTerrainPerformanceTests.TinyPolicyAlsoRequiresWorldExtentAndRetainedSmallObjectsStayPhysical(2.01f,False)",
+      "Status": "Passed",
+      "Duration": 0.0037587,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelTerrainPerformanceTests.TinyPolicyHonoursCellThresholdOnlyForNewlyDetachedIslands(3,True)",
+      "Status": "Passed",
+      "Duration": 0.0054621,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelTerrainPerformanceTests.TinyPolicyHonoursCellThresholdOnlyForNewlyDetachedIslands(4,True)",
+      "Status": "Passed",
+      "Duration": 0.0036476,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelTerrainPerformanceTests.TinyPolicyHonoursCellThresholdOnlyForNewlyDetachedIslands(5,False)",
+      "Status": "Passed",
+      "Duration": 0.0037451,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelTerrainPerformanceTests.TinyRenderOnlyPolicyIsOffByDefaultAndKeepsEditModeSplitsPhysical",
+      "Status": "Passed",
+      "Duration": 0.0047302,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelTerrainPerformanceTests.WarmIdleMaintenanceHasNoRebuildsAndChecksAllocationsWhenSupported",
+      "Status": "Passed",
+      "Duration": 0.0103034,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelTerrainRenderEquivalenceTests.AuthoredBevelledCubeTrianglesSurviveIntactAndChunkedRendering",
+      "Status": "Passed",
+      "Duration": 1.3046055,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelTerrainRenderEquivalenceTests.BoundaryDeletionPreservesExactTrianglesNormalsUvTangentsAndMaterialSlots(0,-1)",
+      "Status": "Passed",
+      "Duration": 1.5895028,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelTerrainRenderEquivalenceTests.BoundaryDeletionPreservesExactTrianglesNormalsUvTangentsAndMaterialSlots(0,0)",
+      "Status": "Passed",
+      "Duration": 1.8716582,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelTerrainRenderEquivalenceTests.BoundaryDeletionPreservesExactTrianglesNormalsUvTangentsAndMaterialSlots(0,1)",
+      "Status": "Passed",
+      "Duration": 1.7468647,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelTerrainRenderEquivalenceTests.BoundaryDeletionPreservesExactTrianglesNormalsUvTangentsAndMaterialSlots(1,-1)",
+      "Status": "Passed",
+      "Duration": 1.8601103,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelTerrainRenderEquivalenceTests.BoundaryDeletionPreservesExactTrianglesNormalsUvTangentsAndMaterialSlots(1,0)",
+      "Status": "Passed",
+      "Duration": 1.5421275,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelTerrainRenderEquivalenceTests.BoundaryDeletionPreservesExactTrianglesNormalsUvTangentsAndMaterialSlots(1,1)",
+      "Status": "Passed",
+      "Duration": 1.6071014,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelTerrainRenderEquivalenceTests.BoundaryDeletionPreservesExactTrianglesNormalsUvTangentsAndMaterialSlots(2,-1)",
+      "Status": "Passed",
+      "Duration": 1.8331335,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelTerrainRenderEquivalenceTests.BoundaryDeletionPreservesExactTrianglesNormalsUvTangentsAndMaterialSlots(2,0)",
+      "Status": "Passed",
+      "Duration": 1.7366362,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelTerrainRenderEquivalenceTests.BoundaryDeletionPreservesExactTrianglesNormalsUvTangentsAndMaterialSlots(2,1)",
+      "Status": "Passed",
+      "Duration": 1.4407205,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelTerrainRenderEquivalenceTests.IntactLargeInstancesShareOnlyTheOriginalAggregateRenderer",
+      "Status": "Passed",
+      "Duration": 1.7730816,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelTerrainRenderEquivalenceTests.LocalLethalHitRebuildsNoChunkOutsideTheHitChunkAndItsFaceNeighbours",
+      "Status": "Passed",
+      "Duration": 0.4355263,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelTerrainRenderEquivalenceTests.MinimumCellCountSeparatesChunkedAndSingleMeshRendering(511,False)",
+      "Status": "Passed",
+      "Duration": 0.4470643,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelTerrainRenderEquivalenceTests.MinimumCellCountSeparatesChunkedAndSingleMeshRendering(512,True)",
+      "Status": "Passed",
+      "Duration": 0.5036784,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelTerrainRenderEquivalenceTests.NonlethalDamageAndExpiryDoNotChangeRenderRevisionOrMeshIdentity(False)",
+      "Status": "Passed",
+      "Duration": 1.3445736,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelTerrainRenderEquivalenceTests.NonlethalDamageAndExpiryDoNotChangeRenderRevisionOrMeshIdentity(True)",
+      "Status": "Passed",
+      "Duration": 1.6593403,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelTerrainRenderEquivalenceTests.OldGenerationCanSplitAfterSourceShrinksBelowChunkThreshold",
+      "Status": "Passed",
+      "Duration": 0.9718579,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelTerrainRenderEquivalenceTests.SecondLethalHitKeepsDistantChunkMeshReferencesAndContentsUnchanged",
+      "Status": "Passed",
+      "Duration": 1.2719779,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelTerrainRenderEquivalenceTests.SharedInitialChunksAreCopyOnWriteAcrossDamagedRuntimes",
+      "Status": "Passed",
+      "Duration": 3.1143282,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelTerrainRenderEquivalenceTests.SourceAndFragmentDisposalReleaseOwnedResourcesWithoutInvalidatingTheSurvivor",
+      "Status": "Passed",
+      "Duration": 1.4656089,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelTerrainRenderEquivalenceTests.SourceGenerationChangeKeepsLeasedOldGenerationChunksAndFragmentsAlive",
+      "Status": "Passed",
+      "Duration": 3.046839,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelTerrainRuntimeSafetyTests.DataOnlyPreviewStillPreparesTheHullMaterialPalette",
+      "Status": "Passed",
+      "Duration": 0.0051217,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelTerrainRuntimeSafetyTests.FailedFlushRetriesAsFullRebuildAndNeverLeavesADestroyedCell",
+      "Status": "Passed",
+      "Duration": 0.0045722,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelTerrainRuntimeSafetyTests.FailedSharedPreviewBindingReleasesOnlyItsOwnGeometryLease",
+      "Status": "Passed",
+      "Duration": 0.0082541,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelTerrainRuntimeSafetyTests.FullyEnclosedInteriorChunksDoNotKeepChildRenderBindings",
+      "Status": "Passed",
+      "Duration": 0.595206,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelTerrainRuntimeSafetyTests.InitialConnectivityCertificationIsCachedPerGenerationAndSeedsExactCellCopies",
+      "Status": "Passed",
+      "Duration": 0.004178,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelTerrainRuntimeSafetyTests.InitiallyDisconnectedIslandsStayPhysicalWhenTinyPolicyIsOptedIn",
+      "Status": "Passed",
+      "Duration": 0.003384,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelTerrainRuntimeSafetyTests.RuntimeUsesSpeculativeContinuousCollision",
+      "Status": "Passed",
+      "Duration": 0.0027546,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelTerrainRuntimeSafetyTests.SplitKeepsRetainedBodyCentreOfMassPointVelocityContinuous",
+      "Status": "Passed",
+      "Duration": 0.0057881,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelTerrainRuntimeSafetyTests.ThrowingFragmentSubscriberKeepsCommittedPiecesAndLeavesNoPendingRetry",
+      "Status": "Passed",
+      "Duration": 0.0097406,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelTerrainTopologyColliderTests.EverySmallOccupancyAndSingleDeletionAgreesWithIslandsOracle",
+      "Status": "Passed",
+      "Duration": 0.7606583,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelTerrainTopologyColliderTests.FinalBoundaryHandlesParallelTwoCellBridgeAndLongAlternateRoute",
+      "Status": "Passed",
+      "Duration": 0.0007303,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelTerrainTopologyColliderTests.InvalidBaselineAndMissingCellFallBackWithoutComponentChanges",
+      "Status": "Passed",
+      "Duration": 0.0018023,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelTerrainTopologyColliderTests.LocalSlabsHaveExactCoverageAndRetainEveryUnchangedComponent",
+      "Status": "Passed",
+      "Duration": 0.0052976,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelTerrainTopologyColliderTests.RandomTwoHundredDeletionsAndOwnershipTransfersAgreeWithOracle",
+      "Status": "Passed",
+      "Duration": 0.1757914,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelTerrainTopologyColliderTests.RecompactBudgetRejectsWithoutMutationAndResetsAfterFullSynchronization",
+      "Status": "Passed",
+      "Duration": 0.003169,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelTerrainTopologyColliderTests.TwoHundredInteriorHolesRecompactWithoutCoverageLossOrUnboundedComponentChurn",
+      "Status": "Passed",
+      "Duration": 0.3878514,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.VoxelTerrainTopologyColliderTests.UnknownAndInitiallyDisconnectedBodiesUseTheFullOracle",
+      "Status": "Passed",
+      "Duration": 0.0005307,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.WeaponVfxTimingTests.BeamHasVisibleContactPointAndFadesBeforeRelease",
+      "Status": "Passed",
+      "Duration": 0.0028829,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.WeaponVfxTimingTests.MissileTrailIgnitesAfterShortDelayAndFadesIn",
+      "Status": "Passed",
+      "Duration": 0.0025331,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.WeaponVfxTimingTests.MuzzleCoreTransitionsFromWhiteToWeaponColour",
+      "Status": "Passed",
+      "Duration": 0.0030685,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.WeaponVisualTests.MultiBarrelGunKeepsBothSidesAtTheirRealMuzzles(Gun1)",
+      "Status": "Passed",
+      "Duration": 0.0094007,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.WeaponVisualTests.MultiBarrelGunKeepsBothSidesAtTheirRealMuzzles(Gun2)",
+      "Status": "Passed",
+      "Duration": 0.0072349,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.WeaponVisualTests.MultiBarrelGunKeepsBothSidesAtTheirRealMuzzles(Gun3)",
+      "Status": "Passed",
+      "Duration": 0.0067593,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "AddressableAssets.DocExampleCode.TestStub.RequiredTest",
+      "Status": "Passed",
+      "Duration": 0.000122,
+      "Message": null,
+      "StackTrace": null
+    }
+  ]
+}

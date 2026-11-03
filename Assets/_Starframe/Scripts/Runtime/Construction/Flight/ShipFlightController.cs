@@ -1,18 +1,20 @@
-// @role Apply six-axis movement, gradual steering, boost and collision-aware motion.
-// @calls FlightShipRuntime, FlightTuning, GameInput, ShipCollisionSweep
+// @role Apply independent balanced flight axes, gradual steering, boost and collision-aware motion.
+// @calls FlightShipRuntime, FlightTuning, GameInput, ShipCollisionSweep, ShipSceneryCollision
 
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Starframe.App;
+using Starframe.Construction;
 namespace Starframe.Flight
 {
     public sealed class ShipFlightController : MonoBehaviour
     {
         Rigidbody body;FlightShipRuntime runtime;FlightTuning tuning;Camera viewCamera;RangeHUD hud;
         readonly ShipCollisionSweep collisionSweep=new ShipCollisionSweep();
-        Vector3 velocity,angularVelocity,moveInput,mainThrustDemand;
+        readonly ShipSceneryCollision sceneryCollision=new ShipSceneryCollision();
+        Vector3 velocity,angularVelocity,moveInput,mainThrustDemand,rotationDemand;
         Vector2 aimInput,smoothedSteering;
-        float rollInput,hullRadius,maneuverDemand;
+        float rollInput,hullRadius;
         bool boostHeld;
         public float BoostPowerRatio{get;private set;}
         public float Energy=>runtime?runtime.Power.Energy:0;
@@ -27,12 +29,15 @@ namespace Starframe.Flight
         public float AimRadiusPixels=>Mathf.Max(1,Mathf.Min(Screen.height*.5f*Mathf.Tan(tuning.maxAimOffsetDegrees*Mathf.Deg2Rad)/Mathf.Tan(viewCamera.fieldOfView*.5f*Mathf.Deg2Rad),Mathf.Min(Screen.width,Screen.height)*.4f));
         public Vector2 AimOffsetPixels=>aimInput*AimRadiusPixels;
         public Vector3 Velocity=>velocity;
+        public Vector3 AngularVelocity=>angularVelocity;
         public Vector3 Forward=>body?body.rotation*Vector3.forward:transform.forward;
+        public Vector3 RenderForward=>transform.forward;
         public float HullRadius=>hullRadius;
         public FlightTuning Tuning=>tuning;
         public float CurrentSpeed=>velocity.magnitude;
         public ShipPerformance Performance=>runtime.Performance;
         public bool ExternalControl;
+        public bool MenuCursorMode {get;set;}
         [Tooltip("Skip compound collider sweeps in clear space; disable to compare the original collision path.")]
         public bool UseCollisionBroadPhase=true;
         public float RequestedThrustFraction=>Mathf.Clamp01(moveInput.magnitude+SteeringInput().magnitude+Mathf.Abs(rollInput)+(velocity.sqrMagnitude>.001f?.25f:0));
@@ -43,20 +48,21 @@ namespace Starframe.Flight
         }
         public void ResetMotion(Vector3 position,Quaternion rotation)
         {
-            velocity=angularVelocity=moveInput=mainThrustDemand=Vector3.zero;aimInput=smoothedSteering=Vector2.zero;rollInput=maneuverDemand=0;boostHeld=false;BoostPowerRatio=0;
+            velocity=angularVelocity=moveInput=mainThrustDemand=rotationDemand=Vector3.zero;aimInput=smoothedSteering=Vector2.zero;rollInput=0;boostHeld=false;BoostPowerRatio=0;
             body.position=position;body.rotation=rotation;
         }
         public void Initialize(Rigidbody rigidbody,FlightShipRuntime ship,FlightTuning values,Camera camera,float radius)
         {
             body=rigidbody;runtime=ship;tuning=values;viewCamera=camera;hullRadius=radius;aimInput=smoothedSteering=Vector2.zero;
             collisionSweep.Initialize(body);
+            sceneryCollision.Initialize(body);
         }
         public void BindHUD(RangeHUD value)=>hud=value;
         void Update()
         {
             if(!runtime)return;
             if(ExternalControl)return;
-            bool dialog=(hud&&hud.ExitDialogOpen)||GameInput.Suspended;
+            bool dialog=MenuCursorMode||(hud&&hud.ExitDialogOpen)||GameInput.Suspended;
             var lockMode=dialog?CursorLockMode.None:CursorLockMode.Locked;
             bool acquired=Cursor.lockState!=lockMode;
             if(acquired)Cursor.lockState=lockMode;
@@ -87,18 +93,19 @@ namespace Starframe.Flight
             float strength=Mathf.Pow(Mathf.Clamp01((radius-deadZone)/(1-deadZone)),Mathf.Max(.1f,tuning.aimResponseExponent));
             return aimInput/radius*strength;
         }
-        public float ThrusterThrottle(Vector3 localThrustDirection)
+        public float ThrusterThrottle(ShipPartState part,int nozzleIndex)
         {
-            if(!runtime||!Performance.coreAlive)return 0;
-            float main=Mathf.Clamp01(Vector3.Dot(localThrustDirection.normalized,mainThrustDemand));
-            return Mathf.Clamp01(((1-tuning.maneuverThrustFraction)*main+tuning.maneuverThrustFraction*maneuverDemand)*BoostScale);
+            if(!runtime||!Performance.coreAlive||part==null||!part.ExhaustAvailable(nozzleIndex))return 0;
+            return Performance.AllocatedThrottle(part,nozzleIndex)*BoostScale;
         }
         void FixedUpdate()
         {
             if(!body||!runtime)return;
-            var p=Performance;float dt=Time.fixedDeltaTime,boost=BoostScale;mainThrustDemand=Vector3.zero;maneuverDemand=0;
+            runtime.FlushChanges();
+            sceneryCollision.BeginStep();
+            var p=Performance;float dt=Time.fixedDeltaTime,boost=BoostScale;mainThrustDemand=rotationDemand=Vector3.zero;
             if(!p.coreAlive){velocity=Vector3.zero;angularVelocity=Vector3.zero;smoothedSteering=Vector2.zero;return;}
-            bool dialog=(hud&&hud.ExitDialogOpen)||(!ExternalControl&&GameInput.Suspended);
+            bool dialog=MenuCursorMode||(hud&&hud.ExitDialogOpen)||(!ExternalControl&&GameInput.Suspended);
             var rotation=body.rotation;var inverse=Quaternion.Inverse(rotation);
             bool steeringDisabled=dialog||(!ExternalControl&&!Application.isFocused);
             var requestedStick=steeringDisabled?Vector2.zero:SteeringInput();
@@ -108,43 +115,44 @@ namespace Starframe.Flight
             if(requestedStick==Vector2.zero&&smoothedSteering.sqrMagnitude<.000001f)smoothedSteering=Vector2.zero;
             var stick=smoothedSteering;
             var turnInput=new Vector3(-stick.y,stick.x,0);
-            float turnDemand=Mathf.Abs(turnInput.x)+Mathf.Abs(turnInput.y)+Mathf.Abs(rollInput);
             var local=inverse*velocity;
-            float brakeDemand=0;for(int i=0;i<3;i++)if(Mathf.Abs(moveInput[i])<.001f&&Mathf.Abs(local[i])>.02f)brakeDemand+=1;
-            float controlShare=1/Mathf.Max(1,turnDemand+brakeDemand);
-            // Keep steering responsive while the translation axes automatically brake.
-            float turnShare=Mathf.Max(controlShare,Mathf.Clamp01(tuning.minimumTurnAuthority));
+            Vector3 targetRate=Vector3.zero;
+            for(int i=0;i<2;i++)targetRate[i]=turnInput[i]*(turnInput[i]>=0?p.angularRatePositive[i]:p.angularRateNegative[i])*boost;
+            targetRate.z=rollInput*(rollInput>=0?p.angularRatePositive.z:p.angularRateNegative.z)*boost;
+            float response=Mathf.Max(.05f,tuning.turnResponseTime);
+            var filteredRate=Vector3.Lerp(angularVelocity,targetRate,1-Mathf.Exp(-dt/response));
+            float rollBlend=1-Mathf.Exp(-dt/Mathf.Max(.05f,tuning.rollBlendTime));
+            filteredRate.z=Mathf.Lerp(angularVelocity.z,targetRate.z,rollBlend);
             for(int i=0;i<3;i++){
-                if(Mathf.Abs(moveInput[i])>.001f){
-                    float acceleration=moveInput[i]>0?p.accelerationPositive[i]:p.accelerationNegative[i];
-                    local[i]+=moveInput[i]*acceleration*boost*dt;mainThrustDemand[i]=moveInput[i];
-                }else{
-                    float opposite=local[i]>0?p.accelerationNegative[i]:p.accelerationPositive[i];
-                    float deceleration=opposite+p.assistAcceleration*controlShare;
-                    float brake=Mathf.Clamp01(Mathf.Abs(local[i])/Mathf.Max(.1f,deceleration*.15f));
-                    mainThrustDemand[i]=-Mathf.Sign(local[i])*brake;
-                    maneuverDemand=Mathf.Max(maneuverDemand,brake*controlShare);
-                    local[i]=Mathf.MoveTowards(local[i],0,deceleration*boost*dt);
-                }
+                if(Mathf.Abs(moveInput[i])>.001f)mainThrustDemand[i]=moveInput[i];
+                else if(Mathf.Abs(local[i])>.02f){
+                    float opposite=local[i]>0?p.linearCapacityNegative[i]:p.linearCapacityPositive[i];
+                    mainThrustDemand[i]=-Mathf.Sign(local[i])*Mathf.Clamp01(Mathf.Abs(local[i])/Mathf.Max(.1f,opposite*response));
+                }else local[i]=0;
+                float torqueDelta=filteredRate[i]-angularVelocity[i];
+                // The request is normalized by raw thrust-to-inertia authority. AllocateWrench
+                // applies the same smooth ceiling after sharing, avoiding a high-authority
+                // small-signal overshoot when the configured cap is far below raw torque.
+                float available=torqueDelta>=0?p.angularCapacityPositive[i]:p.angularCapacityNegative[i];
+                rotationDemand[i]=Mathf.Clamp(torqueDelta/Mathf.Max(.001f,available*dt*boost),-1,1);
             }
+            // The performance allocator returns independent command axes. Translation never
+            // injects body torque, and a turn never injects an unrequested translation axis.
+            var linearAcceleration=p.AllocateWrench(mainThrustDemand,rotationDemand,tuning,out var angularAcceleration);
+            local+=linearAcceleration*boost*dt;
             velocity=Vector3.ClampMagnitude(rotation*local,p.maxSpeed);
             Vector3 step=Vector3.zero;
-            for(int i=0;i<2;i++){
-                float acceleration=(i==0?p.pitchAcceleration:p.yawAcceleration)*boost*turnShare;
-                // Offset requests angular velocity, rather than arrival at a world heading.
-                float target=turnInput[i]*p.angularRate*boost;
-                float previous=angularVelocity[i];
-                float filteredRate=Mathf.Lerp(previous,target,1-Mathf.Exp(-dt/Mathf.Max(.05f,tuning.turnResponseTime)));
-                angularVelocity[i]=Mathf.MoveTowards(previous,filteredRate,acceleration*dt);
-                if(Mathf.Abs(target)<.001f&&Mathf.Abs(angularVelocity[i])<.02f)angularVelocity[i]=0;
+            for(int i=0;i<3;i++){
+                float previousRate=angularVelocity[i];
+                angularVelocity[i]+=angularAcceleration[i]*boost*dt;
+                float positiveLimit=p.angularRatePositive[i]*boost,negativeLimit=p.angularRateNegative[i]*boost;
+                // Damage can remove authority without removing stored angular momentum.
+                // Clamp only new acceleration, and never pull an already over-limit rate back.
+                if(angularVelocity[i]>positiveLimit&&angularAcceleration[i]>0)angularVelocity[i]=Mathf.Max(previousRate,positiveLimit);
+                if(angularVelocity[i]<-negativeLimit&&angularAcceleration[i]<0)angularVelocity[i]=Mathf.Min(previousRate,-negativeLimit);
+                if(Mathf.Abs(targetRate[i])<.001f&&Mathf.Abs(angularVelocity[i])<.02f)angularVelocity[i]=0;
                 step[i]=angularVelocity[i]*dt;
-                float rateDemand=Mathf.Abs(target)/Mathf.Max(1,p.angularRate);
-                float accelerationDemand=Mathf.Abs(angularVelocity[i]-previous)/Mathf.Max(.001f,acceleration*dt);
-                maneuverDemand=Mathf.Max(maneuverDemand,Mathf.Max(rateDemand,accelerationDemand)*turnShare);
             }
-            float desiredRoll=rollInput*p.rollSpeed*boost;
-            angularVelocity.z=Mathf.MoveTowards(angularVelocity.z,desiredRoll,p.rollSpeed*boost*dt/Mathf.Max(.05f,tuning.rollBlendTime));
-            step.z=angularVelocity.z*dt;maneuverDemand=Mathf.Max(maneuverDemand,Mathf.Abs(angularVelocity.z)/Mathf.Max(1,p.rollSpeed));
             var next=body.position+velocity*dt;
             float limit=Mathf.Max(1,tuning.arenaHalfExtent-hullRadius-1);
             for(int i=0;i<3;i++){
@@ -165,13 +173,18 @@ namespace Starframe.Flight
                     foreach(var hit in body.SweepTestAll(displacement.normalized,displacement.magnitude,QueryTriggerInteraction.Ignore))if(!SeparatingWreckage(hit.collider)&&hit.distance<closest){obstacle=hit;closest=hit.distance;blocked=true;}
                 }
                 if(blocked){next=body.position+displacement.normalized*Mathf.Max(0,obstacle.distance-.01f);
+                    var other=obstacle.rigidbody;
+                    sceneryCollision.ApplySweptImpulse(other,velocity,obstacle.point,obstacle.normal);
                     if(Vector3.Dot(velocity,obstacle.normal)<0)velocity=Vector3.ProjectOnPlane(velocity,obstacle.normal);}
             }
-            body.MovePosition(next);
             float degrees=step.magnitude;
-            if(degrees>.0001f)body.MoveRotation(rotation*Quaternion.AngleAxis(degrees,step/degrees));
+            var nextRotation=degrees>.0001f?rotation*Quaternion.AngleAxis(degrees,step/degrees):rotation;
+            sceneryCollision.SetPose(next,nextRotation);
+            body.MovePosition(next);
+            if(degrees>.0001f)body.MoveRotation(nextRotation);
         }
-        void OnDisable(){Cursor.lockState=CursorLockMode.None;Cursor.visible=true;}
+        void OnEnable(){if(body)sceneryCollision.Initialize(body);}
+        void OnDisable(){sceneryCollision.Dispose();Cursor.lockState=CursorLockMode.None;Cursor.visible=true;}
         bool SeparatingWreckage(Collider collider){var part=collider?collider.GetComponent<Starframe.Combat.DebrisPartHitbox>():null;return part&&part.Cluster&&part.Cluster.SuppressSourceCollisions&&part.Cluster.SourceShip==runtime;}
     }
     [DefaultExecutionOrder(50)]
@@ -206,7 +219,8 @@ namespace Starframe.Flight
             }
             float dt=Mathf.Min(Time.deltaTime,.1f);
             distance=Mathf.Lerp(distance,targetDistance,1-Mathf.Exp(-tuning.cameraPositionSharpness*dt));
-            transform.rotation=Quaternion.Slerp(transform.rotation,ship.rotation,1-Mathf.Exp(-tuning.cameraRotationSharpness*dt));
+            // Match the Rigidbody's render-interpolated pose; the reticle projects this same pose.
+            transform.rotation=ship.rotation;
             Place();
         }
     }

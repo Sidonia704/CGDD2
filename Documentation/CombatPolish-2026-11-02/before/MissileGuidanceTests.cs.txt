@@ -1,0 +1,74 @@
+using NUnit.Framework;
+using UnityEngine;
+using Starframe.Combat;
+using Starframe.Flight;
+
+namespace Starframe.Construction.Tests
+{
+    public sealed class MissileGuidanceTests
+    {
+        WeaponDefinition weapon;
+        [SetUp]public void Setup(){weapon=ScriptableObject.CreateInstance<WeaponDefinition>();}
+        [TearDown]public void Cleanup(){Object.DestroyImmediate(weapon);}
+
+        [Test]public void AngularSpeedAndAccelerationStayBoundedWhenTheTurnAxisChanges()
+        {
+            weapon.missileTurnDegrees=90;weapon.missileTurnAcceleration=180;
+            weapon.missileSeekerConeDegrees=179;weapon.missileSeekerLossSeconds=100;
+            var guidance=new MissileGuidance();guidance.Reset(Vector3.forward);
+            for(int i=0;i<240;i++){
+                var previous=guidance.AngularVelocityDegrees;
+                Vector3 target=i<80?new Vector3(100,0,100):i<160?new Vector3(0,100,100):new Vector3(-100,0,100);
+                guidance.Step(weapon,.2f+i*.02f,target,Vector3.zero,100,.02f);
+                Assert.That(guidance.IsTracking,Is.True);
+                Assert.That(guidance.AngularVelocityDegrees.magnitude,Is.LessThanOrEqualTo(90.0001f));
+                Assert.That((guidance.AngularVelocityDegrees-previous).magnitude,Is.LessThanOrEqualTo(3.6001f));
+                Assert.That(guidance.Direction.magnitude,Is.EqualTo(1).Within(.00001f));
+            }
+        }
+
+        [Test]public void ConeGraceMustBeContinuousAndLostLockCannotResume()
+        {
+            weapon.missileTurnDegrees=0;
+            var guidance=new MissileGuidance();guidance.Reset(Vector3.forward);
+            guidance.Step(weapon,1,Vector3.right,Vector3.zero,100,.2f);
+            Assert.That(guidance.IsTracking,Is.True);
+            guidance.Step(weapon,1.1f,Vector3.forward,Vector3.zero,100,.1f);
+            Assert.That(guidance.OutsideConeSeconds,Is.Zero);
+            guidance.Step(weapon,1.3f,Vector3.right,Vector3.zero,100,.2f);
+            guidance.Step(weapon,1.44f,Vector3.right,Vector3.zero,100,.14f);
+            Assert.That(guidance.IsTracking,Is.True);
+            guidance.Step(weapon,1.45f,Vector3.right,Vector3.zero,100,.01f);
+            Assert.That(guidance.IsTracking,Is.False);
+            guidance.Step(weapon,2,Vector3.forward,Vector3.zero,100,.5f);
+            Assert.That(guidance.IsTracking,Is.False);
+            Assert.That(guidance.Direction,Is.EqualTo(Vector3.forward));
+        }
+
+        [Test]public void GuidanceExpiryKeepsTheLastDirectionEvenWhenTargetReturnsToTheCone()
+        {
+            weapon.missileGuidanceSeconds=.5f;
+            var guidance=new MissileGuidance();guidance.Reset(Vector3.forward);
+            guidance.Step(weapon,.3f,new Vector3(1,0,2),Vector3.zero,100,.1f);
+            Assert.That(Vector3.Angle(Vector3.forward,guidance.Direction),Is.GreaterThan(.1f));
+            var direction=guidance.Direction;
+            guidance.Step(weapon,.5f,Vector3.forward,Vector3.zero,100,.2f);
+            guidance.Step(weapon,1,Vector3.forward,Vector3.zero,100,.5f);
+            Assert.That(guidance.IsTracking,Is.False);
+            Assert.That(guidance.Direction,Is.EqualTo(direction));
+            Assert.That(guidance.AngularVelocityDegrees,Is.EqualTo(Vector3.zero));
+        }
+
+        [Test]public void EjectionDelayDoesNotSpendTurnAccelerationOrConeGrace()
+        {
+            var guidance=new MissileGuidance();guidance.Reset(Vector3.forward);
+            guidance.Step(weapon,.1f,Vector3.right,Vector3.zero,100,.1f);
+            Assert.That(guidance.Direction,Is.EqualTo(Vector3.forward));
+            Assert.That(guidance.OutsideConeSeconds,Is.Zero);
+            guidance.Step(weapon,.14f,Vector3.right,Vector3.zero,100,.04f);
+            Assert.That(guidance.OutsideConeSeconds,Is.EqualTo(.02f).Within(.00001f));
+            Assert.That(guidance.AngularVelocityDegrees.magnitude,Is.EqualTo(3.6f).Within(.001f));
+            Assert.That(Vector3.Angle(Vector3.forward,guidance.Direction),Is.EqualTo(.036f).Within(.01f));
+        }
+    }
+}

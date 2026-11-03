@@ -1,0 +1,40 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "run_script",
+    "parameters": {
+      "file": "tools/ReferenceMap20261101/AssemblyImport.cs",
+      "entry": "ReferenceMapAssemblyImport.Apply",
+      "timeout_ms": "75000"
+    },
+    "result": {
+      "diagnostics": [],
+      "compileMs": 2113,
+      "executeMs": 1221,
+      "assemblyName": "PipelineRunScript_AssemblyImport_8e03c3b5333f4c798eca1f32b32ac4d8",
+      "success": true,
+      "result": {
+        "layout": "Assets/_Starframe/Maps/ReferenceMiningStation/Layouts/ReferenceMiningStation3500.asset",
+        "instances": 2854,
+        "links": 125,
+        "fixedJoints": 112,
+        "ignoreOnly": 13,
+        "anchorsVerified": 250,
+        "catalogSha256": "f5434e45ad1a4afe940771a79081b25f5e54547b9c00f284364c8c7a936d3862",
+        "translation": [
+          0,
+          -420,
+          0
+        ]
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7801,
+      "projectPath": "D:\\software\\unity\\CGDD26107"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

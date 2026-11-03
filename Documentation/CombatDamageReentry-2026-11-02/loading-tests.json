@@ -1,0 +1,27 @@
+{
+  "status": "completed",
+  "duration": 1.58,
+  "summary": {
+    "total": 2,
+    "passed": 2,
+    "failed": 0,
+    "skipped": 0,
+    "inconclusive": 0
+  },
+  "results": [
+    {
+      "FullName": "Starframe.Tests.RangeLoadingOverlayTests.FlightReadinessReleasesInheritedMenuSuspensionOnEveryEntry",
+      "Status": "Passed",
+      "Duration": 0.7352664,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.RangeLoadingOverlayTests.ImmediateReentryDuringClosingOwnsANewViewAndRestoresTheOriginalInputState",
+      "Status": "Passed",
+      "Duration": 0.8219697,
+      "Message": null,
+      "StackTrace": null
+    }
+  ]
+}

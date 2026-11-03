@@ -1,0 +1,58 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "run_script",
+    "parameters": {
+      "file": "tools/ReferenceMap20261101/AssemblyImport.cs",
+      "entry": "ReferenceMapAssemblyImport.VerifyWorld",
+      "timeout_ms": "105000"
+    },
+    "result": {
+      "diagnostics": [],
+      "compileMs": 235,
+      "executeMs": 3491,
+      "assemblyName": "PipelineRunScript_AssemblyImport_630ee42f6cb542edbd1e57b04b491829",
+      "success": true,
+      "result": {
+        "layout": "Assets/_Starframe/Maps/ReferenceMiningStation/Layouts/ReferenceMiningStation3500.asset",
+        "instances": 2854,
+        "placedUniqueAssets": 2338,
+        "libraryAssets": 2345,
+        "unplacedPrototypeAssets": 7,
+        "uniqueCells": 2559830,
+        "instancedCells": 3123469,
+        "links": 125,
+        "hullShapeCounts": [
+          875239,
+          90167,
+          14427,
+          15081,
+          21480,
+          534392,
+          43420,
+          965624
+        ],
+        "sourceCatalogHash": "f5434e45ad1a4afe940771a79081b25f5e54547b9c00f284364c8c7a936d3862",
+        "disconnectedAssets": 0,
+        "worldBoundsMin": [
+          -1540.98413,
+          -420.5,
+          -1752.5
+        ],
+        "worldBoundsMax": [
+          1538.5,
+          -2.5,
+          1754
+        ]
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7801,
+      "projectPath": "D:\\software\\unity\\CGDD26107"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

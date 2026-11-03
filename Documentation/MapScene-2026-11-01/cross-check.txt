@@ -1,0 +1,310 @@
+=== layout match: astro(field) vs scatter(22 rocks) ===
+field shells=1788 bounds=(0.165, 0.187, 0.02)
+rock objects=22 bounds=(0.796, 0.237, 1.121)
+nearest-normalized-centre distance: min=0.023 median=0.045 max=0.149
+relative size ratio shell/rock: min=0.01 median=0.014 max=0.3
+matches under 0.02 normalized distance: 0 / 22
+
+=== existing map scenery assets ===
+1.asset	Assets/1.asset	cells=24	cell=1	metres=(4, 2, 3)	shapes=Cube×24
+Asteroid.asset	Assets/Asteroid.asset	cells=1373	cell=1	metres=(18, 12, 16)	shapes=Cube×1373
+Fragment.asset	Assets/Fragment.asset	cells=10	cell=1	metres=(3, 2, 3)	shapes=Cube×9,Wedge×1
+MiningPlatform.asset	Assets/MiningPlatform.asset	cells=2424	cell=1	metres=(36, 9, 24)	shapes=Cube×2424
+Rock.asset	Assets/Rock.asset	cells=90	cell=1	metres=(6, 5, 6)	shapes=Cube×65,Wedge×25
+Debris_Machinery.asset	MiningStationRound2/Generated_v01/Assets/Debris_Machinery.asset	cells=672	cell=0.75	metres=(9.563, 9.563, 5.063)	shapes=Cube×402,Slab×165,Wedge×105
+Debris_Panel.asset	MiningStationRound2/Generated_v01/Assets/Debris_Panel.asset	cells=440	cell=0.75	metres=(9.563, 6.188, 3.938)	shapes=Cube×279,Slab×112,Wedge×49
+Rock_Faceted.asset	MiningStationRound2/Generated_v01/Assets/Rock_Faceted.asset	cells=1333	cell=1.5	metres=(38.25, 29.25, 29.25)	shapes=Cube×1079,Slab×134,Wedge×120
+Rock_Notched.asset	MiningStationRound2/Generated_v01/Assets/Rock_Notched.asset	cells=3747	cell=2	metres=(100, 76, 68)	shapes=Cube×3116,Slab×348,Wedge×283
+Rock_Ridged.asset	MiningStationRound2/Generated_v01/Assets/Rock_Ridged.asset	cells=3082	cell=2.5	metres=(156.25, 118.75, 93.75)	shapes=Cube×2463,Slab×397,Wedge×222
+Station_CapsuleTank.asset	MiningStationRound2/Generated_v01/Assets/Station_CapsuleTank.asset	cells=3385	cell=1.25	metres=(107.813, 20.313, 20.313)	shapes=Cube×1673,Slab×908,Wedge×804
+Station_EquipmentCage.asset	MiningStationRound2/Generated_v01/Assets/Station_EquipmentCage.asset	cells=3060	cell=1	metres=(35, 23, 23)	shapes=Cube×2632,Slab×268,Wedge×160
+Station_FracturedDeck.asset	MiningStationRound2/Generated_v01/Assets/Station_FracturedDeck.asset	cells=2606	cell=1.75	metres=(137.813, 64.313, 27.563)	shapes=Slab×1527,Cube×1017,Wedge×62
+Station_OpenTruss.asset	MiningStationRound2/Generated_v01/Assets/Station_OpenTruss.asset	cells=4711	cell=1.25	metres=(145.313, 23.438, 20.313)	shapes=Cube×3352,Slab×940,Wedge×419
+Station_SphericalTank.asset	MiningStationRound2/Generated_v01/Assets/Station_SphericalTank.asset	cells=1468	cell=1.5	metres=(42.75, 42.75, 42.75)	shapes=Cube×858,Slab×353,Wedge×257
+Debris_Machinery.asset	MiningStationRound2/Generated_v02/Assets/Debris_Machinery.asset	cells=1074	cell=0.75	metres=(9.563, 9.563, 5.063)	shapes=Block8×592,Cube×339,Slab×91,Wedge×52
+Debris_Panel.asset	MiningStationRound2/Generated_v02/Assets/Debris_Panel.asset	cells=599	cell=0.75	metres=(9.563, 6.188, 3.938)	shapes=Block8×336,Cube×202,Slab×48,Wedge×13
+Rock_Faceted.asset	MiningStationRound2/Generated_v02/Assets/Rock_Faceted.asset	cells=1333	cell=1.5	metres=(38.25, 29.25, 29.25)	shapes=Block8×880,Cube×390,Wedge×52,Slab×11
+Rock_Notched.asset	MiningStationRound2/Generated_v02/Assets/Rock_Notched.asset	cells=3747	cell=2	metres=(100, 76, 68)	shapes=Block8×2624,Cube×908,Wedge×120,Slab×95
+Rock_Ridged.asset	MiningStationRound2/Generated_v02/Assets/Rock_Ridged.asset	cells=3082	cell=2.5	metres=(156.25, 118.75, 93.75)	shapes=Block8×2032,Cube×793,Slab×165,Wedge×92
+Station_CapsuleTank.asset	MiningStationRound2/Generated_v02/Assets/Station_CapsuleTank.asset	cells=9021	cell=1.25	metres=(107.813, 20.313, 20.313)	shapes=Block8×5880,Cube×2066,Slab×555,Wedge×520
+Station_EquipmentCage.asset	MiningStationRound2/Generated_v02/Assets/Station_EquipmentCage.asset	cells=3060	cell=1	metres=(35, 23, 23)	shapes=Block8×1680,Cube×1380
+Station_FracturedDeck.asset	MiningStationRound2/Generated_v02/Assets/Station_FracturedDeck.asset	cells=9522	cell=1.5	metres=(119.25, 51.75, 24.75)	shapes=Block8×8096,Cube×1426
+Station_OpenTruss.asset	MiningStationRound2/Generated_v02/Assets/Station_OpenTruss.asset	cells=2403	cell=1	metres=(39, 17, 15)	shapes=Block8×1304,Cube×1099
+Station_SphericalTank.asset	MiningStationRound2/Generated_v02/Assets/Station_SphericalTank.asset	cells=3615	cell=1.5	metres=(42.75, 42.75, 42.75)	shapes=Block8×2640,Cube×750,Slab×138,Wedge×87
+Debris_AngledShard.asset	MiningStationRound2/Generated_v03/Assets/Debris_AngledShard.asset	cells=288	cell=1	metres=(13, 9, 5)	shapes=Block8×136,Cube×118,Slab×23,Wedge×11
+Debris_FracturedChunk.asset	MiningStationRound2/Generated_v03/Assets/Debris_FracturedChunk.asset	cells=516	cell=1	metres=(13, 13, 7)	shapes=Block8×240,Cube×201,Slab×47,Wedge×28
+Rock_Faceted.asset	MiningStationRound2/Generated_v03/Assets/Rock_Faceted.asset	cells=883	cell=1.75	metres=(45.938, 33.688, 33.688)	shapes=Block8×560,Cube×262,Wedge×35,Slab×26
+Rock_Notched.asset	MiningStationRound2/Generated_v03/Assets/Rock_Notched.asset	cells=2047	cell=2.5	metres=(118.75, 93.75, 93.75)	shapes=Block8×1352,Cube×557,Wedge×70,Slab×68
+Rock_Ridged.asset	MiningStationRound2/Generated_v03/Assets/Rock_Ridged.asset	cells=1892	cell=3	metres=(189, 135, 117)	shapes=Block8×1160,Cube×545,Slab×121,Wedge×66
+Station_CapsuleTank.asset	MiningStationRound2/Generated_v03/Assets/Station_CapsuleTank.asset	cells=2519	cell=2	metres=(172, 36, 36)	shapes=Block8×1288,Cube×621,Slab×432,Wedge×178
+Station_EquipmentCage.asset	MiningStationRound2/Generated_v03/Assets/Station_EquipmentCage.asset	cells=1872	cell=1.25	metres=(45.313, 29.688, 29.688)	shapes=Cube×1048,Block8×824
+Station_FracturedDeck.asset	MiningStationRound2/Generated_v03/Assets/Station_FracturedDeck.asset	cells=2550	cell=2.5	metres=(193.75, 93.75, 43.75)	shapes=Block8×2072,Cube×478
+Station_OpenTruss.asset	MiningStationRound2/Generated_v03/Assets/Station_OpenTruss.asset	cells=2403	cell=1	metres=(39, 17, 15)	shapes=Block8×1304,Cube×1099
+Station_SphericalTank.asset	MiningStationRound2/Generated_v03/Assets/Station_SphericalTank.asset	cells=1659	cell=2	metres=(60, 60, 60)	shapes=Block8×1176,Cube×427,Slab×42,Wedge×14
+Debris_AngledShard.asset	MiningStationRound2/Generated_v04/Assets/Debris_AngledShard.asset	cells=288	cell=1	metres=(13, 9, 5)	shapes=Block8×136,Cube×118,Slab×23,Wedge×11
+Debris_FracturedChunk.asset	MiningStationRound2/Generated_v04/Assets/Debris_FracturedChunk.asset	cells=516	cell=1	metres=(13, 13, 7)	shapes=Block8×240,Cube×201,Slab×47,Wedge×28
+Rock_Faceted.asset	MiningStationRound2/Generated_v04/Assets/Rock_Faceted.asset	cells=883	cell=1.75	metres=(45.938, 33.688, 33.688)	shapes=Block8×560,Cube×262,Wedge×35,Slab×26
+Rock_Notched.asset	MiningStationRound2/Generated_v04/Assets/Rock_Notched.asset	cells=2047	cell=2.5	metres=(118.75, 93.75, 93.75)	shapes=Block8×1352,Cube×557,Wedge×70,Slab×68
+Rock_Ridged.asset	MiningStationRound2/Generated_v04/Assets/Rock_Ridged.asset	cells=1892	cell=3	metres=(189, 135, 117)	shapes=Block8×1160,Cube×545,Slab×121,Wedge×66
+Station_CapsuleTank.asset	MiningStationRound2/Generated_v04/Assets/Station_CapsuleTank.asset	cells=5517	cell=1.5	metres=(128.25, 24.75, 24.75)	shapes=Block8×3496,Cube×1563,Slab×426,Wedge×32
+Station_EquipmentCage.asset	MiningStationRound2/Generated_v04/Assets/Station_EquipmentCage.asset	cells=1872	cell=1.25	metres=(45.313, 29.688, 29.688)	shapes=Cube×1048,Block8×824
+Station_NotchedSlab.asset	MiningStationRound2/Generated_v04/Assets/Station_NotchedSlab.asset	cells=3995	cell=2	metres=(156, 68, 28)	shapes=Block8×3136,Cube×859
+Station_OpenTruss.asset	MiningStationRound2/Generated_v04/Assets/Station_OpenTruss.asset	cells=2403	cell=1	metres=(39, 17, 15)	shapes=Block8×1304,Cube×1099
+Station_SphericalTank.asset	MiningStationRound2/Generated_v04/Assets/Station_SphericalTank.asset	cells=1659	cell=2	metres=(60, 60, 60)	shapes=Block8×1176,Cube×427,Slab×42,Wedge×14
+
+=== existing layouts ===
+MapWorkshopDemo.asset	Layouts/MapWorkshopDemo.asset	instances=22	size=(3000, 3000, 3000)
+   Rock	pos=(393.708, -183.954, 0)	euler=(0, 45.187, 0)	scale=2.807
+   Asteroid	pos=(214.51, -289.413, 155.851)	euler=(0, 84.452, 0)	scale=2.143
+   Rock	pos=(206.581, -214.44, 284.335)	euler=(0, 137.149, 0)	scale=2.151
+   Asteroid	pos=(109.558, -166.004, 337.185)	euler=(0, 293.09, 0)	scale=2.943
+   Asteroid	pos=(0, -185.873, 323.342)	euler=(0, 32.441, 0)	scale=3.263
+   Rock	pos=(-133.559, -251.795, 411.054)	euler=(0, 15.893, 0)	scale=3.278
+   Asteroid	pos=(-151.894, -314.056, 209.065)	euler=(0, 249.332, 0)	scale=2.791
+   Asteroid	pos=(-217.187, -167.057, 157.796)	euler=(0, 110.952, 0)	scale=2.958
+   Rock	pos=(-412.261, -160.672, 133.952)	euler=(0, 192.86, 0)	scale=3.513
+   Asteroid	pos=(-414.573, -225.378, 0)	euler=(0, 53.683, 0)	scale=1.566
+   Asteroid	pos=(-221.846, -292.879, -72.082)	euler=(0, 225.524, 0)	scale=1.788
+   Rock	pos=(-230.562, -291.313, -167.513)	euler=(0, 104.258, 0)	scale=3.12
+   Asteroid	pos=(-151.265, -167.565, -208.199)	euler=(0, 217.641, 0)	scale=2.79
+   Asteroid	pos=(-72.065, -231.462, -221.793)	euler=(0, 254.37, 0)	scale=3.071
+   Rock	pos=(0, -162.253, -276.796)	euler=(0, 131.458, 0)	scale=2.169
+   Asteroid	pos=(73.5, -282.09, -226.211)	euler=(0, 25.539, 0)	scale=2.66
+   Rock	pos=(283.071, -161.522, -205.663)	euler=(0, 298.382, 0)	scale=1.532
+   Asteroid	pos=(209.993, -170.841, -68.231)	euler=(0, 235.492, 0)	scale=1.586
+   Asteroid	pos=(56.9, -180, -160)	euler=(0, 0, 0)	scale=1
+   MiningPlatform	pos=(-115, -180, -40)	euler=(0, 0, 0)	scale=1
+   MiningPlatform	pos=(5, -180, -35)	euler=(0, 0, 0)	scale=1
+   MiningPlatform	pos=(110, -180, -35)	euler=(0, 0, 0)	scale=1
+ComponentGallery.asset	MiningStationRound2/Generated_v01/Layouts/ComponentGallery.asset	instances=10	size=(2500, 2500, 2500)
+   Station_SphericalTank	pos=(-300, 0, 0)	euler=(0, 0, 0)	scale=1
+   Station_CapsuleTank	pos=(-150, 0, 0)	euler=(0, 0, 0)	scale=1
+   Station_OpenTruss	pos=(0, 0, 0)	euler=(0, 0, 0)	scale=1
+   Station_EquipmentCage	pos=(150, 0, 0)	euler=(0, 0, 0)	scale=1
+   Station_FracturedDeck	pos=(300, 0, 0)	euler=(0, 0, 0)	scale=1
+   Rock_Ridged	pos=(-300, 0, 160)	euler=(0, 0, 0)	scale=1
+   Rock_Notched	pos=(-150, 0, 160)	euler=(0, 0, 0)	scale=1
+   Rock_Faceted	pos=(0, 0, 160)	euler=(0, 0, 0)	scale=1
+   Debris_Machinery	pos=(150, 0, 160)	euler=(0, 0, 0)	scale=1
+   Debris_Panel	pos=(300, 0, 160)	euler=(0, 0, 0)	scale=1
+LocalDensityPatch.asset	MiningStationRound2/Generated_v01/Layouts/LocalDensityPatch.asset	instances=56	size=(2500, 2500, 2500)
+   Rock_Notched	pos=(512.962, -2.882, 313.595)	euler=(135.357, 110.2, 164.262)	scale=1.494
+   Rock_Ridged	pos=(1158.545, -27.133, -231.801)	euler=(279.972, 194.794, 191.038)	scale=0.999
+   Rock_Notched	pos=(1116.249, -5.283, 44.504)	euler=(295.052, 342.449, 340.687)	scale=1.206
+   Rock_Ridged	pos=(1195.092, 12.073, 116.013)	euler=(172.625, 199.157, 225.024)	scale=0.88
+   Rock_Ridged	pos=(526.777, 32.33, -86.36)	euler=(10.524, 20.448, 131.707)	scale=0.823
+   Rock_Ridged	pos=(431.06, 52.036, 67.749)	euler=(311.824, 222.446, 185.312)	scale=0.818
+   Rock_Notched	pos=(387.986, 21.492, -79.437)	euler=(357.055, 316.048, 300.6)	scale=0.968
+   Rock_Notched	pos=(808.154, 39.381, -323.444)	euler=(161.873, 345.398, 82.424)	scale=0.889
+   Rock_Faceted	pos=(448.171, 52.557, -30.791)	euler=(82.363, 134.143, 166.953)	scale=1.64
+   Rock_Faceted	pos=(616.19, 52.487, 30.751)	euler=(287.52, 24.298, 184.179)	scale=1.576
+   Rock_Notched	pos=(476.69, -19.697, -210.05)	euler=(133.906, 242.563, 122.076)	scale=0.819
+   Rock_Faceted	pos=(805.559, 41.233, -247.87)	euler=(27.56, 331.392, 240.09)	scale=1.525
+   Rock_Notched	pos=(755.15, -5.553, 288.604)	euler=(314.731, 31.177, 192.908)	scale=0.777
+   Rock_Notched	pos=(827.132, 12.071, 314.817)	euler=(196.238, 123.287, 272.249)	scale=0.754
+   Rock_Ridged	pos=(410.838, -44.26, -205.304)	euler=(152.968, 303.463, 198.133)	scale=0.614
+   Rock_Faceted	pos=(1189.291, 60.863, -119.778)	euler=(149.309, 36.682, 317.233)	scale=1.368
+   Rock_Faceted	pos=(1025.012, 1.45, 1.301)	euler=(357.795, 264.11, 287.062)	scale=1.353
+   Rock_Faceted	pos=(684.864, 10.866, 249.178)	euler=(207.194, 157.236, 355.155)	scale=1.337
+   Rock_Ridged	pos=(455.274, 39.839, -100.448)	euler=(1.5, 117.192, 121.936)	scale=0.548
+   Rock_Notched	pos=(995.752, 56.99, 149.893)	euler=(90.503, 120.799, 91.294)	scale=0.647
+   Rock_Faceted	pos=(934.906, 35.131, 28.338)	euler=(201.43, 48.556, 34.503)	scale=1.092
+   Rock_Notched	pos=(443.317, -15.077, -150.614)	euler=(299.334, 130.862, 134.144)	scale=0.574
+   Rock_Notched	pos=(384.855, -56.35, -298.307)	euler=(134.08, 182.619, 25.349)	scale=0.558
+   Rock_Faceted	pos=(1213.252, -58.373, 162.814)	euler=(74.323, 276.795, 47.494)	scale=1.027
+   Rock_Faceted	pos=(1084.246, -70.522, 43.358)	euler=(88.565, 299.39, 182.146)	scale=1.026
+   Rock_Notched	pos=(628.429, 1.496, -247.794)	euler=(200.034, 19.449, 260.787)	scale=0.537
+   Rock_Notched	pos=(586.749, 66.745, -135.64)	euler=(355.578, 17.803, 348.928)	scale=0.536
+   Rock_Faceted	pos=(406.365, -17.206, -14.18)	euler=(176.487, 72.939, 45.321)	scale=1.01
+   Rock_Notched	pos=(776.597, 26.292, -373.734)	euler=(112.915, 337.167, 349.533)	scale=0.508
+   Rock_Faceted	pos=(727.516, -19.97, 338.27)	euler=(354.663, 38.094, 54.163)	scale=0.955
+   Rock_Notched	pos=(1196.999, -0.735, 47.079)	euler=(244.197, 271.054, 206.835)	scale=0.501
+   Rock_Faceted	pos=(881.112, 30.904, 290.389)	euler=(241.525, 205.468, 99.585)	scale=0.94
+   Rock_Notched	pos=(1109.807, 10.606, -99.352)	euler=(177.66, 24.29, 214.578)	scale=0.481
+   Rock_Notched	pos=(607.615, 46.587, -339.353)	euler=(206.422, 250.197, 275.515)	scale=0.477
+   Rock_Notched	pos=(766.067, -26.406, -69.709)	euler=(8.59, 6.197, 51.964)	scale=0.471
+   Rock_Notched	pos=(1189.542, -60.038, -170.619)	euler=(192.563, 192.086, 82.129)	scale=0.46
+   Debris_Panel	pos=(634.063, 27.89, 229.23)	euler=(274.466, 40.413, 156.488)	scale=1.949
+   Rock_Faceted	pos=(1061.722, 33.279, 30.226)	euler=(186.666, 252.932, 64.714)	scale=0.833
+   Rock_Faceted	pos=(914.75, -36.085, 222.095)	euler=(329.411, 184.197, 87.48)	scale=0.833
+   Rock_Faceted	pos=(1147.152, -66.181, -321.536)	euler=(39.664, 210.49, 53.03)	scale=0.831
+PartialStationStudy.asset	MiningStationRound2/Generated_v01/Layouts/PartialStationStudy.asset	instances=5	size=(2500, 2500, 2500)
+   Station_SphericalTank	pos=(20.687, 38.321, 19.312)	euler=(0, 0, 0)	scale=1
+   Station_CapsuleTank	pos=(65.746, 14.039, 128.329)	euler=(7.625, 323.709, 353.166)	scale=1
+   Station_OpenTruss	pos=(-8.184, 25.847, 65.315)	euler=(359.992, 0.083, 1.226)	scale=1
+   Station_EquipmentCage	pos=(38.864, -3.447, 163.833)	euler=(0, 272.996, 79.158)	scale=1
+   Station_FracturedDeck	pos=(103.143, 78.932, 58.74)	euler=(271.609, 230.214, 39.886)	scale=1
+ComponentGallery.asset	MiningStationRound2/Generated_v02/Layouts/ComponentGallery.asset	instances=10	size=(2500, 2500, 2500)
+   Station_SphericalTank	pos=(-300, 0, 0)	euler=(0, 0, 0)	scale=1
+   Station_CapsuleTank	pos=(-150, 0, 0)	euler=(0, 0, 0)	scale=1
+   Station_OpenTruss	pos=(0, 0, 0)	euler=(0, 0, 0)	scale=1
+   Station_EquipmentCage	pos=(150, 0, 0)	euler=(0, 0, 0)	scale=1
+   Station_FracturedDeck	pos=(300, 0, 0)	euler=(0, 0, 0)	scale=1
+   Rock_Ridged	pos=(-300, 0, 160)	euler=(0, 0, 0)	scale=1
+   Rock_Notched	pos=(-150, 0, 160)	euler=(0, 0, 0)	scale=1
+   Rock_Faceted	pos=(0, 0, 160)	euler=(0, 0, 0)	scale=1
+   Debris_Machinery	pos=(150, 0, 160)	euler=(0, 0, 0)	scale=1
+   Debris_Panel	pos=(300, 0, 160)	euler=(0, 0, 0)	scale=1
+LocalDensityPatch.asset	MiningStationRound2/Generated_v02/Layouts/LocalDensityPatch.asset	instances=56	size=(2500, 2500, 2500)
+   Rock_Notched	pos=(1175.777, -7.938, -162.039)	euler=(17.803, 348.928, 67.527)	scale=1.205
+   Rock_Notched	pos=(654.656, 1.22, 150.304)	euler=(121.936, 358.232, 100.109)	scale=1.154
+   Rock_Ridged	pos=(1019.983, -26.159, -331.422)	euler=(231.827, 112.915, 337.167)	scale=0.947
+   Rock_Ridged	pos=(1185.769, 42.251, -38.038)	euler=(331.187, 8.59, 6.197)	scale=0.915
+   Rock_Ridged	pos=(1083.064, -9.782, -154.527)	euler=(276.795, 47.494, 329.329)	scale=0.839
+   Rock_Ridged	pos=(852.492, 6.139, 277.832)	euler=(285.688, 10.524, 20.448)	scale=0.819
+   Rock_Notched	pos=(753.573, -52.364, 322.031)	euler=(72.939, 45.321, 243.215)	scale=0.989
+   Rock_Ridged	pos=(834.385, 55.407, 200.494)	euler=(260.755, 246.511, 206.422)	scale=0.717
+   Rock_Faceted	pos=(810.421, 7.983, 349.354)	euler=(356.346, 271.098, 196.28)	scale=1.636
+   Rock_Notched	pos=(543.471, -48.068, -217.827)	euler=(94.283, 322.837, 254.126)	scale=0.836
+   Rock_Faceted	pos=(845.139, -51.318, 201.473)	euler=(287.52, 24.298, 184.179)	scale=1.576
+   Rock_Ridged	pos=(756.585, 52.48, 335.106)	euler=(210.434, 39.664, 210.49)	scale=0.671
+   Rock_Faceted	pos=(551.383, 46.452, -260.255)	euler=(225.921, 232.357, 183.669)	scale=1.548
+   Rock_Notched	pos=(756.59, 6.477, 276.982)	euler=(344.775, 176.421, 221.403)	scale=0.801
+   Rock_Notched	pos=(1062.237, -51.02, -77.312)	euler=(314.731, 31.177, 192.908)	scale=0.777
+   Rock_Ridged	pos=(924.334, -51.517, 188.433)	euler=(348.974, 230.957, 270.781)	scale=0.614
+   Rock_Faceted	pos=(764.735, 53.433, 218.541)	euler=(320.434, 186.084, 347.38)	scale=1.372
+   Rock_Notched	pos=(528.156, -5.576, -152.515)	euler=(354.447, 188.405, 358.659)	scale=0.631
+   Rock_Faceted	pos=(450.797, -49.967, -247.775)	euler=(279.972, 194.794, 191.038)	scale=1.193
+   Rock_Notched	pos=(792.583, -32.07, 233.76)	euler=(122.956, 230.834, 357.055)	scale=0.597
+   Rock_Ridged	pos=(549.024, 46.084, -141.832)	euler=(156.559, 149.309, 36.682)	scale=0.47
+   Rock_Notched	pos=(384.769, -41.067, 222.34)	euler=(240.09, 165.799, 343.557)	scale=0.571
+   Rock_Ridged	pos=(542.37, -1.932, -338.391)	euler=(195.061, 125.314, 177.66)	scale=0.457
+   Rock_Notched	pos=(1130, -55.809, -81.129)	euler=(184.197, 87.48, 97.083)	scale=0.532
+   Debris_Machinery	pos=(580.544, -52.254, -271.424)	euler=(356.968, 48.111, 346.129)	scale=1.973
+   Rock_Notched	pos=(1104.5, 52.949, -208.843)	euler=(339.053, 125.096, 88.565)	scale=0.526
+   Rock_Notched	pos=(799.46, 4.895, 156.835)	euler=(353.509, 228.518, 17.572)	scale=0.515
+   Rock_Notched	pos=(486.437, 49.458, -204.097)	euler=(340.687, 342.396, 61.397)	scale=0.505
+   Rock_Notched	pos=(839.751, -51.374, 311.471)	euler=(131.189, 62.17, 274.87)	scale=0.503
+   Rock_Notched	pos=(688.6, -48.714, -129.166)	euler=(192.086, 82.129, 127.186)	scale=0.498
+   Rock_Faceted	pos=(895.403, 54.872, 275.954)	euler=(114.471, 48.533, 254.074)	scale=0.943
+   Rock_Notched	pos=(495.73, -45.153, -169.035)	euler=(299.334, 130.862, 134.144)	scale=0.494
+   Rock_Faceted	pos=(1124.587, -7.716, -36.829)	euler=(135.337, 148.492, 289.429)	scale=0.937
+   Rock_Notched	pos=(472.978, 46.549, -128.848)	euler=(321.198, 6.777, 29.745)	scale=0.491
+   Rock_Notched	pos=(1125.492, -70.869, 108.912)	euler=(272.249, 252.549, 136.49)	scale=0.481
+   Rock_Notched	pos=(1156.486, 51.922, -230.258)	euler=(172.625, 199.157, 225.024)	scale=0.477
+   Rock_Notched	pos=(486.317, -5.342, -106.57)	euler=(269.954, 295.224, 247.158)	scale=0.475
+   Rock_Notched	pos=(917.123, 7.645, 132.148)	euler=(99.585, 318.679, 8.901)	scale=0.462
+   Rock_Faceted	pos=(549.28, -49.933, -131.328)	euler=(323.253, 307.085, 109.283)	scale=0.877
+   Rock_Faceted	pos=(861.056, -53.911, 272.355)	euler=(34.503, 99.075, 174.554)	scale=0.84
+PartialStationStudy.asset	MiningStationRound2/Generated_v02/Layouts/PartialStationStudy.asset	instances=5	size=(2500, 2500, 2500)
+   Station_SphericalTank	pos=(20.687, 38.321, 19.312)	euler=(0, 0, 0)	scale=1
+   Station_CapsuleTank	pos=(65.746, 14.039, 128.329)	euler=(7.625, 323.709, 353.166)	scale=1
+   Station_OpenTruss	pos=(-8.184, 25.847, 65.315)	euler=(359.992, 0.083, 1.226)	scale=1
+   Station_EquipmentCage	pos=(38.864, -3.447, 163.833)	euler=(0, 272.996, 79.158)	scale=1
+   Station_FracturedDeck	pos=(103.143, 78.932, 58.74)	euler=(271.609, 230.214, 39.886)	scale=1
+ComponentGallery.asset	MiningStationRound2/Generated_v03/Layouts/ComponentGallery.asset	instances=10	size=(2500, 2500, 2500)
+   Station_SphericalTank	pos=(-300, 0, 0)	euler=(0, 0, 0)	scale=1
+   Station_CapsuleTank	pos=(-150, 0, 0)	euler=(0, 0, 0)	scale=1
+   Station_OpenTruss	pos=(0, 0, 0)	euler=(0, 0, 0)	scale=1
+   Station_EquipmentCage	pos=(150, 0, 0)	euler=(0, 0, 0)	scale=1
+   Station_FracturedDeck	pos=(300, 0, 0)	euler=(0, 0, 0)	scale=1
+   Rock_Ridged	pos=(-300, 0, 160)	euler=(0, 0, 0)	scale=1
+   Rock_Notched	pos=(-150, 0, 160)	euler=(0, 0, 0)	scale=1
+   Rock_Faceted	pos=(0, 0, 160)	euler=(0, 0, 0)	scale=1
+   Debris_FracturedChunk	pos=(150, 0, 160)	euler=(0, 0, 0)	scale=1
+   Debris_AngledShard	pos=(300, 0, 160)	euler=(0, 0, 0)	scale=1
+LocalDensityPatch.asset	MiningStationRound2/Generated_v03/Layouts/LocalDensityPatch.asset	instances=56	size=(2500, 2500, 2500)
+   Rock_Notched	pos=(1175.777, -7.607, -162.039)	euler=(17.803, 348.928, 67.527)	scale=1.268
+   Rock_Notched	pos=(655.338, 1.169, 149.451)	euler=(121.936, 358.232, 100.109)	scale=1.215
+   Rock_Ridged	pos=(1020.252, -26.412, -331.858)	euler=(231.827, 112.915, 337.167)	scale=0.939
+   Rock_Ridged	pos=(1195.41, 44.56, -42.68)	euler=(331.187, 8.59, 6.197)	scale=0.908
+   Rock_Notched	pos=(863.759, 6.931, 276.286)	euler=(72.939, 45.321, 243.215)	scale=1.041
+   Rock_Ridged	pos=(1180.523, -10.488, -258.106)	euler=(276.795, 47.494, 329.329)	scale=0.833
+   Rock_Ridged	pos=(828.17, -51.765, 202.71)	euler=(285.688, 10.524, 20.448)	scale=0.812
+   Rock_Notched	pos=(553.025, -47.31, -254.444)	euler=(94.283, 322.837, 254.126)	scale=0.88
+   Rock_Ridged	pos=(832.294, 50.549, 211.609)	euler=(260.755, 246.511, 206.422)	scale=0.711
+   Rock_Faceted	pos=(720.984, 9.636, 352.016)	euler=(356.346, 271.098, 196.28)	scale=1.589
+   Rock_Notched	pos=(806.262, -52.959, 281.223)	euler=(344.775, 176.421, 221.403)	scale=0.843
+   Rock_Notched	pos=(1160.223, -48.991, -83.264)	euler=(314.731, 31.177, 192.908)	scale=0.817
+   Rock_Faceted	pos=(776.693, 51.575, 356.238)	euler=(287.52, 24.298, 184.179)	scale=1.531
+   Rock_Ridged	pos=(742.678, 4.695, 253.363)	euler=(210.434, 39.664, 210.49)	scale=0.666
+   Rock_Faceted	pos=(523.701, 53.115, -211.11)	euler=(225.921, 232.357, 183.669)	scale=1.504
+   Rock_Ridged	pos=(860.616, -55.044, 352.53)	euler=(348.974, 230.957, 270.781)	scale=0.609
+   Rock_Faceted	pos=(925.538, 53.802, 190.049)	euler=(320.434, 186.084, 347.38)	scale=1.333
+   Rock_Notched	pos=(525.079, -3.809, -145.495)	euler=(354.447, 188.405, 358.659)	scale=0.664
+   Rock_Notched	pos=(763.489, 0.207, -313.123)	euler=(122.956, 230.834, 357.055)	scale=0.628
+   Rock_Faceted	pos=(484.938, -52.509, -161.256)	euler=(279.972, 194.794, 191.038)	scale=1.159
+   Rock_Notched	pos=(527.527, -55.626, 334.746)	euler=(240.09, 165.799, 343.557)	scale=0.602
+   Rock_Ridged	pos=(517.7, 48.197, -73.451)	euler=(156.559, 149.309, 36.682)	scale=0.466
+   Rock_Notched	pos=(1066.987, -49.802, -125.554)	euler=(339.053, 125.096, 88.565)	scale=0.554
+   Rock_Ridged	pos=(557.147, -5.071, -203.15)	euler=(195.061, 125.314, 177.66)	scale=0.454
+   Rock_Notched	pos=(1128.905, 48.339, -131.228)	euler=(184.197, 87.48, 97.083)	scale=0.532
+   Rock_Notched	pos=(613.569, -50.285, -163.632)	euler=(340.687, 342.396, 61.397)	scale=0.531
+   Rock_Notched	pos=(815.606, 9.904, 343.616)	euler=(131.189, 62.17, 274.87)	scale=0.53
+   Rock_Notched	pos=(527.758, 46.708, -144.626)	euler=(321.198, 6.777, 29.745)	scale=0.517
+   Rock_Notched	pos=(764.735, -50.978, 218.541)	euler=(353.509, 228.518, 17.572)	scale=0.515
+   Debris_FracturedChunk	pos=(916.951, 51.001, 248.312)	euler=(240.858, 127.713, 248.849)	scale=1.845
+   Rock_Notched	pos=(1123.31, -6.323, -59.795)	euler=(172.625, 199.157, 225.024)	scale=0.502
+   Rock_Notched	pos=(1054.16, 29.49, -182.559)	euler=(192.086, 82.129, 127.186)	scale=0.498
+   Rock_Notched	pos=(633.018, -49.89, -232.278)	euler=(299.334, 130.862, 134.144)	scale=0.494
+   Rock_Faceted	pos=(778.987, 7.077, 299.962)	euler=(114.471, 48.533, 254.074)	scale=0.917
+   Rock_Notched	pos=(825.129, -47.456, 129.249)	euler=(99.585, 318.679, 8.901)	scale=0.487
+   Rock_Faceted	pos=(1099.651, -52.831, -239.233)	euler=(135.337, 148.492, 289.429)	scale=0.91
+   Rock_Notched	pos=(619.197, 50.105, -86.581)	euler=(269.954, 295.224, 247.158)	scale=0.475
+   Debris_AngledShard	pos=(522.583, -1.555, -265.299)	euler=(356.968, 48.111, 346.129)	scale=1.948
+   Rock_Faceted	pos=(548.04, -52.068, -127.103)	euler=(323.253, 307.085, 109.283)	scale=0.852
+   Rock_Notched	pos=(621.687, -56.573, -59.524)	euler=(272.249, 252.549, 136.49)	scale=0.451
+PartialStationStudy.asset	MiningStationRound2/Generated_v03/Layouts/PartialStationStudy.asset	instances=5	size=(2500, 2500, 2500)
+   Station_SphericalTank	pos=(20.687, 38.321, 19.312)	euler=(0, 0, 0)	scale=1
+   Station_CapsuleTank	pos=(65.746, 14.039, 128.329)	euler=(7.625, 323.709, 353.166)	scale=1
+   Station_OpenTruss	pos=(-8.184, 25.847, 65.315)	euler=(359.992, 0.083, 1.226)	scale=1
+   Station_EquipmentCage	pos=(38.864, -3.447, 163.833)	euler=(0, 272.996, 79.158)	scale=1
+   Station_FracturedDeck	pos=(103.143, 78.932, 58.74)	euler=(271.609, 230.214, 39.886)	scale=1
+ComponentGallery.asset	MiningStationRound2/Generated_v04/Layouts/ComponentGallery.asset	instances=10	size=(2500, 2500, 2500)
+   Station_SphericalTank	pos=(-300, 0, 0)	euler=(0, 0, 0)	scale=1
+   Station_CapsuleTank	pos=(-150, 0, 0)	euler=(0, 0, 0)	scale=1
+   Station_OpenTruss	pos=(0, 0, 0)	euler=(0, 0, 0)	scale=1
+   Station_EquipmentCage	pos=(150, 0, 0)	euler=(0, 0, 0)	scale=1
+   Station_NotchedSlab	pos=(300, 0, 0)	euler=(0, 0, 0)	scale=1
+   Rock_Ridged	pos=(-300, 0, 160)	euler=(0, 0, 0)	scale=1
+   Rock_Notched	pos=(-150, 0, 160)	euler=(0, 0, 0)	scale=1
+   Rock_Faceted	pos=(0, 0, 160)	euler=(0, 0, 0)	scale=1
+   Debris_FracturedChunk	pos=(150, 0, 160)	euler=(0, 0, 0)	scale=1
+   Debris_AngledShard	pos=(300, 0, 160)	euler=(0, 0, 0)	scale=1
+LocalDensityPatch.asset	MiningStationRound2/Generated_v04/Layouts/LocalDensityPatch.asset	instances=56	size=(2500, 2500, 2500)
+   Rock_Notched	pos=(1175.777, -7.607, -162.039)	euler=(17.803, 348.928, 67.527)	scale=1.268
+   Rock_Notched	pos=(655.338, 1.169, 149.451)	euler=(121.936, 358.232, 100.109)	scale=1.215
+   Rock_Ridged	pos=(1020.252, -26.412, -331.858)	euler=(231.827, 112.915, 337.167)	scale=0.939
+   Rock_Ridged	pos=(1195.41, 44.56, -42.68)	euler=(331.187, 8.59, 6.197)	scale=0.908
+   Rock_Notched	pos=(863.759, 6.931, 276.286)	euler=(72.939, 45.321, 243.215)	scale=1.041
+   Rock_Ridged	pos=(1180.523, -10.488, -258.106)	euler=(276.795, 47.494, 329.329)	scale=0.833
+   Rock_Ridged	pos=(828.17, -51.765, 202.71)	euler=(285.688, 10.524, 20.448)	scale=0.812
+   Rock_Notched	pos=(553.025, -47.31, -254.444)	euler=(94.283, 322.837, 254.126)	scale=0.88
+   Rock_Ridged	pos=(832.294, 50.549, 211.609)	euler=(260.755, 246.511, 206.422)	scale=0.711
+   Rock_Faceted	pos=(720.984, 9.636, 352.016)	euler=(356.346, 271.098, 196.28)	scale=1.589
+   Rock_Notched	pos=(806.262, -52.959, 281.223)	euler=(344.775, 176.421, 221.403)	scale=0.843
+   Rock_Notched	pos=(1160.223, -48.991, -83.264)	euler=(314.731, 31.177, 192.908)	scale=0.817
+   Rock_Faceted	pos=(776.693, 51.575, 356.238)	euler=(287.52, 24.298, 184.179)	scale=1.531
+   Rock_Ridged	pos=(742.678, 4.695, 253.363)	euler=(210.434, 39.664, 210.49)	scale=0.666
+   Rock_Faceted	pos=(523.701, 53.115, -211.11)	euler=(225.921, 232.357, 183.669)	scale=1.504
+   Rock_Ridged	pos=(860.616, -55.044, 352.53)	euler=(348.974, 230.957, 270.781)	scale=0.609
+   Rock_Faceted	pos=(925.538, 53.802, 190.049)	euler=(320.434, 186.084, 347.38)	scale=1.333
+   Rock_Notched	pos=(525.079, -3.809, -145.495)	euler=(354.447, 188.405, 358.659)	scale=0.664
+   Rock_Notched	pos=(763.489, 0.207, -313.123)	euler=(122.956, 230.834, 357.055)	scale=0.628
+   Rock_Faceted	pos=(484.938, -52.509, -161.256)	euler=(279.972, 194.794, 191.038)	scale=1.159
+   Rock_Notched	pos=(527.527, -55.626, 334.746)	euler=(240.09, 165.799, 343.557)	scale=0.602
+   Rock_Ridged	pos=(517.7, 48.197, -73.451)	euler=(156.559, 149.309, 36.682)	scale=0.466
+   Rock_Notched	pos=(1066.987, -49.802, -125.554)	euler=(339.053, 125.096, 88.565)	scale=0.554
+   Rock_Ridged	pos=(557.147, -5.071, -203.15)	euler=(195.061, 125.314, 177.66)	scale=0.454
+   Rock_Notched	pos=(1128.905, 48.339, -131.228)	euler=(184.197, 87.48, 97.083)	scale=0.532
+   Rock_Notched	pos=(613.569, -50.285, -163.632)	euler=(340.687, 342.396, 61.397)	scale=0.531
+   Rock_Notched	pos=(815.606, 9.904, 343.616)	euler=(131.189, 62.17, 274.87)	scale=0.53
+   Rock_Notched	pos=(527.758, 46.708, -144.626)	euler=(321.198, 6.777, 29.745)	scale=0.517
+   Rock_Notched	pos=(764.735, -50.978, 218.541)	euler=(353.509, 228.518, 17.572)	scale=0.515
+   Debris_FracturedChunk	pos=(916.951, 51.001, 248.312)	euler=(240.858, 127.713, 248.849)	scale=1.845
+   Rock_Notched	pos=(1123.31, -6.323, -59.795)	euler=(172.625, 199.157, 225.024)	scale=0.502
+   Rock_Notched	pos=(1054.16, 29.49, -182.559)	euler=(192.086, 82.129, 127.186)	scale=0.498
+   Rock_Notched	pos=(633.018, -49.89, -232.278)	euler=(299.334, 130.862, 134.144)	scale=0.494
+   Rock_Faceted	pos=(778.987, 7.077, 299.962)	euler=(114.471, 48.533, 254.074)	scale=0.917
+   Rock_Notched	pos=(825.129, -47.456, 129.249)	euler=(99.585, 318.679, 8.901)	scale=0.487
+   Rock_Faceted	pos=(1099.651, -52.831, -239.233)	euler=(135.337, 148.492, 289.429)	scale=0.91
+   Rock_Notched	pos=(619.197, 50.105, -86.581)	euler=(269.954, 295.224, 247.158)	scale=0.475
+   Debris_AngledShard	pos=(522.583, -1.555, -265.299)	euler=(356.968, 48.111, 346.129)	scale=1.948
+   Rock_Faceted	pos=(548.04, -52.068, -127.103)	euler=(323.253, 307.085, 109.283)	scale=0.852
+   Rock_Notched	pos=(621.687, -56.573, -59.524)	euler=(272.249, 252.549, 136.49)	scale=0.451
+PartialStationStudy.asset	MiningStationRound2/Generated_v04/Layouts/PartialStationStudy.asset	instances=5	size=(2500, 2500, 2500)
+   Station_SphericalTank	pos=(20.687, 38.321, 19.312)	euler=(0, 0, 0)	scale=1
+   Station_CapsuleTank	pos=(65.746, 14.039, 128.329)	euler=(7.625, 323.709, 353.166)	scale=1
+   Station_OpenTruss	pos=(-8.184, 25.847, 65.315)	euler=(359.992, 0.083, 1.226)	scale=1
+   Station_EquipmentCage	pos=(38.864, -3.447, 163.833)	euler=(0, 272.996, 79.158)	scale=1
+   Station_NotchedSlab	pos=(103.143, 78.932, 58.74)	euler=(271.609, 230.214, 39.886)	scale=1

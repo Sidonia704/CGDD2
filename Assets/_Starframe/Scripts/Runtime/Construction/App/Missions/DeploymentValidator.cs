@@ -1,4 +1,4 @@
-// @role Validate ship structure, module configuration, budget and flight readiness.
+// @role Validate ship structure, delivery-specific weapon and countermeasure configuration, budget and flight readiness.
 // @calls BlockPlacement, MissionDefinition
 
 using System;
@@ -108,7 +108,7 @@ namespace Starframe.App
                 if (applyMissionConstraints)
                 {
                     cost += validMission ? mission.CostFor(definition) : definition.cost;
-                    if (validMission && mission.useProvisionalPricing && definition.cost == 0) report.ProvisionalParts++;
+                    if (validMission && mission.useProvisionalPricing && definition.cost == 0 && mission.CostFor(definition) > 0) report.ProvisionalParts++;
                 }
                 mass += definition.massKg;
                 generation += definition.generationWatts; storage += definition.storageJoules;
@@ -164,8 +164,17 @@ namespace Starframe.App
                 || !Positive(definition.recoverySeconds) || !Nonnegative(definition.thrustNewtons)
                 || !Nonnegative(definition.generationWatts) || !Nonnegative(definition.storageJoules)
                 || definition.occupiedCells == null || definition.occupiedCells.Length == 0) return false;
-            if ((definition.category == ModuleCategory.Weapon || definition.shape == BlockShape.Laser) && !definition.weapon) return false;
-            if ((definition.category == ModuleCategory.Shield || definition.shape == BlockShape.Shield || definition.shieldCapacity > 0)
+            if ((definition.category == ModuleCategory.Weapon || definition.shape == BlockShape.Laser) && !definition.weapon && !definition.countermeasure) return false;
+            if(definition.shape==BlockShape.FlareLauncher&&!definition.countermeasure)return false;
+            if(definition.countermeasure)
+            {
+                var flare=definition.countermeasure;
+                if(flare.burstCount<1||!Nonnegative(flare.cooldownSeconds)||!Positive(flare.lifetime)||!Nonnegative(flare.emissionSpeed)
+                    ||!Nonnegative(flare.spreadHalfAngleDegrees)||flare.spreadHalfAngleDegrees>89
+                    ||!Nonnegative(flare.decoyRadius)||!Nonnegative(flare.decoyChance)||flare.decoyChance>1
+                    ||!Positive(flare.sparkSize)||!Nonnegative(flare.glowIntensity))return false;
+            }
+            if (((definition.category == ModuleCategory.Shield && !BlockModules.IsArmor(definition.shape)) || definition.shape == BlockShape.Shield || definition.shieldCapacity > 0)
                 && (!Positive(definition.shieldCapacity) || !Positive(definition.shieldRadius)
                     || !Nonnegative(definition.shieldRecoveryDelay) || !Nonnegative(definition.shieldRecoveryPerSecond)
                     || !Nonnegative(definition.shieldPowerWatts))) return false;
@@ -175,8 +184,23 @@ namespace Starframe.App
                 if (!Positive(weapon.shotsPerSecond) || !Positive(weapon.projectileSpeed) || !Positive(weapon.range)
                     || !Positive(weapon.projectileDiameter) || !Nonnegative(weapon.damage)
                     || !Positive(weapon.penetrationDepth) || !Nonnegative(weapon.sustainedPowerWatts)
+                    || !Enum.IsDefined(typeof(WeaponDelivery), weapon.delivery)
+                    || !Nonnegative(weapon.secondLayerDamageMultiplier) || weapon.secondLayerDamageMultiplier > 1
                     || !Enum.IsDefined(typeof(WeaponActivationMode), weapon.activationMode)
                     || (weapon.activationMode == WeaponActivationMode.ChargeRelease && !Positive(weapon.chargeSeconds))) return false;
+                if (weapon.delivery == WeaponDelivery.GuidedMissile
+                    && (!Positive(weapon.reloadSeconds) || !Nonnegative(weapon.missileLockSeconds)
+                    || !Nonnegative(weapon.missileTurnDegrees) || !Nonnegative(weapon.missileTurnAcceleration)
+                    || !Nonnegative(weapon.missileGuidanceSeconds) || !Nonnegative(weapon.missileSeekerLossSeconds)
+                    || !Positive(weapon.missileSeekerConeDegrees) || weapon.missileSeekerConeDegrees < 1 || weapon.missileSeekerConeDegrees > 179
+                    || !Nonnegative(weapon.missileAcceleration) || !Positive(weapon.missileLaunchSpeed)
+                    || !Positive(weapon.explosionRadius))) return false;
+                if (weapon.delivery == WeaponDelivery.Beam && !Positive(weapon.beamDuration)) return false;
+                if (weapon.muzzleOffsets != null) foreach (var offset in weapon.muzzleOffsets)
+                    if (!Finite(offset.x) || !Finite(offset.y) || !Finite(offset.z)) return false;
+                if (weapon.delivery == WeaponDelivery.GuidedMissile && weapon.missileLaunchOffsets != null)
+                    foreach (var offset in weapon.missileLaunchOffsets)
+                        if (!Finite(offset.x) || !Finite(offset.y) || !Finite(offset.z)) return false;
             }
             var cells = new HashSet<Vector3Int>();
             foreach (var cell in definition.occupiedCells) if (!cells.Add(cell)) return false;

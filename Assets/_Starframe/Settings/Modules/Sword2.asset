@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57c7601c94efac44dacfde24ada57da4, type: 3}
+  m_Name: Sword2
+  m_EditorClassIdentifier: Starframe.Construction::Starframe.Flight.ModuleDefinition
+  shape: 35
+  displayName: "\u5149\u675F\u5203 2"
+  category: 3
+  cost: 350
+  massKg: 1350
+  maxHp: 2855.9998
+  recoverySeconds: 6
+  thrustNewtons: 0
+  occupiedCells:
+  - {x: 0, y: 0, z: 0}
+  - {x: 1, y: 0, z: 0}
+  - {x: 0, y: 0, z: 1}
+  - {x: 1, y: 0, z: 1}
+  - {x: 0, y: 0, z: 2}
+  - {x: 1, y: 0, z: 2}
+  - {x: 0, y: 0, z: 3}
+  - {x: 1, y: 0, z: 3}
+  localExhaustDirections: []
+  localNozzlePositions: []
+  muzzleLocalPosition: {x: 0.48630124, y: -0.014951815, z: 3.3912451}
+  muzzleClearanceDiameter: 0.3
+  mesh: {fileID: 4300000, guid: 7564e461a8810404fb99a4c53a1acfa6, type: 2}
+  outline: {fileID: 0}
+  drawOutline: 0
+  material: {fileID: 2100000, guid: 06381e101fc192540a489ce251be5e65, type: 2}
+  icon: {fileID: 21300000, guid: b9b9aa1dd00343d45a4e51d78b67c73e, type: 3}
+  selectedIcon: {fileID: 21300000, guid: dc46b555412623149887f9070fc35014, type: 3}
+  weapon: {fileID: 11400000, guid: fa84d41f9f5c7c544be1e951b93b1a90, type: 2}
+  countermeasure: {fileID: 0}
+  generationWatts: 0
+  storageJoules: 0
+  thrusterPowerWatts: 0
+  shieldPowerWatts: 0
+  shieldCapacity: 0
+  shieldRadius: 8
+  shieldRecoveryDelay: 2
+  shieldRecoveryPerSecond: 50
+  shieldSurfaceMaterial: {fileID: 0}
+  shieldSurfaceMesh: {fileID: 0}

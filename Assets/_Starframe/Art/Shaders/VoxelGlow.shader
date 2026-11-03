@@ -9,7 +9,7 @@ Shader "Starframe/Combat/VoxelGlow"
         _TailFraction ("Dim laser tail", Range(0,1)) = 0
         _FlowEnabled ("Flowing exhaust", Float) = 0
         _FlowPhase ("Continuous exhaust phase", Float) = 0
-        _EffectProfile ("0 debris, 1 laser, 2 exhaust", Float) = 0
+        _EffectProfile ("0 debris, 1 laser, 2 exhaust, 3 coloured voxel, 4 continuous tracer", Float) = 0
         [HDR] _HeadColor ("Exhaust white core",Color) = (.9,.98,1,1)
     }
     SubShader
@@ -69,7 +69,19 @@ Shader "Starframe/Combat/VoxelGlow"
                     float centre=lerp(halfHead,1-halfHead,saturate((input.centre.x-.025)/.935));
                     p.y=saturate(centre+p.y-input.centre.x);output.tint=float4(color.rgb*input.color.rgb*float3(.8,.95,1.6),input.color.a);
                 }
-                if(profile>1.5)output.tint=float4(headColor.rgb,1);
+                if(profile>1.5&&profile<2.5)output.tint=float4(headColor.rgb,1);
+                if(profile>2.5&&profile<3.5){
+                    float halfHead=min(.5,axialShrink*.03);
+                    float centre=lerp(halfHead,1-halfHead,saturate((input.centre.x-.025)/.935));
+                    p.y=saturate(centre+p.y-input.centre.x);
+                    float head=pow(saturate(input.centre.x),4);
+                    output.tint=float4(lerp(color.rgb*.7,lerp(color.rgb,float3(1,1,1),.85),head),input.color.a);
+                }
+                if(profile>3.5){
+                    float axial=saturate(input.positionOS.y+.5);
+                    output.fade=lerp(.18,1,axial);
+                    output.tint=float4(lerp(color.rgb,headColor.rgb,smoothstep(.75,1,axial)*.4),1);
+                }
                 if (flowEnabled > .5 && input.flow.y > .5)
                 {
                     float life = frac(input.flow.x + flowPhase);
@@ -90,7 +102,7 @@ Shader "Starframe/Combat/VoxelGlow"
                 output.positionCS = TransformObjectToHClip(p);
                 // Stable face values keep the little blocks legible through bloom and at oblique views.
                 output.shade = dot(abs(input.normalOS), float3(.63,1,.82));
-                output.glow = profile<.5&&tailFraction>.001?lerp(.2,1,saturate(input.centre.x/tailFraction)):1;
+                output.glow = profile>3.5?lerp(.16,1,saturate(input.positionOS.y+.5)):profile<.5&&tailFraction>.001?lerp(.2,1,saturate(input.centre.x/tailFraction)):1;
                 return output;
             }
             half4 Frag(Varyings input):SV_Target

@@ -80,7 +80,7 @@ namespace Starframe.Tests
             var settings=new GameSettingsData{bindings=new[]{new GameBinding(GameAction.Forward,"<Keyboard>/escape"),
                 new GameBinding(GameAction.Backward,"<Keyboard>/imaginaryKey"),new GameBinding(GameAction.Boost,"<Keyboard>/0")}};
             settings.Validate();
-            Assert.That(settings.bindings.Length,Is.EqualTo(10));
+            Assert.That(settings.bindings.Length,Is.EqualTo(12));
             Assert.That(GameInput.Get(GameAction.Forward,settings).path,Is.EqualTo("<Keyboard>/w"));
             Assert.That(GameInput.Get(GameAction.Backward,settings).path,Is.EqualTo("<Keyboard>/s"));
             Assert.That(GameInput.Get(GameAction.Boost,settings).path,Is.EqualTo("<Keyboard>/0"));
@@ -92,7 +92,7 @@ namespace Starframe.Tests
             Assert.That(GameInput.Conflicts(settings,GameAction.Forward,"<Keyboard>/rightShift"),Is.EquivalentTo(new[]{GameAction.Boost}));
             Assert.That(GameInput.Conflicts(settings,GameAction.Boost,"<Keyboard>/rightShift"),Is.Empty);
             Assert.That(GameInput.Conflicts(settings,GameAction.Forward,"<Keyboard>/i"),Is.Empty);
-            Assert.That(settings.bindings.Select(binding=>binding.action).Distinct().Count(),Is.EqualTo(10));
+            Assert.That(settings.bindings.Select(binding=>binding.action).Distinct().Count(),Is.EqualTo(12));
         }
         [Test] public void DraftCloneDoesNotModifyAppliedSettings()
         {

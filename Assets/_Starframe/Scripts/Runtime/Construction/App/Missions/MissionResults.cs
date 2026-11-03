@@ -12,6 +12,7 @@ namespace Starframe.App
     {
         public float durationSeconds,damageDealt,damageTaken;
         public int enemiesDestroyed,survivingParts;
+        public int score,wavesCompleted,totalWaves,smallDestroyed,largeDestroyed,capitalDestroyed,maxCombo,bestScore;
         public MissionRunSummary Copy()=>JsonUtility.FromJson<MissionRunSummary>(JsonUtility.ToJson(this));
     }
     [Serializable] public sealed class MissionResult
@@ -32,6 +33,10 @@ namespace Starframe.App
             var copy=(summary??new MissionRunSummary()).Copy();
             copy.durationSeconds=Positive(copy.durationSeconds);copy.damageDealt=Positive(copy.damageDealt);copy.damageTaken=Positive(copy.damageTaken);
             copy.enemiesDestroyed=Mathf.Max(0,copy.enemiesDestroyed);copy.survivingParts=Mathf.Clamp(copy.survivingParts,0,request.ship.parts.Count);
+            copy.score=Mathf.Max(0,copy.score);copy.wavesCompleted=Mathf.Clamp(copy.wavesCompleted,0,Mathf.Max(0,copy.totalWaves));
+            string bestKey="Starframe.Arcade.Best."+request.missionId+"."+request.difficulty;
+            copy.bestScore=Mathf.Max(PlayerPrefs.GetInt(bestKey,0),copy.score);
+            if(copy.totalWaves>0){PlayerPrefs.SetInt(bestKey,copy.bestScore);PlayerPrefs.Save();}
             last=new MissionResult{request=request,outcome=outcome,summary=copy,completedUtc=DateTime.UtcNow.ToString("O")};Completed?.Invoke(last.Copy());return true;
         }
         public static bool FinishAndReturn(MissionOutcome outcome,MissionRunSummary summary)

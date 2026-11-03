@@ -20,6 +20,7 @@ namespace Starframe.Construction
             if(part==null)return false;
             if(!database)database=BlockModules.ConfiguredDatabase;
             var definition=database?database.Get(part.shape):null;
+            if(part.shape==BlockShape.FlareLauncher||(definition&&definition.countermeasure))return false;
             return part.shape==BlockShape.Laser||(definition&&(definition.weapon||definition.category==ModuleCategory.Weapon));
         }
 

@@ -88,7 +88,8 @@ namespace Starframe.Tests
                 world = UnityEngine.Object.FindFirstObjectByType<RangeCombatWorld>();
                 hud = UnityEngine.Object.FindFirstObjectByType<RangeHUD>();
                 navigation = UnityEngine.Object.FindFirstObjectByType<RangeAppNavigation>();
-                return world && world.Player != null && world.Targeting && hud && hud.RootCanvas && hud.WorldCamera && navigation;
+                // A constructed HUD can precede the loader's close delay; real users cannot interact until the loading blocker is gone.
+                return world && world.Player != null && world.Targeting && hud && hud.RootCanvas && hud.WorldCamera && navigation&&!RangeLoadingOverlay.IsLoading;
             }, "The actual range scene did not initialize its HUD navigation.");
             yield return null;
             world.Player.flight.SetExternalInput(Vector3.zero, Vector2.zero, boost: true);

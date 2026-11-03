@@ -15,6 +15,7 @@ namespace Starframe.Combat
             if(weapons==null)return;
             weapons.UseGroupedInput=true;weapons.HasValidTargetLock=hasValidLock;
             if(!allowed){weapons.ClearGroupInputs();return;}
+            if(Starframe.App.GameInput.Pressed(Starframe.App.GameAction.WeaponCadence)){weapons.AlternatingDirectFire=!weapons.AlternatingDirectFire;Starframe.App.GameAudio.Click();}
             weapons.FireRequested=false;
             foreach(var group in weapons.Groups){
                 var toggle=ToggleButton(group.id);

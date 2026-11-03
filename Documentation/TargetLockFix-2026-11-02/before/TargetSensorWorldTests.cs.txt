@@ -1,0 +1,245 @@
+using System.Collections.Generic;
+using NUnit.Framework;
+using UnityEditor;
+using UnityEngine;
+using Starframe.Combat;
+using Starframe.Flight;
+
+namespace Starframe.Construction.Tests
+{
+    public sealed class TargetSensorWorldTests
+    {
+        readonly List<Object> owned = new List<Object>();
+        readonly List<RangeCombatWorld.Actor> actors = new List<RangeCombatWorld.Actor>();
+        ModuleDatabase database;
+        FlightTuning flight;
+        BattleTuning battle;
+        TargetSensorWorld sensors;
+
+        [SetUp] public void SetUp()
+        {
+            database = AssetDatabase.LoadAssetAtPath<ModuleDatabase>("Assets/_Starframe/Settings/Modules/ModuleDatabase.asset");
+            Assert.That(database, Is.Not.Null);
+            flight = Own(ScriptableObject.CreateInstance<FlightTuning>());
+            flight.database = database;
+            battle = Own(ScriptableObject.CreateInstance<BattleTuning>());
+            sensors = new TargetSensorWorld(battle);
+            BlockModules.Configure(database);
+        }
+
+        [TearDown] public void TearDown()
+        {
+            sensors.Dispose();
+            actors.Clear();
+            BlockModules.Configure(null);
+            for (int i = owned.Count - 1; i >= 0; i--) if (owned[i]) Object.DestroyImmediate(owned[i]);
+            owned.Clear();
+        }
+
+        [TestCase(0, 1000)]
+        [TestCase(1, 1000)]
+        [TestCase(10, 3000)]
+        [TestCase(40, 6000)]
+        [TestCase(160, 6000)]
+        public void SignatureRangeUsesSquareRootAndClamps(float radius, float expected)
+        {
+            Assert.That(TargetSensorWorld.RangeForRadius(radius, battle), Is.EqualTo(expected).Within(.001f));
+        }
+
+        [Test] public void MaximumRangeUsesTheSameLiveSanitizedBoundsAsDiscovery()
+        {
+            Assert.That(sensors.MaximumRange, Is.EqualTo(6000));
+            battle.sensorMaximumRange = 7500;
+            Assert.That(sensors.MaximumRange, Is.EqualTo(7500));
+            Assert.That(TargetSensorWorld.RangeForRadius(1000, battle), Is.EqualTo(sensors.MaximumRange));
+            battle.sensorMinimumRange = 2000; battle.sensorMaximumRange = 1000;
+            Assert.That(sensors.MaximumRange, Is.EqualTo(2000));
+            Assert.That(TargetSensorWorld.RangeForRadius(1000, battle), Is.EqualTo(sensors.MaximumRange));
+        }
+
+        [Test] public void SignatureTracksAttachedSurvivorsDespiteStaleHullRadiusAndDisabledRenderers()
+        {
+            var target = Actor(1, Vector3.zero, 20);
+            float full = sensors.SignatureRadius(target.ship);
+            float initialHullRadius = target.ship.HullRadius;
+            Assert.That(full, Is.GreaterThan(10));
+            foreach (var part in target.ship.Parts)
+                if (part.view.TryGetComponent<MeshRenderer>(out var renderer)) renderer.enabled = false;
+            target.ship.Recalculate();
+            Assert.That(sensors.SignatureRadius(target.ship), Is.EqualTo(full).Within(.001f),
+                "Instanced/disabled source renderers still describe attached parts.");
+
+            target.ship.SetPartPresent("arm-1", false);
+            Assert.That(target.ship.Parts.Find(p => p.record.id == "arm-20").detached, Is.True);
+            Assert.That(target.ship.HullRadius, Is.EqualTo(initialHullRadius), "The old runtime radius remains an initial-size cache.");
+            Assert.That(sensors.SignatureRadius(target.ship), Is.LessThan(1),
+                "Detached views and their old renderer bounds must no longer enlarge the sensor signature.");
+            Assert.That(sensors.DetectionRange(target.ship), Is.EqualTo(battle.sensorMinimumRange));
+        }
+
+        [Test] public void GeometryIsCachedUntilARealPartOrPerformanceRevision()
+        {
+            var target = Actor(1, Vector3.zero);
+            float original = sensors.SignatureRadius(target.ship);
+            target.ship.Parts[0].view.transform.localScale = Vector3.one * 4;
+            Assert.That(sensors.SignatureRadius(target.ship), Is.EqualTo(original), "Reading contacts must not rescan part meshes.");
+            target.ship.Recalculate();
+            Assert.That(sensors.SignatureRadius(target.ship), Is.EqualTo(original * 4).Within(.001f));
+        }
+
+        [Test] public void BothTeamsUseTheTargetsSizeAndDiscoveryDoesNotRequireFacing()
+        {
+            var small = Actor(0, Vector3.zero);
+            var large = Actor(1, Vector3.forward * 1800, 20);
+            small.body.rotation = Quaternion.Euler(0, 180, 0);
+            large.body.rotation = Quaternion.identity;
+            Physics.SyncTransforms();
+            sensors.Update(actors, .02f);
+            Assert.That(sensors.IsDetected(small.ship, large.ship), Is.True);
+            Assert.That(sensors.IsDetected(large.ship, small.ship), Is.False,
+                "Both teams inspect the target signature; a large observer gets no bonus for seeing a small ship.");
+
+            small.ship.Team = 1; large.ship.Team = 0;
+            sensors.Update(actors, .02f);
+            Assert.That(sensors.IsDetected(small.ship, large.ship), Is.True);
+            Assert.That(sensors.IsDetected(large.ship, small.ship), Is.False);
+            Move(large, Vector3.forward * 900);
+            sensors.Update(actors, .02f);
+            Assert.That(sensors.IsDetected(large.ship, small.ship), Is.True);
+        }
+
+        [Test] public void EntryExitBandAndContinuousLossDelayAreSharedAndDiscoveryEventsOnlyReportTransitions()
+        {
+            var first = Actor(0, Vector3.zero);
+            var second = Actor(1, Vector3.forward * 1001);
+            int discoveries = 0;
+            sensors.TargetDiscovered += (_, __) => discoveries++;
+            sensors.Update(actors, .02f);
+            Assert.That(sensors.IsDetected(first.ship, second.ship), Is.False);
+            Move(second, Vector3.forward * 1000);
+            sensors.Update(actors, .02f);
+            Assert.That(discoveries, Is.EqualTo(2));
+            Assert.That(sensors.GetDetectedTargets(first.ship), Does.Contain(second.ship));
+            Move(second, Vector3.forward * 1090);
+            sensors.Update(actors, 2);
+            Assert.That(sensors.IsDetected(first.ship, second.ship), Is.True);
+            Move(second, Vector3.forward * 1110);
+            sensors.Update(actors, .49f);
+            Assert.That(sensors.IsDetected(first.ship, second.ship), Is.True);
+            Move(second, Vector3.forward * 1090);
+            sensors.Update(actors, .02f);
+            Move(second, Vector3.forward * 1110);
+            sensors.Update(actors, .49f);
+            Assert.That(sensors.IsDetected(first.ship, second.ship), Is.True, "Returning to the band resets the loss timer.");
+            sensors.Update(actors, .02f);
+            Assert.That(sensors.IsDetected(first.ship, second.ship), Is.False);
+            Assert.That(sensors.IsDetected(second.ship, first.ship), Is.False);
+            Assert.That(discoveries, Is.EqualTo(2));
+            Move(second, Vector3.forward * 1050);
+            sensors.Update(actors, .02f);
+            Assert.That(sensors.IsDetected(first.ship, second.ship), Is.False, "Lost contacts must re-enter the entry radius.");
+            Move(second, Vector3.forward * 990);
+            sensors.Update(actors, .02f);
+            Assert.That(discoveries, Is.EqualTo(4));
+        }
+
+        [Test] public void EnemyLockNeedsDiscoveryFacingAndContinuousAcquisitionThenSurvivesLookingAway()
+        {
+            var observer = Actor(1, Vector3.zero);
+            var target = Actor(0, Vector3.forward * 900);
+            Assert.That(sensors.UpdateEnemyLock(observer.ship, target.ship, true, 1), Is.False,
+                "A caller reporting aim alignment cannot invent an undiscovered lock.");
+            sensors.Update(actors, .02f);
+            observer.body.rotation = Quaternion.Euler(0, 180, 0);
+            Assert.That(sensors.UpdateEnemyLock(observer.ship, target.ship, true, 1), Is.False);
+            observer.body.rotation = Quaternion.identity;
+            Assert.That(sensors.UpdateEnemyLock(observer.ship, target.ship, true, .2f), Is.False);
+            Assert.That(sensors.UpdateEnemyLock(observer.ship, target.ship, false, .02f), Is.False);
+            Assert.That(sensors.UpdateEnemyLock(observer.ship, target.ship, true, .2f), Is.False);
+            Assert.That(sensors.CountLocksOn(target.ship), Is.Zero);
+            Assert.That(sensors.UpdateEnemyLock(observer.ship, target.ship, true, .1f), Is.True);
+            Assert.That(sensors.CountLocksOn(target.ship), Is.EqualTo(1));
+            Assert.That(sensors.EnemyLocks[0].Observer, Is.SameAs(observer.ship));
+            observer.body.rotation = Quaternion.Euler(0, 180, 0);
+            Assert.That(sensors.UpdateEnemyLock(observer.ship, target.ship, false, .02f), Is.True);
+            Move(target, Vector3.forward * 1110);
+            sensors.Update(actors, .49f);
+            Assert.That(sensors.CountLocksOn(target.ship), Is.EqualTo(1));
+            sensors.Update(actors, .02f);
+            Assert.That(sensors.CountLocksOn(target.ship), Is.Zero);
+        }
+
+        [Test] public void DeathRespawnAndExplicitCancellationCannotInheritEnemyLocks()
+        {
+            var observer = Actor(1, Vector3.zero);
+            var target = Actor(0, Vector3.forward * 900);
+            sensors.Update(actors, .02f);
+            Assert.That(sensors.UpdateEnemyLock(observer.ship, target.ship, true, .3f), Is.True);
+            sensors.ClearEnemyLock(observer.ship);
+            Assert.That(sensors.CountLocksOn(target.ship), Is.Zero);
+            Assert.That(sensors.UpdateEnemyLock(observer.ship, target.ship, true, .3f), Is.True);
+            target.ship.SetPartPresent("core", false);
+            Assert.That(sensors.IsEnemyLocked(observer.ship, target.ship), Is.False);
+            Assert.That(sensors.CountLocksOn(target.ship), Is.Zero);
+            target.ship.Respawn();
+            sensors.Update(actors, .02f);
+            Assert.That(sensors.CountLocksOn(target.ship), Is.Zero);
+            Assert.That(sensors.UpdateEnemyLock(observer.ship, target.ship, true, .2f), Is.False);
+            Assert.That(sensors.UpdateEnemyLock(observer.ship, target.ship, true, .1f), Is.True);
+            observer.ship.Respawn();
+            Assert.That(sensors.CountLocksOn(target.ship), Is.Zero);
+            sensors.Update(actors, .02f);
+            Assert.That(sensors.CountLocksOn(target.ship), Is.Zero);
+        }
+
+        [Test] public void SelectionUsesVisibleMarkerNearestTheVirtualCursorInsteadOfFirstOrMostForwardShip()
+        {
+            var centered = Actor(1, Vector3.forward * 100);
+            var nearCursor = Actor(1, new Vector3(8, 0, 100));
+            var hidden = Actor(1, Vector3.back * 100);
+            var camera = Own(new GameObject("Sensor selection test camera")).AddComponent<Camera>();
+            camera.pixelRect = new Rect(0, 0, 1920, 1080);
+            camera.fieldOfView = 60;
+            camera.transform.position = Vector3.up * .5f;
+            var corePosition = nearCursor.ship.CorePosition;
+            var screen = camera.WorldToScreenPoint(corePosition);
+            Assert.That(nearCursor.ship.IsAlive, Is.True);
+            Assert.That(Vector3.Distance(corePosition, nearCursor.ship.CorePhysicsPosition), Is.LessThan(.001f),
+                "The EditMode fixture must explicitly synchronize its rendered and physical poses before screen selection.");
+            Assert.That(screen.z, Is.GreaterThan(0));
+            Assert.That(camera.pixelRect.Contains((Vector2)screen), Is.True);
+            Vector2 cursor = screen;
+            var candidates = new[] { centered.ship, hidden.ship, nearCursor.ship };
+            Assert.That(TargetLockSystem.SelectNearestVisibleTarget(candidates, camera, cursor, 80), Is.SameAs(nearCursor.ship));
+            Assert.That(TargetLockSystem.SelectNearestVisibleTarget(candidates, camera, new Vector2(200, 200), 10), Is.Null);
+            Move(nearCursor, new Vector3(1000, 0, 100));
+            cursor = camera.WorldToScreenPoint(nearCursor.ship.CorePosition);
+            Assert.That(TargetLockSystem.SelectNearestVisibleTarget(new[] { nearCursor.ship, hidden.ship }, camera, cursor, 10000), Is.Null,
+                "Being closest to a virtual cursor cannot acquire a marker outside the view or behind the camera.");
+        }
+
+        RangeCombatWorld.Actor Actor(int team, Vector3 position, int armLength = 0)
+        {
+            var blueprint = new BlueprintData { name = "sensor test" };
+            blueprint.parts.Add(new BlockRecord { id = "core", shape = BlockShape.Core, position = Vector3.up * .5f, rotation = Quaternion.identity });
+            for (int x = 1; x <= armLength; x++) blueprint.parts.Add(new BlockRecord
+            { id = "arm-" + x, shape = BlockShape.Cube, position = new Vector3(x, .5f, 0), rotation = Quaternion.identity });
+            var root = Own(new GameObject("Sensor test ship"));
+            var body = root.AddComponent<Rigidbody>(); body.isKinematic = true; body.useGravity = false;
+            var child = new GameObject("Assembly"); child.transform.SetParent(root.transform, false);
+            var assembly = child.AddComponent<ShipAssembly>(); assembly.Configure(database); assembly.Import(blueprint);
+            var runtime = root.AddComponent<FlightShipRuntime>(); runtime.Initialize(assembly, blueprint, flight, battle); runtime.Team = team;
+            var actor = new RangeCombatWorld.Actor { ship = runtime, body = body };
+            actors.Add(actor); Move(actor, position); return actor;
+        }
+
+        static void Move(RangeCombatWorld.Actor actor, Vector3 position)
+        {
+            // EditMode has no physics tick to copy Rigidbody.position back to the rendered Transform.
+            actor.ship.transform.position = position;
+            actor.body.position = position;
+            Physics.SyncTransforms();
+        }
+        T Own<T>(T item) where T : Object { owned.Add(item); return item; }
+    }
+}

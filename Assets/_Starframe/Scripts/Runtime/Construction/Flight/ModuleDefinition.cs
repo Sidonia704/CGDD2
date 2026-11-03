@@ -1,9 +1,10 @@
-// @role Define per-part mass, durability, thrust, power and shield properties.
+// @role Define per-part mass, durability, thrust, weapons, countermeasures, power and shields.
+// @calls WeaponDefinition, FlareDefinition
 // @tune cost:float:0+:Deployment cost; implicit field default is zero.
 // @tune massKg:float:0+:Part mass in kilograms.
 // @tune maxHp:float:0.01+:Independent part durability.
-// @tune recoverySeconds:float:0.01+:Time needed to reconstruct a missing part.
-// @tune thrustNewtons:float:0+:Nominal thrust for a propulsion part.
+// @tune recoverySeconds:float:0.01+:Time to reconstruct a missing part or heal a full part after the shared quiet delay.
+// @tune thrustNewtons:float:0+:Rated force per nozzle; multi-direction modules contribute only one nozzle rating to shared manoeuvre assistance.
 // @tune generationWatts:float:0+:Continuous shared power generation.
 // @tune storageJoules:float:0+:Shared stored energy capacity.
 // @tune thrusterPowerWatts:float:0+:Power request associated with propulsion.
@@ -25,9 +26,13 @@ namespace Starframe.Flight
         public string displayName;
         public ModuleCategory category;
         [Min(0)]public float cost,massKg=300;
-        [Min(.01f)]public float maxHp=60,recoverySeconds=3;
+        [Min(.01f)]public float maxHp=60,recoverySeconds=6;
         [Min(0)]public float thrustNewtons;
         public Vector3Int[] occupiedCells={Vector3Int.zero};
+        [Tooltip("Local exhaust directions, one per independently controlled nozzle. Empty preserves the legacy single +Y nozzle.")]
+        public Vector3[] localExhaustDirections=System.Array.Empty<Vector3>();
+        [Tooltip("Nozzle mouth centres in the module's local space, matching localExhaustDirections. Empty uses the mesh boundary.")]
+        public Vector3[] localNozzlePositions=System.Array.Empty<Vector3>();
         public Vector3 muzzleLocalPosition=new Vector3(0,.27f,1.52f);
         [Tooltip("Physical muzzle clearance diameter in blocks, independent of the projectile's damage hit volume.")]
         [Min(.01f)]public float muzzleClearanceDiameter=.25f;
@@ -36,12 +41,13 @@ namespace Starframe.Flight
         public Material material;
         public Sprite icon,selectedIcon;
         public WeaponDefinition weapon;
+        public FlareDefinition countermeasure;
         [Header("Shared power bus (energy / second)")]
         [Min(0)]public float generationWatts,storageJoules,thrusterPowerWatts,shieldPowerWatts;
         [Header("Shield generator (per surviving component)")]
         [Min(0)]public float shieldCapacity;
         [Min(.1f)]public float shieldRadius=8;
-        [Min(0)]public float shieldRecoveryDelay=2,shieldRecoveryPerSecond=50;
+        [Min(0)]public float shieldRecoveryDelay=6,shieldRecoveryPerSecond=50;
         public Material shieldSurfaceMaterial;
         [Tooltip("Visual sphere centred at the origin with diameter 1. Does not affect shield collision/radius.")]
         public Mesh shieldSurfaceMesh;

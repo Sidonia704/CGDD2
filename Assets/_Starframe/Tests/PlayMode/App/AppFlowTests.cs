@@ -37,7 +37,7 @@ namespace Starframe.Tests
             originalSettingsReturn=AppNavigation.SettingsReturnToEditor;originalGroupsReturn=AppNavigation.WeaponGroupsReturnToEditor;
             originalEditorResume=AppNavigation.EditorResumePage;
             originalTimeScale=Time.timeScale;originalCursorLock=Cursor.lockState;originalCursorVisible=Cursor.visible;
-            originalSettings=GameSettings.Current.Clone();yield return L10n.EnsureReady();
+            originalSettings=GameSettings.Current.Clone();DestroyLoadingOverlays();yield return null;yield return L10n.EnsureReady();
             originalLocale=LocalizationSettings.SelectedLocale?.Identifier.Code;
             storageRoot=Path.GetFullPath(Path.Combine(Application.temporaryCachePath,"StarframeAppFlowTests",Guid.NewGuid().ToString("N")));
             Directory.CreateDirectory(storageRoot);storageScope=ShipWorkspace.UseStorageRoot(storageRoot);
@@ -47,8 +47,10 @@ namespace Starframe.Tests
             Time.timeScale=1;MissionSession.Clear();
             seed=BlueprintRepository.Upgrade(new BlueprintData{name="App integration ship",parts=new List<BlockRecord>{
                 new BlockRecord{id="integration-core",shape=BlockShape.Core,position=new Vector3(0,.5f,0)},
-                new BlockRecord{id="port-gun",shape=BlockShape.Laser,position=new Vector3(-1,.5f,0)},
-                new BlockRecord{id="starboard-gun",shape=BlockShape.Laser,position=new Vector3(1,.5f,0)}
+                new BlockRecord{id="port-mount",shape=BlockShape.Cube,position=new Vector3(-1,.5f,0)},
+                new BlockRecord{id="starboard-mount",shape=BlockShape.Cube,position=new Vector3(1,.5f,0)},
+                new BlockRecord{id="port-gun",shape=BlockShape.Laser,position=new Vector3(-1,1.5f,0)},
+                new BlockRecord{id="starboard-gun",shape=BlockShape.Laser,position=new Vector3(1,1.5f,0)}
             }});
             ShipWorkspace.Set(seed,true);
         }
@@ -56,8 +58,9 @@ namespace Starframe.Tests
         [UnityTearDown]public IEnumerator TearDown()
         {
             // Destroy app/editor callbacks while the isolated storage scope is still active.
+            DestroyLoadingOverlays();
             var loaded=SceneManager.GetActiveScene();var cleanup=SceneManager.CreateScene("AppFlowCleanup_"+Guid.NewGuid().ToString("N"));SceneManager.SetActiveScene(cleanup);
-            if(loaded.IsValid()&&loaded.isLoaded)yield return SceneManager.UnloadSceneAsync(loaded);
+            if(loaded.IsValid()&&loaded.isLoaded&&!string.IsNullOrEmpty(loaded.path))yield return SceneManager.UnloadSceneAsync(loaded);
             yield return null;
             foreach(var value in owned)if(value)UnityEngine.Object.Destroy(value);owned.Clear();
             MissionSession.Clear();FlightSession.Restored();
@@ -85,6 +88,12 @@ namespace Starframe.Tests
             Assert.That(Application.CanStreamedLevelBeLoaded(AppNavigation.HomeScene),Is.True,"Run the native app installer so Hangar is in Build Settings.");
             yield return SceneManager.LoadSceneAsync(AppNavigation.HomeScene);
             yield return Await(()=>{app=UnityEngine.Object.FindFirstObjectByType<GameAppBootstrap>();return app&&app.IsReady&&app.Surface&&app.Surface.Root&&app.Preview&&app.Preview.Assembly;},"Hangar did not become ready.");
+        }
+        static void DestroyLoadingOverlays()
+        {
+            foreach(var loading in UnityEngine.Object.FindObjectsByType<RangeLoadingOverlay>(FindObjectsInactive.Include,FindObjectsSortMode.None)){
+                loading.StopAllCoroutines();loading.gameObject.SetActive(false);UnityEngine.Object.Destroy(loading.gameObject);
+            }
         }
         static IEnumerator Await(Func<bool> condition,string message,float seconds=25)
         {
@@ -177,6 +186,7 @@ namespace Starframe.Tests
             yield return Boot();var target=ShipWorkspace.Clone(seed);target.name="Selected integration target";
             string file=Path.GetFileName(ShipWorkspace.Repository.Save(target));var roster=new RangeTargetRoster(ShipWorkspace.BlueprintDirectory);roster.SetCount(file,2);
             app.ShowRangeSetup();Assert.That(Label(app,"TotalTargets").text,Is.EqualTo(L10n.T("app.targetTotal",2)));app.EnterRange();
+            AssertRangeWarningIsVisibleBeforeLaunch();Click(app,"ConfirmationAccept");
             RangeCombatWorld world=null;
             yield return Await(()=>{world=UnityEngine.Object.FindFirstObjectByType<RangeCombatWorld>();return world&&world.Player!=null&&world.Targeting;},"Range did not initialize the selected drill.");
             Assert.That(world.Bots.Count,Is.EqualTo(2),"The launched drill must use the roster shown in setup, including the isolated blueprint directory.");
@@ -188,32 +198,106 @@ namespace Starframe.Tests
             yield return Boot();var vessel=ShipWorkspace.Ship;
             for(int i=1;i<4;i++)WeaponGroups.AddGroup(vessel,null,WeaponInputBinding.MouseLeft());
             WeaponGroups.Assign(vessel,"starboard-gun",3);ShipWorkspace.Set(vessel,true);app.ShowRangeSetup();app.EnterRange();
+            AssertRangeWarningIsVisibleBeforeLaunch();Click(app,"ConfirmationAccept");
             RangeCombatWorld world=null;RangeHUD hud=null;
-            yield return Await(()=>{world=UnityEngine.Object.FindFirstObjectByType<RangeCombatWorld>();hud=UnityEngine.Object.FindFirstObjectByType<RangeHUD>();return world&&world.Player!=null&&world.Targeting&&hud&&hud.RootCanvas;},"Grouped range did not initialize.");
+            yield return Await(()=>{world=UnityEngine.Object.FindFirstObjectByType<RangeCombatWorld>();hud=UnityEngine.Object.FindFirstObjectByType<RangeHUD>();return world&&world.Player!=null&&world.Targeting&&hud&&hud.RootCanvas;},"Grouped range did not initialize.",90);
+            // World creation precedes the loading overlay's closing frame and restored input.
+            // Inject player key edges only after the same readiness gate used by live flight.
+            yield return Await(()=>!RangeLoadingOverlay.IsLoading&&!GameInput.Suspended,"Grouped range did not finish presenting and restore player input.",90);
+            yield return null;
             world.enabled=false;var weapons=world.Player.weapons;var blueprint=world.Player.ship.BlueprintSnapshot;
             var panel=hud.RootCanvas.transform.Find("WeaponGroupHudGlass").GetComponent<UnityEngine.UI.RawImage>();
-            Assert.That(panel.texture,Is.SameAs(hud.WorldCamera.targetTexture),"Late-created panels must use the live frosted-glass background.");
+            Assert.That(panel.color.a,Is.Zero,"Weapon groups float over the scene without a background frame.");
+            Assert.That(panel.raycastTarget,Is.False);
+            var monitor=hud.RootCanvas.transform.Find("OwnStatusGlass").GetComponent<UnityEngine.UI.RawImage>();
+            Assert.That(monitor.texture,Is.SameAs(hud.WorldCamera.targetTexture),"The retained attitude glass must still sample the live scene.");
             Assert.That(weapons.Groups.All(group=>weapons.IsGroupEnabled(group.id)),Is.True);
-            var keyboard=InputSystem.AddDevice<Keyboard>();
+            var testSettings=GameSettings.Current.Clone();
+            testSettings.bindings=testSettings.bindings.Where(binding=>binding.action!=GameAction.WeaponCadence).Concat(new[]{new GameBinding(GameAction.WeaponCadence,"<Keyboard>/v")}).ToArray();
+            GameSettings.SetCurrent(testSettings);
+            var previousInputMode=InputSystem.settings.updateMode;var previousBackground=InputSystem.settings.backgroundBehavior;
+#if UNITY_EDITOR
+            var previousEditorInput=InputSystem.settings.editorInputBehaviorInPlayMode;InputSystem.settings.editorInputBehaviorInPlayMode=InputSettings.EditorInputBehaviorInPlayMode.AllDeviceInputAlwaysGoesToGameView;
+#endif
+            InputSystem.settings.backgroundBehavior=InputSettings.BackgroundBehavior.IgnoreFocus;
+            InputSystem.settings.updateMode=InputSettings.UpdateMode.ProcessEventsInDynamicUpdate;
+            var keyboard=InputSystem.AddDevice<Keyboard>();keyboard.MakeCurrent();
             try{
-                InputSystem.QueueStateEvent(keyboard,new KeyboardState(Key.Digit3,Key.Digit4));InputSystem.Update();
+                // ButtonControl initializes frame-edge tracking lazily. Prime it while released,
+                // then process presses through Dynamic updates rather than whichever Editor or
+                // Fixed update most recently ran in this coroutine's host frame.
+                InputSystem.QueueStateEvent(keyboard,new KeyboardState());DynamicInputUpdate();
+                _=keyboard.digit3Key.wasPressedThisFrame;_=keyboard.digit4Key.wasPressedThisFrame;_=keyboard.vKey.wasPressedThisFrame;
+                // Prime the lazy controls in the same explicit player update type used below.
+                InputSystem.QueueStateEvent(keyboard,new KeyboardState());DynamicInputUpdate();
+                yield return null;keyboard.MakeCurrent();
+                InputSystem.QueueStateEvent(keyboard,new KeyboardState(Key.Digit3,Key.Digit4,Key.V));DynamicInputUpdate();
+                Assert.That(Keyboard.current,Is.SameAs(keyboard),"The fixture must route the keyboard it actually injected.");
+                Assert.That(keyboard.digit3Key.isPressed&&keyboard.digit4Key.isPressed,Is.True,"Both synthetic key states must be pressed before routing. enabled="+keyboard.enabled+" focus="+Application.isFocused+" update="+InputState.currentUpdateType);
+                Assert.That(keyboard.digit3Key.wasPressedThisFrame&&keyboard.digit4Key.wasPressedThisFrame,Is.True,"Both toggles require genuine new Dynamic press edges.");
+                Assert.That(keyboard.vKey.wasPressedThisFrame,Is.True,"V must also carry a real player-frame edge.");
                 WeaponGroupInputRouter.Apply(weapons,blueprint,false,true);
+                Assert.That(weapons.AlternatingDirectFire,Is.True,"The live V binding switches ballistic cadence.");
                 Assert.That(weapons.IsGroupEnabled(0)&&weapons.IsGroupEnabled(1),Is.True);
                 Assert.That(weapons.IsGroupEnabled(2)||weapons.IsGroupEnabled(3),Is.False);
                 yield return null;
+                InputSystem.QueueStateEvent(keyboard,new KeyboardState(Key.Digit3,Key.Digit4,Key.V));DynamicInputUpdate();
+                Assert.That(keyboard.digit3Key.wasPressedThisFrame||keyboard.digit4Key.wasPressedThisFrame,Is.False,"A held state must not create another press edge.");
                 WeaponGroupInputRouter.Apply(weapons,blueprint,false,true);
                 Assert.That(weapons.IsGroupEnabled(2)||weapons.IsGroupEnabled(3),Is.False,"Holding a digit cannot repeatedly toggle.");
+                Assert.That(weapons.AlternatingDirectFire,Is.True,"Holding V cannot repeatedly switch cadence.");
                 yield return new WaitForSecondsRealtime(.16f);
                 var label=hud.RootCanvas.transform.Find("WeaponGroupHudLabel_3").GetComponent<TMP_Text>();
                 Assert.That(label.text,Does.Contain(L10n.T("hud.weaponGroupOff")));
-                InputSystem.QueueStateEvent(keyboard,new KeyboardState());InputSystem.Update();
-                InputSystem.QueueStateEvent(keyboard,new KeyboardState(Key.Digit3));InputSystem.Update();
+                InputSystem.QueueStateEvent(keyboard,new KeyboardState());DynamicInputUpdate();
+                InputSystem.QueueStateEvent(keyboard,new KeyboardState(Key.Digit3,Key.V));DynamicInputUpdate();
                 WeaponGroupInputRouter.Apply(weapons,blueprint,false,false);Assert.That(weapons.IsGroupEnabled(2),Is.False,"Menus ignore number toggles.");
-                InputSystem.QueueStateEvent(keyboard,new KeyboardState());InputSystem.Update();
-                InputSystem.QueueStateEvent(keyboard,new KeyboardState(Key.Digit3));InputSystem.Update();
+                Assert.That(weapons.AlternatingDirectFire,Is.True,"Menus ignore cadence toggles too.");
+                InputSystem.QueueStateEvent(keyboard,new KeyboardState());DynamicInputUpdate();
+                InputSystem.QueueStateEvent(keyboard,new KeyboardState(Key.Digit3,Key.V));DynamicInputUpdate();
+                Assert.That(keyboard.digit3Key.wasPressedThisFrame,Is.True,"Re-enabling uses a distinct release/press cycle.");
                 WeaponGroupInputRouter.Apply(weapons,blueprint,false,true);
                 Assert.That(weapons.IsGroupEnabled(2),Is.True);Assert.That(weapons.IsGroupEnabled(3),Is.False);
-            }finally{InputSystem.RemoveDevice(keyboard);if(world)world.enabled=true;}
+                Assert.That(weapons.AlternatingDirectFire,Is.False,"A distinct second V press restores salvo mode.");
+            }finally{InputSystem.RemoveDevice(keyboard);InputSystem.settings.updateMode=previousInputMode;InputSystem.settings.backgroundBehavior=previousBackground;
+#if UNITY_EDITOR
+                InputSystem.settings.editorInputBehaviorInPlayMode=previousEditorInput;
+#endif
+                if(world)world.enabled=true;}
+        }
+
+        static void DynamicInputUpdate()
+        {
+            // The package exposes the explicit update overload internally; the public
+            // parameterless call inherits Editor/Fixed context during coroutine tests.
+            var update=typeof(InputSystem).GetMethod("Update",System.Reflection.BindingFlags.Static|System.Reflection.BindingFlags.NonPublic,null,new[]{typeof(InputUpdateType)},null);
+            Assert.That(update,Is.Not.Null);update.Invoke(null,new object[]{InputUpdateType.Dynamic});
+        }
+
+        void AssertRangeWarningIsVisibleBeforeLaunch()
+        {
+            Assert.That(app.CurrentPage,Is.EqualTo(AppPage.RangeSetup));
+            Assert.That(SceneManager.GetActiveScene().name,Is.Not.EqualTo(FlightSession.RangeScene),"A readiness warning must wait for the student's decision.");
+            Assert.That(UnityEngine.Object.FindFirstObjectByType<RangeCombatWorld>(),Is.Null);
+            Assert.That(Label(app,"ConfirmationTitle"),Is.Not.Null);
+            Assert.That(Label(app,"ConfirmationTitle").text,Is.EqualTo(L10n.T("app.rangeWarnings")));
+            Assert.That(Label(app,"ConfirmationBody").text,Does.Contain(L10n.T("deploy.warning.noPower")),"The unpowered fixture must explain why boost and weapons will be unavailable.");
+            Assert.That(Label(app,"ConfirmationAcceptLabel").text,Is.EqualTo(L10n.T("app.continueRange")));
+            Assert.That(Label(app,"ConfirmationCancelLabel").text,Is.EqualTo(L10n.T("app.editShip")));
+            Assert.That(GameInput.Suspended,Is.True);
+        }
+
+        [UnityTest]public IEnumerator RangeReadinessWarningCanReturnToAssemblyWithoutLaunching()
+        {
+            yield return Boot();app.ShowRangeSetup();string before=JsonUtility.ToJson(ShipWorkspace.Ship);
+            app.EnterRange();AssertRangeWarningIsVisibleBeforeLaunch();Click(app,"ConfirmationCancel");
+            ShipEditorController editor=null;
+            yield return Await(()=>{editor=UnityEngine.Object.FindFirstObjectByType<ShipEditorController>();return editor&&editor.Assembly&&editor.Assembly.Count==seed.parts.Count;},"The warning's edit action did not return to assembly.");
+            Assert.That(SceneManager.GetActiveScene().name,Is.Not.EqualTo(FlightSession.RangeScene));
+            Assert.That(UnityEngine.Object.FindFirstObjectByType<RangeCombatWorld>(),Is.Null);
+            Assert.That(AppNavigation.ReturnPage,Is.EqualTo(AppPage.RangeSetup));
+            Assert.That(JsonUtility.ToJson(ShipWorkspace.Ship),Is.EqualTo(before),"Returning to fix power must preserve the draft.");
+            Assert.That(editor.Dirty,Is.True);
         }
 
         [UnityTest]public IEnumerator HomeEditorAndReturnPreserveUnsavedGeometryAndWeaponAssignments()
@@ -233,7 +317,12 @@ namespace Starframe.Tests
         }
         [UnityTest]public IEnumerator CompletedOperationReportKeepsTheBlueprintAndPreparesThroughValidationAgain()
         {
-            yield return Boot();string original=JsonUtility.ToJson(ShipWorkspace.Ship);app.SelectMission(app.catalog.missions[0].id);Assert.That(app.ConfirmLaunch(),Is.True);
+            yield return Boot();string original=JsonUtility.ToJson(ShipWorkspace.Ship);
+            // This case owns reporting and deployment UI, not an asynchronous gameplay scene.
+            // Keep a real confirmed request while isolating it from the installed mission's live scene.
+            var mission=Own(UnityEngine.Object.Instantiate(app.catalog.missions[0]));mission.sceneName="";
+            var catalog=Own(ScriptableObject.CreateInstance<MissionCatalog>());catalog.missions=new List<MissionDefinition>{mission};app.catalog=catalog;
+            app.SelectMission(mission.id);Assert.That(app.ConfirmLaunch(),Is.True);
             Assert.That(MissionResults.Finish(MissionOutcome.Victory,new MissionRunSummary{durationSeconds=123,enemiesDestroyed=5,damageDealt=900,damageTaken=300,survivingParts=1}),Is.True);
             app.ShowPage(AppPage.Results);yield return null;Assert.That(app.CurrentPage,Is.EqualTo(AppPage.Results));
             Assert.That(Label(app,"DurationValue").text,Is.EqualTo("02:03"));Assert.That(Label(app,"KillsValue").text,Is.EqualTo("5"));

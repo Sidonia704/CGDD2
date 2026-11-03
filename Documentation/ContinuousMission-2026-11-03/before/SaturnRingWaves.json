@@ -1,0 +1,408 @@
+{
+    "MonoBehaviour": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "SaturnRingWaves",
+        "m_EditorClassIdentifier": "Starframe.Construction::Starframe.Combat.ArcadeMissionDefinition",
+        "id": "saturn-ring",
+        "deployment": {
+            "fileID": 11400000,
+            "guid": "fcf15949678c8d243a1909ee0eea9d08",
+            "type": 2
+        },
+        "defaultPlayerBlueprint": {
+            "fileID": 4900000,
+            "guid": "55829dc67afb397409a135ec22b834fc",
+            "type": 3
+        },
+        "waves": [
+            {
+                "nameZh": "第一波 · 接触",
+                "nameEn": "WAVE 1 · FIRST CONTACT",
+                "batches": [
+                    {
+                        "enemy": {
+                            "fileID": 11400000,
+                            "guid": "17d9525da0c0d564cbbd7d6e4b09c59e",
+                            "type": 2
+                        },
+                        "count": 3,
+                        "delaySeconds": 0.0
+                    },
+                    {
+                        "enemy": {
+                            "fileID": 11400000,
+                            "guid": "d0513eb631966b0469d046c82720bc0c",
+                            "type": 2
+                        },
+                        "count": 1,
+                        "delaySeconds": 8.0
+                    },
+                    {
+                        "enemy": {
+                            "fileID": 11400000,
+                            "guid": "17d9525da0c0d564cbbd7d6e4b09c59e",
+                            "type": 2
+                        },
+                        "count": 2,
+                        "delaySeconds": 20.0
+                    },
+                    {
+                        "enemy": {
+                            "fileID": 11400000,
+                            "guid": "d0513eb631966b0469d046c82720bc0c",
+                            "type": 2
+                        },
+                        "count": 1,
+                        "delaySeconds": 30.0
+                    }
+                ],
+                "spawnInterval": 5.0
+            },
+            {
+                "nameZh": "第二波 · 拦截",
+                "nameEn": "WAVE 2 · INTERCEPTION",
+                "batches": [
+                    {
+                        "enemy": {
+                            "fileID": 11400000,
+                            "guid": "17d9525da0c0d564cbbd7d6e4b09c59e",
+                            "type": 2
+                        },
+                        "count": 2,
+                        "delaySeconds": 0.0
+                    },
+                    {
+                        "enemy": {
+                            "fileID": 11400000,
+                            "guid": "cf86914e43aa932479b93dacaf8dbf5d",
+                            "type": 2
+                        },
+                        "count": 1,
+                        "delaySeconds": 10.0
+                    },
+                    {
+                        "enemy": {
+                            "fileID": 11400000,
+                            "guid": "d0513eb631966b0469d046c82720bc0c",
+                            "type": 2
+                        },
+                        "count": 2,
+                        "delaySeconds": 20.0
+                    },
+                    {
+                        "enemy": {
+                            "fileID": 11400000,
+                            "guid": "743a92afd4a1b354ba0b65261af2b240",
+                            "type": 2
+                        },
+                        "count": 1,
+                        "delaySeconds": 30.0
+                    },
+                    {
+                        "enemy": {
+                            "fileID": 11400000,
+                            "guid": "17d9525da0c0d564cbbd7d6e4b09c59e",
+                            "type": 2
+                        },
+                        "count": 2,
+                        "delaySeconds": 40.0
+                    },
+                    {
+                        "enemy": {
+                            "fileID": 11400000,
+                            "guid": "cf86914e43aa932479b93dacaf8dbf5d",
+                            "type": 2
+                        },
+                        "count": 1,
+                        "delaySeconds": 48.0
+                    },
+                    {
+                        "enemy": {
+                            "fileID": 11400000,
+                            "guid": "d0513eb631966b0469d046c82720bc0c",
+                            "type": 2
+                        },
+                        "count": 1,
+                        "delaySeconds": 55.0
+                    }
+                ],
+                "spawnInterval": 5.0
+            },
+            {
+                "nameZh": "第三波 · 交叉火力",
+                "nameEn": "WAVE 3 · CROSSFIRE",
+                "batches": [
+                    {
+                        "enemy": {
+                            "fileID": 11400000,
+                            "guid": "17d9525da0c0d564cbbd7d6e4b09c59e",
+                            "type": 2
+                        },
+                        "count": 2,
+                        "delaySeconds": 0.0
+                    },
+                    {
+                        "enemy": {
+                            "fileID": 11400000,
+                            "guid": "d0513eb631966b0469d046c82720bc0c",
+                            "type": 2
+                        },
+                        "count": 1,
+                        "delaySeconds": 8.0
+                    },
+                    {
+                        "enemy": {
+                            "fileID": 11400000,
+                            "guid": "743a92afd4a1b354ba0b65261af2b240",
+                            "type": 2
+                        },
+                        "count": 1,
+                        "delaySeconds": 16.0
+                    },
+                    {
+                        "enemy": {
+                            "fileID": 11400000,
+                            "guid": "cf86914e43aa932479b93dacaf8dbf5d",
+                            "type": 2
+                        },
+                        "count": 1,
+                        "delaySeconds": 24.0
+                    },
+                    {
+                        "enemy": {
+                            "fileID": 11400000,
+                            "guid": "d0513eb631966b0469d046c82720bc0c",
+                            "type": 2
+                        },
+                        "count": 2,
+                        "delaySeconds": 32.0
+                    },
+                    {
+                        "enemy": {
+                            "fileID": 11400000,
+                            "guid": "bda2922a4627e28448ca7eb236ef59a3",
+                            "type": 2
+                        },
+                        "count": 1,
+                        "delaySeconds": 42.0
+                    },
+                    {
+                        "enemy": {
+                            "fileID": 11400000,
+                            "guid": "17d9525da0c0d564cbbd7d6e4b09c59e",
+                            "type": 2
+                        },
+                        "count": 2,
+                        "delaySeconds": 52.0
+                    },
+                    {
+                        "enemy": {
+                            "fileID": 11400000,
+                            "guid": "cf86914e43aa932479b93dacaf8dbf5d",
+                            "type": 2
+                        },
+                        "count": 1,
+                        "delaySeconds": 62.0
+                    },
+                    {
+                        "enemy": {
+                            "fileID": 11400000,
+                            "guid": "743a92afd4a1b354ba0b65261af2b240",
+                            "type": 2
+                        },
+                        "count": 1,
+                        "delaySeconds": 70.0
+                    }
+                ],
+                "spawnInterval": 5.0
+            },
+            {
+                "nameZh": "第四波 · 重装编队",
+                "nameEn": "WAVE 4 · HEAVY FORMATION",
+                "batches": [
+                    {
+                        "enemy": {
+                            "fileID": 11400000,
+                            "guid": "17d9525da0c0d564cbbd7d6e4b09c59e",
+                            "type": 2
+                        },
+                        "count": 3,
+                        "delaySeconds": 0.0
+                    },
+                    {
+                        "enemy": {
+                            "fileID": 11400000,
+                            "guid": "cf86914e43aa932479b93dacaf8dbf5d",
+                            "type": 2
+                        },
+                        "count": 1,
+                        "delaySeconds": 12.0
+                    },
+                    {
+                        "enemy": {
+                            "fileID": 11400000,
+                            "guid": "d0513eb631966b0469d046c82720bc0c",
+                            "type": 2
+                        },
+                        "count": 2,
+                        "delaySeconds": 24.0
+                    },
+                    {
+                        "enemy": {
+                            "fileID": 11400000,
+                            "guid": "743a92afd4a1b354ba0b65261af2b240",
+                            "type": 2
+                        },
+                        "count": 1,
+                        "delaySeconds": 36.0
+                    },
+                    {
+                        "enemy": {
+                            "fileID": 11400000,
+                            "guid": "bda2922a4627e28448ca7eb236ef59a3",
+                            "type": 2
+                        },
+                        "count": 1,
+                        "delaySeconds": 48.0
+                    },
+                    {
+                        "enemy": {
+                            "fileID": 11400000,
+                            "guid": "cf86914e43aa932479b93dacaf8dbf5d",
+                            "type": 2
+                        },
+                        "count": 1,
+                        "delaySeconds": 60.0
+                    },
+                    {
+                        "enemy": {
+                            "fileID": 11400000,
+                            "guid": "bda2922a4627e28448ca7eb236ef59a3",
+                            "type": 2
+                        },
+                        "count": 1,
+                        "delaySeconds": 72.0
+                    },
+                    {
+                        "enemy": {
+                            "fileID": 11400000,
+                            "guid": "cb3a9377fcc154949add91de4e80aa80",
+                            "type": 2
+                        },
+                        "count": 1,
+                        "delaySeconds": 85.0
+                    }
+                ],
+                "spawnInterval": 6.0
+            },
+            {
+                "nameZh": "第五波 · 旗舰",
+                "nameEn": "WAVE 5 · THE FLAGSHIP",
+                "batches": [
+                    {
+                        "enemy": {
+                            "fileID": 11400000,
+                            "guid": "17d9525da0c0d564cbbd7d6e4b09c59e",
+                            "type": 2
+                        },
+                        "count": 3,
+                        "delaySeconds": 0.0
+                    },
+                    {
+                        "enemy": {
+                            "fileID": 11400000,
+                            "guid": "d0513eb631966b0469d046c82720bc0c",
+                            "type": 2
+                        },
+                        "count": 2,
+                        "delaySeconds": 13.0
+                    },
+                    {
+                        "enemy": {
+                            "fileID": 11400000,
+                            "guid": "743a92afd4a1b354ba0b65261af2b240",
+                            "type": 2
+                        },
+                        "count": 1,
+                        "delaySeconds": 26.0
+                    },
+                    {
+                        "enemy": {
+                            "fileID": 11400000,
+                            "guid": "cf86914e43aa932479b93dacaf8dbf5d",
+                            "type": 2
+                        },
+                        "count": 2,
+                        "delaySeconds": 39.0
+                    },
+                    {
+                        "enemy": {
+                            "fileID": 11400000,
+                            "guid": "bda2922a4627e28448ca7eb236ef59a3",
+                            "type": 2
+                        },
+                        "count": 1,
+                        "delaySeconds": 52.0
+                    },
+                    {
+                        "enemy": {
+                            "fileID": 11400000,
+                            "guid": "cb3a9377fcc154949add91de4e80aa80",
+                            "type": 2
+                        },
+                        "count": 1,
+                        "delaySeconds": 65.0
+                    },
+                    {
+                        "enemy": {
+                            "fileID": 11400000,
+                            "guid": "d0513eb631966b0469d046c82720bc0c",
+                            "type": 2
+                        },
+                        "count": 1,
+                        "delaySeconds": 78.0
+                    },
+                    {
+                        "enemy": {
+                            "fileID": 11400000,
+                            "guid": "cb3a9377fcc154949add91de4e80aa80",
+                            "type": 2
+                        },
+                        "count": 1,
+                        "delaySeconds": 91.0
+                    },
+                    {
+                        "enemy": {
+                            "fileID": 11400000,
+                            "guid": "3395df7867c60fa458fd152c5c09dcf0",
+                            "type": 2
+                        },
+                        "count": 1,
+                        "delaySeconds": 105.0
+                    }
+                ],
+                "spawnInterval": 6.0
+            }
+        ],
+        "maximumAlive": 10,
+        "maximumLarge": 3,
+        "maximumAttackers": 3,
+        "continuousStages": true,
+        "stageMinimumSeconds": 35.0,
+        "stageTargetSeconds": 135.0,
+        "stageOverlapEnemies": 3,
+        "combatAreaFraction": 0.6200000047683716,
+        "minimumArenaHalfExtent": 2200.0,
+        "introSeconds": 8.0,
+        "intermissionSeconds": 20.0,
+        "emptyFieldReinforcementSeconds": 3.0,
+        "attackRotationSeconds": 4.0,
+        "spawnDistance": 700.0,
+        "spawnDistanceVariation": 240.0,
+        "entryGraceSeconds": 2.0,
+        "comboSeconds": 18.0,
+        "maximumCombo": 3,
+        "resultDelaySeconds": 3.0
+    }
+}

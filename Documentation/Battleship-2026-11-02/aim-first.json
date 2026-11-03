@@ -1,0 +1,20 @@
+{
+  "status": "completed",
+  "duration": 0.8,
+  "summary": {
+    "total": 1,
+    "passed": 0,
+    "failed": 1,
+    "skipped": 0,
+    "inconclusive": 0
+  },
+  "results": [
+    {
+      "FullName": "Starframe.Tests.FlightAimStabilityTests.FineAimStaysSmoothAndPersistentThenSettlesWhenCentered",
+      "Status": "Failed",
+      "Duration": 0.7824025,
+      "Message": "SetUp : System.IO.InvalidDataException : 实体或推进器喷口净空被占用。",
+      "StackTrace": "--SetUp\r\n  at Starframe.Construction.BlueprintRepository.Validate (Starframe.Construction.BlueprintData data) [0x00207] in D:\\software\\unity\\CGDD26107\\Assets\\_Starframe\\Scripts\\Runtime\\Construction\\BlueprintRepository.cs:136 \r\n  at Starframe.Construction.BlueprintRepository.Upgrade (Starframe.Construction.BlueprintData data) [0x00000] in D:\\software\\unity\\CGDD26107\\Assets\\_Starframe\\Scripts\\Runtime\\Construction\\BlueprintRepository.cs:97 \r\n  at Starframe.Flight.FlightRangeBootstrap.DefaultShip () [0x00496] in D:\\software\\unity\\CGDD26107\\Assets\\_Starframe\\Scripts\\Runtime\\Construction\\Flight\\FlightRangeBootstrap.cs:81 \r\n  at Starframe.Tests.FlightAimStabilityTests+<SetUp>d__2.MoveNext () [0x00058] in D:\\software\\unity\\CGDD26107\\Assets\\_Starframe\\Tests\\PlayMode\\Combat\\FlightAimStabilityTests.cs:17 \r\n  at UnityEngine.TestTools.EnumeratorHelper+<ProgressOnEnumerator>d__5.MoveNext () [0x00017] in .\\Library\\PackageCache\\com.unity.test-framework@bd7f943e9647\\UnityEngine.TestRunner\\NUnitExtensions\\Attributes\\EnumeratorHelper.cs:35 \r\n  at UnityEngine.TestTools.BeforeAfterTestCommandBase`1+<ExecuteEnumerable>d__16[T].MoveNext () [0x00132] in .\\Library\\PackageCache\\com.unity.test-framework@bd7f943e9647\\UnityEngine.TestRunner\\NUnitExtensions\\Commands\\BeforeAfterTestCommandBase.cs:155 "
+    }
+  ]
+}

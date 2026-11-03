@@ -1,4 +1,4 @@
-// @role Maintain component-owned shield fields and power-dependent recovery.
+// @role Maintain component-owned shields; absorbed hits delay shields without interrupting protected hull repair.
 // @calls FlightShipRuntime
 
 using System;
@@ -60,8 +60,13 @@ namespace Starframe.Combat
             foreach(var f in fields)
             {
                 f.preparedRecovery=0;if(!f.Active||dt<=0)continue;
-                float activeDt=(float)Math.Min(dt,Math.Max(0,f.ship.CombatTime-f.lastHit-f.definition.shieldRecoveryDelay));
-                float rate=Mathf.Max(0,f.definition.shieldRecoveryPerSecond);
+                // Hits anywhere on the ship keep every field in combat, including an already depleted field.
+                double lastDamage=Math.Max(f.lastHit,f.ship.LastDamageTime);
+                var rules=f.ship.Battle;
+                float delayScale=f.ship.Team==0&&rules?Mathf.Max(0,rules.playerShieldDelayMultiplier):1;
+                float recoveryScale=f.ship.Team==0&&rules?Mathf.Max(0,rules.playerShieldRecoveryMultiplier):1;
+                float activeDt=(float)Math.Min(dt,Math.Max(0,f.ship.CombatTime-lastDamage-f.definition.shieldRecoveryDelay*delayScale));
+                float rate=Mathf.Max(0,f.definition.shieldRecoveryPerSecond)*recoveryScale;
                 f.preparedRecovery=Mathf.Min(Mathf.Max(0,f.definition.shieldCapacity-f.charge),rate*activeDt);
                 if(rate>0)demand+=Mathf.Max(0,f.definition.shieldPowerWatts)*f.preparedRecovery/(rate*dt);
             }
@@ -73,7 +78,7 @@ namespace Starframe.Combat
         }
         public float Absorb(Field field,float damage,Vector3 point)
         {
-            if(!field.Active||damage<=0||field.charge<=0)return 0;
+            if(field==null||!field.Active||damage<=0||float.IsNaN(damage)||float.IsInfinity(damage)||field.charge<=0)return 0;
             float absorbed=Mathf.Min(damage,field.charge);field.charge-=absorbed;
             field.lastHit=field.ship.CombatTime;field.lastHitPosition=point;
             return absorbed;

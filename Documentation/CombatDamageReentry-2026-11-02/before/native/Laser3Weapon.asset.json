@@ -1,0 +1,68 @@
+{
+    "MonoBehaviour": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "Laser3Weapon",
+        "m_EditorClassIdentifier": "Starframe.Construction::Starframe.Flight.WeaponDefinition",
+        "shotsPerSecond": 10.0,
+        "damage": 38.0,
+        "projectileSpeed": 2200.0,
+        "projectileDiameter": 1.0,
+        "firstShotImmediate": false,
+        "penetrationDepth": 1.0,
+        "secondLayerDamageMultiplier": 0.3499999940395355,
+        "range": 3600.0,
+        "visualLength": 24.0,
+        "tailLength": 15.0,
+        "visualWidth": 1.0499999523162842,
+        "visualIntensity": 5.0,
+        "minimumVisualPixels": 0.0,
+        "tracerStyle": 0,
+        "tracerLingerSeconds": 0.0,
+        "sustainedPowerWatts": 165.0,
+        "energyPerShot": 100.0,
+        "delivery": 0,
+        "effectColor": {
+            "r": 0.10000000149011612,
+            "g": 0.5699999928474426,
+            "b": 1.0,
+            "a": 1.0
+        },
+        "missileLockSeconds": 2.0,
+        "reloadSeconds": 4.0,
+        "missileTurnDegrees": 110.0,
+        "missileAcceleration": 160.0,
+        "missileTurnAcceleration": 180.0,
+        "missileGuidanceSeconds": 10.0,
+        "missileSeekerConeDegrees": 65.0,
+        "missileSeekerLossSeconds": 0.3499999940395355,
+        "missileLaunchSpeed": 35.0,
+        "explosionRadius": 3.0,
+        "launcherMesh": {
+            "instanceID": 0
+        },
+        "missileMesh": {
+            "instanceID": 0
+        },
+        "missileLaunchOffsets": [
+            {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        ],
+        "muzzleOffsets": [],
+        "projectileMaterial": {
+            "fileID": 2100000,
+            "guid": "d345dd0e8b96b7645bfc4f0321a23de7",
+            "type": 2
+        },
+        "beamDuration": 0.11999999731779099,
+        "beamMesh": {
+            "instanceID": 0
+        },
+        "activationMode": 0,
+        "chargeSeconds": 1.0,
+        "requireTargetLock": false
+    }
+}

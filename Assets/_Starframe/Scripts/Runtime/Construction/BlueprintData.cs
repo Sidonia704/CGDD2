@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace Starframe.Construction
 {
-    public enum BlockShape { Cube=0, Wedge=1, Thruster1=2, Thruster2=3, Slab=4, Pyramid=5, Core=6, Laser=7, Power=8, Shield=9 }
+    public enum BlockShape { Cube=0, Wedge=1, Thruster1=2, Thruster2=3, Slab=4, Pyramid=5, Core=6, Laser=7, Power=8, Shield=9, Block5=10, Block6=11, Block7=12, Block8=13, Thruster3=14, Thruster4=15, Thruster5=16, Power2=17, Shield2=18, Armor1=19, Armor2=20, Armor3=21, Armor4=22, Gun1=23, Gun2=24, Gun3=25, Laser2=26, Laser3=27, Railgun1=28, Railgun2=29, Railgun3=30, Missile1=31, Missile2=32, Missile3=33, Sword1=34, Sword2=35, Thruster6=36, FlareLauncher=37 }
     [Serializable] public sealed class BlockRecord
     {
         public string id;

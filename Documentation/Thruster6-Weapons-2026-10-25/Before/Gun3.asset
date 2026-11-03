@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57c7601c94efac44dacfde24ada57da4, type: 3}
+  m_Name: Gun3
+  m_EditorClassIdentifier: Starframe.Construction::Starframe.Flight.ModuleDefinition
+  shape: 25
+  displayName: "\u673A\u67AA 3"
+  category: 3
+  cost: 0
+  massKg: 2900
+  maxHp: 420
+  recoverySeconds: 13
+  thrustNewtons: 0
+  occupiedCells:
+  - {x: 0, y: 0, z: 0}
+  - {x: 1, y: 0, z: 0}
+  - {x: 0, y: 0, z: 1}
+  - {x: 1, y: 0, z: 1}
+  - {x: 0, y: 0, z: 2}
+  - {x: 1, y: 0, z: 2}
+  - {x: 0, y: 0, z: 3}
+  - {x: 1, y: 0, z: 3}
+  - {x: 0, y: 1, z: 0}
+  - {x: 1, y: 1, z: 0}
+  - {x: 0, y: 1, z: 1}
+  - {x: 1, y: 1, z: 1}
+  - {x: 0, y: 1, z: 2}
+  - {x: 1, y: 1, z: 2}
+  - {x: 0, y: 1, z: 3}
+  - {x: 1, y: 1, z: 3}
+  muzzleLocalPosition: {x: 0.48919293, y: 0.75754815, z: 3.4894617}
+  muzzleClearanceDiameter: 0.18
+  mesh: {fileID: 4300000, guid: 1714118b74c95b640b83d6de9758ece9, type: 2}
+  outline: {fileID: 0}
+  drawOutline: 0
+  material: {fileID: 2100000, guid: 060df83c9f5482f4ea424501392ac7de, type: 2}
+  icon: {fileID: 21300000, guid: 58bfd45ef7e40bf47bf6e6b7f80cdd2d, type: 3}
+  selectedIcon: {fileID: 21300000, guid: 3115620da64d77d4fa36a72baa47e44f, type: 3}
+  weapon: {fileID: 11400000, guid: 5b215a1c6cfe9a74499f5836e451c5f8, type: 2}
+  generationWatts: 0
+  storageJoules: 0
+  thrusterPowerWatts: 0
+  shieldPowerWatts: 0
+  shieldCapacity: 0
+  shieldRadius: 8
+  shieldRecoveryDelay: 2
+  shieldRecoveryPerSecond: 50
+  shieldSurfaceMaterial: {fileID: 0}
+  shieldSurfaceMesh: {fileID: 0}

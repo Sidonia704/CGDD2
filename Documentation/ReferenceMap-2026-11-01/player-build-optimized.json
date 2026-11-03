@@ -1,0 +1,34 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "run_script",
+    "parameters": {
+      "file": "tools/ReferenceMap20261101/BuildPlayer.cs",
+      "entry": "ReferenceMapBuildPlayer.Build",
+      "timeout_ms": "160000"
+    },
+    "result": {
+      "diagnostics": [],
+      "compileMs": 909,
+      "executeMs": 19304,
+      "assemblyName": "PipelineRunScript_BuildPlayer_c9452ced1add48eea89bc3e17f235a61",
+      "success": true,
+      "result": {
+        "result": "Succeeded",
+        "path": "Builds/ReferenceMap3500/ReferenceMap3500.exe",
+        "bytes": 991646600,
+        "seconds": 19.2969241,
+        "warnings": 486,
+        "errors": 0
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "D:\\software\\unity\\CGDD26107"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

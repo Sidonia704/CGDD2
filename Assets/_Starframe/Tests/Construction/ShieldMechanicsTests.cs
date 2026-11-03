@@ -70,11 +70,64 @@ namespace Starframe.Tests
             ship.ApplyDamage(generator.record.id,10000);Assert.That(ship.IsAlive,Is.True);Assert.That(ship.Shields.Capacity,Is.Zero);
             ship.Respawn();Assert.That(ship.Shields.Charge,Is.EqualTo(300));Assert.That(ship.Shields.Capacity,Is.EqualTo(300));
         }
+        [Test]public void ShieldAbsorptionDoesNotInterruptProtectedHullHealing()
+        {
+            var ship=Ship(new Vector3(0,1600,0));var core=ship.Parts.Find(p=>p.record.shape==BlockShape.Core);
+            ship.Tuning.GetDefinition(BlockShape.Core).recoverySeconds=2;
+            ship.ApplyDamage(core.record.id,200);ship.BeginStep(2);ship.AdvanceRecovery(.1f);
+            float hp=core.hp;Assert.That(hp,Is.GreaterThan(core.maxHp-200));
+            Assert.That(ship.Shields.Absorb(ship.Shields.Fields[0],10,Vector3.zero),Is.EqualTo(10));
+            ship.BeginStep(.9f);ship.AdvanceRecovery(.9f);Assert.That(core.hp,Is.GreaterThan(hp));
+            ship.BeginStep(.2f);ship.AdvanceRecovery(.1f);Assert.That(core.hp,Is.GreaterThan(hp));
+        }
+        [Test]public void ShieldAbsorptionPreservesDestroyedPartReconstruction()
+        {
+            var ship=Ship(new Vector3(0,1700,0));var cube=ship.Parts.Find(p=>p.record.shape==BlockShape.Cube);
+            ship.Tuning.GetDefinition(BlockShape.Cube).recoverySeconds=2;
+            ship.ApplyDamage(cube.record.id,cube.maxHp);ship.BeginStep(2);ship.AdvanceRecovery(.5f);
+            Assert.That(ship.GetRebuildProgress(cube.record.id),Is.EqualTo(.5f).Within(.001f));
+            ship.Shields.Absorb(ship.Shields.Fields[0],10,Vector3.zero);
+            Assert.That(ship.GetRebuildProgress(cube.record.id),Is.EqualTo(.5f).Within(.001f));
+            ship.BeginStep(.9f);ship.AdvanceRecovery(.9f);Assert.That(cube.present,Is.False);
+            ship.BeginStep(.2f);ship.AdvanceRecovery(.1f);
+            Assert.That(ship.GetRebuildProgress(cube.record.id),Is.EqualTo(1.5f).Within(.001f));
+        }
+        [Test]public void HullHitsKeepEmptyShieldFieldsFromRegeneratingDuringContinuousCombat()
+        {
+            var ship=Ship(new Vector3(0,1800,0));var field=ship.Shields.Fields[0];
+            field.definition.shieldRecoveryDelay=6;
+            ship.Shields.Absorb(field,300,Vector3.zero);Assert.That(ship.Shields.Charge,Is.Zero);
+            ship.BeginStep(5.9f);ship.ApplyDamage(ship.Parts.Find(p=>p.record.shape==BlockShape.Core).record.id,1);
+            ship.BeginStep(.2f);Assert.That(ship.Shields.PrepareRecovery(.1f),Is.Zero,"An empty shield must not restart while hull damage continues.");
+            ship.BeginStep(5.7f);Assert.That(ship.Shields.PrepareRecovery(.1f),Is.Zero);
+            ship.BeginStep(.2f);Assert.That(ship.Shields.PrepareRecovery(.1f),Is.EqualTo(100).Within(.01f),"The shared six-second quiet interval must restart after the last hull hit.");
+        }
         [Test]public void SphereEntryHandlesGrazingInsideAndMisses()
         {
             Assert.That(ShipShieldSystem.TrySphereEntry(new Vector3(0,0,-20),Vector3.forward,Vector3.zero,8,0,40,out var entry),Is.True);Assert.That(entry,Is.EqualTo(12));
             Assert.That(ShipShieldSystem.TrySphereEntry(Vector3.zero,Vector3.forward,Vector3.zero,8,0,40,out entry),Is.True);Assert.That(entry,Is.Zero);
             Assert.That(ShipShieldSystem.TrySphereEntry(new Vector3(9,0,-20),Vector3.forward,Vector3.zero,8,0,40,out entry),Is.False);
+        }
+        [Test]public void ActualDamageToOtherPartDoesNotResetRepairOrReconstruction()
+        {
+            var ship=Ship(new Vector3(0,2200,0));var cube=ship.Parts.Find(p=>p.record.shape==BlockShape.Cube);
+            var core=ship.Parts.Find(p=>p.record.shape==BlockShape.Core);
+            ship.Tuning.GetDefinition(BlockShape.Cube).recoverySeconds=2;
+            ship.ApplyDamage(cube.record.id,cube.maxHp);ship.BeginStep(2);ship.AdvanceRecovery(.5f);
+            ship.ApplyDamage(core.record.id,1);ship.BeginStep(.5f);ship.AdvanceRecovery(.5f);
+            Assert.That(ship.GetRebuildProgress(cube.record.id),Is.EqualTo(1).Within(.001f));
+            ship.BeginStep(1);ship.AdvanceRecovery(1);Assert.That(cube.present,Is.True);
+        }
+        [TestCase(false),TestCase(true)]public void ReconstructionWaitsForExternalSolidToLeaveWithoutLosingProgress(bool transformedAssembly)
+        {
+            var ship=Ship(new Vector3(0,2300,0));var cube=ship.Parts.Find(p=>p.record.shape==BlockShape.Cube);
+            ship.Tuning.GetDefinition(BlockShape.Cube).recoverySeconds=1;
+            if(transformedAssembly){var pivot=Own(new GameObject("rotated assembly"));pivot.transform.SetParent(ship.transform,false);pivot.transform.localPosition=new Vector3(6,2,-3);pivot.transform.localRotation=Quaternion.Euler(0,90,0);foreach(var part in ship.Parts)part.view.transform.SetParent(pivot.transform,false);}
+            ship.ApplyDamage(cube.record.id,cube.maxHp);
+            var obstruction=Own(GameObject.CreatePrimitive(PrimitiveType.Cube));obstruction.transform.position=cube.view.transform.position;
+            Physics.SyncTransforms();ship.BeginStep(3);ship.AdvanceRecovery(2);Assert.That(cube.present,Is.False);
+            obstruction.transform.position+=Vector3.right*10;Physics.SyncTransforms();
+            ship.BeginStep(.1f);ship.AdvanceRecovery(.1f);Assert.That(cube.present,Is.True);
         }
         FlightShipRuntime Ship(Vector3 position)
         {

@@ -14,19 +14,19 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 10
-  m_Fog: 0
-  m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  m_Fog: 1
+  m_FogColor: {r: 0.012, g: 0.032, b: 0.075, a: 1}
   m_FogMode: 3
-  m_FogDensity: 0.01
+  m_FogDensity: 0.00016
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.24, g: 0.29, b: 0.36, a: 1}
-  m_AmbientEquatorColor: {r: 0.18, g: 0.22, b: 0.28, a: 1}
-  m_AmbientGroundColor: {r: 0.12, g: 0.15, b: 0.2, a: 1}
+  m_AmbientSkyColor: {r: 0.27, g: 0.39, b: 0.62, a: 1}
+  m_AmbientEquatorColor: {r: 0.14, g: 0.22, b: 0.38, a: 1}
+  m_AmbientGroundColor: {r: 0.06, g: 0.1, b: 0.19, a: 1}
   m_AmbientIntensity: 1
   m_AmbientMode: 1
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: f100fc25de2cd5844a8adb4bc3eb6ba9, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: ff3934da556a71c49baa42377ce5bb72, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -130,6 +130,8 @@ GameObject:
   - component: {fileID: 152972728}
   - component: {fileID: 152972727}
   - component: {fileID: 152972726}
+  - component: {fileID: 152972729}
+  - component: {fileID: 152972730}
   m_Layer: 0
   m_Name: FlightRange
   m_TagString: Untagged
@@ -166,6 +168,9 @@ MonoBehaviour:
   flightCamera: {fileID: 1922303130}
   environment: {fileID: 152972726}
   battleTuning: {fileID: 11400000, guid: c8e48b205eb2bfa4296af91b2ba28b9b, type: 2}
+  arcadeMission: {fileID: 0}
+  sandboxSpawn: {fileID: 801078823}
+  sandboxArenaHalfExtent: 2000
 --- !u!4 &152972728
 Transform:
   m_ObjectHideFlags: 0
@@ -181,6 +186,46 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &152972729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 152972725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf90e4e3077f6bf4bb1b0179b4f2bf64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Starframe.Construction::Starframe.Flight.RangeAtmosphere
+  tuning: {fileID: 11400000, guid: c0b0b97911912fa468c10b7d40f306c9, type: 2}
+  volume: {fileID: 2085678313}
+  starLight: {fileID: 165187305}
+  beltAnchor: {fileID: 1046338136}
+--- !u!114 &152972730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 152972725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e813905176439842bd547c5d77620b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Starframe.Construction::Starframe.Flight.RangeAsteroidBackdrop
+  targetCamera: {fileID: 1922303130}
+  detailedRockA: {fileID: 4300000, guid: 2044fefc3ad74a540a74344ed937c939, type: 2}
+  detailedRockB: {fileID: 4300000, guid: 9857ce36f9cf7e04c952df9c14e88ea0, type: 2}
+  distantRockA: {fileID: 4300000, guid: d4854fd70f117b341b196a386e6808b1, type: 2}
+  distantRockB: {fileID: 4300000, guid: 827c0c31db09cf5419bcd62847154b9a, type: 2}
+  rockMaterial: {fileID: 2100000, guid: 60a3887073fb2214cb65af2fa9bba626, type: 2}
+  seed: 261107
+  nearFadeStart: 80
+  nearFadeEnd: 350
+  farFadeStart: 17000
+  farFadeEnd: 25000
+  backdropEnabled: 1
 --- !u!1 &165187304
 GameObject:
   m_ObjectHideFlags: 0
@@ -191,6 +236,7 @@ GameObject:
   m_Component:
   - component: {fileID: 165187306}
   - component: {fileID: 165187305}
+  - component: {fileID: 165187307}
   m_Layer: 0
   m_Name: Directional Star Light
   m_TagString: Untagged
@@ -208,7 +254,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 12
   m_Type: 1
-  m_Color: {r: 1, g: 0.91, b: 0.8, a: 1}
+  m_Color: {r: 1, g: 0.94, b: 0.86, a: 1}
   m_Intensity: 2.1
   m_Range: 10
   m_SpotAngle: 30
@@ -278,6 +324,81 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &165187307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 165187304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalLightData
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_CustomShadowLayers: 0
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
+  m_RenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_ShadowRenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_Version: 4
+  m_LightLayerMask: 1
+  m_ShadowLayerMask: 1
+  m_RenderingLayers: 1
+  m_ShadowRenderingLayers: 1
+--- !u!115 &283118295
+MonoScript:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  serializedVersion: 7
+  m_DefaultReferences: {}
+  m_Icon: {fileID: 0}
+  m_Type: 0
+  m_ExecutionOrder: 0
+  m_ClassName: SettingsPostProcessing
+  m_Namespace: Starframe.App
+  m_AssemblyName: Starframe.Construction
+--- !u!1 &801078822
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 801078823}
+  m_Layer: 0
+  m_Name: Range Spawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &801078823
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 801078822}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.21643962, y: -0, z: -0, w: 0.976296}
+  m_LocalPosition: {x: 0, y: 500, z: -1100}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1046338136}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &882821438
 GameObject:
   m_ObjectHideFlags: 0
@@ -288,6 +409,7 @@ GameObject:
   m_Component:
   - component: {fileID: 882821440}
   - component: {fileID: 882821439}
+  - component: {fileID: 882821441}
   m_Layer: 0
   m_Name: Space Fill
   m_TagString: Untagged
@@ -306,7 +428,7 @@ Light:
   serializedVersion: 12
   m_Type: 1
   m_Color: {r: 0.58, g: 0.73, b: 1, a: 1}
-  m_Intensity: 0.28
+  m_Intensity: 0.38
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -375,6 +497,100 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &882821441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 882821438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalLightData
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_CustomShadowLayers: 0
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
+  m_RenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_ShadowRenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_Version: 4
+  m_LightLayerMask: 1
+  m_ShadowLayerMask: 1
+  m_RenderingLayers: 1
+  m_ShadowRenderingLayers: 1
+--- !u!1 &1046338134
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1046338136}
+  - component: {fileID: 1046338135}
+  m_Layer: 0
+  m_Name: Temporary Map Sandbox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1046338135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1046338134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9948d63c2865a2b4aad744c71ad9ba80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Starframe.Construction::Starframe.Maps.SpaceMapRuntime
+  definition: {fileID: 11400000, guid: 8f47393cece1296499d53d2849e6ab15, type: 2}
+  stageBuildOnStart: 1
+  instancesPerFrame: 32
+  buildMillisecondsPerFrame: 4
+  lazyFineVisuals: 1
+  visualCamera: {fileID: 1922303130}
+  visualLodDistance: 70
+  visualCullDistance: 0
+  visualRefreshFrames: 6
+  maximumFineVisualCells: 8000
+  keepCoarseIntactVisuals: 1
+  assemblyInitialMaxDepenetrationVelocity: 1
+  useBudgetedPhysics: 1
+  detailedCollisionDistance: 120
+  activeColliderBudget: 3500
+  physicsRefreshFrames: 12
+  colliderPreparationPerFrame: 24
+  colliderPreparationMilliseconds: 1.5
+  lightweightDamageThreshold: 128
+  visualLods: []
+--- !u!4 &1046338136
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1046338134}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -1100, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 801078823}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1922303127
 GameObject:
   m_ObjectHideFlags: 0
@@ -407,7 +623,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalCameraData
   m_RenderShadows: 1
-  m_RequiresDepthTextureOption: 2
+  m_RequiresDepthTextureOption: 1
   m_RequiresOpaqueTextureOption: 2
   m_CameraType: 0
   m_Cameras: []
@@ -456,7 +672,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.035, g: 0.1, b: 0.23, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -478,7 +694,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.15
-  far clip plane: 7000
+  far clip plane: 28000
   field of view: 65
   orthographic: 0
   orthographic size: 5
@@ -522,6 +738,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2085678314}
   - component: {fileID: 2085678313}
+  - component: {fileID: 2085678315}
   m_Layer: 0
   m_Name: Global Volume
   m_TagString: Untagged
@@ -545,7 +762,7 @@ MonoBehaviour:
   priority: 0
   blendDistance: 0
   weight: 1
-  sharedProfile: {fileID: 11400000, guid: 7d179a6f836fa284a9833f592db5f56a, type: 2}
+  sharedProfile: {fileID: 11400000, guid: 204f59e08a563fb47a72beebaf659667, type: 2}
 --- !u!4 &2085678314
 Transform:
   m_ObjectHideFlags: 0
@@ -561,6 +778,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2085678315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2085678312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 283118295}
+  m_Name: 
+  m_EditorClassIdentifier: Starframe.Construction::Starframe.App.SettingsPostProcessing
 --- !u!1 &2093020726
 GameObject:
   m_ObjectHideFlags: 0
@@ -661,3 +890,4 @@ SceneRoots:
   - {fileID: 882821440}
   - {fileID: 2093020729}
   - {fileID: 2085678314}
+  - {fileID: 1046338136}

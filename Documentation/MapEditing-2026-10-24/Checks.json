@@ -1,0 +1,40 @@
+{
+  "success": true,
+  "command": "command run_script",
+  "data": {
+    "command": "run_script",
+    "parameters": {
+      "file": "Temp/MapEditVerify.cs",
+      "entry": "MapEditVerify.Run",
+      "timeout_ms": "40000"
+    },
+    "result": {
+      "diagnostics": [],
+      "compileMs": 354,
+      "executeMs": 98,
+      "assemblyName": "PipelineRunScript_MapEditVerify_91b1df78850542c08c6c8bb2f3a04f2a",
+      "success": true,
+      "result": {
+        "passed": true,
+        "checks": [
+          "0.65s delay",
+          "0.18s repeat",
+          "no catch-up burst",
+          "release/focus cancel",
+          "four hull shapes visible",
+          "repeated asset mesh sharing",
+          "damage isolation",
+          "last owner cleanup",
+          "source unchanged"
+        ]
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7801,
+      "projectPath": "D:\\software\\unity\\CGDD26107"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

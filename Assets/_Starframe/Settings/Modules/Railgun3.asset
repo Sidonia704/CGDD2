@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57c7601c94efac44dacfde24ada57da4, type: 3}
+  m_Name: Railgun3
+  m_EditorClassIdentifier: Starframe.Construction::Starframe.Flight.ModuleDefinition
+  shape: 30
+  displayName: "\u7535\u78C1\u72D9\u51FB\u70AE 3"
+  category: 3
+  cost: 690
+  massKg: 3300
+  maxHp: 5040
+  recoverySeconds: 6
+  thrustNewtons: 0
+  occupiedCells:
+  - {x: 0, y: 0, z: 0}
+  - {x: 1, y: 0, z: 0}
+  - {x: 0, y: 0, z: 1}
+  - {x: 1, y: 0, z: 1}
+  - {x: 0, y: 0, z: 2}
+  - {x: 1, y: 0, z: 2}
+  - {x: 0, y: 0, z: 3}
+  - {x: 1, y: 0, z: 3}
+  - {x: 0, y: 0, z: 4}
+  - {x: 1, y: 0, z: 4}
+  - {x: 0, y: 0, z: 5}
+  - {x: 1, y: 0, z: 5}
+  - {x: 0, y: 1, z: 0}
+  - {x: 1, y: 1, z: 0}
+  - {x: 0, y: 1, z: 1}
+  - {x: 1, y: 1, z: 1}
+  - {x: 0, y: 1, z: 2}
+  - {x: 1, y: 1, z: 2}
+  - {x: 0, y: 1, z: 3}
+  - {x: 1, y: 1, z: 3}
+  - {x: 0, y: 1, z: 4}
+  - {x: 1, y: 1, z: 4}
+  - {x: 0, y: 1, z: 5}
+  - {x: 1, y: 1, z: 5}
+  localExhaustDirections: []
+  localNozzlePositions: []
+  muzzleLocalPosition: {x: 0.44589764, y: 0.28248143, z: 5.506743}
+  muzzleClearanceDiameter: 0.22
+  mesh: {fileID: 4300000, guid: fdfa140bc5e760241969baddb1d82bb2, type: 2}
+  outline: {fileID: 0}
+  drawOutline: 0
+  material: {fileID: 2100000, guid: 8fa010cb395cefc458368aa8f928b19f, type: 2}
+  icon: {fileID: 21300000, guid: a322c30d332ccdc40b5b9acf6713d661, type: 3}
+  selectedIcon: {fileID: 21300000, guid: 9389a41a9b414094e85198a084c51a43, type: 3}
+  weapon: {fileID: 11400000, guid: e50db2e6ca572014f86c6f0d8fe1277d, type: 2}
+  countermeasure: {fileID: 0}
+  generationWatts: 0
+  storageJoules: 0
+  thrusterPowerWatts: 0
+  shieldPowerWatts: 0
+  shieldCapacity: 0
+  shieldRadius: 8
+  shieldRecoveryDelay: 2
+  shieldRecoveryPerSecond: 50
+  shieldSurfaceMaterial: {fileID: 0}
+  shieldSurfaceMesh: {fileID: 0}

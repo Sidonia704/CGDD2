@@ -1,4 +1,5 @@
 // @role Build reusable solid, outline and collision meshes for modular parts.
+// @calls BlockModules
 
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,9 +26,26 @@ namespace Starframe.Construction
         static readonly Vector3[] PyramidPoints={
             new Vector3(-.5f,-.5f,-.5f),new Vector3(.5f,-.5f,-.5f),new Vector3(.5f,-.5f,.5f),new Vector3(-.5f,-.5f,.5f),new Vector3(0,.5f,0)};
         static readonly Vector3[] LaserPoints={new Vector3(-.5f,-.5f,-.5f),new Vector3(.5f,-.5f,-.5f),new Vector3(.5f,-.5f,2.5f),new Vector3(-.5f,-.5f,2.5f),new Vector3(-.5f,.5f,-.5f),new Vector3(.5f,.5f,-.5f),new Vector3(.5f,.5f,2.5f),new Vector3(-.5f,.5f,2.5f)};
-        public static Vector3[] Points(BlockShape shape)=>shape==BlockShape.Laser?LaserPoints:shape==BlockShape.Wedge?WedgePoints:shape==BlockShape.Thruster2?LongCubePoints:
+        public static Vector3[] Points(BlockShape shape)=>(int)shape>=10?ExpandedPoints(shape):shape==BlockShape.Laser?LaserPoints:shape==BlockShape.Wedge?WedgePoints:shape==BlockShape.Thruster2?LongCubePoints:
             shape==BlockShape.Slab?SlabPoints:shape==BlockShape.Pyramid?PyramidPoints:CubePoints;
-        static Vector3 Interior(BlockShape shape)=>shape==BlockShape.Wedge?new Vector3(0,-1f/6f,1f/6f):
+        static readonly Dictionary<BlockShape,Vector3[]> expandedPoints=new Dictionary<BlockShape,Vector3[]>();
+        static readonly Dictionary<BlockShape,Bounds> expandedBounds=new Dictionary<BlockShape,Bounds>();
+        static Bounds ExpandedBounds(BlockShape shape)
+        {
+            var cells=BlockModules.LocalCells(shape);
+            var bounds=new Bounds((Vector3)cells[0],Vector3.one);
+            foreach(var cell in cells)bounds.Encapsulate(new Bounds((Vector3)cell,Vector3.one));
+            return bounds;
+        }
+        static Vector3[] ExpandedPoints(BlockShape shape)
+        {
+            var b=ExpandedBounds(shape);
+            if(expandedPoints.TryGetValue(shape,out var points)&&expandedBounds.TryGetValue(shape,out var old)&&old==b)return points;
+            points=new Vector3[CubePoints.Length];
+            for(int i=0;i<points.Length;i++)points[i]=b.center+Vector3.Scale(CubePoints[i],b.size);
+            expandedPoints[shape]=points;expandedBounds[shape]=b;return points;
+        }
+        static Vector3 Interior(BlockShape shape)=>(int)shape>=10?ExpandedBounds(shape).center:shape==BlockShape.Wedge?new Vector3(0,-1f/6f,1f/6f):
             shape==BlockShape.Laser?Vector3.forward:shape==BlockShape.Thruster2?Vector3.up*.5f:shape==BlockShape.Slab||shape==BlockShape.Pyramid?Vector3.down*.25f:Vector3.zero;
         static int[][] Faces(BlockShape shape)=>shape==BlockShape.Wedge?WedgeFaces:shape==BlockShape.Pyramid?PyramidFaces:CubeFaces;
         public static int[] Edges(BlockShape shape)=>shape==BlockShape.Pyramid?new[]{0,1,1,2,2,3,3,0,0,4,1,4,2,4,3,4}:

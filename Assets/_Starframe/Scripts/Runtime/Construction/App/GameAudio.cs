@@ -1,5 +1,5 @@
-// @role Route gameplay sounds, music and engine loops through shared audio settings.
-// @calls GameSettings, GameAudioTuning
+// @role Route gameplay sounds, music and engine loops through shared audio settings, reserving one bounded voice for incoming missiles.
+// @calls GameSettings, GameAudioTuning, ThreatAudioDriver, FlightRangeBootstrap
 
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,8 +20,11 @@ namespace Starframe.App
             runtime=go.AddComponent<GameAudioRuntime>();return runtime;
         }
         public static void Apply()=>Ensure().ApplyVolumes(GameSettings.Current);
+        public static GameAudioTuning Tuning=>Ensure().Tuning;
         public static void Preview(GameSettingsData settings)=>Ensure().ApplyVolumes(settings);
         public static void Play(GameSound sound)=>Ensure().Emit(sound);
+        public static bool TryPlay(GameSound sound)=>Ensure().Emit(sound);
+        public static void StopMissileWarning(){if(runtime)runtime.StopMissileWarning();}
         public static void PlayUiClick()=>Play(GameSound.Select);
         public static void Click()=>PlayUiClick();
         public static void PreviewSfx()=>Play(GameSound.LaserShot);
@@ -40,14 +43,16 @@ namespace Starframe.App
         readonly List<FlightShipRuntime> removedActors=new List<FlightShipRuntime>();
         readonly List<ShipPartState> thrusters=new List<ShipPartState>();
         GameAudioTuning tuning;AudioSource musicA,musicB,engine;
+        Voice missileWarning;
+        ThreatAudioDriver threatAudio;
         RangeCombatWorld world;ProjectileWorld projectiles;RangeHUD hud;
         GameSettingsData settings;
         AudioClip musicTarget;float blendA,blendB,targetA,targetB,engineLevel,engineBoost=1;
-        double nextWorldCheck,nextBoundary,nextCritical;bool rangeScene,boosting;
+        double nextWorldCheck,nextBoundary,nextCritical;bool flightScene,boosting;
         FlightShipRuntime locked;int lockLife,playerLife=-1,thrustRevision=-1;
 
         public GameAudioTuning Tuning=>tuning;
-        public int ActiveEffectVoices {get{int n=0;foreach(var voice in voices)if(voice.source.isPlaying)n++;return n;}}
+        public int ActiveEffectVoices {get{int n=missileWarning!=null&&missileWarning.source.isPlaying?1:0;foreach(var voice in voices)if(voice.source.isPlaying)n++;return n;}}
         public float EngineLevel=>engineLevel;
         public int PlayedCueCount {get;private set;}
         public GameSound LastCue {get;private set;}
@@ -57,11 +62,14 @@ namespace Starframe.App
             tuning=Resources.Load<GameAudioTuning>("Audio/GameAudioTuning");
             settings=GameSettings.Current.Clone();
             musicA=Source("Music A",true);musicB=Source("Music B",true);engine=Source("Own ship propulsion",true);
+            threatAudio=gameObject.AddComponent<ThreatAudioDriver>();
             musicA.priority=musicB.priority=220;engine.priority=160;
             if(tuning)
             {
                 engine.clip=tuning.thrusterLoop;
-                for(int i=0;i<Mathf.Clamp(tuning.effectVoices,4,32);i++)voices.Add(new Voice{source=Source("Effect "+i,false)});
+                // Reserve one existing voice: gunfire cannot swallow the alarm, and missiles never stack copies.
+                missileWarning=new Voice{source=Source("Incoming missile warning",false)};
+                for(int i=0;i<Mathf.Clamp(tuning.effectVoices,4,32)-1;i++)voices.Add(new Voice{source=Source("Effect "+i,false)});
             }
             SceneManager.sceneLoaded+=SceneLoaded;Application.focusChanged+=FocusChanged;
             SceneLoaded(SceneManager.GetActiveScene(),LoadSceneMode.Single);ApplyVolumes(settings);
@@ -80,9 +88,9 @@ namespace Starframe.App
             AudioListener.volume=settings.muteWhenUnfocused&&!Application.isFocused?0:settings.masterVolume;
             RefreshLevels();
         }
-        void FocusChanged(bool focused)=>ApplyVolumes(settings);
+        void FocusChanged(bool focused){if(!focused)StopMissileWarning();ApplyVolumes(settings);}
         float Bus(GameSoundBus bus)=>bus==GameSoundBus.Interface?settings.uiVolume:settings.sfxVolume;
-        bool FlightMenu=>rangeScene&&((hud&&hud.ExitDialogOpen)||GameInput.Suspended);
+        bool FlightMenu=>flightScene&&((hud&&hud.ExitDialogOpen)||GameInput.Suspended);
         void RefreshLevels()
         {
             if(!tuning)return;
@@ -92,16 +100,19 @@ namespace Starframe.App
             engine.volume=Mathf.Clamp01(engineLevel*tuning.thrusterGain*engineBoost*settings.sfxVolume*duck);
             foreach(var voice in voices)if(voice.source.isPlaying)
                 voice.source.volume=voice.gain*Bus(voice.bus)*(voice.bus==GameSoundBus.Effects?duck:1);
+            if(missileWarning!=null&&missileWarning.source.isPlaying)
+                missileWarning.source.volume=missileWarning.gain*Bus(missileWarning.bus)*(missileWarning.bus==GameSoundBus.Effects?duck:1);
         }
-        public bool Emit(GameSound sound,Vector3 position=default,bool spatial=false,float gain=1,int channel=0)
+        public bool Emit(GameSound sound,Vector3 position=default,bool spatial=false,float gain=1,int channel=0,float pitchScale=1)
         {
             if(!tuning)return false;
             var cue=tuning.Get(sound);if(cue==null||!cue.clip||cue.gain<=0||gain<=0)return false;
             if(spatial&&world&&world.Player!=null&&world.Player.body&&Vector3.Distance(position,world.Player.body.position)>tuning.farDistance)return false;
             double now=Time.unscaledTimeAsDouble;int key=(int)sound*4+channel;
             if(ready.TryGetValue(key,out double time)&&now<time)return false;
-            Voice selected=null;
-            foreach(var voice in voices)
+            Voice selected=sound==GameSound.MissileIncoming?missileWarning:null;
+            if(sound==GameSound.MissileIncoming&&selected!=null&&selected.source.isPlaying)return false;
+            if(sound!=GameSound.MissileIncoming)foreach(var voice in voices)
             {
                 if(!voice.source.isPlaying){selected=voice;break;}
                 if(voice.source.priority<cue.priority)continue;
@@ -112,17 +123,31 @@ namespace Starframe.App
             ready[key]=now+Mathf.Max(0,cue.minimumInterval);
             selected.source.Stop();selected.source.clip=cue.clip;selected.source.priority=cue.priority;
             selected.source.spatialBlend=spatial?.85f:0;selected.source.transform.position=spatial?position:transform.position;
-            selected.source.pitch=Mathf.Clamp(cue.pitch+Random.Range(-cue.pitchVariation,cue.pitchVariation),.25f,3);
+            selected.source.pitch=Mathf.Clamp((cue.pitch+Random.Range(-cue.pitchVariation,cue.pitchVariation))*pitchScale,.25f,3);
             selected.bus=cue.bus;selected.gain=cue.gain*Mathf.Clamp01(gain);selected.started=now;
             selected.source.volume=selected.gain*Bus(cue.bus)*(cue.bus==GameSoundBus.Effects&&FlightMenu?tuning.menuEffectsMultiplier:1);
             selected.source.Play();PlayedCueCount++;LastCue=sound;return true;
+        }
+        public void StopMissileWarning()
+        {
+            if(missileWarning!=null)missileWarning.source.Stop();
+            ready.Remove((int)GameSound.MissileIncoming*4);
         }
         void SceneLoaded(Scene scene,LoadSceneMode mode)
         {
             if(mode==LoadSceneMode.Additive)return;
             Detach();foreach(var voice in voices)voice.source.Stop();ready.Clear();
-            engine.Stop();engineLevel=0;engineBoost=1;boosting=false;rangeScene=scene.name==FlightSession.RangeScene;
-            SelectMusic(tuning?(rangeScene?tuning.flightMusic:tuning.workbenchMusic):null);nextWorldCheck=0;
+            engine.Stop();engineLevel=0;engineBoost=1;boosting=false;flightScene=IsFlightScene(scene);
+            SelectMusic(tuning?(flightScene?tuning.flightMusic:tuning.workbenchMusic):null);nextWorldCheck=0;
+        }
+        static bool IsFlightScene(Scene scene)
+        {
+            if(scene.name==FlightSession.RangeScene)return true;
+            if(!scene.IsValid()||!scene.isLoaded)return false;
+            // Missions share the flight bootstrap but can have their own scene names and delayed map preparation.
+            foreach(var root in scene.GetRootGameObjects())
+                if(root.GetComponentInChildren<FlightRangeBootstrap>(true))return true;
+            return false;
         }
         void SelectMusic(AudioClip clip)
         {
@@ -139,13 +164,14 @@ namespace Starframe.App
             float dt=Mathf.Min(.1f,Time.unscaledDeltaTime),musicStep=dt/Mathf.Max(.1f,tuning.musicCrossfadeSeconds);
             blendA=Mathf.MoveTowards(blendA,targetA,musicStep);blendB=Mathf.MoveTowards(blendB,targetB,musicStep);
             if(blendA<=0&&targetA==0)musicA.Stop();if(blendB<=0&&targetB==0)musicB.Stop();
-            if(rangeScene&&!world&&Time.unscaledTimeAsDouble>=nextWorldCheck)
+            if(flightScene&&!world&&Time.unscaledTimeAsDouble>=nextWorldCheck)
             {
                 nextWorldCheck=Time.unscaledTimeAsDouble+.25;
                 var candidate=FindFirstObjectByType<RangeCombatWorld>();
                 if(candidate&&candidate.Projectiles!=null&&candidate.Player!=null)Bind(candidate);
             }
             float throttle=0;
+            threatAudio?.Step();
             if(world&&world.Player!=null)
             {
                 UpdateActors();var player=world.Player;var ship=player.ship;var flight=player.flight;
@@ -154,7 +180,11 @@ namespace Starframe.App
                     if(playerLife!=ship.LifeId){if(playerLife>=0)Emit(GameSound.Respawn);playerLife=ship.LifeId;thrustRevision=-1;}
                     if(thrustRevision!=ship.StructureRevision){thrusters.Clear();foreach(var part in ship.Parts)if(BlockModules.IsThruster(part.record.shape))thrusters.Add(part);thrustRevision=ship.StructureRevision;}
                     foreach(var part in thrusters)if(part.present&&part.thrustAvailable&&part.view)
-                        throttle=Mathf.Max(throttle,flight.ThrusterThrottle(flight.transform.InverseTransformDirection(-part.view.transform.up)));
+                    {
+                        var nozzles=BlockModules.LocalExhaustDirections(part.record.shape);
+                        for(int nozzle=0;nozzle<nozzles.Length;nozzle++)
+                            if(part.ExhaustAvailable(nozzle))throttle=Mathf.Max(throttle,flight.ThrusterThrottle(part,nozzle));
+                    }
                     if(!FlightMenu)
                     {
                         if(flight.IsBoosting&&!boosting)Emit(GameSound.ManeuverJet);boosting=flight.IsBoosting;
@@ -186,6 +216,7 @@ namespace Starframe.App
         void Bind(RangeCombatWorld value)
         {
             Detach();world=value;hud=FindFirstObjectByType<RangeHUD>();projectiles=world.Projectiles;
+            threatAudio.Bind(world);
             projectiles.ShotFired+=OnShot;
             playerLife=world.Player.ship.LifeId;nextBoundary=nextCritical=0;
             foreach(var actor in world.Actors)alive[actor.ship]=actor.ship.IsAlive;
@@ -205,11 +236,12 @@ namespace Starframe.App
         void OnShot(FlightShipRuntime owner,Vector3 origin)
         {
             if(!world||world.Player==null)return;
-            bool own=owner==world.Player.ship;Emit(GameSound.LaserShot,origin,!own,own?1:.7f,own?0:1);
+            bool own=owner==world.Player.ship;Emit(GameSound.LaserShot,origin,!own,own?1:.7f,own?0:1,projectiles.EmittingMissileShot?.9f:1);
         }
         void Detach()
         {
             if(projectiles!=null)projectiles.ShotFired-=OnShot;
+            threatAudio?.Bind(null);
             projectiles=null;world=null;hud=null;locked=null;lockLife=0;playerLife=thrustRevision=-1;alive.Clear();thrusters.Clear();
         }
         void OnDestroy(){Detach();SceneManager.sceneLoaded-=SceneLoaded;Application.focusChanged-=FocusChanged;}

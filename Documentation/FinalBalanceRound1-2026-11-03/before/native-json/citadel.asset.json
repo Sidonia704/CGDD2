@@ -1,0 +1,28 @@
+{
+    "MonoBehaviour": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "citadel",
+        "m_EditorClassIdentifier": "Starframe.Construction::Starframe.Combat.EnemyArchetypeDefinition",
+        "id": "citadel",
+        "nameZh": "壁垒主力战舰",
+        "nameEn": "Citadel Capital Ship",
+        "size": 2,
+        "blueprint": {
+            "fileID": 4900000,
+            "guid": "55829dc67afb397409a135ec22b834fc",
+            "type": 3
+        },
+        "alternateBlueprint": {
+            "fileID": 4900000,
+            "guid": "15a787ea69e827c4eb4263e94c3933fb",
+            "type": 3
+        },
+        "score": 5000,
+        "behavior": {
+            "fileID": 11400000,
+            "guid": "d7766dae4bcd79c4ab3ede40a0227024",
+            "type": 2
+        }
+    }
+}

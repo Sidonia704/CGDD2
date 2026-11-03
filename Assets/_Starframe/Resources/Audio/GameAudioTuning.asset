@@ -32,6 +32,12 @@ MonoBehaviour:
   boundaryRepeatSeconds: 3
   criticalHullFraction: 0.25
   criticalRepeatSeconds: 10
+  missileWarningFarDistance: 600
+  missileWarningNearDistance: 40
+  missileWarningFarTimeToImpact: 4
+  missileWarningNearTimeToImpact: 0.35
+  missileWarningFarInterval: 0.9
+  missileWarningNearInterval: 0.12
   cues:
   - sound: 0
     clip: {fileID: 8300000, guid: 138ffa75e7b2e974394167f598c0b91e, type: 3}
@@ -169,3 +175,35 @@ MonoBehaviour:
     pitchVariation: 0
     minimumInterval: 0.5
     priority: 64
+  - sound: 17
+    clip: {fileID: 8300000, guid: 62a058d65e79f9a47b9349bc61104dc2, type: 3}
+    bus: 0
+    gain: 0.24
+    pitch: 1
+    pitchVariation: 0
+    minimumInterval: 0.3
+    priority: 48
+  - sound: 18
+    clip: {fileID: 8300000, guid: dace560e780c58d479b270a4ca3f65e7, type: 3}
+    bus: 0
+    gain: 0.3
+    pitch: 1
+    pitchVariation: 0
+    minimumInterval: 0.08
+    priority: 28
+  - sound: 19
+    clip: {fileID: 8300000, guid: d70bc2cc996165d409e28558f4f39644, type: 3}
+    bus: 0
+    gain: 0.48
+    pitch: 1
+    pitchVariation: 0
+    minimumInterval: 0.08
+    priority: 20
+  - sound: 20
+    clip: {fileID: 8300000, guid: 0c851ee7da73f8149a84479cdd0516ba, type: 3}
+    bus: 0
+    gain: 0.4
+    pitch: 0.75
+    pitchVariation: 0
+    minimumInterval: 0.05
+    priority: 112

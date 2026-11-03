@@ -31,11 +31,20 @@ namespace Starframe.Tests
             var blueprint=FlightRangeBootstrap.DefaultShip();string before=JsonUtility.ToJson(blueprint);
             FlightSession.Begin(blueprint,true);
             yield return SceneManager.LoadSceneAsync(FlightSession.RangeScene);
-            yield return null;
+            yield return TargetLockTestPreparation.WaitForWorld();
             var world=Object.FindFirstObjectByType<RangeCombatWorld>();Assert.That(world,Is.Not.Null);
-            world.SpawnTargets(FlightRangeBootstrap.DefaultShip(),1);
+            // DefaultShip's reinforced frame is intentionally multiply connected. Add a test-only
+            // two-cell branch behind one neck so destroying that neck has a known surviving island.
+            var fractureTarget=FlightRangeBootstrap.DefaultShip();
+            fractureTarget.parts.Add(new BlockRecord{id="lifecycle-neck",shape=BlockShape.Cube,position=new Vector3(4,.5f,0),rotation=Quaternion.identity});
+            fractureTarget.parts.Add(new BlockRecord{id="lifecycle-island-a",shape=BlockShape.Cube,position=new Vector3(5,.5f,0),rotation=Quaternion.identity});
+            fractureTarget.parts.Add(new BlockRecord{id="lifecycle-island-b",shape=BlockShape.Cube,position=new Vector3(6,.5f,0),rotation=Quaternion.identity});
+            world.SpawnTargets(fractureTarget,1);
+            // A freshly spawned interpolated Rigidbody needs a physics tick and rendered frame before CorePosition can be selected.
+            yield return new WaitForFixedUpdate();yield return null;
             Assert.That(world.Player.ship.IsAlive&&world.Bot.ship.IsAlive,Is.True);
             world.Player.flight.SetExternalInput(Vector3.zero,Vector2.zero);
+            TargetLockTestPreparation.PointAt(world,world.Bot.ship);
             var aimBefore=world.Player.flight.AimInput;
             world.Targeting.ToggleLock();Assert.That(world.Targeting.HasTarget,Is.True);
             Assert.That(world.Targeting.LockedTarget,Is.EqualTo(world.Bot.ship));
@@ -54,8 +63,9 @@ namespace Starframe.Tests
             world.Bot.ship.ApplyDamage(weaponPart.record.id,100000,world.Player.ship);
             var partVfx=Object.FindFirstObjectByType<CombatVfxPool>();
             Assert.That(System.Array.Exists(partVfx.GetComponentsInChildren<MeshRenderer>(),r=>r.enabled&&r.sharedMaterial.shader.name=="Universal Render Pipeline/Complex Lit"),Is.True,"Destroyed normal parts must emit solid plastic fragments.");
-            var mount=world.Bot.ship.Parts.Find(p=>p.record.id=="range-mount");world.Bot.ship.ApplyDamage(mount.record.id,100000,world.Player.ship);
+            var mount=world.Bot.ship.Parts.Find(p=>p.record.id=="lifecycle-neck");world.Bot.ship.ApplyDamage(mount.record.id,mount.maxHp,world.Player.ship);
             Assert.That(world.Debris.PartCount,Is.GreaterThan(0),"Disconnected modules must survive as independent physical wreckage.");
+            Assert.That(world.Debris.PartCount,Is.EqualTo(2),"Only the two intact cells beyond the destroyed fixture neck should detach.");
             var wreck=world.Debris.Clusters[0];var wreckPosition=wreck.Body.position;
             Assert.That(wreck.Body.useGravity,Is.False);Assert.That(wreck.Body.isKinematic,Is.False);
             Assert.That(Vector3.Distance(wreck.Body.position,wreck.transform.position),Is.LessThan(.001f),"New wreckage must have its physics pose before separation checks run.");
@@ -72,7 +82,7 @@ namespace Starframe.Tests
             var bursts=Object.FindFirstObjectByType<CombatVfxPool>();Assert.That(bursts,Is.Not.Null);
             Assert.That(System.Array.Exists(bursts.GetComponentsInChildren<MeshRenderer>(),r=>r.enabled&&r.sharedMaterial.shader.name=="Starframe/Combat/VoxelGlow"),Is.True);
             Assert.That(world.BotKills,Is.EqualTo(1));
-            yield return new WaitForSeconds(3.2f);
+            yield return new WaitForSeconds(world.BotRespawnRemaining+.2f);
             Assert.That(world.Bot.ship.IsAlive,Is.True);Assert.That(world.Bot.ship.LifeId,Is.GreaterThan(oldLife));
             Assert.That(deathWreck&&deathWreck.PartCount>0,Is.True,"Respawning a ship must not remove its old wreckage.");
             Assert.That(world.Targeting.HasTarget,Is.False,"Respawned enemies must not inherit the previous lock.");
@@ -81,7 +91,7 @@ namespace Starframe.Tests
             world.Player.ship.InvulnerableUntil=0;
             world.Player.ship.ApplyDamage(playerCore.record.id,100000,world.Bot.ship);
             Assert.That(world.Player.ship.IsAlive,Is.False);
-            yield return new WaitForSeconds(3.2f);
+            yield return new WaitForSeconds(world.PlayerRespawnRemaining+.2f);
             Assert.That(world.Player.ship.IsAlive,Is.True);Assert.That(world.Player.flight.AimInput,Is.EqualTo(Vector2.zero));
             foreach(var part in world.Player.ship.Parts)Assert.That(part.hp,Is.EqualTo(part.maxHp));
             var hud=Object.FindFirstObjectByType<RangeHUD>();hud.OpenExit();Assert.That(hud.ExitDialogOpen,Is.True);hud.CloseExit();

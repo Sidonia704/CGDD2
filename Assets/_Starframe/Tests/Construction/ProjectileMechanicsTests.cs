@@ -109,6 +109,7 @@ namespace Starframe.Construction.Tests
             var world = NewWorld();
             int confirmations=0;
             world.HitConfirmed+=source=>{Assert.That(source,Is.EqualTo(owner.runtime));confirmations++;};
+            int combatFeedback=0;world.HitFeedbackConfirmed+=(source,scenery)=>{Assert.That(scenery,Is.False);combatFeedback++;};
             world.Fire(owner.runtime, Weapon(40, 80, 100, 2, .5f), new Vector3(0, .5f, 0), Vector3.forward);
             world.Step(.3f);
             Assert.That(first.hp, Is.EqualTo(first.maxHp - 40).Within(.01f));
@@ -118,6 +119,7 @@ namespace Starframe.Construction.Tests
             world.Fire(owner.runtime,Weapon(1,80,100,2,.5f),new Vector3(0,.5f,0),Vector3.forward);
             world.Step(.3f);
             Assert.That(confirmations,Is.EqualTo(2),"A reused projectile must be able to confirm its new shot.");
+            Assert.That(combatFeedback,Is.EqualTo(2),"Ship hits keep their combat feedback after projectile reuse.");
         }
 
         [Test]public void MissesEnvironmentAndZeroDamageDoNotConfirmHits()
@@ -313,11 +315,28 @@ namespace Starframe.Construction.Tests
                         cell = new Vector3Int(part.x, Mathf.RoundToInt(part.y - .5f), part.z),
                         rotation = Quaternion.identity
                     });
+                // Preserve this deliberately obstructed firing corridor as imported data,
+                // while giving the launcher and obstruction real hull support from below.
+                int minimumZ=int.MaxValue,maximumZ=int.MinValue;
+                foreach(var part in parts){minimumZ=Mathf.Min(minimumZ,part.z);maximumZ=Mathf.Max(maximumZ,part.z);}
+                for(int z=minimumZ;z<=maximumZ;z++)legacy.parts.Add(new BlockRecord{
+                    id="legacy-support-"+z,shape=BlockShape.Cube,
+                    position=new Vector3(0,-.5f,z),cell=new Vector3Int(0,-1,z),rotation=Quaternion.identity
+                });
                 assembly.Import(legacy);
             }
             else foreach (var part in parts)
             {
                 var shape = part.shape;
+                if(shape==BlockShape.Laser){
+                    // Keep the historical muzzle coordinates and trajectory assertions,
+                    // while supporting the gun from below instead of its rear face.
+                    var rootPart=System.Array.Find(parts,p=>p.shape==BlockShape.Core);
+                    var belowCore=new Vector3(rootPart.x,rootPart.y-1,rootPart.z);
+                    var belowGun=new Vector3(part.x,part.y-1,part.z);
+                    Assert.That(assembly.Place(BlockShape.Cube,belowCore,Quaternion.identity),Is.True);
+                    Assert.That(assembly.Place(BlockShape.Cube,belowGun,Quaternion.identity),Is.True);
+                }
                 Assert.That(assembly.Place(shape, new Vector3(part.x, part.y, part.z), Quaternion.identity), Is.True,
                     "Could not place " + shape + " at " + part.x + "," + part.z);
             }

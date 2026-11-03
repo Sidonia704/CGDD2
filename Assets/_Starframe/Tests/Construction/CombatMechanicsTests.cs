@@ -126,7 +126,7 @@ namespace Starframe.Construction.Tests
         }
 
         [Test]
-        public void TakingDamageResetsMissingPartProgressButPreservesRecoveredHp()
+        public void TakingDamageToOtherPartPreservesMissingPartProgressAndRecoveredHp()
         {
             var ship = CreateShip(3, recoverySeconds: 2, maxHp: 100);
             var damaged = PartAt(ship, 0, .5f, 1);
@@ -140,7 +140,7 @@ namespace Starframe.Construction.Tests
             Assert.That(damaged.hp, Is.EqualTo(70).Within(.02f));
             Assert.That(ship.runtime.GetRebuildProgress(missing.record.id), Is.EqualTo(1).Within(.02f));
             ship.runtime.ApplyDamage(damaged.record.id, 5);
-            Assert.That(ship.runtime.GetRebuildProgress(missing.record.id), Is.Zero);
+            Assert.That(ship.runtime.GetRebuildProgress(missing.record.id), Is.EqualTo(1).Within(.02f));
             Assert.That(damaged.hp, Is.EqualTo(65).Within(.02f));
         }
 
@@ -351,7 +351,11 @@ namespace Starframe.Construction.Tests
             for (int i = 0; i < cubeCount; i++)
                 assembly.Place(BlockShape.Cube, new Vector3(0, .5f, i + 1), Quaternion.identity);
             if (includeLaser)
-                assembly.Place(BlockShape.Laser, new Vector3(0, .5f, cubeCount + 1), Quaternion.Euler(0, 270, 0), 3);
+            {
+                Assert.That(assembly.Place(BlockShape.Cube,new Vector3(0,.5f,cubeCount+1),Quaternion.identity),Is.True);
+                Assert.That(assembly.Place(BlockShape.Cube,new Vector3(0,.5f,cubeCount+2),Quaternion.identity),Is.True);
+                Assert.That(assembly.Place(BlockShape.Laser,new Vector3(0,1.5f,cubeCount+1),Quaternion.Euler(0,270,0),3),Is.True,assembly.PlacementFailure);
+            }
             if (cubeCount >= 3)
                 assembly.Place(BlockShape.Thruster1, new Vector3(0, .5f, cubeCount + 1), Quaternion.identity);
             if (includePower)

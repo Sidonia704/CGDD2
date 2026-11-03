@@ -3,6 +3,7 @@ using UnityEditor;
 using UnityEngine;
 using Starframe.Construction;
 using Starframe.Flight;
+using Starframe.Combat;
 namespace Starframe.Tests
 {
     public sealed class VisualPowerAssetTests
@@ -21,8 +22,25 @@ namespace Starframe.Tests
         [Test]public void ProductionDatabaseIncludesPowerAndFiniteEnergy()
         {
             var database=AssetDatabase.LoadAssetAtPath<ModuleDatabase>("Assets/_Starframe/Settings/Modules/ModuleDatabase.asset");var power=database.Get(BlockShape.Power);
-            Assert.That(power.massKg,Is.EqualTo(600));Assert.That(power.storageJoules,Is.EqualTo(500));Assert.That(power.generationWatts,Is.EqualTo(60));Assert.That(power.icon,Is.Not.Null);
-            Assert.That(database.Get(BlockShape.Laser).weapon.sustainedPowerWatts,Is.EqualTo(50));Assert.That(database.Get(BlockShape.Laser).occupiedCells.Length,Is.EqualTo(3));
+            Assert.That(power.cost,Is.GreaterThan(0));Assert.That(power.massKg,Is.GreaterThan(0));Assert.That(power.maxHp,Is.GreaterThan(0));
+            Assert.That(power.storageJoules,Is.GreaterThan(0));Assert.That(power.generationWatts,Is.GreaterThan(0));Assert.That(power.icon,Is.Not.Null);
+            var laser=database.Get(BlockShape.Laser);Assert.That(laser.weapon.sustainedPowerWatts,Is.GreaterThan(0));
+            Assert.That(laser.occupiedCells.Length,Is.EqualTo(3));
+            var flight=AssetDatabase.LoadAssetAtPath<FlightTuning>("Assets/_Starframe/Settings/Flight/FlightTuning.asset");
+            Assert.That(flight.boostPowerWatts,Is.EqualTo(140),"The current approved reference flight budget reserves 140 W for boost.");
+            var bus=new ShipPowerBus();bus.Configure(power.storageJoules,power.generationWatts,true);
+            Assert.That(bus.Allocate(1,laser.weapon.sustainedPowerWatts),Is.EqualTo(1),"A compact generator can sustain one basic laser.");
+            Assert.That(bus.Energy,Is.EqualTo(power.storageJoules).Within(.001f));
+            float boostedFireDemand=laser.weapon.sustainedPowerWatts+flight.boostPowerWatts;
+            Assert.That(boostedFireDemand,Is.GreaterThan(power.generationWatts),"Boost plus fire must eventually consume the finite battery.");
+            Assert.That(bus.Allocate(1,boostedFireDemand),Is.EqualTo(1));
+            Assert.That(bus.Energy,Is.EqualTo(power.storageJoules+power.generationWatts-boostedFireDemand).Within(.001f));
+            float secondsUntilEmpty=bus.Energy/(boostedFireDemand-power.generationWatts);
+            Assert.That(bus.Allocate(secondsUntilEmpty,boostedFireDemand),Is.EqualTo(1).Within(.0001f));
+            Assert.That(bus.Energy,Is.EqualTo(0).Within(.01f));
+            Assert.That(bus.Allocate(1,boostedFireDemand),Is.EqualTo(power.generationWatts/boostedFireDemand).Within(.0001f),"After storage is exhausted all consumers share the actual generated power.");
+            Assert.That(bus.Ratio,Is.LessThan(1));
+            bus.Configure(0,0,true);Assert.That(bus.Allocate(1,boostedFireDemand),Is.Zero,"No source means no boost or weapon power.");
             var rules=AssetDatabase.LoadAssetAtPath<Starframe.Combat.BattleTuning>("Assets/_Starframe/Settings/Flight/BattleTuning.asset");Assert.That(rules.unlimitedRangePower,Is.False);
         }
     }

@@ -1,4 +1,4 @@
-// @role Edit and apply the settings draft with conflict and storage feedback.
+// @role Present readable, staged display, interface and input settings with conflict and storage feedback.
 // @calls GameSettings, GameInput, GameAudio
 
 using System;
@@ -47,7 +47,7 @@ namespace Starframe.App
         {
             if(!surface||!open)return;
             surface.Clear();modal=null;content=null;
-            surface.Label("SettingsEyebrow",L10n.T("settings.eyebrow"),48,33,1200,24,13,GlassUiPalette.Accent);
+            surface.Label("SettingsEyebrow",L10n.T("settings.eyebrow"),48,33,1200,24,13,GlassUiPalette.Muted);
             surface.Label("SettingsTitle",L10n.T("settings.title"),48,67,1000,48,32);
             surface.Label("SettingsSubtitle",L10n.T("settings.subtitle"),48,123,1600,25,14,GlassUiPalette.Muted);
             surface.Panel("SettingsNavigation",48,174,284,742);
@@ -58,9 +58,9 @@ namespace Starframe.App
                 var value=(Category)i;
                 surface.Button("SettingsTab"+value,L10n.T("settings.category."+value),68,198+i*68,244,52,()=>{category=value;Build();},category==value);
             }
-            surface.Label("SettingsTabNote",L10n.T("settings.stagedNote"),72,714,232,158,14,GlassUiPalette.Muted);
+            surface.Label("SettingsTabNote",L10n.T("settings.stagedNote"),72,714,232,158,15,GlassUiPalette.Muted);
             surface.Label("SettingsSectionTitle",L10n.T("settings.category."+category),396,204,1100,34,23);
-            surface.Label("SettingsSectionDescription",L10n.T("settings.description."+category),396,247,1416,46,15,GlassUiPalette.Muted);
+            surface.Label("SettingsSectionDescription",L10n.T("settings.description."+category),396,247,1416,46,16,GlassUiPalette.Muted);
             surface.Scroll("SettingsScroll",396,308,1436,580,out content);
             var layout=content.gameObject.AddComponent<UnityEngine.UI.VerticalLayoutGroup>();
             layout.childControlWidth=true;layout.childControlHeight=true;layout.childForceExpandWidth=true;layout.childForceExpandHeight=false;
@@ -84,14 +84,19 @@ namespace Starframe.App
             MarkChanged(false);BuildDialog();
             Canvas.ForceUpdateCanvases();UnityEngine.UI.LayoutRebuilder.ForceRebuildLayoutImmediate(content);
         }
-        RectTransform Row(string key,string hint=null,float height=88)
+        RectTransform Row(string key,string hint=null,float height=100)
         {
             var go=new GameObject("Setting_"+key,typeof(RectTransform),typeof(UnityEngine.UI.LayoutElement));go.layer=5;
             var rect=(RectTransform)go.transform;rect.SetParent(content,false);
             var element=go.GetComponent<UnityEngine.UI.LayoutElement>();element.minHeight=element.preferredHeight=height;
-            Local(surface.Label(key+"Label",L10n.T("settings."+key),0,0,1,1,17),rect,0,8,790,28);
-            if(hint!=null)Local(surface.Label(key+"Hint",L10n.T("settings."+hint),0,0,1,1,14,GlassUiPalette.Muted),rect,0,41,790,height-44);
+            Column(surface.Label(key+"Label",L10n.T("settings."+key),0,0,1,1,18),rect,0,.59f,8,30);
+            if(hint!=null)Column(surface.Label(key+"Hint",L10n.T("settings."+hint),0,0,1,1,15,GlassUiPalette.Muted),rect,0,.59f,43,height-47);
             return rect;
+        }
+        static void Column(Component child,RectTransform parent,float left,float right,float y,float height)
+        {
+            var rect=(RectTransform)child.transform;rect.SetParent(parent,false);rect.anchorMin=new Vector2(left,1);rect.anchorMax=new Vector2(right,1);
+            rect.pivot=new Vector2(0,1);rect.anchoredPosition=new Vector2(0,-y);rect.sizeDelta=new Vector2(-16,height);
         }
         static void Local(Component child,RectTransform parent,float x,float y,float w,float h)
         {
@@ -101,20 +106,20 @@ namespace Starframe.App
         void Dropdown(RectTransform row,string name,List<string> labels,int selected,Action<int> set)
         {
             var dropdown=surface.Dropdown(name,labels,selected,0,0,1,1,value=>{set(value);MarkChanged();});
-            Local(dropdown,row,930,12,410,46);
+            Column(dropdown,row,.64f,1,12,48);
             L10n.ApplyUserContentFont(dropdown.captionText);L10n.ApplyUserContentFont(dropdown.itemText);
         }
         void ToggleRow(string name,bool value,Action<bool> set,string hint=null)
         {
             var row=Row(name,hint);
-            Local(surface.Toggle(name+"Toggle",L10n.T("settings.enabled"),value,0,0,1,1,next=>{set(next);MarkChanged();}),row,1140,12,200,46);
+            Column(surface.Toggle(name+"Toggle",L10n.T("settings.enabled"),value,0,0,1,1,next=>{set(next);MarkChanged();}),row,.83f,1,12,48);
         }
         void SliderRow(string name,float min,float max,float value,Action<float> set,Func<float,string> format,string hint=null,bool enabled=true)
         {
             var row=Row(name,hint);
-            var number=surface.Label(name+"Value",format(value),0,0,1,1,16);Local(number,row,1242,20,98,30);number.alignment=TextAlignmentOptions.Right;
+            var number=surface.Label(name+"Value",format(value),0,0,1,1,18);Column(number,row,.91f,1,20,32);number.alignment=TextAlignmentOptions.Right;
             var slider=surface.Slider(name+"Slider",min,max,value,0,0,1,1,next=>{set(next);number.text=format(next);MarkChanged();});
-            slider.interactable=enabled;Local(slider,row,930,17,280,38);
+            slider.interactable=enabled;Column(slider,row,.64f,.89f,17,42);
         }
         void BuildDisplay()
         {
@@ -127,7 +132,7 @@ namespace Starframe.App
             var capList=caps.ToList();if(!capList.Contains(draft.targetFrameRate))capList.Add(draft.targetFrameRate);
             var capRow=Row("frameCap","frameCapHint");
             var dropdown=surface.Dropdown("FrameCap",capList.Select(value=>value<0?L10n.T("settings.unlimited"):value+" FPS").ToList(),Mathf.Max(0,capList.IndexOf(draft.targetFrameRate)),0,0,1,1,index=>{draft.targetFrameRate=capList[index];MarkChanged();});
-            dropdown.interactable=draft.vSyncCount==0;Local(dropdown,capRow,930,12,410,46);
+            dropdown.interactable=draft.vSyncCount==0;Column(dropdown,capRow,.64f,1,12,48);
             if(Application.isEditor)Note("editorDisplayNote");
         }
         List<DisplayResolution> ResolutionOptions()
@@ -158,8 +163,8 @@ namespace Starframe.App
             SliderRow("uiVolume",0,1,draft.uiVolume,value=>{draft.uiVolume=value;GameAudio.Preview(draft);},Percent,"uiHint");
             ToggleRow("muteUnfocused",draft.muteWhenUnfocused,value=>{draft.muteWhenUnfocused=value;GameAudio.Preview(draft);},"muteUnfocusedHint");
             var row=Row("testAudio",null,68);
-            Local(surface.Button("TestSfx",L10n.T("settings.testSfx"),0,0,195,44,()=>{GameAudio.Preview(draft);GameAudio.PreviewSfx();}),row,930,8,195,44);
-            Local(surface.Button("TestUi",L10n.T("settings.testUi"),0,0,195,44,()=>{GameAudio.Preview(draft);GameAudio.PlayUiClick();}),row,1145,8,195,44);
+            Column(surface.Button("TestSfx",L10n.T("settings.testSfx"),0,0,195,48,()=>{GameAudio.Preview(draft);GameAudio.PreviewSfx();}),row,.64f,.82f,8,48);
+            Column(surface.Button("TestUi",L10n.T("settings.testUi"),0,0,195,48,()=>{GameAudio.Preview(draft);GameAudio.PlayUiClick();}),row,.82f,1,8,48);
         }
         static string Percent(float value)=>Mathf.RoundToInt(value*100)+"%";
         void BuildControls()
@@ -174,12 +179,18 @@ namespace Starframe.App
             {
                 var binding=GameInput.Get(action,draft);bool weaponConflict=GameInput.HasWeaponBindingConflict(blueprint,binding.path)||GameInput.HasWeaponBindingConflict(blueprint,binding.alternatePath);
                 var selected=action;var row=Row("action."+action,null,weaponConflict?100:66);
-                Local(surface.Button("Binding"+action,GameInput.BindingLabel(action,draft),0,0,410,46,()=>BeginCapture(selected)),row,930,4,410,46);
-                if(weaponConflict)Local(surface.Label("WeaponBindingWarning_"+action,L10n.T("settings.weaponBindingWarning"),0,0,1,1,13,UiTheme.Current.amber),row,0,51,1340,42);
+                Column(surface.Button("Binding"+action,GameInput.BindingLabel(action,draft),0,0,410,48,()=>BeginCapture(selected)),row,.64f,1,4,48);
+                if(weaponConflict)Column(surface.Label("WeaponBindingWarning_"+action,L10n.T("settings.weaponBindingWarning"),0,0,1,1,14,UiTheme.Current.amber),row,0,1,56,40);
             }
         }
         void BuildAccessibility()
-        {ToggleRow("reduceFlashes",draft.reduceFlashes,value=>draft.reduceFlashes=value,"reduceFlashesHint");Note("accessibilityNote");}
+        {
+            Row("interfaceHeading",null,58);
+            SliderRow("uiScale",.85f,1.25f,draft.uiScale,value=>draft.uiScale=Mathf.Round(value*100)/100,Percent,"uiScaleHint");
+            SliderRow("glassBlur",0,1,draft.glassBlur,value=>draft.glassBlur=value,Percent,"glassBlurHint");
+            SliderRow("hudMotion",0,1,draft.hudMotion,value=>draft.hudMotion=value,Percent,"hudMotionHint");
+            ToggleRow("reduceFlashes",draft.reduceFlashes,value=>draft.reduceFlashes=value,"reduceFlashesHint");Note("accessibilityNote");
+        }
         void BuildLanguage()
         {
             Dropdown(Row("language","languageHint"),"Language",new List<string>{"English","简体中文"},draft.localeCode=="zh-Hans"?1:0,index=>draft.localeCode=index==1?"zh-Hans":"en");
@@ -189,13 +200,13 @@ namespace Starframe.App
         {
             var go=new GameObject("Note_"+key,typeof(RectTransform),typeof(UnityEngine.UI.LayoutElement));go.layer=5;go.transform.SetParent(content,false);
             var element=go.GetComponent<UnityEngine.UI.LayoutElement>();element.preferredHeight=element.minHeight=78;
-            Local(surface.Label(key,L10n.T("settings."+key),0,0,1,1,14,GlassUiPalette.Muted),(RectTransform)go.transform,0,12,1340,62);
+            Column(surface.Label(key,L10n.T("settings."+key),0,0,1,1,15,GlassUiPalette.Muted),(RectTransform)go.transform,0,1,12,62);
         }
         void MarkChanged(bool clearStatus=true)
         {
             if(applyButton)applyButton.interactable=Dirty;
             if(revertButton)revertButton.interactable=Dirty;
-            if(status&&clearStatus)status.text=L10n.T(Dirty?"settings.unsaved":"settings.applied");
+            if(status){if(clearStatus)status.text=L10n.T(Dirty?"settings.unsaved":"settings.applied");status.color=Dirty?UiTheme.Current.amber:GlassUiPalette.Muted;}
         }
         void RestoreDefaults(){draft=GameSettings.Defaults();draft.Validate();GameAudio.Preview(draft);Build();}
         void Revert(){draft=baseline.Clone();GameAudio.Apply();Build();}
@@ -298,7 +309,7 @@ namespace Starframe.App
                 InModal(surface.Button("DiscardSettings",L10n.T("settings.discard"),580,632,360,50,Close));
                 InModal(surface.Button("KeepSettings",L10n.T("settings.keepEditing"),980,632,360,50,()=>{dialog=Dialog.None;DestroyModal();},true));
             }
-            modal.SetAsLastSibling();if(EventSystem.current)EventSystem.current.SetSelectedGameObject(null);
+            modal.SetAsLastSibling();UiModalScope.Protect(surface.Root,modal);
         }
         void UpdateCountdown(){if(displayCountdown)displayCountdown.text=L10n.T("settings.displayCountdown",Mathf.Max(0,Mathf.CeilToInt(displayDeadline-Time.unscaledTime)));}
         void Update()

@@ -1,0 +1,36 @@
+{
+  "success": true,
+  "command": "command run_script",
+  "data": {
+    "command": "run_script",
+    "parameters": {
+      "file": "Temp/MapStudioSmoke.cs",
+      "entry": "MapStudioSmoke.Run",
+      "timeout_ms": "75000"
+    },
+    "result": {
+      "diagnostics": [],
+      "compileMs": 992,
+      "executeMs": 1241,
+      "assemblyName": "PipelineRunScript_MapStudioSmoke_d989251cb24a4adfb18cd6664c43ceac",
+      "success": true,
+      "result": {
+        "passed": true,
+        "assetCells": 24,
+        "mapInstances": 2,
+        "undoRedo": true,
+        "saved": true,
+        "sceneExport": true,
+        "scenePreserved": "Assets/_Starframe/Scenes/Frontend/Hangar.unity",
+        "editorUi": true
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7801,
+      "projectPath": "D:\\software\\unity\\CGDD26107"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

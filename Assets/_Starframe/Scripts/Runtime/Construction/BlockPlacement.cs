@@ -1,4 +1,5 @@
-// @role Convert grid poses and copy modular-part records.
+// @role Convert grid poses, reject empty support faces and copy modular-part records.
+// @calls BlockModules, BlockGeometry
 
 using UnityEngine;
 namespace Starframe.Construction
@@ -32,6 +33,8 @@ namespace Starframe.Construction
             n=(Vector3)Vector3Int.RoundToInt(n);
             var hitLocal=support.InverseTransformPoint(hitPoint);var nearest=Vector3.zero;float best=float.PositiveInfinity;
             foreach(var cell in BlockModules.LocalCells(shape)){float distance=(hitLocal-(Vector3)cell).sqrMagnitude;if(distance<best){best=distance;nearest=cell;}}
+            var localDirection=Vector3Int.RoundToInt(support.InverseTransformDirection(n));
+            if(!BlockModules.HasAttachmentSurface(shape,Vector3Int.RoundToInt(nearest),localDirection))return false;
             var position=support.position+support.TransformDirection(nearest)+n;
             var rotation=FaceRotation(n,turns);
             if(!IsCellAligned(position,rotation))return false;
@@ -43,6 +46,7 @@ namespace Starframe.Construction
                 throw new System.ArgumentException("Only standard grid faces can support a new block.");
             return pose;
         }
+        public static Pose AlignMount(BlockShape shape,Pose contact)=>new Pose(contact.position-contact.rotation*(Vector3)BlockModules.MountingCell(shape),contact.rotation);
         public static Pose OnGround(Vector3 point,int turns)=>new Pose(
             new Vector3(Mathf.Round(point.x),.5f,Mathf.Round(point.z)),FaceRotation(Vector3.up,turns));
         public static BlockRecord Copy(BlockRecord p)=>new BlockRecord{

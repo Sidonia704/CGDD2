@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57c7601c94efac44dacfde24ada57da4, type: 3}
+  m_Name: Thruster6
+  m_EditorClassIdentifier: Starframe.Construction::Starframe.Flight.ModuleDefinition
+  shape: 36
+  displayName: "\u4E94\u5411\u5FAE\u8C03\u63A8\u8FDB\u5668"
+  category: 1
+  cost: 30
+  massKg: 250
+  maxHp: 755.99994
+  recoverySeconds: 6
+  thrustNewtons: 65000
+  occupiedCells:
+  - {x: 0, y: 0, z: 0}
+  localExhaustDirections:
+  - {x: 0, y: 1, z: 0}
+  - {x: 1, y: 0, z: 0}
+  - {x: -1, y: 0, z: 0}
+  - {x: 0, y: 0, z: 1}
+  - {x: 0, y: 0, z: -1}
+  localNozzlePositions:
+  - {x: -0.00061231107, y: 0.46800008, z: 0.0032646582}
+  - {x: 0.45701036, y: 0.14876941, z: 0.004682459}
+  - {x: -0.45701033, y: 0.14876948, z: 0.0038651675}
+  - {x: -0.00061234087, y: 0.14876945, z: 0.4575089}
+  - {x: -0.00061237067, y: 0.15085171, z: -0.45750883}
+  muzzleLocalPosition: {x: 0, y: 0.27, z: 1.52}
+  muzzleClearanceDiameter: 0.25
+  mesh: {fileID: 4300000, guid: 903c865e39d70674f9e6bcb7ff4015cd, type: 2}
+  outline: {fileID: 0}
+  drawOutline: 0
+  material: {fileID: 2100000, guid: ac43167d730c15e429cf0ff298cf0763, type: 2}
+  icon: {fileID: 21300000, guid: 6cf0adab26f26d240a2f6e6ebcb6e56a, type: 3}
+  selectedIcon: {fileID: 21300000, guid: cf5006d5097158f459098bbc287dc0ae, type: 3}
+  weapon: {fileID: 0}
+  countermeasure: {fileID: 0}
+  generationWatts: 0
+  storageJoules: 0
+  thrusterPowerWatts: 0
+  shieldPowerWatts: 0
+  shieldCapacity: 0
+  shieldRadius: 8
+  shieldRecoveryDelay: 2
+  shieldRecoveryPerSecond: 50
+  shieldSurfaceMaterial: {fileID: 0}
+  shieldSurfaceMesh: {fileID: 0}

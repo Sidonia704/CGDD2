@@ -1,0 +1,20 @@
+{
+  "status": "completed",
+  "duration": 16.45,
+  "summary": {
+    "total": 1,
+    "passed": 0,
+    "failed": 1,
+    "skipped": 0,
+    "inconclusive": 0
+  },
+  "results": [
+    {
+      "FullName": "Starframe.Tests.FlightAimStabilityTests.FineAimStaysSmoothAndPersistentThenSettlesWhenCentered",
+      "Status": "Failed",
+      "Duration": 16.4231296,
+      "Message": "  settled drift=0.07223012deg; angularVelocity=(0.236610562, 0.106163345, -0.0331648178)deg/s; velocity=(0.000195587447, -7.499948E-05, 7.12242E-05)m/s; rotationDemand=(-0.00169619243, -0.000538302644, 0.000198537469)\r\n  Expected: less than 0.0299999993f\r\n  But was:  0.072230123f\r\n",
+      "StackTrace": "at Starframe.Tests.FlightAimStabilityTests+<FineAimStaysSmoothAndPersistentThenSettlesWhenCentered>d__4.MoveNext () [0x0029b] in D:\\software\\unity\\CGDD26107\\Assets\\_Starframe\\Tests\\PlayMode\\Combat\\FlightAimStabilityTests.cs:41\r\nat UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in .\\Library\\PackageCache\\com.unity.test-framework@bd7f943e9647\\UnityEngine.TestRunner\\NUnitExtensions\\Attributes\\TestEnumerator.cs:44\r\n"
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+    "MonoBehaviour": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "citadel-behavior",
+        "m_EditorClassIdentifier": "Starframe.Construction::Starframe.Combat.BotBehaviorProfile",
+        "role": 6,
+        "preferredRange": 1100.0,
+        "cruiseSpeedFraction": 0.3499999940395355,
+        "attackSpeedFraction": 0.20000000298023225,
+        "strafeFraction": 0.02500000037252903,
+        "attackPass": false,
+        "minimumAttackSeconds": 2.0,
+        "attackSeconds": 6.0,
+        "breakawaySeconds": 2.0,
+        "reactionSeconds": 1.0,
+        "fireBurstSeconds": 1.5,
+        "firePauseSeconds": 2.5,
+        "aimErrorDegrees": 0.20000000298023225,
+        "velocityResponseSeconds": 1.0,
+        "steeringResponseSeconds": 0.23999999463558198,
+        "weaponHoldSeconds": 1.399999976158142,
+        "terrainLookaheadSeconds": 3.0,
+        "terrainProbeSeconds": 0.18000000715255738
+    }
+}

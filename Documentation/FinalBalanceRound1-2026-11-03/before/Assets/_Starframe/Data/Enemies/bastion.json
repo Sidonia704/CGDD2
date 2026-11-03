@@ -1,0 +1,6592 @@
+{
+    "version": 2,
+    "name": "Bastion Gunship",
+    "hasCore": true,
+    "corePartId": "bastion-Core-0-0-0",
+    "shipForward": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 1.0
+    },
+    "parts": [
+        {
+            "id": "bastion-Core-0-0-0",
+            "shape": 6,
+            "cell": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 0.0,
+                "y": 0.5,
+                "z": 0.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Power2--3-0--4",
+            "shape": 17,
+            "cell": {
+                "x": -3,
+                "y": 0,
+                "z": -4
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -3.0,
+                "y": 0.5,
+                "z": -4.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Power2-1-0--4",
+            "shape": 17,
+            "cell": {
+                "x": 1,
+                "y": 0,
+                "z": -4
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 1.0,
+                "y": 0.5,
+                "z": -4.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Shield--4-0--1",
+            "shape": 9,
+            "cell": {
+                "x": -4,
+                "y": 0,
+                "z": -1
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -4.0,
+                "y": 0.5,
+                "z": -1.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Shield-3-0--1",
+            "shape": 9,
+            "cell": {
+                "x": 3,
+                "y": 0,
+                "z": -1
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 3.0,
+                "y": 0.5,
+                "z": -1.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Thruster6--5-1--7",
+            "shape": 36,
+            "cell": {
+                "x": -5,
+                "y": 1,
+                "z": -7
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -5.0,
+                "y": 1.5,
+                "z": -7.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Thruster6--5--1--7",
+            "shape": 36,
+            "cell": {
+                "x": -5,
+                "y": -1,
+                "z": -7
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -5.0,
+                "y": -0.5,
+                "z": -7.0
+            },
+            "rotation": {
+                "x": 1.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": -4.371138828673793e-8
+            }
+        },
+        {
+            "id": "bastion-Thruster6-5-1--7",
+            "shape": 36,
+            "cell": {
+                "x": 5,
+                "y": 1,
+                "z": -7
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 5.0,
+                "y": 1.5,
+                "z": -7.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Thruster6-5--1--7",
+            "shape": 36,
+            "cell": {
+                "x": 5,
+                "y": -1,
+                "z": -7
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 5.0,
+                "y": -0.5,
+                "z": -7.0
+            },
+            "rotation": {
+                "x": 1.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": -4.371138828673793e-8
+            }
+        },
+        {
+            "id": "bastion-Thruster6--5-1--4",
+            "shape": 36,
+            "cell": {
+                "x": -5,
+                "y": 1,
+                "z": -4
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -5.0,
+                "y": 1.5,
+                "z": -4.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Thruster6--5--1--4",
+            "shape": 36,
+            "cell": {
+                "x": -5,
+                "y": -1,
+                "z": -4
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -5.0,
+                "y": -0.5,
+                "z": -4.0
+            },
+            "rotation": {
+                "x": 1.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": -4.371138828673793e-8
+            }
+        },
+        {
+            "id": "bastion-Thruster6-5-1--4",
+            "shape": 36,
+            "cell": {
+                "x": 5,
+                "y": 1,
+                "z": -4
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 5.0,
+                "y": 1.5,
+                "z": -4.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Thruster6-5--1--4",
+            "shape": 36,
+            "cell": {
+                "x": 5,
+                "y": -1,
+                "z": -4
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 5.0,
+                "y": -0.5,
+                "z": -4.0
+            },
+            "rotation": {
+                "x": 1.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": -4.371138828673793e-8
+            }
+        },
+        {
+            "id": "bastion-Thruster6--5-1--1",
+            "shape": 36,
+            "cell": {
+                "x": -5,
+                "y": 1,
+                "z": -1
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -5.0,
+                "y": 1.5,
+                "z": -1.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Thruster6--5--1--1",
+            "shape": 36,
+            "cell": {
+                "x": -5,
+                "y": -1,
+                "z": -1
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -5.0,
+                "y": -0.5,
+                "z": -1.0
+            },
+            "rotation": {
+                "x": 1.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": -4.371138828673793e-8
+            }
+        },
+        {
+            "id": "bastion-Thruster6-5-1--1",
+            "shape": 36,
+            "cell": {
+                "x": 5,
+                "y": 1,
+                "z": -1
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 5.0,
+                "y": 1.5,
+                "z": -1.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Thruster6-5--1--1",
+            "shape": 36,
+            "cell": {
+                "x": 5,
+                "y": -1,
+                "z": -1
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 5.0,
+                "y": -0.5,
+                "z": -1.0
+            },
+            "rotation": {
+                "x": 1.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": -4.371138828673793e-8
+            }
+        },
+        {
+            "id": "bastion-Thruster3-0-0--10",
+            "shape": 14,
+            "cell": {
+                "x": 0,
+                "y": 0,
+                "z": -10
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 0.0,
+                "y": 0.5,
+                "z": -10.0
+            },
+            "rotation": {
+                "x": -0.7071068286895752,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 0.7071068286895752
+            }
+        },
+        {
+            "id": "bastion-Gun2--4-1-6",
+            "shape": 24,
+            "cell": {
+                "x": -4,
+                "y": 1,
+                "z": 6
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -4.0,
+                "y": 1.5,
+                "z": 6.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Laser2-0-1-6",
+            "shape": 26,
+            "cell": {
+                "x": 0,
+                "y": 1,
+                "z": 6
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 0.0,
+                "y": 1.5,
+                "z": 6.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Railgun1-3-1-6",
+            "shape": 28,
+            "cell": {
+                "x": 3,
+                "y": 1,
+                "z": 6
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 3.0,
+                "y": 1.5,
+                "z": 6.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--5-0--10",
+            "shape": 0,
+            "cell": {
+                "x": -5,
+                "y": 0,
+                "z": -10
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -5.0,
+                "y": 0.5,
+                "z": -10.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--4-0--10",
+            "shape": 0,
+            "cell": {
+                "x": -4,
+                "y": 0,
+                "z": -10
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -4.0,
+                "y": 0.5,
+                "z": -10.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--3-0--10",
+            "shape": 0,
+            "cell": {
+                "x": -3,
+                "y": 0,
+                "z": -10
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -3.0,
+                "y": 0.5,
+                "z": -10.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--2-0--10",
+            "shape": 0,
+            "cell": {
+                "x": -2,
+                "y": 0,
+                "z": -10
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -2.0,
+                "y": 0.5,
+                "z": -10.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--1-0--10",
+            "shape": 0,
+            "cell": {
+                "x": -1,
+                "y": 0,
+                "z": -10
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -1.0,
+                "y": 0.5,
+                "z": -10.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-1-0--10",
+            "shape": 0,
+            "cell": {
+                "x": 1,
+                "y": 0,
+                "z": -10
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 1.0,
+                "y": 0.5,
+                "z": -10.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-2-0--10",
+            "shape": 0,
+            "cell": {
+                "x": 2,
+                "y": 0,
+                "z": -10
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 2.0,
+                "y": 0.5,
+                "z": -10.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-3-0--10",
+            "shape": 0,
+            "cell": {
+                "x": 3,
+                "y": 0,
+                "z": -10
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 3.0,
+                "y": 0.5,
+                "z": -10.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-4-0--10",
+            "shape": 0,
+            "cell": {
+                "x": 4,
+                "y": 0,
+                "z": -10
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 4.0,
+                "y": 0.5,
+                "z": -10.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-5-0--10",
+            "shape": 0,
+            "cell": {
+                "x": 5,
+                "y": 0,
+                "z": -10
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 5.0,
+                "y": 0.5,
+                "z": -10.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--5-0--9",
+            "shape": 0,
+            "cell": {
+                "x": -5,
+                "y": 0,
+                "z": -9
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -5.0,
+                "y": 0.5,
+                "z": -9.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--4-0--9",
+            "shape": 0,
+            "cell": {
+                "x": -4,
+                "y": 0,
+                "z": -9
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -4.0,
+                "y": 0.5,
+                "z": -9.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--3-0--9",
+            "shape": 0,
+            "cell": {
+                "x": -3,
+                "y": 0,
+                "z": -9
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -3.0,
+                "y": 0.5,
+                "z": -9.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--2-0--9",
+            "shape": 0,
+            "cell": {
+                "x": -2,
+                "y": 0,
+                "z": -9
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -2.0,
+                "y": 0.5,
+                "z": -9.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--1-0--9",
+            "shape": 0,
+            "cell": {
+                "x": -1,
+                "y": 0,
+                "z": -9
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -1.0,
+                "y": 0.5,
+                "z": -9.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-0-0--9",
+            "shape": 0,
+            "cell": {
+                "x": 0,
+                "y": 0,
+                "z": -9
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 0.0,
+                "y": 0.5,
+                "z": -9.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-1-0--9",
+            "shape": 0,
+            "cell": {
+                "x": 1,
+                "y": 0,
+                "z": -9
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 1.0,
+                "y": 0.5,
+                "z": -9.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-2-0--9",
+            "shape": 0,
+            "cell": {
+                "x": 2,
+                "y": 0,
+                "z": -9
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 2.0,
+                "y": 0.5,
+                "z": -9.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-3-0--9",
+            "shape": 0,
+            "cell": {
+                "x": 3,
+                "y": 0,
+                "z": -9
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 3.0,
+                "y": 0.5,
+                "z": -9.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-4-0--9",
+            "shape": 0,
+            "cell": {
+                "x": 4,
+                "y": 0,
+                "z": -9
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 4.0,
+                "y": 0.5,
+                "z": -9.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-5-0--9",
+            "shape": 0,
+            "cell": {
+                "x": 5,
+                "y": 0,
+                "z": -9
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 5.0,
+                "y": 0.5,
+                "z": -9.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--5-0--8",
+            "shape": 0,
+            "cell": {
+                "x": -5,
+                "y": 0,
+                "z": -8
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -5.0,
+                "y": 0.5,
+                "z": -8.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--4-0--8",
+            "shape": 0,
+            "cell": {
+                "x": -4,
+                "y": 0,
+                "z": -8
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -4.0,
+                "y": 0.5,
+                "z": -8.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--3-0--8",
+            "shape": 0,
+            "cell": {
+                "x": -3,
+                "y": 0,
+                "z": -8
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -3.0,
+                "y": 0.5,
+                "z": -8.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--2-0--8",
+            "shape": 0,
+            "cell": {
+                "x": -2,
+                "y": 0,
+                "z": -8
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -2.0,
+                "y": 0.5,
+                "z": -8.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--1-0--8",
+            "shape": 0,
+            "cell": {
+                "x": -1,
+                "y": 0,
+                "z": -8
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -1.0,
+                "y": 0.5,
+                "z": -8.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-0-0--8",
+            "shape": 0,
+            "cell": {
+                "x": 0,
+                "y": 0,
+                "z": -8
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 0.0,
+                "y": 0.5,
+                "z": -8.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-1-0--8",
+            "shape": 0,
+            "cell": {
+                "x": 1,
+                "y": 0,
+                "z": -8
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 1.0,
+                "y": 0.5,
+                "z": -8.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-2-0--8",
+            "shape": 0,
+            "cell": {
+                "x": 2,
+                "y": 0,
+                "z": -8
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 2.0,
+                "y": 0.5,
+                "z": -8.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-3-0--8",
+            "shape": 0,
+            "cell": {
+                "x": 3,
+                "y": 0,
+                "z": -8
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 3.0,
+                "y": 0.5,
+                "z": -8.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-4-0--8",
+            "shape": 0,
+            "cell": {
+                "x": 4,
+                "y": 0,
+                "z": -8
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 4.0,
+                "y": 0.5,
+                "z": -8.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-5-0--8",
+            "shape": 0,
+            "cell": {
+                "x": 5,
+                "y": 0,
+                "z": -8
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 5.0,
+                "y": 0.5,
+                "z": -8.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--5-0--7",
+            "shape": 0,
+            "cell": {
+                "x": -5,
+                "y": 0,
+                "z": -7
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -5.0,
+                "y": 0.5,
+                "z": -7.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--4-0--7",
+            "shape": 0,
+            "cell": {
+                "x": -4,
+                "y": 0,
+                "z": -7
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -4.0,
+                "y": 0.5,
+                "z": -7.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--3-0--7",
+            "shape": 0,
+            "cell": {
+                "x": -3,
+                "y": 0,
+                "z": -7
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -3.0,
+                "y": 0.5,
+                "z": -7.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--2-0--7",
+            "shape": 0,
+            "cell": {
+                "x": -2,
+                "y": 0,
+                "z": -7
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -2.0,
+                "y": 0.5,
+                "z": -7.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--1-0--7",
+            "shape": 0,
+            "cell": {
+                "x": -1,
+                "y": 0,
+                "z": -7
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -1.0,
+                "y": 0.5,
+                "z": -7.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-0-0--7",
+            "shape": 0,
+            "cell": {
+                "x": 0,
+                "y": 0,
+                "z": -7
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 0.0,
+                "y": 0.5,
+                "z": -7.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-1-0--7",
+            "shape": 0,
+            "cell": {
+                "x": 1,
+                "y": 0,
+                "z": -7
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 1.0,
+                "y": 0.5,
+                "z": -7.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-2-0--7",
+            "shape": 0,
+            "cell": {
+                "x": 2,
+                "y": 0,
+                "z": -7
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 2.0,
+                "y": 0.5,
+                "z": -7.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-3-0--7",
+            "shape": 0,
+            "cell": {
+                "x": 3,
+                "y": 0,
+                "z": -7
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 3.0,
+                "y": 0.5,
+                "z": -7.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-4-0--7",
+            "shape": 0,
+            "cell": {
+                "x": 4,
+                "y": 0,
+                "z": -7
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 4.0,
+                "y": 0.5,
+                "z": -7.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-5-0--7",
+            "shape": 0,
+            "cell": {
+                "x": 5,
+                "y": 0,
+                "z": -7
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 5.0,
+                "y": 0.5,
+                "z": -7.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--5-0--6",
+            "shape": 0,
+            "cell": {
+                "x": -5,
+                "y": 0,
+                "z": -6
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -5.0,
+                "y": 0.5,
+                "z": -6.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--4-0--6",
+            "shape": 0,
+            "cell": {
+                "x": -4,
+                "y": 0,
+                "z": -6
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -4.0,
+                "y": 0.5,
+                "z": -6.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--3-0--6",
+            "shape": 0,
+            "cell": {
+                "x": -3,
+                "y": 0,
+                "z": -6
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -3.0,
+                "y": 0.5,
+                "z": -6.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--2-0--6",
+            "shape": 0,
+            "cell": {
+                "x": -2,
+                "y": 0,
+                "z": -6
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -2.0,
+                "y": 0.5,
+                "z": -6.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--1-0--6",
+            "shape": 0,
+            "cell": {
+                "x": -1,
+                "y": 0,
+                "z": -6
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -1.0,
+                "y": 0.5,
+                "z": -6.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-0-0--6",
+            "shape": 0,
+            "cell": {
+                "x": 0,
+                "y": 0,
+                "z": -6
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 0.0,
+                "y": 0.5,
+                "z": -6.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-1-0--6",
+            "shape": 0,
+            "cell": {
+                "x": 1,
+                "y": 0,
+                "z": -6
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 1.0,
+                "y": 0.5,
+                "z": -6.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-2-0--6",
+            "shape": 0,
+            "cell": {
+                "x": 2,
+                "y": 0,
+                "z": -6
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 2.0,
+                "y": 0.5,
+                "z": -6.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-3-0--6",
+            "shape": 0,
+            "cell": {
+                "x": 3,
+                "y": 0,
+                "z": -6
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 3.0,
+                "y": 0.5,
+                "z": -6.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-4-0--6",
+            "shape": 0,
+            "cell": {
+                "x": 4,
+                "y": 0,
+                "z": -6
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 4.0,
+                "y": 0.5,
+                "z": -6.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-5-0--6",
+            "shape": 0,
+            "cell": {
+                "x": 5,
+                "y": 0,
+                "z": -6
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 5.0,
+                "y": 0.5,
+                "z": -6.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--5-0--5",
+            "shape": 0,
+            "cell": {
+                "x": -5,
+                "y": 0,
+                "z": -5
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -5.0,
+                "y": 0.5,
+                "z": -5.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--4-0--5",
+            "shape": 0,
+            "cell": {
+                "x": -4,
+                "y": 0,
+                "z": -5
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -4.0,
+                "y": 0.5,
+                "z": -5.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--3-0--5",
+            "shape": 0,
+            "cell": {
+                "x": -3,
+                "y": 0,
+                "z": -5
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -3.0,
+                "y": 0.5,
+                "z": -5.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--2-0--5",
+            "shape": 0,
+            "cell": {
+                "x": -2,
+                "y": 0,
+                "z": -5
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -2.0,
+                "y": 0.5,
+                "z": -5.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--1-0--5",
+            "shape": 0,
+            "cell": {
+                "x": -1,
+                "y": 0,
+                "z": -5
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -1.0,
+                "y": 0.5,
+                "z": -5.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-0-0--5",
+            "shape": 0,
+            "cell": {
+                "x": 0,
+                "y": 0,
+                "z": -5
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 0.0,
+                "y": 0.5,
+                "z": -5.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-1-0--5",
+            "shape": 0,
+            "cell": {
+                "x": 1,
+                "y": 0,
+                "z": -5
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 1.0,
+                "y": 0.5,
+                "z": -5.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-2-0--5",
+            "shape": 0,
+            "cell": {
+                "x": 2,
+                "y": 0,
+                "z": -5
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 2.0,
+                "y": 0.5,
+                "z": -5.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-3-0--5",
+            "shape": 0,
+            "cell": {
+                "x": 3,
+                "y": 0,
+                "z": -5
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 3.0,
+                "y": 0.5,
+                "z": -5.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-4-0--5",
+            "shape": 0,
+            "cell": {
+                "x": 4,
+                "y": 0,
+                "z": -5
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 4.0,
+                "y": 0.5,
+                "z": -5.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-5-0--5",
+            "shape": 0,
+            "cell": {
+                "x": 5,
+                "y": 0,
+                "z": -5
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 5.0,
+                "y": 0.5,
+                "z": -5.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--5-0--4",
+            "shape": 0,
+            "cell": {
+                "x": -5,
+                "y": 0,
+                "z": -4
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -5.0,
+                "y": 0.5,
+                "z": -4.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--4-0--4",
+            "shape": 0,
+            "cell": {
+                "x": -4,
+                "y": 0,
+                "z": -4
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -4.0,
+                "y": 0.5,
+                "z": -4.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--1-0--4",
+            "shape": 0,
+            "cell": {
+                "x": -1,
+                "y": 0,
+                "z": -4
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -1.0,
+                "y": 0.5,
+                "z": -4.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-0-0--4",
+            "shape": 0,
+            "cell": {
+                "x": 0,
+                "y": 0,
+                "z": -4
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 0.0,
+                "y": 0.5,
+                "z": -4.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-3-0--4",
+            "shape": 0,
+            "cell": {
+                "x": 3,
+                "y": 0,
+                "z": -4
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 3.0,
+                "y": 0.5,
+                "z": -4.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-4-0--4",
+            "shape": 0,
+            "cell": {
+                "x": 4,
+                "y": 0,
+                "z": -4
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 4.0,
+                "y": 0.5,
+                "z": -4.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-5-0--4",
+            "shape": 0,
+            "cell": {
+                "x": 5,
+                "y": 0,
+                "z": -4
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 5.0,
+                "y": 0.5,
+                "z": -4.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--5-0--3",
+            "shape": 0,
+            "cell": {
+                "x": -5,
+                "y": 0,
+                "z": -3
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -5.0,
+                "y": 0.5,
+                "z": -3.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--4-0--3",
+            "shape": 0,
+            "cell": {
+                "x": -4,
+                "y": 0,
+                "z": -3
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -4.0,
+                "y": 0.5,
+                "z": -3.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--1-0--3",
+            "shape": 0,
+            "cell": {
+                "x": -1,
+                "y": 0,
+                "z": -3
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -1.0,
+                "y": 0.5,
+                "z": -3.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-0-0--3",
+            "shape": 0,
+            "cell": {
+                "x": 0,
+                "y": 0,
+                "z": -3
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 0.0,
+                "y": 0.5,
+                "z": -3.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-3-0--3",
+            "shape": 0,
+            "cell": {
+                "x": 3,
+                "y": 0,
+                "z": -3
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 3.0,
+                "y": 0.5,
+                "z": -3.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-4-0--3",
+            "shape": 0,
+            "cell": {
+                "x": 4,
+                "y": 0,
+                "z": -3
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 4.0,
+                "y": 0.5,
+                "z": -3.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-5-0--3",
+            "shape": 0,
+            "cell": {
+                "x": 5,
+                "y": 0,
+                "z": -3
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 5.0,
+                "y": 0.5,
+                "z": -3.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--5-0--2",
+            "shape": 0,
+            "cell": {
+                "x": -5,
+                "y": 0,
+                "z": -2
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -5.0,
+                "y": 0.5,
+                "z": -2.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--4-0--2",
+            "shape": 0,
+            "cell": {
+                "x": -4,
+                "y": 0,
+                "z": -2
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -4.0,
+                "y": 0.5,
+                "z": -2.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--3-0--2",
+            "shape": 0,
+            "cell": {
+                "x": -3,
+                "y": 0,
+                "z": -2
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -3.0,
+                "y": 0.5,
+                "z": -2.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--2-0--2",
+            "shape": 0,
+            "cell": {
+                "x": -2,
+                "y": 0,
+                "z": -2
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -2.0,
+                "y": 0.5,
+                "z": -2.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--1-0--2",
+            "shape": 0,
+            "cell": {
+                "x": -1,
+                "y": 0,
+                "z": -2
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -1.0,
+                "y": 0.5,
+                "z": -2.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-0-0--2",
+            "shape": 0,
+            "cell": {
+                "x": 0,
+                "y": 0,
+                "z": -2
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 0.0,
+                "y": 0.5,
+                "z": -2.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-1-0--2",
+            "shape": 0,
+            "cell": {
+                "x": 1,
+                "y": 0,
+                "z": -2
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 1.0,
+                "y": 0.5,
+                "z": -2.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-2-0--2",
+            "shape": 0,
+            "cell": {
+                "x": 2,
+                "y": 0,
+                "z": -2
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 2.0,
+                "y": 0.5,
+                "z": -2.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-3-0--2",
+            "shape": 0,
+            "cell": {
+                "x": 3,
+                "y": 0,
+                "z": -2
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 3.0,
+                "y": 0.5,
+                "z": -2.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-4-0--2",
+            "shape": 0,
+            "cell": {
+                "x": 4,
+                "y": 0,
+                "z": -2
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 4.0,
+                "y": 0.5,
+                "z": -2.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-5-0--2",
+            "shape": 0,
+            "cell": {
+                "x": 5,
+                "y": 0,
+                "z": -2
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 5.0,
+                "y": 0.5,
+                "z": -2.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--5-0--1",
+            "shape": 0,
+            "cell": {
+                "x": -5,
+                "y": 0,
+                "z": -1
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -5.0,
+                "y": 0.5,
+                "z": -1.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--3-0--1",
+            "shape": 0,
+            "cell": {
+                "x": -3,
+                "y": 0,
+                "z": -1
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -3.0,
+                "y": 0.5,
+                "z": -1.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--2-0--1",
+            "shape": 0,
+            "cell": {
+                "x": -2,
+                "y": 0,
+                "z": -1
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -2.0,
+                "y": 0.5,
+                "z": -1.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--1-0--1",
+            "shape": 0,
+            "cell": {
+                "x": -1,
+                "y": 0,
+                "z": -1
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -1.0,
+                "y": 0.5,
+                "z": -1.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-0-0--1",
+            "shape": 0,
+            "cell": {
+                "x": 0,
+                "y": 0,
+                "z": -1
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 0.0,
+                "y": 0.5,
+                "z": -1.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-1-0--1",
+            "shape": 0,
+            "cell": {
+                "x": 1,
+                "y": 0,
+                "z": -1
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 1.0,
+                "y": 0.5,
+                "z": -1.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-2-0--1",
+            "shape": 0,
+            "cell": {
+                "x": 2,
+                "y": 0,
+                "z": -1
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 2.0,
+                "y": 0.5,
+                "z": -1.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-4-0--1",
+            "shape": 0,
+            "cell": {
+                "x": 4,
+                "y": 0,
+                "z": -1
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 4.0,
+                "y": 0.5,
+                "z": -1.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-5-0--1",
+            "shape": 0,
+            "cell": {
+                "x": 5,
+                "y": 0,
+                "z": -1
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 5.0,
+                "y": 0.5,
+                "z": -1.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--5-0-0",
+            "shape": 0,
+            "cell": {
+                "x": -5,
+                "y": 0,
+                "z": 0
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -5.0,
+                "y": 0.5,
+                "z": 0.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--4-0-0",
+            "shape": 0,
+            "cell": {
+                "x": -4,
+                "y": 0,
+                "z": 0
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -4.0,
+                "y": 0.5,
+                "z": 0.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--3-0-0",
+            "shape": 0,
+            "cell": {
+                "x": -3,
+                "y": 0,
+                "z": 0
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -3.0,
+                "y": 0.5,
+                "z": 0.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--2-0-0",
+            "shape": 0,
+            "cell": {
+                "x": -2,
+                "y": 0,
+                "z": 0
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -2.0,
+                "y": 0.5,
+                "z": 0.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--1-0-0",
+            "shape": 0,
+            "cell": {
+                "x": -1,
+                "y": 0,
+                "z": 0
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -1.0,
+                "y": 0.5,
+                "z": 0.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-1-0-0",
+            "shape": 0,
+            "cell": {
+                "x": 1,
+                "y": 0,
+                "z": 0
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 1.0,
+                "y": 0.5,
+                "z": 0.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-2-0-0",
+            "shape": 0,
+            "cell": {
+                "x": 2,
+                "y": 0,
+                "z": 0
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 2.0,
+                "y": 0.5,
+                "z": 0.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-3-0-0",
+            "shape": 0,
+            "cell": {
+                "x": 3,
+                "y": 0,
+                "z": 0
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 3.0,
+                "y": 0.5,
+                "z": 0.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-4-0-0",
+            "shape": 0,
+            "cell": {
+                "x": 4,
+                "y": 0,
+                "z": 0
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 4.0,
+                "y": 0.5,
+                "z": 0.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-5-0-0",
+            "shape": 0,
+            "cell": {
+                "x": 5,
+                "y": 0,
+                "z": 0
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 5.0,
+                "y": 0.5,
+                "z": 0.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--5-0-1",
+            "shape": 0,
+            "cell": {
+                "x": -5,
+                "y": 0,
+                "z": 1
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -5.0,
+                "y": 0.5,
+                "z": 1.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--4-0-1",
+            "shape": 0,
+            "cell": {
+                "x": -4,
+                "y": 0,
+                "z": 1
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -4.0,
+                "y": 0.5,
+                "z": 1.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--3-0-1",
+            "shape": 0,
+            "cell": {
+                "x": -3,
+                "y": 0,
+                "z": 1
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -3.0,
+                "y": 0.5,
+                "z": 1.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--2-0-1",
+            "shape": 0,
+            "cell": {
+                "x": -2,
+                "y": 0,
+                "z": 1
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -2.0,
+                "y": 0.5,
+                "z": 1.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--1-0-1",
+            "shape": 0,
+            "cell": {
+                "x": -1,
+                "y": 0,
+                "z": 1
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -1.0,
+                "y": 0.5,
+                "z": 1.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-0-0-1",
+            "shape": 0,
+            "cell": {
+                "x": 0,
+                "y": 0,
+                "z": 1
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 0.0,
+                "y": 0.5,
+                "z": 1.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-1-0-1",
+            "shape": 0,
+            "cell": {
+                "x": 1,
+                "y": 0,
+                "z": 1
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 1.0,
+                "y": 0.5,
+                "z": 1.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-2-0-1",
+            "shape": 0,
+            "cell": {
+                "x": 2,
+                "y": 0,
+                "z": 1
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 2.0,
+                "y": 0.5,
+                "z": 1.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-3-0-1",
+            "shape": 0,
+            "cell": {
+                "x": 3,
+                "y": 0,
+                "z": 1
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 3.0,
+                "y": 0.5,
+                "z": 1.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-4-0-1",
+            "shape": 0,
+            "cell": {
+                "x": 4,
+                "y": 0,
+                "z": 1
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 4.0,
+                "y": 0.5,
+                "z": 1.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-5-0-1",
+            "shape": 0,
+            "cell": {
+                "x": 5,
+                "y": 0,
+                "z": 1
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 5.0,
+                "y": 0.5,
+                "z": 1.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--5-0-2",
+            "shape": 0,
+            "cell": {
+                "x": -5,
+                "y": 0,
+                "z": 2
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -5.0,
+                "y": 0.5,
+                "z": 2.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--4-0-2",
+            "shape": 0,
+            "cell": {
+                "x": -4,
+                "y": 0,
+                "z": 2
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -4.0,
+                "y": 0.5,
+                "z": 2.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--3-0-2",
+            "shape": 0,
+            "cell": {
+                "x": -3,
+                "y": 0,
+                "z": 2
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -3.0,
+                "y": 0.5,
+                "z": 2.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--2-0-2",
+            "shape": 0,
+            "cell": {
+                "x": -2,
+                "y": 0,
+                "z": 2
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -2.0,
+                "y": 0.5,
+                "z": 2.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--1-0-2",
+            "shape": 0,
+            "cell": {
+                "x": -1,
+                "y": 0,
+                "z": 2
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -1.0,
+                "y": 0.5,
+                "z": 2.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-0-0-2",
+            "shape": 0,
+            "cell": {
+                "x": 0,
+                "y": 0,
+                "z": 2
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 0.0,
+                "y": 0.5,
+                "z": 2.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-1-0-2",
+            "shape": 0,
+            "cell": {
+                "x": 1,
+                "y": 0,
+                "z": 2
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 1.0,
+                "y": 0.5,
+                "z": 2.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-2-0-2",
+            "shape": 0,
+            "cell": {
+                "x": 2,
+                "y": 0,
+                "z": 2
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 2.0,
+                "y": 0.5,
+                "z": 2.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-3-0-2",
+            "shape": 0,
+            "cell": {
+                "x": 3,
+                "y": 0,
+                "z": 2
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 3.0,
+                "y": 0.5,
+                "z": 2.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-4-0-2",
+            "shape": 0,
+            "cell": {
+                "x": 4,
+                "y": 0,
+                "z": 2
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 4.0,
+                "y": 0.5,
+                "z": 2.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-5-0-2",
+            "shape": 0,
+            "cell": {
+                "x": 5,
+                "y": 0,
+                "z": 2
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 5.0,
+                "y": 0.5,
+                "z": 2.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--5-0-3",
+            "shape": 0,
+            "cell": {
+                "x": -5,
+                "y": 0,
+                "z": 3
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -5.0,
+                "y": 0.5,
+                "z": 3.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--4-0-3",
+            "shape": 0,
+            "cell": {
+                "x": -4,
+                "y": 0,
+                "z": 3
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -4.0,
+                "y": 0.5,
+                "z": 3.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--3-0-3",
+            "shape": 0,
+            "cell": {
+                "x": -3,
+                "y": 0,
+                "z": 3
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -3.0,
+                "y": 0.5,
+                "z": 3.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--2-0-3",
+            "shape": 0,
+            "cell": {
+                "x": -2,
+                "y": 0,
+                "z": 3
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -2.0,
+                "y": 0.5,
+                "z": 3.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--1-0-3",
+            "shape": 0,
+            "cell": {
+                "x": -1,
+                "y": 0,
+                "z": 3
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -1.0,
+                "y": 0.5,
+                "z": 3.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-0-0-3",
+            "shape": 0,
+            "cell": {
+                "x": 0,
+                "y": 0,
+                "z": 3
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 0.0,
+                "y": 0.5,
+                "z": 3.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-1-0-3",
+            "shape": 0,
+            "cell": {
+                "x": 1,
+                "y": 0,
+                "z": 3
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 1.0,
+                "y": 0.5,
+                "z": 3.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-2-0-3",
+            "shape": 0,
+            "cell": {
+                "x": 2,
+                "y": 0,
+                "z": 3
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 2.0,
+                "y": 0.5,
+                "z": 3.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-3-0-3",
+            "shape": 0,
+            "cell": {
+                "x": 3,
+                "y": 0,
+                "z": 3
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 3.0,
+                "y": 0.5,
+                "z": 3.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-4-0-3",
+            "shape": 0,
+            "cell": {
+                "x": 4,
+                "y": 0,
+                "z": 3
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 4.0,
+                "y": 0.5,
+                "z": 3.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-5-0-3",
+            "shape": 0,
+            "cell": {
+                "x": 5,
+                "y": 0,
+                "z": 3
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 5.0,
+                "y": 0.5,
+                "z": 3.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--5-0-4",
+            "shape": 0,
+            "cell": {
+                "x": -5,
+                "y": 0,
+                "z": 4
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -5.0,
+                "y": 0.5,
+                "z": 4.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--4-0-4",
+            "shape": 0,
+            "cell": {
+                "x": -4,
+                "y": 0,
+                "z": 4
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -4.0,
+                "y": 0.5,
+                "z": 4.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--3-0-4",
+            "shape": 0,
+            "cell": {
+                "x": -3,
+                "y": 0,
+                "z": 4
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -3.0,
+                "y": 0.5,
+                "z": 4.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--2-0-4",
+            "shape": 0,
+            "cell": {
+                "x": -2,
+                "y": 0,
+                "z": 4
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -2.0,
+                "y": 0.5,
+                "z": 4.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--1-0-4",
+            "shape": 0,
+            "cell": {
+                "x": -1,
+                "y": 0,
+                "z": 4
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -1.0,
+                "y": 0.5,
+                "z": 4.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-0-0-4",
+            "shape": 0,
+            "cell": {
+                "x": 0,
+                "y": 0,
+                "z": 4
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 0.0,
+                "y": 0.5,
+                "z": 4.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-1-0-4",
+            "shape": 0,
+            "cell": {
+                "x": 1,
+                "y": 0,
+                "z": 4
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 1.0,
+                "y": 0.5,
+                "z": 4.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-2-0-4",
+            "shape": 0,
+            "cell": {
+                "x": 2,
+                "y": 0,
+                "z": 4
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 2.0,
+                "y": 0.5,
+                "z": 4.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-3-0-4",
+            "shape": 0,
+            "cell": {
+                "x": 3,
+                "y": 0,
+                "z": 4
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 3.0,
+                "y": 0.5,
+                "z": 4.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-4-0-4",
+            "shape": 0,
+            "cell": {
+                "x": 4,
+                "y": 0,
+                "z": 4
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 4.0,
+                "y": 0.5,
+                "z": 4.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-5-0-4",
+            "shape": 0,
+            "cell": {
+                "x": 5,
+                "y": 0,
+                "z": 4
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 5.0,
+                "y": 0.5,
+                "z": 4.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--5-0-5",
+            "shape": 0,
+            "cell": {
+                "x": -5,
+                "y": 0,
+                "z": 5
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -5.0,
+                "y": 0.5,
+                "z": 5.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--4-0-5",
+            "shape": 0,
+            "cell": {
+                "x": -4,
+                "y": 0,
+                "z": 5
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -4.0,
+                "y": 0.5,
+                "z": 5.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--3-0-5",
+            "shape": 0,
+            "cell": {
+                "x": -3,
+                "y": 0,
+                "z": 5
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -3.0,
+                "y": 0.5,
+                "z": 5.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--2-0-5",
+            "shape": 0,
+            "cell": {
+                "x": -2,
+                "y": 0,
+                "z": 5
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -2.0,
+                "y": 0.5,
+                "z": 5.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--1-0-5",
+            "shape": 0,
+            "cell": {
+                "x": -1,
+                "y": 0,
+                "z": 5
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -1.0,
+                "y": 0.5,
+                "z": 5.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-0-0-5",
+            "shape": 0,
+            "cell": {
+                "x": 0,
+                "y": 0,
+                "z": 5
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 0.0,
+                "y": 0.5,
+                "z": 5.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-1-0-5",
+            "shape": 0,
+            "cell": {
+                "x": 1,
+                "y": 0,
+                "z": 5
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 1.0,
+                "y": 0.5,
+                "z": 5.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-2-0-5",
+            "shape": 0,
+            "cell": {
+                "x": 2,
+                "y": 0,
+                "z": 5
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 2.0,
+                "y": 0.5,
+                "z": 5.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-3-0-5",
+            "shape": 0,
+            "cell": {
+                "x": 3,
+                "y": 0,
+                "z": 5
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 3.0,
+                "y": 0.5,
+                "z": 5.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-4-0-5",
+            "shape": 0,
+            "cell": {
+                "x": 4,
+                "y": 0,
+                "z": 5
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 4.0,
+                "y": 0.5,
+                "z": 5.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-5-0-5",
+            "shape": 0,
+            "cell": {
+                "x": 5,
+                "y": 0,
+                "z": 5
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 5.0,
+                "y": 0.5,
+                "z": 5.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--5-0-6",
+            "shape": 0,
+            "cell": {
+                "x": -5,
+                "y": 0,
+                "z": 6
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -5.0,
+                "y": 0.5,
+                "z": 6.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--4-0-6",
+            "shape": 0,
+            "cell": {
+                "x": -4,
+                "y": 0,
+                "z": 6
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -4.0,
+                "y": 0.5,
+                "z": 6.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--3-0-6",
+            "shape": 0,
+            "cell": {
+                "x": -3,
+                "y": 0,
+                "z": 6
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -3.0,
+                "y": 0.5,
+                "z": 6.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--2-0-6",
+            "shape": 0,
+            "cell": {
+                "x": -2,
+                "y": 0,
+                "z": 6
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -2.0,
+                "y": 0.5,
+                "z": 6.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--1-0-6",
+            "shape": 0,
+            "cell": {
+                "x": -1,
+                "y": 0,
+                "z": 6
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -1.0,
+                "y": 0.5,
+                "z": 6.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-0-0-6",
+            "shape": 0,
+            "cell": {
+                "x": 0,
+                "y": 0,
+                "z": 6
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 0.0,
+                "y": 0.5,
+                "z": 6.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-1-0-6",
+            "shape": 0,
+            "cell": {
+                "x": 1,
+                "y": 0,
+                "z": 6
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 1.0,
+                "y": 0.5,
+                "z": 6.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-2-0-6",
+            "shape": 0,
+            "cell": {
+                "x": 2,
+                "y": 0,
+                "z": 6
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 2.0,
+                "y": 0.5,
+                "z": 6.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-3-0-6",
+            "shape": 0,
+            "cell": {
+                "x": 3,
+                "y": 0,
+                "z": 6
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 3.0,
+                "y": 0.5,
+                "z": 6.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-4-0-6",
+            "shape": 0,
+            "cell": {
+                "x": 4,
+                "y": 0,
+                "z": 6
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 4.0,
+                "y": 0.5,
+                "z": 6.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-5-0-6",
+            "shape": 0,
+            "cell": {
+                "x": 5,
+                "y": 0,
+                "z": 6
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 5.0,
+                "y": 0.5,
+                "z": 6.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--5-0-7",
+            "shape": 0,
+            "cell": {
+                "x": -5,
+                "y": 0,
+                "z": 7
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -5.0,
+                "y": 0.5,
+                "z": 7.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--4-0-7",
+            "shape": 0,
+            "cell": {
+                "x": -4,
+                "y": 0,
+                "z": 7
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -4.0,
+                "y": 0.5,
+                "z": 7.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--3-0-7",
+            "shape": 0,
+            "cell": {
+                "x": -3,
+                "y": 0,
+                "z": 7
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -3.0,
+                "y": 0.5,
+                "z": 7.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--2-0-7",
+            "shape": 0,
+            "cell": {
+                "x": -2,
+                "y": 0,
+                "z": 7
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -2.0,
+                "y": 0.5,
+                "z": 7.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--1-0-7",
+            "shape": 0,
+            "cell": {
+                "x": -1,
+                "y": 0,
+                "z": 7
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -1.0,
+                "y": 0.5,
+                "z": 7.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-0-0-7",
+            "shape": 0,
+            "cell": {
+                "x": 0,
+                "y": 0,
+                "z": 7
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 0.0,
+                "y": 0.5,
+                "z": 7.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-1-0-7",
+            "shape": 0,
+            "cell": {
+                "x": 1,
+                "y": 0,
+                "z": 7
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 1.0,
+                "y": 0.5,
+                "z": 7.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-2-0-7",
+            "shape": 0,
+            "cell": {
+                "x": 2,
+                "y": 0,
+                "z": 7
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 2.0,
+                "y": 0.5,
+                "z": 7.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-3-0-7",
+            "shape": 0,
+            "cell": {
+                "x": 3,
+                "y": 0,
+                "z": 7
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 3.0,
+                "y": 0.5,
+                "z": 7.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-4-0-7",
+            "shape": 0,
+            "cell": {
+                "x": 4,
+                "y": 0,
+                "z": 7
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 4.0,
+                "y": 0.5,
+                "z": 7.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-5-0-7",
+            "shape": 0,
+            "cell": {
+                "x": 5,
+                "y": 0,
+                "z": 7
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 5.0,
+                "y": 0.5,
+                "z": 7.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--4-0-8",
+            "shape": 0,
+            "cell": {
+                "x": -4,
+                "y": 0,
+                "z": 8
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -4.0,
+                "y": 0.5,
+                "z": 8.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--3-0-8",
+            "shape": 0,
+            "cell": {
+                "x": -3,
+                "y": 0,
+                "z": 8
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -3.0,
+                "y": 0.5,
+                "z": 8.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--2-0-8",
+            "shape": 0,
+            "cell": {
+                "x": -2,
+                "y": 0,
+                "z": 8
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -2.0,
+                "y": 0.5,
+                "z": 8.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--1-0-8",
+            "shape": 0,
+            "cell": {
+                "x": -1,
+                "y": 0,
+                "z": 8
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -1.0,
+                "y": 0.5,
+                "z": 8.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-0-0-8",
+            "shape": 0,
+            "cell": {
+                "x": 0,
+                "y": 0,
+                "z": 8
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 0.0,
+                "y": 0.5,
+                "z": 8.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-1-0-8",
+            "shape": 0,
+            "cell": {
+                "x": 1,
+                "y": 0,
+                "z": 8
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 1.0,
+                "y": 0.5,
+                "z": 8.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-2-0-8",
+            "shape": 0,
+            "cell": {
+                "x": 2,
+                "y": 0,
+                "z": 8
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 2.0,
+                "y": 0.5,
+                "z": 8.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-3-0-8",
+            "shape": 0,
+            "cell": {
+                "x": 3,
+                "y": 0,
+                "z": 8
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 3.0,
+                "y": 0.5,
+                "z": 8.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-4-0-8",
+            "shape": 0,
+            "cell": {
+                "x": 4,
+                "y": 0,
+                "z": 8
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 4.0,
+                "y": 0.5,
+                "z": 8.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--3-0-9",
+            "shape": 0,
+            "cell": {
+                "x": -3,
+                "y": 0,
+                "z": 9
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -3.0,
+                "y": 0.5,
+                "z": 9.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--2-0-9",
+            "shape": 0,
+            "cell": {
+                "x": -2,
+                "y": 0,
+                "z": 9
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -2.0,
+                "y": 0.5,
+                "z": 9.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--1-0-9",
+            "shape": 0,
+            "cell": {
+                "x": -1,
+                "y": 0,
+                "z": 9
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -1.0,
+                "y": 0.5,
+                "z": 9.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-0-0-9",
+            "shape": 0,
+            "cell": {
+                "x": 0,
+                "y": 0,
+                "z": 9
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 0.0,
+                "y": 0.5,
+                "z": 9.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-1-0-9",
+            "shape": 0,
+            "cell": {
+                "x": 1,
+                "y": 0,
+                "z": 9
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 1.0,
+                "y": 0.5,
+                "z": 9.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-2-0-9",
+            "shape": 0,
+            "cell": {
+                "x": 2,
+                "y": 0,
+                "z": 9
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 2.0,
+                "y": 0.5,
+                "z": 9.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-3-0-9",
+            "shape": 0,
+            "cell": {
+                "x": 3,
+                "y": 0,
+                "z": 9
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 3.0,
+                "y": 0.5,
+                "z": 9.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Wedge--2-0-10",
+            "shape": 1,
+            "cell": {
+                "x": -2,
+                "y": 0,
+                "z": 10
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -2.0,
+                "y": 0.5,
+                "z": 10.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--1-0-10",
+            "shape": 0,
+            "cell": {
+                "x": -1,
+                "y": 0,
+                "z": 10
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -1.0,
+                "y": 0.5,
+                "z": 10.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-0-0-10",
+            "shape": 0,
+            "cell": {
+                "x": 0,
+                "y": 0,
+                "z": 10
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 0.0,
+                "y": 0.5,
+                "z": 10.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-1-0-10",
+            "shape": 0,
+            "cell": {
+                "x": 1,
+                "y": 0,
+                "z": 10
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 1.0,
+                "y": 0.5,
+                "z": 10.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Wedge-2-0-10",
+            "shape": 1,
+            "cell": {
+                "x": 2,
+                "y": 0,
+                "z": 10
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 2.0,
+                "y": 0.5,
+                "z": 10.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--3--1--4",
+            "shape": 0,
+            "cell": {
+                "x": -3,
+                "y": -1,
+                "z": -4
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -3.0,
+                "y": -0.5,
+                "z": -4.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--2--1--4",
+            "shape": 0,
+            "cell": {
+                "x": -2,
+                "y": -1,
+                "z": -4
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -2.0,
+                "y": -0.5,
+                "z": -4.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--1--1--4",
+            "shape": 0,
+            "cell": {
+                "x": -1,
+                "y": -1,
+                "z": -4
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -1.0,
+                "y": -0.5,
+                "z": -4.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-0--1--4",
+            "shape": 0,
+            "cell": {
+                "x": 0,
+                "y": -1,
+                "z": -4
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 0.0,
+                "y": -0.5,
+                "z": -4.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-1--1--4",
+            "shape": 0,
+            "cell": {
+                "x": 1,
+                "y": -1,
+                "z": -4
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 1.0,
+                "y": -0.5,
+                "z": -4.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-2--1--4",
+            "shape": 0,
+            "cell": {
+                "x": 2,
+                "y": -1,
+                "z": -4
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 2.0,
+                "y": -0.5,
+                "z": -4.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-3--1--4",
+            "shape": 0,
+            "cell": {
+                "x": 3,
+                "y": -1,
+                "z": -4
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 3.0,
+                "y": -0.5,
+                "z": -4.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--3--1--3",
+            "shape": 0,
+            "cell": {
+                "x": -3,
+                "y": -1,
+                "z": -3
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -3.0,
+                "y": -0.5,
+                "z": -3.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--2--1--3",
+            "shape": 0,
+            "cell": {
+                "x": -2,
+                "y": -1,
+                "z": -3
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -2.0,
+                "y": -0.5,
+                "z": -3.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--1--1--3",
+            "shape": 0,
+            "cell": {
+                "x": -1,
+                "y": -1,
+                "z": -3
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -1.0,
+                "y": -0.5,
+                "z": -3.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-0--1--3",
+            "shape": 0,
+            "cell": {
+                "x": 0,
+                "y": -1,
+                "z": -3
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 0.0,
+                "y": -0.5,
+                "z": -3.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-1--1--3",
+            "shape": 0,
+            "cell": {
+                "x": 1,
+                "y": -1,
+                "z": -3
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 1.0,
+                "y": -0.5,
+                "z": -3.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-2--1--3",
+            "shape": 0,
+            "cell": {
+                "x": 2,
+                "y": -1,
+                "z": -3
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 2.0,
+                "y": -0.5,
+                "z": -3.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-3--1--3",
+            "shape": 0,
+            "cell": {
+                "x": 3,
+                "y": -1,
+                "z": -3
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 3.0,
+                "y": -0.5,
+                "z": -3.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--3--1--2",
+            "shape": 0,
+            "cell": {
+                "x": -3,
+                "y": -1,
+                "z": -2
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -3.0,
+                "y": -0.5,
+                "z": -2.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--2--1--2",
+            "shape": 0,
+            "cell": {
+                "x": -2,
+                "y": -1,
+                "z": -2
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -2.0,
+                "y": -0.5,
+                "z": -2.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--1--1--2",
+            "shape": 0,
+            "cell": {
+                "x": -1,
+                "y": -1,
+                "z": -2
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -1.0,
+                "y": -0.5,
+                "z": -2.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-0--1--2",
+            "shape": 0,
+            "cell": {
+                "x": 0,
+                "y": -1,
+                "z": -2
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 0.0,
+                "y": -0.5,
+                "z": -2.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-1--1--2",
+            "shape": 0,
+            "cell": {
+                "x": 1,
+                "y": -1,
+                "z": -2
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 1.0,
+                "y": -0.5,
+                "z": -2.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-2--1--2",
+            "shape": 0,
+            "cell": {
+                "x": 2,
+                "y": -1,
+                "z": -2
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 2.0,
+                "y": -0.5,
+                "z": -2.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-3--1--2",
+            "shape": 0,
+            "cell": {
+                "x": 3,
+                "y": -1,
+                "z": -2
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 3.0,
+                "y": -0.5,
+                "z": -2.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--3--1--1",
+            "shape": 0,
+            "cell": {
+                "x": -3,
+                "y": -1,
+                "z": -1
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -3.0,
+                "y": -0.5,
+                "z": -1.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--2--1--1",
+            "shape": 0,
+            "cell": {
+                "x": -2,
+                "y": -1,
+                "z": -1
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -2.0,
+                "y": -0.5,
+                "z": -1.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--1--1--1",
+            "shape": 0,
+            "cell": {
+                "x": -1,
+                "y": -1,
+                "z": -1
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -1.0,
+                "y": -0.5,
+                "z": -1.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-0--1--1",
+            "shape": 0,
+            "cell": {
+                "x": 0,
+                "y": -1,
+                "z": -1
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 0.0,
+                "y": -0.5,
+                "z": -1.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-1--1--1",
+            "shape": 0,
+            "cell": {
+                "x": 1,
+                "y": -1,
+                "z": -1
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 1.0,
+                "y": -0.5,
+                "z": -1.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-2--1--1",
+            "shape": 0,
+            "cell": {
+                "x": 2,
+                "y": -1,
+                "z": -1
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 2.0,
+                "y": -0.5,
+                "z": -1.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-3--1--1",
+            "shape": 0,
+            "cell": {
+                "x": 3,
+                "y": -1,
+                "z": -1
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 3.0,
+                "y": -0.5,
+                "z": -1.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--3--1-0",
+            "shape": 0,
+            "cell": {
+                "x": -3,
+                "y": -1,
+                "z": 0
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -3.0,
+                "y": -0.5,
+                "z": 0.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--2--1-0",
+            "shape": 0,
+            "cell": {
+                "x": -2,
+                "y": -1,
+                "z": 0
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -2.0,
+                "y": -0.5,
+                "z": 0.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--1--1-0",
+            "shape": 0,
+            "cell": {
+                "x": -1,
+                "y": -1,
+                "z": 0
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -1.0,
+                "y": -0.5,
+                "z": 0.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-0--1-0",
+            "shape": 0,
+            "cell": {
+                "x": 0,
+                "y": -1,
+                "z": 0
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 0.0,
+                "y": -0.5,
+                "z": 0.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-1--1-0",
+            "shape": 0,
+            "cell": {
+                "x": 1,
+                "y": -1,
+                "z": 0
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 1.0,
+                "y": -0.5,
+                "z": 0.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-2--1-0",
+            "shape": 0,
+            "cell": {
+                "x": 2,
+                "y": -1,
+                "z": 0
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 2.0,
+                "y": -0.5,
+                "z": 0.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-3--1-0",
+            "shape": 0,
+            "cell": {
+                "x": 3,
+                "y": -1,
+                "z": 0
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 3.0,
+                "y": -0.5,
+                "z": 0.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--3--1-1",
+            "shape": 0,
+            "cell": {
+                "x": -3,
+                "y": -1,
+                "z": 1
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -3.0,
+                "y": -0.5,
+                "z": 1.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--2--1-1",
+            "shape": 0,
+            "cell": {
+                "x": -2,
+                "y": -1,
+                "z": 1
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -2.0,
+                "y": -0.5,
+                "z": 1.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--1--1-1",
+            "shape": 0,
+            "cell": {
+                "x": -1,
+                "y": -1,
+                "z": 1
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -1.0,
+                "y": -0.5,
+                "z": 1.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-0--1-1",
+            "shape": 0,
+            "cell": {
+                "x": 0,
+                "y": -1,
+                "z": 1
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 0.0,
+                "y": -0.5,
+                "z": 1.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-1--1-1",
+            "shape": 0,
+            "cell": {
+                "x": 1,
+                "y": -1,
+                "z": 1
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 1.0,
+                "y": -0.5,
+                "z": 1.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-2--1-1",
+            "shape": 0,
+            "cell": {
+                "x": 2,
+                "y": -1,
+                "z": 1
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 2.0,
+                "y": -0.5,
+                "z": 1.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-3--1-1",
+            "shape": 0,
+            "cell": {
+                "x": 3,
+                "y": -1,
+                "z": 1
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 3.0,
+                "y": -0.5,
+                "z": 1.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--3--1-2",
+            "shape": 0,
+            "cell": {
+                "x": -3,
+                "y": -1,
+                "z": 2
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -3.0,
+                "y": -0.5,
+                "z": 2.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--2--1-2",
+            "shape": 0,
+            "cell": {
+                "x": -2,
+                "y": -1,
+                "z": 2
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -2.0,
+                "y": -0.5,
+                "z": 2.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--1--1-2",
+            "shape": 0,
+            "cell": {
+                "x": -1,
+                "y": -1,
+                "z": 2
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -1.0,
+                "y": -0.5,
+                "z": 2.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-0--1-2",
+            "shape": 0,
+            "cell": {
+                "x": 0,
+                "y": -1,
+                "z": 2
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 0.0,
+                "y": -0.5,
+                "z": 2.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-1--1-2",
+            "shape": 0,
+            "cell": {
+                "x": 1,
+                "y": -1,
+                "z": 2
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 1.0,
+                "y": -0.5,
+                "z": 2.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-2--1-2",
+            "shape": 0,
+            "cell": {
+                "x": 2,
+                "y": -1,
+                "z": 2
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 2.0,
+                "y": -0.5,
+                "z": 2.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-3--1-2",
+            "shape": 0,
+            "cell": {
+                "x": 3,
+                "y": -1,
+                "z": 2
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 3.0,
+                "y": -0.5,
+                "z": 2.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--3--1-3",
+            "shape": 0,
+            "cell": {
+                "x": -3,
+                "y": -1,
+                "z": 3
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -3.0,
+                "y": -0.5,
+                "z": 3.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--2--1-3",
+            "shape": 0,
+            "cell": {
+                "x": -2,
+                "y": -1,
+                "z": 3
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -2.0,
+                "y": -0.5,
+                "z": 3.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--1--1-3",
+            "shape": 0,
+            "cell": {
+                "x": -1,
+                "y": -1,
+                "z": 3
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -1.0,
+                "y": -0.5,
+                "z": 3.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-0--1-3",
+            "shape": 0,
+            "cell": {
+                "x": 0,
+                "y": -1,
+                "z": 3
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 0.0,
+                "y": -0.5,
+                "z": 3.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-1--1-3",
+            "shape": 0,
+            "cell": {
+                "x": 1,
+                "y": -1,
+                "z": 3
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 1.0,
+                "y": -0.5,
+                "z": 3.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-2--1-3",
+            "shape": 0,
+            "cell": {
+                "x": 2,
+                "y": -1,
+                "z": 3
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 2.0,
+                "y": -0.5,
+                "z": 3.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-3--1-3",
+            "shape": 0,
+            "cell": {
+                "x": 3,
+                "y": -1,
+                "z": 3
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 3.0,
+                "y": -0.5,
+                "z": 3.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--3--1-4",
+            "shape": 0,
+            "cell": {
+                "x": -3,
+                "y": -1,
+                "z": 4
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -3.0,
+                "y": -0.5,
+                "z": 4.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--2--1-4",
+            "shape": 0,
+            "cell": {
+                "x": -2,
+                "y": -1,
+                "z": 4
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -2.0,
+                "y": -0.5,
+                "z": 4.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube--1--1-4",
+            "shape": 0,
+            "cell": {
+                "x": -1,
+                "y": -1,
+                "z": 4
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -1.0,
+                "y": -0.5,
+                "z": 4.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-0--1-4",
+            "shape": 0,
+            "cell": {
+                "x": 0,
+                "y": -1,
+                "z": 4
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 0.0,
+                "y": -0.5,
+                "z": 4.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-1--1-4",
+            "shape": 0,
+            "cell": {
+                "x": 1,
+                "y": -1,
+                "z": 4
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 1.0,
+                "y": -0.5,
+                "z": 4.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-2--1-4",
+            "shape": 0,
+            "cell": {
+                "x": 2,
+                "y": -1,
+                "z": 4
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 2.0,
+                "y": -0.5,
+                "z": 4.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-3--1-4",
+            "shape": 0,
+            "cell": {
+                "x": 3,
+                "y": -1,
+                "z": 4
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 3.0,
+                "y": -0.5,
+                "z": 4.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Armor1--3-1--8",
+            "shape": 19,
+            "cell": {
+                "x": -3,
+                "y": 1,
+                "z": -8
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -3.0,
+                "y": 1.5,
+                "z": -8.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Armor1--2-1--8",
+            "shape": 19,
+            "cell": {
+                "x": -2,
+                "y": 1,
+                "z": -8
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -2.0,
+                "y": 1.5,
+                "z": -8.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Armor1--1-1--8",
+            "shape": 19,
+            "cell": {
+                "x": -1,
+                "y": 1,
+                "z": -8
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -1.0,
+                "y": 1.5,
+                "z": -8.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Armor1-0-1--8",
+            "shape": 19,
+            "cell": {
+                "x": 0,
+                "y": 1,
+                "z": -8
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 0.0,
+                "y": 1.5,
+                "z": -8.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Armor1-1-1--8",
+            "shape": 19,
+            "cell": {
+                "x": 1,
+                "y": 1,
+                "z": -8
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 1.0,
+                "y": 1.5,
+                "z": -8.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Armor1-2-1--8",
+            "shape": 19,
+            "cell": {
+                "x": 2,
+                "y": 1,
+                "z": -8
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 2.0,
+                "y": 1.5,
+                "z": -8.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Armor1-3-1--8",
+            "shape": 19,
+            "cell": {
+                "x": 3,
+                "y": 1,
+                "z": -8
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 3.0,
+                "y": 1.5,
+                "z": -8.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Armor1--3-1--7",
+            "shape": 19,
+            "cell": {
+                "x": -3,
+                "y": 1,
+                "z": -7
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -3.0,
+                "y": 1.5,
+                "z": -7.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Armor1--2-1--7",
+            "shape": 19,
+            "cell": {
+                "x": -2,
+                "y": 1,
+                "z": -7
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -2.0,
+                "y": 1.5,
+                "z": -7.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Armor1--1-1--7",
+            "shape": 19,
+            "cell": {
+                "x": -1,
+                "y": 1,
+                "z": -7
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -1.0,
+                "y": 1.5,
+                "z": -7.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Armor1-0-1--7",
+            "shape": 19,
+            "cell": {
+                "x": 0,
+                "y": 1,
+                "z": -7
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 0.0,
+                "y": 1.5,
+                "z": -7.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Armor1-1-1--7",
+            "shape": 19,
+            "cell": {
+                "x": 1,
+                "y": 1,
+                "z": -7
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 1.0,
+                "y": 1.5,
+                "z": -7.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Armor1-2-1--7",
+            "shape": 19,
+            "cell": {
+                "x": 2,
+                "y": 1,
+                "z": -7
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 2.0,
+                "y": 1.5,
+                "z": -7.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Armor1-3-1--7",
+            "shape": 19,
+            "cell": {
+                "x": 3,
+                "y": 1,
+                "z": -7
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 3.0,
+                "y": 1.5,
+                "z": -7.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Armor1--3-1--6",
+            "shape": 19,
+            "cell": {
+                "x": -3,
+                "y": 1,
+                "z": -6
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -3.0,
+                "y": 1.5,
+                "z": -6.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Armor1--2-1--6",
+            "shape": 19,
+            "cell": {
+                "x": -2,
+                "y": 1,
+                "z": -6
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -2.0,
+                "y": 1.5,
+                "z": -6.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Armor1--1-1--6",
+            "shape": 19,
+            "cell": {
+                "x": -1,
+                "y": 1,
+                "z": -6
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": -1.0,
+                "y": 1.5,
+                "z": -6.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Armor1-0-1--6",
+            "shape": 19,
+            "cell": {
+                "x": 0,
+                "y": 1,
+                "z": -6
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 0.0,
+                "y": 1.5,
+                "z": -6.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-Cube-0-1-0",
+            "shape": 0,
+            "cell": {
+                "x": 0,
+                "y": 1,
+                "z": 0
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 0.0,
+                "y": 1.5,
+                "z": 0.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        },
+        {
+            "id": "bastion-FlareLauncher-0-2-0",
+            "shape": 37,
+            "cell": {
+                "x": 0,
+                "y": 2,
+                "z": 0
+            },
+            "yawQuarterTurns": 0,
+            "position": {
+                "x": 0.0,
+                "y": 2.5,
+                "z": 0.0
+            },
+            "rotation": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 1.0
+            }
+        }
+    ],
+    "weaponGroups": [
+        {
+            "id": 0,
+            "name": "Laser",
+            "binding": {
+                "source": 1,
+                "key": 0
+            }
+        },
+        {
+            "id": 1,
+            "name": "Kinetic",
+            "binding": {
+                "source": 3,
+                "key": 0
+            }
+        },
+        {
+            "id": 2,
+            "name": "Missile",
+            "binding": {
+                "source": 2,
+                "key": 0
+            }
+        },
+        {
+            "id": 3,
+            "name": "Heavy",
+            "binding": {
+                "source": 4,
+                "key": 17
+            }
+        }
+    ],
+    "weaponAssignments": [
+        {
+            "partId": "bastion-Gun2--4-1-6",
+            "groupId": 1
+        },
+        {
+            "partId": "bastion-Laser2-0-1-6",
+            "groupId": 0
+        },
+        {
+            "partId": "bastion-Railgun1-3-1-6",
+            "groupId": 3
+        }
+    ]
+}

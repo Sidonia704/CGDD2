@@ -17,3 +17,9 @@ The live course evidence site is published at https://sidonia704.github.io/CGDD2
 ## Included files
 
 The repository includes Unity assets and metadata, scenes, project settings, package manifests, course documentation, and the website. Unity-generated caches, logs, local editor preferences, and build outputs are excluded.
+
+## New pilot guide
+
+One-page controls and first-sortie guides: [English](output/pdf/Starframe_Quick_Start_EN.pdf) / [中文](output/pdf/Starframe_Quick_Start_ZH.pdf).
+
+Large reference models, HDR images and generated meshes use Git LFS. Install Git LFS before cloning, then run `git lfs pull` if large assets were not downloaded automatically. Unity regenerates Library locally; it is not versioned.

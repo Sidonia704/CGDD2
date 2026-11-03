@@ -20,7 +20,7 @@ namespace Starframe.Flight
         public static Color ActionInk=>Theme.refinedGlass&&Theme.frostedFinish?Ink:new Color(.045f,.075f,.08f,1);
         public static void Apply(Material material,Color? tint=null)
         {
-            material.SetColor("_Tint",tint??Glass);material.SetFloat("_BlurRadius",Theme.refinedGlass?Theme.blurRadius:18);
+            material.SetColor("_Tint",tint??Glass);material.SetFloat("_BlurRadius",(Theme.refinedGlass?Theme.blurRadius:18)*Starframe.App.GameSettings.Current.glassBlur);
             material.SetFloat("_GrainStrength",Theme.refinedGlass?Theme.grainStrength:.002f);
             material.SetFloat("_SheenStrength",Theme.refinedGlass?Theme.sheenStrength:.012f);
             material.SetFloat("_FinishStrength",Theme.refinedGlass&&Theme.frostedFinish?1:0);

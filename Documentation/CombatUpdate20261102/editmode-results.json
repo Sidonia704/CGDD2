@@ -1,0 +1,227 @@
+{
+  "date": "2026-11-02",
+  "unity": "6000.3.25f1",
+  "mode": "EditMode",
+  "summary": {
+    "total": 459,
+    "passed": 459,
+    "failed": 0,
+    "skipped": 0,
+    "inconclusive": 0
+  },
+  "duration": 55.74,
+  "classes": {
+    "Starframe.Construction.Tests.AimClearanceTests": {
+      "passed": 21,
+      "failed": 0
+    },
+    "Starframe.Construction.Tests.CombatMechanicsTests": {
+      "passed": 15,
+      "failed": 0
+    },
+    "Starframe.Construction.Tests.ContinuousRailTracerTests": {
+      "passed": 3,
+      "failed": 0
+    },
+    "Starframe.Construction.Tests.CoreLeadBallisticsTests": {
+      "passed": 4,
+      "failed": 0
+    },
+    "Starframe.Construction.Tests.CountermeasureDeploymentTests": {
+      "passed": 15,
+      "failed": 0
+    },
+    "Starframe.Construction.Tests.DeploymentValidatorTests": {
+      "passed": 23,
+      "failed": 0
+    },
+    "Starframe.Construction.Tests.ExpandedWeaponTests": {
+      "passed": 12,
+      "failed": 0
+    },
+    "Starframe.Construction.Tests.MissileGuidanceTests": {
+      "passed": 4,
+      "failed": 0
+    },
+    "Starframe.Construction.Tests.PowerBoostTests": {
+      "passed": 7,
+      "failed": 0
+    },
+    "Starframe.Construction.Tests.ProjectileMechanicsTests": {
+      "passed": 15,
+      "failed": 0
+    },
+    "Starframe.Construction.Tests.RangeBotWeaponInputTests": {
+      "passed": 9,
+      "failed": 0
+    },
+    "Starframe.Construction.Tests.ShipCollisionSweepTests": {
+      "passed": 3,
+      "failed": 0
+    },
+    "Starframe.Construction.Tests.ShipRenderingTests": {
+      "passed": 3,
+      "failed": 0
+    },
+    "Starframe.Construction.Tests.TargetMarkerGraphicTests": {
+      "passed": 2,
+      "failed": 0
+    },
+    "Starframe.Construction.Tests.TargetSensorWorldTests": {
+      "passed": 13,
+      "failed": 0
+    },
+    "Starframe.Construction.Tests.TargetSilhouetteGeometryTests": {
+      "passed": 4,
+      "failed": 0
+    },
+    "Starframe.Construction.Tests.TracerReadabilityTests": {
+      "passed": 3,
+      "failed": 0
+    },
+    "Starframe.Construction.Tests.WeaponActivationTests": {
+      "passed": 5,
+      "failed": 0
+    },
+    "Starframe.Construction.Tests.WeaponBindingConflictTests": {
+      "passed": 10,
+      "failed": 0
+    },
+    "Starframe.Construction.Tests.WeaponGroupDatabaseCompatibilityTests": {
+      "passed": 1,
+      "failed": 0
+    },
+    "Starframe.Construction.Tests.WeaponGroupDataTests": {
+      "passed": 7,
+      "failed": 0
+    },
+    "Starframe.Construction.Tests.WeaponGroupRuntimeTests": {
+      "passed": 12,
+      "failed": 0
+    },
+    "Starframe.Construction.Tests.WeaponGroupStatefulLockTests": {
+      "passed": 3,
+      "failed": 0
+    },
+    "Starframe.Construction.Tests.WorkspaceSessionTests": {
+      "passed": 13,
+      "failed": 0
+    },
+    "Starframe.Tests.BlueprintRepositoryTests": {
+      "passed": 17,
+      "failed": 0
+    },
+    "Starframe.Tests.CoreVelocityEstimatorTests": {
+      "passed": 3,
+      "failed": 0
+    },
+    "Starframe.Tests.DebrisMechanicsTests": {
+      "passed": 8,
+      "failed": 0
+    },
+    "Starframe.Tests.ExpandedComponentAssetTests": {
+      "passed": 8,
+      "failed": 0
+    },
+    "Starframe.Tests.ExpandedHullPlacementTests": {
+      "passed": 23,
+      "failed": 0
+    },
+    "Starframe.Tests.FlareCountermeasureTests": {
+      "passed": 11,
+      "failed": 0
+    },
+    "Starframe.Tests.GameSettingsTests": {
+      "passed": 8,
+      "failed": 0
+    },
+    "Starframe.Tests.GridConnectivityTests": {
+      "passed": 6,
+      "failed": 0
+    },
+    "Starframe.Tests.HitFeedbackTests": {
+      "passed": 2,
+      "failed": 0
+    },
+    "Starframe.Tests.RailgunFireTests": {
+      "passed": 3,
+      "failed": 0
+    },
+    "Starframe.Tests.RangeBotPilotTests": {
+      "passed": 12,
+      "failed": 0
+    },
+    "Starframe.Tests.RangeTargetRosterTests": {
+      "passed": 5,
+      "failed": 0
+    },
+    "Starframe.Tests.ShieldMechanicsTests": {
+      "passed": 7,
+      "failed": 0
+    },
+    "Starframe.Tests.SpaceMapRuntimeScaleTests": {
+      "passed": 14,
+      "failed": 0
+    },
+    "Starframe.Tests.SpaceMapStudioPreviewTests": {
+      "passed": 7,
+      "failed": 0
+    },
+    "Starframe.Tests.TargetIndicatorProjectionTests": {
+      "passed": 4,
+      "failed": 0
+    },
+    "Starframe.Tests.Thruster6AssetTests": {
+      "passed": 4,
+      "failed": 0
+    },
+    "Starframe.Tests.Thruster6Tests": {
+      "passed": 6,
+      "failed": 0
+    },
+    "Starframe.Tests.VisualPowerAssetTests": {
+      "passed": 2,
+      "failed": 0
+    },
+    "Starframe.Tests.VoxelDetachedVisualFragmentsTests": {
+      "passed": 19,
+      "failed": 0
+    },
+    "Starframe.Tests.VoxelHullAppearanceTests": {
+      "passed": 11,
+      "failed": 0
+    },
+    "Starframe.Tests.VoxelMapTests": {
+      "passed": 12,
+      "failed": 0
+    },
+    "Starframe.Tests.VoxelTerrainPerformanceTests": {
+      "passed": 15,
+      "failed": 0
+    },
+    "Starframe.Tests.VoxelTerrainRenderEquivalenceTests": {
+      "passed": 21,
+      "failed": 0
+    },
+    "Starframe.Tests.VoxelTerrainRuntimeSafetyTests": {
+      "passed": 9,
+      "failed": 0
+    },
+    "Starframe.Tests.VoxelTerrainTopologyColliderTests": {
+      "passed": 8,
+      "failed": 0
+    },
+    "Starframe.Tests.WeaponVfxTimingTests": {
+      "passed": 3,
+      "failed": 0
+    },
+    "Starframe.Tests.WeaponVisualTests": {
+      "passed": 3,
+      "failed": 0
+    },
+    "AddressableAssets.DocExampleCode.TestStub": {
+      "passed": 1,
+      "failed": 0
+    }
+  }
+}

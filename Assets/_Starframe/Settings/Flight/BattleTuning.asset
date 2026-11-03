@@ -12,7 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baff1a9764b09ee48bddc9f984480d9d, type: 3}
   m_Name: BattleTuning
   m_EditorClassIdentifier: Starframe.Construction::Starframe.Combat.BattleTuning
-  outOfCombatDelay: 1
+  damageTuning: {fileID: 11400000, guid: 4c421b34da1d2dc4eae757174c82e02e, type: 2}
+  enemyWeaponDamageMultiplier: 0.5
+  missileBlastBudgetMultiplier: 1.5
+  playerShieldRecoveryMultiplier: 2
+  playerShieldDelayMultiplier: 0.5
+  outOfCombatDelay: 6
   recoveryTick: 0.1
   unlimitedRangePower: 0
   laserShader: {fileID: 4800000, guid: 6bfe2c57de945414a85ba6c0e9eb126f, type: 3}
@@ -22,6 +27,13 @@ MonoBehaviour:
   debrisSpinDegreesPerSecond: 25
   lockConeDegrees: 35
   lockRange: 3000
+  sensorReferenceRadius: 10
+  sensorMinimumRange: 1000
+  sensorMaximumRange: 6000
+  sensorExitRangeMultiplier: 1.1
+  sensorLossDelay: 0.5
+  sensorAcquireRadiusPixels: 80
+  enemyLockAcquireSeconds: 0.3
   leadVelocitySampleWindow: 0.16
   leadVelocityResponse: 0.04
   defaultTargetBlueprint: {fileID: 4900000, guid: 774cbcf76904bb34bb6525387e68bcfb, type: 3}
@@ -30,8 +42,8 @@ MonoBehaviour:
   botTurnDegreesPerSecond: 55
   botAimProbability: 0.6
   botDecisionSeconds: 1.2
-  botRespawnSeconds: 3
-  playerRespawnSeconds: 3
+  botRespawnSeconds: 6
+  playerRespawnSeconds: 5
   playerSpawnProtectionSeconds: 4
   botCruiseSpeedFraction: 0.65
   botAttackSpeedFraction: 0.45
@@ -45,3 +57,5 @@ MonoBehaviour:
   botEngagementRangeFraction: 0.25
   botStrafeSpeedFraction: 0.1
   botFireTargetRadiusFraction: 0.28
+  botDirectAimErrorMultiplier: 5
+  botDirectVelocitySampleSeconds: 0.35

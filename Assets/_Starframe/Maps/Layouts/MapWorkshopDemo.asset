@@ -1,0 +1,218 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bc9fba079fe3c340a9872eaa1911107, type: 3}
+  m_Name: MapWorkshopDemo
+  m_EditorClassIdentifier: Starframe.Construction::Starframe.Maps.SpaceMapDefinition
+  size: {x: 3000, y: 3000, z: 3000}
+  playerSpawn: {x: 0, y: 150, z: -250}
+  playerEulerAngles: {x: 0, y: 0, z: 0}
+  enemySpawns:
+  - {x: 0, y: 200, z: 500}
+  instances:
+  - id: b1422fffffb3429fbcc472f86f7fd180
+    label: Asteroid 1
+    asset: {fileID: 11400000, guid: 937ae36c655be25439339158e55eceef, type: 2}
+    position: {x: 393.70767, y: -183.95424, z: 0}
+    eulerAngles: {x: 0, y: 45.186584, z: 0}
+    scale: 2.8069108
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 25ef75e40ab948a48c06f32fcf3ae960
+    label: Asteroid 3
+    asset: {fileID: 11400000, guid: 1287c8cb77127904bb26b2708c2b3f80, type: 2}
+    position: {x: 214.51028, y: -289.4126, z: 155.85085}
+    eulerAngles: {x: 0, y: 84.45184, z: 0}
+    scale: 2.1433034
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 3f857625edcb4f628770caf31324e784
+    label: Asteroid 4
+    asset: {fileID: 11400000, guid: 937ae36c655be25439339158e55eceef, type: 2}
+    position: {x: 206.58119, y: -214.43964, z: 284.33463}
+    eulerAngles: {x: 0, y: 137.14906, z: 0}
+    scale: 2.1506116
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 6d049350eb73473cb92eb6a40f40dcce
+    label: Asteroid 5
+    asset: {fileID: 11400000, guid: 1287c8cb77127904bb26b2708c2b3f80, type: 2}
+    position: {x: 109.558044, y: -166.0042, z: 337.185}
+    eulerAngles: {x: 0, y: 293.08948, z: 0}
+    scale: 2.9429922
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: c9d1789a55b6421496219511c096df23
+    label: Asteroid 6
+    asset: {fileID: 11400000, guid: 1287c8cb77127904bb26b2708c2b3f80, type: 2}
+    position: {x: -0.000014133743, y: -185.87282, z: 323.34235}
+    eulerAngles: {x: 0, y: 32.44054, z: 0}
+    scale: 3.2628803
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 5c3d2637b9094ecdbb966848eec46aab
+    label: Asteroid 7
+    asset: {fileID: 11400000, guid: 937ae36c655be25439339158e55eceef, type: 2}
+    position: {x: -133.55942, y: -251.795, z: 411.05356}
+    eulerAngles: {x: 0, y: 15.892969, z: 0}
+    scale: 3.2778864
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 36da8910bea0441ca36af9dc9835dc99
+    label: Asteroid 8
+    asset: {fileID: 11400000, guid: 1287c8cb77127904bb26b2708c2b3f80, type: 2}
+    position: {x: -151.89424, y: -314.05615, z: 209.0645}
+    eulerAngles: {x: 0, y: 249.33229, z: 0}
+    scale: 2.7910342
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: ce8b33e2c69f4e3cb3f27057240c0c31
+    label: Asteroid 9
+    asset: {fileID: 11400000, guid: 1287c8cb77127904bb26b2708c2b3f80, type: 2}
+    position: {x: -217.18742, y: -167.0567, z: 157.79587}
+    eulerAngles: {x: 0, y: 110.95188, z: 0}
+    scale: 2.9579008
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 4e9366e0bbad4696bd2a1d0f49ac59de
+    label: Asteroid 10
+    asset: {fileID: 11400000, guid: 937ae36c655be25439339158e55eceef, type: 2}
+    position: {x: -412.2611, y: -160.67233, z: 133.95164}
+    eulerAngles: {x: 0, y: 192.85992, z: 0}
+    scale: 3.5129611
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 9f102f0b1c6b4b178f1fd530a9d8903f
+    label: Asteroid 11
+    asset: {fileID: 11400000, guid: 1287c8cb77127904bb26b2708c2b3f80, type: 2}
+    position: {x: -414.5733, y: -225.37753, z: -0.00003624315}
+    eulerAngles: {x: 0, y: 53.68287, z: 0}
+    scale: 1.5658488
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 3f147542a3dd4dd4a6dcae8d29ab8b4c
+    label: Asteroid 12
+    asset: {fileID: 11400000, guid: 1287c8cb77127904bb26b2708c2b3f80, type: 2}
+    position: {x: -221.84567, y: -292.8793, z: -72.08202}
+    eulerAngles: {x: 0, y: 225.52429, z: 0}
+    scale: 1.787941
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 35aa6e69f67543e5b35aa5ffd3d35444
+    label: Asteroid 13
+    asset: {fileID: 11400000, guid: 937ae36c655be25439339158e55eceef, type: 2}
+    position: {x: -230.56158, y: -291.3128, z: -167.51283}
+    eulerAngles: {x: 0, y: 104.25841, z: 0}
+    scale: 3.1203647
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: d43ef05330464c59a08376b3c77b997d
+    label: Asteroid 14
+    asset: {fileID: 11400000, guid: 1287c8cb77127904bb26b2708c2b3f80, type: 2}
+    position: {x: -151.26537, y: -167.56473, z: -208.199}
+    eulerAngles: {x: 0, y: 217.64134, z: 0}
+    scale: 2.7897835
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 8fbd7ef31fc04b30907fa1d8b9c2e1ba
+    label: Asteroid 15
+    asset: {fileID: 11400000, guid: 1287c8cb77127904bb26b2708c2b3f80, type: 2}
+    position: {x: -72.064835, y: -231.46225, z: -221.79266}
+    eulerAngles: {x: 0, y: 254.36963, z: 0}
+    scale: 3.0711591
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 6e73302df4fe41a6901180c4ac04f075
+    label: Asteroid 16
+    asset: {fileID: 11400000, guid: 937ae36c655be25439339158e55eceef, type: 2}
+    position: {x: 0.0000033007573, y: -162.25314, z: -276.79584}
+    eulerAngles: {x: 0, y: 131.45816, z: 0}
+    scale: 2.168596
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 04f50cdcedf448c384ffdfa3b2c2b404
+    label: Asteroid 17
+    asset: {fileID: 11400000, guid: 1287c8cb77127904bb26b2708c2b3f80, type: 2}
+    position: {x: 73.50028, y: -282.08972, z: -226.21051}
+    eulerAngles: {x: 0, y: 25.539457, z: 0}
+    scale: 2.660234
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 765ec0d485ea4dcab9295d09933b3bd6
+    label: Asteroid 19
+    asset: {fileID: 11400000, guid: 937ae36c655be25439339158e55eceef, type: 2}
+    position: {x: 283.07123, y: -161.52199, z: -205.66312}
+    eulerAngles: {x: 0, y: 298.38165, z: 0}
+    scale: 1.5322421
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: cecd18b316c443308c54140348da3423
+    label: Asteroid 20
+    asset: {fileID: 11400000, guid: 1287c8cb77127904bb26b2708c2b3f80, type: 2}
+    position: {x: 209.99255, y: -170.84143, z: -68.230705}
+    eulerAngles: {x: 0, y: 235.49152, z: 0}
+    scale: 1.5863476
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 9bd4b67addee430b9da0d899d575148b
+    label: Asteroid
+    asset: {fileID: 11400000, guid: 1287c8cb77127904bb26b2708c2b3f80, type: 2}
+    position: {x: 56.9, y: -180, z: -160}
+    eulerAngles: {x: 0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: d2a440e0691945efb29d0e76086633ce
+    label: MiningPlatform
+    asset: {fileID: 11400000, guid: 52f61049dbbca6a44887859f76434b8c, type: 2}
+    position: {x: -115, y: -180, z: -40}
+    eulerAngles: {x: 0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 0ba71e3b26814c4aa736cefce4b17bc6
+    label: MiningPlatform
+    asset: {fileID: 11400000, guid: 52f61049dbbca6a44887859f76434b8c, type: 2}
+    position: {x: 5, y: -180, z: -35}
+    eulerAngles: {x: 0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 4b729f888e94430e8edda3e752c812f9
+    label: MiningPlatform
+    asset: {fileID: 11400000, guid: 52f61049dbbca6a44887859f76434b8c, type: 2}
+    position: {x: 110, y: -180, z: -35}
+    eulerAngles: {x: 0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}

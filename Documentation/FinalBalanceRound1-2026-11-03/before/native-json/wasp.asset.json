@@ -1,0 +1,26 @@
+{
+    "MonoBehaviour": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "wasp",
+        "m_EditorClassIdentifier": "Starframe.Construction::Starframe.Combat.EnemyArchetypeDefinition",
+        "id": "wasp",
+        "nameZh": "黄蜂导弹机",
+        "nameEn": "Wasp Missile Fighter",
+        "size": 0,
+        "blueprint": {
+            "fileID": 4900000,
+            "guid": "b8ce2eefc5a0c904d8978d625e4bbbad",
+            "type": 3
+        },
+        "alternateBlueprint": {
+            "instanceID": 0
+        },
+        "score": 200,
+        "behavior": {
+            "fileID": 11400000,
+            "guid": "9bde6337c786c7f46b6f10415209e155",
+            "type": 2
+        }
+    }
+}

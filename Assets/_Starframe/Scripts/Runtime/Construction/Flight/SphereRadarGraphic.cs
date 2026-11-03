@@ -11,7 +11,7 @@ namespace Starframe.Flight
     public sealed class SphereRadarGraphic : Graphic
     {
         const float RefreshInterval = .08f;
-        const int CircleSegments = 48;
+        const int CircleSegments = 64;
         const float EdgeInset = 8f;
 
         static readonly Color GridColor = new Color(.85f, .9f, .94f, .62f);
@@ -50,13 +50,14 @@ namespace Starframe.Flight
             if (!world || world.Player == null || world.Player.body == null) return;
 
             Rect rect = GetPixelAdjustedRect();
-            float radius = Mathf.Max(0f, rect.width * .5f - EdgeInset);
+            // Reserve vertical room for altitude stems as well as the horizontal disk.
+            float radius = Mathf.Max(0f,Mathf.Min(rect.width*.5f-EdgeInset,(rect.height*.5f-EdgeInset)/.88f));
             if (radius <= 0f) return;
 
             var theme = Starframe.Presentation.UiTheme.Current;
             bool refined = theme.tacticalRadar;
             Vector2 center = rect.center;
-            if(refined) DrawRefinedDisk(vh,center,radius,theme.muted,theme.accent);
+            if(refined) DrawRefinedDisk(vh,center,radius,theme.combatInstrument,theme.combatInstrument);
             else DrawDisk(vh, center, radius);
 
             var player = world.Player;
@@ -67,7 +68,7 @@ namespace Starframe.Flight
             foreach (RangeCombatWorld.Actor actor in world.Actors)
             {
                 if (actor == null || actor.ship == null || actor.ship == player.ship ||
-                    !actor.ship.IsAlive || actor.ship.Team == player.ship.Team || actor.body == null)
+                    !actor.ship.IsAlive || actor.ship.Team == player.ship.Team || actor.body == null || (world.Sensors!=null&&!world.Sensors.IsDetected(player.ship,actor.ship)))
                     continue;
 
                 visibleContactCount++;
@@ -82,15 +83,13 @@ namespace Starframe.Flight
                 Vector2 projected=baseOffset+Vector2.up*altitude;
                 Vector2 point = center + projected;
                 bool isLocked = locked == actor.ship;
-                Color tint = refined
-                    ? (isLocked ? theme.amber : theme.accent)
-                    : (isLocked ? LockColor : ContactColor);
+                Color tint = isLocked?new Color(1,.25f,.18f,1):new Color(.92f,.22f,.18f,.8f);
                 if(refined)tint.a=isLocked?1f:.86f;
                 float markerSize = isLocked ? 6f : 4.5f;
                 if(refined)
                 {
-                    Color radialTint=new Color(theme.muted.r,theme.muted.g,theme.muted.b,isLocked ? .30f : .16f);
-                    Color altitudeTint=new Color(tint.r,tint.g,tint.b,isLocked ? .76f : .42f);
+                    Color radialTint=new Color(tint.r,tint.g,tint.b,isLocked ? .44f : .22f);
+                    Color altitudeTint=new Color(tint.r,tint.g,tint.b,isLocked ? .90f : .60f);
                     Line(vh,center,center+baseOffset,isLocked?1.2f:.8f,radialTint);
                     Line(vh,center+baseOffset,point,isLocked?1.8f:1.2f,altitudeTint);
                     AddQuad(vh,center+baseOffset-Vector2.one*(isLocked?1.8f:1.2f),center+baseOffset+Vector2.one*(isLocked?1.8f:1.2f),altitudeTint);
@@ -105,7 +104,7 @@ namespace Starframe.Flight
                 Triangle(vh,point-Vector2.up*markerSize*sign,point+new Vector2(-markerSize,markerSize*sign),point+new Vector2(markerSize,markerSize*sign),tint);
                 if(refined&&isLocked) DrawContactBrackets(vh,point,markerSize+4f,tint);
             }
-            if(refined) DrawRefinedPlayer(vh,center,theme.accent);
+            if(refined) DrawRefinedPlayer(vh,center,theme.combatInstrument);
             else DrawPlayer(vh,center,radius);
         }
 
@@ -129,22 +128,22 @@ namespace Starframe.Flight
 
         static void DrawRefinedDisk(VertexHelper vh,Vector2 center,float radius,Color muted,Color accent)
         {
-            Color outer=new Color(muted.r,muted.g,muted.b,.42f);
-            Color middle=new Color(muted.r,muted.g,muted.b,.22f);
-            Color inner=new Color(muted.r,muted.g,muted.b,.14f);
+            Color outer=new Color(muted.r,muted.g,muted.b,.65f);
+            Color middle=new Color(muted.r,muted.g,muted.b,.4f);
+            Color inner=new Color(muted.r,muted.g,muted.b,.26f);
             // Preserve the flat three-ring ellipse; the upper and lower ticks clarify forward/back.
             Ellipse(vh,center,radius,radius*.4f,1.3f,outer);
             Ellipse(vh,center,radius*.7f,radius*.28f,1f,middle);
             Ellipse(vh,center,radius*.36f,radius*.144f,.8f,inner);
-            for(int i=0;i<16;i++)
+            for(int i=0;i<8;i++)
             {
-                float angle=i*Mathf.PI*2f/16f;
+                float angle=i*Mathf.PI*2f/8f;
                 Vector2 normal=new Vector2(Mathf.Cos(angle),Mathf.Sin(angle));
                 Vector2 tangent=new Vector2(-normal.y,normal.x);
                 Vector2 edge=center+new Vector2(normal.x*radius,normal.y*radius*.4f);
-                float length=(i==4||i==12)?8f:3.5f;
-                Color tint=(i==4||i==12)?outer:middle;
-                Line(vh,edge-tangent*length*.5f,edge+tangent*length*.5f,i==4||i==12?1.4f:1f,tint);
+                float length=(i==2||i==6)?8f:3.5f;
+                Color tint=(i==2||i==6)?outer:middle;
+                Line(vh,edge-tangent*length*.5f,edge+tangent*length*.5f,i==2||i==6?1.4f:1f,tint);
             }
             // A short forward cue at the front of the disk, mirrored by a quieter aft cue.
             Color forward=new Color(accent.r,accent.g,accent.b,.7f);

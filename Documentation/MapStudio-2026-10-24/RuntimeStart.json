@@ -1,0 +1,33 @@
+{
+  "success": true,
+  "command": "command eval",
+  "data": {
+    "command": "eval",
+    "parameters": {
+      "code": "var map=UnityEngine.Object.FindFirstObjectByType<Starframe.Maps.SpaceMapRuntime>(); var item=map.Structures[1]; var marker=new UnityEngine.GameObject(\"_StudioMotionSample\"); marker.transform.position=item.Body.position; item.Body.AddForce(UnityEngine.Vector3.right*item.Body.mass*3,UnityEngine.ForceMode.Impulse); var camera=UnityEngine.Camera.main; var center=item.transform.TransformPoint(item.LocalBounds.center); camera.transform.position=center+new UnityEngine.Vector3(65,40,-65); camera.transform.rotation=UnityEngine.Quaternion.LookRotation(center-camera.transform.position); int cells=0,boxes=0; foreach(var s in map.Structures){cells+=s.AliveCount;boxes+=s.ColliderCount;} var cell=item.asset.cells[0].position; item.ApplyDamage(cell,30); return new{playing=UnityEngine.Application.isPlaying,frame=UnityEngine.Time.frameCount,time=UnityEngine.Time.time,assets=map.Structures.Count,cells,compoundBoxes=boxes,sparseRecords=item.RecentDamageCount,partialHealth=item.GetHealth(cell),allDynamic=System.Linq.Enumerable.All(map.Structures,s=>s.Body&&!s.Body.useGravity&&!s.Body.isKinematic)};"
+    },
+    "result": {
+      "output": null,
+      "diagnostics": [],
+      "success": true,
+      "result": {
+        "playing": true,
+        "frame": 26903,
+        "time": 36.82826,
+        "assets": 21,
+        "cells": 20735,
+        "compoundBoxes": 2431,
+        "sparseRecords": 1,
+        "partialHealth": 70,
+        "allDynamic": true
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7801,
+      "projectPath": "D:\\software\\unity\\CGDD26107"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

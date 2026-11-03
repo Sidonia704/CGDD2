@@ -41,15 +41,18 @@ namespace Starframe.App
         void BuildPractice()
         {
             overlay.Clear();
-            overlay.Label("RangeEyebrow",L10n.T("app.rangeOptions"),172,149,1200,26,14,GlassUiPalette.Accent);
+            overlay.Label("RangeEyebrow",L10n.T("app.rangeOptions"),180,149,1200,26,14,GlassUiPalette.Muted);
             overlay.Panel("PracticeOptionsGlass",140,196,1640,640,true);
             overlay.Label("PracticeTitle",L10n.T("app.rangeTitle"),180,228,1500,48,32);
             overlay.Label("PracticeHint",L10n.T("app.rangeLiveHint"),180,295,1500,66,17,GlassUiPalette.Muted);
             for(int i=0;i<4;i++)
             {
                 var mode=(RangeBotMode)i;float x=180+i*394;
-                overlay.Button("LiveMode_"+mode,L10n.T("app.mode."+mode),x,398,368,58,()=>{world.SetBotMode(mode);BuildPractice();},world.BotMode==mode);
-                overlay.Label("LiveModeDescription_"+mode,L10n.T("app.modeHint."+mode),x+12,478,344,126,16,GlassUiPalette.Muted);
+                bool active=world.BotMode==mode;
+                overlay.Panel("LiveModeCard_"+mode,x,376,368,228);
+                overlay.Label("LiveModeState_"+mode,(i+1).ToString("00")+(active?(L10n.IsEnglish?"  ·  ACTIVE":"  ·  已启用"):""),x+16,392,336,22,13,active?GlassUiPalette.Accent:GlassUiPalette.Muted);
+                overlay.Button("LiveMode_"+mode,L10n.T("app.mode."+mode),x+16,432,336,52,()=>{world.SetBotMode(mode);BuildPractice();},active);
+                overlay.Label("LiveModeDescription_"+mode,L10n.T("app.modeHint."+mode),x+16,506,336,78,17,GlassUiPalette.Muted);
             }
             overlay.Label("LiveTargetCount",L10n.T("app.rangeLiveCount",world.Bots.Count),180,636,1450,32,18);
             overlay.Label("LiveResetHint",L10n.T("app.rangeResetHint"),180,685,1450,42,15,GlassUiPalette.Muted);

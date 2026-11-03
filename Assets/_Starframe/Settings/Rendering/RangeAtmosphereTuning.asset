@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f93fe219d3eeddc4b8d31d24803e4a50, type: 3}
+  m_Name: RangeAtmosphereTuning
+  m_EditorClassIdentifier: Starframe.Construction::Starframe.Flight.RangeAtmosphereTuning
+  dustEnabled: 1
+  hazeEnabled: 1
+  distanceHaze: 1
+  dustLimit: 160
+  hazeLimit: 12
+  dustRadius: 65
+  dustRate: 10
+  dustPerMetre: 0.12
+  dustSize: {x: 0.045, y: 0.11}
+  hazeOpacity: 0.028
+  fogDensity: 0.00016
+  fogColor: {r: 0.025, g: 0.037, b: 0.055, a: 1}
+  skyIntensity: 0.09
+  skyWarm: {r: 0.7, g: 0.61, b: 0.46, a: 1}
+  skyCool: {r: 0.2, g: 0.32, b: 0.42, a: 1}
+  beltHeightOffset: -200
+  beltFalloff: 1200
+  dustMaterial: {fileID: 2100000, guid: 0322cec99e1cd2b4995097de6f85055e, type: 2}
+  hazeMaterial: {fileID: 2100000, guid: 7fad0a8d18000f6488102324a25c4614, type: 2}
+  starDirection: {x: 0.62, y: 0.52, z: 0.58}

@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57c7601c94efac44dacfde24ada57da4, type: 3}
+  m_Name: Wedge
+  m_EditorClassIdentifier: Starframe.Construction::Starframe.Flight.ModuleDefinition
+  shape: 1
+  displayName: "\u659C\u9762\u4E09\u89D2\u4F53"
+  category: 0
+  cost: 0
+  massKg: 150
+  maxHp: 30
+  recoverySeconds: 6
+  thrustNewtons: 0
+  occupiedCells:
+  - {x: 0, y: 0, z: 0}
+  muzzleLocalPosition: {x: 0, y: 0.27, z: 1.52}
+  muzzleClearanceDiameter: 0.25
+  mesh: {fileID: 4300000, guid: f06eb4fec84f2aa44bb832269764541c, type: 2}
+  outline: {fileID: 4300000, guid: c5d75580eff55964f9212af959a7ed1f, type: 2}
+  drawOutline: 0
+  material: {fileID: 2100000, guid: fd50ab38fcb845d45a644cc48df29039, type: 2}
+  icon: {fileID: 21300000, guid: baf83efac7eb722428184b8dc098d2d4, type: 3}
+  selectedIcon: {fileID: 21300000, guid: 3b7bb4f4814be7f459f464d5910e23dc, type: 3}
+  weapon: {fileID: 0}
+  generationWatts: 0
+  storageJoules: 0
+  thrusterPowerWatts: 0
+  shieldPowerWatts: 0
+  shieldCapacity: 0
+  shieldRadius: 8
+  shieldRecoveryDelay: 2
+  shieldRecoveryPerSecond: 50
+  shieldSurfaceMaterial: {fileID: 0}
+  shieldSurfaceMesh: {fileID: 0}

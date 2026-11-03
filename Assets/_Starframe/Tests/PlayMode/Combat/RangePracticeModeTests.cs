@@ -24,7 +24,7 @@ namespace Starframe.Tests
             RangePracticeSettings.Mode = RangeBotMode.Stationary;
             FlightSession.Begin(FlightRangeBootstrap.DefaultShip(), true);
             yield return SceneManager.LoadSceneAsync(FlightSession.RangeScene);
-            yield return null;
+            yield return TargetLockTestPreparation.WaitForWorld();
         }
 
         [UnityTearDown] public IEnumerator TearDown()
@@ -155,17 +155,18 @@ namespace Starframe.Tests
             bot.flight.ResetMotion(start, Quaternion.LookRotation(player.ship.CorePhysicsPosition - start, Vector3.up));
             player.flight.SetExternalInput(Vector3.right, Vector2.zero);
             world.SetBotMode(RangeBotMode.Combat, false);
-            bool damage = false, lead = false; float speed = 0;
+            bool damage = false, lead = false; float speed = 0; int firingSamples = 0;
             for (int i = 0; i < 80; i++)
             {
                 yield return new WaitForSeconds(.1f);
                 damage |= player.ship.DamageTaken > 0;
                 speed = Mathf.Max(speed, bot.flight.CurrentSpeed);
+                if (bot.pilot.Fire) firingSamples++;
                 if (player.ship.IsAlive && bot.aimingAtPlayer && world.PlayerCoreVelocity.magnitude > 2)
                     lead |= Vector3.Dot(bot.pilot.AimPoint - player.ship.CorePhysicsPosition, world.PlayerCoreVelocity) > 1;
             }
             Assert.That(lead, Is.True, "The combat pilot must aim ahead of a crossing physical core.");
-            Assert.That(damage, Is.True, "Full combat must land shared projectiles, not merely generate manoeuvres and trigger requests.");
+            Assert.That(damage, Is.True, $"Full combat must land shared projectiles, not merely generate manoeuvres and trigger requests. Shots={bot.weapons.ShotsFired}; firing samples={firingSamples}; blocked={bot.weapons.BlockedGuns}; dealt={bot.ship.DamageDealt}; player damage={player.ship.DamageTaken}; range={Vector3.Distance(bot.ship.CorePhysicsPosition, player.ship.CorePhysicsPosition):F1}; player speed={player.flight.CurrentSpeed:F1}; bot speed={bot.flight.CurrentSpeed:F1}; phase={bot.pilot.Phase}.");
             Assert.That(speed, Is.GreaterThan(7));
         }
     }

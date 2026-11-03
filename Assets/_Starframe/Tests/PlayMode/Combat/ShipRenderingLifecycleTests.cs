@@ -40,7 +40,7 @@ namespace Starframe.Tests
                     position = new Vector3(x, y + .5f, z), rotation = Quaternion.identity });
             FlightSession.Begin(data, true);
             yield return SceneManager.LoadSceneAsync(FlightSession.RangeScene);
-            yield return null;
+            yield return TargetLockTestPreparation.WaitForWorld();
             var world = Object.FindFirstObjectByType<RangeCombatWorld>();
             world.enabled = false; world.Player.flight.enabled = false;
             var ship = world.Player.ship; ship.InvulnerableUntil = 0;
@@ -65,11 +65,24 @@ namespace Starframe.Tests
             ship.ApplyDamage(core.record.id, core.maxHp); yield return null;
             Assert.That(instances.VisibleInstanceCount, Is.Zero);
             Assert.That(world.Debris.PartCount, Is.EqualTo(127));
+            yield return null;
+            var wreckInstances=world.Debris.GetComponent<DebrisInstanceRenderer>();
+            Assert.That(wreckInstances,Is.Not.Null);
+            Assert.That(wreckInstances.BatchedRendererCount,Is.EqualTo(127),"Opaque surviving hull parts must enter the wreckage instance batches.");
+            Assert.That(wreckInstances.VisibleInstanceCount,Is.EqualTo(127),"All surviving wreckage must be submitted from its current island pose.");
+            Assert.That(wreckInstances.SubmittedBatchCount,Is.GreaterThan(0),"Hidden source renderers require an actual instanced draw submission.");
             foreach (var cluster in world.Debris.Clusters) foreach (var part in cluster.Parts)
             {
-                Assert.That(part.GetComponent<MeshRenderer>().enabled, Is.True, "Batched source parts must produce visible wreckage.");
+                Assert.That(part.GetComponent<MeshRenderer>().enabled, Is.False, "Submitted opaque wreckage uses the batched render path.");
                 Assert.That(part.GetComponent<Collider>().enabled, Is.True);
             }
+            wreckInstances.enabled=false;
+            foreach(var cluster in world.Debris.Clusters)foreach(var part in cluster.Parts)
+                Assert.That(part.GetComponent<MeshRenderer>().enabled,Is.True,"Disabling instancing must immediately restore independent wreckage rendering.");
+            wreckInstances.enabled=true;
+            yield return null;
+            yield return null;
+            Assert.That(wreckInstances.VisibleInstanceCount,Is.EqualTo(127),"Re-enabled batching must resume actual wreckage draw submissions.");
             ship.Respawn(); yield return null;
             Assert.That(instances.VisibleInstanceCount, Is.EqualTo(127));
             Assert.That(world.Debris.PartCount, Is.EqualTo(127), "Respawn must preserve the old wreckage.");

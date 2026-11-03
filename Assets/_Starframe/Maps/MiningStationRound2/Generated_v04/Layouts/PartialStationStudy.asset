@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bc9fba079fe3c340a9872eaa1911107, type: 3}
+  m_Name: PartialStationStudy
+  m_EditorClassIdentifier: Starframe.Construction::Starframe.Maps.SpaceMapDefinition
+  size: {x: 2500, y: 2500, z: 2500}
+  playerSpawn: {x: 0, y: 150, z: -250}
+  playerEulerAngles: {x: 0, y: 0, z: 0}
+  enemySpawns: []
+  instances:
+  - id: r2-study-Station_SphericalTank
+    label: Station_SphericalTank
+    asset: {fileID: 11400000, guid: 53e0d35cf8298d44c96c70f41b57ef4d, type: 2}
+    position: {x: 20.687296, y: 38.320705, z: 19.312487}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: r2-study-Station_CapsuleTank
+    label: Station_CapsuleTank
+    asset: {fileID: 11400000, guid: fa6d78ad34b45204f83134d516d1ec8c, type: 2}
+    position: {x: 65.74561, y: 14.039105, z: 128.32857}
+    eulerAngles: {x: 7.6248245, y: 323.70865, z: 353.16565}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: r2-study-Station_OpenTruss
+    label: Station_OpenTruss
+    asset: {fileID: 11400000, guid: 4181d4bac806640428a553d7abe30445, type: 2}
+    position: {x: -8.18445, y: 25.846811, z: 65.314896}
+    eulerAngles: {x: 359.99173, y: 0.08341483, z: 1.2264973}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: r2-study-Station_EquipmentCage
+    label: Station_EquipmentCage
+    asset: {fileID: 11400000, guid: a9b910e11cacbca46852b59b5f831786, type: 2}
+    position: {x: 38.864304, y: -3.4468195, z: 163.83327}
+    eulerAngles: {x: 0.000075132084, y: 272.99573, z: 79.15786}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: r2-study-Station_NotchedSlab
+    label: Station_NotchedSlab
+    asset: {fileID: 11400000, guid: dcc33e89bc4218748bca9dfcc469e8c4, type: 2}
+    position: {x: 103.142555, y: 78.93246, z: 58.73981}
+    eulerAngles: {x: 271.60864, y: 230.21352, z: 39.885796}
+    scale: 1
+    healthMultiplier: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}

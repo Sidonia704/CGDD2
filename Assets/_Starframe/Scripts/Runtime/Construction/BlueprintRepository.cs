@@ -127,13 +127,13 @@ namespace Starframe.Construction
                 if(p.shape==BlockShape.Core&&++cores>1)throw new InvalidDataException("每个船体只能放置一个核心。");
                 if(p.yawQuarterTurns<0 || p.yawQuarterTurns>3)throw new InvalidDataException("Invalid face rotation.");
                 if(data.version==1){
-                    foreach(var cell in BlockModules.AllCells(new BlockRecord{shape=p.shape,position=new Vector3(p.cell.x,p.cell.y+.5f,p.cell.z),rotation=Quaternion.Euler(0,p.yawQuarterTurns*90,0)}))
+                    foreach(var cell in BlockModules.PlacementCells(new BlockRecord{shape=p.shape,position=new Vector3(p.cell.x,p.cell.y+.5f,p.cell.z),rotation=Quaternion.Euler(0,p.yawQuarterTurns*90,0)}))
                         if(!cells.Add(cell))throw new InvalidDataException("实体或推进器喷口净空被占用。");
                     continue;
                 }
                 var r=p.rotation;var position=p.position;
                 if(!BlockPlacement.IsCellAligned(position,r))throw new InvalidDataException("Part must fit one standard grid cell.");
-                foreach(var cell in BlockModules.AllCells(p))if(!cells.Add(cell))throw new InvalidDataException("实体或推进器喷口净空被占用。");
+                foreach(var cell in BlockModules.PlacementCells(p))if(!cells.Add(cell))throw new InvalidDataException("实体或推进器喷口净空被占用。");
                 if(!Finite(position.x)||!Finite(position.y)||!Finite(position.z)||!Finite(r.x)||!Finite(r.y)||!Finite(r.z)||!Finite(r.w))
                     throw new InvalidDataException("Part pose is not finite.");
                 float magnitude=r.x*r.x+r.y*r.y+r.z*r.z+r.w*r.w;

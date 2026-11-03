@@ -54,7 +54,9 @@ namespace Starframe.Tests
             Find("part-3").ApplyDamage(1000);debris.Step(0);Physics.SyncTransforms();
             Assert.That(debris.Clusters.Count,Is.EqualTo(2));Assert.That(left.Cluster,Is.Not.SameAs(right.Cluster));
             Assert.That(Vector3.Distance(left.transform.position,beforeLeft),Is.LessThan(.001f));Assert.That(Vector3.Distance(right.transform.position,beforeRight),Is.LessThan(.001f));
-            Assert.That(left.Cluster.Body.mass,Is.EqualTo(300));Assert.That(right.Cluster.Body.mass,Is.EqualTo(300));
+            float cubeMass=ship.Tuning.GetDefinition(BlockShape.Cube).massKg;
+            Assert.That(left.Cluster.Body.mass,Is.EqualTo(cubeMass));Assert.That(right.Cluster.Body.mass,Is.EqualTo(cubeMass));
+            Assert.That(left.Cluster.Body.mass+right.Cluster.Body.mass,Is.EqualTo(2*cubeMass),"Splitting removes only the destroyed bridge's mass.");
         }
         [Test]public void EnclosedCoreIsIgnoredOnlyUntilWreckageClearsItsSourceShip()
         {
@@ -84,11 +86,64 @@ namespace Starframe.Tests
             Assert.That(debris.PartCount,Is.EqualTo(existing+4));damaged.ApplyDamage(10000);debris.Step(0);
             Assert.That(debris.PartCount,Is.EqualTo(existing+3));Assert.That(ship.Parts.Find(p=>p.record.id=="part-2").hp,Is.EqualTo(damaged.Part.maxHp));
         }
-        [Test]public void HealthyWreckageSurvivesElapsedTimeAndDriftingBeyondTheRange()
+        [Test]public void WreckageSurvivesUntilNinetySecondsThenClearsEvenBeyondRange()
         {
-            var island=debris.Clusters[0];island.Body.position=Vector3.one*10000;debris.Step(36000);
+            var island=debris.Clusters[0];island.Body.position=Vector3.one*10000;debris.Step(89);
             Assert.That(debris.PartCount,Is.EqualTo(3));Assert.That(island.gameObject.activeSelf,Is.True);
             foreach(var part in island.Parts)Assert.That(part.Part.hp,Is.GreaterThan(0));
+            int revision=debris.TopologyRevision;debris.Step(1);
+            Assert.That(debris.PartCount,Is.Zero);Assert.That(debris.Clusters.Count,Is.Zero);Assert.That(debris.TopologyRevision,Is.GreaterThan(revision));
+        }
+        [Test]public void SplittingWreckDoesNotRestartItsLifetimeAndPausedTimeDoesNotAgeIt()
+        {
+            debris.Step(89);Find("part-3").ApplyDamage(10000);debris.Step(0);
+            Assert.That(debris.Clusters.Count,Is.EqualTo(2));debris.Step(0);Assert.That(debris.PartCount,Is.EqualTo(2));
+            debris.Step(1);Assert.That(debris.PartCount,Is.Zero);Assert.That(debris.Clusters.Count,Is.Zero);
+        }
+        [Test]public void WreckBatchingKeepsNativeHitboxesAndRestoresSourceRenderersWhenDisabled()
+        {
+            var batching=debris.GetComponent<DebrisInstanceRenderer>();Assert.That(batching,Is.Not.Null);
+            var colliders=debris.GetComponentsInChildren<Collider>();int parts=debris.PartCount;
+            var hp=Find("part-2").Part.hp;
+            typeof(DebrisInstanceRenderer).GetMethod("Rebuild",System.Reflection.BindingFlags.Instance|System.Reflection.BindingFlags.NonPublic).Invoke(batching,null);
+            if(SystemInfo.supportsInstancing)Assert.That(batching.BatchedRendererCount,Is.GreaterThan(0));
+            Assert.That(debris.PartCount,Is.EqualTo(parts));Assert.That(Find("part-2").Part.hp,Is.EqualTo(hp));
+            foreach(var collider in colliders)Assert.That(collider.enabled,Is.True);
+            DisableBatchingInEditor(batching);
+            foreach(var renderer in debris.GetComponentsInChildren<MeshRenderer>())Assert.That(renderer.enabled,Is.True);
+        }
+        [Test]public void WreckSplitInvalidatesBatchedPoseAndRetainsWorldPositions()
+        {
+            var batching=debris.GetComponent<DebrisInstanceRenderer>();
+            var rebuild=typeof(DebrisInstanceRenderer).GetMethod("Rebuild",System.Reflection.BindingFlags.Instance|System.Reflection.BindingFlags.NonPublic);
+            rebuild.Invoke(batching,null);int revision=debris.TopologyRevision;
+            var left=Find("part-2");var right=Find("part-4");var p0=left.transform.position;var p1=right.transform.position;
+            Find("part-3").ApplyDamage(1000);debris.Step(0);rebuild.Invoke(batching,null);
+            Assert.That(debris.TopologyRevision,Is.GreaterThan(revision));Assert.That(debris.PartCount,Is.EqualTo(2));
+            Assert.That(left.Cluster,Is.Not.SameAs(right.Cluster));Assert.That(Vector3.Distance(left.transform.position,p0),Is.LessThan(.001f));Assert.That(Vector3.Distance(right.transform.position,p1),Is.LessThan(.001f));
+            DisableBatchingInEditor(batching);Assert.That(left.GetComponent<MeshRenderer>().enabled,Is.True);Assert.That(right.GetComponent<MeshRenderer>().enabled,Is.True);
+        }
+        [Test]public void WreckOwnsSharedMeshCopiesAfterSourceAssemblyAndItsGeneratedMeshesAreDestroyed()
+        {
+            var original=ship.GetComponent<ShipAssembly>().Collision(BlockShape.Cube);
+            var left=Find("part-2");var bridge=Find("part-3");var right=Find("part-4");
+            var persistent=left.GetComponent<MeshCollider>().sharedMesh;
+            Assert.That(persistent,Is.Not.SameAs(original),"Detached collision geometry must belong to the wreckage world.");
+            Assert.That(bridge.GetComponent<MeshCollider>().sharedMesh,Is.SameAs(persistent),"The same source mesh should share one persistent copy.");
+            Assert.That(right.GetComponent<MeshCollider>().sharedMesh,Is.SameAs(persistent));
+            Object.DestroyImmediate(ship.gameObject);
+            // EditMode does not consistently send a non-ExecuteAlways assembly's lifecycle;
+            // explicitly exercise the generated collision mesh being released as in real retirement.
+            if(original)Object.DestroyImmediate(original);
+            Assert.That(persistent,Is.Not.Null);Assert.That(persistent.vertexCount,Is.GreaterThan(0));
+            foreach(var cluster in debris.Clusters)foreach(var part in cluster.Parts)
+            {
+                Assert.That(part.GetComponent<MeshCollider>().sharedMesh,Is.Not.Null);
+                foreach(var filter in part.GetComponentsInChildren<MeshFilter>())Assert.That(filter.sharedMesh,Is.Not.Null);
+            }
+            bridge.ApplyDamage(1000);debris.Step(0);Physics.SyncTransforms();
+            Assert.That(debris.PartCount,Is.EqualTo(2));Assert.That(debris.Clusters.Count,Is.EqualTo(2));
+            Assert.That(left.GetComponent<MeshCollider>().sharedMesh,Is.SameAs(persistent));Assert.That(right.GetComponent<MeshCollider>().sharedMesh,Is.SameAs(persistent));
         }
         [Test]public void CorePiercingShotStillDamagesTheNextBlockAfterItBecomesWreckage()
         {
@@ -102,6 +157,13 @@ namespace Starframe.Tests
             var projectiles=new ProjectileWorld();projectiles.Fire(shooter,weapon,new Vector3(-6,.5f,0),Vector3.right);projectiles.Step(.1f);
             Assert.That(ship.IsAlive,Is.False);var wreck=bridge.view.GetComponent<ShipPartHitbox>().DetachedReplacement;
             Assert.That(wreck,Is.Not.Null);Assert.That(wreck.Part.hp,Is.EqualTo(bridge.maxHp*.5f).Within(.001f));projectiles.Clear();
+        }
+        static void DisableBatchingInEditor(DebrisInstanceRenderer batching)
+        {
+            batching.enabled=false;
+            // The fixture invokes Rebuild directly in EditMode. Non-ExecuteAlways behaviours
+            // do not receive the normal Play-mode lifecycle, so drive that lifecycle explicitly too.
+            typeof(DebrisInstanceRenderer).GetMethod("OnDisable",System.Reflection.BindingFlags.Instance|System.Reflection.BindingFlags.NonPublic).Invoke(batching,null);
         }
         DebrisPartHitbox Find(string id){foreach(var cluster in debris.Clusters)foreach(var part in cluster.Parts)if(part.Part.record.id==id)return part;Assert.Fail("Missing debris "+id);return null;}
     }

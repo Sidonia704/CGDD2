@@ -1,0 +1,97 @@
+{
+    "MonoBehaviour": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "Railgun2",
+        "m_EditorClassIdentifier": "Starframe.Construction::Starframe.Flight.ModuleDefinition",
+        "shape": 29,
+        "displayName": "电磁狙击炮 2",
+        "category": 3,
+        "cost": 430.0,
+        "massKg": 1700.0,
+        "maxHp": 2855.999755859375,
+        "recoverySeconds": 23.0,
+        "thrustNewtons": 0.0,
+        "occupiedCells": [
+            {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            {
+                "x": 0,
+                "y": 0,
+                "z": 1
+            },
+            {
+                "x": 0,
+                "y": 0,
+                "z": 2
+            },
+            {
+                "x": 0,
+                "y": 0,
+                "z": 3
+            },
+            {
+                "x": 0,
+                "y": 0,
+                "z": 4
+            }
+        ],
+        "localExhaustDirections": [],
+        "localNozzlePositions": [],
+        "muzzleLocalPosition": {
+            "x": -0.031826913356781009,
+            "y": 0.050173353403806689,
+            "z": 4.412528038024902
+        },
+        "muzzleClearanceDiameter": 0.2199999988079071,
+        "mesh": {
+            "fileID": 4300000,
+            "guid": "405c9fa2943a93b44a5aa38afb6186d7",
+            "type": 2
+        },
+        "outline": {
+            "instanceID": 0
+        },
+        "drawOutline": false,
+        "material": {
+            "fileID": 2100000,
+            "guid": "8fa010cb395cefc458368aa8f928b19f",
+            "type": 2
+        },
+        "icon": {
+            "fileID": 21300000,
+            "guid": "c47bff7620014bf4fa6ad8bbb0c624da",
+            "type": 3
+        },
+        "selectedIcon": {
+            "fileID": 21300000,
+            "guid": "cd234599677a17941932cc5acc49eabc",
+            "type": 3
+        },
+        "weapon": {
+            "fileID": 11400000,
+            "guid": "cf20f6cf8cc41b4489a5f9fa46e54ae4",
+            "type": 2
+        },
+        "countermeasure": {
+            "instanceID": 0
+        },
+        "generationWatts": 0.0,
+        "storageJoules": 0.0,
+        "thrusterPowerWatts": 0.0,
+        "shieldPowerWatts": 0.0,
+        "shieldCapacity": 0.0,
+        "shieldRadius": 8.0,
+        "shieldRecoveryDelay": 2.0,
+        "shieldRecoveryPerSecond": 50.0,
+        "shieldSurfaceMaterial": {
+            "instanceID": 0
+        },
+        "shieldSurfaceMesh": {
+            "instanceID": 0
+        }
+    }
+}

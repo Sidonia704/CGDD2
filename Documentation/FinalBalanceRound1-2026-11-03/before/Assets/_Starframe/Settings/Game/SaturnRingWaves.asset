@@ -1,0 +1,116 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca9db83a131d8e3449e3d81a6eed7177, type: 3}
+  m_Name: SaturnRingWaves
+  m_EditorClassIdentifier: Starframe.Construction::Starframe.Combat.ArcadeMissionDefinition
+  id: saturn-ring
+  deployment: {fileID: 11400000, guid: fcf15949678c8d243a1909ee0eea9d08, type: 2}
+  defaultPlayerBlueprint: {fileID: 4900000, guid: 55829dc67afb397409a135ec22b834fc, type: 3}
+  waves:
+  - nameZh: "\u7B2C\u4E00\u6CE2 \xB7 \u63A5\u89E6"
+    nameEn: "WAVE 1 \xB7 FIRST CONTACT"
+    batches:
+    - enemy: {fileID: 11400000, guid: 17d9525da0c0d564cbbd7d6e4b09c59e, type: 2}
+      count: 4
+      delaySeconds: 0
+    - enemy: {fileID: 11400000, guid: cf86914e43aa932479b93dacaf8dbf5d, type: 2}
+      count: 4
+      delaySeconds: 32
+    spawnInterval: 5
+  - nameZh: "\u7B2C\u4E8C\u6CE2 \xB7 \u62E6\u622A"
+    nameEn: "WAVE 2 \xB7 INTERCEPTION"
+    batches:
+    - enemy: {fileID: 11400000, guid: 17d9525da0c0d564cbbd7d6e4b09c59e, type: 2}
+      count: 4
+      delaySeconds: 0
+    - enemy: {fileID: 11400000, guid: cf86914e43aa932479b93dacaf8dbf5d, type: 2}
+      count: 3
+      delaySeconds: 24
+    - enemy: {fileID: 11400000, guid: d0513eb631966b0469d046c82720bc0c, type: 2}
+      count: 3
+      delaySeconds: 52
+    - enemy: {fileID: 11400000, guid: 743a92afd4a1b354ba0b65261af2b240, type: 2}
+      count: 2
+      delaySeconds: 65
+    spawnInterval: 5
+  - nameZh: "\u7B2C\u4E09\u6CE2 \xB7 \u4EA4\u53C9\u706B\u529B"
+    nameEn: "WAVE 3 \xB7 CROSSFIRE"
+    batches:
+    - enemy: {fileID: 11400000, guid: cf86914e43aa932479b93dacaf8dbf5d, type: 2}
+      count: 5
+      delaySeconds: 0
+    - enemy: {fileID: 11400000, guid: d0513eb631966b0469d046c82720bc0c, type: 2}
+      count: 5
+      delaySeconds: 40
+    - enemy: {fileID: 11400000, guid: 743a92afd4a1b354ba0b65261af2b240, type: 2}
+      count: 1
+      delaySeconds: 25
+    - enemy: {fileID: 11400000, guid: cb3a9377fcc154949add91de4e80aa80, type: 2}
+      count: 2
+      delaySeconds: 70
+    spawnInterval: 5
+  - nameZh: "\u7B2C\u56DB\u6CE2 \xB7 \u91CD\u88C5\u7F16\u961F"
+    nameEn: "WAVE 4 \xB7 HEAVY FORMATION"
+    batches:
+    - enemy: {fileID: 11400000, guid: 17d9525da0c0d564cbbd7d6e4b09c59e, type: 2}
+      count: 5
+      delaySeconds: 0
+    - enemy: {fileID: 11400000, guid: cf86914e43aa932479b93dacaf8dbf5d, type: 2}
+      count: 5
+      delaySeconds: 45
+    - enemy: {fileID: 11400000, guid: 743a92afd4a1b354ba0b65261af2b240, type: 2}
+      count: 2
+      delaySeconds: 20
+    - enemy: {fileID: 11400000, guid: bda2922a4627e28448ca7eb236ef59a3, type: 2}
+      count: 2
+      delaySeconds: 65
+    - enemy: {fileID: 11400000, guid: 3395df7867c60fa458fd152c5c09dcf0, type: 2}
+      count: 1
+      delaySeconds: 90
+    spawnInterval: 6
+  - nameZh: "\u7B2C\u4E94\u6CE2 \xB7 \u65D7\u8230"
+    nameEn: "WAVE 5 \xB7 THE FLAGSHIP"
+    batches:
+    - enemy: {fileID: 11400000, guid: 17d9525da0c0d564cbbd7d6e4b09c59e, type: 2}
+      count: 4
+      delaySeconds: 0
+    - enemy: {fileID: 11400000, guid: cf86914e43aa932479b93dacaf8dbf5d, type: 2}
+      count: 4
+      delaySeconds: 30
+    - enemy: {fileID: 11400000, guid: d0513eb631966b0469d046c82720bc0c, type: 2}
+      count: 4
+      delaySeconds: 65
+    - enemy: {fileID: 11400000, guid: 743a92afd4a1b354ba0b65261af2b240, type: 2}
+      count: 2
+      delaySeconds: 15
+    - enemy: {fileID: 11400000, guid: cb3a9377fcc154949add91de4e80aa80, type: 2}
+      count: 2
+      delaySeconds: 45
+    - enemy: {fileID: 11400000, guid: bda2922a4627e28448ca7eb236ef59a3, type: 2}
+      count: 2
+      delaySeconds: 85
+    - enemy: {fileID: 11400000, guid: 3395df7867c60fa458fd152c5c09dcf0, type: 2}
+      count: 1
+      delaySeconds: 105
+    spawnInterval: 6
+  maximumAlive: 12
+  maximumLarge: 3
+  maximumAttackers: 3
+  introSeconds: 8
+  intermissionSeconds: 20
+  attackRotationSeconds: 4
+  spawnDistance: 700
+  spawnDistanceVariation: 240
+  entryGraceSeconds: 2
+  comboSeconds: 18
+  maximumCombo: 3
+  resultDelaySeconds: 3

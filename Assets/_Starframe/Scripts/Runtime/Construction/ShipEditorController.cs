@@ -1,5 +1,5 @@
 // @role Handle placement, rotation, deletion and blueprint editing input.
-// @calls ShipAssembly, WorkbenchOrbit, ShipEditorUI, BlueprintRepository, FlightSession
+// @calls ShipAssembly, WorkbenchOrbit, ShipEditorUI, BlueprintRepository, FlightSession, RangeLoadingOverlay
 
 using System;
 using System.IO;
@@ -104,9 +104,11 @@ namespace Starframe.Construction
                 shieldPreview.sharedMaterial=definition.shieldSurfaceMaterial;shieldPreview.transform.localScale=Vector3.one*(definition.shieldRadius*2);
             }
             clearancePreview=new GameObject("ExhaustClearance").transform;clearancePreview.SetParent(ghost.transform,false);
-            for(int i=0;i<BlockModules.Clearance(selected);i++){
+            float clearance=BlockModules.PlacementClearance(selected);
+            foreach(var reserved in BlockModules.ExhaustCells(new BlockRecord{shape=selected,position=Vector3.up*.5f,rotation=Quaternion.identity})){
                 var cell=new GameObject("EmptyExhaustCell");cell.layer=2;cell.transform.SetParent(clearancePreview,false);
-                cell.transform.localPosition=Vector3.up*(BlockModules.BodyLength(selected)+i);
+                cell.transform.localPosition=(Vector3)reserved*(.5f+clearance*.5f);
+                cell.transform.localScale=Vector3.one*clearance;
                 cell.AddComponent<MeshFilter>().sharedMesh=assembly.Outline(BlockShape.Cube);
                 var renderer=cell.AddComponent<MeshRenderer>();renderer.sharedMaterial=ghostEdgeMaterial;renderer.shadowCastingMode=UnityEngine.Rendering.ShadowCastingMode.Off;
             }
@@ -165,6 +167,7 @@ namespace Starframe.Construction
                 previewPose=BlockPlacement.OnGround(ray.GetPoint(distance),rotation);
                 attachmentNormal=Vector3.up;
             }
+            previewPose=BlockPlacement.AlignMount(selected,previewPose);
             var localPosition=assembly.transform.InverseTransformPoint(previewPose.position);
             var localRotation=Quaternion.Inverse(assembly.transform.rotation)*previewPose.rotation;
             previewCell=BlockPlacement.GridHint(localPosition);
@@ -176,7 +179,7 @@ namespace Starframe.Construction
             if(mouse.leftButton.wasPressedThisFrame && validPreview)
             {
                 var placed=assembly.Place(selected,localPosition,localRotation,rotation);
-                if(placed){Starframe.App.GameAudio.Play(selected==BlockShape.Core?Starframe.App.GameSound.CorePowerOn:(BlockModules.IsThruster(selected)||selected==BlockShape.Laser?Starframe.App.GameSound.PlaceModule:Starframe.App.GameSound.PlaceHull));ui.SetStatusKey("editor.status.placed",false,L10n.Value("module."+selected),localPosition.ToString("F2"));}
+                if(placed){Starframe.App.GameAudio.Play(selected==BlockShape.Core?Starframe.App.GameSound.CorePowerOn:(BlockModules.IsThruster(selected)||BlockModules.IsWeapon(selected)?Starframe.App.GameSound.PlaceModule:Starframe.App.GameSound.PlaceHull));ui.SetStatusKey("editor.status.placed",false,L10n.Value("module."+selected),localPosition.ToString("F2"));}
             }
             else if(mouse.leftButton.wasPressedThisFrame){ui.SetStatusKey(L10n.LegacyKey(assembly.PlacementFailure)??"editor.status.cannotPlace",true);Starframe.App.GameAudio.Play(Starframe.App.GameSound.InvalidPlacement);}
         }
@@ -222,7 +225,7 @@ namespace Starframe.Construction
                 var data=assembly.Export(ui.BlueprintName);
                 if(!data.hasCore){ui.SetStatusKey("editor.status.needCore",true);return;}
                 Starframe.Flight.FlightSession.Begin(data,dirty);
-                UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(Starframe.Flight.FlightSession.RangeScene);
+                Starframe.Flight.RangeLoadingOverlay.LoadScene(Starframe.Flight.FlightSession.RangeScene);
             }catch(Exception e)when(e is IOException||e is InvalidDataException||e is ArgumentException||e is UnauthorizedAccessException){ui.SetStatusKey(L10n.ErrorKey(e),true);}
         }
         public void RefreshFiles(){ui.SetFiles(repository.List());}

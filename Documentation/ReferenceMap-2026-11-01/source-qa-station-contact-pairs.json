@@ -1,0 +1,3001 @@
+{
+  "method": "Source evaluated triangles, canonical transform, exact AABB exclusion, triangle SAT with 2 mm tolerance, and source vertex containment for large closed domes. Remaining non-dome pairs checked for source vertex containment in every individual watertight shell whose exact AABBs overlap.",
+  "caveat": "No source contact detected is not proof of rigid-body separation: one non-dome watertight shell could fully contain another without triangle intersection. Only triangle intersection/containment rows establish geometric contact; source-separated AABB rows establish no contact.",
+  "pairCount": 125,
+  "statusCounts": {
+    "no_source_contact_detected": 11,
+    "source_separated_aabb": 2,
+    "source_triangle_intersection": 112
+  },
+  "pairs": [
+    {
+      "assetPair": [
+        "domeleft_0000_0001_00",
+        "lefttruss_0000_0000_00"
+      ],
+      "firstShells": [
+        1
+      ],
+      "secondShells": [
+        0
+      ],
+      "voxelOverlappingCellPairs": 32275,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 21,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "domeright_0000_0128_00",
+        "station_right_rock_fittings_000"
+      ],
+      "firstShells": [
+        128
+      ],
+      "secondShells": [
+        131,
+        132,
+        133
+      ],
+      "voxelOverlappingCellPairs": 24724,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 385,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "domeleft_0000_0001_00",
+        "leftupper_0000_-001_00"
+      ],
+      "firstShells": [
+        1
+      ],
+      "secondShells": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18
+      ],
+      "voxelOverlappingCellPairs": 23599,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 34,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "domeright_0000_0128_00",
+        "station_right_rock_fittings_001"
+      ],
+      "firstShells": [
+        128
+      ],
+      "secondShells": [
+        130
+      ],
+      "voxelOverlappingCellPairs": 19258,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 4,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "domeleft_0000_0001_00",
+        "tank_0000_0570_00"
+      ],
+      "firstShells": [
+        1
+      ],
+      "secondShells": [
+        570
+      ],
+      "voxelOverlappingCellPairs": 18264,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 40,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "domeleft_0000_0001_00",
+        "ref_0000_-001_00"
+      ],
+      "firstShells": [
+        1
+      ],
+      "secondShells": [
+        497,
+        498,
+        499,
+        500,
+        501,
+        502,
+        503,
+        504,
+        505,
+        506,
+        507,
+        508,
+        509,
+        510,
+        511,
+        512,
+        513,
+        514,
+        515,
+        516,
+        517,
+        518,
+        519,
+        520,
+        521,
+        522,
+        523,
+        524,
+        525,
+        526,
+        527,
+        528,
+        529,
+        530,
+        531,
+        532,
+        533,
+        534,
+        535,
+        536,
+        537,
+        538,
+        539,
+        540,
+        541,
+        542,
+        543,
+        544,
+        545,
+        546,
+        547,
+        548,
+        549,
+        550,
+        551,
+        552,
+        553,
+        554,
+        555,
+        556,
+        557,
+        558,
+        559,
+        560,
+        561,
+        562,
+        563,
+        564,
+        565,
+        566,
+        567,
+        568,
+        569,
+        593,
+        594,
+        595,
+        596,
+        597,
+        598,
+        599,
+        600
+      ],
+      "voxelOverlappingCellPairs": 15523,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 22,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "domeleft_0000_0001_00",
+        "leftupper_0000_-001_01"
+      ],
+      "firstShells": [
+        1
+      ],
+      "secondShells": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18
+      ],
+      "voxelOverlappingCellPairs": 15099,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 34,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "domeright_0000_0128_00",
+        "righttruss_0000_0134_00"
+      ],
+      "firstShells": [
+        128
+      ],
+      "secondShells": [
+        134
+      ],
+      "voxelOverlappingCellPairs": 13322,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 44,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "domeright_0000_0128_00",
+        "station_right_rock_fittings_002"
+      ],
+      "firstShells": [
+        128
+      ],
+      "secondShells": [
+        129
+      ],
+      "voxelOverlappingCellPairs": 12396,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 4,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "domeright_0000_0128_00",
+        "station_crossing_booms_006"
+      ],
+      "firstShells": [
+        128
+      ],
+      "secondShells": [
+        462,
+        464,
+        465,
+        472,
+        473
+      ],
+      "voxelOverlappingCellPairs": 12373,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 7,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "domeright_0000_0128_00",
+        "station_right_station_fixtures_005"
+      ],
+      "firstShells": [
+        128
+      ],
+      "secondShells": [
+        136,
+        137,
+        138,
+        139
+      ],
+      "voxelOverlappingCellPairs": 12239,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 41,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "domeright_0000_0128_00",
+        "ref_0000_0127_00"
+      ],
+      "firstShells": [
+        128
+      ],
+      "secondShells": [
+        127
+      ],
+      "voxelOverlappingCellPairs": 9115,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 13,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "domeleft_0000_0001_00",
+        "ref_0000_0127_00"
+      ],
+      "firstShells": [
+        1
+      ],
+      "secondShells": [
+        127
+      ],
+      "voxelOverlappingCellPairs": 8063,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 12,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "domeleft_0000_0001_00",
+        "station_left_supports_000"
+      ],
+      "firstShells": [
+        1
+      ],
+      "secondShells": [
+        20
+      ],
+      "voxelOverlappingCellPairs": 6960,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 1,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "domeleft_0000_0001_00",
+        "station_left_supports_001"
+      ],
+      "firstShells": [
+        1
+      ],
+      "secondShells": [
+        19
+      ],
+      "voxelOverlappingCellPairs": 6359,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 2,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "domeleft_0000_0001_00",
+        "station_left_supports_002"
+      ],
+      "firstShells": [
+        1
+      ],
+      "secondShells": [
+        23,
+        24
+      ],
+      "voxelOverlappingCellPairs": 6334,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 2,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "ref_0000_-001_00",
+        "station_crossing_booms_004"
+      ],
+      "firstShells": [
+        497,
+        498,
+        499,
+        500,
+        501,
+        502,
+        503,
+        504,
+        505,
+        506,
+        507,
+        508,
+        509,
+        510,
+        511,
+        512,
+        513,
+        514,
+        515,
+        516,
+        517,
+        518,
+        519,
+        520,
+        521,
+        522,
+        523,
+        524,
+        525,
+        526,
+        527,
+        528,
+        529,
+        530,
+        531,
+        532,
+        533,
+        534,
+        535,
+        536,
+        537,
+        538,
+        539,
+        540,
+        541,
+        542,
+        543,
+        544,
+        545,
+        546,
+        547,
+        548,
+        549,
+        550,
+        551,
+        552,
+        553,
+        554,
+        555,
+        556,
+        557,
+        558,
+        559,
+        560,
+        561,
+        562,
+        563,
+        564,
+        565,
+        566,
+        567,
+        568,
+        569,
+        593,
+        594,
+        595,
+        596,
+        597,
+        598,
+        599,
+        600
+      ],
+      "secondShells": [
+        491,
+        492,
+        493,
+        494,
+        495,
+        496
+      ],
+      "voxelOverlappingCellPairs": 5937,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 1180,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "domeleft_0000_0001_00",
+        "station_crossing_booms_004"
+      ],
+      "firstShells": [
+        1
+      ],
+      "secondShells": [
+        491,
+        492,
+        493,
+        494,
+        495,
+        496
+      ],
+      "voxelOverlappingCellPairs": 5287,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 74,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "domeleft_0000_0001_00",
+        "tank_0000_0571_00"
+      ],
+      "firstShells": [
+        1
+      ],
+      "secondShells": [
+        571
+      ],
+      "voxelOverlappingCellPairs": 4781,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 914,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "domeleft_0000_0001_00",
+        "station_left_supports_003"
+      ],
+      "firstShells": [
+        1
+      ],
+      "secondShells": [
+        21
+      ],
+      "voxelOverlappingCellPairs": 4378,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 4,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "ref_0000_-001_00",
+        "tank_0000_0574_00"
+      ],
+      "firstShells": [
+        497,
+        498,
+        499,
+        500,
+        501,
+        502,
+        503,
+        504,
+        505,
+        506,
+        507,
+        508,
+        509,
+        510,
+        511,
+        512,
+        513,
+        514,
+        515,
+        516,
+        517,
+        518,
+        519,
+        520,
+        521,
+        522,
+        523,
+        524,
+        525,
+        526,
+        527,
+        528,
+        529,
+        530,
+        531,
+        532,
+        533,
+        534,
+        535,
+        536,
+        537,
+        538,
+        539,
+        540,
+        541,
+        542,
+        543,
+        544,
+        545,
+        546,
+        547,
+        548,
+        549,
+        550,
+        551,
+        552,
+        553,
+        554,
+        555,
+        556,
+        557,
+        558,
+        559,
+        560,
+        561,
+        562,
+        563,
+        564,
+        565,
+        566,
+        567,
+        568,
+        569,
+        593,
+        594,
+        595,
+        596,
+        597,
+        598,
+        599,
+        600
+      ],
+      "secondShells": [
+        574
+      ],
+      "voxelOverlappingCellPairs": 3847,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 1609,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "domeleft_0000_0001_00",
+        "station_left_supports_004"
+      ],
+      "firstShells": [
+        1
+      ],
+      "secondShells": [
+        22
+      ],
+      "voxelOverlappingCellPairs": 3424,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 1,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "domeright_0000_0128_00",
+        "station_crossing_booms_002"
+      ],
+      "firstShells": [
+        128
+      ],
+      "secondShells": [
+        470,
+        481
+      ],
+      "voxelOverlappingCellPairs": 2912,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 33,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "domeright_0000_0128_00",
+        "station_crossing_booms_005"
+      ],
+      "firstShells": [
+        128
+      ],
+      "secondShells": [
+        471,
+        488
+      ],
+      "voxelOverlappingCellPairs": 2710,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 28,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "domeleft_0000_0001_00",
+        "station_left_tank_cluster_003"
+      ],
+      "firstShells": [
+        1
+      ],
+      "secondShells": [
+        120,
+        124
+      ],
+      "voxelOverlappingCellPairs": 1859,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 43,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "station_cantilever_network_002",
+        "station_outer_equipment_b_000"
+      ],
+      "firstShells": [
+        304
+      ],
+      "secondShells": [
+        438
+      ],
+      "voxelOverlappingCellPairs": 1768,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 20,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "ref_0000_-001_02",
+        "tank_0000_0574_00"
+      ],
+      "firstShells": [
+        497,
+        498,
+        499,
+        500,
+        501,
+        502,
+        503,
+        504,
+        505,
+        506,
+        507,
+        508,
+        509,
+        510,
+        511,
+        512,
+        513,
+        514,
+        515,
+        516,
+        517,
+        518,
+        519,
+        520,
+        521,
+        522,
+        523,
+        524,
+        525,
+        526,
+        527,
+        528,
+        529,
+        530,
+        531,
+        532,
+        533,
+        534,
+        535,
+        536,
+        537,
+        538,
+        539,
+        540,
+        541,
+        542,
+        543,
+        544,
+        545,
+        546,
+        547,
+        548,
+        549,
+        550,
+        551,
+        552,
+        553,
+        554,
+        555,
+        556,
+        557,
+        558,
+        559,
+        560,
+        561,
+        562,
+        563,
+        564,
+        565,
+        566,
+        567,
+        568,
+        569,
+        593,
+        594,
+        595,
+        596,
+        597,
+        598,
+        599,
+        600
+      ],
+      "secondShells": [
+        574
+      ],
+      "voxelOverlappingCellPairs": 1676,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 1609,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "station_deck_understructure_000",
+        "tank_0000_0573_00"
+      ],
+      "firstShells": [
+        573
+      ],
+      "secondShells": [
+        575,
+        578,
+        579,
+        582,
+        583,
+        584,
+        585,
+        586,
+        587,
+        588,
+        589,
+        590,
+        591,
+        592
+      ],
+      "voxelOverlappingCellPairs": 1020,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 30927,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "station_cantilever_network_002",
+        "station_crossing_booms_002"
+      ],
+      "firstShells": [
+        304
+      ],
+      "secondShells": [
+        470,
+        481
+      ],
+      "voxelOverlappingCellPairs": 666,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 3,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "lefttruss_0000_0000_00",
+        "ref_0000_0127_00"
+      ],
+      "firstShells": [
+        127
+      ],
+      "secondShells": [
+        0
+      ],
+      "voxelOverlappingCellPairs": 626,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 42,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "domeleft_0000_0001_00",
+        "leftupper_0000_-001_02"
+      ],
+      "firstShells": [
+        1
+      ],
+      "secondShells": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18
+      ],
+      "voxelOverlappingCellPairs": 590,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 34,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "station_deck_understructure_000",
+        "tank_0000_0572_00"
+      ],
+      "firstShells": [
+        572
+      ],
+      "secondShells": [
+        575,
+        578,
+        579,
+        582,
+        583,
+        584,
+        585,
+        586,
+        587,
+        588,
+        589,
+        590,
+        591,
+        592
+      ],
+      "voxelOverlappingCellPairs": 482,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 5351,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "domeright_0000_0128_00",
+        "station_cantilever_network_020"
+      ],
+      "firstShells": [
+        128
+      ],
+      "secondShells": [
+        320,
+        321,
+        322
+      ],
+      "voxelOverlappingCellPairs": 401,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 8,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "station_cantilever_network_005",
+        "station_crossing_booms_010"
+      ],
+      "firstShells": [
+        305
+      ],
+      "secondShells": [
+        453
+      ],
+      "voxelOverlappingCellPairs": 369,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 9,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "station_crossing_booms_000",
+        "station_right_station_fixtures_000"
+      ],
+      "firstShells": [
+        135,
+        172,
+        173,
+        174,
+        175,
+        177,
+        178
+      ],
+      "secondShells": [
+        466,
+        467,
+        474
+      ],
+      "voxelOverlappingCellPairs": 336,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 229,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "station_cantilever_network_000",
+        "station_right_station_fixtures_004"
+      ],
+      "firstShells": [
+        157,
+        165
+      ],
+      "secondShells": [
+        287,
+        299
+      ],
+      "voxelOverlappingCellPairs": 292,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 92,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "domeleft_0000_0001_00",
+        "station_left_box_grid_037"
+      ],
+      "firstShells": [
+        1
+      ],
+      "secondShells": [
+        76
+      ],
+      "voxelOverlappingCellPairs": 256,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": false,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 26,
+      "containedSourceVerticesSampled": 0,
+      "status": "no_source_contact_detected",
+      "containmentPairsChecked": 1
+    },
+    {
+      "assetPair": [
+        "station_cantilever_network_000",
+        "station_right_station_fixtures_002"
+      ],
+      "firstShells": [
+        164,
+        166
+      ],
+      "secondShells": [
+        287,
+        299
+      ],
+      "voxelOverlappingCellPairs": 246,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 24,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "station_cantilever_network_008",
+        "station_crossing_booms_013"
+      ],
+      "firstShells": [
+        302,
+        303
+      ],
+      "secondShells": [
+        478,
+        479
+      ],
+      "voxelOverlappingCellPairs": 238,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 12,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "domeright_0000_0128_00",
+        "station_outer_equipment_b_002"
+      ],
+      "firstShells": [
+        128
+      ],
+      "secondShells": [
+        415,
+        416,
+        417,
+        418,
+        419,
+        420,
+        421,
+        433,
+        434,
+        435,
+        436
+      ],
+      "voxelOverlappingCellPairs": 233,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 19,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "station_outer_equipment_a_001",
+        "station_outer_equipment_b_006"
+      ],
+      "firstShells": [
+        386,
+        387,
+        388,
+        389,
+        390,
+        391,
+        392,
+        393,
+        394,
+        395,
+        396,
+        397
+      ],
+      "secondShells": [
+        398,
+        399,
+        400
+      ],
+      "voxelOverlappingCellPairs": 203,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 86,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "domeleft_0000_0001_00",
+        "station_left_box_grid_048"
+      ],
+      "firstShells": [
+        1
+      ],
+      "secondShells": [
+        86
+      ],
+      "voxelOverlappingCellPairs": 195,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": false,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 0,
+      "containedSourceVerticesSampled": 0,
+      "status": "no_source_contact_detected",
+      "containmentPairsChecked": 1
+    },
+    {
+      "assetPair": [
+        "station_outer_equipment_b_000",
+        "station_right_station_fixtures_000"
+      ],
+      "firstShells": [
+        135,
+        172,
+        173,
+        174,
+        175,
+        177,
+        178
+      ],
+      "secondShells": [
+        438
+      ],
+      "voxelOverlappingCellPairs": 185,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 6,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "station_right_radiator_bank_000",
+        "station_right_station_fixtures_029"
+      ],
+      "firstShells": [
+        188
+      ],
+      "secondShells": [
+        227,
+        236,
+        237,
+        238,
+        239,
+        240,
+        241,
+        242,
+        271,
+        272,
+        273,
+        276,
+        277,
+        278,
+        279,
+        280,
+        281,
+        282,
+        283
+      ],
+      "voxelOverlappingCellPairs": 182,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 3,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "station_cantilever_network_005",
+        "station_crossing_booms_005"
+      ],
+      "firstShells": [
+        305
+      ],
+      "secondShells": [
+        471,
+        488
+      ],
+      "voxelOverlappingCellPairs": 182,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 14,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "station_crossing_booms_002",
+        "station_right_station_fixtures_001"
+      ],
+      "firstShells": [
+        179,
+        182,
+        184
+      ],
+      "secondShells": [
+        470,
+        481
+      ],
+      "voxelOverlappingCellPairs": 158,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 46,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "station_left_supports_000",
+        "station_left_tank_cluster_003"
+      ],
+      "firstShells": [
+        20
+      ],
+      "secondShells": [
+        120,
+        124
+      ],
+      "voxelOverlappingCellPairs": 151,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 27,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "domeleft_0000_0001_00",
+        "station_left_box_grid_056"
+      ],
+      "firstShells": [
+        1
+      ],
+      "secondShells": [
+        85
+      ],
+      "voxelOverlappingCellPairs": 149,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": false,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 0,
+      "containedSourceVerticesSampled": 0,
+      "status": "no_source_contact_detected",
+      "containmentPairsChecked": 1
+    },
+    {
+      "assetPair": [
+        "station_crossing_booms_002",
+        "station_right_station_fixtures_007"
+      ],
+      "firstShells": [
+        186,
+        187
+      ],
+      "secondShells": [
+        470,
+        481
+      ],
+      "voxelOverlappingCellPairs": 148,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 1,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "station_left_supports_000",
+        "station_left_tank_cluster_001"
+      ],
+      "firstShells": [
+        20
+      ],
+      "secondShells": [
+        121,
+        125
+      ],
+      "voxelOverlappingCellPairs": 133,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 17,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "station_left_box_grid_001",
+        "station_left_supports_003"
+      ],
+      "firstShells": [
+        21
+      ],
+      "secondShells": [
+        25,
+        29,
+        37,
+        41,
+        115
+      ],
+      "voxelOverlappingCellPairs": 120,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 4,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "station_left_box_grid_000",
+        "station_left_supports_004"
+      ],
+      "firstShells": [
+        22
+      ],
+      "secondShells": [
+        49,
+        53,
+        61,
+        65,
+        116
+      ],
+      "voxelOverlappingCellPairs": 120,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 4,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "station_left_box_grid_006",
+        "station_left_supports_004"
+      ],
+      "firstShells": [
+        22
+      ],
+      "secondShells": [
+        118
+      ],
+      "voxelOverlappingCellPairs": 114,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 1,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "station_left_radiator_bank_007",
+        "station_right_station_fixtures_011"
+      ],
+      "firstShells": [
+        199
+      ],
+      "secondShells": [
+        200,
+        201
+      ],
+      "voxelOverlappingCellPairs": 114,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 1,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "station_deck_understructure_002",
+        "tank_0000_0572_00"
+      ],
+      "firstShells": [
+        572
+      ],
+      "secondShells": [
+        576
+      ],
+      "voxelOverlappingCellPairs": 112,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 7212,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "station_deck_understructure_004",
+        "tank_0000_0572_00"
+      ],
+      "firstShells": [
+        572
+      ],
+      "secondShells": [
+        577
+      ],
+      "voxelOverlappingCellPairs": 109,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 7410,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "station_left_box_grid_005",
+        "station_left_supports_003"
+      ],
+      "firstShells": [
+        21
+      ],
+      "secondShells": [
+        117
+      ],
+      "voxelOverlappingCellPairs": 109,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 1,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "station_crossing_booms_011",
+        "station_right_station_fixtures_001"
+      ],
+      "firstShells": [
+        179,
+        182,
+        184
+      ],
+      "secondShells": [
+        475
+      ],
+      "voxelOverlappingCellPairs": 109,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 1,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "station_crossing_booms_003",
+        "station_outer_equipment_b_003"
+      ],
+      "firstShells": [
+        448
+      ],
+      "secondShells": [
+        450,
+        452
+      ],
+      "voxelOverlappingCellPairs": 109,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 31,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "station_cantilever_network_000",
+        "station_right_radiator_bank_002"
+      ],
+      "firstShells": [
+        217,
+        218,
+        219
+      ],
+      "secondShells": [
+        287,
+        299
+      ],
+      "voxelOverlappingCellPairs": 104,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 8,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "station_cantilever_network_000",
+        "station_right_radiator_bank_003"
+      ],
+      "firstShells": [
+        220,
+        221,
+        222
+      ],
+      "secondShells": [
+        287,
+        299
+      ],
+      "voxelOverlappingCellPairs": 99,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 6,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "station_deck_understructure_001",
+        "tank_0000_0573_00"
+      ],
+      "firstShells": [
+        573
+      ],
+      "secondShells": [
+        581
+      ],
+      "voxelOverlappingCellPairs": 90,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 6254,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "station_deck_understructure_003",
+        "tank_0000_0573_00"
+      ],
+      "firstShells": [
+        573
+      ],
+      "secondShells": [
+        580
+      ],
+      "voxelOverlappingCellPairs": 90,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 6405,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "station_crossing_booms_012",
+        "station_deck_understructure_000"
+      ],
+      "firstShells": [
+        490
+      ],
+      "secondShells": [
+        575,
+        578,
+        579,
+        582,
+        583,
+        584,
+        585,
+        586,
+        587,
+        588,
+        589,
+        590,
+        591,
+        592
+      ],
+      "voxelOverlappingCellPairs": 90,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 208,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "station_cantilever_network_010",
+        "station_right_station_fixtures_004"
+      ],
+      "firstShells": [
+        157,
+        165
+      ],
+      "secondShells": [
+        295,
+        296
+      ],
+      "voxelOverlappingCellPairs": 87,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 3,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "station_crossing_booms_006",
+        "station_right_station_fixtures_005"
+      ],
+      "firstShells": [
+        136,
+        137,
+        138,
+        139
+      ],
+      "secondShells": [
+        462,
+        464,
+        465,
+        472,
+        473
+      ],
+      "voxelOverlappingCellPairs": 85,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": false,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 692,
+      "status": "no_source_contact_detected",
+      "containmentPairsChecked": 5
+    },
+    {
+      "assetPair": [
+        "domeright_0000_0128_00",
+        "station_cantilever_network_019"
+      ],
+      "firstShells": [
+        128
+      ],
+      "secondShells": [
+        317,
+        318,
+        319
+      ],
+      "voxelOverlappingCellPairs": 82,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": false,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 23,
+      "containedSourceVerticesSampled": 0,
+      "status": "no_source_contact_detected",
+      "containmentPairsChecked": 3
+    },
+    {
+      "assetPair": [
+        "station_crossing_booms_002",
+        "station_right_station_fixtures_009"
+      ],
+      "firstShells": [
+        183
+      ],
+      "secondShells": [
+        470,
+        481
+      ],
+      "voxelOverlappingCellPairs": 82,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 103,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "station_crossing_booms_015",
+        "station_right_station_fixtures_000"
+      ],
+      "firstShells": [
+        135,
+        172,
+        173,
+        174,
+        175,
+        177,
+        178
+      ],
+      "secondShells": [
+        468,
+        469
+      ],
+      "voxelOverlappingCellPairs": 81,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 5,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "station_cantilever_network_002",
+        "station_right_station_fixtures_002"
+      ],
+      "firstShells": [
+        164,
+        166
+      ],
+      "secondShells": [
+        304
+      ],
+      "voxelOverlappingCellPairs": 80,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 3,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "station_cantilever_network_000",
+        "station_right_station_fixtures_013"
+      ],
+      "firstShells": [
+        161,
+        194
+      ],
+      "secondShells": [
+        287,
+        299
+      ],
+      "voxelOverlappingCellPairs": 80,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 723,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "station_crossing_booms_002",
+        "station_right_station_fixtures_000"
+      ],
+      "firstShells": [
+        135,
+        172,
+        173,
+        174,
+        175,
+        177,
+        178
+      ],
+      "secondShells": [
+        470,
+        481
+      ],
+      "voxelOverlappingCellPairs": 79,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 39,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "station_crossing_booms_003",
+        "station_outer_equipment_b_007"
+      ],
+      "firstShells": [
+        449
+      ],
+      "secondShells": [
+        450,
+        452
+      ],
+      "voxelOverlappingCellPairs": 79,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 40,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "station_crossing_booms_005",
+        "station_right_station_fixtures_001"
+      ],
+      "firstShells": [
+        179,
+        182,
+        184
+      ],
+      "secondShells": [
+        471,
+        488
+      ],
+      "voxelOverlappingCellPairs": 77,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 27,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "station_deck_understructure_000",
+        "station_left_supports_002"
+      ],
+      "firstShells": [
+        23,
+        24
+      ],
+      "secondShells": [
+        575,
+        578,
+        579,
+        582,
+        583,
+        584,
+        585,
+        586,
+        587,
+        588,
+        589,
+        590,
+        591,
+        592
+      ],
+      "voxelOverlappingCellPairs": 75,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 3,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "station_cantilever_network_009",
+        "station_right_station_fixtures_009"
+      ],
+      "firstShells": [
+        183
+      ],
+      "secondShells": [
+        290,
+        291
+      ],
+      "voxelOverlappingCellPairs": 73,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 37,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "station_cantilever_network_000",
+        "station_right_radiator_bank_004"
+      ],
+      "firstShells": [
+        214,
+        215,
+        216
+      ],
+      "secondShells": [
+        287,
+        299
+      ],
+      "voxelOverlappingCellPairs": 73,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 3,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "station_cantilever_network_000",
+        "station_right_station_fixtures_019"
+      ],
+      "firstShells": [
+        160
+      ],
+      "secondShells": [
+        287,
+        299
+      ],
+      "voxelOverlappingCellPairs": 71,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 34,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "station_crossing_booms_005",
+        "station_right_station_fixtures_000"
+      ],
+      "firstShells": [
+        135,
+        172,
+        173,
+        174,
+        175,
+        177,
+        178
+      ],
+      "secondShells": [
+        471,
+        488
+      ],
+      "voxelOverlappingCellPairs": 63,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 29,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "station_crossing_booms_005",
+        "station_right_station_fixtures_007"
+      ],
+      "firstShells": [
+        186,
+        187
+      ],
+      "secondShells": [
+        471,
+        488
+      ],
+      "voxelOverlappingCellPairs": 58,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 2,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "station_crossing_booms_002",
+        "station_right_station_fixtures_022"
+      ],
+      "firstShells": [
+        167
+      ],
+      "secondShells": [
+        470,
+        481
+      ],
+      "voxelOverlappingCellPairs": 52,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 12,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "station_crossing_booms_003",
+        "station_outer_equipment_a_000"
+      ],
+      "firstShells": [
+        368,
+        369,
+        370,
+        371,
+        377,
+        378,
+        379,
+        380,
+        381,
+        382,
+        383,
+        384,
+        385
+      ],
+      "secondShells": [
+        450,
+        452
+      ],
+      "voxelOverlappingCellPairs": 52,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 21,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "station_cantilever_network_009",
+        "station_right_station_fixtures_001"
+      ],
+      "firstShells": [
+        179,
+        182,
+        184
+      ],
+      "secondShells": [
+        290,
+        291
+      ],
+      "voxelOverlappingCellPairs": 49,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 13,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "station_left_supports_001",
+        "station_left_tank_cluster_002"
+      ],
+      "firstShells": [
+        19
+      ],
+      "secondShells": [
+        119,
+        122
+      ],
+      "voxelOverlappingCellPairs": 44,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": false,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 24,
+      "status": "no_source_contact_detected",
+      "containmentPairsChecked": 1
+    },
+    {
+      "assetPair": [
+        "station_left_radiator_bank_004",
+        "station_right_station_fixtures_000"
+      ],
+      "firstShells": [
+        135,
+        172,
+        173,
+        174,
+        175,
+        177,
+        178
+      ],
+      "secondShells": [
+        206,
+        207,
+        208,
+        209
+      ],
+      "voxelOverlappingCellPairs": 44,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 92,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "station_crossing_booms_016",
+        "station_right_station_fixtures_006"
+      ],
+      "firstShells": [
+        140,
+        141,
+        142,
+        143
+      ],
+      "secondShells": [
+        461
+      ],
+      "voxelOverlappingCellPairs": 42,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 32,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "station_cantilever_network_002",
+        "station_right_station_fixtures_000"
+      ],
+      "firstShells": [
+        135,
+        172,
+        173,
+        174,
+        175,
+        177,
+        178
+      ],
+      "secondShells": [
+        304
+      ],
+      "voxelOverlappingCellPairs": 41,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": false,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 139,
+      "status": "no_source_contact_detected",
+      "containmentPairsChecked": 2
+    },
+    {
+      "assetPair": [
+        "station_crossing_booms_013",
+        "station_right_station_fixtures_023"
+      ],
+      "firstShells": [
+        168
+      ],
+      "secondShells": [
+        478,
+        479
+      ],
+      "voxelOverlappingCellPairs": 40,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 2,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "station_crossing_booms_007",
+        "station_right_station_fixtures_043"
+      ],
+      "firstShells": [
+        145
+      ],
+      "secondShells": [
+        480,
+        482,
+        483,
+        484
+      ],
+      "voxelOverlappingCellPairs": 40,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 1,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "station_cantilever_network_006",
+        "station_outer_equipment_a_006"
+      ],
+      "firstShells": [
+        324,
+        325,
+        326,
+        327,
+        328,
+        329,
+        330,
+        331,
+        332,
+        333,
+        334,
+        335,
+        336,
+        337,
+        338,
+        339
+      ],
+      "secondShells": [
+        341,
+        342,
+        343
+      ],
+      "voxelOverlappingCellPairs": 40,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 41,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "station_cantilever_network_000",
+        "station_right_station_fixtures_024"
+      ],
+      "firstShells": [
+        159
+      ],
+      "secondShells": [
+        287,
+        299
+      ],
+      "voxelOverlappingCellPairs": 37,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 364,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "station_crossing_booms_008",
+        "station_right_station_fixtures_034"
+      ],
+      "firstShells": [
+        150
+      ],
+      "secondShells": [
+        485,
+        486,
+        487
+      ],
+      "voxelOverlappingCellPairs": 37,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 24,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "station_outer_equipment_b_000",
+        "station_right_station_fixtures_002"
+      ],
+      "firstShells": [
+        164,
+        166
+      ],
+      "secondShells": [
+        438
+      ],
+      "voxelOverlappingCellPairs": 36,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": false,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 123,
+      "status": "no_source_contact_detected",
+      "containmentPairsChecked": 1
+    },
+    {
+      "assetPair": [
+        "station_crossing_booms_008",
+        "station_right_station_fixtures_037"
+      ],
+      "firstShells": [
+        147
+      ],
+      "secondShells": [
+        485,
+        486,
+        487
+      ],
+      "voxelOverlappingCellPairs": 36,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 5,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "station_crossing_booms_008",
+        "station_right_station_fixtures_036"
+      ],
+      "firstShells": [
+        152
+      ],
+      "secondShells": [
+        485,
+        486,
+        487
+      ],
+      "voxelOverlappingCellPairs": 35,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 275,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "station_crossing_booms_008",
+        "station_right_station_fixtures_040"
+      ],
+      "firstShells": [
+        146
+      ],
+      "secondShells": [
+        485,
+        486,
+        487
+      ],
+      "voxelOverlappingCellPairs": 35,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 12,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "station_crossing_booms_018",
+        "station_outer_equipment_b_003"
+      ],
+      "firstShells": [
+        448
+      ],
+      "secondShells": [
+        451
+      ],
+      "voxelOverlappingCellPairs": 35,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 2,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "station_crossing_booms_018",
+        "station_outer_equipment_b_008"
+      ],
+      "firstShells": [
+        447
+      ],
+      "secondShells": [
+        451
+      ],
+      "voxelOverlappingCellPairs": 35,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 13,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "station_cantilever_network_008",
+        "station_right_station_fixtures_023"
+      ],
+      "firstShells": [
+        168
+      ],
+      "secondShells": [
+        302,
+        303
+      ],
+      "voxelOverlappingCellPairs": 34,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 6,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "station_crossing_booms_008",
+        "station_right_station_fixtures_035"
+      ],
+      "firstShells": [
+        151
+      ],
+      "secondShells": [
+        485,
+        486,
+        487
+      ],
+      "voxelOverlappingCellPairs": 34,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 223,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "station_crossing_booms_008",
+        "station_right_station_fixtures_038"
+      ],
+      "firstShells": [
+        154
+      ],
+      "secondShells": [
+        485,
+        486,
+        487
+      ],
+      "voxelOverlappingCellPairs": 34,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 229,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "station_crossing_booms_011",
+        "station_right_station_fixtures_025"
+      ],
+      "firstShells": [
+        180
+      ],
+      "secondShells": [
+        475
+      ],
+      "voxelOverlappingCellPairs": 32,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 19,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "station_crossing_booms_008",
+        "station_right_station_fixtures_033"
+      ],
+      "firstShells": [
+        148
+      ],
+      "secondShells": [
+        485,
+        486,
+        487
+      ],
+      "voxelOverlappingCellPairs": 32,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 15,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "station_crossing_booms_008",
+        "station_right_station_fixtures_041"
+      ],
+      "firstShells": [
+        149
+      ],
+      "secondShells": [
+        485,
+        486,
+        487
+      ],
+      "voxelOverlappingCellPairs": 32,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 193,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "station_crossing_booms_008",
+        "station_right_station_fixtures_042"
+      ],
+      "firstShells": [
+        153
+      ],
+      "secondShells": [
+        485,
+        486,
+        487
+      ],
+      "voxelOverlappingCellPairs": 32,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 156,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "station_outer_equipment_a_000",
+        "station_outer_equipment_b_007"
+      ],
+      "firstShells": [
+        368,
+        369,
+        370,
+        371,
+        377,
+        378,
+        379,
+        380,
+        381,
+        382,
+        383,
+        384,
+        385
+      ],
+      "secondShells": [
+        449
+      ],
+      "voxelOverlappingCellPairs": 29,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 10,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "station_cantilever_network_009",
+        "station_crossing_booms_002"
+      ],
+      "firstShells": [
+        290,
+        291
+      ],
+      "secondShells": [
+        470,
+        481
+      ],
+      "voxelOverlappingCellPairs": 28,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": false,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 1429,
+      "status": "no_source_contact_detected",
+      "containmentPairsChecked": 3
+    },
+    {
+      "assetPair": [
+        "station_cantilever_network_022",
+        "station_crossing_booms_009"
+      ],
+      "firstShells": [
+        309,
+        310
+      ],
+      "secondShells": [
+        454,
+        489
+      ],
+      "voxelOverlappingCellPairs": 25,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 22,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "station_crossing_booms_005",
+        "station_right_station_fixtures_022"
+      ],
+      "firstShells": [
+        167
+      ],
+      "secondShells": [
+        471,
+        488
+      ],
+      "voxelOverlappingCellPairs": 24,
+      "sourceAabbGapMetres": 0.025490723478924338,
+      "sourceTriangleIntersection": false,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 0,
+      "status": "source_separated_aabb"
+    },
+    {
+      "assetPair": [
+        "station_crossing_booms_009",
+        "station_right_station_fixtures_033"
+      ],
+      "firstShells": [
+        148
+      ],
+      "secondShells": [
+        454,
+        489
+      ],
+      "voxelOverlappingCellPairs": 23,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 125,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "station_crossing_booms_009",
+        "station_right_station_fixtures_036"
+      ],
+      "firstShells": [
+        152
+      ],
+      "secondShells": [
+        454,
+        489
+      ],
+      "voxelOverlappingCellPairs": 23,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 250,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "station_crossing_booms_009",
+        "station_right_station_fixtures_038"
+      ],
+      "firstShells": [
+        154
+      ],
+      "secondShells": [
+        454,
+        489
+      ],
+      "voxelOverlappingCellPairs": 22,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 342,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "station_cantilever_network_021",
+        "station_crossing_booms_003"
+      ],
+      "firstShells": [
+        313,
+        314
+      ],
+      "secondShells": [
+        450,
+        452
+      ],
+      "voxelOverlappingCellPairs": 22,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 30,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "station_crossing_booms_009",
+        "station_right_station_fixtures_042"
+      ],
+      "firstShells": [
+        153
+      ],
+      "secondShells": [
+        454,
+        489
+      ],
+      "voxelOverlappingCellPairs": 21,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 358,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "station_crossing_booms_009",
+        "station_right_station_fixtures_034"
+      ],
+      "firstShells": [
+        150
+      ],
+      "secondShells": [
+        454,
+        489
+      ],
+      "voxelOverlappingCellPairs": 20,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 219,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "station_crossing_booms_009",
+        "station_right_station_fixtures_035"
+      ],
+      "firstShells": [
+        151
+      ],
+      "secondShells": [
+        454,
+        489
+      ],
+      "voxelOverlappingCellPairs": 20,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 125,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "station_crossing_booms_009",
+        "station_right_station_fixtures_037"
+      ],
+      "firstShells": [
+        147
+      ],
+      "secondShells": [
+        454,
+        489
+      ],
+      "voxelOverlappingCellPairs": 20,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 432,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "station_crossing_booms_009",
+        "station_right_station_fixtures_041"
+      ],
+      "firstShells": [
+        149
+      ],
+      "secondShells": [
+        454,
+        489
+      ],
+      "voxelOverlappingCellPairs": 20,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 410,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "station_crossing_booms_009",
+        "station_right_station_fixtures_040"
+      ],
+      "firstShells": [
+        146
+      ],
+      "secondShells": [
+        454,
+        489
+      ],
+      "voxelOverlappingCellPairs": 18,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 1435,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "station_cantilever_network_024",
+        "station_crossing_booms_003"
+      ],
+      "firstShells": [
+        315,
+        316
+      ],
+      "secondShells": [
+        450,
+        452
+      ],
+      "voxelOverlappingCellPairs": 17,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 90,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "station_cantilever_network_023",
+        "station_outer_equipment_a_000"
+      ],
+      "firstShells": [
+        311,
+        312
+      ],
+      "secondShells": [
+        368,
+        369,
+        370,
+        371,
+        377,
+        378,
+        379,
+        380,
+        381,
+        382,
+        383,
+        384,
+        385
+      ],
+      "voxelOverlappingCellPairs": 15,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 4,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "station_outer_equipment_a_003",
+        "station_outer_equipment_b_009"
+      ],
+      "firstShells": [
+        376
+      ],
+      "secondShells": [
+        437
+      ],
+      "voxelOverlappingCellPairs": 12,
+      "sourceAabbGapMetres": 0.02516688472127271,
+      "sourceTriangleIntersection": false,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 0,
+      "status": "source_separated_aabb"
+    },
+    {
+      "assetPair": [
+        "station_cantilever_network_006",
+        "station_outer_equipment_a_007"
+      ],
+      "firstShells": [
+        324,
+        325,
+        326,
+        327,
+        328,
+        329,
+        330,
+        331,
+        332,
+        333,
+        334,
+        335,
+        336,
+        337,
+        338,
+        339
+      ],
+      "secondShells": [
+        340
+      ],
+      "voxelOverlappingCellPairs": 8,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": true,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 7,
+      "status": "source_triangle_intersection"
+    },
+    {
+      "assetPair": [
+        "station_crossing_booms_007",
+        "station_right_station_fixtures_006"
+      ],
+      "firstShells": [
+        140,
+        141,
+        142,
+        143
+      ],
+      "secondShells": [
+        480,
+        482,
+        483,
+        484
+      ],
+      "voxelOverlappingCellPairs": 7,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": false,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 246,
+      "status": "no_source_contact_detected",
+      "containmentPairsChecked": 10
+    },
+    {
+      "assetPair": [
+        "station_cantilever_network_022",
+        "station_right_station_fixtures_041"
+      ],
+      "firstShells": [
+        149
+      ],
+      "secondShells": [
+        309,
+        310
+      ],
+      "voxelOverlappingCellPairs": 1,
+      "sourceAabbGapMetres": 0.0,
+      "sourceTriangleIntersection": false,
+      "sourceVertexContainedInClosedShell": false,
+      "trianglePairsTested": 215,
+      "status": "no_source_contact_detected",
+      "containmentPairsChecked": 1
+    }
+  ]
+}

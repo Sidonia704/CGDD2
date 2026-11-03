@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="1" result="Passed" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-25 11:19:14Z" end-time="2026-10-25 11:19:18Z" duration="3.6300777">
+  <test-suite type="TestSuite" id="1051" name="CGDD26107" fullname="CGDD26107" runstate="Runnable" testcasecount="30" result="Passed" start-time="2026-10-25 11:19:14Z" end-time="2026-10-25 11:19:18Z" duration="3.630078" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <test-suite type="Assembly" id="1045" name="Starframe.Combat.PlayModeTests.dll" fullname="D:/software/unity/CGDD26107/Library/ScriptAssemblies/Starframe.Combat.PlayModeTests.dll" runstate="Runnable" testcasecount="15" result="Passed" start-time="2026-10-25 11:19:14Z" end-time="2026-10-25 11:19:18Z" duration="3.623426" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="52844" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <test-suite type="TestSuite" id="1046" name="Starframe" fullname="Starframe" runstate="Runnable" testcasecount="15" result="Passed" start-time="2026-10-25 11:19:14Z" end-time="2026-10-25 11:19:18Z" duration="3.622728" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1047" name="Tests" fullname="Starframe.Tests" runstate="Runnable" testcasecount="15" result="Passed" start-time="2026-10-25 11:19:14Z" end-time="2026-10-25 11:19:18Z" duration="3.622351" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1023" name="AssemblyPreviewUiTests" fullname="Starframe.Tests.AssemblyPreviewUiTests" classname="Starframe.Tests.AssemblyPreviewUiTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-10-25 11:19:14Z" end-time="2026-10-25 11:19:18Z" duration="3.621256" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1024" name="LibraryWheelAndScrollbarWorkAndShieldsStayNonPhysical" fullname="Starframe.Tests.AssemblyPreviewUiTests.LibraryWheelAndScrollbarWorkAndShieldsStayNonPhysical" methodname="LibraryWheelAndScrollbarWorkAndShieldsStayNonPhysical" classname="Starframe.Tests.AssemblyPreviewUiTests" runstate="Runnable" seed="2306596" result="Passed" start-time="2026-10-25 11:19:14Z" end-time="2026-10-25 11:19:18Z" duration="3.611176" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: C:/Users/34808/AppData/LocalLow/DefaultCompany/CGDD26107\TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

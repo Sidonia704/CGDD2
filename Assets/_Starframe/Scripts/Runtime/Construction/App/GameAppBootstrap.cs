@@ -22,8 +22,8 @@ namespace Starframe.App
         public MissionCatalog catalog;
         public Camera previewCamera;
         MenuSurface ui;HangarShipPreview preview;
-        AppPage page,settingsReturn,groupsReturn;MissionDefinition mission;BlueprintData selected;
-        WeaponGroupScreen weaponScreen;SettingsScreen settingsScreen;
+        AppPage page,settingsReturn,groupsReturn,libraryReturn;MissionDefinition mission;BlueprintData selected;
+        WeaponGroupScreen weaponScreen;SettingsScreen settingsScreen;BlueprintLibraryScreen libraryScreen;
         bool ready,dialogOpen;Action dialogCancel;string notice="";
         public AppPage CurrentPage=>page;
         public bool IsReady=>ready;
@@ -42,71 +42,78 @@ namespace Starframe.App
             if(!mission&&catalog&&catalog.missions.Count>0)mission=catalog.missions[0];
             L10n.Changed+=OnLocaleChanged;ready=true;AppNavigation.HasAppContext=true;ShowPage(AppNavigation.ReturnPage);
         }
-        void OnLocaleChanged(){if(ready&&page!=AppPage.Settings&&page!=AppPage.WeaponGroups&&!dialogOpen)ShowPage(page);}
+        void OnLocaleChanged(){if(ready&&page!=AppPage.Settings&&page!=AppPage.WeaponGroups&&page!=AppPage.BlueprintLibrary&&!dialogOpen)ShowPage(page);}
         void Update()
         {
             if(!ready||UnityEngine.InputSystem.Keyboard.current==null)return;
             if(UnityEngine.InputSystem.Keyboard.current.escapeKey.wasPressedThisFrame){
                 foreach(var dropdown in ui.Root.GetComponentsInChildren<TMP_Dropdown>())if(dropdown.IsExpanded){dropdown.Hide();return;}
                 if(dialogOpen){dialogCancel?.Invoke();return;}
-                if(page==AppPage.WeaponGroups||page==AppPage.Settings)return;
+                if(page==AppPage.WeaponGroups||page==AppPage.Settings||page==AppPage.BlueprintLibrary)return;
                 if(page==AppPage.Home)ShowQuit();else ShowHome();
             }
         }
         public void ShowPage(AppPage value)
         {
             if(!ready)return;
-            switch(value){case AppPage.Deployment:ShowDeployment();break;case AppPage.RangeSetup:ShowRangeSetup();break;case AppPage.WeaponGroups:ShowWeaponGroups();break;case AppPage.Settings:ShowSettings();break;case AppPage.Help:ShowHelp();break;case AppPage.MissionReady:ShowMissionReady();break;case AppPage.Results:ShowResults();break;default:ShowHome();break;}
+            switch(value){case AppPage.Deployment:ShowDeployment();break;case AppPage.RangeSetup:ShowRangeSetup();break;case AppPage.WeaponGroups:ShowWeaponGroups();break;case AppPage.Settings:ShowSettings();break;case AppPage.Help:ShowHelp();break;case AppPage.MissionReady:ShowMissionReady();break;case AppPage.Results:ShowResults();break;case AppPage.BlueprintLibrary:ShowBlueprintLibrary();break;default:ShowHome();break;}
         }
         void Begin(AppPage next)
         {
             if(weaponScreen){weaponScreen.enabled=false;Destroy(weaponScreen);weaponScreen=null;}
             if(settingsScreen){settingsScreen.enabled=false;Destroy(settingsScreen);settingsScreen=null;}
+            if(libraryScreen){libraryScreen.enabled=false;Destroy(libraryScreen);libraryScreen=null;}
             page=next;dialogOpen=false;dialogCancel=null;ui.Clear();GameInput.Suspended=true;
             Cursor.lockState=CursorLockMode.None;Cursor.visible=true;preview.AllowOrbit=true;
         }
         void Header(string title,string subtitle,bool back=true)
         {
-            ui.Label("Brand","STARFRAME",48,28,350,42,28);ui.Label("PageSubtitle",subtitle,50,77,900,24,13,GlassUiPalette.Muted);
-            if(back)ui.Button("Back",T("app.backHangar"),1330,30,220,48,ShowHome);
-            ui.Button("Settings",T("app.settings"),1570,30,150,48,ShowSettings);
-            ui.Button("Help","?",1736,30,62,48,ShowHelp);
-            ui.Button("Quit","×",1814,30,58,48,ShowQuit);
-            if(!string.IsNullOrEmpty(title))ui.Label("PageTitle",title,48,122,1100,58,32);
+            ui.Panel("NavigationGlass",48,24,1824,84);
+            var brand=ui.Label("Brand","STARFRAME",72,42,350,40,25);brand.characterSpacing=5;
+            if(back)ui.Button("Back",T("app.backHangar"),1304,41,240,50,ShowHome);
+            ui.Button("Settings",T("app.settings"),1560,41,150,50,ShowSettings);
+            var help=ui.Button("Help","?",1726,41,56,50,ShowHelp);ui.Hint(help,T("app.helpTitle"));
+            var quit=ui.Button("Quit","×",1798,41,50,50,ShowQuit);ui.Hint(quit,T("app.quit"));
+            if(!string.IsNullOrEmpty(title)){
+                ui.Label("PageTitle",title,48,132,1100,50,32);
+                ui.Label("PageSubtitle",subtitle,50,187,1100,30,15,GlassUiPalette.Muted);
+            }else ui.Label("PageSubtitle",subtitle,448,49,820,32,15,GlassUiPalette.Muted);
         }
         static string T(string key,params object[] args)=>L10n.T(key,args);
         public void ShowHome()
         {
-            Begin(AppPage.Home);selected=ShipWorkspace.Ship;preview.Show(selected);preview.SetFocus(.70f,.61f);
+            Begin(AppPage.Home);selected=ShipWorkspace.Ship;preview.Show(selected);preview.SetFocus(.69f,.63f);
             Header("",T("app.homeSubtitle"),false);
-            ui.Panel("ShipIdentityGlass",48,132,438,418);
-            ui.Label("ShipEyebrow",T("app.currentShip"),76,156,380,24,13,GlassUiPalette.Accent);
-            UserName("CurrentShipName",selected.name,76,193,380,72,30);
+            ui.Panel("ShipIdentityGlass",48,144,464,424);
+            ui.Label("ShipEyebrow",T("app.currentShip"),80,172,400,24,13,GlassUiPalette.Muted);
+            UserName("CurrentShipName",selected.name,80,213,400,78,32);
             var stats=Summarize(selected);
-            ui.Label("ShipPartCount",T("app.parts",selected.parts.Count),76,282,176,30,18);
-            ui.Label("ShipMass",T("app.mass",stats.mass.ToString("N0")),270,282,188,30,18);
-            ui.Label("ShipCost",T("app.cost",stats.cost.ToString("N0")),76,322,370,28,15,GlassUiPalette.Muted);
-            ui.Label("ShipWorkspace",ShipWorkspace.Dirty?T("app.workspaceDraft"):T("app.workspaceSaved"),76,358,370,38,13,GlassUiPalette.Muted);
-            ui.Button("EditShip",T("app.editShip"),76,414,382,54,OpenEditor,true);
-            ui.Button("ChooseShip",T("app.changeShip"),76,484,183,36,ShowShipPicker);
-            ui.Button("WeaponGroups",T("app.weaponGroups"),271,484,187,36,ShowWeaponGroups);
-            ui.Label("OrbitHint",T("app.orbitHint"),670,555,730,28,13,GlassUiPalette.Muted).alignment=TextAlignmentOptions.Center;
-            ui.Label("OperationsTitle",T("app.chooseOperation"),48,620,700,40,25);
-            ui.Button("RangeSetup",T("app.practiceRange"),1582,615,290,46,()=>{AppNavigation.RangeReturnToEditor=false;ShowRangeSetup();});
-            if(catalog)for(int i=0;i<Mathf.Min(2,catalog.missions.Count);i++)if(catalog.missions[i])MissionCard(catalog.missions[i],48+i*924,680);
-            ui.Label("Footer","",48,1012,1500,24,12,GlassUiPalette.Muted);
+            ui.Label("ShipPartCount",T("app.parts",selected.parts.Count),80,305,400,28,18);
+            ui.Label("ShipMass",T("app.mass",stats.mass.ToString("N0")),80,343,400,28,18);
+            ui.Label("ShipCost",T("app.cost",stats.cost.ToString("N0")),80,381,400,28,18);
+            ui.Label("ShipWorkspace",ShipWorkspace.Dirty?T("app.workspaceDraft"):T("app.workspaceSaved"),80,424,400,34,14,ShipWorkspace.Dirty?UiTheme.Current.amber:GlassUiPalette.Muted);
+            ui.Button("EditShip",T("app.editShip"),80,482,190,54,OpenEditor,true);
+            ui.Button("ChooseShip",T("app.changeShip"),282,482,198,54,ShowShipPicker);
+            ui.Button("WeaponGroups",T("app.weaponGroups"),48,584,464,48,ShowWeaponGroups);
+            ui.Label("OrbitHint",T("app.orbitHint"),744,583,920,30,14,GlassUiPalette.Muted).alignment=TextAlignmentOptions.Center;
+            ui.Label("OperationsTitle",T("app.chooseOperation"),48,671,1000,40,25);
+            ui.Button("RangeSetup",T("app.practiceRange"),1578,659,294,54,()=>{AppNavigation.RangeReturnToEditor=false;ShowRangeSetup();});
+            // Keep the catalogue intact for future content while presenting one clear operation.
+            if(catalog){var homeOperation=catalog.missions.FirstOrDefault(value=>value);if(homeOperation)MissionCard(homeOperation,48,736);}
+            ui.Label("Footer",T("app.homeFooter"),48,1030,1450,26,13,GlassUiPalette.Muted);
             if(notice.Length>0){ui.Label("Notice",notice,1100,1012,772,25,13,UiTheme.Current.amber);notice="";}
         }
         void MissionCard(MissionDefinition definition,float x,float y)
         {
-            ui.Panel("Mission_"+definition.id,x,y,900,290);
-            if(definition.thumbnail){var image=MenuSurface.Rect(ui.Root,"MissionPreview",x,y,320,290).gameObject.AddComponent<UnityEngine.UI.RawImage>();image.texture=definition.thumbnail;image.color=new Color(.82f,.85f,.86f,.94f);image.raycastTarget=false;image.uvRect=new UnityEngine.Rect(0,0,1,1);}
-            ui.Label("MissionRegion",T(definition.regionKey),x+348,y+24,516,24,12,GlassUiPalette.Accent);
-            ui.Label("MissionTitle",T(definition.titleKey),x+348,y+62,516,48,25);
-            ui.Label("MissionDescription",T(definition.descriptionKey),x+348,y+118,516,60,15,GlassUiPalette.Muted);
-            ui.Label("MissionBudget",T("app.budgetFrom",definition.baseBudget.ToString("N0")),x+348,y+198,250,24,13,GlassUiPalette.Muted);
-            ui.Button("Prepare_"+definition.id,T("app.prepare"),x+650,y+220,214,46,()=>SelectMission(definition.id),true);
+            ui.Panel("Mission_"+definition.id,x,y,1824,266);
+            ui.Label("MissionRegion",T(definition.regionKey),x+32,y+30,1350,24,14,GlassUiPalette.Muted);
+            ui.Label("MissionTitle",T(definition.titleKey),x+32,y+73,1350,48,30);
+            ui.Label("MissionDescription",T(definition.descriptionKey),x+32,y+141,1350,74,18,GlassUiPalette.Muted);
+            ui.Label("MissionBudget",T("app.budgetFrom",definition.baseBudget.ToString("N0")),x+1478,y+76,310,30,18);
+            if(!HasOperationScene(definition))ui.Label("MissionPending_"+definition.id,T("app.ui.missionPending"),x+1478,y+34,310,24,13,UiTheme.Current.amber);
+            ui.Button("Prepare_"+definition.id,T("app.prepare"),x+1478,y+174,310,60,()=>SelectMission(definition.id),true);
         }
+        static bool HasOperationScene(MissionDefinition definition)=>definition&&!string.IsNullOrWhiteSpace(definition.sceneName)&&Application.CanStreamedLevelBeLoaded(definition.sceneName);
         public void SelectMission(string id)
         {
             mission=catalog.Find(id);AppNavigation.SelectedMissionId=id;ShowDeployment();
@@ -132,7 +139,7 @@ namespace Starframe.App
         public void ShowWeaponGroups()
         {
             groupsReturn=page==AppPage.WeaponGroups?AppPage.Home:page;
-            Begin(AppPage.WeaponGroups);selected=ShipWorkspace.Ship;preview.Show(selected);preview.SetFocus(.29f,.56f);preview.ResetView();
+            Begin(AppPage.WeaponGroups);selected=ShipWorkspace.Ship;preview.Show(selected);preview.SetFocus(.31f,.38f);preview.ResetView();preview.FitViewport(.60f,.34f);
             weaponScreen=gameObject.AddComponent<WeaponGroupScreen>();weaponScreen.Initialize(ui,preview.Assembly,previewCamera,selected,updated=>{
                 ShipWorkspace.Set(updated,true,ShipWorkspace.SourceFile);notice=T("app.groupsApplied");CloseWeaponGroups();
             },CloseWeaponGroups);
@@ -155,12 +162,20 @@ namespace Starframe.App
         }
         public void ConfirmDialog(string title,string body,string yes,Action action,Action cancel)
         {
+            // A picker can open a second confirmation. Remove the old modal first so its controls
+            // cannot receive clicks through the replacement or accumulate in the keyboard order.
+            if(dialogOpen){
+                foreach(string name in new[]{"PickerBlocker","ShipPickerGlass","PickerTitle","PickerSubtitle","ShipPickerSearch","ShipPickerCount","ShipPickerScroll","NoBlueprints","NoSearchResults","ClosePicker"}){
+                    var existing=ui.Root.Find(name);if(existing){existing.gameObject.SetActive(false);Destroy(existing.gameObject);}
+                }
+            }
             dialogOpen=true;dialogCancel=cancel;preview.AllowOrbit=false;
             var blocker=MenuSurface.Rect(ui.Root,"DialogBlocker",0,0,1920,1080).gameObject.AddComponent<UnityEngine.UI.Image>();blocker.color=new Color(0,0,0,.5f);
-            ui.Panel("ConfirmationGlass",610,370,700,340,true);ui.Label("ConfirmationTitle",title,648,405,624,48,26);
-            ui.Label("ConfirmationBody",body,648,474,624,92,17,GlassUiPalette.Muted);
-            ui.Button("ConfirmationCancel",T("app.cancel"),648,620,292,50,cancel);
-            ui.Button("ConfirmationAccept",yes,960,620,312,50,action,true);
+            ui.Panel("ConfirmationGlass",540,310,840,460,true);ui.Label("ConfirmationTitle",title,584,350,752,68,28);
+            ui.Label("ConfirmationBody",body,584,438,752,184,18,GlassUiPalette.Muted);
+            ui.Button("ConfirmationCancel",T("app.cancel"),584,674,360,54,cancel);
+            ui.Button("ConfirmationAccept",yes,960,674,376,54,action,true);
+            UiModalScope.Protect(ui.Root,blocker.transform);
         }
         void OnDestroy(){L10n.Changed-=OnLocaleChanged;}
     }

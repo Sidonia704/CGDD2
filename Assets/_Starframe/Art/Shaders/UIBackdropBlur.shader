@@ -40,11 +40,16 @@ Shader "Starframe/UI/BackdropBlur"
     // Prefilter tiny stars before sampling a broad blur, avoiding a visible grid of duplicated dots.
     float lod=max(0,log2(max(1,_BlurRadius))-1.2);
     float2 stepUV=_MainTex_TexelSize.xy*max(1,_BlurRadius*.3);
-    [unroll]for(int y=-2;y<=2;y++)[unroll]for(int x=-2;x<=2;x++)
-     color+=tex2Dlod(_MainTex,float4(sampleUV+float2(x,y)*stepUV,0,lod)).rgb*(weights[x+2]*weights[y+2]/256.0);
+    if(_BlurRadius<.1)color=tex2D(_MainTex,i.uv).rgb;
+    else {
+     [unroll]for(int y=-2;y<=2;y++)[unroll]for(int x=-2;x<=2;x++)
+      color+=tex2Dlod(_MainTex,float4(sampleUV+float2(x,y)*stepUV,0,lod)).rgb*(weights[x+2]*weights[y+2]/256.0);
+    }
     float grain=frac(sin(dot(floor(i.uv*_MainTex_TexelSize.zw),float2(12.9898,78.233)))*43758.5453)-.5;
     float luminance=dot(color,float3(.2126,.7152,.0722));
     color=lerp(color,lerp(luminance.xxx,color,_BackdropSaturation)*_BackdropTransmission,_FinishStrength);
+    // Compress exceptionally bright scenery uniformly so explosions cannot wash out labels.
+    color/=1+max(0,luminance)*.45;
     color=lerp(color,_Tint.rgb,_Tint.a);
     // Frosted panes have uniform transmission. All visible variation comes from the blurred scene.
     color+=grain*_GrainStrength;

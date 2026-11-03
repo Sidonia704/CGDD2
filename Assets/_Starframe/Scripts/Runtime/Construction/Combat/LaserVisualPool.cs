@@ -1,9 +1,10 @@
-// @role Reuse laser head and tail visuals independently of projectile damage.
+// @role Pool muzzle-clipped voxel tracers or continuous bright beams with fixed-endpoint impact fading.
 // @calls VoxelFxGeometry
 
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
+using Starframe.Flight;
 
 namespace Starframe.Combat
 {
@@ -13,13 +14,19 @@ namespace Starframe.Combat
         sealed class Visual
         {
             public Transform transform;
-            public MeshRenderer renderer;
+            public MeshRenderer renderer,coreRenderer;
+            public MeshFilter filter;
+            public Transform core;
+            public MaterialPropertyBlock coreProperties;
+            public bool continuous,lingering;
+            public float lingerSeconds,lingerRemaining,lastLength;
             public MaterialPropertyBlock properties;
             public int handle;
             public float length;
             public float tailLength;
-            public float width;
+            public float width,minimumScreenPixels;
             public float intensity;
+            public Color color;public bool legacyColour;
             public Vector3 direction;
             public Vector3 origin,position,muzzleLocalPosition;
             public Transform muzzleSource;
@@ -32,7 +39,10 @@ namespace Starframe.Combat
         Material sharedMaterial;
         int nextHandle = 1;
         float visualScale=1;
+        readonly List<int> expired=new List<int>();
+        public int ActiveVisualCount=>activeHandles.Count;
 
+        static readonly int OpacityId=Shader.PropertyToID("_Opacity");
         static readonly int TailFractionId = Shader.PropertyToID("_TailFraction");
         static readonly int ProfileId=Shader.PropertyToID("_EffectProfile");
         static readonly int AxialShrinkId = Shader.PropertyToID("_AxialShrink"), ColorId = Shader.PropertyToID("_Color"), IntensityId = Shader.PropertyToID("_Intensity");
@@ -62,7 +72,7 @@ namespace Starframe.Combat
             sharedMesh = VoxelFxGeometry.Beam;
         }
 
-        public int Acquire(Vector3 position, Vector3 direction, float diameter, float visualLength, float tailLength, Transform muzzleSource=null, Vector3 muzzleLocalPosition=default,float widthScale=.55f,float intensity=4.2f)
+        public int Acquire(Vector3 position, Vector3 direction, float diameter, float visualLength, float tailLength, Transform muzzleSource=null, Vector3 muzzleLocalPosition=default,float widthScale=.55f,float intensity=4.2f,Color? color=null,float minimumScreenPixels=0,TracerStyle style=TracerStyle.Voxel,float lingerSeconds=0)
         {
             if (!sharedMaterial || !sharedMesh) return -1;
             int slot;
@@ -87,9 +97,18 @@ namespace Starframe.Combat
                 if (nextHandle <= 0) nextHandle = 1;
             }
             visual.handle = handle;
+            visual.continuous=style==TracerStyle.Continuous;visual.lingering=false;visual.lingerSeconds=Mathf.Max(0,lingerSeconds);visual.lingerRemaining=0;
+            visual.filter.sharedMesh=visual.continuous?VoxelFxGeometry.Cube:sharedMesh;
+            if(visual.continuous&&!visual.coreRenderer){
+                var core=new GameObject("Continuous tracer white core",typeof(MeshFilter),typeof(MeshRenderer));core.transform.SetParent(visual.transform,false);
+                core.GetComponent<MeshFilter>().sharedMesh=VoxelFxGeometry.Cube;visual.core=core.transform;visual.coreRenderer=core.GetComponent<MeshRenderer>();
+                VoxelFxGeometry.Configure(visual.coreRenderer,sharedMaterial);visual.coreProperties=new MaterialPropertyBlock();
+            }
+            if(visual.coreRenderer)visual.coreRenderer.enabled=false;
             // The source projectile is a small simulation point; give its rendered beam a broad, readable body.
             visual.width = Mathf.Max(.001f, diameter * Mathf.Max(.01f,widthScale)*visualScale);
-            visual.intensity=Mathf.Max(0,intensity);
+            visual.minimumScreenPixels=Mathf.Max(0,minimumScreenPixels);
+            visual.intensity=Mathf.Max(0,intensity);visual.color=color??Color.white;visual.legacyColour=!color.HasValue;
             visual.length = Mathf.Max(.001f, visualLength*visualScale);
             visual.tailLength = Mathf.Max(0f, tailLength*visualScale);
             visual.origin=position;visual.muzzleSource=muzzleSource;visual.muzzleLocalPosition=muzzleLocalPosition;
@@ -100,18 +119,27 @@ namespace Starframe.Combat
 
         public void Move(int handle, Vector3 position, Vector3 direction)
         {
-            if (activeHandles.TryGetValue(handle, out int slot))
+            if (activeHandles.TryGetValue(handle, out int slot)&&!visuals[slot].lingering)
                 MoveVisual(visuals[slot], position, direction);
         }
 
         public void Release(int handle)
         {
-            if (!activeHandles.TryGetValue(handle, out int slot)) return;
-            activeHandles.Remove(handle);
-            Visual visual = visuals[slot];
-            visual.renderer.enabled = false;
-            visual.handle = 0;
-            freeSlots.Push(slot);
+            if(!activeHandles.TryGetValue(handle,out int slot))return;
+            var visual=visuals[slot];if(visual.lingering)return;
+            if(visual.lingerSeconds>0&&visual.renderer.enabled&&visual.lastLength>.0001f){
+                visual.lingering=true;visual.lingerRemaining=visual.lingerSeconds;
+                // Freeze the last physical sweep segment. No later muzzle movement or destruction may stretch it.
+                visual.origin=visual.position-visual.direction*visual.lastLength;visual.muzzleSource=null;
+                return;
+            }
+            Recycle(handle,slot);
+        }
+        void Recycle(int handle,int slot)
+        {
+            activeHandles.Remove(handle);var visual=visuals[slot];visual.renderer.enabled=false;
+            if(visual.coreRenderer)visual.coreRenderer.enabled=false;
+            visual.handle=0;visual.lingering=false;freeSlots.Push(slot);
         }
 
         public void Clear()
@@ -122,6 +150,8 @@ namespace Starframe.Combat
             {
                 Visual visual = visuals[i];
                 if (visual.renderer) visual.renderer.enabled = false;
+                if(visual.coreRenderer)visual.coreRenderer.enabled=false;
+                visual.lingering=false;visual.lingerRemaining=0;
                 visual.handle = 0;
                 freeSlots.Push(i);
             }
@@ -139,7 +169,19 @@ namespace Starframe.Combat
             renderer.lightProbeUsage = LightProbeUsage.Off;
             renderer.reflectionProbeUsage = ReflectionProbeUsage.Off;
             renderer.enabled = false;
-            return new Visual { transform = go.transform, renderer = renderer, properties = new MaterialPropertyBlock(), direction = Vector3.forward };
+            return new Visual { transform = go.transform, renderer = renderer, filter=go.GetComponent<MeshFilter>(), properties = new MaterialPropertyBlock(), direction = Vector3.forward };
+        }
+
+        /// <summary>Only the visible cross section changes; hit volume and axial muzzle clipping remain authoritative.</summary>
+        public static float MinimumReadableWidth(Camera camera,Vector3 position,float baseWidth,float minimumPixels)
+        {
+            baseWidth=Mathf.Max(.001f,baseWidth);
+            if(!camera||minimumPixels<=0||camera.pixelHeight<=0)return baseWidth;
+            float depth=Vector3.Dot(position-camera.transform.position,camera.transform.forward);
+            if(depth<=0)return baseWidth;
+            float worldHeight=camera.orthographic?2*camera.orthographicSize:2*depth*Mathf.Tan(camera.fieldOfView*.5f*Mathf.Deg2Rad);
+            float required=minimumPixels*worldHeight/camera.pixelHeight;
+            return Mathf.Clamp(required,baseWidth,baseWidth*10);
         }
 
         static void MoveVisual(Visual visual, Vector3 position, Vector3 direction)
@@ -151,17 +193,41 @@ namespace Starframe.Combat
             if(visual.muzzleSource)available=Mathf.Min(available,Mathf.Max(0,Vector3.Dot(position-visual.muzzleSource.TransformPoint(visual.muzzleLocalPosition),visual.direction)));
             float fullLength = Mathf.Min(visual.length + visual.tailLength,available);
             Quaternion rotation = Quaternion.FromToRotation(Vector3.up, visual.direction);
-            visual.transform.SetPositionAndRotation(position - visual.direction * fullLength, rotation);
-            visual.transform.localScale = new Vector3(visual.width, fullLength, visual.width);
-            visual.properties.SetFloat(AxialShrinkId,fullLength>.0001f?visual.width/(.06f*fullLength):1);
-            visual.properties.SetFloat(ProfileId,1);
-            visual.properties.SetColor(ColorId,Color.white);
+            visual.lastLength=fullLength;
+            visual.transform.SetPositionAndRotation(position - visual.direction * fullLength*(visual.continuous?.5f:1), rotation);
+            float displayWidth=visual.minimumScreenPixels>0?MinimumReadableWidth(Camera.main,position,visual.width,visual.minimumScreenPixels):visual.width;
+            visual.transform.localScale = new Vector3(displayWidth, fullLength, displayWidth);
+            visual.properties.SetFloat(AxialShrinkId,fullLength>.0001f?displayWidth/(.06f*fullLength):1);
+            visual.properties.SetFloat(ProfileId,visual.continuous?4:visual.legacyColour?1:3);
+            visual.properties.SetFloat(OpacityId,visual.lingering?Mathf.Clamp01(visual.lingerRemaining/Mathf.Max(.001f,visual.lingerSeconds)):1);
+            visual.properties.SetColor(ColorId,visual.color);
             visual.properties.SetFloat(IntensityId,visual.intensity);
-            visual.properties.SetFloat(TailFractionId,fullLength>.0001f?Mathf.Max(0,fullLength-visual.length)/fullLength:0);
+            visual.properties.SetFloat(TailFractionId,!visual.continuous&&fullLength>.0001f?Mathf.Max(0,fullLength-visual.length)/fullLength:0);
             visual.renderer.SetPropertyBlock(visual.properties);visual.renderer.enabled=fullLength>.0001f;
+            if(visual.coreRenderer){
+                visual.coreRenderer.enabled=visual.continuous&&visual.renderer.enabled;
+                if(visual.continuous){visual.core.localPosition=Vector3.zero;visual.core.localRotation=Quaternion.identity;visual.core.localScale=new Vector3(.24f,1,.24f);
+                    visual.coreProperties.SetFloat(ProfileId,4);visual.coreProperties.SetColor(ColorId,Color.Lerp(visual.color,Color.white,.82f));
+                    visual.coreProperties.SetFloat(IntensityId,visual.intensity*1.25f);visual.coreProperties.SetFloat(OpacityId,visual.lingering?Mathf.Clamp01(visual.lingerRemaining/Mathf.Max(.001f,visual.lingerSeconds)):1);
+                    visual.coreRenderer.SetPropertyBlock(visual.coreProperties);
+                }
+            }
         }
 
-        void LateUpdate(){foreach(int slot in activeHandles.Values){var v=visuals[slot];if(v.muzzleSource)MoveVisual(v,v.position,v.direction);}}
+        public void StepVisuals(float dt)
+        {
+            expired.Clear();
+            foreach(var pair in activeHandles){
+                var visual=visuals[pair.Value];
+                if(visual.lingering){
+                    visual.lingerRemaining-=Mathf.Max(0,dt);
+                    if(visual.lingerRemaining<=0){expired.Add(pair.Key);continue;}
+                }
+                if(visual.lingering||visual.muzzleSource||visual.minimumScreenPixels>0)MoveVisual(visual,visual.position,visual.direction);
+            }
+            foreach(int handle in expired)if(activeHandles.TryGetValue(handle,out int slot))Recycle(handle,slot);
+        }
+        void LateUpdate()=>StepVisuals(Time.deltaTime);
 
         void OnDestroy()
         {

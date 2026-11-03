@@ -1,13 +1,20 @@
 // @role Define recovery, target-lock, opponent behavior and respawn defaults.
-// @tune outOfCombatDelay:float:0+:Seconds without hull damage before recovery.
+// @tune outOfCombatDelay:float:0+:Seconds without hull or shield damage before structural recovery.
 // @tune recoveryTick:float:0.02-0.5:Seconds between recovery evaluations.
 // @tune unlimitedRangePower:bool:false-true:Practice-only bypass for energy scarcity.
-// @tune lockConeDegrees:float:1-80:Target acquisition cone in degrees.
-// @tune lockRange:float:1+:Maximum target acquisition distance in metres.
+// @tune lockConeDegrees:float:1-80:AI initial lock acquisition half-cone in degrees.
+// @tune lockRange:float:1+:Discovery distance for a target at the reference signature radius, in metres.
+// @tune sensorReferenceRadius:float:0.01+:Surviving hull radius corresponding to lockRange, in metres.
+// @tune sensorMinimumRange:float:1+:Minimum signature-based discovery range, in metres.
+// @tune sensorMaximumRange:float:1+:Maximum signature-based discovery range, in metres.
+// @tune sensorExitRangeMultiplier:float:1+:Discovery exit radius as a multiple of the entry radius.
+// @tune sensorLossDelay:float:0+:Continuous seconds beyond the exit radius before losing contact.
+// @tune sensorAcquireRadiusPixels:float:1+:Maximum initial lock marker distance from the virtual aim cursor at 1080p.
+// @tune enemyLockAcquireSeconds:float:0+:Continuous initial AI aim alignment required for a target lock.
 // @tune botCruiseSpeedFraction:float:0.1-1:Cruise speed as a fraction of surviving ship capability.
 // @tune botAttackSpeedFraction:float:0.1-1:Attack speed as a fraction of surviving ship capability.
 // @tune botPilotDecisionSeconds:float:0.05-0.5:Opponent decision interval in seconds.
-// @tune botReactionSeconds:float:0+:Delay before an opponent starts firing.
+// @tune botReactionSeconds:float:0+:Delay before an opponent fires or reacts to an incoming missile with countermeasures.
 // @tune botFireBurstSeconds:float:0.05+:Duration of a firing burst.
 // @tune botFirePauseSeconds:float:0+:Pause between firing bursts.
 // @tune botRespawnSeconds:float:0+:Delay before an opponent respawns.
@@ -21,7 +28,15 @@ namespace Starframe.Combat
     public sealed class BattleTuning:ScriptableObject
     {
         [Header("Damage / restoration")]
-        [Min(0)]public float outOfCombatDelay=1;
+        public CombatDamageTuning damageTuning;
+        [Tooltip("Hostile weapon damage relative to the equivalent player weapon after category scaling.")]
+        [Min(0)]public float enemyWeaponDamageMultiplier=.5f;
+        [Tooltip("Maximum combined structural blast damage relative to missile single-hit damage.")]
+        [Min(0)]public float missileBlastBudgetMultiplier=1.5f;
+        [Header("Player shield recovery advantage")]
+        [Min(0)]public float playerShieldRecoveryMultiplier=2;
+        [Min(0)]public float playerShieldDelayMultiplier=.5f;
+        [Min(0)]public float outOfCombatDelay=6;
         [Range(.02f,.5f)]public float recoveryTick=.1f;
         [Header("Temporary range power: disable when adding generators / batteries")]
         public bool unlimitedRangePower=true;
@@ -34,6 +49,15 @@ namespace Starframe.Combat
         [Header("Forward target lock")]
         [Range(1,80)]public float lockConeDegrees=35;
         [Min(1)]public float lockRange=3000;
+        [Header("Shared size signature / discovery")]
+        [Tooltip("Discovery range = lockRange * sqrt(surviving hull radius / reference radius), clamped below.")]
+        [Min(.01f)]public float sensorReferenceRadius=10;
+        [Min(1)]public float sensorMinimumRange=1000,sensorMaximumRange=6000;
+        [Min(1)]public float sensorExitRangeMultiplier=1.1f;
+        [Min(0)]public float sensorLossDelay=.5f;
+        [Tooltip("F chooses the nearest visible discovered marker inside this radius around the virtual aim cursor; scaled by view height / 1080.")]
+        [Min(1)]public float sensorAcquireRadiusPixels=80;
+        [Min(0)]public float enemyLockAcquireSeconds=.3f;
         [Tooltip("Seconds of physical core-position samples used to estimate target velocity.")]
         [Range(.04f,1)]public float leadVelocitySampleWindow=.16f;
         [Tooltip("Additional velocity smoothing in seconds; smaller values follow manoeuvres faster.")]
@@ -41,7 +65,7 @@ namespace Starframe.Combat
         [Header("Range opponent")]
         public TextAsset defaultTargetBlueprint;
         public float botSpawnDistance=35,botMovementSpeed=7,botTurnDegreesPerSecond=55;
-        public float botAimProbability=.6f,botDecisionSeconds=1.2f,botRespawnSeconds=3,playerRespawnSeconds=3;
+        public float botAimProbability=.6f,botDecisionSeconds=1.2f,botRespawnSeconds=6,playerRespawnSeconds=5;
         public float playerSpawnProtectionSeconds=4;
         [Header("Range pilot / fractions of the surviving ship's performance")]
         [Range(.1f,1)]public float botCruiseSpeedFraction=.65f,botAttackSpeedFraction=.45f;
@@ -58,5 +82,9 @@ namespace Starframe.Combat
         [Range(0,.5f)]public float botStrafeSpeedFraction=.1f;
         [Tooltip("Fire at the hull silhouette instead of waiting for pixel-perfect core alignment. Aim still leads the core.")]
         [Range(.05f,1)]public float botFireTargetRadiusFraction=.28f;
+        [Header("Hostile direct-fire aiming")]
+        [Min(1)]public float botDirectAimErrorMultiplier=5;
+        [Min(.01f)]public float botDirectVelocitySampleSeconds=.35f;
     }
 }
+

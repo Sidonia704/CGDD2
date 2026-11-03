@@ -1,5 +1,6 @@
-// @role Create the range player, camera, flight systems and combat world.
-// @calls FlightSession, ShipAssembly, FlightShipRuntime, ShipFlightController, RangeCombatWorld, RangeHUD
+// @role Create the range player, camera, flight systems and combat world, with an optional temporary scenery spawn and arena size.
+// @calls ArcadeMissionDirector, ShipWorkspace, FlightSession, ShipAssembly, FlightShipRuntime, ShipFlightController, RangeCombatWorld, RangeHUD, RangeLoadingOverlay, SpaceMapRuntime
+// @tune sandboxArenaHalfExtent:float:0-100000:Optional half-width used only while the referenced sandbox spawn is active; zero keeps the existing flight tuning.
 
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -14,11 +15,35 @@ namespace Starframe.Flight
         [SerializeField] Camera flightCamera;
         [SerializeField] RangeEnvironment environment;
         [SerializeField] BattleTuning battleTuning;
-        void Start()
+        [SerializeField] ArcadeMissionDefinition arcadeMission;
+        [Header("Optional map sandbox (disable its root to restore the original range)")]
+        [SerializeField] Transform sandboxSpawn;
+        [SerializeField,Min(0)] float sandboxArenaHalfExtent;
+        FlightTuning sandboxTuning;BattleTuning missionBattle;
+        System.Collections.IEnumerator Start()
         {
-            var blueprint=FlightSession.EditorDraft??DefaultShip();
+            bool sandbox=sandboxSpawn&&sandboxSpawn.gameObject.activeInHierarchy;
+            var map=sandbox?sandboxSpawn.GetComponentInParent<Starframe.Maps.SpaceMapRuntime>():null;
+            if(map)yield return RangeLoadingOverlay.PrepareMap(map);
+            if(map&&!map.BuildIsComplete)yield break;
+            if(sandbox&&sandboxArenaHalfExtent>0)
+            {
+                sandboxTuning=Instantiate(tuning);sandboxTuning.name=tuning.name+" (temporary map sandbox)";
+                sandboxTuning.arenaHalfExtent=sandboxArenaHalfExtent;tuning=sandboxTuning;
+            }
+            if(arcadeMission&&arcadeMission.minimumArenaHalfExtent>tuning.arenaHalfExtent){
+                if(!sandboxTuning){sandboxTuning=Instantiate(tuning);tuning=sandboxTuning;}
+                tuning.arenaHalfExtent=arcadeMission.minimumArenaHalfExtent;
+            }
+            var request=arcadeMission?Starframe.App.MissionSession.Current:null;
+            var blueprint=request?.ship??(arcadeMission&&arcadeMission.defaultPlayerBlueprint?BlueprintRepository.Upgrade(JsonUtility.FromJson<BlueprintData>(arcadeMission.defaultPlayerBlueprint.text)):FlightSession.EditorDraft??DefaultShip());
+            if(arcadeMission&&request==null&&arcadeMission.deployment){
+                if(!Starframe.App.MissionSession.Confirm(blueprint,tuning.database,arcadeMission.deployment,Starframe.App.MissionDifficulty.Standard,out var report))throw new System.InvalidOperationException("Direct mission preview blueprint is invalid.");
+            }
+            if(arcadeMission){missionBattle=Instantiate(battleTuning);battleTuning=missionBattle;battleTuning.unlimitedRangePower=false;}
             if(!battleTuning)battleTuning=ScriptableObject.CreateInstance<BattleTuning>();
             var bodyObject=new GameObject("PlayerShip");var body=bodyObject.AddComponent<Rigidbody>();body.isKinematic=true;body.useGravity=false;body.interpolation=RigidbodyInterpolation.Interpolate;
+            if(sandbox)bodyObject.transform.SetPositionAndRotation(sandboxSpawn.position,sandboxSpawn.rotation);
             var assembly=Instantiate(assemblyPrefab,bodyObject.transform);assembly.name="FlightShip";
             assembly.Configure(tuning.database);
             assembly.Import(blueprint);
@@ -35,20 +60,42 @@ namespace Starframe.Flight
             var exhaust=bodyObject.AddComponent<ThrusterExhaust>();exhaust.Initialize(runtime,flight,tuning,flightCamera,battleTuning.particleScale);
             var chase=flightCamera.gameObject.AddComponent<FlightChaseCamera>();chase.Initialize(bodyObject.transform,flight,tuning);
             var hud=gameObject.AddComponent<RangeHUD>();hud.Initialize(flightCamera,flight,tuning);flight.BindHUD(hud);chase.BindHUD(hud);
-            hud.ExitConfirmed+=()=>{if(Starframe.App.AppNavigation.HasAppContext&&!Starframe.App.AppNavigation.RangeReturnToEditor){Starframe.App.AppNavigation.OpenHome(Starframe.App.AppPage.RangeSetup);return;}FlightSession.Return();Starframe.App.GameInput.Suspended=false;Cursor.lockState=CursorLockMode.None;Cursor.visible=true;SceneManager.LoadSceneAsync(FlightSession.EditorScene);};
-            environment.Initialize(bodyObject.transform,tuning);
-            var combat=gameObject.AddComponent<RangeCombatWorld>();combat.Initialize(runtime,flight,assemblyPrefab,tuning,battleTuning,flightCamera,hud);
+            ArcadeMissionDirector director=null;
+            hud.ExitConfirmed+=()=>{if(arcadeMission){director?.AbortAndReturn();return;}if(Starframe.App.AppNavigation.HasAppContext&&!Starframe.App.AppNavigation.RangeReturnToEditor){Starframe.App.AppNavigation.OpenHome(Starframe.App.AppPage.RangeSetup);return;}FlightSession.Return();Starframe.App.GameInput.Suspended=false;Cursor.lockState=CursorLockMode.None;Cursor.visible=true;SceneManager.LoadSceneAsync(FlightSession.EditorScene);};
+            environment.Initialize(bodyObject.transform,tuning,flightCamera);
+            var combat=gameObject.AddComponent<RangeCombatWorld>();combat.Initialize(runtime,flight,assemblyPrefab,tuning,battleTuning,flightCamera,hud,arcadeMission);
+            if(arcadeMission){hud.ConfigureMissionPresentation();director=gameObject.AddComponent<ArcadeMissionDirector>();director.Initialize(combat,arcadeMission,hud);}
             gameObject.AddComponent<Starframe.App.RangeAppNavigation>().Initialize(hud,combat);
+            // A new flight session owns gameplay input; a previous menu's suspension must not leak into it.
+            RangeLoadingOverlay.Complete(resumeFlightInput:true);
         }
+        void OnDestroy(){if(sandboxTuning)Destroy(sandboxTuning);if(missionBattle)Destroy(missionBattle);}
         public static BlueprintData DefaultShip()
         {
             var d=new BlueprintData{name="标准靶场试飞船"};
             d.parts.Add(new BlockRecord{id="range-core",shape=BlockShape.Core,position=new Vector3(0,.5f,0),rotation=Quaternion.identity});
-            var dirs=new[]{Vector3.right,Vector3.left,Vector3.up,Vector3.down,Vector3.forward,Vector3.back};
-            for(int i=0;i<dirs.Length;i++)d.parts.Add(new BlockRecord{id="range-engine-"+i,shape=BlockShape.Thruster1,position=dirs[i]+Vector3.up*.5f,rotation=BlockPlacement.FaceRotation(dirs[i],0)});
-            d.parts.Add(new BlockRecord{id="range-mount",shape=BlockShape.Cube,position=new Vector3(1,1.5f,0),rotation=Quaternion.identity});
-            d.parts.Add(new BlockRecord{id="range-mount-front",shape=BlockShape.Power,position=new Vector3(1,1.5f,1),rotation=Quaternion.identity});
-            d.parts.Add(new BlockRecord{id="range-gun",shape=BlockShape.Laser,position=new Vector3(1,2.5f,0),rotation=Quaternion.identity});
+            // A four-corner, two-level arrangement provides independent moment arms about
+            // every axis. Mounts and bridges form a real connected frame beneath the engines.
+            var engineX=new[]{3,-3,-3,3};var engineZ=new[]{3,-3,3,-3};
+            for(int i=0;i<engineX.Length;i++)
+            {
+                bool upper=i<2;var position=new Vector3(engineX[i],upper?1.5f:-.5f,engineZ[i]);
+                var rotation=upper?Quaternion.identity:BlockPlacement.FaceRotation(Vector3.down,0);
+                d.parts.Add(new BlockRecord{id="range-engine-"+i,shape=BlockShape.Thruster6,position=position,rotation=rotation});
+                d.parts.Add(new BlockRecord{id="range-engine-"+i+"-mount",shape=BlockShape.Cube,position=new Vector3(engineX[i],.5f,engineZ[i]),rotation=Quaternion.identity});
+            }
+            var bridgeCells=new System.Collections.Generic.HashSet<Vector3Int>();
+            for(int x=-3;x<=3;x++)if(x!=0)bridgeCells.Add(new Vector3Int(x,0,0));
+            foreach(int x in new[]{-3,3})for(int z=-2;z<=2;z++)if(z!=0)bridgeCells.Add(new Vector3Int(x,0,z));
+            foreach(var cell in bridgeCells)
+                d.parts.Add(new BlockRecord{id="range-frame-"+cell.x+"-"+cell.z,shape=BlockShape.Cube,position=new Vector3(cell.x,.5f,cell.z),rotation=Quaternion.identity});
+
+            // A connected forward deck carries the original mount and gun IDs. Its centreline
+            // stays clear of the upper engine's +Z nozzle cell.
+            d.parts.Add(new BlockRecord{id="range-deck-core",shape=BlockShape.Cube,position=new Vector3(0,.5f,1),rotation=Quaternion.identity});
+            d.parts.Add(new BlockRecord{id="range-mount-front",shape=BlockShape.Power,position=new Vector3(0,.5f,2),rotation=Quaternion.identity});
+            d.parts.Add(new BlockRecord{id="range-mount",shape=BlockShape.Cube,position=new Vector3(0,1.5f,1),rotation=Quaternion.identity});
+            d.parts.Add(new BlockRecord{id="range-gun",shape=BlockShape.Laser,position=new Vector3(0,2.5f,1),rotation=Quaternion.identity});
             return BlueprintRepository.Upgrade(d);
         }
     }

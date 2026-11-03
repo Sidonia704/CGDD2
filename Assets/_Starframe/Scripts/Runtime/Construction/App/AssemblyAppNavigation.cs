@@ -6,6 +6,8 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
 using Starframe.Construction;
 using Starframe.Flight;
 using Starframe.Presentation;
@@ -15,7 +17,7 @@ namespace Starframe.App
     public sealed class AssemblyAppNavigation:MonoBehaviour
     {
         ShipEditorController editor;ShipEditorUI editorUi;Canvas canvas;
-        RectTransform toolbar;bool changed;float saveAt;
+        RectTransform toolbar;bool changed,dialogWasOpen;float saveAt;
         public void Initialize(ShipEditorController value)
         {
             editor=value;editorUi=value.GetComponent<ShipEditorUI>();canvas=value.GetComponentInChildren<Canvas>();
@@ -37,12 +39,23 @@ namespace Starframe.App
         void Button(string name,string text,float x,float y,float w,float h,Action action)
         {
             var rect=MenuSurface.Rect(toolbar,name,x,y,w,h);var image=rect.gameObject.AddComponent<UnityEngine.UI.Image>();image.color=GlassUiPalette.Button;
-            var button=rect.gameObject.AddComponent<UnityEngine.UI.Button>();button.targetGraphic=image;button.onClick.AddListener(()=>{GameAudio.PlayUiClick();try{action();}catch(Exception e)when(e is System.IO.IOException||e is System.IO.InvalidDataException||e is UnauthorizedAccessException){editorUi.SetStatusKey(L10n.ErrorKey(e),true);}});
+            var button=rect.gameObject.AddComponent<UnityEngine.UI.Button>();button.targetGraphic=image;var colors=button.colors;colors.highlightedColor=new Color(1.14f,1.14f,1.14f,1);colors.pressedColor=new Color(.8f,.84f,.84f,1);colors.selectedColor=Color.white;colors.fadeDuration=.12f;button.colors=colors;button.onClick.AddListener(()=>{GameAudio.PlayUiClick();try{action();}catch(Exception e)when(e is System.IO.IOException||e is System.IO.InvalidDataException||e is UnauthorizedAccessException){editorUi.SetStatusKey(L10n.ErrorKey(e),true);}});
             var labelObject=new GameObject("Label",typeof(RectTransform),typeof(TextMeshProUGUI));labelObject.layer=5;var r=(RectTransform)labelObject.transform;r.SetParent(rect,false);r.anchorMin=Vector2.zero;r.anchorMax=Vector2.one;r.offsetMin=new Vector2(8,2);r.offsetMax=new Vector2(-8,-2);
-            var label=labelObject.GetComponent<TextMeshProUGUI>();label.font=L10n.CurrentFont;label.text=text;label.fontSize=14;label.color=GlassUiPalette.Ink;label.alignment=TextAlignmentOptions.Center;label.raycastTarget=false;label.textWrappingMode=TextWrappingModes.NoWrap;
+            var label=labelObject.GetComponent<TextMeshProUGUI>();label.font=L10n.CurrentFont;label.text=text;UiStyle.ApplyText(label,15);label.color=GlassUiPalette.Ink;label.alignment=TextAlignmentOptions.Center;label.raycastTarget=false;label.textWrappingMode=TextWrappingModes.NoWrap;
         }
         void OnChanged(){changed=true;saveAt=Time.unscaledTime+.75f;}
-        void Update(){if(changed&&Time.unscaledTime>=saveAt){try{Capture();changed=false;}catch(Exception e)when(e is System.IO.IOException||e is System.IO.InvalidDataException||e is UnauthorizedAccessException){editorUi.SetStatusKey(L10n.ErrorKey(e),true);saveAt=Time.unscaledTime+10;}}}
+        void Update()
+        {
+            bool dialog=editorUi&&editorUi.IsDialogOpen;
+            if(Keyboard.current!=null&&Keyboard.current.escapeKey.wasPressedThisFrame&&!dialog&&!dialogWasOpen){
+                var selected=EventSystem.current?EventSystem.current.currentSelectedGameObject:null;
+                var input=selected?selected.GetComponentInParent<TMP_InputField>():null;
+                if(input&&input.isFocused){input.DeactivateInputField();if(EventSystem.current)EventSystem.current.SetSelectedGameObject(null);}
+                else ReturnToHangar();
+            }
+            dialogWasOpen=dialog;
+            if(changed&&Time.unscaledTime>=saveAt){try{Capture();changed=false;}catch(Exception e)when(e is System.IO.IOException||e is System.IO.InvalidDataException||e is UnauthorizedAccessException){editorUi.SetStatusKey(L10n.ErrorKey(e),true);saveAt=Time.unscaledTime+10;}}
+        }
         void Capture()
         {
             var data=editor.Assembly.Export(editorUi.BlueprintName);ShipWorkspace.Set(data,editor.Dirty,ShipWorkspace.SourceFile);
@@ -52,9 +65,11 @@ namespace Starframe.App
         {
             AppNavigation.SettingsReturnToEditor=target==AppPage.Settings;
             AppNavigation.WeaponGroupsReturnToEditor=target==AppPage.WeaponGroups;
-            if(target==AppPage.Settings||target==AppPage.WeaponGroups)AppNavigation.EditorResumePage=AppNavigation.ReturnPage;
+            AppNavigation.BlueprintsReturnToEditor=target==AppPage.BlueprintLibrary;
+            if(target==AppPage.Settings||target==AppPage.WeaponGroups||target==AppPage.BlueprintLibrary)AppNavigation.EditorResumePage=AppNavigation.ReturnPage;
             Capture();AppNavigation.OpenHome(target);
         }
+        public void OpenBlueprintLibrary()=>ReturnToPage(AppPage.BlueprintLibrary);
         public void OpenRangeSetup()
         {
             Capture();AppNavigation.RangeReturnToEditor=true;AppNavigation.OpenHome(AppPage.RangeSetup);

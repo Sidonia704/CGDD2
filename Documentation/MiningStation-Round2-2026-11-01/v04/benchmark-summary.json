@@ -1,0 +1,137 @@
+{
+  "method": "Five alternating warm-cache editor runs per version, all five station assets + largest rock/debris damaged individually. Surface probe destroys one cell. Cut probe severs the cropped truss. Median/min/max are CPU ms, not FPS; rendering/AI/full-station/sustained-fire were not tested. Functional passed is not a frame-budget pass.",
+  "versions": {
+    "v03": {
+      "allPassed": true,
+      "damageFlushMs": {
+        "Station_NotchedSlab": {
+          "n": 5,
+          "median": 88.73,
+          "min": 86.203,
+          "max": 106.45
+        },
+        "Station_CapsuleTank": {
+          "n": 5,
+          "median": 141.823,
+          "min": 119.733,
+          "max": 199.158
+        },
+        "Station_OpenTruss": {
+          "n": 5,
+          "median": 141.169,
+          "min": 134.607,
+          "max": 152.879
+        },
+        "Station_EquipmentCage": {
+          "n": 5,
+          "median": 106.731,
+          "min": 103.668,
+          "max": 141.734
+        },
+        "Station_SphericalTank": {
+          "n": 5,
+          "median": 64.837,
+          "min": 63.406,
+          "max": 87.749
+        },
+        "Rock_Notched": {
+          "n": 5,
+          "median": 86.395,
+          "min": 82.325,
+          "max": 106.805
+        },
+        "Debris_FracturedChunk": {
+          "n": 5,
+          "median": 26.283,
+          "min": 24.818,
+          "max": 44.516
+        }
+      },
+      "trussCutFlushMs": {
+        "n": 5,
+        "median": 135.14,
+        "min": 116.97,
+        "max": 156.646
+      },
+      "patchStepAvgMs": {
+        "n": 5,
+        "median": 0.57,
+        "min": 0.527,
+        "max": 0.592
+      },
+      "patchStepMaxMs": {
+        "n": 5,
+        "median": 2.315,
+        "min": 2.179,
+        "max": 2.817
+      },
+      "allScenesRestored": true
+    },
+    "v04": {
+      "allPassed": true,
+      "damageFlushMs": {
+        "Station_CapsuleTank": {
+          "n": 5,
+          "median": 258.96,
+          "min": 253.63,
+          "max": 262.561
+        },
+        "Station_NotchedSlab": {
+          "n": 5,
+          "median": 157.844,
+          "min": 142.464,
+          "max": 169.385
+        },
+        "Station_OpenTruss": {
+          "n": 5,
+          "median": 149.073,
+          "min": 132.556,
+          "max": 433.433
+        },
+        "Station_EquipmentCage": {
+          "n": 5,
+          "median": 351.752,
+          "min": 102.567,
+          "max": 399.664
+        },
+        "Station_SphericalTank": {
+          "n": 5,
+          "median": 62.056,
+          "min": 59.061,
+          "max": 91.915
+        },
+        "Rock_Notched": {
+          "n": 5,
+          "median": 87.023,
+          "min": 86.361,
+          "max": 114.005
+        },
+        "Debris_FracturedChunk": {
+          "n": 5,
+          "median": 25.355,
+          "min": 24.365,
+          "max": 45.281
+        }
+      },
+      "trussCutFlushMs": {
+        "n": 5,
+        "median": 136.58,
+        "min": 117.272,
+        "max": 144.774
+      },
+      "patchStepAvgMs": {
+        "n": 5,
+        "median": 0.568,
+        "min": 0.509,
+        "max": 0.634
+      },
+      "patchStepMaxMs": {
+        "n": 5,
+        "median": 2.358,
+        "min": 2.064,
+        "max": 3.31
+      },
+      "allScenesRestored": true
+    }
+  }
+}

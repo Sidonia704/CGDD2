@@ -1,0 +1,106 @@
+// @role Pool faint world-space gun muzzle clouds and lingering missile flight smoke with fixed particle and emission budgets.
+// @calls WeaponDefinition
+// @tune missileLifetime:float:0.1-6:Seconds missile smoke remains after the missile passes.
+// @tune muzzleLifetime:float:0.1-6:Seconds gun smoke stays near its firing location as the ship moves away.
+// @tune missileOpacity:float:0-0.5:Peak opacity of each small missile smoke puff.
+// @tune muzzleOpacity:float:0-0.5:Peak opacity of each small gun muzzle smoke puff.
+// @tune missileSpacing:float:0.5-10:World metres between flight smoke samples before per-frame budgets.
+// @tune maximumDistance:float:100-10000:Reject distant smoke emissions to protect combat visibility and fill rate.
+using UnityEngine;
+using UnityEngine.Rendering;
+using Starframe.Flight;
+namespace Starframe.Combat
+{
+    [DisallowMultipleComponent]
+    public sealed class WeaponSmokePool : MonoBehaviour
+    {
+        public const int MissileCapacity=1536,MuzzleCapacity=640,MaximumEmissionsPerFrame=160;
+        [Range(.1f,6)] public float missileLifetime=2.4f,muzzleLifetime=2.6f;
+        [Range(0,.5f)] public float missileOpacity=.17f,muzzleOpacity=.12f;
+        [Range(.5f,10)] public float missileSpacing=2.4f;
+        [Range(100,10000)] public float maximumDistance=4500;
+        ParticleSystem missileSmoke,muzzleSmoke;
+        Material material;
+        Camera view;
+        int emissionFrame=-1,emittedThisFrame;
+        uint serial;
+        public int MissileParticleCount=>missileSmoke?missileSmoke.particleCount:0;
+        public int MuzzleParticleCount=>muzzleSmoke?muzzleSmoke.particleCount:0;
+        public int EmittedThisFrame=>emissionFrame==Time.frameCount?emittedThisFrame:0;
+        public void Initialize()
+        {
+            if(missileSmoke)return;
+            material=Resources.Load<Material>("Combat/WeaponSmoke");
+            if(!material)return;
+            view=Camera.main;
+            missileSmoke=Create("Missile smoke (world)",MissileCapacity);
+            muzzleSmoke=Create("Gun muzzle smoke (world)",MuzzleCapacity);
+        }
+        ParticleSystem Create(string label,int capacity)
+        {
+            var go=new GameObject(label);go.transform.SetParent(transform,false);
+            var ps=go.AddComponent<ParticleSystem>();ps.Stop(true,ParticleSystemStopBehavior.StopEmittingAndClear);
+            var main=ps.main;main.playOnAwake=false;main.loop=true;main.duration=6;
+            main.simulationSpace=ParticleSystemSimulationSpace.World;main.maxParticles=capacity;
+            main.startSpeed=0;main.startLifetime=3;main.startSize=1;main.useUnscaledTime=false;
+            main.cullingMode=ParticleSystemCullingMode.AlwaysSimulate;
+            ps.useAutoRandomSeed=false;ps.randomSeed=261103;
+            var emission=ps.emission;emission.enabled=false;
+            var shape=ps.shape;shape.enabled=false;
+            var color=ps.colorOverLifetime;color.enabled=true;
+            var gradient=new Gradient();gradient.SetKeys(new[]{new GradientColorKey(Color.white,0),new GradientColorKey(new Color(.85f,.89f,.94f),1)},
+                new[]{new GradientAlphaKey(0,0),new GradientAlphaKey(1,.045f),new GradientAlphaKey(.65f,.40f),new GradientAlphaKey(0,1)});
+            color.color=gradient;
+            var size=ps.sizeOverLifetime;size.enabled=true;size.size=new ParticleSystem.MinMaxCurve(1,new AnimationCurve(new Keyframe(0,.75f),new Keyframe(.5f,1.65f),new Keyframe(1,2.8f)));
+            var renderer=go.GetComponent<ParticleSystemRenderer>();renderer.sharedMaterial=material;
+            renderer.renderMode=ParticleSystemRenderMode.Billboard;renderer.sortMode=ParticleSystemSortMode.Distance;
+            renderer.shadowCastingMode=ShadowCastingMode.Off;renderer.receiveShadows=false;
+            renderer.lightProbeUsage=LightProbeUsage.Off;renderer.reflectionProbeUsage=ReflectionProbeUsage.Off;
+            renderer.minParticleSize=0;renderer.maxParticleSize=.045f;
+            ps.Play(false);return ps;
+        }
+        bool Admit(Vector3 position)
+        {
+            if(emissionFrame!=Time.frameCount){emissionFrame=Time.frameCount;emittedThisFrame=0;}
+            if(emittedThisFrame>=MaximumEmissionsPerFrame)return false;
+            if(!view)view=Camera.main;
+            if(view&&(position-view.transform.position).sqrMagnitude>maximumDistance*maximumDistance)return false;
+            emittedThisFrame++;return true;
+        }
+        public void EmitMuzzle(Vector3 position,Vector3 direction,WeaponDefinition weapon)
+        {
+            if(!weapon||!weapon.smokeTrail||weapon.delivery!=WeaponDelivery.Projectile||!muzzleSmoke||!Admit(position))return;
+            float width=Mathf.Clamp(weapon.projectileDiameter,.25f,1.3f);
+            Emit(muzzleSmoke,position+direction.normalized*.5f,direction.normalized*.55f+Vector3.up*.16f,
+                Mathf.Clamp(muzzleLifetime,.1f,6),.65f+width*.35f,Mathf.Clamp01(muzzleOpacity));
+        }
+        public void EmitMissileSegment(Vector3 from,Vector3 to,WeaponDefinition weapon)
+        {
+            if(!weapon||!weapon.smokeTrail||weapon.delivery!=WeaponDelivery.GuidedMissile||!missileSmoke)return;
+            float distance=Vector3.Distance(from,to);if(distance<.001f||float.IsNaN(distance)||float.IsInfinity(distance))return;
+            int samples=Mathf.Clamp(Mathf.CeilToInt(distance/Mathf.Max(.5f,missileSpacing)),1,12);
+            var direction=(to-from)/distance;
+            // Exhaust sits just aft of the model, and never extrapolates beyond a collision endpoint.
+            for(int i=0;i<samples;i++){
+                var position=Vector3.Lerp(from,to,(i+.5f)/samples)-direction*.4f;
+                if(!Admit(position))continue;
+                Emit(missileSmoke,position,Vector3.up*.10f,Mathf.Clamp(missileLifetime,.1f,6),
+                    Mathf.Clamp(weapon.projectileDiameter*.7f,1.05f,1.7f),Mathf.Clamp01(missileOpacity));
+            }
+        }
+        void Emit(ParticleSystem ps,Vector3 position,Vector3 velocity,float life,float size,float opacity)
+        {
+            // Own deterministic sequence: cosmetics never consume combat's UnityEngine.Random state.
+            serial++;float phase=serial*2.39996323f;
+            var p=new ParticleSystem.EmitParams{position=position,velocity=velocity+new Vector3(Mathf.Sin(phase),Mathf.Cos(phase),Mathf.Sin(phase*.7f))*.10f,
+                startLifetime=life,startSize=size,startColor=new Color(.76f,.79f,.81f,opacity),rotation=phase*Mathf.Rad2Deg,randomSeed=serial};
+            ps.Emit(p,1);
+        }
+        public void Clear()
+        {
+            if(missileSmoke)missileSmoke.Clear(false);
+            if(muzzleSmoke)muzzleSmoke.Clear(false);
+            emittedThisFrame=0;emissionFrame=-1;
+        }
+    }
+}

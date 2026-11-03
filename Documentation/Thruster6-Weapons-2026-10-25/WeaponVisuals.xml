@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="3" result="Passed" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-25 15:33:18Z" end-time="2026-10-25 15:33:18Z" duration="0.1751407">
+  <test-suite type="TestSuite" id="1000" name="CGDD26107" fullname="CGDD26107" runstate="Runnable" testcasecount="308" result="Passed" start-time="2026-10-25 15:33:18Z" end-time="2026-10-25 15:33:18Z" duration="0.175141" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1379" name="Starframe.Construction.Tests.dll" fullname="D:/software/unity/CGDD26107/Library/ScriptAssemblies/Starframe.Construction.Tests.dll" runstate="Runnable" testcasecount="307" result="Passed" start-time="2026-10-25 15:33:18Z" end-time="2026-10-25 15:33:18Z" duration="0.167016" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="45692" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1380" name="Starframe" fullname="Starframe" runstate="Runnable" testcasecount="307" result="Passed" start-time="2026-10-25 15:33:18Z" end-time="2026-10-25 15:33:18Z" duration="0.163558" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1381" name="Tests" fullname="Starframe.Tests" runstate="Runnable" testcasecount="148" result="Passed" start-time="2026-10-25 15:33:18Z" end-time="2026-10-25 15:33:18Z" duration="0.161160" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1180" name="WeaponVisualTests" fullname="Starframe.Tests.WeaponVisualTests" classname="Starframe.Tests.WeaponVisualTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-25 15:33:18Z" end-time="2026-10-25 15:33:18Z" duration="0.159471" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="ParameterizedMethod" id="1184" name="MultiBarrelGunKeepsBothSidesAtTheirRealMuzzles" fullname="Starframe.Tests.WeaponVisualTests.MultiBarrelGunKeepsBothSidesAtTheirRealMuzzles" classname="Starframe.Tests.WeaponVisualTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-25 15:33:18Z" end-time="2026-10-25 15:33:18Z" duration="0.156745" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1181" name="MultiBarrelGunKeepsBothSidesAtTheirRealMuzzles(Gun1)" fullname="Starframe.Tests.WeaponVisualTests.MultiBarrelGunKeepsBothSidesAtTheirRealMuzzles(Gun1)" methodname="MultiBarrelGunKeepsBothSidesAtTheirRealMuzzles" classname="Starframe.Tests.WeaponVisualTests" runstate="Runnable" seed="1523181215" result="Passed" start-time="2026-10-25 15:33:18Z" end-time="2026-10-25 15:33:18Z" duration="0.139393" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1182" name="MultiBarrelGunKeepsBothSidesAtTheirRealMuzzles(Gun2)" fullname="Starframe.Tests.WeaponVisualTests.MultiBarrelGunKeepsBothSidesAtTheirRealMuzzles(Gun2)" methodname="MultiBarrelGunKeepsBothSidesAtTheirRealMuzzles" classname="Starframe.Tests.WeaponVisualTests" runstate="Runnable" seed="438557768" result="Passed" start-time="2026-10-25 15:33:18Z" end-time="2026-10-25 15:33:18Z" duration="0.004561" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1183" name="MultiBarrelGunKeepsBothSidesAtTheirRealMuzzles(Gun3)" fullname="Starframe.Tests.WeaponVisualTests.MultiBarrelGunKeepsBothSidesAtTheirRealMuzzles(Gun3)" methodname="MultiBarrelGunKeepsBothSidesAtTheirRealMuzzles" classname="Starframe.Tests.WeaponVisualTests" runstate="Runnable" seed="1847077114" result="Passed" start-time="2026-10-25 15:33:18Z" end-time="2026-10-25 15:33:18Z" duration="0.004409" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[Saving results to: C:/Users/34808/AppData/LocalLow/DefaultCompany/CGDD26107\TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

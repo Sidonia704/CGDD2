@@ -1,0 +1,34 @@
+Shader "Starframe/Combat/Weapon Smoke"
+{
+    Properties { _Softness("Surface depth fade",Float)=1.5 }
+    SubShader {
+        Tags {"RenderPipeline"="UniversalPipeline" "Queue"="Transparent" "RenderType"="Transparent"}
+        Pass {
+            Cull Off ZWrite Off ZTest LEqual Blend SrcAlpha OneMinusSrcAlpha
+            HLSLPROGRAM
+            #pragma vertex Vert
+            #pragma fragment Frag
+            #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
+            #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/DeclareDepthTexture.hlsl"
+            CBUFFER_START(UnityPerMaterial)
+            float _Softness;
+            CBUFFER_END
+            struct A{float4 positionOS:POSITION;half4 color:COLOR;float2 uv:TEXCOORD0;};
+            struct V{float4 positionCS:SV_POSITION;half4 color:COLOR;float2 uv:TEXCOORD0;float eye:TEXCOORD1;};
+            V Vert(A v){V o;float3 world=TransformObjectToWorld(v.positionOS.xyz);
+                o.positionCS=TransformWorldToHClip(world);o.uv=v.uv;o.color=v.color;
+                o.eye=-TransformWorldToView(world).z;return o;}
+            half4 Frag(V i):SV_Target{
+                float2 p=i.uv*2-1;float r2=dot(p,p);
+                float edge=saturate(1-r2);float body=edge*sqrt(edge);
+                float billow=.78+.13*sin(p.x*9+sin(p.y*7))+.09*sin(p.y*13+p.x*6);
+                float scene=LinearEyeDepth(SampleSceneDepth(GetNormalizedScreenSpaceUV(i.positionCS)),_ZBufferParams);
+                float soft=saturate((scene-i.eye)/max(.01,_Softness));
+                float alpha=i.color.a*body*billow*soft*smoothstep(2,10,i.eye);
+                clip(alpha-.0003);
+                return half4(i.color.rgb,alpha);
+            }
+            ENDHLSL
+        }
+    }
+}

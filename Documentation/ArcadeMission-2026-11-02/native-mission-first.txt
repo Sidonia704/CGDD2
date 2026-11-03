@@ -1,0 +1,11 @@
+READY frame=10544, parts=917, native total=67
+LIVE 65s: advancedFrames=3971, wave=1, alive=8, enemy shots=395, hits=315
+PASS pause/resume; F target API smoke follows.
+WAVE 2: kills=8, wreckParts=736, clusters=16
+WAVE 3: kills=20, wreckParts=2270, clusters=40
+WAVE 4: kills=33, wreckParts=4368, clusters=66
+WAVE 5: kills=48, wreckParts=7484, clusters=95
+VICTORY 67=50/15/2; waves=5; score=84950; remaining wreckParts=11590; frameMedianMs=20.3760000003967; frameP95Ms=36.5659999988566; maxMs=401.788399998622
+PASS results and unchanged confirmed blueprint snapshot.
+PASS reentry and core-loss failure, no practice respawn.
+DONE PASS; storage and preferences restored.

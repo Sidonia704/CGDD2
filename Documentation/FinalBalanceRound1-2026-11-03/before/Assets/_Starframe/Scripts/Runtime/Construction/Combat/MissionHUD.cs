@@ -1,0 +1,116 @@
+// @role Show wave progress, incoming formations, score and mission outcomes on the flight HUD.
+// @calls ArcadeMissionDirector, RangeHUD, L10n, UiStyle
+
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.InputSystem;
+using Starframe.App;
+using Starframe.Flight;
+using Starframe.Presentation;
+
+namespace Starframe.Combat
+{
+    public sealed class MissionHUD : MonoBehaviour
+    {
+        ArcadeMissionDirector director;
+        RangeHUD owner;
+        RectTransform root,brief,terminal;
+        TextMeshProUGUI wave,contacts,score,clock,title,hint,countdown,nextLabel,outcome,outcomeHint;
+        UnityEngine.UI.Button next;
+        UnityEngine.UI.Image[] steps;
+        CanvasGroup visibility;
+        float refreshAt;
+        bool built;
+
+        public void Initialize(ArcadeMissionDirector value)
+        {
+            director=value;owner=GetComponent<RangeHUD>();if(!owner)owner=FindFirstObjectByType<RangeHUD>();
+            if(!director||!owner||!owner.RootCanvas)return;
+            if(built){Refresh();return;}
+            built=true;
+            root=Full((RectTransform)owner.RootCanvas.transform,"MissionHUD");
+            var modal=owner.RootCanvas.transform.Find("ExitModal");
+            if(modal)root.SetSiblingIndex(modal.GetSiblingIndex());
+            visibility=root.gameObject.AddComponent<CanvasGroup>();
+            owner.CreateMissionGlass(root,"WaveStatusGlass",660,152,600,104);
+            wave=Label(root,"MissionWave",682,166,340,26,19,GlassUiPalette.Ink);
+            score=Label(root,"MissionScore",1004,167,234,24,17,GlassUiPalette.Ink);score.alignment=TextAlignmentOptions.Right;
+            contacts=Label(root,"MissionContacts",682,202,440,24,14,GlassUiPalette.Muted);
+            clock=Label(root,"MissionClock",1134,203,104,24,14,GlassUiPalette.Muted);clock.alignment=TextAlignmentOptions.Right;
+            steps=new UnityEngine.UI.Image[Mathf.Max(1,director.WaveCount)];
+            float stepWidth=(556-(steps.Length-1)*7)/(float)steps.Length;
+            for(int i=0;i<steps.Length;i++){
+                var step=MenuSurface.Rect(root,"WaveStep"+(i+1),682+i*(stepWidth+7),240,stepWidth,3).gameObject.AddComponent<UnityEngine.UI.Image>();
+                step.raycastTarget=false;steps[i]=step;
+            }
+            brief=Full(root,"MissionBrief");
+            owner.CreateMissionGlass(brief,"MissionBriefGlass",660,278,600,162);
+            title=Label(brief,"WaveBriefTitle",684,294,552,28,21,GlassUiPalette.Ink);
+            hint=Label(brief,"WaveBriefHint",684,334,552,42,15,GlassUiPalette.Muted);hint.textWrappingMode=TextWrappingModes.Normal;
+            countdown=Label(brief,"WaveCountdown",684,390,280,24,16,UiTheme.Current.combatInstrument);
+            var image=MenuSurface.Rect(brief,"StartNextWave",986,382,250,42).gameObject.AddComponent<UnityEngine.UI.Image>();image.color=GlassUiPalette.Action;
+            next=image.gameObject.AddComponent<UnityEngine.UI.Button>();next.targetGraphic=image;next.colors=UiStyle.ControlColors();
+            next.onClick.AddListener(()=>{if(director&&director.StartNextWave()){GameAudio.PlayUiClick();Refresh();}});
+            nextLabel=Label(brief,"StartNextWaveLabel",999,390,224,26,16,GlassUiPalette.ActionInk);nextLabel.alignment=TextAlignmentOptions.Center;
+            terminal=Full(root,"MissionOutcome");
+            owner.CreateMissionGlass(terminal,"MissionOutcomeGlass",660,294,600,114);
+            outcome=Label(terminal,"MissionOutcomeTitle",684,310,552,38,28,GlassUiPalette.Ink);outcome.alignment=TextAlignmentOptions.Center;
+            outcomeHint=Label(terminal,"MissionOutcomeHint",684,366,552,25,16,GlassUiPalette.Muted);outcomeHint.alignment=TextAlignmentOptions.Center;
+            L10n.Changed+=Refresh;Refresh();
+        }
+
+        void Update()
+        {
+            if(!built||!director||!owner)return;
+            bool visible=!owner.ExitDialogOpen;
+            visibility.alpha=visible?1:0;visibility.interactable=visibility.blocksRaycasts=visible;
+            if(visible&&director.State==ArcadeMissionState.Intermission&&!GameInput.Suspended&&Application.isFocused&&Keyboard.current!=null&&Keyboard.current.enterKey.wasPressedThisFrame){
+                if(director.StartNextWave()){GameAudio.PlayUiClick();Refresh();}
+            }
+            if(Time.unscaledTime<refreshAt)return;refreshAt=Time.unscaledTime+.1f;Refresh();
+        }
+
+        void Refresh()
+        {
+            if(!built||!director)return;
+            int index=Mathf.Clamp(director.WaveIndex,1,Mathf.Max(1,director.WaveCount));
+            wave.text=L10n.T("mission.arcade.wave",index,director.WaveCount);
+            score.text=L10n.T("mission.arcade.score",director.Score.ToString("N0"),Mathf.Max(1,director.ComboMultiplier));
+            contacts.text=L10n.T("mission.arcade.contacts",director.AliveEnemies,director.PendingEnemies);
+            float seconds=Mathf.Max(0,director.ElapsedSeconds);clock.text=$"{Mathf.FloorToInt(seconds/60):00}:{Mathf.FloorToInt(seconds%60):00}";
+            bool waiting=director.State==ArcadeMissionState.Intermission;
+            bool introducing=director.State==ArcadeMissionState.Intro;
+            brief.gameObject.SetActive(waiting||introducing);
+            title.text=L10n.IsEnglish?director.WaveNameEn:director.WaveNameZh;
+            hint.text=L10n.IsEnglish?director.WaveIncomingHintEn:director.WaveIncomingHintZh;
+            countdown.text=waiting?L10n.T("mission.arcade.nextIn",Mathf.CeilToInt(Mathf.Max(0,director.IntermissionRemaining))):L10n.T("mission.arcade.standBy");
+            next.gameObject.SetActive(waiting);nextLabel.gameObject.SetActive(waiting);nextLabel.text=L10n.T("mission.arcade.startNext");
+            bool finished=director.State==ArcadeMissionState.Victory||director.State==ArcadeMissionState.Defeat||director.State==ArcadeMissionState.Aborted;
+            terminal.gameObject.SetActive(finished);
+            if(finished){
+                outcome.text=L10n.T("app.outcome."+(director.State==ArcadeMissionState.Victory?"Victory":director.State==ArcadeMissionState.Defeat?"Defeat":"Aborted"));
+                outcome.color=director.State==ArcadeMissionState.Victory?UiTheme.Current.success:director.State==ArcadeMissionState.Defeat?UiTheme.Current.danger:UiTheme.Current.amber;
+                outcomeHint.text=L10n.T("mission.arcade.returning");
+            }
+            for(int i=0;i<steps.Length;i++){
+                Color tint=i<index-1||director.State==ArcadeMissionState.Victory?UiTheme.Current.success:i==index-1?UiTheme.Current.combatInstrument:GlassUiPalette.Muted;
+                tint.a=i<index?.85f:.18f;steps[i].color=tint;
+            }
+        }
+
+        static RectTransform Full(RectTransform parent,string name)
+        {
+            var go=new GameObject(name,typeof(RectTransform));go.layer=5;
+            var rect=(RectTransform)go.transform;rect.SetParent(parent,false);rect.anchorMin=Vector2.zero;rect.anchorMax=Vector2.one;rect.offsetMin=rect.offsetMax=Vector2.zero;return rect;
+        }
+        static TextMeshProUGUI Label(RectTransform parent,string name,float x,float y,float width,float height,float size,Color tint)
+        {
+            var label=MenuSurface.Rect(parent,name,x,y,width,height).gameObject.AddComponent<TextMeshProUGUI>();
+            label.font=L10n.CurrentFont;L10n.ApplyFont(label);UiStyle.ApplyText(label,size);label.fontSize=size;label.color=tint;
+            label.raycastTarget=false;label.textWrappingMode=TextWrappingModes.NoWrap;label.overflowMode=TextOverflowModes.Ellipsis;
+            return label;
+        }
+        void OnDestroy(){L10n.Changed-=Refresh;if(root)Destroy(root.gameObject);}
+    }
+}

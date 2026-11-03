@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 709e20d8521834845a71b54704f53b46, type: 3}
+  m_Name: LaserRapidCannon
+  m_EditorClassIdentifier: Starframe.Construction::Starframe.Flight.WeaponDefinition
+  shotsPerSecond: 12
+  damage: 25
+  projectileSpeed: 1400
+  projectileDiameter: 0.7
+  penetrationDepth: 1
+  secondLayerDamageMultiplier: 0
+  range: 5000
+  visualLength: 18
+  tailLength: 10
+  visualWidth: 0.75
+  visualIntensity: 5
+  sustainedPowerWatts: 50
+  energyPerShot: 100
+  activationMode: 0
+  chargeSeconds: 1
+  requireTargetLock: 0

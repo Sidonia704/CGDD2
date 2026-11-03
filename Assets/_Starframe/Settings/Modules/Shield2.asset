@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57c7601c94efac44dacfde24ada57da4, type: 3}
+  m_Name: Shield2
+  m_EditorClassIdentifier: Starframe.Construction::Starframe.Flight.ModuleDefinition
+  shape: 18
+  displayName: "\u5927\u578B\u62A4\u76FE\u53D1\u751F\u5668"
+  category: 5
+  cost: 400
+  massKg: 3000
+  maxHp: 5879.9995
+  recoverySeconds: 8
+  thrustNewtons: 0
+  occupiedCells:
+  - {x: 0, y: 0, z: 0}
+  - {x: 1, y: 0, z: 0}
+  - {x: 0, y: 0, z: 1}
+  - {x: 1, y: 0, z: 1}
+  - {x: 0, y: 1, z: 0}
+  - {x: 1, y: 1, z: 0}
+  - {x: 0, y: 1, z: 1}
+  - {x: 1, y: 1, z: 1}
+  localExhaustDirections: []
+  localNozzlePositions: []
+  muzzleLocalPosition: {x: 0, y: 0.27, z: 1.52}
+  muzzleClearanceDiameter: 0.25
+  mesh: {fileID: 4300000, guid: 5f734d6a982dc7c469d40c45cc7bbb9f, type: 2}
+  outline: {fileID: 0}
+  drawOutline: 0
+  material: {fileID: 2100000, guid: 83f032bf8aa04bc4ab0f191766d8ed5a, type: 2}
+  icon: {fileID: 21300000, guid: 1b7f17c84f802084991c9ca08ae9d83e, type: 3}
+  selectedIcon: {fileID: 21300000, guid: 07aff03b3e7502a48af45a69038ba88d, type: 3}
+  weapon: {fileID: 0}
+  countermeasure: {fileID: 0}
+  generationWatts: 0
+  storageJoules: 0
+  thrusterPowerWatts: 0
+  shieldPowerWatts: 720
+  shieldCapacity: 12599.999
+  shieldRadius: 14
+  shieldRecoveryDelay: 6
+  shieldRecoveryPerSecond: 3149.9998
+  shieldSurfaceMaterial: {fileID: 2100000, guid: de4e6baad4d3432418b085aa6160942e, type: 2}
+  shieldSurfaceMesh: {fileID: 4300000, guid: 9fcf57056c63631459c7affa3094fa8f, type: 2}

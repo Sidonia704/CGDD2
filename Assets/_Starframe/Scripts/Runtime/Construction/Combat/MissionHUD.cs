@@ -1,0 +1,76 @@
+// @role Display only the active stage fraction at the left, with text-only mission outcomes.
+// @calls ArcadeMissionDirector, RangeHUD, L10n, UiStyle
+
+using TMPro;
+using UnityEngine;
+using Starframe.App;
+using Starframe.Flight;
+using Starframe.Presentation;
+
+namespace Starframe.Combat
+{
+    public sealed class MissionHUD : MonoBehaviour
+    {
+        ArcadeMissionDirector director;
+        RangeHUD owner;
+        RectTransform root,terminal;
+        TextMeshProUGUI stage,outcome,outcomeHint;
+        CanvasGroup visibility;
+        float refreshAt;
+        bool built;
+
+        public void Initialize(ArcadeMissionDirector value)
+        {
+            director=value;owner=GetComponent<RangeHUD>();if(!owner)owner=FindFirstObjectByType<RangeHUD>();
+            if(!director||!owner||!owner.RootCanvas)return;
+            if(built){Refresh();return;}
+            built=true;
+            root=Full((RectTransform)owner.RootCanvas.transform,"MissionHUD");
+            var modal=owner.RootCanvas.transform.Find("ExitModal");
+            if(modal)root.SetSiblingIndex(modal.GetSiblingIndex());
+            visibility=root.gameObject.AddComponent<CanvasGroup>();
+            visibility.interactable=visibility.blocksRaycasts=false;
+            stage=Label(root,"MissionStage",54,420,130,32,22,GlassUiPalette.Ink);
+            terminal=Full(root,"MissionOutcome");
+            outcome=Label(terminal,"MissionOutcomeTitle",684,310,552,38,28,GlassUiPalette.Ink);outcome.alignment=TextAlignmentOptions.Center;
+            outcomeHint=Label(terminal,"MissionOutcomeHint",684,366,552,25,16,GlassUiPalette.Muted);outcomeHint.alignment=TextAlignmentOptions.Center;
+            L10n.Changed+=Refresh;Refresh();
+        }
+
+        void Update()
+        {
+            if(!built||!director||!owner)return;
+            bool visible=!owner.ExitDialogOpen;
+            visibility.alpha=visible?1:0;
+            if(Time.unscaledTime<refreshAt)return;refreshAt=Time.unscaledTime+.1f;Refresh();
+        }
+
+        void Refresh()
+        {
+            if(!built||!director)return;
+            bool finished=director.State==ArcadeMissionState.Victory||director.State==ArcadeMissionState.Defeat||director.State==ArcadeMissionState.Aborted;
+            stage.gameObject.SetActive(!finished);
+            stage.text=$"{Mathf.Max(1,director.WaveIndex)}/{director.WaveCount}";
+            terminal.gameObject.SetActive(finished);
+            if(finished){
+                outcome.text=L10n.T("app.outcome."+(director.State==ArcadeMissionState.Victory?"Victory":director.State==ArcadeMissionState.Defeat?"Defeat":"Aborted"));
+                outcome.color=director.State==ArcadeMissionState.Victory?UiTheme.Current.success:director.State==ArcadeMissionState.Defeat?UiTheme.Current.danger:UiTheme.Current.amber;
+                outcomeHint.text=L10n.T("mission.arcade.returning");
+            }
+        }
+
+        static RectTransform Full(RectTransform parent,string name)
+        {
+            var go=new GameObject(name,typeof(RectTransform));go.layer=5;
+            var rect=(RectTransform)go.transform;rect.SetParent(parent,false);rect.anchorMin=Vector2.zero;rect.anchorMax=Vector2.one;rect.offsetMin=rect.offsetMax=Vector2.zero;return rect;
+        }
+        static TextMeshProUGUI Label(RectTransform parent,string name,float x,float y,float width,float height,float size,Color tint)
+        {
+            var label=MenuSurface.Rect(parent,name,x,y,width,height).gameObject.AddComponent<TextMeshProUGUI>();
+            label.font=L10n.CurrentFont;L10n.ApplyFont(label);UiStyle.ApplyText(label,size);label.fontSize=size;label.color=tint;
+            label.raycastTarget=false;label.textWrappingMode=TextWrappingModes.NoWrap;label.overflowMode=TextOverflowModes.Ellipsis;
+            return label;
+        }
+        void OnDestroy(){L10n.Changed-=Refresh;if(root)Destroy(root.gameObject);}
+    }
+}

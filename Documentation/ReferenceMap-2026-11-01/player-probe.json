@@ -1,0 +1,40 @@
+{
+    "unity": "6000.3.25f1",
+    "device": "13th Gen Intel(R) Core(TM) i7-13700K",
+    "graphics": "NVIDIA GeForce RTX 5080",
+    "scene": "Assets/_Starframe/Maps/ReferenceMiningStation/Scenes/ReferenceMiningStation3500.unity",
+    "structures": 2854,
+    "initialCells": 3123469,
+    "colliders": 247723,
+    "rigidbodies": 2854,
+    "initialRecentDamage": 0,
+    "managedBytes": 2465243136,
+    "allocatedBytes": 4343108543,
+    "loadSeconds": 46.272853999999998,
+    "loaded": true,
+    "damageExpiredWithoutRestoringHole": true,
+    "pushedBodyMoved": false,
+    "conservedSurvivingCells": true,
+    "phases": [
+        {
+            "name": "overview",
+            "frames": 120,
+            "meanMs": 1714.3606672684352,
+            "p95Ms": 1970.7062244415283,
+            "maxMs": 2080.531597137451,
+            "gpuMeanMs": 0.0,
+            "gpuSamples": 0
+        },
+        {
+            "name": "near-station",
+            "frames": 120,
+            "meanMs": 1633.823139468829,
+            "p95Ms": 1694.9048042297363,
+            "maxMs": 11221.610069274902,
+            "gpuMeanMs": 0.0,
+            "gpuSamples": 0
+        }
+    ],
+    "error": "",
+    "note": "Graphics-enabled standalone probe; CPU frame intervals include rendering/presentation. GPU samples are reported only when available. Not an Editor FPS estimate."
+}

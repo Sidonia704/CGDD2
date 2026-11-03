@@ -1,0 +1,26 @@
+{
+    "MonoBehaviour": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "viper-behavior",
+        "m_EditorClassIdentifier": "Starframe.Construction::Starframe.Combat.BotBehaviorProfile",
+        "role": 1,
+        "preferredRange": 420.0,
+        "cruiseSpeedFraction": 0.699999988079071,
+        "attackSpeedFraction": 0.550000011920929,
+        "strafeFraction": 0.14000000059604646,
+        "attackPass": true,
+        "minimumAttackSeconds": 2.0,
+        "attackSeconds": 6.0,
+        "breakawaySeconds": 2.0,
+        "reactionSeconds": 1.0,
+        "fireBurstSeconds": 0.6499999761581421,
+        "firePauseSeconds": 1.2999999523162842,
+        "aimErrorDegrees": 0.30000001192092898,
+        "velocityResponseSeconds": 0.44999998807907107,
+        "steeringResponseSeconds": 0.1599999964237213,
+        "weaponHoldSeconds": 1.399999976158142,
+        "terrainLookaheadSeconds": 2.0,
+        "terrainProbeSeconds": 0.18000000715255738
+    }
+}

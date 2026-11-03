@@ -1,0 +1,12 @@
+{
+  "success": false,
+  "command": "command",
+  "data": null,
+  "errors": [
+    {
+      "code": "EDITOR_TIMEOUT",
+      "message": "Pipeline command 'run_tests' timed out after 30000ms"
+    }
+  ],
+  "warnings": []
+}

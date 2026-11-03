@@ -1,0 +1,69 @@
+// @role Select discovered targets near the virtual aim cursor and retain range-valid locks and velocity-based lead points.
+// @calls RangeCombatWorld, TargetSensorWorld, AimProjection, InterceptSolver, CoreVelocityEstimator, ShipWeapons, GameInput
+
+using System.Collections.Generic;
+using UnityEngine;
+using Starframe.Flight;
+namespace Starframe.Combat
+{
+    public struct WeaponAimProfile{public WeaponDefinition weapon;public Vector3 origin,direction;public string partId;public int gunCount;}
+    public struct LeadPoint{public WeaponDefinition weapon;public Vector3 point,aimDirection;public float flightTime;}
+    [DefaultExecutionOrder(75)]
+    public sealed class TargetLockSystem:MonoBehaviour
+    {
+        RangeCombatWorld world;Camera viewCamera;RangeHUD hud;BattleTuning tuning;RangeCombatWorld.Actor target;int life,ownerLife;
+        static readonly FlightShipRuntime[] NoTargets=System.Array.Empty<FlightShipRuntime>();
+        readonly List<WeaponAimProfile> profiles=new List<WeaponAimProfile>();readonly List<LeadPoint> points=new List<LeadPoint>();
+        readonly CoreVelocityEstimator coreMotion=new CoreVelocityEstimator();
+        public FlightShipRuntime LockedTarget=>target?.ship;
+        public bool HasTarget=>target!=null&&target.ship&&target.ship.IsAlive&&target.ship.LifeId==life&&world&&world.Player!=null&&world.Player.ship.IsAlive&&world.Player.ship.LifeId==ownerLife&&world.Sensors!=null&&world.Sensors.IsDetected(world.Player.ship,target.ship);
+        public IReadOnlyList<LeadPoint> LeadPoints=>points;
+        public IReadOnlyList<FlightShipRuntime> DetectedTargets=>world&&world.Player!=null&&world.Sensors!=null?world.Sensors.GetDetectedTargets(world.Player.ship):NoTargets;
+        public Vector3 EstimatedCoreVelocity=>coreMotion.Velocity;
+        public float LockedTargetRadius=>HasTarget&&world.Sensors!=null?world.Sensors.SignatureRadius(target.ship):0;
+        public float LockRange=>HasTarget&&world&&world.Sensors!=null?world.Sensors.DetectionRange(target.ship):(tuning?Mathf.Max(1,tuning.lockRange):3000);
+        public float TargetDistance=>HasTarget&&world&&world.Player!=null?Vector3.Distance(world.Player.ship.CorePhysicsPosition,target.ship.CorePhysicsPosition):0;
+        public void Initialize(RangeCombatWorld combat,Camera view,RangeHUD display,BattleTuning rules){world=combat;viewCamera=view;hud=display;tuning=rules;}
+        void Update(){ValidateTarget();if(world&&world.Player!=null&&world.Player.ship.IsAlive&&Application.isFocused&&(!hud||!hud.ExitDialogOpen)&&Starframe.App.GameInput.Pressed(Starframe.App.GameAction.TargetLock))ToggleLock();}
+        public void Clear(){target=null;points.Clear();coreMotion.Clear();}
+        void ValidateTarget(){if(!world||world.Player==null||!world.Player.ship.IsAlive||!HasTarget||world.Player.ship.LifeId!=ownerLife||world.Sensors==null||!world.Sensors.IsDetected(world.Player.ship,target.ship))Clear();}
+        public void ToggleLock()
+        {
+            ValidateTarget();
+            if(!world||world.Player==null||!world.Player.ship.IsAlive||!viewCamera||world.Sensors==null)return;
+            if(HasTarget){Clear();return;}
+            var owner=world.Player;
+            // The virtual aiming stick is relative to the projected ship-forward reticle, including camera parallax correction.
+            Vector2 cursor=(Vector2)AimProjection.ScreenPoint(viewCamera,owner.flight.Forward)+owner.flight.AimOffsetPixels;
+            cursor=new Vector2(Mathf.Clamp(cursor.x,viewCamera.pixelRect.xMin,viewCamera.pixelRect.xMax),Mathf.Clamp(cursor.y,viewCamera.pixelRect.yMin,viewCamera.pixelRect.yMax));
+            float radius=(tuning?Mathf.Max(1,tuning.sensorAcquireRadiusPixels):80)*Mathf.Max(1,viewCamera.pixelHeight)/1080f;
+            var selected=SelectNearestVisibleTarget(DetectedTargets,viewCamera,cursor,radius);
+            if(selected)foreach(var actor in world.Actors)if(actor.ship==selected){target=actor;break;}
+            if(target!=null){life=target.ship.LifeId;ownerLife=owner.ship.LifeId;coreMotion.Reset(target.ship.CorePhysicsPosition,Time.fixedTimeAsDouble,target.flight.Velocity);}RefreshLeadPoints();
+        }
+        public static FlightShipRuntime SelectNearestVisibleTarget(IReadOnlyList<FlightShipRuntime> candidates,Camera camera,Vector2 cursor,float radiusPixels)
+        {
+            if(candidates==null||!camera)return null;
+            FlightShipRuntime selected=null;float best=Mathf.Max(0,radiusPixels)*Mathf.Max(0,radiusPixels),bestDepth=float.PositiveInfinity;
+            foreach(var ship in candidates)
+            {
+                if(!ship||!ship.IsAlive)continue;
+                var screen=camera.WorldToScreenPoint(ship.CorePosition);
+                if(screen.z<=0||!camera.pixelRect.Contains(new Vector2(screen.x,screen.y)))continue;
+                float distance=((Vector2)screen-cursor).sqrMagnitude;
+                if(distance>best||selected&&Mathf.Abs(distance-best)<.0001f&&screen.z>=bestDepth)continue;
+                selected=ship;best=distance;bestDepth=screen.z;
+            }
+            return selected;
+        }
+        void LateUpdate()=>RefreshLeadPoints();
+        public void RefreshLeadPoints()
+        {
+            ValidateTarget();points.Clear();if(!HasTarget)return;
+            var core=target.ship.CorePhysicsPosition;
+            coreMotion.Sample(core,Time.fixedTimeAsDouble,tuning.leadVelocitySampleWindow,tuning.leadVelocityResponse,target.flight.Velocity);
+            world.Player.weapons.GetAimProfiles(profiles);
+            foreach(var profile in profiles)if(profile.weapon.delivery==WeaponDelivery.Projectile&&InterceptSolver.TrySolve(profile.origin,core,coreMotion.Velocity,profile.weapon.projectileSpeed,profile.weapon.range,out var point,out float time))points.Add(new LeadPoint{weapon=profile.weapon,point=point,aimDirection=(point-profile.origin).normalized,flightTime=time});
+        }
+    }
+}

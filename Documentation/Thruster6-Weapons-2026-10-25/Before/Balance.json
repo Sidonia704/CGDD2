@@ -1,0 +1,118 @@
+{
+  "tuning": [
+    {
+      "shape": "Thruster1",
+      "thrustNewtons": 320000,
+      "massKg": 600,
+      "weapon": null
+    },
+    {
+      "shape": "Thruster2",
+      "thrustNewtons": 800000,
+      "massKg": 1400,
+      "weapon": null
+    },
+    {
+      "shape": "Laser",
+      "thrustNewtons": 0,
+      "massKg": 600,
+      "weapon": "{\"shotsPerSecond\":12.0,\"damage\":25.0,\"projectileSpeed\":1400.0,\"projectileDiameter\":0.699999988079071,\"penetrationDepth\":1.0,\"secondLayerDamageMultiplier\":0.0,\"range\":5000.0,\"visualLength\":18.0,\"tailLength\":10.0,\"visualWidth\":0.75,\"visualIntensity\":5.0,\"minimumVisualPixels\":0.0,\"sustainedPowerWatts\":50.0,\"energyPerShot\":100.0,\"delivery\":0,\"effectColor\":{\"r\":0.07999999821186066,\"g\":0.6499999761581421,\"b\":1.0,\"a\":1.0},\"missileLockSeconds\":2.0,\"reloadSeconds\":4.0,\"missileTurnDegrees\":110.0,\"missileAcceleration\":60.0,\"missileLaunchSpeed\":25.0,\"explosionRadius\":4.0,\"launcherMesh\":{\"instanceID\":0},\"missileMesh\":{\"instanceID\":0},\"missileLaunchOffsets\":[{\"x\":0.0,\"y\":0.0,\"z\":0.0}],\"muzzleOffsets\":[],\"projectileMaterial\":{\"instanceID\":0},\"beamDuration\":0.11999999731779099,\"beamMesh\":{\"instanceID\":0},\"activationMode\":0,\"chargeSeconds\":1.0,\"requireTargetLock\":false}"
+    },
+    {
+      "shape": "Thruster3",
+      "thrustNewtons": 1480000,
+      "massKg": 2500,
+      "weapon": null
+    },
+    {
+      "shape": "Thruster4",
+      "thrustNewtons": 2880000,
+      "massKg": 4800,
+      "weapon": null
+    },
+    {
+      "shape": "Thruster5",
+      "thrustNewtons": 4400000,
+      "massKg": 7600,
+      "weapon": null
+    },
+    {
+      "shape": "Gun1",
+      "thrustNewtons": 0,
+      "massKg": 650,
+      "weapon": "{\"shotsPerSecond\":12.0,\"damage\":15.0,\"projectileSpeed\":1250.0,\"projectileDiameter\":0.1599999964237213,\"penetrationDepth\":1.0,\"secondLayerDamageMultiplier\":0.0,\"range\":1800.0,\"visualLength\":12.0,\"tailLength\":10.0,\"visualWidth\":2.4000000953674318,\"visualIntensity\":6.5,\"minimumVisualPixels\":2.799999952316284,\"sustainedPowerWatts\":20.0,\"energyPerShot\":100.0,\"delivery\":0,\"effectColor\":{\"r\":1.0,\"g\":0.6200000047683716,\"b\":0.054999999701976779,\"a\":1.0},\"missileLockSeconds\":2.0,\"reloadSeconds\":4.0,\"missileTurnDegrees\":110.0,\"missileAcceleration\":160.0,\"missileLaunchSpeed\":35.0,\"explosionRadius\":3.0,\"launcherMesh\":{\"instanceID\":0},\"missileMesh\":{\"instanceID\":0},\"missileLaunchOffsets\":[{\"x\":0.0,\"y\":0.0,\"z\":0.0}],\"muzzleOffsets\":[{\"x\":-0.13002851605415345,\"y\":-0.000021591782569885254,\"z\":0.0},{\"x\":0.13002851605415345,\"y\":0.00002158433198928833,\"z\":0.0}],\"projectileMaterial\":{\"instanceID\":68464},\"beamDuration\":0.11999999731779099,\"beamMesh\":{\"instanceID\":0},\"activationMode\":0,\"chargeSeconds\":1.0,\"requireTargetLock\":false}"
+    },
+    {
+      "shape": "Gun2",
+      "thrustNewtons": 0,
+      "massKg": 1550,
+      "weapon": "{\"shotsPerSecond\":15.0,\"damage\":20.0,\"projectileSpeed\":1350.0,\"projectileDiameter\":0.19499999284744264,\"penetrationDepth\":1.0,\"secondLayerDamageMultiplier\":0.0,\"range\":2200.0,\"visualLength\":15.0,\"tailLength\":13.0,\"visualWidth\":2.700000047683716,\"visualIntensity\":6.5,\"minimumVisualPixels\":2.799999952316284,\"sustainedPowerWatts\":35.0,\"energyPerShot\":100.0,\"delivery\":0,\"effectColor\":{\"r\":1.0,\"g\":0.6200000047683716,\"b\":0.054999999701976779,\"a\":1.0},\"missileLockSeconds\":2.0,\"reloadSeconds\":4.0,\"missileTurnDegrees\":110.0,\"missileAcceleration\":160.0,\"missileLaunchSpeed\":35.0,\"explosionRadius\":3.0,\"launcherMesh\":{\"instanceID\":0},\"missileMesh\":{\"instanceID\":0},\"missileLaunchOffsets\":[{\"x\":0.0,\"y\":0.0,\"z\":0.0}],\"muzzleOffsets\":[{\"x\":-0.2594667971134186,\"y\":-0.12439227849245072,\"z\":0.0},{\"x\":0.25946661829948428,\"y\":-0.12344247102737427,\"z\":0.0},{\"x\":-0.25946539640426638,\"y\":0.12344273924827576,\"z\":0.0},{\"x\":0.25946560502052309,\"y\":0.12439201772212982,\"z\":0.0}],\"projectileMaterial\":{\"instanceID\":68464},\"beamDuration\":0.11999999731779099,\"beamMesh\":{\"instanceID\":0},\"activationMode\":0,\"chargeSeconds\":1.0,\"requireTargetLock\":false}"
+    },
+    {
+      "shape": "Gun3",
+      "thrustNewtons": 0,
+      "massKg": 2900,
+      "weapon": "{\"shotsPerSecond\":18.0,\"damage\":28.0,\"projectileSpeed\":1450.0,\"projectileDiameter\":0.22999998927116395,\"penetrationDepth\":1.0,\"secondLayerDamageMultiplier\":0.0,\"range\":2600.0,\"visualLength\":18.0,\"tailLength\":16.0,\"visualWidth\":3.0,\"visualIntensity\":6.5,\"minimumVisualPixels\":2.799999952316284,\"sustainedPowerWatts\":60.0,\"energyPerShot\":100.0,\"delivery\":0,\"effectColor\":{\"r\":1.0,\"g\":0.6200000047683716,\"b\":0.054999999701976779,\"a\":1.0},\"missileLockSeconds\":2.0,\"reloadSeconds\":4.0,\"missileTurnDegrees\":110.0,\"missileAcceleration\":160.0,\"missileLaunchSpeed\":35.0,\"explosionRadius\":3.0,\"launcherMesh\":{\"instanceID\":0},\"missileMesh\":{\"instanceID\":0},\"missileLaunchOffsets\":[{\"x\":0.0,\"y\":0.0,\"z\":0.0}],\"muzzleOffsets\":[{\"x\":-5.066394805908203e-7,\"y\":-0.2801194190979004,\"z\":-2.384185791015625e-7},{\"x\":0.24258998036384583,\"y\":-0.14006036520004273,\"z\":-2.384185791015625e-7},{\"x\":-0.2425895780324936,\"y\":-0.14005959033966065,\"z\":-2.384185791015625e-7},{\"x\":-0.2425910085439682,\"y\":0.14005953073501588,\"z\":-2.384185791015625e-7},{\"x\":0.24259135127067567,\"y\":0.14005959033966065,\"z\":-2.384185791015625e-7},{\"x\":-5.066394805908203e-7,\"y\":0.2801200747489929,\"z\":-2.384185791015625e-7}],\"projectileMaterial\":{\"instanceID\":68464},\"beamDuration\":0.11999999731779099,\"beamMesh\":{\"instanceID\":0},\"activationMode\":0,\"chargeSeconds\":1.0,\"requireTargetLock\":false}"
+    },
+    {
+      "shape": "Laser2",
+      "thrustNewtons": 0,
+      "massKg": 1700,
+      "weapon": "{\"shotsPerSecond\":12.0,\"damage\":40.0,\"projectileSpeed\":1500.0,\"projectileDiameter\":0.800000011920929,\"penetrationDepth\":1.0,\"secondLayerDamageMultiplier\":0.0,\"range\":5000.0,\"visualLength\":20.0,\"tailLength\":12.0,\"visualWidth\":0.8500000238418579,\"visualIntensity\":5.0,\"minimumVisualPixels\":0.0,\"sustainedPowerWatts\":100.0,\"energyPerShot\":100.0,\"delivery\":0,\"effectColor\":{\"r\":0.10000000149011612,\"g\":0.5699999928474426,\"b\":1.0,\"a\":1.0},\"missileLockSeconds\":2.0,\"reloadSeconds\":4.0,\"missileTurnDegrees\":110.0,\"missileAcceleration\":160.0,\"missileLaunchSpeed\":35.0,\"explosionRadius\":3.0,\"launcherMesh\":{\"instanceID\":0},\"missileMesh\":{\"instanceID\":0},\"missileLaunchOffsets\":[{\"x\":0.0,\"y\":0.0,\"z\":0.0}],\"muzzleOffsets\":[],\"projectileMaterial\":{\"instanceID\":69710},\"beamDuration\":0.11999999731779099,\"beamMesh\":{\"instanceID\":0},\"activationMode\":0,\"chargeSeconds\":1.0,\"requireTargetLock\":false}"
+    },
+    {
+      "shape": "Laser3",
+      "thrustNewtons": 0,
+      "massKg": 3200,
+      "weapon": "{\"shotsPerSecond\":12.0,\"damage\":65.0,\"projectileSpeed\":1600.0,\"projectileDiameter\":1.0,\"penetrationDepth\":1.0,\"secondLayerDamageMultiplier\":0.0,\"range\":5000.0,\"visualLength\":24.0,\"tailLength\":15.0,\"visualWidth\":1.0499999523162842,\"visualIntensity\":5.0,\"minimumVisualPixels\":0.0,\"sustainedPowerWatts\":180.0,\"energyPerShot\":100.0,\"delivery\":0,\"effectColor\":{\"r\":0.10000000149011612,\"g\":0.5699999928474426,\"b\":1.0,\"a\":1.0},\"missileLockSeconds\":2.0,\"reloadSeconds\":4.0,\"missileTurnDegrees\":110.0,\"missileAcceleration\":160.0,\"missileLaunchSpeed\":35.0,\"explosionRadius\":3.0,\"launcherMesh\":{\"instanceID\":0},\"missileMesh\":{\"instanceID\":0},\"missileLaunchOffsets\":[{\"x\":0.0,\"y\":0.0,\"z\":0.0}],\"muzzleOffsets\":[],\"projectileMaterial\":{\"instanceID\":69710},\"beamDuration\":0.11999999731779099,\"beamMesh\":{\"instanceID\":0},\"activationMode\":0,\"chargeSeconds\":1.0,\"requireTargetLock\":false}"
+    },
+    {
+      "shape": "Railgun1",
+      "thrustNewtons": 0,
+      "massKg": 1000,
+      "weapon": "{\"shotsPerSecond\":0.6499999761581421,\"damage\":340.0,\"projectileSpeed\":4000.0,\"projectileDiameter\":0.2199999988079071,\"penetrationDepth\":3.0,\"secondLayerDamageMultiplier\":0.75,\"range\":6500.0,\"visualLength\":36.0,\"tailLength\":22.0,\"visualWidth\":2.4000000953674318,\"visualIntensity\":7.0,\"minimumVisualPixels\":2.799999952316284,\"sustainedPowerWatts\":65.0,\"energyPerShot\":100.0,\"delivery\":0,\"effectColor\":{\"r\":1.0,\"g\":0.6600000262260437,\"b\":0.11999999731779099,\"a\":1.0},\"missileLockSeconds\":2.0,\"reloadSeconds\":4.0,\"missileTurnDegrees\":110.0,\"missileAcceleration\":160.0,\"missileLaunchSpeed\":35.0,\"explosionRadius\":3.0,\"launcherMesh\":{\"instanceID\":0},\"missileMesh\":{\"instanceID\":0},\"missileLaunchOffsets\":[{\"x\":0.0,\"y\":0.0,\"z\":0.0}],\"muzzleOffsets\":[],\"projectileMaterial\":{\"instanceID\":69724},\"beamDuration\":0.11999999731779099,\"beamMesh\":{\"instanceID\":0},\"activationMode\":0,\"chargeSeconds\":1.0,\"requireTargetLock\":false}"
+    },
+    {
+      "shape": "Railgun2",
+      "thrustNewtons": 0,
+      "massKg": 2100,
+      "weapon": "{\"shotsPerSecond\":0.5,\"damage\":650.0,\"projectileSpeed\":5000.0,\"projectileDiameter\":0.27000001072883608,\"penetrationDepth\":5.0,\"secondLayerDamageMultiplier\":0.75,\"range\":7500.0,\"visualLength\":48.0,\"tailLength\":32.0,\"visualWidth\":2.8000001907348635,\"visualIntensity\":7.0,\"minimumVisualPixels\":2.799999952316284,\"sustainedPowerWatts\":120.0,\"energyPerShot\":100.0,\"delivery\":0,\"effectColor\":{\"r\":1.0,\"g\":0.6600000262260437,\"b\":0.11999999731779099,\"a\":1.0},\"missileLockSeconds\":2.0,\"reloadSeconds\":4.0,\"missileTurnDegrees\":110.0,\"missileAcceleration\":160.0,\"missileLaunchSpeed\":35.0,\"explosionRadius\":3.0,\"launcherMesh\":{\"instanceID\":0},\"missileMesh\":{\"instanceID\":0},\"missileLaunchOffsets\":[{\"x\":0.0,\"y\":0.0,\"z\":0.0}],\"muzzleOffsets\":[],\"projectileMaterial\":{\"instanceID\":69724},\"beamDuration\":0.11999999731779099,\"beamMesh\":{\"instanceID\":0},\"activationMode\":0,\"chargeSeconds\":1.0,\"requireTargetLock\":false}"
+    },
+    {
+      "shape": "Railgun3",
+      "thrustNewtons": 0,
+      "massKg": 3900,
+      "weapon": "{\"shotsPerSecond\":0.4000000059604645,\"damage\":1150.0,\"projectileSpeed\":6000.0,\"projectileDiameter\":0.3199999928474426,\"penetrationDepth\":7.0,\"secondLayerDamageMultiplier\":0.75,\"range\":8500.0,\"visualLength\":60.0,\"tailLength\":42.0,\"visualWidth\":3.200000047683716,\"visualIntensity\":7.0,\"minimumVisualPixels\":2.799999952316284,\"sustainedPowerWatts\":200.0,\"energyPerShot\":100.0,\"delivery\":0,\"effectColor\":{\"r\":1.0,\"g\":0.6600000262260437,\"b\":0.11999999731779099,\"a\":1.0},\"missileLockSeconds\":2.0,\"reloadSeconds\":4.0,\"missileTurnDegrees\":110.0,\"missileAcceleration\":160.0,\"missileLaunchSpeed\":35.0,\"explosionRadius\":3.0,\"launcherMesh\":{\"instanceID\":0},\"missileMesh\":{\"instanceID\":0},\"missileLaunchOffsets\":[{\"x\":0.0,\"y\":0.0,\"z\":0.0}],\"muzzleOffsets\":[],\"projectileMaterial\":{\"instanceID\":69724},\"beamDuration\":0.11999999731779099,\"beamMesh\":{\"instanceID\":0},\"activationMode\":0,\"chargeSeconds\":1.0,\"requireTargetLock\":false}"
+    },
+    {
+      "shape": "Missile1",
+      "thrustNewtons": 0,
+      "massKg": 850,
+      "weapon": "{\"shotsPerSecond\":0.25,\"damage\":400.0,\"projectileSpeed\":240.0,\"projectileDiameter\":0.3499999940395355,\"penetrationDepth\":1.0,\"secondLayerDamageMultiplier\":0.0,\"range\":3000.0,\"visualLength\":1.5,\"tailLength\":7.0,\"visualWidth\":0.3199999928474426,\"visualIntensity\":5.0,\"minimumVisualPixels\":0.0,\"sustainedPowerWatts\":90.0,\"energyPerShot\":100.0,\"delivery\":1,\"effectColor\":{\"r\":1.0,\"g\":0.4000000059604645,\"b\":0.02500000037252903,\"a\":1.0},\"missileLockSeconds\":2.0,\"reloadSeconds\":4.0,\"missileTurnDegrees\":110.0,\"missileAcceleration\":160.0,\"missileLaunchSpeed\":35.0,\"explosionRadius\":3.0,\"launcherMesh\":{\"instanceID\":69818},\"missileMesh\":{\"instanceID\":70054},\"missileLaunchOffsets\":[{\"x\":0.0,\"y\":0.0,\"z\":0.0}],\"muzzleOffsets\":[],\"projectileMaterial\":{\"instanceID\":68464},\"beamDuration\":0.11999999731779099,\"beamMesh\":{\"instanceID\":0},\"activationMode\":0,\"chargeSeconds\":1.0,\"requireTargetLock\":true}"
+    },
+    {
+      "shape": "Missile2",
+      "thrustNewtons": 0,
+      "massKg": 1600,
+      "weapon": "{\"shotsPerSecond\":0.1818181872367859,\"damage\":700.0,\"projectileSpeed\":300.0,\"projectileDiameter\":0.44999998807907107,\"penetrationDepth\":1.0,\"secondLayerDamageMultiplier\":0.0,\"range\":3500.0,\"visualLength\":2.5,\"tailLength\":10.0,\"visualWidth\":0.41999998688697817,\"visualIntensity\":5.0,\"minimumVisualPixels\":0.0,\"sustainedPowerWatts\":150.0,\"energyPerShot\":100.0,\"delivery\":1,\"effectColor\":{\"r\":1.0,\"g\":0.4000000059604645,\"b\":0.02500000037252903,\"a\":1.0},\"missileLockSeconds\":2.0,\"reloadSeconds\":5.5,\"missileTurnDegrees\":95.0,\"missileAcceleration\":180.0,\"missileLaunchSpeed\":40.0,\"explosionRadius\":4.5,\"launcherMesh\":{\"instanceID\":70158},\"missileMesh\":{\"instanceID\":67622},\"missileLaunchOffsets\":[{\"x\":0.5045583248138428,\"y\":-2.9802322387695315e-8,\"z\":0.0},{\"x\":-0.5045583248138428,\"y\":2.9802322387695315e-8,\"z\":2.384185791015625e-7}],\"muzzleOffsets\":[],\"projectileMaterial\":{\"instanceID\":68464},\"beamDuration\":0.11999999731779099,\"beamMesh\":{\"instanceID\":0},\"activationMode\":0,\"chargeSeconds\":1.0,\"requireTargetLock\":true}"
+    },
+    {
+      "shape": "Missile3",
+      "thrustNewtons": 0,
+      "massKg": 1800,
+      "weapon": "{\"shotsPerSecond\":0.1428571492433548,\"damage\":1100.0,\"projectileSpeed\":360.0,\"projectileDiameter\":0.550000011920929,\"penetrationDepth\":1.0,\"secondLayerDamageMultiplier\":0.0,\"range\":4000.0,\"visualLength\":3.5,\"tailLength\":13.0,\"visualWidth\":0.5199999809265137,\"visualIntensity\":5.0,\"minimumVisualPixels\":0.0,\"sustainedPowerWatts\":230.0,\"energyPerShot\":100.0,\"delivery\":1,\"effectColor\":{\"r\":1.0,\"g\":0.4000000059604645,\"b\":0.02500000037252903,\"a\":1.0},\"missileLockSeconds\":2.0,\"reloadSeconds\":7.0,\"missileTurnDegrees\":80.0,\"missileAcceleration\":200.0,\"missileLaunchSpeed\":45.0,\"explosionRadius\":6.0,\"launcherMesh\":{\"instanceID\":67878},\"missileMesh\":{\"instanceID\":69306},\"missileLaunchOffsets\":[{\"x\":0.0,\"y\":0.0,\"z\":0.0}],\"muzzleOffsets\":[],\"projectileMaterial\":{\"instanceID\":68464},\"beamDuration\":0.11999999731779099,\"beamMesh\":{\"instanceID\":0},\"activationMode\":0,\"chargeSeconds\":1.0,\"requireTargetLock\":true}"
+    },
+    {
+      "shape": "Sword1",
+      "thrustNewtons": 0,
+      "massKg": 700,
+      "weapon": "{\"shotsPerSecond\":12.0,\"damage\":45.0,\"projectileSpeed\":1400.0,\"projectileDiameter\":0.75,\"penetrationDepth\":1.5,\"secondLayerDamageMultiplier\":0.6499999761581421,\"range\":40.0,\"visualLength\":40.0,\"tailLength\":0.0,\"visualWidth\":0.44999998807907107,\"visualIntensity\":5.0,\"minimumVisualPixels\":0.0,\"sustainedPowerWatts\":125.0,\"energyPerShot\":100.0,\"delivery\":2,\"effectColor\":{\"r\":0.10000000149011612,\"g\":0.5699999928474426,\"b\":1.0,\"a\":1.0},\"missileLockSeconds\":2.0,\"reloadSeconds\":4.0,\"missileTurnDegrees\":110.0,\"missileAcceleration\":160.0,\"missileLaunchSpeed\":35.0,\"explosionRadius\":3.0,\"launcherMesh\":{\"instanceID\":0},\"missileMesh\":{\"instanceID\":0},\"missileLaunchOffsets\":[{\"x\":0.0,\"y\":0.0,\"z\":0.0}],\"muzzleOffsets\":[],\"projectileMaterial\":{\"instanceID\":69776},\"beamDuration\":0.11999999731779099,\"beamMesh\":{\"instanceID\":71322},\"activationMode\":0,\"chargeSeconds\":1.0,\"requireTargetLock\":false}"
+    },
+    {
+      "shape": "Sword2",
+      "thrustNewtons": 0,
+      "massKg": 1550,
+      "weapon": "{\"shotsPerSecond\":12.0,\"damage\":80.0,\"projectileSpeed\":1400.0,\"projectileDiameter\":1.100000023841858,\"penetrationDepth\":2.0,\"secondLayerDamageMultiplier\":0.6499999761581421,\"range\":40.0,\"visualLength\":40.0,\"tailLength\":0.0,\"visualWidth\":0.699999988079071,\"visualIntensity\":5.0,\"minimumVisualPixels\":0.0,\"sustainedPowerWatts\":220.0,\"energyPerShot\":100.0,\"delivery\":2,\"effectColor\":{\"r\":0.10000000149011612,\"g\":0.5699999928474426,\"b\":1.0,\"a\":1.0},\"missileLockSeconds\":2.0,\"reloadSeconds\":4.0,\"missileTurnDegrees\":110.0,\"missileAcceleration\":160.0,\"missileLaunchSpeed\":35.0,\"explosionRadius\":3.0,\"launcherMesh\":{\"instanceID\":0},\"missileMesh\":{\"instanceID\":0},\"missileLaunchOffsets\":[{\"x\":0.0,\"y\":0.0,\"z\":0.0}],\"muzzleOffsets\":[],\"projectileMaterial\":{\"instanceID\":69776},\"beamDuration\":0.11999999731779099,\"beamMesh\":{\"instanceID\":68928},\"activationMode\":0,\"chargeSeconds\":1.0,\"requireTargetLock\":false}"
+    }
+  ]
+}

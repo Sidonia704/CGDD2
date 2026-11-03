@@ -1,0 +1,531 @@
+{
+  "hex-deck": {
+    "sourceShellIds": [
+      497,
+      498,
+      499,
+      500,
+      501,
+      502,
+      503,
+      504,
+      505,
+      506,
+      507,
+      508,
+      509,
+      510,
+      511,
+      512,
+      513,
+      514,
+      515,
+      516,
+      517,
+      518,
+      519,
+      520,
+      521,
+      522,
+      523,
+      524,
+      525,
+      526,
+      527,
+      528,
+      529,
+      530,
+      531,
+      532,
+      533,
+      534,
+      535,
+      536,
+      537,
+      538,
+      539,
+      540,
+      541,
+      542,
+      543,
+      544,
+      545,
+      546,
+      547,
+      548,
+      549,
+      550,
+      551,
+      552,
+      553,
+      554,
+      555,
+      556,
+      557,
+      558,
+      559,
+      560,
+      561,
+      562,
+      563,
+      564,
+      565,
+      566,
+      567,
+      568,
+      569,
+      593,
+      594,
+      595,
+      596,
+      597,
+      598,
+      599,
+      600
+    ],
+    "sourceCanonicalBounds": {
+      "min": [
+        -125.9237288988445,
+        194.0369768967538,
+        42.037923765913575
+      ],
+      "max": [
+        105.29384812189099,
+        272.43875262728227,
+        341.07591718496343
+      ]
+    },
+    "voxelCanonicalBounds": {
+      "min": [
+        -127.21774887765638,
+        193.38328406608244,
+        41.165884976776525
+      ],
+      "max": [
+        106.29467773068568,
+        273.2350804128564,
+        342.08812444983306
+      ]
+    },
+    "voxelMinusSourceBoundaryMetres": {
+      "min": [
+        -1.2940199788118747,
+        -0.6536928306713605,
+        -0.8720387891370507
+      ],
+      "max": [
+        1.0008296087946889,
+        0.7963277855741353,
+        1.0122072648696303
+      ]
+    },
+    "cellRecords": 109451,
+    "assetCount": 4,
+    "maxAssetCells": 92762,
+    "initialConnectedComponents": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "silhouette": {
+      "TOP XZ": {
+        "sourcePixels": 4920,
+        "voxelPixels": 6111,
+        "intersection": 4920,
+        "union": 6111,
+        "silhouetteIoU": 0.8051
+      },
+      "FRONT XY": {
+        "sourcePixels": 32213,
+        "voxelPixels": 33287,
+        "intersection": 32213,
+        "union": 33287,
+        "silhouetteIoU": 0.9677
+      },
+      "SIDE ZY": {
+        "sourcePixels": 4437,
+        "voxelPixels": 5151,
+        "intersection": 4437,
+        "union": 5151,
+        "silhouetteIoU": 0.8614
+      }
+    }
+  },
+  "truss": {
+    "sourceShellIds": [
+      127
+    ],
+    "sourceCanonicalBounds": {
+      "min": [
+        -46.08872013400499,
+        237.39770142542883,
+        -45.94416890938122
+      ],
+      "max": [
+        185.20416217423042,
+        275.32258213252413,
+        -16.37017219784373
+      ]
+    },
+    "voxelCanonicalBounds": {
+      "min": [
+        -46.970417643983176,
+        236.86014177897647,
+        -46.84002379228539
+      ],
+      "max": [
+        186.05847615007227,
+        275.86014177897647,
+        -15.458669581147353
+      ]
+    },
+    "voxelMinusSourceBoundaryMetres": {
+      "min": [
+        -0.8816975099781885,
+        -0.5375596464523653,
+        -0.8958548829041746
+      ],
+      "max": [
+        0.8543139758418477,
+        0.5375596464523369,
+        0.9115026166963762
+      ]
+    },
+    "cellRecords": 38140,
+    "assetCount": 1,
+    "maxAssetCells": 38140,
+    "initialConnectedComponents": [
+      1
+    ],
+    "silhouette": {
+      "TOP XZ": {
+        "sourcePixels": 5984,
+        "voxelPixels": 6940,
+        "intersection": 5984,
+        "union": 6940,
+        "silhouetteIoU": 0.8622
+      },
+      "FRONT XY": {
+        "sourcePixels": 5080,
+        "voxelPixels": 5925,
+        "intersection": 5080,
+        "union": 5925,
+        "silhouetteIoU": 0.8574
+      },
+      "SIDE ZY": {
+        "sourcePixels": 322,
+        "voxelPixels": 431,
+        "intersection": 322,
+        "union": 431,
+        "silhouetteIoU": 0.7471
+      }
+    }
+  },
+  "left-angled-truss": {
+    "sourceShellIds": [
+      0
+    ],
+    "sourceCanonicalBounds": {
+      "min": [
+        -75.67887416828432,
+        98.28730713918667,
+        -33.03069251804742
+      ],
+      "max": [
+        103.00919885978124,
+        262.803007423461,
+        47.01221535112465
+      ]
+    },
+    "voxelCanonicalBounds": {
+      "min": [
+        -76.78664823344538,
+        97.45021683955106,
+        -33.29107428803366
+      ],
+      "max": [
+        103.96626490963529,
+        263.0442226802639,
+        47.315689325468874
+      ]
+    },
+    "voxelMinusSourceBoundaryMetres": {
+      "min": [
+        -1.1077740651610526,
+        -0.8370902996356051,
+        -0.26038176998624607
+      ],
+      "max": [
+        0.9570660498540491,
+        0.2412152568028887,
+        0.30347397434422163
+      ]
+    },
+    "cellRecords": 32701,
+    "assetCount": 1,
+    "maxAssetCells": 32701,
+    "initialConnectedComponents": [
+      1
+    ],
+    "silhouette": {
+      "TOP XZ": {
+        "sourcePixels": 5718,
+        "voxelPixels": 6517,
+        "intersection": 5718,
+        "union": 6517,
+        "silhouetteIoU": 0.8774
+      },
+      "FRONT XY": {
+        "sourcePixels": 5338,
+        "voxelPixels": 6121,
+        "intersection": 5338,
+        "union": 6121,
+        "silhouetteIoU": 0.8721
+      },
+      "SIDE ZY": {
+        "sourcePixels": 712,
+        "voxelPixels": 810,
+        "intersection": 712,
+        "union": 810,
+        "silhouetteIoU": 0.879
+      }
+    }
+  },
+  "right-truss-extension": {
+    "sourceShellIds": [
+      134
+    ],
+    "sourceCanonicalBounds": {
+      "min": [
+        224.58777962156512,
+        231.53399169689825,
+        -259.3632745661544
+      ],
+      "max": [
+        406.88369463289246,
+        270.2250958117029,
+        -97.92400658390576
+      ]
+    },
+    "voxelCanonicalBounds": {
+      "min": [
+        223.85023532247257,
+        230.59523767210624,
+        -260.1376158345567
+      ],
+      "max": [
+        408.05931458621313,
+        271.17263061193637,
+        -97.07533245253065
+      ]
+    },
+    "voxelMinusSourceBoundaryMetres": {
+      "min": [
+        -0.7375442990925478,
+        -0.9387540247920185,
+        -0.7743412684022815
+      ],
+      "max": [
+        1.1756199533206768,
+        0.947534800233484,
+        0.8486741313751196
+      ]
+    },
+    "cellRecords": 32685,
+    "assetCount": 1,
+    "maxAssetCells": 32685,
+    "initialConnectedComponents": [
+      1
+    ],
+    "silhouette": {
+      "TOP XZ": {
+        "sourcePixels": 5756,
+        "voxelPixels": 6600,
+        "intersection": 5756,
+        "union": 6600,
+        "silhouetteIoU": 0.8721
+      },
+      "FRONT XY": {
+        "sourcePixels": 4920,
+        "voxelPixels": 5695,
+        "intersection": 4920,
+        "union": 5695,
+        "silhouetteIoU": 0.8639
+      },
+      "SIDE ZY": {
+        "sourcePixels": 715,
+        "voxelPixels": 812,
+        "intersection": 715,
+        "union": 812,
+        "silhouetteIoU": 0.8805
+      }
+    }
+  },
+  "five-parallel-tanks": {
+    "sourceShellIds": [
+      570,
+      571,
+      572,
+      573,
+      574
+    ],
+    "sourceCanonicalBounds": {
+      "min": [
+        -151.77387707322956,
+        153.12507941573685,
+        40.03961937675632
+      ],
+      "max": [
+        100.53989959535969,
+        262.1270574765213,
+        286.91493023648496
+      ]
+    },
+    "voxelCanonicalBounds": {
+      "min": [
+        -152.5,
+        152.5,
+        39.5
+      ],
+      "max": [
+        101.5,
+        262.5,
+        287.5
+      ]
+    },
+    "voxelMinusSourceBoundaryMetres": {
+      "min": [
+        -0.7261229267704437,
+        -0.6250794157368489,
+        -0.5396193767563204
+      ],
+      "max": [
+        0.9601004046403148,
+        0.3729425234786845,
+        0.5850697635150368
+      ]
+    },
+    "cellRecords": 124596,
+    "assetCount": 5,
+    "maxAssetCells": 25231,
+    "initialConnectedComponents": [
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "silhouette": {
+      "TOP XZ": {
+        "sourcePixels": 24127,
+        "voxelPixels": 25399,
+        "intersection": 24127,
+        "union": 25399,
+        "silhouetteIoU": 0.9499
+      },
+      "FRONT XY": {
+        "sourcePixels": 12920,
+        "voxelPixels": 13366,
+        "intersection": 12920,
+        "union": 13366,
+        "silhouetteIoU": 0.9666
+      },
+      "SIDE ZY": {
+        "sourcePixels": 9286,
+        "voxelPixels": 9698,
+        "intersection": 9286,
+        "union": 9698,
+        "silhouetteIoU": 0.9575
+      }
+    }
+  },
+  "left-upper-equipment": {
+    "sourceShellIds": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18
+    ],
+    "sourceCanonicalBounds": {
+      "min": [
+        -189.46092637479427,
+        287.96397041026177,
+        -350.8691134497306
+      ],
+      "max": [
+        -40.177748055015414,
+        408.5274049923062,
+        32.93100559792905
+      ]
+    },
+    "voxelCanonicalBounds": {
+      "min": [
+        -189.5,
+        287.5,
+        -351.5
+      ],
+      "max": [
+        -39.5,
+        409.5,
+        33.5
+      ]
+    },
+    "voxelMinusSourceBoundaryMetres": {
+      "min": [
+        -0.03907362520573088,
+        -0.46397041026176566,
+        -0.6308865502693948
+      ],
+      "max": [
+        0.6777480550154138,
+        0.9725950076938261,
+        0.568994402070949
+      ]
+    },
+    "cellRecords": 149417,
+    "assetCount": 3,
+    "maxAssetCells": 78754,
+    "initialConnectedComponents": [
+      1,
+      1,
+      1
+    ],
+    "silhouette": {
+      "TOP XZ": {
+        "sourcePixels": 28889,
+        "voxelPixels": 29458,
+        "intersection": 28889,
+        "union": 29458,
+        "silhouetteIoU": 0.9807
+      },
+      "FRONT XY": {
+        "sourcePixels": 9567,
+        "voxelPixels": 10006,
+        "intersection": 9567,
+        "union": 10006,
+        "silhouetteIoU": 0.9561
+      },
+      "SIDE ZY": {
+        "sourcePixels": 18069,
+        "voxelPixels": 18591,
+        "intersection": 18069,
+        "union": 18591,
+        "silhouetteIoU": 0.9719
+      }
+    }
+  }
+}

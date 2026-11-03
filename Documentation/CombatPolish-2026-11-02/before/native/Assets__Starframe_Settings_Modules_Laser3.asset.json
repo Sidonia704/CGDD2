@@ -1,0 +1,152 @@
+{
+    "MonoBehaviour": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "Laser3",
+        "m_EditorClassIdentifier": "Starframe.Construction::Starframe.Flight.ModuleDefinition",
+        "shape": 27,
+        "displayName": "激光速射炮 3",
+        "category": 3,
+        "cost": 520.0,
+        "massKg": 2200.0,
+        "maxHp": 4200.0,
+        "recoverySeconds": 23.0,
+        "thrustNewtons": 0.0,
+        "occupiedCells": [
+            {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            {
+                "x": 1,
+                "y": 0,
+                "z": 0
+            },
+            {
+                "x": 0,
+                "y": 0,
+                "z": 1
+            },
+            {
+                "x": 1,
+                "y": 0,
+                "z": 1
+            },
+            {
+                "x": 0,
+                "y": 0,
+                "z": 2
+            },
+            {
+                "x": 1,
+                "y": 0,
+                "z": 2
+            },
+            {
+                "x": 0,
+                "y": 0,
+                "z": 3
+            },
+            {
+                "x": 1,
+                "y": 0,
+                "z": 3
+            },
+            {
+                "x": 0,
+                "y": 1,
+                "z": 0
+            },
+            {
+                "x": 1,
+                "y": 1,
+                "z": 0
+            },
+            {
+                "x": 0,
+                "y": 1,
+                "z": 1
+            },
+            {
+                "x": 1,
+                "y": 1,
+                "z": 1
+            },
+            {
+                "x": 0,
+                "y": 1,
+                "z": 2
+            },
+            {
+                "x": 1,
+                "y": 1,
+                "z": 2
+            },
+            {
+                "x": 0,
+                "y": 1,
+                "z": 3
+            },
+            {
+                "x": 1,
+                "y": 1,
+                "z": 3
+            }
+        ],
+        "localExhaustDirections": [],
+        "localNozzlePositions": [],
+        "muzzleLocalPosition": {
+            "x": 0.5075781345367432,
+            "y": 0.48478445410728457,
+            "z": 3.416473627090454
+        },
+        "muzzleClearanceDiameter": 0.2199999988079071,
+        "mesh": {
+            "fileID": 4300000,
+            "guid": "ed5c24afb2179754bab5a6429ec8f2b6",
+            "type": 2
+        },
+        "outline": {
+            "instanceID": 0
+        },
+        "drawOutline": false,
+        "material": {
+            "fileID": 2100000,
+            "guid": "d345dd0e8b96b7645bfc4f0321a23de7",
+            "type": 2
+        },
+        "icon": {
+            "fileID": 21300000,
+            "guid": "e02a19794d7b36b42a2f16a6d890a9f2",
+            "type": 3
+        },
+        "selectedIcon": {
+            "fileID": 21300000,
+            "guid": "e27a9121c05921a42a977bd15608ba43",
+            "type": 3
+        },
+        "weapon": {
+            "fileID": 11400000,
+            "guid": "6a1af976fe9efed48b2639f01cf8df49",
+            "type": 2
+        },
+        "countermeasure": {
+            "instanceID": 0
+        },
+        "generationWatts": 0.0,
+        "storageJoules": 0.0,
+        "thrusterPowerWatts": 0.0,
+        "shieldPowerWatts": 0.0,
+        "shieldCapacity": 0.0,
+        "shieldRadius": 8.0,
+        "shieldRecoveryDelay": 2.0,
+        "shieldRecoveryPerSecond": 50.0,
+        "shieldSurfaceMaterial": {
+            "instanceID": 0
+        },
+        "shieldSurfaceMesh": {
+            "instanceID": 0
+        }
+    }
+}

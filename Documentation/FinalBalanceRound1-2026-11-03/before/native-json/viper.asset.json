@@ -1,0 +1,26 @@
+{
+    "MonoBehaviour": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "viper",
+        "m_EditorClassIdentifier": "Starframe.Construction::Starframe.Combat.EnemyArchetypeDefinition",
+        "id": "viper",
+        "nameZh": "蝰蛇突击机",
+        "nameEn": "Viper Assault Fighter",
+        "size": 0,
+        "blueprint": {
+            "fileID": 4900000,
+            "guid": "3f84213dc5d9d9d4f875dc9ff10b187d",
+            "type": 3
+        },
+        "alternateBlueprint": {
+            "instanceID": 0
+        },
+        "score": 150,
+        "behavior": {
+            "fileID": 11400000,
+            "guid": "42c178bf13414d24bb09dc37ec8f3b6c",
+            "type": 2
+        }
+    }
+}

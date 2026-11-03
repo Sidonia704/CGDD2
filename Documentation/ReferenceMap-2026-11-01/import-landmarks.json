@@ -1,0 +1,485 @@
+{
+  "success": true,
+  "command": "command",
+  "data": {
+    "command": "run_script",
+    "parameters": {
+      "file": "tools/ReferenceMap20261101/Import.cs",
+      "entry": "ReferenceMapImport.ImportBatch",
+      "args": "[\"Temp/ReferenceMap20261101/geometry-landmarks-catalog.json\",\"Landmarks\",0,75]",
+      "timeout_ms": "105000"
+    },
+    "result": {
+      "diagnostics": [],
+      "compileMs": 1057,
+      "executeMs": 14917,
+      "assemblyName": "PipelineRunScript_Import_5b7150c321aa4c36828f463915df6db1",
+      "success": true,
+      "result": {
+        "group": "Landmarks",
+        "start": 0,
+        "end": 75,
+        "total": 75,
+        "assets": [
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Landmarks/ref_0000_0127_00.asset",
+            "cells": 38692,
+            "lodVertices": 178728,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Landmarks/ref_0000_-001_00.asset",
+            "cells": 92762,
+            "lodVertices": 395752,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Landmarks/ref_0000_-001_01.asset",
+            "cells": 9167,
+            "lodVertices": 45104,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Landmarks/ref_0000_-001_02.asset",
+            "cells": 4287,
+            "lodVertices": 26080,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Landmarks/ref_0000_-001_03.asset",
+            "cells": 3235,
+            "lodVertices": 17256,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Landmarks/lefttruss_0000_0000_00.asset",
+            "cells": 32701,
+            "lodVertices": 217200,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Landmarks/righttruss_0000_0134_00.asset",
+            "cells": 32685,
+            "lodVertices": 216504,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Landmarks/leftupper_0000_-001_00.asset",
+            "cells": 78754,
+            "lodVertices": 621536,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Landmarks/leftupper_0000_-001_01.asset",
+            "cells": 68193,
+            "lodVertices": 519896,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Landmarks/leftupper_0000_-001_02.asset",
+            "cells": 2470,
+            "lodVertices": 19744,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Landmarks/tank_0000_0570_00.asset",
+            "cells": 24843,
+            "lodVertices": 198616,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Landmarks/tank_0000_0571_00.asset",
+            "cells": 24849,
+            "lodVertices": 198592,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Landmarks/tank_0000_0572_00.asset",
+            "cells": 24844,
+            "lodVertices": 198472,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Landmarks/tank_0000_0573_00.asset",
+            "cells": 24829,
+            "lodVertices": 198360,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Landmarks/tank_0000_0574_00.asset",
+            "cells": 25231,
+            "lodVertices": 201632,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Landmarks/ref_0000_0000_00.asset",
+            "cells": 3362,
+            "lodVertices": 7504,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Landmarks/ref_0000_0001_00.asset",
+            "cells": 402,
+            "lodVertices": 1624,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Landmarks/ref_0000_0002_00.asset",
+            "cells": 78,
+            "lodVertices": 592,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Landmarks/ref_0000_0003_00.asset",
+            "cells": 78,
+            "lodVertices": 560,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Landmarks/ref_0000_0004_00.asset",
+            "cells": 63,
+            "lodVertices": 472,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Landmarks/ref_0000_0005_00.asset",
+            "cells": 21,
+            "lodVertices": 224,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Landmarks/ref_0000_0006_00.asset",
+            "cells": 101,
+            "lodVertices": 672,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Landmarks/ref_0000_0007_00.asset",
+            "cells": 143,
+            "lodVertices": 816,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Landmarks/ref_0000_0008_00.asset",
+            "cells": 114,
+            "lodVertices": 736,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Landmarks/ref_0000_0009_00.asset",
+            "cells": 77,
+            "lodVertices": 600,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Landmarks/ref_0000_0010_00.asset",
+            "cells": 72,
+            "lodVertices": 560,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Landmarks/ref_0000_0011_00.asset",
+            "cells": 78,
+            "lodVertices": 592,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Landmarks/ref_0000_0012_00.asset",
+            "cells": 18,
+            "lodVertices": 232,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Landmarks/ref_0000_0013_00.asset",
+            "cells": 111,
+            "lodVertices": 704,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Landmarks/ref_0000_0014_00.asset",
+            "cells": 84,
+            "lodVertices": 568,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Landmarks/ref_0000_0015_00.asset",
+            "cells": 76,
+            "lodVertices": 592,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Landmarks/ref_0000_0016_00.asset",
+            "cells": 92,
+            "lodVertices": 648,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Landmarks/ref_0000_0017_00.asset",
+            "cells": 69,
+            "lodVertices": 512,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Landmarks/ref_0000_0018_00.asset",
+            "cells": 92,
+            "lodVertices": 632,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Landmarks/ref_0000_0019_00.asset",
+            "cells": 29,
+            "lodVertices": 264,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Landmarks/ref_0000_0020_00.asset",
+            "cells": 87,
+            "lodVertices": 560,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Landmarks/ref_0000_0021_00.asset",
+            "cells": 217,
+            "lodVertices": 1104,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Landmarks/ref_0000_0022_00.asset",
+            "cells": 198,
+            "lodVertices": 1136,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Landmarks/ref_0000_0023_00.asset",
+            "cells": 165,
+            "lodVertices": 960,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Landmarks/ref_0000_0024_00.asset",
+            "cells": 1975,
+            "lodVertices": 5776,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Landmarks/ref_0000_0025_00.asset",
+            "cells": 2272,
+            "lodVertices": 5736,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Landmarks/ref_0000_0026_00.asset",
+            "cells": 1516,
+            "lodVertices": 4504,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Landmarks/ref_0000_0027_00.asset",
+            "cells": 4624,
+            "lodVertices": 10264,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Landmarks/ref_0000_0028_00.asset",
+            "cells": 184,
+            "lodVertices": 976,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Landmarks/ref_0000_0029_00.asset",
+            "cells": 157,
+            "lodVertices": 920,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Landmarks/ref_0000_0030_00.asset",
+            "cells": 222,
+            "lodVertices": 1184,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Landmarks/ref_0000_0031_00.asset",
+            "cells": 1,
+            "lodVertices": 24,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Landmarks/ref_0000_0032_00.asset",
+            "cells": 4,
+            "lodVertices": 72,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Landmarks/ref_0000_0033_00.asset",
+            "cells": 36,
+            "lodVertices": 312,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Landmarks/ref_0000_0034_00.asset",
+            "cells": 503,
+            "lodVertices": 2184,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Landmarks/ref_0000_0035_00.asset",
+            "cells": 171,
+            "lodVertices": 1240,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Landmarks/ref_0000_0036_00.asset",
+            "cells": 1641,
+            "lodVertices": 4472,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Landmarks/ref_0000_0037_00.asset",
+            "cells": 310,
+            "lodVertices": 1456,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Landmarks/ref_0000_0038_00.asset",
+            "cells": 862,
+            "lodVertices": 2840,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Landmarks/ref_0000_0039_00.asset",
+            "cells": 479,
+            "lodVertices": 1944,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Landmarks/ref_0000_0040_00.asset",
+            "cells": 747,
+            "lodVertices": 2472,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Landmarks/ref_0000_0041_00.asset",
+            "cells": 607,
+            "lodVertices": 2104,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Landmarks/ref_0000_0042_00.asset",
+            "cells": 602,
+            "lodVertices": 2568,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Landmarks/ref_0000_0043_00.asset",
+            "cells": 603,
+            "lodVertices": 2232,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Landmarks/ref_0000_0044_00.asset",
+            "cells": 1687,
+            "lodVertices": 5056,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Landmarks/ref_0000_0045_00.asset",
+            "cells": 752,
+            "lodVertices": 3000,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Landmarks/ref_0000_0046_00.asset",
+            "cells": 626,
+            "lodVertices": 2504,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Landmarks/ref_0000_0047_00.asset",
+            "cells": 696,
+            "lodVertices": 2584,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Landmarks/ref_0000_0048_00.asset",
+            "cells": 243,
+            "lodVertices": 1224,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Landmarks/ref_0000_0049_00.asset",
+            "cells": 354,
+            "lodVertices": 1656,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Landmarks/ref_0000_0050_00.asset",
+            "cells": 185,
+            "lodVertices": 1128,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Landmarks/ref_0000_0051_00.asset",
+            "cells": 1046,
+            "lodVertices": 3528,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Landmarks/ref_0000_0052_00.asset",
+            "cells": 307,
+            "lodVertices": 1424,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Landmarks/ref_0000_0053_00.asset",
+            "cells": 696,
+            "lodVertices": 2544,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Landmarks/ref_0000_0054_00.asset",
+            "cells": 538,
+            "lodVertices": 2176,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Landmarks/ref_0000_0055_00.asset",
+            "cells": 717,
+            "lodVertices": 2568,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Landmarks/ref_0000_0056_00.asset",
+            "cells": 413,
+            "lodVertices": 1712,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Landmarks/ref_0000_0057_00.asset",
+            "cells": 833,
+            "lodVertices": 3424,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Landmarks/ref_0000_0058_00.asset",
+            "cells": 780,
+            "lodVertices": 2992,
+            "islands": 1
+          },
+          {
+            "path": "Assets/_Starframe/Maps/ReferenceMiningStation/Assets/Landmarks/ref_0000_0059_00.asset",
+            "cells": 1778,
+            "lodVertices": 4928,
+            "islands": 1
+          }
+        ]
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "D:\\software\\unity\\CGDD26107"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

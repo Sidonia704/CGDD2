@@ -1,0 +1,26 @@
+{
+    "MonoBehaviour": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "halberd-behavior",
+        "m_EditorClassIdentifier": "Starframe.Construction::Starframe.Combat.BotBehaviorProfile",
+        "role": 5,
+        "preferredRange": 750.0,
+        "cruiseSpeedFraction": 0.47999998927116396,
+        "attackSpeedFraction": 0.30000001192092898,
+        "strafeFraction": 0.05000000074505806,
+        "attackPass": false,
+        "minimumAttackSeconds": 2.0,
+        "attackSeconds": 6.0,
+        "breakawaySeconds": 2.0,
+        "reactionSeconds": 1.0,
+        "fireBurstSeconds": 1.2000000476837159,
+        "firePauseSeconds": 1.7999999523162842,
+        "aimErrorDegrees": 0.30000001192092898,
+        "velocityResponseSeconds": 0.8500000238418579,
+        "steeringResponseSeconds": 0.1599999964237213,
+        "weaponHoldSeconds": 1.399999976158142,
+        "terrainLookaheadSeconds": 2.0,
+        "terrainProbeSeconds": 0.18000000715255738
+    }
+}

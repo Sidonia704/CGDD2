@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="3" result="Passed" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-25 15:33:32Z" end-time="2026-10-25 15:33:32Z" duration="0.1702216">
+  <test-suite type="TestSuite" id="1000" name="CGDD26107" fullname="CGDD26107" runstate="Runnable" testcasecount="308" result="Passed" start-time="2026-10-25 15:33:32Z" end-time="2026-10-25 15:33:32Z" duration="0.170222" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1379" name="Starframe.Construction.Tests.dll" fullname="D:/software/unity/CGDD26107/Library/ScriptAssemblies/Starframe.Construction.Tests.dll" runstate="Runnable" testcasecount="307" result="Passed" start-time="2026-10-25 15:33:32Z" end-time="2026-10-25 15:33:32Z" duration="0.162225" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="50368" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1380" name="Starframe" fullname="Starframe" runstate="Runnable" testcasecount="307" result="Passed" start-time="2026-10-25 15:33:32Z" end-time="2026-10-25 15:33:32Z" duration="0.159406" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1381" name="Tests" fullname="Starframe.Tests" runstate="Runnable" testcasecount="148" result="Passed" start-time="2026-10-25 15:33:32Z" end-time="2026-10-25 15:33:32Z" duration="0.157456" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1094" name="RailgunFireTests" fullname="Starframe.Tests.RailgunFireTests" classname="Starframe.Tests.RailgunFireTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-25 15:33:32Z" end-time="2026-10-25 15:33:32Z" duration="0.155672" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="ParameterizedMethod" id="1098" name="ProductionRailgunsSpawnProjectilesWhenSupportedAndClear" fullname="Starframe.Tests.RailgunFireTests.ProductionRailgunsSpawnProjectilesWhenSupportedAndClear" classname="Starframe.Tests.RailgunFireTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-25 15:33:32Z" end-time="2026-10-25 15:33:32Z" duration="0.152965" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1095" name="ProductionRailgunsSpawnProjectilesWhenSupportedAndClear(Railgun1)" fullname="Starframe.Tests.RailgunFireTests.ProductionRailgunsSpawnProjectilesWhenSupportedAndClear(Railgun1)" methodname="ProductionRailgunsSpawnProjectilesWhenSupportedAndClear" classname="Starframe.Tests.RailgunFireTests" runstate="Runnable" seed="1837503820" result="Passed" start-time="2026-10-25 15:33:32Z" end-time="2026-10-25 15:33:32Z" duration="0.136552" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1096" name="ProductionRailgunsSpawnProjectilesWhenSupportedAndClear(Railgun2)" fullname="Starframe.Tests.RailgunFireTests.ProductionRailgunsSpawnProjectilesWhenSupportedAndClear(Railgun2)" methodname="ProductionRailgunsSpawnProjectilesWhenSupportedAndClear" classname="Starframe.Tests.RailgunFireTests" runstate="Runnable" seed="1100992274" result="Passed" start-time="2026-10-25 15:33:32Z" end-time="2026-10-25 15:33:32Z" duration="0.004338" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1097" name="ProductionRailgunsSpawnProjectilesWhenSupportedAndClear(Railgun3)" fullname="Starframe.Tests.RailgunFireTests.ProductionRailgunsSpawnProjectilesWhenSupportedAndClear(Railgun3)" methodname="ProductionRailgunsSpawnProjectilesWhenSupportedAndClear" classname="Starframe.Tests.RailgunFireTests" runstate="Runnable" seed="1191625431" result="Passed" start-time="2026-10-25 15:33:32Z" end-time="2026-10-25 15:33:32Z" duration="0.004035" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[Saving results to: C:/Users/34808/AppData/LocalLow/DefaultCompany/CGDD26107\TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

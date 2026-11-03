@@ -1,5 +1,5 @@
 // @role Define mission identity and difficulty-dependent deployment budgets.
-// @tune unpricedPartCost:float:0.01+:Optional provisional cost for an otherwise zero-cost part.
+// @tune unpricedPartCost:float:0.01+:Optional provisional cost for an otherwise zero-cost functional part; ordinary hull remains free.
 // @tune relaxedBudgetMultiplier:float:0+:Budget multiplier for relaxed difficulty.
 // @tune standardBudgetMultiplier:float:0+:Budget multiplier for standard difficulty.
 // @tune expertBudgetMultiplier:float:0+:Budget multiplier for expert difficulty.
@@ -20,7 +20,7 @@ namespace Starframe.App
         [Tooltip("May be empty while the level content is being built.")]
         public string sceneName;
         [Min(0)] public float baseBudget;
-        [Tooltip("Price zero-cost module definitions for this mission without changing module balance assets.")]
+        [Tooltip("Price zero-cost functional modules for this mission; ordinary Hull definitions remain free.")]
         public bool useProvisionalPricing;
         [Min(.01f)] public float unpricedPartCost = 10;
         [Tooltip("0 disables the optional mass constraint.")]
@@ -33,7 +33,7 @@ namespace Starframe.App
         public float CostFor(ModuleDefinition definition)
         {
             if (!definition) throw new ArgumentNullException(nameof(definition));
-            return useProvisionalPricing && definition.cost == 0 ? unpricedPartCost : definition.cost;
+            return useProvisionalPricing && definition.cost == 0 && definition.category != ModuleCategory.Hull ? unpricedPartCost : definition.cost;
         }
 
         public float BudgetFor(MissionDifficulty difficulty)

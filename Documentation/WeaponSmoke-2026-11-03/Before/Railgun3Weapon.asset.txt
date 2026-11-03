@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 709e20d8521834845a71b54704f53b46, type: 3}
+  m_Name: Railgun3Weapon
+  m_EditorClassIdentifier: Starframe.Construction::Starframe.Flight.WeaponDefinition
+  shotsPerSecond: 1
+  damage: 20800
+  projectileSpeed: 10800
+  projectileDiameter: 0.38
+  firstShotImmediate: 1
+  penetrationDepth: 4
+  secondLayerDamageMultiplier: 0.4
+  range: 5200
+  visualLength: 140
+  tailLength: 420
+  visualWidth: 10
+  visualIntensity: 11
+  minimumVisualPixels: 5.5
+  tracerStyle: 1
+  tracerLingerSeconds: 0.09
+  sustainedPowerWatts: 280
+  energyPerShot: 100
+  delivery: 0
+  effectColor: {r: 1, g: 0.66, b: 0.12, a: 1}
+  missileLockSeconds: 2
+  reloadSeconds: 4
+  missileTurnDegrees: 110
+  missileAcceleration: 160
+  missileTurnAcceleration: 180
+  missileGuidanceSeconds: 10
+  missileSeekerConeDegrees: 65
+  missileSeekerLossSeconds: 0.35
+  missileLaunchSpeed: 35
+  explosionRadius: 3
+  launcherMesh: {fileID: 0}
+  missileMesh: {fileID: 0}
+  missileLaunchOffsets:
+  - {x: 0, y: 0, z: 0}
+  muzzleOffsets: []
+  projectileMaterial: {fileID: 2100000, guid: 8fa010cb395cefc458368aa8f928b19f, type: 2}
+  beamDuration: 0.12
+  beamMesh: {fileID: 0}
+  activationMode: 0
+  chargeSeconds: 1
+  requireTargetLock: 0
