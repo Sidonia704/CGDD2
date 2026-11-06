@@ -49,3 +49,6 @@ node_modules/
 /Documentation/Publish-*/lfs-upload.log
 
 *.slnx
+
+# Unity temporary test-runner scenes
+/Assets/InitTestScene*.unity*

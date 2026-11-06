@@ -2,10 +2,10 @@ window.CGDD_LANG = {
   ui: {
     zh: {
       "guide-heading": "新手从这里开始",
-      "guide-summary": "当前 Demo 包含飞船装配、武器组、练习靶场与连续五阶段关卡。单页指南介绍默认键位和首次出击流程。",
+      "guide-summary": "当前 Demo 包含飞船装配、武器组、练习靶场与以旗舰战收尾的六波关卡。单页指南介绍默认键位和首次出击流程。",
       "guide-en": "English quick start (PDF)",
       "guide-zh": "中文操作速查（PDF）",
-      "guide-update": "2026 年 11 月 3 日更新：残骸在脱落后累计运行 90 秒清理，后续碎裂继承原来的清理时间。",
+      "guide-update": "2026 年 11 月 7 日更新：单页拼装、飞行与战斗速查，包含当前键位和六波旗舰关卡。",
 
       "scope-label": "流程图范围",
       "scope-overview": "核心循环",
@@ -59,10 +59,10 @@ window.CGDD_LANG = {
     },
     en: {
       "guide-heading": "New pilot? Start here",
-      "guide-summary": "The current demo includes ship assembly, weapon groups, a practice range and a continuous five-stage mission. These one-page guides explain the default controls and your first sortie.",
+      "guide-summary": "The current demo includes ship assembly, weapon groups, a practice range and a six-wave mission ending in a flagship battle. These one-page guides explain the default controls and your first sortie.",
       "guide-en": "English quick start (PDF)",
       "guide-zh": "中文操作速查（PDF）",
-      "guide-update": "Updated 3 November 2026: ship wreckage clears after 90 seconds of active simulation; fragments retain the original expiry time.",
+      "guide-update": "Updated 7 November 2026: one-page assembly, flight and combat reference, with current controls and the six-wave flagship mission.",
 
       "scope-label": "Diagram",
       "scope-overview": "Core loop",

@@ -1,0 +1,244 @@
+{
+  "state": "applied",
+  "repo": "D:\\software\\unity\\CGDD26107",
+  "base": "c0346a89b056360c59a6493ddde396e6a86803d9",
+  "source": "eede49c38fe95f377b4200718968ea23a42f6316",
+  "source_tree": "52130bbce5de36e1d1ba6100e15e92bc2c259570",
+  "branch": "refs/heads/main",
+  "backup_ref": "refs/heads/codex/full-before-split-revision7",
+  "raw_new_blob_limit_bytes": 1449551462,
+  "total_new_blob_bytes": 8046095818,
+  "new_lfs_object_count": 28,
+  "new_lfs_object_bytes": 4451291923,
+  "push_policy": "Sequential fast-forward pushes; normal LFS pre-push hook remains enabled.",
+  "batches": [
+    {
+      "number": 1,
+      "entries": 15786,
+      "new_blob_bytes": 1449420008,
+      "first_path": ".gitattributes",
+      "last_path": "Assets/_Starframe/Maps/SaturnRingVoxels/Meshes/debris347_0000_0649_00.asset.meta",
+      "deletions": 8,
+      "lfs_pointers": [
+        {
+          "path": "Assets/_Starframe/Localization/Fonts/UI Chinese.asset",
+          "oid": "sha256:30dbb0b3aae74cb296a3b3189d113896d080a44a49dd2a026bed02c232149ba1",
+          "size": 56894460
+        }
+      ],
+      "commit": "85955aec4b363f7ce2d2b21cbe211741d2adb43f",
+      "parent": "c0346a89b056360c59a6493ddde396e6a86803d9",
+      "tree": "4b6d4def62cc884499c21b43deefd05474eb6761",
+      "push_command": "git push origin 85955aec4b363f7ce2d2b21cbe211741d2adb43f:refs/heads/main"
+    },
+    {
+      "number": 2,
+      "entries": 3691,
+      "new_blob_bytes": 1449102718,
+      "first_path": "Assets/_Starframe/Maps/SaturnRingVoxels/Meshes/debris347_0000_0650_00.asset",
+      "last_path": "Assets/_Starframe/Maps/UniformVoxels/Backdrop/Meshes/Backdrop_05_D149_A.asset.meta",
+      "deletions": 0,
+      "lfs_pointers": [
+        {
+          "path": "Assets/_Starframe/Maps/SaturnRingVoxels/Meshes/domeleft_0000_0001_00.asset",
+          "oid": "sha256:9182629f2ed5c0b78441312816ee85265daa5998161825180435fc35144c8500",
+          "size": 126204692
+        },
+        {
+          "path": "Assets/_Starframe/Maps/SaturnRingVoxels/Meshes/domeright_0000_0128_00.asset",
+          "oid": "sha256:6551457cecd4b227099555cc47dd19812183013389efb6a44d5d2a427fefff8b",
+          "size": 82446927
+        },
+        {
+          "path": "Assets/_Starframe/Maps/SaturnRingVoxels/Meshes/ref_0000_-001_00.asset",
+          "oid": "sha256:ae0ed7fc36d5db9c6cb8722a20a73df6a9bf481e9e0254149250889f0bb07db0",
+          "size": 85399847
+        },
+        {
+          "path": "Assets/_Starframe/Maps/UniformVoxels/Backdrop/Assets/Backdrop_07_D310_B.asset",
+          "oid": "sha256:a838ccaf58bec6e874e912f6b4d9a036847b669f41c17a20300981988bb9975b",
+          "size": 85624848
+        }
+      ],
+      "commit": "315889b35bea5951c63bfeba7db3af66068552ac",
+      "parent": "85955aec4b363f7ce2d2b21cbe211741d2adb43f",
+      "tree": "0c53c64827ab51edf37e72afdbbc695b2bdb11f3",
+      "push_command": "git push origin 315889b35bea5951c63bfeba7db3af66068552ac:refs/heads/main"
+    },
+    {
+      "number": 3,
+      "entries": 999,
+      "new_blob_bytes": 1446002531,
+      "first_path": "Assets/_Starframe/Maps/UniformVoxels/Backdrop/Meshes/Backdrop_05_D149_B.asset",
+      "last_path": "Assets/_Starframe/Maps/UniformVoxels/Range115Voxels/Meshes/Asteroid_Rock_237_3ed5f18b.asset.meta",
+      "deletions": 0,
+      "lfs_pointers": [
+        {
+          "path": "Assets/_Starframe/Maps/UniformVoxels/Backdrop/Meshes/Backdrop_06_D215_A.asset",
+          "oid": "sha256:ea0d466cf726cd7036fb0acb931912888eabb7fcbdfcd24c5015747a38a33d6f",
+          "size": 77346412
+        },
+        {
+          "path": "Assets/_Starframe/Maps/UniformVoxels/Backdrop/Meshes/Backdrop_06_D215_B.asset",
+          "oid": "sha256:8c6b6831ee79e7215388a351e2e1ef7aa821fa3e01d197399b4eb9bb29b4979a",
+          "size": 86146282
+        },
+        {
+          "path": "Assets/_Starframe/Maps/UniformVoxels/Backdrop/Meshes/Backdrop_07_D217_A.asset",
+          "oid": "sha256:1740266ab21af56d067eb015810ea1ba4418412cf36c77166944b233dc6d1d64",
+          "size": 77008201
+        },
+        {
+          "path": "Assets/_Starframe/Maps/UniformVoxels/Backdrop/Meshes/Backdrop_07_D217_B.asset",
+          "oid": "sha256:265c1f566357f907ddd3de2cf2c1be7fa43de663e7ab00ef9690917adb48026e",
+          "size": 87542452
+        },
+        {
+          "path": "Assets/_Starframe/Maps/UniformVoxels/Backdrop/Meshes/Backdrop_07_D310_A.asset",
+          "oid": "sha256:636165339f94d6971175d28ecdea509183dc629ea4526377ebcc3de4a09a1327",
+          "size": 154291453
+        },
+        {
+          "path": "Assets/_Starframe/Maps/UniformVoxels/Backdrop/Meshes/Backdrop_07_D310_B.asset",
+          "oid": "sha256:b300682fb67e4e7c3772148e911033f9aa6e410b529ce89cd77332a574fb1d93",
+          "size": 177005939
+        },
+        {
+          "path": "Assets/_Starframe/Maps/UniformVoxels/Backdrop/Render/Backdrop_07_D310_A.asset",
+          "oid": "sha256:ba034a3f5555c3d37e62f8f11ac3c5ebc3dd4e0aa688fd253ee66d9116ff56d4",
+          "size": 100588664
+        },
+        {
+          "path": "Assets/_Starframe/Maps/UniformVoxels/Backdrop/Render/Backdrop_07_D310_B.asset",
+          "oid": "sha256:b34f4cad54906208b6022b46d1d61b9ad51d7decd2c573b938c1726830dcc178",
+          "size": 115151563
+        }
+      ],
+      "commit": "d6900699b48b998045e72922ab9eb0ada08db80f",
+      "parent": "315889b35bea5951c63bfeba7db3af66068552ac",
+      "tree": "46c13ab8f466a59bd207cbc1e93fd48167d3506e",
+      "push_command": "git push origin d6900699b48b998045e72922ab9eb0ada08db80f:refs/heads/main"
+    },
+    {
+      "number": 4,
+      "entries": 7323,
+      "new_blob_bytes": 1449465106,
+      "first_path": "Assets/_Starframe/Maps/UniformVoxels/Range115Voxels/Meshes/Asteroid_Rock_237_3ed8abf2.asset",
+      "last_path": "Assets/_Starframe/Maps/UniformVoxels/SaturnRingVoxels/Meshes/field_0023_3f800000.asset.meta",
+      "deletions": 0,
+      "lfs_pointers": [
+        {
+          "path": "Assets/_Starframe/Maps/UniformVoxels/Range115Voxels/Meshes/Facility_Cylinder_003_3f800000.asset",
+          "oid": "sha256:5caa9bb25a12332b520efcf1eecacc9d3d6fd8a3e2773a52c1c31a3a62b1f422",
+          "size": 579998422
+        },
+        {
+          "path": "Assets/_Starframe/Maps/UniformVoxels/Range115Voxels/Meshes/Facility_Cylinder_019_3f800002.asset",
+          "oid": "sha256:b471ca6e64f348811e998e6cd09473d6184057af82af0c93f95fc1869335dadf",
+          "size": 78186011
+        },
+        {
+          "path": "Assets/_Starframe/Maps/UniformVoxels/Range115Voxels/Meshes/Facility_Cylinder_023_3f7ffffc.asset",
+          "oid": "sha256:525a89a12726bed3147c5aa68c26ef94038a72b8c497f5c8f22fd715a834c945",
+          "size": 123145697
+        },
+        {
+          "path": "Assets/_Starframe/Maps/UniformVoxels/Range115Voxels/Meshes/Facility_Variant_Cylinder_571_3f800000.asset",
+          "oid": "sha256:fe2e913785cfd8c00467492d74f2bce947c60f3abaebef7626f7271073e7fc63",
+          "size": 78186019
+        },
+        {
+          "path": "Assets/_Starframe/Maps/UniformVoxels/Range115Voxels/Meshes/Facility_Variant_Cylinder_572_3f800000.asset",
+          "oid": "sha256:dbabb2f2be398f9957a0928b0e7880bd409cbac5651c740180e858e1b3383996",
+          "size": 78186019
+        },
+        {
+          "path": "Assets/_Starframe/Maps/UniformVoxels/Range115Voxels/Meshes/Facility_Variant_Cylinder_574_3f800000.asset",
+          "oid": "sha256:007bc484528779754bfb444f6a44bf432a07fc0dc88687da698d9cde54e257dd",
+          "size": 78186019
+        },
+        {
+          "path": "Assets/_Starframe/Maps/UniformVoxels/Range115Voxels/Meshes/Facility_Variant_Cylinder_575_3f800000.asset",
+          "oid": "sha256:c9026d9b023df161dbc63f0c52aa84d11ae64f4e85e34def0b032a9c919a8359",
+          "size": 78186019
+        },
+        {
+          "path": "Assets/_Starframe/Maps/UniformVoxels/Samples/Meshes/Facility_Cylinder_003_3f800000.asset",
+          "oid": "sha256:8170afa684ab6d8e93c7db1fa13f87aaa75bfd0246d651111e543cec1bac92a4",
+          "size": 579998377
+        },
+        {
+          "path": "Assets/_Starframe/Maps/UniformVoxels/Samples/Meshes/Facility_Cylinder_023_3f7ffffc.asset",
+          "oid": "sha256:10d74ad50f9a599e7b1fd177533f8b3001816138be39561a80095bbd39aed02c",
+          "size": 123145669
+        },
+        {
+          "path": "Assets/_Starframe/Maps/UniformVoxels/Samples/Meshes/domeleft_0000_0001_00_3f800000.asset",
+          "oid": "sha256:efb5c709cbf55d26d47785453ce042e8d8be23c7b4f80764d82b0ff22b92e715",
+          "size": 418111951
+        },
+        {
+          "path": "Assets/_Starframe/Maps/UniformVoxels/SaturnRingVoxels/Meshes/domeleft_0000_0001_00_3f800000.asset",
+          "oid": "sha256:77b71abeea960874f352035f054595369927873d87e1d35352532b98dde25030",
+          "size": 418111988
+        },
+        {
+          "path": "Assets/_Starframe/Maps/UniformVoxels/SaturnRingVoxels/Meshes/domeright_0000_0128_00_3f800000.asset",
+          "oid": "sha256:bd2e9266b54c22f7ca5e532387e24a76c5df140e33e36a43395720df3bc085e0",
+          "size": 214117734
+        }
+      ],
+      "commit": "e56ef048631d1a4f85d7c66aba1463c6eaf56ab0",
+      "parent": "d6900699b48b998045e72922ab9eb0ada08db80f",
+      "tree": "203c67d52bc7a060900c3d2584c46792d71bd942",
+      "push_command": "git push origin e56ef048631d1a4f85d7c66aba1463c6eaf56ab0:refs/heads/main"
+    },
+    {
+      "number": 5,
+      "entries": 3782,
+      "new_blob_bytes": 1411428325,
+      "first_path": "Assets/_Starframe/Maps/UniformVoxels/SaturnRingVoxels/Meshes/field_0024_3f800000.asset",
+      "last_path": "Assets/_Starframe/Maps/UniformVoxels/SaturnRingVoxels/Meshes/station_deck_post_601_000_3f800000.asset.meta",
+      "deletions": 0,
+      "lfs_pointers": [
+        {
+          "path": "Assets/_Starframe/Maps/UniformVoxels/SaturnRingVoxels/Meshes/leftupper_0000_-001_00_3f800000.asset",
+          "oid": "sha256:dfb3b367955eb51af263803ee80a3036aa2063d773dbebf07cb39d946a42332a",
+          "size": 88980509
+        },
+        {
+          "path": "Assets/_Starframe/Maps/UniformVoxels/SaturnRingVoxels/Meshes/ref_0000_-001_00_3f800000.asset",
+          "oid": "sha256:4b27a3ae0cc0405067c663b03013a52e6c634663b5c5649edb055ab13b7361a8",
+          "size": 98462192
+        }
+      ],
+      "commit": "a208c1093c57802d85558530fe1cb682d9d2a39e",
+      "parent": "e56ef048631d1a4f85d7c66aba1463c6eaf56ab0",
+      "tree": "1fd9de0eaada560d64070c2fb352d23c8058285c",
+      "push_command": "git push origin a208c1093c57802d85558530fe1cb682d9d2a39e:refs/heads/main"
+    },
+    {
+      "number": 6,
+      "entries": 1445,
+      "new_blob_bytes": 840677130,
+      "first_path": "Assets/_Starframe/Maps/UniformVoxels/SaturnRingVoxels/Meshes/station_deck_understructure_000_3f800000.asset",
+      "last_path": "\u97f3\u6548\u66ff\u6362/\u97f3\u6548\u6e05\u5355\u4e0e\u66ff\u6362\u8bf4\u660e.md",
+      "deletions": 4,
+      "lfs_pointers": [
+        {
+          "path": "Assets/_Starframe/Maps/UniformVoxels/SaturnRingVoxels/Meshes/station_right_rock_fittings_000_3f800000.asset",
+          "oid": "sha256:b6a4b612f704d34d5314cd613f034cbad1d9efc965e69869786cd3900cdf8680",
+          "size": 104637557
+        }
+      ],
+      "commit": "6e9f251ed2ac6dec7f400a1c031a79e30cf1c7bf",
+      "parent": "a208c1093c57802d85558530fe1cb682d9d2a39e",
+      "tree": "52130bbce5de36e1d1ba6100e15e92bc2c259570",
+      "push_command": "git push origin 6e9f251ed2ac6dec7f400a1c031a79e30cf1c7bf:refs/heads/main"
+    }
+  ],
+  "original_index_sha256": "9f7e3d79fd8f4929b81820349b2181f90654ef7a3235e68937e4a9c3635c54d3",
+  "final_commit": "6e9f251ed2ac6dec7f400a1c031a79e30cf1c7bf",
+  "final_tree_verified": true,
+  "real_index_unchanged": true
+}
