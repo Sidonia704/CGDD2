@@ -28,6 +28,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          sparse-checkout: site
+          sparse-checkout-cone-mode: true
+          fetch-depth: 1
+          lfs: false
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
