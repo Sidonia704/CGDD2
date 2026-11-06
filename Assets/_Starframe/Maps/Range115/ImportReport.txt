@@ -1,0 +1,53 @@
+Range115 source extent scaled to3000m. Whole reference assemblies=7; explicit unmatched facility variants=11. Structures shifted below flight plane. Source-authored continuous render meshes; conservative collision cells.
+Facility_Cylinder_001: triangles=492, cells=4397, cellSize=2.231873; complete mesh-object assembly
+Facility_Cylinder_002: triangles=144, cells=1888, cellSize=1.279534; complete mesh-object assembly
+Facility_Cylinder_003: triangles=7292, cells=3287, cellSize=10; complete mesh-object assembly
+Facility_Cylinder_006: triangles=164, cells=4806, cellSize=1.279531; complete mesh-object assembly
+Facility_Cylinder_011: triangles=960, cells=4602, cellSize=1.000421; complete mesh-object assembly
+Facility_Cylinder_019: triangles=960, cells=1594, cellSize=6.098742; complete mesh-object assembly
+Facility_Cylinder_023: triangles=664, cells=1195, cellSize=8.005837; complete mesh-object assembly
+Cylinder.135 -> Facility_Cylinder_023; sampled vertex residual=0.0002818765
+Facility_Variant_Cylinder_491: triangles=960, cells=3246, cellSize=1.304863; complete mesh-object assembly
+Cylinder.491 -> Facility_Variant_Cylinder_491; sampled vertex residual=3.776588
+Cylinder.566 -> Facility_Cylinder_002; sampled vertex residual=0.0001884901
+Cylinder.569 -> Facility_Cylinder_006; sampled vertex residual=0.0005829135
+Facility_Variant_Cylinder_571: triangles=960, cells=1594, cellSize=6.098755; complete mesh-object assembly
+Cylinder.571 -> Facility_Variant_Cylinder_571; sampled vertex residual=0.5416824
+Facility_Variant_Cylinder_572: triangles=960, cells=1594, cellSize=6.098757; complete mesh-object assembly
+Cylinder.572 -> Facility_Variant_Cylinder_572; sampled vertex residual=0.5416332
+Cylinder.573 -> Facility_Cylinder_019; sampled vertex residual=0.0001417739
+Facility_Variant_Cylinder_574: triangles=960, cells=1594, cellSize=6.098755; complete mesh-object assembly
+Cylinder.574 -> Facility_Variant_Cylinder_574; sampled vertex residual=0.5416515
+Facility_Variant_Cylinder_575: triangles=960, cells=1594, cellSize=6.098754; complete mesh-object assembly
+Cylinder.575 -> Facility_Variant_Cylinder_575; sampled vertex residual=0.5416898
+Facility_Variant_Cylinder_576: triangles=960, cells=4602, cellSize=1.00042; complete mesh-object assembly
+Cylinder.576 -> Facility_Variant_Cylinder_576; sampled vertex residual=0.5401779
+Cylinder.577 -> Facility_Cylinder_011; sampled vertex residual=0.0001290787
+Cylinder.578 -> Facility_Cylinder_011; sampled vertex residual=0.0001597335
+Facility_Variant_Cylinder_579: triangles=960, cells=4602, cellSize=1.000421; complete mesh-object assembly
+Cylinder.579 -> Facility_Variant_Cylinder_579; sampled vertex residual=0.5401806
+Facility_Variant_Cylinder_580: triangles=960, cells=4602, cellSize=1.00042; complete mesh-object assembly
+Cylinder.580 -> Facility_Variant_Cylinder_580; sampled vertex residual=0.540187
+Cylinder.581 -> Facility_Cylinder_011; sampled vertex residual=0.0001289304
+Cylinder.582 -> Facility_Cylinder_011; sampled vertex residual=0.0001461621
+Cylinder.583 -> Facility_Cylinder_011; sampled vertex residual=0.0001484435
+Facility_Variant_Cylinder_586: triangles=960, cells=3246, cellSize=1.304861; complete mesh-object assembly
+Cylinder.586 -> Facility_Variant_Cylinder_586; sampled vertex residual=3.776536
+Facility_Variant_Cylinder_587: triangles=960, cells=3246, cellSize=1.304861; complete mesh-object assembly
+Cylinder.587 -> Facility_Variant_Cylinder_587; sampled vertex residual=3.782153
+Facility_Variant_Cylinder_588: triangles=960, cells=3246, cellSize=1.304861; complete mesh-object assembly
+Cylinder.588 -> Facility_Variant_Cylinder_588; sampled vertex residual=3.384638
+Cylinder.592 -> Facility_Cylinder_003; sampled vertex residual=6.302914E-05
+Cylinder.594 -> Facility_Cylinder_006; sampled vertex residual=0.0005860996
+Cylinder.600 -> Facility_Cylinder_001; sampled vertex residual=7.866804E-05
+Asteroid_Rock_210: triangles=736, cells=7813, cellSize=3.145659; complete mesh-object assembly
+Asteroid_Rock_204: triangles=642, cells=19219, cellSize=1.930414; complete mesh-object assembly
+Asteroid_Rock_208: triangles=622, cells=19282, cellSize=1.828866; complete mesh-object assembly
+Asteroid_Rock_219: triangles=580, cells=7813, cellSize=2.29366; complete mesh-object assembly
+Asteroid_Rock_222: triangles=578, cells=10650, cellSize=1.665634; complete mesh-object assembly
+Asteroid_Rock_267: triangles=570, cells=7810, cellSize=5.648302; complete mesh-object assembly
+Asteroid_Rock_237: triangles=508, cells=7895, cellSize=4.941479; complete mesh-object assembly
+Asteroid_Rock_209: triangles=504, cells=9685, cellSize=1.40343; complete mesh-object assembly
+Asteroid islands: 393; shared prototypes: 8
+
+Asteroid collision optimization complete: 785597 weighted cells; facilities and visual meshes unchanged.

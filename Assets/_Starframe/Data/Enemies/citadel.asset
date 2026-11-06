@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: citadel
   m_EditorClassIdentifier: Starframe.Construction::Starframe.Combat.EnemyArchetypeDefinition
   id: citadel
-  nameZh: "\u58C1\u5792\u4E3B\u529B\u6218\u8230"
-  nameEn: Citadel Capital Ship
-  size: 2
+  nameZh: "\u58C1\u5792\u91CD\u5DE1\u6D0B\u8230"
+  nameEn: Citadel Heavy Cruiser
+  size: 1
   blueprint: {fileID: 4900000, guid: 55829dc67afb397409a135ec22b834fc, type: 3}
-  alternateBlueprint: {fileID: 4900000, guid: 55829dc67afb397409a135ec22b834fc, type: 3}
-  score: 5000
+  alternateBlueprint: {fileID: 0}
+  score: 2500
   behavior: {fileID: 11400000, guid: d7766dae4bcd79c4ab3ede40a0227024, type: 2}

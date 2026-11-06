@@ -1978,19 +1978,19 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 2641704711618607
-    m_Localized: Beam Sword I
+    m_Localized: Laser Beam Cannon I
     m_Metadata:
       m_Items: []
   - m_Id: 2641704711618608
-    m_Localized: Sword I
+    m_Localized: Beam I
     m_Metadata:
       m_Items: []
   - m_Id: 2641704711618609
-    m_Localized: Beam Sword II
+    m_Localized: Laser Beam Cannon II
     m_Metadata:
       m_Items: []
   - m_Id: 2641704711618610
-    m_Localized: Sword II
+    m_Localized: Beam II
     m_Metadata:
       m_Items: []
   - m_Id: 2641704711618611
@@ -2290,6 +2290,58 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 5626035159695375
     m_Localized: Personal best  {0} PTS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6407388440559616
+    m_Localized: Non-missile weapons must face the ship's bow.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6407388482502656
+    m_Localized: Weapon {0} must face the ship's bow. Refit it in assembly.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7062288749035520
+    m_Localized: VLS / 16 MISSILES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7062288774201344
+    m_Localized: VLS / 8 MISSILES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7114761920577536
+    m_Localized: Support the full width of the weapon or armour from underneath.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7114761945743360
+    m_Localized: The mirrored modules overlap occupied cells or clearance areas.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7114761945743361
+    m_Localized: The mirrored solid modules overlap.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7114761945743362
+    m_Localized: The mirrored module would block the other weapon's firing path.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7114761945743363
+    m_Localized: Install a core before using mirror editing.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7114761945743364
+    m_Localized: This module cannot be mirrored while preserving the standard grid.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7114761945743365
+    m_Localized: Removing the mirrored pair would disconnect the ship.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7114761945743366
+    m_Localized: 'Mirror edit blocked: both sides must fit and remain connected.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7114761945743367
+    m_Localized: 'The mirrored side cannot be installed: {0}'
     m_Metadata:
       m_Items: []
   references:

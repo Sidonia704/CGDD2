@@ -40,4 +40,12 @@ node_modules/
 # Local document previews and scratch work
 /tmp/
 
+# Local editor captures, command scratch files and retained recovery copies
+/Assets/tmp/
+/Assets/tmp.meta
+/tmp-command.json
+/Documentation/Audio116-Revision2/new.f32
+/Documentation/FleetRevision6/RemovedBlueprint/
+/Documentation/Publish-*/lfs-upload.log
+
 *.slnx

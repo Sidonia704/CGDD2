@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: SaturnRingRock
+  m_Shader: {fileID: 4800000, guid: f2686d0e9e8a690488a84b0cec7e4e0a, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 1
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BaseMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _ContrastReduction: 0.35
+    - _Cull: 2
+    - _Cutoff: 0.5
+    - _FarFadeEnd: 25000
+    - _FarFadeStart: 17000
+    - _HazeEnd: 24000
+    - _HazeStart: 4000
+    - _HazeStrength: 0.35
+    - _MacroScale: 0.015
+    - _MacroVariation: 0.05
+    - _NearFadeEnd: 350
+    - _NearFadeStart: 80
+    - _Smoothness: 0.18
+    m_Colors:
+    - _BaseColor: {r: 0.62, g: 0.61, b: 0.59, a: 1}
+    - _HazeColor: {r: 0.079999976, g: 0.10499997, b: 0.13999996, a: 1}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1

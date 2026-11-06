@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de37766de6e02d94681a09da3ac72359, type: 3}
+  m_Name: scout-mixed
+  m_EditorClassIdentifier: Starframe.Construction::Starframe.Combat.EnemyArchetypeDefinition
+  id: scout-mixed
+  nameZh: "\u8F7B\u578B\u50DA\u673A t0-4"
+  nameEn: Light Escort t0-4
+  size: 0
+  blueprint: {fileID: 4900000, guid: 608b5c40ecd6e924a9d2797012be6b7f, type: 3}
+  alternateBlueprint: {fileID: 0}
+  score: 60
+  behavior: {fileID: 11400000, guid: 037ac93ac173400469f491bdc8f34d79, type: 2}

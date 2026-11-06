@@ -1,0 +1,228 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bc9fba079fe3c340a9872eaa1911107, type: 3}
+  m_Name: ComponentGallery
+  m_EditorClassIdentifier: Starframe.Construction::Starframe.Maps.SpaceMapDefinition
+  size: {x: 3400, y: 3400, z: 3400}
+  playerSpawn: {x: 0, y: 150, z: -250}
+  playerEulerAngles: {x: 0, y: 0, z: 0}
+  enemySpawns: []
+  instances:
+  - id: 115-gallery-0
+    label: Facility_Cylinder_001
+    asset: {fileID: 11400000, guid: dd0f80a441044dd4ab50f1bee80af202, type: 2}
+    position: {x: -700, y: 0.73024166, z: 1.2170694}
+    eulerAngles: {x: 0, y: 0, z: 0}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-gallery-1
+    label: Facility_Cylinder_002
+    asset: {fileID: 11400000, guid: 286358efe8eced94083fe11dcea557d8, type: 2}
+    position: {x: -348.9579, y: 0, z: 0}
+    eulerAngles: {x: 0, y: 0, z: 0}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-gallery-2
+    label: Facility_Cylinder_003
+    asset: {fileID: 11400000, guid: c348bee5fa587f640ae18d47366cfd65, type: 2}
+    position: {x: 1.5146699, y: 0.605868, z: 2.7264059}
+    eulerAngles: {x: 0, y: 0, z: 0}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-gallery-3
+    label: Facility_Cylinder_006
+    asset: {fileID: 11400000, guid: df3683d3d0a17cf4b9e0459c307e050e, type: 2}
+    position: {x: 350, y: 0.6409924, z: 0}
+    eulerAngles: {x: 0, y: 0, z: 0}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-gallery-4
+    label: Facility_Cylinder_011
+    asset: {fileID: 11400000, guid: 2100941cefca0e2489a9c279d273a598, type: 2}
+    position: {x: 700, y: 0, z: 0}
+    eulerAngles: {x: 0, y: 0, z: 0}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-gallery-5
+    label: Facility_Cylinder_019
+    asset: {fileID: 11400000, guid: 452133d478d9af24cb35044ec551fe90, type: 2}
+    position: {x: -700, y: 0, z: 350}
+    eulerAngles: {x: 0, y: 0, z: 0}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-gallery-6
+    label: Facility_Cylinder_023
+    asset: {fileID: 11400000, guid: a50470b7adb56e04ea0d9a6cde253418, type: 2}
+    position: {x: -350, y: 0, z: 350}
+    eulerAngles: {x: 0, y: 0, z: 0}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-gallery-7
+    label: Facility_Variant_Cylinder_491
+    asset: {fileID: 11400000, guid: b60780c2eb08c9248aaf31611001f765, type: 2}
+    position: {x: 0, y: 0, z: 350}
+    eulerAngles: {x: 0, y: 0, z: 0}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-gallery-8
+    label: Facility_Variant_Cylinder_571
+    asset: {fileID: 11400000, guid: b064edfbeac35d94bad02f6fac180b17, type: 2}
+    position: {x: 350, y: 0, z: 350}
+    eulerAngles: {x: 0, y: 0, z: 0}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-gallery-9
+    label: Facility_Variant_Cylinder_572
+    asset: {fileID: 11400000, guid: 3df47333e657dd944b58d139c0343b25, type: 2}
+    position: {x: 700, y: 0, z: 350}
+    eulerAngles: {x: 0, y: 0, z: 0}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-gallery-10
+    label: Facility_Variant_Cylinder_574
+    asset: {fileID: 11400000, guid: 6211200644136644080f9eed7580c6cb, type: 2}
+    position: {x: -700, y: 0, z: 700}
+    eulerAngles: {x: 0, y: 0, z: 0}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-gallery-11
+    label: Facility_Variant_Cylinder_575
+    asset: {fileID: 11400000, guid: 41bdb50b7d7e0bc47b1c0e702e538fac, type: 2}
+    position: {x: -350, y: 0, z: 700}
+    eulerAngles: {x: 0, y: 0, z: 0}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-gallery-12
+    label: Facility_Variant_Cylinder_576
+    asset: {fileID: 11400000, guid: 0b902029b0459f342b92db0c03ed8d5e, type: 2}
+    position: {x: 0, y: 0, z: 700}
+    eulerAngles: {x: 0, y: 0, z: 0}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-gallery-13
+    label: Facility_Variant_Cylinder_579
+    asset: {fileID: 11400000, guid: 13172a31d5ab52843be2b08c617ef5db, type: 2}
+    position: {x: 350, y: 0, z: 700}
+    eulerAngles: {x: 0, y: 0, z: 0}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-gallery-14
+    label: Facility_Variant_Cylinder_580
+    asset: {fileID: 11400000, guid: 7fecabf6569aeea4f80a1a5f503d0198, type: 2}
+    position: {x: 700, y: 0, z: 700}
+    eulerAngles: {x: 0, y: 0, z: 0}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-gallery-15
+    label: Facility_Variant_Cylinder_586
+    asset: {fileID: 11400000, guid: 40ae40e1515cefb4a9446582920cabd9, type: 2}
+    position: {x: -700, y: 0, z: 1050}
+    eulerAngles: {x: 0, y: 0, z: 0}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-gallery-16
+    label: Facility_Variant_Cylinder_587
+    asset: {fileID: 11400000, guid: 1b6f1d5dbbc567f4b9f0aa33a8a9775f, type: 2}
+    position: {x: -350, y: 0, z: 1050}
+    eulerAngles: {x: 0, y: 0, z: 0}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-gallery-17
+    label: Facility_Variant_Cylinder_588
+    asset: {fileID: 11400000, guid: 40b8d0206c44ac54281c0fd5392cd6a3, type: 2}
+    position: {x: 0, y: 0, z: 1050}
+    eulerAngles: {x: 0, y: 0, z: 0}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-gallery-18
+    label: Asteroid_Rock_210
+    asset: {fileID: 11400000, guid: fd6a3f13c1ecd3e408c88056f0baba38, type: 2}
+    position: {x: 350, y: 0, z: 1050}
+    eulerAngles: {x: 0, y: 0, z: 0}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-gallery-19
+    label: Asteroid_Rock_204
+    asset: {fileID: 11400000, guid: 6326333cad7c3b140b0b5ea542f4b6d3, type: 2}
+    position: {x: 700, y: 0, z: 1050}
+    eulerAngles: {x: 0, y: 0, z: 0}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-gallery-20
+    label: Asteroid_Rock_208
+    asset: {fileID: 11400000, guid: b10f28a35c35df242b3b4555f0943921, type: 2}
+    position: {x: -700, y: 0, z: 1400}
+    eulerAngles: {x: 0, y: 0, z: 0}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-gallery-21
+    label: Asteroid_Rock_219
+    asset: {fileID: 11400000, guid: 728d568168da6884393d7a9d509df99c, type: 2}
+    position: {x: -350, y: 0, z: 1400}
+    eulerAngles: {x: 0, y: 0, z: 0}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-gallery-22
+    label: Asteroid_Rock_222
+    asset: {fileID: 11400000, guid: f5524aa18307f0449aee7036975872d7, type: 2}
+    position: {x: 0, y: 0, z: 1400}
+    eulerAngles: {x: 0, y: 0, z: 0}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-gallery-23
+    label: Asteroid_Rock_267
+    asset: {fileID: 11400000, guid: 222a57d1895ee2e40bc73ded5ff0fa8d, type: 2}
+    position: {x: 350, y: 0, z: 1400}
+    eulerAngles: {x: 0, y: 0, z: 0}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-gallery-24
+    label: Asteroid_Rock_237
+    asset: {fileID: 11400000, guid: df4e6416bcb5b2d47a0f03aa7306f334, type: 2}
+    position: {x: 700, y: 0, z: 1400}
+    eulerAngles: {x: 0, y: 0, z: 0}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-gallery-25
+    label: Asteroid_Rock_209
+    asset: {fileID: 11400000, guid: 7d1af81f414c7fc49bded1c4dce94c04, type: 2}
+    position: {x: -700, y: 0, z: 1750}
+    eulerAngles: {x: 0, y: 0, z: 0}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  assemblyLinks: []
