@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LaserRapidCannon
   m_EditorClassIdentifier: Starframe.Construction::Starframe.Flight.WeaponDefinition
   shotsPerSecond: 10
-  damage: 1008
+  damage: 360
   projectileSpeed: 6600
   projectileDiameter: 0.75
   shotAudioGain: 0.6
@@ -21,7 +21,7 @@ MonoBehaviour:
   fireWindupSeconds: 0
   penetrationDepth: 1
   secondLayerDamageMultiplier: 0.35
-  range: 2800
+  range: 1800
   unboundedBeam: 0
   visualLength: 140
   tailLength: 80

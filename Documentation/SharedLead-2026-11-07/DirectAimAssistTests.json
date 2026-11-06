@@ -1,0 +1,80 @@
+{
+  "Summary": {
+    "Total": 9,
+    "Passed": 9,
+    "Failed": 0,
+    "Skipped": 0,
+    "Inconclusive": 0
+  },
+  "Results": [
+    {
+      "FullName": "Starframe.Construction.Tests.DirectAimAssistTests.CameraOcclusionPreventsSelectingHiddenHull",
+      "Status": "Passed",
+      "Duration": 0.0283483,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.DirectAimAssistTests.EnemyDoesNotReceivePlayerConvergence",
+      "Status": "Passed",
+      "Duration": 0.013308,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.DirectAimAssistTests.ExcessiveAngleBehindOrOutsideRangeLeavesDirectionUnchanged(20,100,200)",
+      "Status": "Passed",
+      "Duration": 0.0033013,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.DirectAimAssistTests.ExcessiveAngleBehindOrOutsideRangeLeavesDirectionUnchanged(1,-100,200)",
+      "Status": "Passed",
+      "Duration": 8.58e-05,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.DirectAimAssistTests.ExcessiveAngleBehindOrOutsideRangeLeavesDirectionUnchanged(1,100,50)",
+      "Status": "Passed",
+      "Duration": 4.26e-05,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.DirectAimAssistTests.MuzzlePathStillHitsSceneryBeforeReticleTarget",
+      "Status": "Passed",
+      "Duration": 0.020947,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.DirectAimAssistTests.NoAssistWithoutAnActualReticleHullHit",
+      "Status": "Passed",
+      "Duration": 0.0158715,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.DirectAimAssistTests.OffsetPlayerMuzzleHitsActualReticleHull(Beam)",
+      "Status": "Passed",
+      "Duration": 0.012941,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.DirectAimAssistTests.OffsetPlayerMuzzleHitsActualReticleHull(Projectile)",
+      "Status": "Passed",
+      "Duration": 0.0138788,
+      "Message": null,
+      "StackTrace": null
+    }
+  ],
+  "Duration": 3.03,
+  "StatusPath": null,
+  "Mode": "EditMode",
+  "FilterApplied": "testname: DirectAimAssistTests",
+  "success": true,
+  "result": null
+}

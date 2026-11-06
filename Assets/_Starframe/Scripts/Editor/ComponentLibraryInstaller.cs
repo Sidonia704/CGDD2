@@ -22,6 +22,10 @@ namespace Starframe.EditorTools
         const string Materials = Root + "Art/Materials/Ships/Expansion/";
         const string Settings = Root + "Settings/Modules/";
         const string Evidence = "Documentation/Thruster6-Weapons-2026-10-25/";
+        // Each direct-fire family shares its installed largest-tier speed across all sizes.
+        const float GunProjectileSpeed = 2700f;
+        const float LaserProjectileSpeed = 6600f;
+        const float RailProjectileSpeed = 10800f;
         sealed class Part
         {
             public BlockShape shape;
@@ -143,18 +147,18 @@ namespace Starframe.EditorTools
             if(IsGun(shape))
             {
                 int tier=(int)shape-(int)BlockShape.Gun1;
-                Set(w,new[]{15f,20f,28f}[tier],new[]{16f,20f,24f}[tier],new[]{1800f,2000f,2200f}[tier],new[]{1800f,2200f,2600f}[tier],new[]{20f,35f,60f}[tier]);
+                Set(w,new[]{15f,20f,28f}[tier],new[]{16f,20f,24f}[tier],GunProjectileSpeed,new[]{1800f,2200f,2600f}[tier],new[]{20f,35f,60f}[tier]);
                 w.effectColor=new Color(1f,.62f,.055f,1);w.visualLength=4+tier;w.tailLength=100;w.visualWidth=2.2f+tier*.2f;w.visualIntensity=6.5f;w.minimumVisualPixels=2.2f;w.projectileDiameter=.16f+tier*.035f;
             }
             else if(shape==BlockShape.Laser2||shape==BlockShape.Laser3)
             {
-                int tier=shape==BlockShape.Laser2?0:1;Set(w,tier==0?40:65,10,tier==0?1500:1600,5000,tier==0?100:180);
+                int tier=shape==BlockShape.Laser2?0:1;Set(w,tier==0?40:65,10,LaserProjectileSpeed,5000,tier==0?100:180);
                 w.visualLength=tier==0?20:24;w.tailLength=tier==0?12:15;w.visualWidth=tier==0?.85f:1.05f;w.projectileDiameter=tier==0?.8f:1;
             }
             else if(IsRail(shape))
             {
                 int tier=(int)shape-(int)BlockShape.Railgun1;
-                Set(w,new[]{340f,650f,1150f}[tier],new[]{3f,2.5f,2f}[tier],new[]{10000f,12000f,14000f}[tier],new[]{6500f,7500f,8500f}[tier],new[]{65f,120f,200f}[tier]);
+                Set(w,new[]{340f,650f,1150f}[tier],new[]{3f,2.5f,2f}[tier],RailProjectileSpeed,new[]{6500f,7500f,8500f}[tier],new[]{65f,120f,200f}[tier]);
                 w.effectColor=new Color(1f,.66f,.12f,1);w.penetrationDepth=new[]{3f,5f,7f}[tier];w.secondLayerDamageMultiplier=.75f;
                 ApplyRailPulseVisual(w,tier);
             }
@@ -190,15 +194,15 @@ namespace Starframe.EditorTools
                 if(IsGun(shape))
                 {
                     int tier=(int)shape-(int)BlockShape.Gun1;
-                    w.shotsPerSecond=new[]{16f,20f,24f}[tier];w.projectileSpeed=new[]{1800f,2000f,2200f}[tier];
+                    w.shotsPerSecond=new[]{16f,20f,24f}[tier];w.projectileSpeed=GunProjectileSpeed;
                     w.visualLength=4+tier;w.tailLength=100;w.visualWidth=2.2f+tier*.2f;w.minimumVisualPixels=2.2f;
                 }
-                else if(shape==BlockShape.Laser2||shape==BlockShape.Laser3)w.shotsPerSecond=10;
-                else {int tier=(int)shape-(int)BlockShape.Railgun1;w.shotsPerSecond=new[]{3f,2.5f,2f}[tier];w.projectileSpeed=new[]{10000f,12000f,14000f}[tier];ApplyRailPulseVisual(w,tier);}
+                else if(shape==BlockShape.Laser2||shape==BlockShape.Laser3){w.shotsPerSecond=10;w.projectileSpeed=LaserProjectileSpeed;}
+                else {int tier=(int)shape-(int)BlockShape.Railgun1;w.shotsPerSecond=new[]{3f,2.5f,2f}[tier];w.projectileSpeed=RailProjectileSpeed;ApplyRailPulseVisual(w,tier);}
                 EditorUtility.SetDirty(w);
             }
             AssetDatabase.SaveAssets();
-            Debug.Log("Follow-up weapon tuning applied: lasers 10/s, guns 16/20/24 at 1800/2000/2200, rails 10/12/14 km/s continuous pulses.");
+            Debug.Log("Follow-up weapon tuning applied: lasers 10/s at 6600 m/s, guns 16/20/24 at 2700 m/s, rails 10800 m/s continuous pulses.");
         }
         static void ApplyRailPulseVisual(WeaponDefinition w,int tier)
         {

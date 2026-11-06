@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Laser2Weapon
   m_EditorClassIdentifier: Starframe.Construction::Starframe.Flight.WeaponDefinition
   shotsPerSecond: 8
-  damage: 2328.75
+  damage: 650
   projectileSpeed: 6600
   projectileDiameter: 0.85
   shotAudioGain: 0.8
@@ -21,7 +21,7 @@ MonoBehaviour:
   fireWindupSeconds: 0
   penetrationDepth: 1
   secondLayerDamageMultiplier: 0.35
-  range: 3200
+  range: 1800
   unboundedBeam: 0
   visualLength: 160
   tailLength: 100

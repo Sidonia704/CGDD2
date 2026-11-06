@@ -1,4 +1,4 @@
-// @role Fire grouped weapons with per-mount Gatling heat, powered audio heartbeat, peak-synchronized rails, fresh conventional locks and independent area-lock VLS magazines.
+// @role Fire grouped weapons with per-mount heat and locks, shared speed-based player leads, bounded muzzle compensation and peak-synchronized rails.
 // @calls ProjectileWorld, WeaponActivationState, GatlingThermalState, WeaponGroups, BlockPlacement, SpecialWeaponVisualPool, DirectAimAssist, WeaponClearance
 
 using System;
@@ -83,9 +83,15 @@ namespace Starframe.Combat
         FlightShipRuntime trackedTarget;
         readonly DirectAimAssist directAim=new DirectAimAssist();
         bool hasDirectAimPoint;Vector3 directAimPoint;
+        FlightShipRuntime leadTarget;int leadLife=-1;Vector3 leadVelocity;Rigidbody aimBody;
         /// <summary>Player-only reticle ray. No target is selected unless this ray directly intersects hostile hull.</summary>
         public void SetDirectAimRay(Ray ray,bool enabled=true)
         {hasDirectAimPoint=enabled&&directAim.TryGetPoint(ship,ray,out directAimPoint);}
+        public void SetLeadTarget(FlightShipRuntime target,Vector3 velocity)
+        {
+            leadTarget=ship&&ship.Team==0&&target&&target.IsAlive&&target.Team!=ship.Team?target:null;
+            leadLife=leadTarget?leadTarget.LifeId:-1;leadVelocity=velocity;
+        }
         int trackedLife=-1;
 
         public FlightShipRuntime Target{get;set;}
@@ -197,8 +203,30 @@ namespace Starframe.Combat
                     if(selected==null||distance<bestDistance-.0001f||(Mathf.Abs(distance-bestDistance)<.0001f&&string.CompareOrdinal(slot.part.record.id,selected.part.record.id)<0)){selected=slot;bestDistance=distance;}
                 }
                 var matrix=renderPose?selected.part.view.transform.localToWorldMatrix:CylindricalHitQuery.PhysicsMatrix(selected.part.view.GetComponent<Collider>());
-                values.Add(new WeaponAimProfile{weapon=group.definition,origin=matrix.MultiplyPoint3x4(selected.module.muzzleLocalPosition),direction=matrix.MultiplyVector(Vector3.forward).normalized,partId=selected.part.record.id,gunCount=count});
+                values.Add(new WeaponAimProfile{weapon=group.definition,origin=matrix.MultiplyPoint3x4(selected.module.muzzleLocalPosition),direction=matrix.MultiplyVector(Vector3.forward).normalized,partId=selected.part.record.id,gunCount=count,projectileSpeed=group.definition.projectileSpeed,range=group.definition.range});
             }
+        }
+        /// <summary>Player HUD: one stable core-referenced profile per actual speed across all enabled groups.</summary>
+        public void GetLeadProfiles(List<WeaponAimProfile> values,bool renderPose=false)
+        {
+            if(values==null)throw new ArgumentNullException(nameof(values));
+            values.Clear();if(!ship||!ship.IsAlive)return;
+            Vector3 origin=renderPose?ship.CorePosition:ship.CorePhysicsPosition;
+            foreach(var slot in guns)
+            {
+                var definition=slot.definition;float speed=definition.projectileSpeed;
+                if(definition.delivery!=WeaponDelivery.Projectile||!VisibleSlot(slot,null,false)||speed<=0||float.IsNaN(speed)||float.IsInfinity(speed))continue;
+                int index=-1;
+                for(int i=0;i<values.Count;i++)if(values[i].projectileSpeed==speed){index=i;break;}
+                if(index<0)values.Add(new WeaponAimProfile{weapon=definition,origin=origin,projectileSpeed=speed,range=definition.range,gunCount=1});
+                else
+                {
+                    var profile=values[index];profile.gunCount++;
+                    if(definition.range>profile.range){profile.range=definition.range;profile.weapon=definition;}
+                    values[index]=profile;
+                }
+            }
+            values.Sort((a,b)=>a.projectileSpeed.CompareTo(b.projectileSpeed));
         }
         bool VisibleSlot(Slot slot,int? groupId,bool filterHeld)=>IsGroupEnabled(slot.groupId)&&slot.part.present&&!slot.blocked&&
             (!groupId.HasValue||slot.groupId==groupId.Value)&&(!filterHeld||inputs[slot.groupId].held);
@@ -208,6 +236,7 @@ namespace Starframe.Combat
         {
             if(!owner)throw new ArgumentNullException(nameof(owner));if(world==null)throw new ArgumentNullException(nameof(world));
             ship=owner;projectiles=world;guns.Clear();aimGroups.Clear();weaponGroups.Clear();inputs.Clear();inputIds.Clear();disabledGroups.Clear();
+            aimBody=owner.GetComponent<Rigidbody>();leadTarget=null;leadLife=-1;leadVelocity=Vector3.zero;
             Target=trackedTarget=null;trackedLife=-1;vlsContacts.Clear();vlsTargets.Clear();missileSpacingRemaining=0;missileCursor=0;alternatingDirectFire=false;hasDirectAimPoint=false;
             ActiveGuns=BlockedGuns=ShotsFired=0;FireRequested=legacyPreviousHeld=UseGroupedInput=HasValidTargetLock=false;
             var snapshot=new BlueprintData();foreach(var part in owner.Parts)snapshot.parts.Add(BlockPlacement.Copy(part.record));
@@ -396,11 +425,16 @@ namespace Starframe.Combat
             Vector3 local=slot.module.muzzleLocalPosition+(offsets!=null&&offsets.Length>0?offsets[slot.nextMuzzle++%offsets.Length]:Vector3.zero);
             var matrix=CylindricalHitQuery.PhysicsMatrix(slot.part.view.GetComponent<Collider>());
             Vector3 origin=matrix.MultiplyPoint3x4(local),direction=matrix.MultiplyVector(Vector3.forward).normalized;
-            if(hasDirectAimPoint&&slot.definition.delivery!=WeaponDelivery.GuidedMissile)
+            Vector3 corrected=direction;
+            Vector3 referenceForward=aimBody?aimBody.rotation*Vector3.forward:ship.transform.forward;
+            bool compensated=slot.definition.delivery==WeaponDelivery.Projectile&&ship.Team==0&&leadTarget&&leadTarget.IsAlive&&leadTarget.LifeId==leadLife&&
+                Vector3.Dot(direction,referenceForward)>.9999f&&DirectAimAssist.TryCompensateLead(ship.CorePhysicsPosition,origin,direction,
+                    leadTarget.CorePhysicsPosition,leadVelocity,slot.definition.projectileSpeed,slot.definition.range,out corrected);
+            if(!compensated&&hasDirectAimPoint&&slot.definition.delivery!=WeaponDelivery.GuidedMissile)
             {
-                var corrected=DirectAimAssist.Converge(origin,direction,directAimPoint,slot.definition.EffectiveRange);
-                if(!projectiles.OwnPathBlocked(ship,slot.part,origin,corrected,slot.module.muzzleClearanceDiameter))direction=corrected;
+                corrected=DirectAimAssist.Converge(origin,direction,directAimPoint,slot.definition.EffectiveRange);compensated=true;
             }
+            if(compensated&&!projectiles.OwnPathBlocked(ship,slot.part,origin,corrected,slot.module.muzzleClearanceDiameter))direction=corrected;
             projectiles.Fire(ship,slot.definition,origin,direction,slot.part.view.transform,local);ShotsFired++;
         }
         void ExecuteMissiles(float powerRatio)
@@ -454,6 +488,6 @@ namespace Starframe.Combat
                 if(slot.missileSalvoRemaining<=0){slot.vlsQueue.Clear();slot.vlsQueueIndex=0;}
             }
         }
-        public void Reset(){hasDirectAimPoint=false;ClearGroupInputs();missileSpacingRemaining=0;missileCursor=0;ShotsFired=0;HasValidTargetLock=false;Target=trackedTarget=null;trackedLife=-1;vlsContacts.Clear();vlsTargets.Clear();foreach(var slot in guns){slot.sustainingAudio=false;slot.windingUp=false;slot.activation.Clear();slot.thermal.Clear();slot.checkedRevision=-1;slot.nextMuzzle=slot.missileTube=slot.missileSalvoRemaining=0;slot.wasReady=slot.pendingDischarge=false;slot.reloadRemaining=slot.lockElapsed=slot.vlsSpacingRemaining=0;slot.ammoRemaining=Mathf.Max(1,slot.definition.magazineSize);ReloadVisual(slot,false);}}
+        public void Reset(){hasDirectAimPoint=false;leadTarget=null;leadLife=-1;leadVelocity=Vector3.zero;ClearGroupInputs();missileSpacingRemaining=0;missileCursor=0;ShotsFired=0;HasValidTargetLock=false;Target=trackedTarget=null;trackedLife=-1;vlsContacts.Clear();vlsTargets.Clear();foreach(var slot in guns){slot.sustainingAudio=false;slot.windingUp=false;slot.activation.Clear();slot.thermal.Clear();slot.checkedRevision=-1;slot.nextMuzzle=slot.missileTube=slot.missileSalvoRemaining=0;slot.wasReady=slot.pendingDischarge=false;slot.reloadRemaining=slot.lockElapsed=slot.vlsSpacingRemaining=0;slot.ammoRemaining=Mathf.Max(1,slot.definition.magazineSize);ReloadVisual(slot,false);}}
     }
 }

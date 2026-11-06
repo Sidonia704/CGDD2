@@ -1,0 +1,171 @@
+{
+  "Summary": {
+    "Total": 22,
+    "Passed": 22,
+    "Failed": 0,
+    "Skipped": 0,
+    "Inconclusive": 0
+  },
+  "Results": [
+    {
+      "FullName": "Starframe.Construction.Tests.SharedLeadPointTests.ABlockedMuzzleDoesNotContributeToSharedCountOrMaximumRange",
+      "Status": "Passed",
+      "Duration": 0.2524069,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.SharedLeadPointTests.ActualShotsFromAllThreeSizesHitTheMovingTargetUsingOneSharedLead",
+      "Status": "Passed",
+      "Duration": 0.0761323,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.SharedLeadPointTests.ActualSpeedsStaySeparateAndSortedRegardlessOfMountOrderOrHeldGroup(300.0f)",
+      "Status": "Passed",
+      "Duration": 0.0097607,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.SharedLeadPointTests.ActualSpeedsStaySeparateAndSortedRegardlessOfMountOrderOrHeldGroup(599.75f)",
+      "Status": "Passed",
+      "Duration": 0.0081772,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.SharedLeadPointTests.ClearingTheLeadTargetOrChangingItsLifePreventsStaleCorrectionOnActualShots(False)",
+      "Status": "Passed",
+      "Duration": 0.0158976,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.SharedLeadPointTests.ClearingTheLeadTargetOrChangingItsLifePreventsStaleCorrectionOnActualShots(True)",
+      "Status": "Passed",
+      "Duration": 0.0149636,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.SharedLeadPointTests.CompensationPreservesThePlayersAimErrorInsteadOfSnappingToTheTarget",
+      "Status": "Passed",
+      "Duration": 0.0010961,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.SharedLeadPointTests.DestroyingARepresentativeMountKeepsTheSharedLeadOriginAndSpeedStable",
+      "Status": "Passed",
+      "Duration": 0.0166829,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.SharedLeadPointTests.DisablingLongerRangeMountsRecomputesSharedRangeWithoutHidingShortMounts",
+      "Status": "Passed",
+      "Duration": 0.0381381,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.SharedLeadPointTests.DistinctSizeDefinitionsWithOneSpeedShareOneCoreReferencedProfile",
+      "Status": "Passed",
+      "Duration": 0.0094555,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.SharedLeadPointTests.ExcessiveMountParallaxIsRejectedOrBoundedToFourDegrees",
+      "Status": "Passed",
+      "Duration": 0.0007152,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.SharedLeadPointTests.FrontRearAndSideMuzzlesMeetTheirOwnMovingTargetIntercept(-20,0,0)",
+      "Status": "Passed",
+      "Duration": 0.0013647,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.SharedLeadPointTests.FrontRearAndSideMuzzlesMeetTheirOwnMovingTargetIntercept(20,0,0)",
+      "Status": "Passed",
+      "Duration": 9.51e-05,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.SharedLeadPointTests.FrontRearAndSideMuzzlesMeetTheirOwnMovingTargetIntercept(0,-20,0)",
+      "Status": "Passed",
+      "Duration": 7.67e-05,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.SharedLeadPointTests.FrontRearAndSideMuzzlesMeetTheirOwnMovingTargetIntercept(0,20,0)",
+      "Status": "Passed",
+      "Duration": 7.36e-05,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.SharedLeadPointTests.FrontRearAndSideMuzzlesMeetTheirOwnMovingTargetIntercept(0,0,-30)",
+      "Status": "Passed",
+      "Duration": 7.82e-05,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.SharedLeadPointTests.FrontRearAndSideMuzzlesMeetTheirOwnMovingTargetIntercept(0,0,30)",
+      "Status": "Passed",
+      "Duration": 7.29e-05,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.SharedLeadPointTests.NonProjectileDeliveryDoesNotCreateAProjectileLeadProfile(Beam)",
+      "Status": "Passed",
+      "Duration": 0.0077036,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.SharedLeadPointTests.NonProjectileDeliveryDoesNotCreateAProjectileLeadProfile(GuidedMissile)",
+      "Status": "Passed",
+      "Duration": 0.0095703,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.SharedLeadPointTests.NoSolutionOrOutOfRangeDoesNotProduceLeadCompensation(0,2000,0)",
+      "Status": "Passed",
+      "Duration": 0.0012257,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.SharedLeadPointTests.NoSolutionOrOutOfRangeDoesNotProduceLeadCompensation(100,2000,200)",
+      "Status": "Passed",
+      "Duration": 0.0001187,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.SharedLeadPointTests.NoSolutionOrOutOfRangeDoesNotProduceLeadCompensation(100,50,0)",
+      "Status": "Passed",
+      "Duration": 0.00021,
+      "Message": null,
+      "StackTrace": null
+    }
+  ],
+  "Duration": 7.06,
+  "StatusPath": null,
+  "Mode": "EditMode",
+  "FilterApplied": "testname: SharedLeadPointTests",
+  "success": true,
+  "result": null
+}

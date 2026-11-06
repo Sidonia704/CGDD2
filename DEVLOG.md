@@ -402,3 +402,20 @@ Add `## Stage Reflection NNN — title` only when you ask for one: Keep / Change
 - Validation:49 focused EditMode tests pass (21projectile including6thick-hull rail cases,10nativebalance,13shield,2cost,3Englishwarning). Thick aligned unit-cube aggregate budgets148.15/152.94/150.91% of former values; HP caps, shielding and topology mean this is not a guaranteed kill-time ratio. Actual frontend target/library screenshots show cost without truncation; red warning screenshots verified English text. Compilation clean; Editor left stopped. No full mission balance playthrough.
 - Challenge confirmation: The user answered “两者都不变（仅伤害与界面调整）” when asked under AGENTS.md; victory/defeat conditions and player verbs remain unchanged this round. No Stage Reflection requested.
 - Evidence: Documentation/RailBalance-2026-11-07, Documentation/BlueprintCostReview, Documentation/BlueprintWarnings-2026-11-07. Prior game interactions remain append-only.
+
+
+## Interaction 047 — Shared projectile-speed leads and muzzle parallax
+
+- Date: 2026-11-07
+- Request: Enabled weapons with the same actual projectile speed share one accurate lead marker across sizes; two different speeds produce two markers, with installation-offset compensation and only extreme off-axis residual error.
+- Changes: Player HUD profiles group surviving, unblocked, enabled Projectile mounts by exact speed across weapon definitions and groups; a shared core origin, maximum reachable range and speed-keyed presentation preserve marker position/style when mounts or enabled groups change. Held mouse buttons do not hide enabled profiles. Existing real-muzzle bot profiles remain separate. Actual player discharges independently solve reference-core and muzzle intercepts and apply only their angular difference, preserving player aim error, collision, self-clearance, target life checks and the existing4degree limit. Fore/aft time-of-flight corrections retain tiny angles using atan2/AngleAxis. Core-motion fallback includes off-centre target rotation once; projectiles retain their existing non-inherited world velocity. Native small/medium/large speeds already match: Gatling2700, rapid laser6600, rail10800m/s; editor installer speed defaults now match and cannot restore old size-dependent speeds. Damage/rate/native weapon assets unchanged.
+- Validation:64 targeted EditMode checks pass:22sharedlead,9directassist,4coreballistics,16weapongroups,13nativebalance. Three real equal-speed projectiles hit a moving one-cell core. Actual sensor->lock->HUD preview confirms1/2/1 points with distinct sizes, mixed speeds, then group disable; three nativeHUD captures accepted by Astra. Compilation clean; no Play session or full mission run. Broader legacy AimClearanceTests produced17passes and4pre-existing specification mismatches (arbitrary non-missile orientations, obsolete dual-barrel native Gun1 assumption); these and their game rules were not changed. Initial test fixture support and tiny-angle compensation issues were corrected before final checks.
+- Challenge: This restores intended aiming accuracy; victory/defeat and player verbs remain unchanged. Prior explicit user no/no confirmation remains applicable; no new input action, lock acquisition rule, damage balance or Stage Reflection introduced.
+- Evidence: Documentation/SharedLead-2026-11-07, tools/SharedLeadPreview.cs. Existing local user balance/project configuration edits remain untouched.
+
+## Interaction 048 — Silent training-range respawn
+
+- Date: 2026-11-07
+- Request: Remove the training-range respawn sound; finish quickly without tests.
+- Changes: Removed the Respawn cue emission on player LifeId changes. Existing audio state reset and respawn mechanics remain unchanged.
+- Validation: None, as explicitly requested; no Unity commands, tests or trace export. Win/loss and player verbs unchanged. No Stage Reflection requested.

@@ -13,15 +13,15 @@ MonoBehaviour:
   m_Name: Gun1Weapon
   m_EditorClassIdentifier: Starframe.Construction::Starframe.Flight.WeaponDefinition
   shotsPerSecond: 12
-  damage: 720
-  projectileSpeed: 2700
+  damage: 140
+  projectileSpeed: 4200
   projectileDiameter: 0.5
   shotAudioGain: 0.6
   firstShotImmediate: 0
   fireWindupSeconds: 0
   penetrationDepth: 1
   secondLayerDamageMultiplier: 0.35
-  range: 1500
+  range: 1200
   unboundedBeam: 0
   visualLength: 6
   tailLength: 120

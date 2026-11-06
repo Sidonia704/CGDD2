@@ -23,6 +23,20 @@ namespace Starframe.Construction.Tests
             Assert.That(w.projectileSpeed,Is.EqualTo(speed));Assert.That(w.damage*w.shotsPerSecond,Is.EqualTo(dps).Within(.01f));
             Assert.That(GameAudioRuntime.ShotGain(w),Is.EqualTo(gain).Within(.00001f));
         }
+        [TestCase("Gun1Weapon","Gun2Weapon","Gun3Weapon")]
+        [TestCase("LaserRapidCannon","Laser2Weapon","Laser3Weapon")]
+        [TestCase("Railgun1Weapon","Railgun2Weapon","Railgun3Weapon")]
+        public void NativeDirectFireSizesShareLargestTierSpeed(string small,string medium,string large)
+        {
+            var largest=AssetDatabase.LoadAssetAtPath<WeaponDefinition>("Assets/_Starframe/Settings/Modules/"+large+".asset");
+            Assert.That(largest,Is.Not.Null);
+            foreach(var name in new[]{small,medium,large})
+            {
+                var weapon=AssetDatabase.LoadAssetAtPath<WeaponDefinition>("Assets/_Starframe/Settings/Modules/"+name+".asset");
+                Assert.That(weapon,Is.Not.Null,name);
+                Assert.That(weapon.projectileSpeed,Is.EqualTo(largest.projectileSpeed),name);
+            }
+        }
         [Test]public void AlertAndMissileLevelsUseSingleReductionAndLowerRadarPitch()
         {
             var tuning=AssetDatabase.LoadAssetAtPath<GameAudioTuning>("Assets/_Starframe/Resources/Audio/GameAudioTuning.asset");

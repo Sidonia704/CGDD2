@@ -1,0 +1,88 @@
+{
+  "diagnostics": [],
+  "compileMs": 5676,
+  "executeMs": 343,
+  "assemblyName": "PipelineRunScript_SharedLeadPreview_4515c4a4a43e454f8c04055682a13245",
+  "success": true,
+  "result": {
+    "sameSpeed": "D:\\software\\unity\\CGDD26107\\Documentation\\SharedLead-2026-11-07\\same-speed.png",
+    "mixedSpeeds": "D:\\software\\unity\\CGDD26107\\Documentation\\SharedLead-2026-11-07\\mixed-speeds.png",
+    "disabledSpeed": "D:\\software\\unity\\CGDD26107\\Documentation\\SharedLead-2026-11-07\\disabled-speed.png",
+    "pipeline": [
+      {
+        "label": "same-speed",
+        "leadCount": 1,
+        "profiles": [
+          {
+            "speed": 600,
+            "range": 2000,
+            "count": 3
+          }
+        ],
+        "points": [
+          {
+            "speed": 600,
+            "time": 0.836242,
+            "x": 64.8121,
+            "y": 1500.5,
+            "z": 459
+          }
+        ]
+      },
+      {
+        "label": "mixed-speeds",
+        "leadCount": 2,
+        "profiles": [
+          {
+            "speed": 600,
+            "range": 2000,
+            "count": 2
+          },
+          {
+            "speed": 900,
+            "range": 2000,
+            "count": 1
+          }
+        ],
+        "points": [
+          {
+            "speed": 600,
+            "time": 0.836242,
+            "x": 64.8121,
+            "y": 1500.5,
+            "z": 459
+          },
+          {
+            "speed": 900,
+            "time": 0.5564149,
+            "x": 50.8207474,
+            "y": 1500.5,
+            "z": 459
+          }
+        ]
+      },
+      {
+        "label": "disabled-900",
+        "leadCount": 1,
+        "profiles": [
+          {
+            "speed": 600,
+            "range": 2000,
+            "count": 2
+          }
+        ],
+        "points": [
+          {
+            "speed": 600,
+            "time": 0.836242,
+            "x": 64.8121,
+            "y": 1500.5,
+            "z": 459
+          }
+        ]
+      }
+    ],
+    "playModeEntered": false,
+    "nativeAssetsModified": false
+  }
+}

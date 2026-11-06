@@ -29,7 +29,7 @@ flowchart TD
   DebrisPartHitbox("<b>DebrisPartHitbox</b><br/>Apply projectile damage to detached wreckage parts.")
   DebrisWorld("<b>DebrisWorld</b><br/>Simulate destructible ship wreckage and clear it 90 simulation seconds after detachment, including later fragments.")
   DeploymentValidator("<b>DeploymentValidator</b><br/>Validate ship structure, delivery-specific weapon and countermeasure configuration, budget and flight readiness.")
-  DirectAimAssist("<b>DirectAimAssist</b><br/>Resolve player reticle hull hits and bounded muzzle-parallax convergence without target acquisition.")
+  DirectAimAssist("<b>DirectAimAssist</b><br/>Compensate bounded player muzzle parallax for shared projectile leads and direct reticle hull hits without removing aim error.")
   EnemyArchetypeDefinition("<b>EnemyArchetypeDefinition</b><br/>Describe an editable enemy blueprint, size, score and pilot behavior for authored encounters.")
   EnemyFleetCatalog("<b>EnemyFleetCatalog</b><br/>Make authored enemy blueprints available as safe, editable player-library copies.")
   FigmaHangarGrid("<b>FigmaHangarGrid</b><br/>Place the native construction grid beneath the live hangar ship and cover the camera's visible floor as the preview orbits or zooms.")
@@ -103,7 +103,7 @@ flowchart TD
   ShipShieldSystem("<b>ShipShieldSystem</b><br/>Maintain component-owned shields; absorbed hits delay shields without interrupting protected hull repair.")
   ShipShieldVisual("<b>ShipShieldVisual</b><br/>Render shield fields and hit feedback from runtime shield state.")
   ShipStatusGraphic("<b>ShipStatusGraphic</b><br/>Draw the blueprint and currently surviving ship parts as an isometric diagram.")
-  ShipWeapons("<b>ShipWeapons</b><br/>Fire grouped weapons with per-mount Gatling heat, powered audio heartbeat, peak-synchronized rails, fresh conventional locks and independent area-lock VLS magazines.")
+  ShipWeapons("<b>ShipWeapons</b><br/>Fire grouped weapons with per-mount heat and locks, shared speed-based player leads, bounded muzzle compensation and peak-synchronized rails.")
   ShipWorkspace("<b>ShipWorkspace</b><br/>Preserve the working ship and independent deployment snapshots across scenes.")
   SpaceMapAssemblyLinks("<b>SpaceMapAssemblyLinks</b><br/>Hold authored station contacts through staged loading, physical damage and fragment ownership changes.")
   SpaceMapDefinition("<b>SpaceMapDefinition</b><br/>Store scenery instances, authored physical assembly contacts, drift settings and future encounter spawn positions.")
@@ -112,9 +112,9 @@ flowchart TD
   SpaceMapVisuals("<b>SpaceMapVisuals</b><br/>Select authored coarse or exact meshes for intact scenery and cull whole-object renderers without touching physics or voxel state.")
   SpecialWeaponVisualPool("<b>SpecialWeaponVisualPool</b><br/>Pool visible missile bodies, curved orange voxel trails and immediate muzzle-following laser beams.")
   SphereRadarGraphic("<b>SphereRadarGraphic</b><br/>Draw range contacts, relative height and the selected target.")
-  TargetAimGraphic("<b>TargetAimGraphic</b><br/>Draw lock frames, edge directions and stable projectile lead offsets independent of camera motion.")
+  TargetAimGraphic("<b>TargetAimGraphic</b><br/>Draw lock frames, edge directions and speed-keyed shared projectile lead offsets independent of camera motion.")
   TargetIndicatorProjection("<b>TargetIndicatorProjection</b><br/>Project offscreen targets onto the HUD boundary.")
-  TargetLockSystem("<b>TargetLockSystem</b><br/>Deduplicate lock presses per InputSystem update and acquire at presented steering/forward reticles while retaining valid targets and leads.")
+  TargetLockSystem("<b>TargetLockSystem</b><br/>Retain radar locks and display one core-referenced projectile intercept per enabled muzzle speed.")
   TargetSensorWorld("<b>TargetSensorWorld</b><br/>Cache surviving ship signatures, share discovery hysteresis and maintain real opponent target locks.")
   TargetSilhouetteOutline("<b>TargetSilhouetteOutline</b><br/>Draw a red through-cover silhouette for only the currently locked ship using an independent mask and cached live geometry.")
   ThreatAudioDriver("<b>ThreatAudioDriver</b><br/>Play merged combat awareness cues; accelerate one dry missile alarm by distance or impact time and clear it when flight is inaudible.")
@@ -220,6 +220,7 @@ flowchart TD
   DeploymentValidator --> MissionDefinition
   DirectAimAssist --> ShipPartHitbox
   DirectAimAssist --> FlightShipRuntime
+  DirectAimAssist --> InterceptSolver
   EnemyArchetypeDefinition --> BlueprintRepository
   EnemyArchetypeDefinition --> BotBehaviorProfile
   EnemyFleetCatalog --> EnemyArchetypeDefinition

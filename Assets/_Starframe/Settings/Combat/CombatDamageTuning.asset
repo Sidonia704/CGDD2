@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d6a0f82df0d93c4380436141c312bdf, type: 3}
   m_Name: CombatDamageTuning
   m_EditorClassIdentifier: Starframe.Construction::Starframe.Combat.CombatDamageTuning
-  globalDamageMultiplier: 0.8
-  nonMissileDamageMultiplier: 0.8
-  missileDamageMultiplier: 0.15
-  playerDirectDamageMultiplier: 6
-  playerMissileDamageMultiplier: 1
+  globalDamageMultiplier: 0.6
+  nonMissileDamageMultiplier: 1
+  missileDamageMultiplier: 1
+  playerDirectDamageMultiplier: 2.5
+  playerMissileDamageMultiplier: 0.5

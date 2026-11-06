@@ -280,7 +280,7 @@ namespace Starframe.App
                 UpdateActors();var player=world.Player;var ship=player.ship;var flight=player.flight;
                 if(ship.IsAlive)
                 {
-                    if(playerLife!=ship.LifeId){if(playerLife>=0)Emit(GameSound.Respawn);playerLife=ship.LifeId;thrustRevision=-1;overheated=false;nextCritical=0;}
+                    if(playerLife!=ship.LifeId){playerLife=ship.LifeId;thrustRevision=-1;overheated=false;nextCritical=0;}
                     if(thrustRevision!=ship.StructureRevision){thrusters.Clear();foreach(var part in ship.Parts)if(BlockModules.IsThruster(part.record.shape))thrusters.Add(part);thrustRevision=ship.StructureRevision;}
                     foreach(var part in thrusters)if(part.present&&part.thrustAvailable&&part.view)
                     {

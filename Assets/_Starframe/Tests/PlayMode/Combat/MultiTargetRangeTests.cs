@@ -36,12 +36,12 @@ namespace Starframe.Tests
             TargetLockTestPreparation.PointAt(world,first.ship);
             world.Targeting.ToggleLock();Assert.That(world.Targeting.HasTarget,Is.True);
             var locked=world.Targeting.LockedTarget;Assert.That(locked.Team,Is.EqualTo(1));
-            var profiles=new System.Collections.Generic.List<WeaponAimProfile>();world.Player.weapons.GetAimProfiles(profiles);
+            var profiles=new System.Collections.Generic.List<WeaponAimProfile>();world.Player.weapons.GetLeadProfiles(profiles,renderPose:true);
             Assert.That(world.Targeting.LeadPoints.Count,Is.GreaterThan(0));
             foreach(var lead in world.Targeting.LeadPoints){
-                var profile=profiles.Find(p=>p.weapon==lead.weapon);var screen=AimProjection.ScreenPoint(Camera.main,lead.aimDirection);
+                var profile=profiles.Find(p=>p.projectileSpeed==lead.projectileSpeed);var screen=AimProjection.ScreenPoint(Camera.main,lead.aimDirection);
                 var shotDirection=Camera.main.ScreenPointToRay(screen).direction;
-                Assert.That(Vector3.Distance(profile.origin+shotDirection*(lead.weapon.projectileSpeed*lead.flightTime),lead.point),Is.LessThan(.01f),"The live lock system's pip must aim along the actual muzzle intercept trajectory.");
+                Assert.That(Vector3.Distance(profile.origin+shotDirection*(lead.projectileSpeed*lead.flightTime),lead.point),Is.LessThan(.01f),"Each live pip must project the shared core-referenced intercept for its actual speed.");
             }
             world.Targeting.Clear();
             var core=first.ship.Parts.Find(p=>p.record.shape==BlockShape.Core);first.ship.ApplyDamage(core.record.id,100000,world.Player.ship);

@@ -1,4 +1,4 @@
-// @role Draw lock frames, edge directions and stable projectile lead offsets independent of camera motion.
+// @role Draw lock frames, edge directions and speed-keyed shared projectile lead offsets independent of camera motion.
 // @calls TargetLockSystem, TargetIndicatorProjection, AimProjection, ShipWeapons
 
 using System.Collections.Generic;
@@ -18,7 +18,7 @@ namespace Starframe.Combat
         ShipWeapons weapons;
         Canvas ownerCanvas;
         struct LeadPresentation{public Vector2 offset;public int frame;}
-        readonly Dictionary<WeaponDefinition,LeadPresentation> leadPresentation=new Dictionary<WeaponDefinition,LeadPresentation>();
+        readonly Dictionary<float,LeadPresentation> leadPresentation=new Dictionary<float,LeadPresentation>();
         FlightShipRuntime presentationTarget;int presentationLife;
         public bool EdgeIndicatorVisible{get;private set;}
 
@@ -86,16 +86,17 @@ namespace Starframe.Combat
             for (int i = 0; i < leads.Count; i++)
             {
                 LeadPoint lead = leads[i];
-                if (!lead.weapon || lead.flightTime < 0 ||
-                    lead.flightTime * Mathf.Max(.01f, lead.weapon.projectileSpeed) > lead.weapon.range)
+                if (lead.projectileSpeed<=0 || lead.flightTime < 0 ||
+                    lead.flightTime * lead.projectileSpeed > lead.range)
                     continue;
                 if (lead.aimDirection.sqrMagnitude<.000001f||!TryScreenPoint(AimProjection.ScreenPoint(viewCamera,lead.aimDirection),uiCamera,out var point)) continue;
                 // Smooth only the lead offset, so camera/target motion remains responsive.
                 Vector2 desired=point-targetPoint;
-                if(!leadPresentation.TryGetValue(lead.weapon,out var shown)||shown.frame<Time.frameCount-1||(shown.offset-desired).sqrMagnitude>10000*scale*scale)
+                if(!leadPresentation.TryGetValue(lead.projectileSpeed,out var shown)||shown.frame<Time.frameCount-1||(shown.offset-desired).sqrMagnitude>10000*scale*scale)
                     shown=new LeadPresentation{offset=desired,frame=Time.frameCount};
                 else if(shown.frame!=Time.frameCount){shown.offset=Vector2.Lerp(shown.offset,desired,1-Mathf.Exp(-24*Time.unscaledDeltaTime));shown.frame=Time.frameCount;}
-                leadPresentation[lead.weapon]=shown;point=targetPoint+shown.offset;
+                leadPresentation[lead.projectileSpeed]=shown;point=targetPoint+shown.offset;
+                int shape=(int)((uint)lead.projectileSpeed*2654435761u>>30);
                 Color tint = EnemyTint;
                 if(refined)
                 {
@@ -103,12 +104,12 @@ namespace Starframe.Combat
                     // Leave the target and the lead marker unobscured at both ends of their relationship line.
                     Vector2 delta=point-targetPoint;float length=delta.magnitude;
                     if(length>halfFrame+22f*scale){var tetherDirection=delta/length;DrawDashed(vh,targetPoint+tetherDirection*(halfFrame+9f*scale),point-tetherDirection*13f*scale,3.5f*scale,10f*scale,1.1f*scale,new Color(tint.r,tint.g,tint.b,.29f));}
-                    DrawRefinedLead(vh,point,11f*scale,tint,i%4,scale);
+                    DrawRefinedLead(vh,point,11f*scale,tint,shape,scale);
                 }
                 else
                 {
                     DrawDashed(vh,targetPoint,point,8f*scale,6f*scale,2.5f*scale,tint);
-                    DrawLead(vh,point,11f*scale,3.5f*scale,tint,i%4);
+                    DrawLead(vh,point,11f*scale,3.5f*scale,tint,shape);
                 }
             }
         }

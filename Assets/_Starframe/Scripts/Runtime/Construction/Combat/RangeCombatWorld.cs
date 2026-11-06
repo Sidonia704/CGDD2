@@ -269,7 +269,9 @@ namespace Starframe.Combat
         }
         void UpdatePlayerDirectAim()
         {
-            if(!view||player==null||!player.ship.IsAlive){player?.weapons.SetDirectAimRay(default,false);return;}
+            Targeting?.RefreshTargetMotion();
+            player?.weapons.SetLeadTarget(Targeting&&Targeting.HasTarget?Targeting.LockedTarget:null,Targeting?Targeting.EstimatedCoreVelocity:Vector3.zero);
+            if(!view||player==null||!player.ship.IsAlive){player?.weapons.SetDirectAimRay(default,false);player?.weapons.SetLeadTarget(null,Vector3.zero);return;}
             // This is the forward firing reticle, not the displaced virtual-stick steering cursor.
             Vector2 point;
             if(!hud||!hud.TryGetForwardReticleScreenPoint(out point))point=AimProjection.ScreenPoint(view,player.flight.RenderForward);

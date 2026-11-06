@@ -1,5 +1,7 @@
 # STATUS
 
+- 2026-11-07 shared lead repair: one core-referenced marker per enabled projectile speed across all sizes/groups, stable presentation and bounded real-muzzle interception correction. Native size speeds2700/6600/10800m/s verified; installer defaults aligned.64 focused checks and real HUD1/2/1 preview pass, accepted by Astra;4 unrelated legacy clearance cases remain specification-stale. Editor stopped. Evidence: Documentation/SharedLead-2026-11-07.
+
 - 2026-11-07 beginner handouts: separate one-page A4 landscape English/Chinese guides cover assembly/save, weapon-group assignment, flight, training targets, combat readiness and the six-wave flagship objective. PDFs/preview images under site/guides and docs/guides; source and layout evidence in tools/QuickStart and Documentation/QuickStart-2026-11-07.
 
 - 2026-11-07 current snapshot: six mixed waves / 77 enemies with final t8 flagship; VLS magazines, core-oriented mirror editing and power-limited propulsion are installed. Blueprint thumbnail cards show deployment cost; English placement/mirror warnings localized. Final rail tuning reduces base damage20%, doubles penetration4/6/8m and retains50/45/45% internal damage, yielding about150% former thick-hull aggregate budget. This round49focused checks pass; diagrams/tunables/process/challenge evidence exported for publication. No full six-wave human pacing claim.

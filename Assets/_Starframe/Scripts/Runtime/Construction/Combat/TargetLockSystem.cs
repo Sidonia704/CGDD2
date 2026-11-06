@@ -1,4 +1,4 @@
-// @role Deduplicate lock presses per InputSystem update and acquire at presented steering/forward reticles while retaining valid targets and leads.
+// @role Retain radar locks and display one core-referenced projectile intercept per enabled muzzle speed.
 // @calls RangeCombatWorld, TargetSensorWorld, RangeHUD, AimProjection, InterceptSolver, CoreVelocityEstimator, ShipWeapons, GameInput
 
 using System.Collections.Generic;
@@ -6,8 +6,8 @@ using UnityEngine;
 using Starframe.Flight;
 namespace Starframe.Combat
 {
-    public struct WeaponAimProfile{public WeaponDefinition weapon;public Vector3 origin,direction;public string partId;public int gunCount;}
-    public struct LeadPoint{public WeaponDefinition weapon;public Vector3 point,aimDirection;public float flightTime;}
+    public struct WeaponAimProfile{public WeaponDefinition weapon;public Vector3 origin,direction;public string partId;public int gunCount;public float projectileSpeed,range;}
+    public struct LeadPoint{public WeaponDefinition weapon;public Vector3 point,aimDirection;public float flightTime,projectileSpeed,range;}
     [DefaultExecutionOrder(125)]
     public sealed class TargetLockSystem:MonoBehaviour
     {
@@ -78,7 +78,7 @@ namespace Starframe.Combat
                 selected=SelectNearestVisibleTarget(DetectedTargets,viewCamera,forward,radius);
             }
             if(selected)foreach(var actor in world.Actors)if(actor.ship==selected){target=actor;break;}
-            if(target!=null){life=target.ship.LifeId;ownerLife=owner.ship.LifeId;coreMotion.Reset(target.ship.CorePhysicsPosition,Time.fixedTimeAsDouble,target.flight.Velocity);}RefreshLeadPoints();
+            if(target!=null){life=target.ship.LifeId;ownerLife=owner.ship.LifeId;coreMotion.Reset(target.ship.CorePhysicsPosition,Time.fixedTimeAsDouble,CoreVelocityFallback());}RefreshLeadPoints();
         }
         public static FlightShipRuntime SelectNearestVisibleTarget(IReadOnlyList<FlightShipRuntime> candidates,Camera camera,Vector2 cursor,float radiusPixels)
         {
@@ -110,14 +110,19 @@ namespace Starframe.Combat
         }
         public void RefreshLeadPoints()
         {
-            ValidateTarget();points.Clear();if(!HasTarget)return;
-            var core=target.ship.CorePhysicsPosition;
-            coreMotion.Sample(core,Time.fixedTimeAsDouble,tuning.leadVelocitySampleWindow,tuning.leadVelocityResponse,target.flight.Velocity);
+            RefreshTargetMotion();points.Clear();if(!HasTarget)return;
             // Display all enabled direct-fire profiles even while the missile group is held.
             // Match the interpolated camera/target pose instead of mixing physics and render frames.
-            world.Player.weapons.GetAimProfiles(profiles,filterToHeld:false,renderPose:true);
-            core=target.ship.CorePosition;
-            foreach(var profile in profiles)if(profile.weapon.delivery==WeaponDelivery.Projectile&&InterceptSolver.TrySolve(profile.origin,core,coreMotion.Velocity,profile.weapon.projectileSpeed,profile.weapon.range,out var point,out float time))points.Add(new LeadPoint{weapon=profile.weapon,point=point,aimDirection=(point-profile.origin).normalized,flightTime=time});
+            world.Player.weapons.GetLeadProfiles(profiles,renderPose:true);
+            var core=target.ship.CorePosition;
+            foreach(var profile in profiles)if(InterceptSolver.TrySolve(profile.origin,core,coreMotion.Velocity,profile.projectileSpeed,profile.range,out var point,out float time))points.Add(new LeadPoint{weapon=profile.weapon,point=point,aimDirection=(point-profile.origin).normalized,flightTime=time,projectileSpeed=profile.projectileSpeed,range=profile.range});
         }
+        public void RefreshTargetMotion()
+        {
+            ValidateTarget();if(!HasTarget)return;
+            coreMotion.Sample(target.ship.CorePhysicsPosition,Time.fixedTimeAsDouble,tuning.leadVelocitySampleWindow,tuning.leadVelocityResponse,CoreVelocityFallback());
+        }
+        Vector3 CoreVelocityFallback()=>target.flight.Velocity+(target.body?
+            Vector3.Cross(target.body.rotation*target.flight.AngularVelocity*Mathf.Deg2Rad,target.ship.CorePhysicsPosition-target.body.position):Vector3.zero);
     }
 }

@@ -443,7 +443,7 @@ namespace Starframe.Flight
                 int detected=targeting?targeting.DetectedTargets.Count:0;
                 float sensorRange=combat.Sensors!=null?combat.Sensors.MaximumRange:targeting?targeting.LockRange:0;
                 radarLabel.text=L10n.IsEnglish?$"{sensorRange/1000:0.#} km  ·  {detected} contacts":$"{sensorRange/1000:0.#} km  ·  目标 {detected}";
-                if(leadLabel){var leads=combat.Targeting?combat.Targeting.LeadPoints:null;leadNames.Clear();if(leads!=null&&(leads.Count>1||diagnosticsExpanded))foreach(var lead in leads)if(lead.weapon){int i=leadNames.Count;leadNames.Add($"<color=#FF3D2E>{i+1}</color> · {lead.weapon.projectileSpeed:0} m/s");}leadLabel.text=string.Join("   ",leadNames);}
+                if(leadLabel){var leads=combat.Targeting?combat.Targeting.LeadPoints:null;leadNames.Clear();if(leads!=null&&(leads.Count>1||diagnosticsExpanded))foreach(var lead in leads)if(lead.weapon){int i=leadNames.Count;leadNames.Add($"<color=#FF3D2E>{i+1}</color> · {lead.projectileSpeed:0.##} m/s");}leadLabel.text=string.Join("   ",leadNames);}
                 string combatDetails=(!refinedFlightLayout||diagnosticsExpanded)?L10n.T("hud.combatDetails",present,player.ship.Parts.Count,player.weapons.ActiveGuns,player.weapons.BlockedGuns,player.ship.DamageDealt,player.ship.DamageTaken,live,combat.Bots.Count,combat.BotKills):"";
                 string alert=missionPresentation?(!player.ship.IsAlive?L10n.T("mission.arcade.shipLost"):""):
                     !player.ship.IsAlive?L10n.T("hud.respawn",combat.PlayerRespawnRemaining):live<combat.Bots.Count?L10n.T("hud.rebuilding"):"";
