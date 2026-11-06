@@ -1,0 +1,3349 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bc9fba079fe3c340a9872eaa1911107, type: 3}
+  m_Name: Range115Voxels
+  m_EditorClassIdentifier: Starframe.Construction::Starframe.Maps.SpaceMapDefinition
+  enforceUniformGrid: 1
+  size: {x: 3400, y: 3400, z: 3400}
+  playerSpawn: {x: 0, y: 160, z: -450}
+  playerEulerAngles: {x: 25, y: 0, z: 0}
+  enemySpawns: []
+  instances:
+  - id: 115-facility-0
+    label: Cylinder.135
+    asset: {fileID: 11400000, guid: 2ce3a1324e17b9a45919922f0e00da9c, type: 2}
+    position: {x: -95.77151, y: -166.38647, z: -150.48529}
+    eulerAngles: {x: 345.0948, y: 227.45241, z: 57.587376}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-facility-1
+    label: Cylinder.491
+    asset: {fileID: 11400000, guid: 2d5a216e1b92d5a4688b627ec9dc53a2, type: 2}
+    position: {x: -25.15621, y: -418.2821, z: -13.945192}
+    eulerAngles: {x: 284.71478, y: 126.33248, z: 134.32352}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-facility-2
+    label: Cylinder.566
+    asset: {fileID: 11400000, guid: 5b3baf0dfd0cd564cb8b405737dae4e8, type: 2}
+    position: {x: -100.9013, y: -264.3027, z: 86.170944}
+    eulerAngles: {x: 1.830477, y: 22.27815, z: 180.60562}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-facility-3
+    label: Cylinder.569
+    asset: {fileID: 11400000, guid: f818895f8ccdf124697abbdb10b7f794, type: 2}
+    position: {x: -100.397675, y: -273.18198, z: 149.67993}
+    eulerAngles: {x: 11.407355, y: 87.31171, z: 359.7529}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-facility-4
+    label: Cylinder.571
+    asset: {fileID: 11400000, guid: 66ba0693fb87cfc4b9eb9000eb62a4b6, type: 2}
+    position: {x: 20.477343, y: -342.79056, z: -255.80269}
+    eulerAngles: {x: 359.04916, y: 267.35654, z: 343.36716}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-facility-5
+    label: Cylinder.572
+    asset: {fileID: 11400000, guid: 67e5b93b50a327241bef0cac615d39db, type: 2}
+    position: {x: 17.65678, y: -343.61975, z: -195.01291}
+    eulerAngles: {x: 359.04916, y: 267.35654, z: 343.36725}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-facility-6
+    label: Cylinder.573
+    asset: {fileID: 11400000, guid: 250dcd8fe9d90e74aa9af7e19f8acda3, type: 2}
+    position: {x: 14.84766, y: -341.65857, z: -133.45625}
+    eulerAngles: {x: 359.0149, y: 267.46777, z: 17.115429}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-facility-7
+    label: Cylinder.574
+    asset: {fileID: 11400000, guid: 7b7db1ff148d01f40bd0dc20892fa41b, type: 2}
+    position: {x: 10.769293, y: -338.06128, z: 41.30622}
+    eulerAngles: {x: 0.9508487, y: 87.35655, z: 95.38272}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-facility-8
+    label: Cylinder.575
+    asset: {fileID: 11400000, guid: 869622c5da7d53147a8533f39a830a94, type: 2}
+    position: {x: -19.689545, y: -371.79797, z: 110.91217}
+    eulerAngles: {x: 332.55325, y: 261.63806, z: 34.847073}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-facility-9
+    label: Cylinder.576
+    asset: {fileID: 11400000, guid: 5f859e0e348a87a489050a9a6f0b9fda, type: 2}
+    position: {x: 53.866695, y: -350.3719, z: -80.27292}
+    eulerAngles: {x: 270.61804, y: 67.925804, z: 205.05646}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-facility-10
+    label: Cylinder.577
+    asset: {fileID: 11400000, guid: 2eaaac5db64c65c4eb0cc2364ec36dae, type: 2}
+    position: {x: 31.203651, y: -350.0427, z: -95.006645}
+    eulerAngles: {x: 271.40445, y: 82.23385, z: 10.744318}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-facility-11
+    label: Cylinder.578
+    asset: {fileID: 11400000, guid: 2fd52ff3620050f4aa43fca70425d719, type: 2}
+    position: {x: 4.7360177, y: -349.60284, z: -96.18118}
+    eulerAngles: {x: 271.50714, y: 90.172066, z: 25.307358}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-facility-12
+    label: Cylinder.579
+    asset: {fileID: 11400000, guid: 1a0e7b05158200e4a8d5b670a3af5786, type: 2}
+    position: {x: -18.97185, y: -349.161, z: -83.44067}
+    eulerAngles: {x: 271.52597, y: 110.91769, z: 150.81946}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-facility-13
+    label: Cylinder.580
+    asset: {fileID: 11400000, guid: 970edb68e3888e04a9059aad4bbe41b6, type: 2}
+    position: {x: -22.446447, y: -348.87344, z: -17.166885}
+    eulerAngles: {x: 271.4882, y: 114.99151, z: 157.9967}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-facility-14
+    label: Cylinder.581
+    asset: {fileID: 11400000, guid: 2fd3f62686c4b3d49bad318db45b9613, type: 2}
+    position: {x: 0.24445103, y: -349.20334, z: -2.4797635}
+    eulerAngles: {x: 270.56995, y: 133.36787, z: 162.11696}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-facility-15
+    label: Cylinder.582
+    asset: {fileID: 11400000, guid: 2fd52ff3620050f4aa43fca70425d719, type: 2}
+    position: {x: 26.684242, y: -349.64243, z: -1.2592276}
+    eulerAngles: {x: 270.56995, y: 133.3653, z: 162.11937}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-facility-16
+    label: Cylinder.583
+    asset: {fileID: 11400000, guid: 2fd52ff3620050f4aa43fca70425d719, type: 2}
+    position: {x: 50.419506, y: -350.08456, z: -13.924367}
+    eulerAngles: {x: 270.41638, y: 113.726814, z: 204.2559}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-facility-17
+    label: Cylinder.586
+    asset: {fileID: 11400000, guid: 8dc93710ed807a445b771cb66fbb4dde, type: 2}
+    position: {x: 53.953808, y: -418.2804, z: -79.78613}
+    eulerAngles: {x: 89.197655, y: 308.15295, z: 305.16544}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-facility-18
+    label: Cylinder.587
+    asset: {fileID: 11400000, guid: 02781e49eed859846b6c3dab266edf62, type: 2}
+    position: {x: -18.830086, y: -417.07098, z: -83.10122}
+    eulerAngles: {x: 271.26935, y: 119.08084, z: 176.40689}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-facility-19
+    label: Cylinder.588
+    asset: {fileID: 11400000, guid: c83be006c31e59b49890a2cce4c4b3dc, type: 2}
+    position: {x: 50.42261, y: -417.99054, z: -13.1211}
+    eulerAngles: {x: 89.32333, y: 258.75043, z: 255.77007}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-facility-20
+    label: Cylinder.592
+    asset: {fileID: 11400000, guid: 64d31a87d2402c940add34a45132a251, type: 2}
+    position: {x: 5.407547, y: -498.7505, z: -52.201622}
+    eulerAngles: {x: 359.04913, y: 267.35657, z: 0.24226774}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-facility-21
+    label: Cylinder.594
+    asset: {fileID: 11400000, guid: 13ff3146236a907419ac59d7c14b3f91, type: 2}
+    position: {x: 76.21714, y: -311.7725, z: 225.78874}
+    eulerAngles: {x: 3.514248, y: 284.9492, z: 332.15173}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-facility-22
+    label: Cylinder.600
+    asset: {fileID: 11400000, guid: 7f31147e8c570004584803206186cff5, type: 2}
+    position: {x: 121.003525, y: -233.49638, z: 103.83426}
+    eulerAngles: {x: 343.9608, y: 33.091415, z: 347.67767}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-0
+    label: Asteroid 1
+    asset: {fileID: 11400000, guid: cc1314909fbf9a84ea5dcb7bdfa6dd0f, type: 2}
+    position: {x: 69.595245, y: -384.58502, z: 175.39854}
+    eulerAngles: {x: 359.41504, y: 303.58148, z: 350.92743}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-1
+    label: Asteroid 2
+    asset: {fileID: 11400000, guid: e29b421562244354f86c9943fe88d0b3, type: 2}
+    position: {x: -146.60841, y: -398.8216, z: -253.387}
+    eulerAngles: {x: 280.6894, y: 354.1422, z: 340.79437}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-2
+    label: Asteroid 3
+    asset: {fileID: 11400000, guid: db757dcbedacd6244b120f76236fcd8c, type: 2}
+    position: {x: -118.17792, y: -396.52206, z: -194.0756}
+    eulerAngles: {x: 356.52148, y: 80.66199, z: 349.29688}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-3
+    label: Asteroid 4
+    asset: {fileID: 11400000, guid: 821659781e438e24383f713adb0c15d6, type: 2}
+    position: {x: -212.70985, y: -404.27774, z: -164.20215}
+    eulerAngles: {x: 296.10815, y: 335.65057, z: 13.499511}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-4
+    label: Asteroid 5
+    asset: {fileID: 11400000, guid: b89769ed6d5651f4c83f5fde22e455b1, type: 2}
+    position: {x: -74.31263, y: -397.68835, z: 106.670235}
+    eulerAngles: {x: 74.87759, y: 284.1956, z: 233.09097}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-5
+    label: Asteroid 6
+    asset: {fileID: 11400000, guid: 98f9177aa270b834ebcbba96296bf7ad, type: 2}
+    position: {x: 229.98288, y: -394.51202, z: 53.74014}
+    eulerAngles: {x: 50.96737, y: 299.6776, z: 245.01479}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-6
+    label: Asteroid 7
+    asset: {fileID: 11400000, guid: 4176168ed9b60f94f89833ae0a5439b1, type: 2}
+    position: {x: 79.26302, y: -388.4724, z: 80.651695}
+    eulerAngles: {x: 0.94578636, y: 35.339603, z: 25.080767}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-7
+    label: Asteroid 8
+    asset: {fileID: 11400000, guid: dfbb968e1d590494296cefc8a65f6ba6, type: 2}
+    position: {x: 215.45468, y: -394.32947, z: 65.00277}
+    eulerAngles: {x: 84.60643, y: 31.893436, z: 28.874502}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-8
+    label: Asteroid 9
+    asset: {fileID: 11400000, guid: e48eb227ef3e4644dbd0db6822f4ae6a, type: 2}
+    position: {x: 157.4977, y: -387.76044, z: 177.08434}
+    eulerAngles: {x: 294.3207, y: 259.88937, z: 60.718628}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-9
+    label: Asteroid 10
+    asset: {fileID: 11400000, guid: 4176168ed9b60f94f89833ae0a5439b1, type: 2}
+    position: {x: 100.243805, y: -396.33423, z: 156.69653}
+    eulerAngles: {x: 323.57773, y: 337.4796, z: 356.12393}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-10
+    label: Asteroid 11
+    asset: {fileID: 11400000, guid: 4176168ed9b60f94f89833ae0a5439b1, type: 2}
+    position: {x: 111.10241, y: -395.10712, z: 123.67972}
+    eulerAngles: {x: 346.26794, y: 45.61624, z: 354.32327}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-11
+    label: Asteroid 12
+    asset: {fileID: 11400000, guid: a6b3ded5e86b8cb45a52e842bcc2199d, type: 2}
+    position: {x: 204.77902, y: -392.4345, z: 131.87271}
+    eulerAngles: {x: 299.42474, y: 251.73761, z: 30.82995}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-12
+    label: Asteroid 13
+    asset: {fileID: 11400000, guid: 825aaac91188d8047961d164823ea797, type: 2}
+    position: {x: 250.04213, y: -388.3062, z: 126.341705}
+    eulerAngles: {x: 284.98874, y: 325.01154, z: 27.426657}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-13
+    label: Asteroid 14
+    asset: {fileID: 11400000, guid: b9d1d31991505ed48af1f654064b10ad, type: 2}
+    position: {x: 210.31793, y: -393.40955, z: 43.091324}
+    eulerAngles: {x: 284.74115, y: 0.9077723, z: 358.38434}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-14
+    label: Asteroid 15
+    asset: {fileID: 11400000, guid: c05831e77f11f3d4491458d8cf339375, type: 2}
+    position: {x: 173.5681, y: -389.12823, z: 157.71573}
+    eulerAngles: {x: 305.5094, y: 42.6065, z: 335.8018}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-15
+    label: Asteroid 16
+    asset: {fileID: 11400000, guid: 829bb7544c74dd641830fac5c0daaae1, type: 2}
+    position: {x: 77.73615, y: -394.84845, z: 31.804688}
+    eulerAngles: {x: 63.766727, y: 356.60046, z: 334.3007}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-16
+    label: Asteroid 17
+    asset: {fileID: 11400000, guid: 4176168ed9b60f94f89833ae0a5439b1, type: 2}
+    position: {x: 21.267406, y: -394.49832, z: 97.975}
+    eulerAngles: {x: 278.6708, y: 305.56165, z: 8.199735}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-17
+    label: Asteroid 18
+    asset: {fileID: 11400000, guid: f5c8534a591010143b3bfdb7c2a83c0f, type: 2}
+    position: {x: 24.931221, y: -397.05698, z: -124.29507}
+    eulerAngles: {x: 83.60276, y: 250.62868, z: 281.41806}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-18
+    label: Asteroid 19
+    asset: {fileID: 11400000, guid: 829bb7544c74dd641830fac5c0daaae1, type: 2}
+    position: {x: 48.953426, y: -396.50717, z: -52.666164}
+    eulerAngles: {x: 35.63998, y: 60.127728, z: 352.63104}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-19
+    label: Asteroid 20
+    asset: {fileID: 11400000, guid: 8a817220b81db2348a30c38707af22dd, type: 2}
+    position: {x: -1.1736518, y: -399.3666, z: -110.32551}
+    eulerAngles: {x: 55.049107, y: 4.063179, z: 28.319904}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-20
+    label: Asteroid 21
+    asset: {fileID: 11400000, guid: ee00ac3cfd7996345b82392c5d6b561e, type: 2}
+    position: {x: -7.922651, y: -395.8267, z: -28.170088}
+    eulerAngles: {x: 348.14978, y: 337.05484, z: 285.74374}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-21
+    label: Asteroid 22
+    asset: {fileID: 11400000, guid: a8fcad6ff7d05e14da39216fc19e3d80, type: 2}
+    position: {x: 37.534378, y: -392.8464, z: 30.690372}
+    eulerAngles: {x: 280.00607, y: 32.937912, z: 290.3432}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-22
+    label: Asteroid 23
+    asset: {fileID: 11400000, guid: 3a1f19e7daf3c1d41844f333f9a8b0e9, type: 2}
+    position: {x: 87.359406, y: -396.02332, z: -43.45383}
+    eulerAngles: {x: 68.133194, y: 262.22757, z: 346.46744}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-23
+    label: Asteroid 24
+    asset: {fileID: 11400000, guid: 4176168ed9b60f94f89833ae0a5439b1, type: 2}
+    position: {x: 196.22896, y: -396.17697, z: 118.64923}
+    eulerAngles: {x: 56.053123, y: 311.73245, z: 333.91022}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-24
+    label: Asteroid 25
+    asset: {fileID: 11400000, guid: 8b360c83a165bcc488c9afc1316a5711, type: 2}
+    position: {x: 148.70029, y: -396.70755, z: 203.51529}
+    eulerAngles: {x: 73.604645, y: 43.324726, z: 28.324232}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-25
+    label: Asteroid 26
+    asset: {fileID: 11400000, guid: 2bd2f62c09e9a474a99cddec5e75c87e, type: 2}
+    position: {x: 69.4842, y: -400.5218, z: -17.108541}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-26
+    label: Asteroid 27
+    asset: {fileID: 11400000, guid: 829bb7544c74dd641830fac5c0daaae1, type: 2}
+    position: {x: -201.21854, y: -403.1315, z: -20.93841}
+    eulerAngles: {x: 49.366745, y: 11.809861, z: 294.7978}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-27
+    label: Asteroid 28
+    asset: {fileID: 11400000, guid: b5ab7b5866204ab4e9f5438648418940, type: 2}
+    position: {x: -100.50509, y: -401.98834, z: -17.02187}
+    eulerAngles: {x: 285.69427, y: 296.35303, z: 344.54968}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-28
+    label: Asteroid 29
+    asset: {fileID: 11400000, guid: 4866f8f6eafb7c54991bc138ba740343, type: 2}
+    position: {x: 142.42476, y: -396.9229, z: -59.79484}
+    eulerAngles: {x: 325.0247, y: 322.37943, z: 298.80133}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-29
+    label: Asteroid 30
+    asset: {fileID: 11400000, guid: c569b26c31c9bf74a983eb269299f881, type: 2}
+    position: {x: -114.04166, y: -404.69183, z: -331.5074}
+    eulerAngles: {x: 325.57687, y: 313.11554, z: 337.82144}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-30
+    label: Asteroid 31
+    asset: {fileID: 11400000, guid: 8616e3b5f373821429cd23aa58be963f, type: 2}
+    position: {x: 31.969158, y: -390.67294, z: 128.74107}
+    eulerAngles: {x: 50.858143, y: 149.59021, z: 114.91998}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-31
+    label: Asteroid 32
+    asset: {fileID: 11400000, guid: c86a5e74ed6cbb5408733260e0094a7f, type: 2}
+    position: {x: 51.254208, y: -381.48065, z: 248.79459}
+    eulerAngles: {x: 21.806458, y: 7.1287093, z: 63.576073}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-32
+    label: Asteroid 33
+    asset: {fileID: 11400000, guid: 4176168ed9b60f94f89833ae0a5439b1, type: 2}
+    position: {x: -24.98315, y: -399.82336, z: -34.445107}
+    eulerAngles: {x: 62.03501, y: 46.370655, z: 352.1155}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-33
+    label: Asteroid 34
+    asset: {fileID: 11400000, guid: 829bb7544c74dd641830fac5c0daaae1, type: 2}
+    position: {x: 5.163731, y: -398.4319, z: 154.09941}
+    eulerAngles: {x: 52.98105, y: 3.360332, z: 31.324842}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-34
+    label: Asteroid 35
+    asset: {fileID: 11400000, guid: b5ab7b5866204ab4e9f5438648418940, type: 2}
+    position: {x: 27.569874, y: -399.41034, z: 93.169365}
+    eulerAngles: {x: 303.03116, y: 16.165257, z: 40.894382}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-35
+    label: Asteroid 36
+    asset: {fileID: 11400000, guid: 4176168ed9b60f94f89833ae0a5439b1, type: 2}
+    position: {x: -1.3887575, y: -399.18597, z: 89.60084}
+    eulerAngles: {x: 72.16196, y: 330.63742, z: 322.11423}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-36
+    label: Asteroid 37
+    asset: {fileID: 11400000, guid: 4176168ed9b60f94f89833ae0a5439b1, type: 2}
+    position: {x: 2.8579998, y: -398.04443, z: 81.68057}
+    eulerAngles: {x: 76.0741, y: 342.58405, z: 318.1525}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-37
+    label: Asteroid 38
+    asset: {fileID: 11400000, guid: 4866f8f6eafb7c54991bc138ba740343, type: 2}
+    position: {x: 101.966805, y: -397.70117, z: -15.74855}
+    eulerAngles: {x: 300.89105, y: 301.71725, z: 336.2878}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-38
+    label: Asteroid 39
+    asset: {fileID: 11400000, guid: 4176168ed9b60f94f89833ae0a5439b1, type: 2}
+    position: {x: 112.21982, y: -397.27612, z: 172.31955}
+    eulerAngles: {x: 85.83238, y: 26.670359, z: 43.513573}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-39
+    label: Asteroid 40
+    asset: {fileID: 11400000, guid: 8b360c83a165bcc488c9afc1316a5711, type: 2}
+    position: {x: -80.46891, y: -403.89844, z: -153.45038}
+    eulerAngles: {x: 78.492645, y: 338.69003, z: 337.07333}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-40
+    label: Asteroid 41
+    asset: {fileID: 11400000, guid: 8b360c83a165bcc488c9afc1316a5711, type: 2}
+    position: {x: 107.91467, y: -396.25433, z: 99.35724}
+    eulerAngles: {x: 29.293697, y: 335.7043, z: 5.3737454}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-41
+    label: Asteroid 42
+    asset: {fileID: 11400000, guid: 4176168ed9b60f94f89833ae0a5439b1, type: 2}
+    position: {x: 199.11589, y: -395.59644, z: -16.327497}
+    eulerAngles: {x: 275.59695, y: 305.79916, z: 334.90005}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-42
+    label: Asteroid 43
+    asset: {fileID: 11400000, guid: b5ab7b5866204ab4e9f5438648418940, type: 2}
+    position: {x: 173.027, y: -396.6637, z: -17.239725}
+    eulerAngles: {x: 287.60867, y: 18.897305, z: 290.19647}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-43
+    label: Asteroid 44
+    asset: {fileID: 11400000, guid: e19f1ad957d741a45add3bd443a27d1c, type: 2}
+    position: {x: 107.50637, y: -397.17426, z: -53.32833}
+    eulerAngles: {x: 58.318375, y: 1.7922361, z: 290.23978}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-44
+    label: Asteroid 45
+    asset: {fileID: 11400000, guid: b5ab7b5866204ab4e9f5438648418940, type: 2}
+    position: {x: 75.755554, y: -398.83377, z: -64.59418}
+    eulerAngles: {x: 277.7228, y: 237.02202, z: 68.24658}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-45
+    label: Asteroid 46
+    asset: {fileID: 11400000, guid: 4176168ed9b60f94f89833ae0a5439b1, type: 2}
+    position: {x: -90.22807, y: -403.5086, z: -35.45671}
+    eulerAngles: {x: 286.91556, y: 26.524542, z: 352.93872}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-46
+    label: Asteroid 47
+    asset: {fileID: 11400000, guid: b5ab7b5866204ab4e9f5438648418940, type: 2}
+    position: {x: 13.738385, y: -400.7383, z: -77.539444}
+    eulerAngles: {x: 75.729805, y: 331.9084, z: 274.01825}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-47
+    label: Asteroid 48
+    asset: {fileID: 11400000, guid: 2bd2f62c09e9a474a99cddec5e75c87e, type: 2}
+    position: {x: 88.541824, y: -399.49106, z: -91.36114}
+    eulerAngles: {x: 30.742987, y: 352.01337, z: 323.81955}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-48
+    label: Asteroid 49
+    asset: {fileID: 11400000, guid: 8b360c83a165bcc488c9afc1316a5711, type: 2}
+    position: {x: -3.9157424, y: -401.31293, z: -96.168495}
+    eulerAngles: {x: 82.76986, y: 132.12244, z: 113.69554}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-49
+    label: Asteroid 50
+    asset: {fileID: 11400000, guid: e19f1ad957d741a45add3bd443a27d1c, type: 2}
+    position: {x: -36.61747, y: -397.56744, z: 99.27455}
+    eulerAngles: {x: 75.75886, y: 283.2075, z: 299.9607}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-50
+    label: Asteroid 51
+    asset: {fileID: 11400000, guid: 829bb7544c74dd641830fac5c0daaae1, type: 2}
+    position: {x: 165.79973, y: -255.29958, z: -1483.2445}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-51
+    label: Asteroid 52
+    asset: {fileID: 11400000, guid: 4866f8f6eafb7c54991bc138ba740343, type: 2}
+    position: {x: 165.84338, y: -255.33179, z: -1483.7065}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-52
+    label: Asteroid 53
+    asset: {fileID: 11400000, guid: 4866f8f6eafb7c54991bc138ba740343, type: 2}
+    position: {x: 165.7483, y: -255.509, z: -1483.9895}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-53
+    label: Asteroid 54
+    asset: {fileID: 11400000, guid: 829bb7544c74dd641830fac5c0daaae1, type: 2}
+    position: {x: -486.8115, y: -270.4159, z: -1398.8212}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-54
+    label: Asteroid 55
+    asset: {fileID: 11400000, guid: b5ab7b5866204ab4e9f5438648418940, type: 2}
+    position: {x: -625.2425, y: -459.01593, z: -940.02606}
+    eulerAngles: {x: 39.36592, y: 37.369164, z: 326.5496}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-55
+    label: Asteroid 56
+    asset: {fileID: 11400000, guid: 829bb7544c74dd641830fac5c0daaae1, type: 2}
+    position: {x: -491.42294, y: -384.252, z: -720.2039}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-56
+    label: Asteroid 57
+    asset: {fileID: 11400000, guid: 829bb7544c74dd641830fac5c0daaae1, type: 2}
+    position: {x: 39.147366, y: -441.1756, z: -1269.9354}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-57
+    label: Asteroid 58
+    asset: {fileID: 11400000, guid: 4866f8f6eafb7c54991bc138ba740343, type: 2}
+    position: {x: 39.2923, y: -441.18137, z: -1270.6284}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-58
+    label: Asteroid 59
+    asset: {fileID: 11400000, guid: 4866f8f6eafb7c54991bc138ba740343, type: 2}
+    position: {x: 38.89273, y: -441.15515, z: -1270.6385}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-59
+    label: Asteroid 60
+    asset: {fileID: 11400000, guid: 829bb7544c74dd641830fac5c0daaae1, type: 2}
+    position: {x: 39.179413, y: -441.03293, z: -1270.8506}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-60
+    label: Asteroid 61
+    asset: {fileID: 11400000, guid: 4176168ed9b60f94f89833ae0a5439b1, type: 2}
+    position: {x: -966.42865, y: -375.28574, z: 707.6613}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-61
+    label: Asteroid 62
+    asset: {fileID: 11400000, guid: 829bb7544c74dd641830fac5c0daaae1, type: 2}
+    position: {x: 875.16235, y: -589.85077, z: -262.18396}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-62
+    label: Asteroid 63
+    asset: {fileID: 11400000, guid: 4176168ed9b60f94f89833ae0a5439b1, type: 2}
+    position: {x: 76.32729, y: -396.01974, z: -37.87277}
+    eulerAngles: {x: 83.366234, y: 93.241516, z: 25.900618}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-63
+    label: Asteroid 64
+    asset: {fileID: 11400000, guid: 4176168ed9b60f94f89833ae0a5439b1, type: 2}
+    position: {x: 123.518585, y: -393.66403, z: 142.17384}
+    eulerAngles: {x: 353.87332, y: 39.17598, z: 11.185089}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-64
+    label: Asteroid 65
+    asset: {fileID: 11400000, guid: 51db1a4126c39ff4bbeae94eb0238a5d, type: 2}
+    position: {x: 37.06508, y: -399.2471, z: -138.47166}
+    eulerAngles: {x: 61.968956, y: 322.22327, z: 3.4388435}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-65
+    label: Asteroid 66
+    asset: {fileID: 11400000, guid: bb2d533089050aa449cdbc270e591e53, type: 2}
+    position: {x: -135.14139, y: -403.68033, z: -281.31656}
+    eulerAngles: {x: 306.95282, y: 28.433144, z: 356.3481}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-66
+    label: Asteroid 67
+    asset: {fileID: 11400000, guid: 42004e13781c41247864a3c9c8b2e7f6, type: 2}
+    position: {x: 84.06004, y: -391.22064, z: 251.60077}
+    eulerAngles: {x: 84.3682, y: 262.2956, z: 174.1952}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-67
+    label: Asteroid 68
+    asset: {fileID: 11400000, guid: 829bb7544c74dd641830fac5c0daaae1, type: 2}
+    position: {x: -146.91129, y: -402.30463, z: -336.4804}
+    eulerAngles: {x: 1.0641633, y: 346.49915, z: 358.9748}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-68
+    label: Asteroid 69
+    asset: {fileID: 11400000, guid: b5ab7b5866204ab4e9f5438648418940, type: 2}
+    position: {x: 6.4755445, y: -399.61383, z: 53.08964}
+    eulerAngles: {x: 80.497215, y: 306.132, z: 270.7849}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-69
+    label: Asteroid 70
+    asset: {fileID: 11400000, guid: b5ab7b5866204ab4e9f5438648418940, type: 2}
+    position: {x: 170.76181, y: -397.80063, z: 29.985647}
+    eulerAngles: {x: 87.61952, y: 29.58827, z: 12.713775}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-70
+    label: Asteroid 71
+    asset: {fileID: 11400000, guid: 4866f8f6eafb7c54991bc138ba740343, type: 2}
+    position: {x: 29.979773, y: -397.52396, z: 202.83679}
+    eulerAngles: {x: 65.5523, y: 309.1539, z: 311.02985}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-71
+    label: Asteroid 72
+    asset: {fileID: 11400000, guid: e19f1ad957d741a45add3bd443a27d1c, type: 2}
+    position: {x: 90.80689, y: -398.64255, z: -50.569912}
+    eulerAngles: {x: 70.14935, y: 200.43808, z: 140.36084}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-72
+    label: Asteroid 73
+    asset: {fileID: 11400000, guid: b5ab7b5866204ab4e9f5438648418940, type: 2}
+    position: {x: -487.4196, y: -271.70193, z: -1397.8816}
+    eulerAngles: {x: 319.064, y: 50.06936, z: 289.01303}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-73
+    label: Asteroid 74
+    asset: {fileID: 11400000, guid: b5ab7b5866204ab4e9f5438648418940, type: 2}
+    position: {x: -625.51385, y: -459.24197, z: -938.87866}
+    eulerAngles: {x: 354.52597, y: 4.2113366, z: 14.580708}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-74
+    label: Asteroid 75
+    asset: {fileID: 11400000, guid: b5ab7b5866204ab4e9f5438648418940, type: 2}
+    position: {x: -625.4565, y: -459.80182, z: -940.1504}
+    eulerAngles: {x: 50.506573, y: 134.86613, z: 102.832344}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-75
+    label: Asteroid 76
+    asset: {fileID: 11400000, guid: 4176168ed9b60f94f89833ae0a5439b1, type: 2}
+    position: {x: -512.25, y: -458.4229, z: -911.68335}
+    eulerAngles: {x: 61.745888, y: 263.1878, z: 290.90594}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-76
+    label: Asteroid 77
+    asset: {fileID: 11400000, guid: b5ab7b5866204ab4e9f5438648418940, type: 2}
+    position: {x: -625.25085, y: -458.62173, z: -939.90265}
+    eulerAngles: {x: 324.04413, y: 82.33839, z: 7.7352676}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-77
+    label: Asteroid 78
+    asset: {fileID: 11400000, guid: 829bb7544c74dd641830fac5c0daaae1, type: 2}
+    position: {x: -533.338, y: -242.84145, z: -692.4721}
+    eulerAngles: {x: 76.326706, y: 46.163242, z: 30.226511}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-78
+    label: Asteroid 79
+    asset: {fileID: 11400000, guid: 829bb7544c74dd641830fac5c0daaae1, type: 2}
+    position: {x: -493.11438, y: -385.208, z: -720.56744}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-79
+    label: Asteroid 80
+    asset: {fileID: 11400000, guid: 8b360c83a165bcc488c9afc1316a5711, type: 2}
+    position: {x: -491.22217, y: -385.0455, z: -720.5705}
+    eulerAngles: {x: 18.98783, y: 306.858, z: 314.27332}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-80
+    label: Asteroid 81
+    asset: {fileID: 11400000, guid: 829bb7544c74dd641830fac5c0daaae1, type: 2}
+    position: {x: -491.66464, y: -385.09937, z: -721.0676}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-81
+    label: Asteroid 82
+    asset: {fileID: 11400000, guid: 829bb7544c74dd641830fac5c0daaae1, type: 2}
+    position: {x: -336.28217, y: -321.65408, z: -750.56415}
+    eulerAngles: {x: 65.77875, y: 11.656295, z: 340.97766}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-82
+    label: Asteroid 83
+    asset: {fileID: 11400000, guid: 592f27a4dae1eb44abceb965f92bac38, type: 2}
+    position: {x: -193.27487, y: -392.09454, z: -641.2041}
+    eulerAngles: {x: 81.19953, y: 270.21384, z: 233.39774}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-83
+    label: Asteroid 84
+    asset: {fileID: 11400000, guid: 4866f8f6eafb7c54991bc138ba740343, type: 2}
+    position: {x: -707.00806, y: -692.1061, z: -1082.7234}
+    eulerAngles: {x: 338.41263, y: 107.531204, z: 307.85223}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-84
+    label: Asteroid 85
+    asset: {fileID: 11400000, guid: 386ed894a0612434fbddffefeefabdc4, type: 2}
+    position: {x: -489.15875, y: -517.2773, z: -543.1635}
+    eulerAngles: {x: 6.6052327, y: 332.8475, z: 314.4539}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-85
+    label: Asteroid 86
+    asset: {fileID: 11400000, guid: 4866f8f6eafb7c54991bc138ba740343, type: 2}
+    position: {x: -17.638586, y: -601.4932, z: -1020.4006}
+    eulerAngles: {x: 357.8399, y: 299.7535, z: 31.75653}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-86
+    label: Asteroid 87
+    asset: {fileID: 11400000, guid: 4176168ed9b60f94f89833ae0a5439b1, type: 2}
+    position: {x: -18.36948, y: -601.50006, z: -1019.012}
+    eulerAngles: {x: 49.369778, y: 335.77145, z: 319.26193}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-87
+    label: Asteroid 88
+    asset: {fileID: 11400000, guid: 829bb7544c74dd641830fac5c0daaae1, type: 2}
+    position: {x: -32.190063, y: -713.87665, z: -786.19366}
+    eulerAngles: {x: 5.1023216, y: 64.18532, z: 26.127707}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-88
+    label: Asteroid 89
+    asset: {fileID: 11400000, guid: 4176168ed9b60f94f89833ae0a5439b1, type: 2}
+    position: {x: -30.78282, y: -712.1276, z: -784.8053}
+    eulerAngles: {x: 319.29993, y: 13.602414, z: 315.2374}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-89
+    label: Asteroid 90
+    asset: {fileID: 11400000, guid: 38e2766148f736b4d8ad5ac073667ff4, type: 2}
+    position: {x: 99.38182, y: -618.11426, z: -1059.7507}
+    eulerAngles: {x: 350.22406, y: 60.143204, z: 69.07747}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-90
+    label: Asteroid 91
+    asset: {fileID: 11400000, guid: 4866f8f6eafb7c54991bc138ba740343, type: 2}
+    position: {x: 168.45016, y: -680.48706, z: -991.0833}
+    eulerAngles: {x: 87.397964, y: 296.39102, z: 271.09988}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-91
+    label: Asteroid 92
+    asset: {fileID: 11400000, guid: 829bb7544c74dd641830fac5c0daaae1, type: 2}
+    position: {x: -689.5829, y: -358.78226, z: -115.31588}
+    eulerAngles: {x: 345.91605, y: 266.38916, z: 33.224224}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-92
+    label: Asteroid 93
+    asset: {fileID: 11400000, guid: b7d51ce1922f56940bb1567c931d8893, type: 2}
+    position: {x: -677.9265, y: -314.74643, z: 432.68823}
+    eulerAngles: {x: 283.91864, y: 286.91144, z: 17.779406}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-93
+    label: Asteroid 94
+    asset: {fileID: 11400000, guid: 829bb7544c74dd641830fac5c0daaae1, type: 2}
+    position: {x: -650.00287, y: -400.0225, z: -390.08844}
+    eulerAngles: {x: 34.220795, y: 3.0226035, z: 343.24545}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-94
+    label: Asteroid 95
+    asset: {fileID: 11400000, guid: 829bb7544c74dd641830fac5c0daaae1, type: 2}
+    position: {x: -650.32043, y: -398.77747, z: -391.7372}
+    eulerAngles: {x: 63.4926, y: 0.99528676, z: 276.2787}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-95
+    label: Asteroid 96
+    asset: {fileID: 11400000, guid: 4176168ed9b60f94f89833ae0a5439b1, type: 2}
+    position: {x: -649.8246, y: -399.93918, z: -392.25903}
+    eulerAngles: {x: 53.40552, y: 253.65366, z: 302.35684}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-96
+    label: Asteroid 97
+    asset: {fileID: 11400000, guid: 829bb7544c74dd641830fac5c0daaae1, type: 2}
+    position: {x: -974.26166, y: -417.92847, z: 598.9591}
+    eulerAngles: {x: 336.40488, y: 241.78528, z: 82.79456}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-97
+    label: Asteroid 98
+    asset: {fileID: 11400000, guid: 4176168ed9b60f94f89833ae0a5439b1, type: 2}
+    position: {x: -974.16675, y: -416.50406, z: 597.56476}
+    eulerAngles: {x: 77.00264, y: 0.42889857, z: 33.877724}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-98
+    label: Asteroid 99
+    asset: {fileID: 11400000, guid: 4866f8f6eafb7c54991bc138ba740343, type: 2}
+    position: {x: -1053.948, y: -311.31473, z: 857.6261}
+    eulerAngles: {x: 8.087412, y: 313.11255, z: 264.18588}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-99
+    label: Asteroid 100
+    asset: {fileID: 11400000, guid: 4866f8f6eafb7c54991bc138ba740343, type: 2}
+    position: {x: -967.7503, y: -375.86313, z: 707.21106}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-100
+    label: Asteroid 101
+    asset: {fileID: 11400000, guid: 4176168ed9b60f94f89833ae0a5439b1, type: 2}
+    position: {x: -967.53534, y: -373.2658, z: 708.27966}
+    eulerAngles: {x: 34.454296, y: 357.12543, z: 279.6771}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-101
+    label: Asteroid 102
+    asset: {fileID: 11400000, guid: 4866f8f6eafb7c54991bc138ba740343, type: 2}
+    position: {x: -744.40704, y: -218.41562, z: 924.3475}
+    eulerAngles: {x: 345.20087, y: 333.36545, z: 47.30315}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-102
+    label: Asteroid 103
+    asset: {fileID: 11400000, guid: b5ab7b5866204ab4e9f5438648418940, type: 2}
+    position: {x: -629.37067, y: -216.79474, z: 866.9086}
+    eulerAngles: {x: 349.1271, y: 37.09035, z: 61.08495}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-103
+    label: Asteroid 104
+    asset: {fileID: 11400000, guid: b5ab7b5866204ab4e9f5438648418940, type: 2}
+    position: {x: -629.0415, y: -218.64624, z: 860.5682}
+    eulerAngles: {x: 344.06998, y: 313.87842, z: 359.72247}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-104
+    label: Asteroid 105
+    asset: {fileID: 11400000, guid: 829bb7544c74dd641830fac5c0daaae1, type: 2}
+    position: {x: -178.65918, y: -277.89166, z: -87.069984}
+    eulerAngles: {x: 70.68426, y: 346.0798, z: 16.890966}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-105
+    label: Asteroid 106
+    asset: {fileID: 11400000, guid: 8b360c83a165bcc488c9afc1316a5711, type: 2}
+    position: {x: -179.5846, y: -278.74988, z: -86.89824}
+    eulerAngles: {x: 14.846336, y: 63.619953, z: 36.90281}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-106
+    label: Asteroid 107
+    asset: {fileID: 11400000, guid: b5ab7b5866204ab4e9f5438648418940, type: 2}
+    position: {x: -179.64099, y: -279.2583, z: -87.75357}
+    eulerAngles: {x: 43.295334, y: 277.286, z: 358.5262}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-107
+    label: Asteroid 108
+    asset: {fileID: 11400000, guid: b5ab7b5866204ab4e9f5438648418940, type: 2}
+    position: {x: -178.75366, y: -278.74158, z: -88.28432}
+    eulerAngles: {x: 23.860197, y: 46.398773, z: 302.3579}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-108
+    label: Asteroid 109
+    asset: {fileID: 11400000, guid: 2bd2f62c09e9a474a99cddec5e75c87e, type: 2}
+    position: {x: -179.00903, y: -277.7309, z: -87.37764}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-109
+    label: Asteroid 110
+    asset: {fileID: 11400000, guid: 181ae4d2492abe748b2006e452e91953, type: 2}
+    position: {x: 195.88187, y: -292.65106, z: -302.9458}
+    eulerAngles: {x: 26.38544, y: 348.2287, z: 313.22754}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-110
+    label: Asteroid 111
+    asset: {fileID: 11400000, guid: d09fb1615c83d55469e1a617c9f6a97c, type: 2}
+    position: {x: 344.21896, y: -431.8607, z: -223.6878}
+    eulerAngles: {x: 319.83234, y: 1.2449834, z: 282.7095}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-111
+    label: Asteroid 112
+    asset: {fileID: 11400000, guid: 27a7f88e37f1ecc4da319d6bbbe7e99c, type: 2}
+    position: {x: -461.86697, y: -397.72266, z: 811.21747}
+    eulerAngles: {x: 350.0789, y: 287.123, z: 44.654884}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-112
+    label: Asteroid 113
+    asset: {fileID: 11400000, guid: 829bb7544c74dd641830fac5c0daaae1, type: 2}
+    position: {x: -463.75598, y: -395.4749, z: 810.4496}
+    eulerAngles: {x: 327.32373, y: 352.9445, z: 22.688835}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-113
+    label: Asteroid 114
+    asset: {fileID: 11400000, guid: 4866f8f6eafb7c54991bc138ba740343, type: 2}
+    position: {x: -360.7854, y: -168.19662, z: 894.444}
+    eulerAngles: {x: 307.14987, y: 333.298, z: 321.34805}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-114
+    label: Asteroid 115
+    asset: {fileID: 11400000, guid: 36b9cd73b0c419d4daa581167d893f61, type: 2}
+    position: {x: -171.0654, y: -308.02637, z: 603.2125}
+    eulerAngles: {x: 20.525114, y: 319.535, z: 40.468002}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-115
+    label: Asteroid 116
+    asset: {fileID: 11400000, guid: 829bb7544c74dd641830fac5c0daaae1, type: 2}
+    position: {x: -170.91853, y: -310.51923, z: 604.7424}
+    eulerAngles: {x: 327.28625, y: 67.50497, z: 350.80203}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-116
+    label: Asteroid 117
+    asset: {fileID: 11400000, guid: ae78ce6931e0c1647a47b4e6a6d0c059, type: 2}
+    position: {x: -151.7818, y: -276.33273, z: 1125.898}
+    eulerAngles: {x: 6.926415, y: 64.294586, z: 314.36346}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-117
+    label: Asteroid 118
+    asset: {fileID: 11400000, guid: 4866f8f6eafb7c54991bc138ba740343, type: 2}
+    position: {x: 74.020645, y: -442.41266, z: 747.0501}
+    eulerAngles: {x: 357.28687, y: 333.92264, z: 355.43588}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-118
+    label: Asteroid 119
+    asset: {fileID: 11400000, guid: 2bd2f62c09e9a474a99cddec5e75c87e, type: 2}
+    position: {x: -1152.2443, y: -510.19315, z: -4.87719}
+    eulerAngles: {x: 46.110474, y: 319.2371, z: 342.5475}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-119
+    label: Asteroid 120
+    asset: {fileID: 11400000, guid: b5ab7b5866204ab4e9f5438648418940, type: 2}
+    position: {x: -1154.289, y: -510.7049, z: -3.421849}
+    eulerAngles: {x: 27.33256, y: 143.64883, z: 79.19096}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-120
+    label: Asteroid 121
+    asset: {fileID: 11400000, guid: 8b360c83a165bcc488c9afc1316a5711, type: 2}
+    position: {x: -1002.9074, y: -513.79376, z: -0.117523804}
+    eulerAngles: {x: 31.09945, y: 262.00064, z: 307.14056}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-121
+    label: Asteroid 122
+    asset: {fileID: 11400000, guid: 4176168ed9b60f94f89833ae0a5439b1, type: 2}
+    position: {x: -1154.9824, y: -509.67114, z: -5.553876}
+    eulerAngles: {x: 354.64725, y: 27.633347, z: 296.67355}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-122
+    label: Asteroid 123
+    asset: {fileID: 11400000, guid: 4866f8f6eafb7c54991bc138ba740343, type: 2}
+    position: {x: -1232.1292, y: -473.5733, z: 12.777605}
+    eulerAngles: {x: 342.6316, y: 279.91284, z: 75.84883}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-123
+    label: Asteroid 124
+    asset: {fileID: 11400000, guid: 4866f8f6eafb7c54991bc138ba740343, type: 2}
+    position: {x: -968.93896, y: -573.6134, z: -373.77625}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-124
+    label: Asteroid 125
+    asset: {fileID: 11400000, guid: b5ab7b5866204ab4e9f5438648418940, type: 2}
+    position: {x: -969.6561, y: -573.16016, z: -373.18036}
+    eulerAngles: {x: 45.9238, y: 45.796345, z: 4.8877287}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-125
+    label: Asteroid 126
+    asset: {fileID: 11400000, guid: c5658b3d0fb50f74c9098760f0cbd8a5, type: 2}
+    position: {x: -688.33105, y: -501.38727, z: 29.914001}
+    eulerAngles: {x: 355.13257, y: 45.15375, z: 272.0814}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-126
+    label: Asteroid 127
+    asset: {fileID: 11400000, guid: c9ceb5fb8a575b547887dbe31b32fc93, type: 2}
+    position: {x: -602.8894, y: -566.1459, z: -246.47899}
+    eulerAngles: {x: 15.338654, y: 267.3825, z: 292.08838}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-127
+    label: Asteroid 128
+    asset: {fileID: 11400000, guid: 829bb7544c74dd641830fac5c0daaae1, type: 2}
+    position: {x: -604.60126, y: -564.79944, z: -250.80104}
+    eulerAngles: {x: 335.61694, y: 291.13358, z: 65.699265}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-128
+    label: Asteroid 129
+    asset: {fileID: 11400000, guid: 4866f8f6eafb7c54991bc138ba740343, type: 2}
+    position: {x: -985.8305, y: -561.20776, z: 995.09705}
+    eulerAngles: {x: 336.25116, y: 97.33018, z: 308.92715}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-129
+    label: Asteroid 130
+    asset: {fileID: 11400000, guid: 4866f8f6eafb7c54991bc138ba740343, type: 2}
+    position: {x: -185.84866, y: -708.8403, z: -232.83687}
+    eulerAngles: {x: 311.13608, y: 132.41852, z: 305.55307}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-130
+    label: Asteroid 131
+    asset: {fileID: 11400000, guid: 65fa226bc4212694d89d46866de4935b, type: 2}
+    position: {x: 290.06696, y: -586.15924, z: 451.11755}
+    eulerAngles: {x: 71.68191, y: 86.05046, z: 90.83691}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-131
+    label: Asteroid 132
+    asset: {fileID: 11400000, guid: 4ecde16b22018ee46a677783f28c2797, type: 2}
+    position: {x: -552.2157, y: -569.6803, z: 1476.4792}
+    eulerAngles: {x: 343.8385, y: 112.671074, z: 292.39404}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-132
+    label: Asteroid 133
+    asset: {fileID: 11400000, guid: 0c334f10a02132e4e83b7f855cc64ab6, type: 2}
+    position: {x: -258.49637, y: -651.78845, z: 1265.0468}
+    eulerAngles: {x: 44.291492, y: 27.535934, z: 347.58795}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-133
+    label: Asteroid 134
+    asset: {fileID: 11400000, guid: 4866f8f6eafb7c54991bc138ba740343, type: 2}
+    position: {x: 212.93558, y: -712.38306, z: 593.94196}
+    eulerAngles: {x: 354.93234, y: 13.949736, z: 269.55487}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-134
+    label: Asteroid 135
+    asset: {fileID: 11400000, guid: 80588e8877cf0ca4997999b4dde83abc, type: 2}
+    position: {x: 291.98453, y: -698.4569, z: 706.38196}
+    eulerAngles: {x: 50.26004, y: 298.98114, z: 297.891}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-135
+    label: Asteroid 136
+    asset: {fileID: 11400000, guid: 4176168ed9b60f94f89833ae0a5439b1, type: 2}
+    position: {x: 595.1627, y: -584.20825, z: -1121.8815}
+    eulerAngles: {x: 64.550674, y: 1.8969266, z: 337.94696}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-136
+    label: Asteroid 137
+    asset: {fileID: 11400000, guid: b5ab7b5866204ab4e9f5438648418940, type: 2}
+    position: {x: 684.3706, y: -583.18475, z: -1193.8265}
+    eulerAngles: {x: 349.05872, y: 84.1821, z: 304.15073}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-137
+    label: Asteroid 138
+    asset: {fileID: 11400000, guid: 8b360c83a165bcc488c9afc1316a5711, type: 2}
+    position: {x: 687.50867, y: -581.921, z: -1194.2415}
+    eulerAngles: {x: 17.243845, y: 245.72217, z: 303.22958}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-138
+    label: Asteroid 139
+    asset: {fileID: 11400000, guid: 4176168ed9b60f94f89833ae0a5439b1, type: 2}
+    position: {x: 685.84296, y: -581.8246, z: -1194.658}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-139
+    label: Asteroid 140
+    asset: {fileID: 11400000, guid: c54808d8a61b295439616300a4febb9a, type: 2}
+    position: {x: 475.42612, y: -143.87415, z: 207.33632}
+    eulerAngles: {x: 32.921955, y: 358.2986, z: 276.13275}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-140
+    label: Asteroid 141
+    asset: {fileID: 11400000, guid: 513b6288b97a0d54e9178b198e27c241, type: 2}
+    position: {x: 608.3385, y: -143.23676, z: 315.4169}
+    eulerAngles: {x: 10.295233, y: 350.03024, z: 35.20471}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-141
+    label: Asteroid 142
+    asset: {fileID: 11400000, guid: 4866f8f6eafb7c54991bc138ba740343, type: 2}
+    position: {x: 825.62695, y: -281.41785, z: 374.15228}
+    eulerAngles: {x: 280.85605, y: 47.267582, z: 241.61151}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-142
+    label: Asteroid 143
+    asset: {fileID: 11400000, guid: 4176168ed9b60f94f89833ae0a5439b1, type: 2}
+    position: {x: 826.105, y: -279.90033, z: 373.4478}
+    eulerAngles: {x: 336.5746, y: 98.90882, z: 286.4168}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-143
+    label: Asteroid 144
+    asset: {fileID: 11400000, guid: 4866f8f6eafb7c54991bc138ba740343, type: 2}
+    position: {x: 783.2163, y: -327.7824, z: -295.9724}
+    eulerAngles: {x: 37.107925, y: 14.666025, z: 2.304162}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-144
+    label: Asteroid 145
+    asset: {fileID: 11400000, guid: 4176168ed9b60f94f89833ae0a5439b1, type: 2}
+    position: {x: 784.1887, y: -329.07428, z: -295.341}
+    eulerAngles: {x: 277.75034, y: 36.091675, z: 243.76028}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-145
+    label: Asteroid 146
+    asset: {fileID: 11400000, guid: 829bb7544c74dd641830fac5c0daaae1, type: 2}
+    position: {x: 822.83826, y: -445.65262, z: -316.06247}
+    eulerAngles: {x: 320.03003, y: 321.42102, z: 58.316345}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-146
+    label: Asteroid 147
+    asset: {fileID: 11400000, guid: 829bb7544c74dd641830fac5c0daaae1, type: 2}
+    position: {x: 1029.3143, y: -424.28522, z: -135.56631}
+    eulerAngles: {x: 0.07783644, y: 346.47977, z: 302.91498}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-147
+    label: Asteroid 148
+    asset: {fileID: 11400000, guid: 829bb7544c74dd641830fac5c0daaae1, type: 2}
+    position: {x: 941.54254, y: -305.17847, z: 574.179}
+    eulerAngles: {x: 339.71933, y: 255.95084, z: 68.21312}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-148
+    label: Asteroid 149
+    asset: {fileID: 11400000, guid: 11bfbba60bce3554994fa09841d3cf6a, type: 2}
+    position: {x: 596.0721, y: -516.4832, z: -182.62103}
+    eulerAngles: {x: 44.347424, y: 8.027015, z: 52.504917}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-149
+    label: Asteroid 150
+    asset: {fileID: 11400000, guid: fbf5645b0ad3d6d4abd111dfb2e10a99, type: 2}
+    position: {x: 796.89996, y: -531.5397, z: -350.24243}
+    eulerAngles: {x: 18.445127, y: 282.49982, z: 262.0263}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-150
+    label: Asteroid 151
+    asset: {fileID: 11400000, guid: 4176168ed9b60f94f89833ae0a5439b1, type: 2}
+    position: {x: 872.69714, y: -589.8906, z: -261.94528}
+    eulerAngles: {x: 342.17395, y: 308.39752, z: 345.5722}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-151
+    label: Asteroid 152
+    asset: {fileID: 11400000, guid: 4866f8f6eafb7c54991bc138ba740343, type: 2}
+    position: {x: 874.76105, y: -589.5606, z: -261.45187}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-152
+    label: Asteroid 153
+    asset: {fileID: 11400000, guid: b5ab7b5866204ab4e9f5438648418940, type: 2}
+    position: {x: 874.39966, y: -590.1984, z: -261.05188}
+    eulerAngles: {x: 67.02945, y: 133.69197, z: 66.09312}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-153
+    label: Asteroid 154
+    asset: {fileID: 11400000, guid: ba75d1ce6faccaa46bd474db3f32d660, type: 2}
+    position: {x: -590.76025, y: -389.83508, z: -758.34686}
+    eulerAngles: {x: 11.119786, y: 42.16098, z: 80.98876}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-154
+    label: Asteroid 155
+    asset: {fileID: 11400000, guid: 4866f8f6eafb7c54991bc138ba740343, type: 2}
+    position: {x: -488.06628, y: -363.6904, z: -1449.713}
+    eulerAngles: {x: 76.10476, y: 129.97404, z: 88.01908}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-155
+    label: Asteroid 156
+    asset: {fileID: 11400000, guid: 03af15ec3a3233349a54726d6e898ad9, type: 2}
+    position: {x: -384.96475, y: -408.24747, z: -977.5364}
+    eulerAngles: {x: 29.387579, y: 273.64508, z: 6.412594}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-156
+    label: Asteroid 157
+    asset: {fileID: 11400000, guid: cfad55edb07b38d40a22e0d2ad7c3d6e, type: 2}
+    position: {x: -398.67307, y: -416.46902, z: -906.2444}
+    eulerAngles: {x: 20.440702, y: 81.080315, z: 25.140268}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-157
+    label: Asteroid 158
+    asset: {fileID: 11400000, guid: 4866f8f6eafb7c54991bc138ba740343, type: 2}
+    position: {x: -352.1569, y: -413.46753, z: -1300.8828}
+    eulerAngles: {x: 355.35992, y: 19.240341, z: 316.6092}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-158
+    label: Asteroid 159
+    asset: {fileID: 11400000, guid: 4866f8f6eafb7c54991bc138ba740343, type: 2}
+    position: {x: -187.73763, y: -396.89252, z: -502.74533}
+    eulerAngles: {x: 321.7879, y: 1.1028082, z: 63.532288}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-159
+    label: Asteroid 160
+    asset: {fileID: 11400000, guid: 3c1c0d29cbf73cb47bec7d0b4c3d6e0f, type: 2}
+    position: {x: 167.32973, y: -369.16885, z: -715.5159}
+    eulerAngles: {x: 4.2822847, y: 20.298054, z: 5.446333}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-160
+    label: Asteroid 161
+    asset: {fileID: 11400000, guid: 336e58244b1522343a5f5dbdf694cae6, type: 2}
+    position: {x: -421.0723, y: -479.26056, z: -1417.8174}
+    eulerAngles: {x: 31.57841, y: 38.111595, z: 308.65613}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-161
+    label: Asteroid 162
+    asset: {fileID: 11400000, guid: 4866f8f6eafb7c54991bc138ba740343, type: 2}
+    position: {x: 197.78574, y: -572.75934, z: -633.8313}
+    eulerAngles: {x: 332.33633, y: 345.44104, z: 68.79952}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-162
+    label: Asteroid 163
+    asset: {fileID: 11400000, guid: 92e4bdaeee6f90a4584122c83314e73a, type: 2}
+    position: {x: -1071.3688, y: -375.02762, z: -308.1391}
+    eulerAngles: {x: 22.40611, y: 39.12175, z: 31.315126}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-163
+    label: Asteroid 164
+    asset: {fileID: 11400000, guid: 438fdf5d288d06948b560517261c46cf, type: 2}
+    position: {x: -858.8542, y: -380.7252, z: -17.651665}
+    eulerAngles: {x: 330.22284, y: 31.726519, z: 269.16986}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-164
+    label: Asteroid 165
+    asset: {fileID: 11400000, guid: 2c4a0068a4223be42ac4006d74219662, type: 2}
+    position: {x: -990.36444, y: -420.16052, z: 252.3084}
+    eulerAngles: {x: 346.98904, y: 322.02643, z: 304.13696}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-165
+    label: Asteroid 166
+    asset: {fileID: 11400000, guid: 8071f24bfcfeeec45b975359939df55a, type: 2}
+    position: {x: -857.6776, y: -419.5468, z: 333.76053}
+    eulerAngles: {x: 7.1892405, y: 303.86868, z: 262.11374}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-166
+    label: Asteroid 167
+    asset: {fileID: 11400000, guid: 4866f8f6eafb7c54991bc138ba740343, type: 2}
+    position: {x: -657.02905, y: -386.02438, z: -281.06778}
+    eulerAngles: {x: 74.19321, y: 53.10661, z: 38.620293}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-167
+    label: Asteroid 168
+    asset: {fileID: 11400000, guid: 9e88fd06641db9e4facf4315261b84a9, type: 2}
+    position: {x: -633.6503, y: -402.7193, z: 714.45703}
+    eulerAngles: {x: 23.207088, y: 308.6472, z: 256.7227}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-168
+    label: Asteroid 169
+    asset: {fileID: 11400000, guid: 4866f8f6eafb7c54991bc138ba740343, type: 2}
+    position: {x: -435.7513, y: -434.3358, z: -304.8879}
+    eulerAngles: {x: 310.12183, y: 4.422342, z: 19.353685}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-169
+    label: Asteroid 170
+    asset: {fileID: 11400000, guid: 7be1cda6586f0684b9e58356a48d9be6, type: 2}
+    position: {x: -462.40097, y: -411.94827, z: 119.66326}
+    eulerAngles: {x: 18.777777, y: 46.683743, z: 294.9417}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-170
+    label: Asteroid 171
+    asset: {fileID: 11400000, guid: 4866f8f6eafb7c54991bc138ba740343, type: 2}
+    position: {x: 142.37634, y: -459.7145, z: -5.030542}
+    eulerAngles: {x: 48.73971, y: 58.885204, z: 38.957283}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-171
+    label: Asteroid 172
+    asset: {fileID: 11400000, guid: c60ad52f081be8549bbcecca59f2f9fd, type: 2}
+    position: {x: -299.4258, y: -443.3384, z: 714.77344}
+    eulerAngles: {x: 52.25833, y: 27.388668, z: 306.04395}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-172
+    label: Asteroid 173
+    asset: {fileID: 11400000, guid: 4866f8f6eafb7c54991bc138ba740343, type: 2}
+    position: {x: -37.1008, y: -381.8141, z: 1235.4849}
+    eulerAngles: {x: 339.83795, y: 207.6413, z: 86.94148}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-173
+    label: Asteroid 174
+    asset: {fileID: 11400000, guid: 4176168ed9b60f94f89833ae0a5439b1, type: 2}
+    position: {x: -803.2334, y: -471.99362, z: 178.29929}
+    eulerAngles: {x: 28.684835, y: 39.868286, z: 8.857778}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-174
+    label: Asteroid 175
+    asset: {fileID: 11400000, guid: b5ab7b5866204ab4e9f5438648418940, type: 2}
+    position: {x: -804.33093, y: -472.18878, z: 178.09976}
+    eulerAngles: {x: 359.59753, y: 68.58699, z: 319.3938}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-175
+    label: Asteroid 176
+    asset: {fileID: 11400000, guid: 829bb7544c74dd641830fac5c0daaae1, type: 2}
+    position: {x: -803.63696, y: -471.76328, z: 178.08833}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-176
+    label: Asteroid 177
+    asset: {fileID: 11400000, guid: 4866f8f6eafb7c54991bc138ba740343, type: 2}
+    position: {x: -930.7267, y: -482.70193, z: 490.93402}
+    eulerAngles: {x: 27.127182, y: 91.84912, z: 56.10474}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-177
+    label: Asteroid 178
+    asset: {fileID: 11400000, guid: 4866f8f6eafb7c54991bc138ba740343, type: 2}
+    position: {x: -252.70885, y: -537.7722, z: 75.01746}
+    eulerAngles: {x: 40.13933, y: 282.31763, z: 259.4817}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-178
+    label: Asteroid 179
+    asset: {fileID: 11400000, guid: 4866f8f6eafb7c54991bc138ba740343, type: 2}
+    position: {x: -113.30988, y: -470.57947, z: -115.33519}
+    eulerAngles: {x: 21.285568, y: 77.83098, z: 83.93964}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-179
+    label: Asteroid 180
+    asset: {fileID: 11400000, guid: ded9d8c0d32380f4f9d84fd978f11bcf, type: 2}
+    position: {x: 262.15503, y: -524.56946, z: -87.910065}
+    eulerAngles: {x: 335.7459, y: 30.436754, z: 287.945}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-180
+    label: Asteroid 181
+    asset: {fileID: 11400000, guid: 6fc6921c68fdd8f4e90df84c91bbb1e9, type: 2}
+    position: {x: 598.9588, y: -389.6177, z: -914.6168}
+    eulerAngles: {x: 355.16727, y: 326.70374, z: 17.86084}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-181
+    label: Asteroid 182
+    asset: {fileID: 11400000, guid: 4866f8f6eafb7c54991bc138ba740343, type: 2}
+    position: {x: 364.09552, y: -469.76196, z: -702.77826}
+    eulerAngles: {x: 353.37054, y: 15.159829, z: 353.9999}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-182
+    label: Asteroid 183
+    asset: {fileID: 11400000, guid: 4866f8f6eafb7c54991bc138ba740343, type: 2}
+    position: {x: 653.6236, y: -544.4009, z: -822.7941}
+    eulerAngles: {x: 345.9485, y: 267.56104, z: 61.40926}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-183
+    label: Asteroid 184
+    asset: {fileID: 11400000, guid: b48cd614a7cd50d44b1ce70d35f36d73, type: 2}
+    position: {x: 1181.7795, y: -423.605, z: -440.95694}
+    eulerAngles: {x: 9.4832945, y: 301.42334, z: 290.1853}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-184
+    label: Asteroid 185
+    asset: {fileID: 11400000, guid: 4866f8f6eafb7c54991bc138ba740343, type: 2}
+    position: {x: 463.1355, y: -432.8092, z: 893.29694}
+    eulerAngles: {x: 347.88574, y: 254.48004, z: 71.53145}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-185
+    label: Asteroid 186
+    asset: {fileID: 11400000, guid: b5ab7b5866204ab4e9f5438648418940, type: 2}
+    position: {x: 987.3397, y: -458.13882, z: 1454.8213}
+    eulerAngles: {x: 338.30984, y: 280.60834, z: 35.82575}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-186
+    label: Asteroid 187
+    asset: {fileID: 11400000, guid: 4866f8f6eafb7c54991bc138ba740343, type: 2}
+    position: {x: 560.7813, y: -491.91016, z: -281.69498}
+    eulerAngles: {x: 14.624882, y: 296.8222, z: 39.466724}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-187
+    label: Asteroid 188
+    asset: {fileID: 11400000, guid: 4866f8f6eafb7c54991bc138ba740343, type: 2}
+    position: {x: 744.36536, y: -491.36505, z: 150.1401}
+    eulerAngles: {x: 338.2729, y: 313.2983, z: 22.824345}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-188
+    label: Asteroid 189
+    asset: {fileID: 11400000, guid: 7055514d9e8fe7a43bcb66d3d4131763, type: 2}
+    position: {x: 912.70886, y: -546.72614, z: 168.12434}
+    eulerAngles: {x: 357.1891, y: 339.7862, z: 282.3978}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-189
+    label: Asteroid 190
+    asset: {fileID: 11400000, guid: 4866f8f6eafb7c54991bc138ba740343, type: 2}
+    position: {x: 615.1088, y: -572.5176, z: 1049.94}
+    eulerAngles: {x: 12.360957, y: 161.78777, z: 90.41561}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-190
+    label: Asteroid 191
+    asset: {fileID: 11400000, guid: cafe0cb0a64428a41b674f6e336942b7, type: 2}
+    position: {x: 787.6374, y: -472.33154, z: 563.29425}
+    eulerAngles: {x: 333.11383, y: 334.51523, z: 55.400112}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-191
+    label: Asteroid 192
+    asset: {fileID: 11400000, guid: 4176168ed9b60f94f89833ae0a5439b1, type: 2}
+    position: {x: 834.60315, y: -658.26337, z: 870.50256}
+    eulerAngles: {x: 347.05173, y: 296.80756, z: 51.79203}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-192
+    label: Asteroid 193
+    asset: {fileID: 11400000, guid: b5ab7b5866204ab4e9f5438648418940, type: 2}
+    position: {x: 835.1925, y: -658.4956, z: 869.575}
+    eulerAngles: {x: 35.631996, y: 31.206615, z: 3.931197}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-193
+    label: Asteroid 194
+    asset: {fileID: 11400000, guid: dd25f3703f49bdd469e8ee2568a1c202, type: 2}
+    position: {x: 539.8684, y: -545.27454, z: 680.3776}
+    eulerAngles: {x: 42.393616, y: 304.86932, z: 300.5631}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-194
+    label: Asteroid 195
+    asset: {fileID: 11400000, guid: 4176168ed9b60f94f89833ae0a5439b1, type: 2}
+    position: {x: 1057.6959, y: -362.71735, z: 1423.3445}
+    eulerAngles: {x: 331.03217, y: 93.63892, z: 286.95917}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-195
+    label: Asteroid 196
+    asset: {fileID: 11400000, guid: 9507f167385953c43bf2f998b3df77eb, type: 2}
+    position: {x: 815.8751, y: -438.24792, z: 200.98575}
+    eulerAngles: {x: 348.6348, y: 354.84137, z: 49.46392}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-196
+    label: Asteroid 197
+    asset: {fileID: 11400000, guid: 64b63d1c874827a40bb8597b5008f6fb, type: 2}
+    position: {x: 622.44336, y: -405.5228, z: -316.98984}
+    eulerAngles: {x: 26.481844, y: 351.56726, z: 53.76352}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-197
+    label: Asteroid 198
+    asset: {fileID: 11400000, guid: 829bb7544c74dd641830fac5c0daaae1, type: 2}
+    position: {x: 597.9867, y: -355.0954, z: 409.76285}
+    eulerAngles: {x: 356.26913, y: 340.71136, z: 303.87665}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-198
+    label: Asteroid 199
+    asset: {fileID: 11400000, guid: 70cd506a9340453479a51963ec992413, type: 2}
+    position: {x: 702.0538, y: -418.82205, z: -1318.5336}
+    eulerAngles: {x: 350.20874, y: 63.9006, z: 353.37665}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-199
+    label: Asteroid 200
+    asset: {fileID: 11400000, guid: 829bb7544c74dd641830fac5c0daaae1, type: 2}
+    position: {x: -537.8378, y: -472.16656, z: 1437.4528}
+    eulerAngles: {x: 311.7107, y: 57.77578, z: 274.01718}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-200
+    label: Asteroid 201
+    asset: {fileID: 11400000, guid: 47e6a03f237fddc4b838fc37fcd9c83b, type: 2}
+    position: {x: 81.67941, y: -542.762, z: -425.69858}
+    eulerAngles: {x: 352.22266, y: 62.430115, z: 40.594128}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-201
+    label: Asteroid 202
+    asset: {fileID: 11400000, guid: 82082fa68927ad94ab80f5818cfe9126, type: 2}
+    position: {x: -123.38926, y: -487.6622, z: -304.2287}
+    eulerAngles: {x: 31.057997, y: 20.28678, z: 325.1888}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-202
+    label: Asteroid 203
+    asset: {fileID: 11400000, guid: 8506ccb15be22c14eb784f1fd23614d6, type: 2}
+    position: {x: -453.96054, y: -555.67224, z: -263.3161}
+    eulerAngles: {x: 31.534502, y: 348.7142, z: 298.2218}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-203
+    label: Asteroid 204
+    asset: {fileID: 11400000, guid: 5e998af7e7bf1104a9769b753b4ec162, type: 2}
+    position: {x: -665.06195, y: -552.1584, z: 439.8928}
+    eulerAngles: {x: 24.81288, y: 304.18198, z: 46.901566}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-204
+    label: Asteroid 205
+    asset: {fileID: 11400000, guid: ac6d6491ed7dac348b5790c34f3f7559, type: 2}
+    position: {x: -614.642, y: -539.93494, z: 203.34323}
+    eulerAngles: {x: 334.486, y: 277.53424, z: 0.4911652}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-205
+    label: Asteroid 206
+    asset: {fileID: 11400000, guid: 2ab2b2241dc844d4fa773be828345ab1, type: 2}
+    position: {x: -749.87714, y: -559.4396, z: -381.36792}
+    eulerAngles: {x: 335.165, y: 24.949404, z: 14.791158}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-206
+    label: Asteroid 207
+    asset: {fileID: 11400000, guid: a4865a360ffe554458a546415cc01be6, type: 2}
+    position: {x: -855.16345, y: -581.95575, z: 143.77902}
+    eulerAngles: {x: 6.788453, y: 93.66888, z: 43.10843}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-207
+    label: Asteroid 208
+    asset: {fileID: 11400000, guid: 829bb7544c74dd641830fac5c0daaae1, type: 2}
+    position: {x: -966.3586, y: -515.40686, z: -266.42978}
+    eulerAngles: {x: 323.42877, y: 313.54407, z: 319.61414}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-208
+    label: Asteroid 209
+    asset: {fileID: 11400000, guid: 9c90c0050ed78b342904cda11e3f98f1, type: 2}
+    position: {x: -91.51321, y: -454.27435, z: 807.3269}
+    eulerAngles: {x: 7.2963104, y: 283.06442, z: 24.932745}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-209
+    label: Asteroid 210
+    asset: {fileID: 11400000, guid: 3df6986222f58ca4fafd1c40687a2f7e, type: 2}
+    position: {x: -98.006966, y: -369.3665, z: 592.0368}
+    eulerAngles: {x: 338.5788, y: 65.91442, z: 317.183}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-210
+    label: Asteroid 211
+    asset: {fileID: 11400000, guid: 4d5e1bdcfc3cb1c4ab686e18f8cf24f0, type: 2}
+    position: {x: -215.7746, y: -360.4751, z: 771.6102}
+    eulerAngles: {x: 322.35092, y: 283.1743, z: 46.706654}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-211
+    label: Asteroid 212
+    asset: {fileID: 11400000, guid: b5ab7b5866204ab4e9f5438648418940, type: 2}
+    position: {x: -591.6088, y: -385.22345, z: 1282.1151}
+    eulerAngles: {x: 40.809963, y: 56.25084, z: 32.21266}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-212
+    label: Asteroid 213
+    asset: {fileID: 11400000, guid: 7d9a98bedd8ff404c8193e5cc5f46044, type: 2}
+    position: {x: 310.46045, y: -405.82056, z: 321.51025}
+    eulerAngles: {x: 10.480336, y: 350.3824, z: 53.669563}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-213
+    label: Asteroid 214
+    asset: {fileID: 11400000, guid: ee265726362ebdd4d9950e4f87a01a90, type: 2}
+    position: {x: 300.86957, y: -347.54288, z: 101.088005}
+    eulerAngles: {x: 359.31583, y: 49.456684, z: 50.27171}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-214
+    label: Asteroid 215
+    asset: {fileID: 11400000, guid: 527d1eae6996c0c41af47ed12357ecc5, type: 2}
+    position: {x: -102.87309, y: -386.47217, z: -65.661674}
+    eulerAngles: {x: 7.9046597, y: 16.258522, z: 307.37762}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-215
+    label: Asteroid 216
+    asset: {fileID: 11400000, guid: a0807d149e391e44d85bf8e680b02d15, type: 2}
+    position: {x: -114.95072, y: -377.17856, z: -446.6483}
+    eulerAngles: {x: 41.757614, y: 61.480247, z: 333.78925}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-216
+    label: Asteroid 217
+    asset: {fileID: 11400000, guid: 23a665368e39dc34b93d85286af7ed4b, type: 2}
+    position: {x: -138.60551, y: -426.87115, z: 308.22205}
+    eulerAngles: {x: 55.210835, y: 332.2022, z: 23.852715}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-217
+    label: Asteroid 218
+    asset: {fileID: 11400000, guid: 8a9b1e3bca4b78f4383009adb5480bdc, type: 2}
+    position: {x: -231.96016, y: -391.88446, z: -272.6456}
+    eulerAngles: {x: 27.240202, y: 341.18878, z: 263.38776}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-218
+    label: Asteroid 219
+    asset: {fileID: 11400000, guid: 425cf923bc72d914ea063b543af9fd37, type: 2}
+    position: {x: -246.23401, y: -355.48462, z: 119.80699}
+    eulerAngles: {x: 38.0703, y: 79.14816, z: 75.33195}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-219
+    label: Asteroid 220
+    asset: {fileID: 11400000, guid: 14b39314c0417374ba99621f05c952ec, type: 2}
+    position: {x: -431.3564, y: -364.47485, z: 451.93182}
+    eulerAngles: {x: 11.880924, y: 328.43723, z: 289.22366}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-220
+    label: Asteroid 221
+    asset: {fileID: 11400000, guid: 34225cb6515bb864b944ddbef602d51e, type: 2}
+    position: {x: -394.09488, y: -415.2491, z: 295.00864}
+    eulerAngles: {x: 349.18512, y: 301.45004, z: 308.91354}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-221
+    label: Asteroid 222
+    asset: {fileID: 11400000, guid: c20493664d24ca648b7f3fadb69604fc, type: 2}
+    position: {x: -776.3116, y: -409.83807, z: 545.64594}
+    eulerAngles: {x: 326.81317, y: 340.95633, z: 320.07544}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-222
+    label: Asteroid 223
+    asset: {fileID: 11400000, guid: a0bea980114e581409f23e6426a55f08, type: 2}
+    position: {x: -757.83435, y: -452.83914, z: 196.89401}
+    eulerAngles: {x: 357.45654, y: 86.75617, z: 42.568016}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-223
+    label: Asteroid 224
+    asset: {fileID: 11400000, guid: b5ab7b5866204ab4e9f5438648418940, type: 2}
+    position: {x: -937.62366, y: -432.93317, z: 308.99942}
+    eulerAngles: {x: 1.5069339, y: 332.81326, z: 39.655087}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-224
+    label: Asteroid 225
+    asset: {fileID: 11400000, guid: 5605d40195fa4cb4ea37fab757e5d36d, type: 2}
+    position: {x: 53.04148, y: -576.4689, z: -1178.3082}
+    eulerAngles: {x: 28.14213, y: 337.83286, z: 292.5631}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-225
+    label: Asteroid 226
+    asset: {fileID: 11400000, guid: eac0c03736816404dbdeb8d4f4fe861f, type: 2}
+    position: {x: -255.60257, y: -525.719, z: -720.7042}
+    eulerAngles: {x: 315.27826, y: 310.33682, z: 14.134211}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-226
+    label: Asteroid 227
+    asset: {fileID: 11400000, guid: 829bb7544c74dd641830fac5c0daaae1, type: 2}
+    position: {x: 64.88624, y: -444.4795, z: -519.3303}
+    eulerAngles: {x: 347.69223, y: 13.841493, z: 320.41742}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-227
+    label: Asteroid 228
+    asset: {fileID: 11400000, guid: 7a14153b9944ee84aa1b0cb06ea270fb, type: 2}
+    position: {x: 83.136314, y: -424.32944, z: -595.94836}
+    eulerAngles: {x: 20.991018, y: 247.95999, z: 300.2558}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-228
+    label: Asteroid 229
+    asset: {fileID: 11400000, guid: 4176168ed9b60f94f89833ae0a5439b1, type: 2}
+    position: {x: -94.252075, y: -368.0856, z: -1271.2773}
+    eulerAngles: {x: 11.841471, y: 270.12552, z: 319.01257}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-229
+    label: Asteroid 230
+    asset: {fileID: 11400000, guid: 641a28498936a1b4bbd76e7fc0bc3c87, type: 2}
+    position: {x: 1218.3755, y: -687.2807, z: 1011.02966}
+    eulerAngles: {x: 38.530865, y: 337.10208, z: 326.96875}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-230
+    label: Asteroid 231
+    asset: {fileID: 11400000, guid: 57b0c7eabdbfaf249b3aed9a65a4f8c0, type: 2}
+    position: {x: 983.0098, y: -564.78876, z: 868.5599}
+    eulerAngles: {x: 351.32144, y: 4.3889174, z: 299.6832}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-231
+    label: Asteroid 232
+    asset: {fileID: 11400000, guid: 64e9b60517d50864eafc73b7c1bb1f0d, type: 2}
+    position: {x: 920.3918, y: -543.77075, z: 874.2656}
+    eulerAngles: {x: 64.59651, y: 317.1888, z: 284.54837}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-232
+    label: Asteroid 233
+    asset: {fileID: 11400000, guid: 4176168ed9b60f94f89833ae0a5439b1, type: 2}
+    position: {x: 607.9349, y: -507.01007, z: 1081.6733}
+    eulerAngles: {x: 309.31485, y: 23.530869, z: 321.49683}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-233
+    label: Asteroid 234
+    asset: {fileID: 11400000, guid: 087e741f7c4792d4c8f65e6ca886faa9, type: 2}
+    position: {x: 1117.0337, y: -770.1919, z: -438.05826}
+    eulerAngles: {x: 308.5026, y: 86.297035, z: 354.93936}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-234
+    label: Asteroid 235
+    asset: {fileID: 11400000, guid: bbb754ea20d1c264d82f9c3b8191235e, type: 2}
+    position: {x: 1070.736, y: -676.25684, z: 514.9905}
+    eulerAngles: {x: 61.48945, y: 159.6578, z: 86.31699}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-235
+    label: Asteroid 236
+    asset: {fileID: 11400000, guid: 7abde7c8c866e524da88605612495d6e, type: 2}
+    position: {x: 1069.8428, y: -533.15216, z: 534.0742}
+    eulerAngles: {x: 40.903008, y: 355.72543, z: 274.89423}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-236
+    label: Asteroid 237
+    asset: {fileID: 11400000, guid: 3801f20a14f4a484d9f29faaa1b118c7, type: 2}
+    position: {x: 777.58795, y: -564.1045, z: -148.29813}
+    eulerAngles: {x: 27.486406, y: 287.88425, z: 304.31348}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-237
+    label: Asteroid 238
+    asset: {fileID: 11400000, guid: f226cb3879ec3884a9f2419937944093, type: 2}
+    position: {x: 638.4513, y: -686.83606, z: -264.18423}
+    eulerAngles: {x: 280.05386, y: 27.78222, z: 299.51355}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-238
+    label: Asteroid 239
+    asset: {fileID: 11400000, guid: 4176168ed9b60f94f89833ae0a5439b1, type: 2}
+    position: {x: 587.03076, y: -486.89096, z: 55.92143}
+    eulerAngles: {x: 333.05493, y: 85.87554, z: 286.6244}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-239
+    label: Asteroid 240
+    asset: {fileID: 11400000, guid: 7305ec01c15ed584c9d70868524dc50e, type: 2}
+    position: {x: 542.1114, y: -618.7589, z: -281.27713}
+    eulerAngles: {x: 2.9885902, y: 23.433361, z: 313.3867}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-240
+    label: Asteroid 241
+    asset: {fileID: 11400000, guid: bdb1e9780072c2041bcbc0aec1909681, type: 2}
+    position: {x: 873.9416, y: -195.82925, z: 900.987}
+    eulerAngles: {x: 4.3165717, y: 321.73926, z: 301.14194}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-241
+    label: Asteroid 242
+    asset: {fileID: 11400000, guid: 829bb7544c74dd641830fac5c0daaae1, type: 2}
+    position: {x: 474.92203, y: -292.25586, z: 763.32385}
+    eulerAngles: {x: 51.60345, y: 288.81528, z: 19.385307}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-242
+    label: Asteroid 243
+    asset: {fileID: 11400000, guid: 832cd9025535aa74798474afa340ff27, type: 2}
+    position: {x: 847.75494, y: -410.26385, z: -444.99976}
+    eulerAngles: {x: 0.068990044, y: 29.773209, z: 18.135838}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-243
+    label: Asteroid 244
+    asset: {fileID: 11400000, guid: 0343c896166a5474a86b3d8afd988a12, type: 2}
+    position: {x: 822.2573, y: -379.82504, z: 170.78214}
+    eulerAngles: {x: 44.381393, y: 31.025541, z: 331.35083}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-244
+    label: Asteroid 245
+    asset: {fileID: 11400000, guid: 17fb513763e365744a73ae37270d296c, type: 2}
+    position: {x: 759.7079, y: -443.45795, z: 290.35056}
+    eulerAngles: {x: 351.50076, y: 58.294033, z: 342.35123}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-245
+    label: Asteroid 246
+    asset: {fileID: 11400000, guid: 5dca849481c09cd43bce49f824bd1f95, type: 2}
+    position: {x: 724.6764, y: -326.19183, z: 380.85336}
+    eulerAngles: {x: 358.90686, y: 276.3953, z: 310.04495}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-246
+    label: Asteroid 247
+    asset: {fileID: 11400000, guid: 3304cf694633ae74d8105ba06af44f2a, type: 2}
+    position: {x: 496.13034, y: -309.17798, z: 163.89569}
+    eulerAngles: {x: 17.65817, y: 52.91751, z: 76.13806}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-247
+    label: Asteroid 248
+    asset: {fileID: 11400000, guid: e63c44e5ccc276d4cbab955f60550e49, type: 2}
+    position: {x: 485.0969, y: -368.62537, z: -32.389362}
+    eulerAngles: {x: 44.196068, y: 43.657295, z: 332.06967}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-248
+    label: Asteroid 249
+    asset: {fileID: 11400000, guid: b66bb6baf08473649899ff6c919e7845, type: 2}
+    position: {x: 628.32874, y: -554.4505, z: -646.45557}
+    eulerAngles: {x: 311.84302, y: 30.575155, z: 329.2006}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-249
+    label: Asteroid 250
+    asset: {fileID: 11400000, guid: 3e89555289b616a4995ea447c3b40238, type: 2}
+    position: {x: 620.2782, y: -574.8138, z: -849.53326}
+    eulerAngles: {x: 28.036865, y: 31.815588, z: 70.74057}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-250
+    label: Asteroid 251
+    asset: {fileID: 11400000, guid: 5fe580b0fe6e56240ab7a01d28d38f0a, type: 2}
+    position: {x: 576.0309, y: -753.19214, z: -477.87854}
+    eulerAngles: {x: 314.04007, y: 327.82373, z: 40.375027}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-251
+    label: Asteroid 252
+    asset: {fileID: 11400000, guid: 52a6ce2606e202844b67f0921e546bd6, type: 2}
+    position: {x: 502.2095, y: -790.7808, z: -775.5608}
+    eulerAngles: {x: 64.38803, y: 333.32327, z: 266.63263}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-252
+    label: Asteroid 253
+    asset: {fileID: 11400000, guid: b06d58f11700e8c468b38907246d027e, type: 2}
+    position: {x: 648.7571, y: -805.7218, z: -1005.63586}
+    eulerAngles: {x: 10.443168, y: 277.54767, z: 313.71106}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-253
+    label: Asteroid 254
+    asset: {fileID: 11400000, guid: 829bb7544c74dd641830fac5c0daaae1, type: 2}
+    position: {x: 571.63556, y: -550.39905, z: -915.379}
+    eulerAngles: {x: 30.032978, y: 349.5966, z: 286.55014}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-254
+    label: Asteroid 255
+    asset: {fileID: 11400000, guid: 11049220a17c7c149ab52514b9d9d274, type: 2}
+    position: {x: 385.8042, y: -802.25006, z: -705.57367}
+    eulerAngles: {x: 20.759035, y: 347.45767, z: 293.2093}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-255
+    label: Asteroid 256
+    asset: {fileID: 11400000, guid: 3beceef99ebc9614ea55cecc42b022ef, type: 2}
+    position: {x: 715.8669, y: -168.32297, z: -471.41846}
+    eulerAngles: {x: 324.73257, y: 28.690432, z: 26.737001}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-256
+    label: Asteroid 257
+    asset: {fileID: 11400000, guid: cbc8edc36d6e9e24296d34fb40776a9b, type: 2}
+    position: {x: 506.84967, y: -603.64966, z: 1105.2467}
+    eulerAngles: {x: 6.9170804, y: 8.446956, z: 33.4308}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-257
+    label: Asteroid 258
+    asset: {fileID: 11400000, guid: 1080bc002e65b1e4c9aff0c57ec1fbe5, type: 2}
+    position: {x: 317.6763, y: -497.15857, z: 748.0822}
+    eulerAngles: {x: 346.80884, y: 3.002483, z: 298.16364}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-258
+    label: Asteroid 259
+    asset: {fileID: 11400000, guid: 9094540325ead854dab48e56a6102c32, type: 2}
+    position: {x: 165.70917, y: -496.01126, z: 829.71094}
+    eulerAngles: {x: 357.67673, y: 313.08115, z: 312.8011}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-259
+    label: Asteroid 260
+    asset: {fileID: 11400000, guid: 695eeeb2aaf9f31419df857f9c53b64d, type: 2}
+    position: {x: -306.8317, y: -712.8036, z: 728.49744}
+    eulerAngles: {x: 349.08588, y: 338.15546, z: 325.41208}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-260
+    label: Asteroid 261
+    asset: {fileID: 11400000, guid: 1971384c41ca7a8458ee6819810c7d8d, type: 2}
+    position: {x: -390.21057, y: -602.7474, z: 1120.1561}
+    eulerAngles: {x: 26.453247, y: 35.406353, z: 351.27737}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-261
+    label: Asteroid 262
+    asset: {fileID: 11400000, guid: 9a23041a34f27f7498ff27512d86dd8a, type: 2}
+    position: {x: -384.72134, y: -515.6928, z: 577.1596}
+    eulerAngles: {x: 11.37718, y: 287.56323, z: 306.85403}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-262
+    label: Asteroid 263
+    asset: {fileID: 11400000, guid: 911314f7380fca549a116f647d2dcf13, type: 2}
+    position: {x: -512.5344, y: -669.89185, z: 1213.7437}
+    eulerAngles: {x: 29.21706, y: 292.66394, z: 344.80792}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-263
+    label: Asteroid 264
+    asset: {fileID: 11400000, guid: 4dbf9395854b0594f84d469cf4b31a9c, type: 2}
+    position: {x: 342.47763, y: -589.7558, z: 13.102992}
+    eulerAngles: {x: 311.56473, y: 72.79156, z: 353.38428}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-264
+    label: Asteroid 265
+    asset: {fileID: 11400000, guid: 4c8189b2aca4cd64fa88dff1eb5e50de, type: 2}
+    position: {x: 177.2697, y: -675.9275, z: 78.146065}
+    eulerAngles: {x: 55.334034, y: 1.5619394, z: 299.8071}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-265
+    label: Asteroid 266
+    asset: {fileID: 11400000, guid: 8890eae56940b62418054990cfb3f7e4, type: 2}
+    position: {x: 52.405014, y: -677.8629, z: 280.73325}
+    eulerAngles: {x: 342.62704, y: 240.77698, z: 72.86294}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-266
+    label: Asteroid 267
+    asset: {fileID: 11400000, guid: 829bb7544c74dd641830fac5c0daaae1, type: 2}
+    position: {x: -274.4901, y: -647.26465, z: -68.22359}
+    eulerAngles: {x: 347.33966, y: 101.30409, z: 308.18472}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-267
+    label: Asteroid 268
+    asset: {fileID: 11400000, guid: 7a4140faef9e49b4abf90b02549c9482, type: 2}
+    position: {x: -274.39484, y: -565.9708, z: -22.378315}
+    eulerAngles: {x: 46.69054, y: 349.12347, z: 2.4966183}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-268
+    label: Asteroid 269
+    asset: {fileID: 11400000, guid: f575160b25396804bbbd902154851050, type: 2}
+    position: {x: -283.87418, y: -531.64984, z: -404.70276}
+    eulerAngles: {x: 328.65204, y: 187.20598, z: 102.59797}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-269
+    label: Asteroid 270
+    asset: {fileID: 11400000, guid: 25b988756fa6b4c4a8ae0eee3fc13b9d, type: 2}
+    position: {x: -338.00693, y: -472.76184, z: 22.219284}
+    eulerAngles: {x: 47.909958, y: 89.270584, z: 89.6883}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-270
+    label: Asteroid 271
+    asset: {fileID: 11400000, guid: 97f610e709dda2d40b49e1fe269c4074, type: 2}
+    position: {x: -514.7878, y: -624.9648, z: -101.76729}
+    eulerAngles: {x: 352.96347, y: 44.56278, z: 50.891495}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-271
+    label: Asteroid 272
+    asset: {fileID: 11400000, guid: d88ad128a3498004a9e9422c62a89c50, type: 2}
+    position: {x: -454.99588, y: -506.57547, z: -274.66895}
+    eulerAngles: {x: 31.998863, y: 354.04034, z: 49.62644}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-272
+    label: Asteroid 273
+    asset: {fileID: 11400000, guid: 4a6abb6ca92d6074ba343d6878b3da79, type: 2}
+    position: {x: -626.643, y: -584.95935, z: 497.18326}
+    eulerAngles: {x: 326.72906, y: 86.840195, z: 330.14932}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-273
+    label: Asteroid 274
+    asset: {fileID: 11400000, guid: a99493a4fd026da44805d649e338a98d, type: 2}
+    position: {x: -938.15076, y: -581.89746, z: 499.5937}
+    eulerAngles: {x: 346.59302, y: 59.336872, z: 68.34513}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-274
+    label: Asteroid 275
+    asset: {fileID: 11400000, guid: b8289eb3714683145aab1c92cc9a7056, type: 2}
+    position: {x: -600.26917, y: -708.23785, z: -223.96315}
+    eulerAngles: {x: 324.00357, y: 343.93857, z: 313.4594}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-275
+    label: Asteroid 276
+    asset: {fileID: 11400000, guid: 829bb7544c74dd641830fac5c0daaae1, type: 2}
+    position: {x: -679.126, y: -519.99255, z: 371.98236}
+    eulerAngles: {x: 327.34515, y: 357.73257, z: 290.6197}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-276
+    label: Asteroid 277
+    asset: {fileID: 11400000, guid: a7a8d927bef24ea4bbd28763b56c94cd, type: 2}
+    position: {x: -689.29364, y: -689.2578, z: 303.35944}
+    eulerAngles: {x: 10.784526, y: 314.6042, z: 314.19568}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-277
+    label: Asteroid 278
+    asset: {fileID: 11400000, guid: 90a4989afaf778d469ce06b2201f663c, type: 2}
+    position: {x: -853.13544, y: -575.2091, z: -415.9938}
+    eulerAngles: {x: 32.208107, y: 330.12143, z: 274.48862}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-278
+    label: Asteroid 279
+    asset: {fileID: 11400000, guid: 8b360c83a165bcc488c9afc1316a5711, type: 2}
+    position: {x: -909.6077, y: -634.0486, z: 301.60132}
+    eulerAngles: {x: 355.849, y: 7.674713, z: 23.667307}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-279
+    label: Asteroid 280
+    asset: {fileID: 11400000, guid: 70ac321da56c87b4a95da21918298408, type: 2}
+    position: {x: -1013.1375, y: -591.8364, z: 172.54709}
+    eulerAngles: {x: 29.697247, y: 11.185728, z: 335.5376}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-280
+    label: Asteroid 281
+    asset: {fileID: 11400000, guid: 829bb7544c74dd641830fac5c0daaae1, type: 2}
+    position: {x: 292.144, y: -328.972, z: 1066.6293}
+    eulerAngles: {x: 5.247437, y: 330.11206, z: 339.1058}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-281
+    label: Asteroid 282
+    asset: {fileID: 11400000, guid: 829bb7544c74dd641830fac5c0daaae1, type: 2}
+    position: {x: 192.96445, y: -463.99225, z: 1091.4841}
+    eulerAngles: {x: 355.95712, y: 41.175293, z: 337.9299}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-282
+    label: Asteroid 283
+    asset: {fileID: 11400000, guid: 65c1a9f03d589e34aae2e2c163c8ac70, type: 2}
+    position: {x: 236.99945, y: -314.35934, z: 622.56213}
+    eulerAngles: {x: 52.72553, y: 348.25058, z: 36.695145}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-283
+    label: Asteroid 284
+    asset: {fileID: 11400000, guid: 39f7ef87d41aab14aa2963b99d90af5c, type: 2}
+    position: {x: 168.09337, y: -162.50977, z: 476.22726}
+    eulerAngles: {x: 58.17611, y: 353.2945, z: 296.19055}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-284
+    label: Asteroid 285
+    asset: {fileID: 11400000, guid: 539d05f0fcbfdb948b535e819cbf945a, type: 2}
+    position: {x: 141.07498, y: -150.83371, z: 609.1908}
+    eulerAngles: {x: 358.47043, y: 71.29875, z: 53.641388}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-285
+    label: Asteroid 286
+    asset: {fileID: 11400000, guid: 829bb7544c74dd641830fac5c0daaae1, type: 2}
+    position: {x: 21.171429, y: -257.83618, z: 729.65906}
+    eulerAngles: {x: 35.53341, y: 5.236857, z: 276.4914}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-286
+    label: Asteroid 287
+    asset: {fileID: 11400000, guid: f67c0b99ea7407b4885a8e14ffa351cb, type: 2}
+    position: {x: -347.37076, y: -164.18002, z: 1048.5991}
+    eulerAngles: {x: 53.321907, y: 7.5662465, z: 279.32425}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-287
+    label: Asteroid 288
+    asset: {fileID: 11400000, guid: 829bb7544c74dd641830fac5c0daaae1, type: 2}
+    position: {x: 346.3075, y: -406.9432, z: -355.94516}
+    eulerAngles: {x: 349.30914, y: 80.156334, z: 0.8535255}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-288
+    label: Asteroid 289
+    asset: {fileID: 11400000, guid: 2e0e943c6ba271e469dcfc94a4d2b19a, type: 2}
+    position: {x: -56.741486, y: -423.27167, z: -201.85002}
+    eulerAngles: {x: 20.596941, y: 309.84384, z: 2.1661148}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-289
+    label: Asteroid 290
+    asset: {fileID: 11400000, guid: d68c82e54c072fb4c85c102f158cb807, type: 2}
+    position: {x: -89.85135, y: -290.97906, z: 241.4848}
+    eulerAngles: {x: 11.358252, y: 353.26514, z: 0.8410529}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-290
+    label: Asteroid 291
+    asset: {fileID: 11400000, guid: 2d18aa6bb1575cd4680667eab39603ab, type: 2}
+    position: {x: -112.69859, y: -399.66647, z: 0.20602521}
+    eulerAngles: {x: 18.193491, y: 24.891403, z: 291.04547}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-291
+    label: Asteroid 292
+    asset: {fileID: 11400000, guid: 6f1cbefa6fcadc04d9437316bc272c8e, type: 2}
+    position: {x: -264.87613, y: -182.29105, z: -39.26926}
+    eulerAngles: {x: 25.523823, y: 65.56884, z: 74.46731}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-292
+    label: Asteroid 293
+    asset: {fileID: 11400000, guid: f8775c9a47133184b934c5c0739ba8d1, type: 2}
+    position: {x: -205.48598, y: -242.07295, z: -223.01048}
+    eulerAngles: {x: 339.3519, y: 313.61026, z: 352.4649}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-293
+    label: Asteroid 294
+    asset: {fileID: 11400000, guid: d6487f4634ef74a4a95b6e72cae0f8c1, type: 2}
+    position: {x: -799.01587, y: -352.26114, z: 1016.1031}
+    eulerAngles: {x: 21.569298, y: 89.41655, z: 8.603016}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-294
+    label: Asteroid 295
+    asset: {fileID: 11400000, guid: 829bb7544c74dd641830fac5c0daaae1, type: 2}
+    position: {x: -630.52606, y: -392.02844, z: 64.470184}
+    eulerAngles: {x: 324.32608, y: 179.34154, z: 95.32454}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-295
+    label: Asteroid 296
+    asset: {fileID: 11400000, guid: 6629db67df03b5748affbff694329661, type: 2}
+    position: {x: -582.123, y: -444.1683, z: -87.93807}
+    eulerAngles: {x: 5.9671245, y: 305.03235, z: 302.87488}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-296
+    label: Asteroid 297
+    asset: {fileID: 11400000, guid: e31ec7a76c52af845835df3b037db124, type: 2}
+    position: {x: 112.18575, y: -644.1726, z: -1167.7153}
+    eulerAngles: {x: 335.88596, y: 82.6008, z: 336.05582}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-297
+    label: Asteroid 298
+    asset: {fileID: 11400000, guid: 05ba96a5ad778a24ab0796f0c332d37b, type: 2}
+    position: {x: -145.8768, y: -610.9762, z: -941.4097}
+    eulerAngles: {x: 325.2638, y: 67.36194, z: 16.048662}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-298
+    label: Asteroid 299
+    asset: {fileID: 11400000, guid: f1f9bc84ac3c04845b36bfafc209a382, type: 2}
+    position: {x: -244.00504, y: -497.2071, z: -1371.6077}
+    eulerAngles: {x: 318.92093, y: 86.506676, z: 333.59705}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-299
+    label: Asteroid 300
+    asset: {fileID: 11400000, guid: 4176168ed9b60f94f89833ae0a5439b1, type: 2}
+    position: {x: -502.34305, y: -551.58246, z: -1383.7706}
+    eulerAngles: {x: 343.1298, y: 77.044495, z: 333.17914}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-300
+    label: Asteroid 301
+    asset: {fileID: 11400000, guid: b673351ab95977f469e814479c5b9b71, type: 2}
+    position: {x: -704.9629, y: -575.49756, z: -484.23624}
+    eulerAngles: {x: 344.6124, y: 315.9597, z: 349.79733}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-301
+    label: Asteroid 302
+    asset: {fileID: 11400000, guid: a2cdae5e6172d6341a4696a117325431, type: 2}
+    position: {x: -886.43024, y: -523.3186, z: -1004.40344}
+    eulerAngles: {x: 61.086502, y: 181.93987, z: 96.192604}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-302
+    label: Asteroid 303
+    asset: {fileID: 11400000, guid: ac28cbbc0a62ec2438a57b3403eb83a9, type: 2}
+    position: {x: 94.434296, y: -377.9157, z: -946.4715}
+    eulerAngles: {x: 11.421458, y: 92.41212, z: 46.246433}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-303
+    label: Asteroid 304
+    asset: {fileID: 11400000, guid: f468f76520271864cbd44de552cfa16a, type: 2}
+    position: {x: 44.650257, y: -288.03006, z: -1115.7018}
+    eulerAngles: {x: 61.23968, y: 7.5174522, z: 63.73742}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-304
+    label: Asteroid 305
+    asset: {fileID: 11400000, guid: 829bb7544c74dd641830fac5c0daaae1, type: 2}
+    position: {x: -241.96683, y: -240.32602, z: -563.08856}
+    eulerAngles: {x: 43.115635, y: 301.67606, z: 270.7091}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-305
+    label: Asteroid 306
+    asset: {fileID: 11400000, guid: 4176168ed9b60f94f89833ae0a5439b1, type: 2}
+    position: {x: -336.22665, y: -174.12878, z: -1343.0624}
+    eulerAngles: {x: 1.7116567, y: 10.969337, z: 54.501945}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-306
+    label: Asteroid 307
+    asset: {fileID: 11400000, guid: dc1693a599236bd46ba980c55df1cbbe, type: 2}
+    position: {x: -392.51813, y: -432.55698, z: -623.94543}
+    eulerAngles: {x: 42.506844, y: 230.65619, z: 273.30865}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-307
+    label: Asteroid 308
+    asset: {fileID: 11400000, guid: 39411acda3feb5c449a6732f6a451329, type: 2}
+    position: {x: -457.30246, y: -322.22565, z: -1244.0369}
+    eulerAngles: {x: 351.18915, y: 332.59607, z: 40.938652}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-308
+    label: Asteroid 309
+    asset: {fileID: 11400000, guid: 3ab782be3ac2c704e9645cf0aa70c7de, type: 2}
+    position: {x: -433.25482, y: -306.8595, z: -947.4166}
+    eulerAngles: {x: 45.94599, y: 126.51181, z: 78.40856}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-309
+    label: Asteroid 310
+    asset: {fileID: 11400000, guid: 43d36afe98e4a1048923c43db261ce7e, type: 2}
+    position: {x: -600.8116, y: -192.56357, z: -725.1456}
+    eulerAngles: {x: 13.49615, y: 358.6164, z: 54.57543}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-310
+    label: Asteroid 311
+    asset: {fileID: 11400000, guid: 1317359d6b7bea440aee3913d99268c1, type: 2}
+    position: {x: -877.3673, y: -269.30255, z: -1001.6396}
+    eulerAngles: {x: 33.1829, y: 312.50485, z: 19.077196}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-311
+    label: Asteroid 312
+    asset: {fileID: 11400000, guid: 2286a09c86d3b3a41ab6d95747d84735, type: 2}
+    position: {x: -899.3892, y: -390.90894, z: -519.6942}
+    eulerAngles: {x: 17.327446, y: 284.08606, z: 8.50966}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-312
+    label: Asteroid 313
+    asset: {fileID: 11400000, guid: 452526893f8d62244b4e2e3e7c3d775a, type: 2}
+    position: {x: -1199.4119, y: -439.06802, z: -461.72174}
+    eulerAngles: {x: 23.395025, y: 79.73971, z: 23.780514}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-313
+    label: Asteroid 314
+    asset: {fileID: 11400000, guid: 9fbc1e54e30e64c48b6164b7863ba651, type: 2}
+    position: {x: 283.58514, y: -360.17615, z: -241.97792}
+    eulerAngles: {x: 338.08328, y: 73.868095, z: 314.98257}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-314
+    label: Asteroid 315
+    asset: {fileID: 11400000, guid: 829bb7544c74dd641830fac5c0daaae1, type: 2}
+    position: {x: 886.5127, y: -496.45624, z: -295.03287}
+    eulerAngles: {x: 70.042534, y: 122.791405, z: 85.60859}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-315
+    label: Asteroid 316
+    asset: {fileID: 11400000, guid: 751841883eb51e34cbbb83fc7b8c5ae3, type: 2}
+    position: {x: 591.8471, y: -524.18396, z: -193.72174}
+    eulerAngles: {x: 295.14493, y: 37.69418, z: 41.718033}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-316
+    label: Asteroid 317
+    asset: {fileID: 11400000, guid: 829bb7544c74dd641830fac5c0daaae1, type: 2}
+    position: {x: 479.20663, y: -488.67023, z: -97.55325}
+    eulerAngles: {x: 47.59261, y: 9.513194, z: 10.47162}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-317
+    label: Asteroid 318
+    asset: {fileID: 11400000, guid: 829bb7544c74dd641830fac5c0daaae1, type: 2}
+    position: {x: 605.9369, y: -399.45624, z: -392.11035}
+    eulerAngles: {x: 293.5948, y: 167.88783, z: 107.44145}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-318
+    label: Asteroid 319
+    asset: {fileID: 11400000, guid: 7b0ebb2dd99a4d644a6d51ca39276af0, type: 2}
+    position: {x: 622.6844, y: -464.9433, z: -503.25034}
+    eulerAngles: {x: 22.209051, y: 265.6378, z: 316.5564}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-319
+    label: Asteroid 320
+    asset: {fileID: 11400000, guid: 845f71951aafb9946a2d13ddb4aec59d, type: 2}
+    position: {x: 896.57904, y: -394.8894, z: -478.93826}
+    eulerAngles: {x: 336.42395, y: 51.8302, z: 50.818455}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-320
+    label: Asteroid 321
+    asset: {fileID: 11400000, guid: 829bb7544c74dd641830fac5c0daaae1, type: 2}
+    position: {x: 189.39047, y: -520.7557, z: 471.7077}
+    eulerAngles: {x: 327.59024, y: 37.708443, z: 27.652454}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-321
+    label: Asteroid 322
+    asset: {fileID: 11400000, guid: 04eda4908186e024e8b3a7df0eea44ec, type: 2}
+    position: {x: -542.203, y: -525.1378, z: 1256.3049}
+    eulerAngles: {x: 10.737595, y: 280.90448, z: 324.82388}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-322
+    label: Asteroid 323
+    asset: {fileID: 11400000, guid: 22bdb7732930da8438de5ce067f33449, type: 2}
+    position: {x: 318.3629, y: -475.80453, z: 174.48686}
+    eulerAngles: {x: 12.623842, y: 31.953077, z: 307.66687}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-323
+    label: Asteroid 324
+    asset: {fileID: 11400000, guid: bfaaecc1912e93248ba84f4d10b2dff2, type: 2}
+    position: {x: 101.22068, y: -472.05612, z: 400.8114}
+    eulerAngles: {x: 9.364152, y: 307.40744, z: 322.71683}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-324
+    label: Asteroid 325
+    asset: {fileID: 11400000, guid: 829bb7544c74dd641830fac5c0daaae1, type: 2}
+    position: {x: -1191.4922, y: -552.9258, z: -50.493576}
+    eulerAngles: {x: 312.6554, y: 276.6075, z: 31.138796}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-325
+    label: Asteroid 326
+    asset: {fileID: 11400000, guid: 829bb7544c74dd641830fac5c0daaae1, type: 2}
+    position: {x: -279.24832, y: -411.32516, z: 1104.5197}
+    eulerAngles: {x: 27.844456, y: 356.40637, z: 4.021769}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-326
+    label: Asteroid 327
+    asset: {fileID: 11400000, guid: d0ab7f99eecf4f54c9fd0feff041a7d3, type: 2}
+    position: {x: 16.4958, y: -387.19455, z: 259.22397}
+    eulerAngles: {x: 28.271173, y: 299.27835, z: 8.524944}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-327
+    label: Asteroid 328
+    asset: {fileID: 11400000, guid: b55ddfcb2605ad449a662a12f0694ec4, type: 2}
+    position: {x: -1049.1555, y: -455.65814, z: 1038.5842}
+    eulerAngles: {x: 24.520348, y: 231.10243, z: 294.97064}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-328
+    label: Asteroid 329
+    asset: {fileID: 11400000, guid: 651d451f1e6ee3b40b9c0a0d505e9011, type: 2}
+    position: {x: 111.06456, y: -496.43524, z: -871.6904}
+    eulerAngles: {x: 338.88937, y: 18.769005, z: 54.07853}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-329
+    label: Asteroid 330
+    asset: {fileID: 11400000, guid: 336fd055b317d4e4eba29a371205a051, type: 2}
+    position: {x: -654.5096, y: -381.9061, z: -1006.60535}
+    eulerAngles: {x: 330.2852, y: 310.39172, z: 0.69419074}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-330
+    label: Asteroid 331
+    asset: {fileID: 11400000, guid: 39f0242ce7dc632449793ad488306553, type: 2}
+    position: {x: 1077.1326, y: -716.2362, z: 609.40424}
+    eulerAngles: {x: 18.155327, y: 46.066353, z: 9.178142}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-331
+    label: Asteroid 332
+    asset: {fileID: 11400000, guid: 23befcb93ba305f4a96d5ff6f358f7df, type: 2}
+    position: {x: 895.1487, y: -643.9752, z: 839.7469}
+    eulerAngles: {x: 347.17114, y: 9.258952, z: 74.49738}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-332
+    label: Asteroid 333
+    asset: {fileID: 11400000, guid: 34ff121c9cf8cff43ac7ed4887ee7ab5, type: 2}
+    position: {x: 830.39246, y: -525.8125, z: 918.17554}
+    eulerAngles: {x: 312.59546, y: 4.9262667, z: 276.269}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-333
+    label: Asteroid 334
+    asset: {fileID: 11400000, guid: 3bef03f5226df3b4eb535952b59fe975, type: 2}
+    position: {x: 467.72647, y: -688.6355, z: 817.3638}
+    eulerAngles: {x: 8.128494, y: 300.92395, z: 293.26202}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-334
+    label: Asteroid 335
+    asset: {fileID: 11400000, guid: 0860a7b17c29da74abde672b28de1fd4, type: 2}
+    position: {x: 958.0264, y: -563.2469, z: -443.86658}
+    eulerAngles: {x: 357.17917, y: 67.597626, z: 287.38818}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-335
+    label: Asteroid 336
+    asset: {fileID: 11400000, guid: a4353f55f9b48dd4393cf5cca0604724, type: 2}
+    position: {x: 1060.5334, y: -245.59155, z: 705.7379}
+    eulerAngles: {x: 6.027267, y: 314.70917, z: 306.91965}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-336
+    label: Asteroid 337
+    asset: {fileID: 11400000, guid: 27dec8ea1004800469d24d8e9dff70ce, type: 2}
+    position: {x: 1004.6044, y: -426.77136, z: 630.1065}
+    eulerAngles: {x: 36.329895, y: 78.32594, z: 85.30051}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-337
+    label: Asteroid 338
+    asset: {fileID: 11400000, guid: 829bb7544c74dd641830fac5c0daaae1, type: 2}
+    position: {x: 1055.0775, y: -225.15868, z: 345.9354}
+    eulerAngles: {x: 328.09464, y: 331.7219, z: 53.11999}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-338
+    label: Asteroid 339
+    asset: {fileID: 11400000, guid: ef6cf714d15c942488147503d3fb589d, type: 2}
+    position: {x: 729.01904, y: -297.46667, z: 149.4529}
+    eulerAngles: {x: 327.36392, y: 33.342262, z: 55.696156}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-339
+    label: Asteroid 340
+    asset: {fileID: 11400000, guid: f27ea4e8eea87ce49a80ba17ca6daf5e, type: 2}
+    position: {x: 828.00586, y: -322.01086, z: -12.144346}
+    eulerAngles: {x: 24.717323, y: 289.43604, z: 28.65285}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-340
+    label: Asteroid 341
+    asset: {fileID: 11400000, guid: 829bb7544c74dd641830fac5c0daaae1, type: 2}
+    position: {x: 595.7145, y: -448.92776, z: 80.11021}
+    eulerAngles: {x: 38.034153, y: 261.77875, z: 290.62646}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-341
+    label: Asteroid 342
+    asset: {fileID: 11400000, guid: 829bb7544c74dd641830fac5c0daaae1, type: 2}
+    position: {x: 545.8738, y: -439.19995, z: -330.04294}
+    eulerAngles: {x: 300.28543, y: 312.30524, z: 50.809505}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-342
+    label: Asteroid 343
+    asset: {fileID: 11400000, guid: 989cb81b4dd333d4fb097fd78fac7a3f, type: 2}
+    position: {x: 781.9582, y: -593.9816, z: -1296.3181}
+    eulerAngles: {x: 15.68923, y: 91.814415, z: 75.3746}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-343
+    label: Asteroid 344
+    asset: {fileID: 11400000, guid: 057f2b1e742ed204b8ab4dc5d4e4b9ce, type: 2}
+    position: {x: 616.00977, y: -388.33673, z: -729.03424}
+    eulerAngles: {x: 12.05226, y: 24.807123, z: 69.17212}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-344
+    label: Asteroid 345
+    asset: {fileID: 11400000, guid: 7ef88891ca7ca7848a949c54201845f3, type: 2}
+    position: {x: 234.22206, y: -496.50366, z: 984.287}
+    eulerAngles: {x: 30.79106, y: 299.49258, z: 304.07666}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-345
+    label: Asteroid 346
+    asset: {fileID: 11400000, guid: b6a7af3188f36c14ea62037073de455b, type: 2}
+    position: {x: 204.06093, y: -599.4104, z: 726.621}
+    eulerAngles: {x: 54.453087, y: 310.4583, z: 20.458895}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-346
+    label: Asteroid 347
+    asset: {fileID: 11400000, guid: 94e52a18fd3b4bc478ad73e4ea6409a4, type: 2}
+    position: {x: -287.723, y: -655.23224, z: 1104.9454}
+    eulerAngles: {x: 15.297433, y: 296.6829, z: 351.77374}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-347
+    label: Asteroid 348
+    asset: {fileID: 11400000, guid: 26cbbdb0a543a4449810872402592714, type: 2}
+    position: {x: -495.90674, y: -606.7727, z: 1194.0328}
+    eulerAngles: {x: 327.10178, y: 98.88169, z: 295.1715}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-348
+    label: Asteroid 349
+    asset: {fileID: 11400000, guid: 5b1da83d4d297bb419c5a46061d00515, type: 2}
+    position: {x: -493.01303, y: -776.4122, z: 805.08325}
+    eulerAngles: {x: 18.247568, y: 91.070694, z: 98.60282}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-349
+    label: Asteroid 350
+    asset: {fileID: 11400000, guid: 73a59cbb26eaddc4ab2a4dbc3ca3d30a, type: 2}
+    position: {x: 278.2036, y: -532.4469, z: -325.13324}
+    eulerAngles: {x: 19.388805, y: 33.201237, z: 20.605278}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-350
+    label: Asteroid 351
+    asset: {fileID: 11400000, guid: a57a722b3babb434aa0bab842b50c57d, type: 2}
+    position: {x: 200.27808, y: -657.59155, z: 377.1087}
+    eulerAngles: {x: 324.56448, y: 61.057133, z: 336.00928}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-351
+    label: Asteroid 352
+    asset: {fileID: 11400000, guid: 9c55bf549306fa744a1160538f73f9d1, type: 2}
+    position: {x: 144.73657, y: -470.80878, z: 250.65913}
+    eulerAngles: {x: 320.72455, y: 48.255222, z: 271.35797}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-352
+    label: Asteroid 353
+    asset: {fileID: 11400000, guid: 829bb7544c74dd641830fac5c0daaae1, type: 2}
+    position: {x: -133.43016, y: -551.601, z: 180.80875}
+    eulerAngles: {x: 16.439981, y: 288.7455, z: 295.77252}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-353
+    label: Asteroid 354
+    asset: {fileID: 11400000, guid: e63c44e5ccc276d4cbab955f60550e49, type: 2}
+    position: {x: -115.18327, y: -530.0176, z: -220.08858}
+    eulerAngles: {x: 44.101933, y: 324.36066, z: 294.0761}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-354
+    label: Asteroid 355
+    asset: {fileID: 11400000, guid: 829bb7544c74dd641830fac5c0daaae1, type: 2}
+    position: {x: -167.38022, y: -623.8909, z: -308.93872}
+    eulerAngles: {x: 4.6049023, y: 70.96231, z: 55.476555}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-355
+    label: Asteroid 356
+    asset: {fileID: 11400000, guid: 3b548b80664f2204e8ca717033512a13, type: 2}
+    position: {x: -215.72939, y: -466.83517, z: 378.4956}
+    eulerAngles: {x: 34.31381, y: 36.63761, z: 301.981}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-356
+    label: Asteroid 357
+    asset: {fileID: 11400000, guid: 7ddbe08874c230f41b25a22ac4b6fcf6, type: 2}
+    position: {x: -496.27396, y: -792.9972, z: 356.20404}
+    eulerAngles: {x: 349.56464, y: 300.01788, z: 312.14993}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-357
+    label: Asteroid 358
+    asset: {fileID: 11400000, guid: 9dbcda02b7a226446ae651ffd22a9e77, type: 2}
+    position: {x: -847.0284, y: -654.25543, z: 131.11372}
+    eulerAngles: {x: 36.08872, y: 285.73257, z: 14.96711}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-358
+    label: Asteroid 359
+    asset: {fileID: 11400000, guid: 9b82e6ba728f8c244935a98fb5219129, type: 2}
+    position: {x: -866.19946, y: -510.96057, z: -193.75362}
+    eulerAngles: {x: 332.21698, y: 3.6712523, z: 280.0082}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-359
+    label: Asteroid 360
+    asset: {fileID: 11400000, guid: 65e90848a26fe874791626ec8c5722de, type: 2}
+    position: {x: -777.4436, y: -697.0831, z: -330.8892}
+    eulerAngles: {x: 354.2472, y: 0.40647173, z: 65.8705}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-360
+    label: Asteroid 361
+    asset: {fileID: 11400000, guid: 829bb7544c74dd641830fac5c0daaae1, type: 2}
+    position: {x: -1014.7017, y: -498.34866, z: -335.99292}
+    eulerAngles: {x: 340.66513, y: 352.2229, z: 277.43423}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-361
+    label: Asteroid 362
+    asset: {fileID: 11400000, guid: ac0586b1fedcc6f4f9ab922af93db11e, type: 2}
+    position: {x: 322.117, y: -448.1013, z: 617.09607}
+    eulerAngles: {x: 26.559633, y: 330.74347, z: 22.617825}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-362
+    label: Asteroid 363
+    asset: {fileID: 11400000, guid: f915753cb9d057f4dbc88eefdebc37b2, type: 2}
+    position: {x: 238.18939, y: -451.95026, z: 683.6761}
+    eulerAngles: {x: 301.7247, y: 19.539076, z: 16.704964}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-363
+    label: Asteroid 364
+    asset: {fileID: 11400000, guid: 4acad65c9f72c2d4bba52acf7892f7dc, type: 2}
+    position: {x: -292.54105, y: -279.48895, z: 676.77783}
+    eulerAngles: {x: 330.6319, y: 224.45717, z: 87.88643}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-364
+    label: Asteroid 365
+    asset: {fileID: 11400000, guid: 05598c7b87c8f914d957a0d6cace72da, type: 2}
+    position: {x: -379.25, y: -375.02325, z: 660.38434}
+    eulerAngles: {x: 8.340247, y: 79.63879, z: 54.3673}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-365
+    label: Asteroid 366
+    asset: {fileID: 11400000, guid: 1a1608b36787b144ba13c4dc6aeb516d, type: 2}
+    position: {x: -486.3022, y: -392.62897, z: 572.298}
+    eulerAngles: {x: 55.352734, y: 18.922144, z: 308.85782}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-366
+    label: Asteroid 367
+    asset: {fileID: 11400000, guid: 8b360c83a165bcc488c9afc1316a5711, type: 2}
+    position: {x: 348.52463, y: -123.18756, z: -53.117214}
+    eulerAngles: {x: 328.956, y: 193.21025, z: 92.93696}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-367
+    label: Asteroid 368
+    asset: {fileID: 11400000, guid: 18eddf42fea1ecd458b407fe568f3ca0, type: 2}
+    position: {x: 257.02005, y: -288.36536, z: -199.61916}
+    eulerAngles: {x: 350.76346, y: 56.51183, z: 50.739925}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-368
+    label: Asteroid 369
+    asset: {fileID: 11400000, guid: a16dfc321c10c5343a263e521dc8ca9e, type: 2}
+    position: {x: -80.495834, y: -271.85632, z: 416.7481}
+    eulerAngles: {x: 343.04892, y: 29.643642, z: 49.44306}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-369
+    label: Asteroid 370
+    asset: {fileID: 11400000, guid: 1ded5cb82d7ba8e49bc938b15b14fa7a, type: 2}
+    position: {x: -38.57935, y: -149.17188, z: 87.54648}
+    eulerAngles: {x: 23.254992, y: 160.6946, z: 95.34682}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-370
+    label: Asteroid 371
+    asset: {fileID: 11400000, guid: 829bb7544c74dd641830fac5c0daaae1, type: 2}
+    position: {x: -532.89453, y: -331.5158, z: 303.69556}
+    eulerAngles: {x: 315.7219, y: 200.2321, z: 88.55846}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-371
+    label: Asteroid 372
+    asset: {fileID: 11400000, guid: f1c2355fa25da0a42a43729c0f4dd62d, type: 2}
+    position: {x: -467.51364, y: -278.61688, z: -404.80743}
+    eulerAngles: {x: 32.329838, y: 291.7423, z: 345.91788}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-372
+    label: Asteroid 373
+    asset: {fileID: 11400000, guid: 43eecca5fb3a96a4daa403940e14c77a, type: 2}
+    position: {x: -698.83276, y: -314.05872, z: 748.23114}
+    eulerAngles: {x: 355.57526, y: 12.746657, z: 75.32317}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-373
+    label: Asteroid 374
+    asset: {fileID: 11400000, guid: 49bd23247608b294d8f350e627d4ab00, type: 2}
+    position: {x: -933.62756, y: -441.93826, z: 1036.3807}
+    eulerAngles: {x: 324.23883, y: 18.477482, z: 44.792988}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-374
+    label: Asteroid 375
+    asset: {fileID: 11400000, guid: 829bb7544c74dd641830fac5c0daaae1, type: 2}
+    position: {x: -703.27893, y: -396.98846, z: -15.046166}
+    eulerAngles: {x: 323.72693, y: 305.57803, z: 69.923935}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-375
+    label: Asteroid 376
+    asset: {fileID: 11400000, guid: 4176168ed9b60f94f89833ae0a5439b1, type: 2}
+    position: {x: -778.205, y: -308.09302, z: -307.29547}
+    eulerAngles: {x: 345.91116, y: 50.630157, z: 41.06967}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-376
+    label: Asteroid 377
+    asset: {fileID: 11400000, guid: a8963ac19dd910b4e84f7ebeb3ac17f1, type: 2}
+    position: {x: -1007.79895, y: -325.17947, z: 394.00305}
+    eulerAngles: {x: 52.251823, y: 326.76425, z: 269.0416}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-377
+    label: Asteroid 378
+    asset: {fileID: 11400000, guid: a424a4f95f9ea2647b61a7ea63dc63c8, type: 2}
+    position: {x: 339.32047, y: -546.8068, z: -617.8527}
+    eulerAngles: {x: 347.63635, y: 41.294502, z: 313.40155}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-378
+    label: Asteroid 379
+    asset: {fileID: 11400000, guid: 30e10a0dd4531c843a9947244bf8676e, type: 2}
+    position: {x: 248.27692, y: -517.6278, z: -600.72266}
+    eulerAngles: {x: 353.72147, y: 5.5223465, z: 357.41174}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-379
+    label: Asteroid 380
+    asset: {fileID: 11400000, guid: 829bb7544c74dd641830fac5c0daaae1, type: 2}
+    position: {x: 68.645195, y: -760.0835, z: -962.2384}
+    eulerAngles: {x: 11.328667, y: 255.00845, z: 287.9283}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-380
+    label: Asteroid 381
+    asset: {fileID: 11400000, guid: 379b142c979a7154aa37c5c25169092d, type: 2}
+    position: {x: -33.33331, y: -584.19934, z: -531.75885}
+    eulerAngles: {x: 310.92596, y: 254.77039, z: 74.68139}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-381
+    label: Asteroid 382
+    asset: {fileID: 11400000, guid: 4415d6b2992da834a8de8333bdc1eb79, type: 2}
+    position: {x: -11.12312, y: -611.6251, z: -656.0365}
+    eulerAngles: {x: 5.5847383, y: 148.80492, z: 105.23916}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-382
+    label: Asteroid 383
+    asset: {fileID: 11400000, guid: e85c60dff87c5a14eabfef2e3f0dd07a, type: 2}
+    position: {x: -117.69365, y: -595.498, z: -541.8114}
+    eulerAngles: {x: 20.981646, y: 111.07834, z: 101.91577}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-383
+    label: Asteroid 384
+    asset: {fileID: 11400000, guid: 8eb6a87733731d943bfbb41e8f0b9eb5, type: 2}
+    position: {x: -229.9861, y: -615.317, z: -600.6634}
+    eulerAngles: {x: 321.19614, y: 344.42087, z: 40.8027}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-384
+    label: Asteroid 385
+    asset: {fileID: 11400000, guid: 47bd678995bf24f4ebeb305ad2285198, type: 2}
+    position: {x: -615.4549, y: -468.63617, z: -1321.1903}
+    eulerAngles: {x: 353.2032, y: 358.09128, z: 322.7215}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-385
+    label: Asteroid 386
+    asset: {fileID: 11400000, guid: 535a123b555cf8e40af6eeae5ee36e0c, type: 2}
+    position: {x: 265.2941, y: -377.55576, z: -475.10736}
+    eulerAngles: {x: 342.23856, y: 73.44064, z: 320.44266}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-386
+    label: Asteroid 387
+    asset: {fileID: 11400000, guid: 72f27ac5adc39df4eac1724a1337faaa, type: 2}
+    position: {x: 178.563, y: -282.43176, z: -494.224}
+    eulerAngles: {x: 43.57502, y: 353.0818, z: 298.19077}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-387
+    label: Asteroid 388
+    asset: {fileID: 11400000, guid: 35841bdd697cd4f4fa873523da848ce1, type: 2}
+    position: {x: 94.99077, y: -221.07579, z: -1214.16}
+    eulerAngles: {x: 47.6251, y: 303.4263, z: 7.1170015}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-388
+    label: Asteroid 389
+    asset: {fileID: 11400000, guid: 829bb7544c74dd641830fac5c0daaae1, type: 2}
+    position: {x: 20.589676, y: -244.28256, z: -818.52893}
+    eulerAngles: {x: 297.9574, y: 255.28065, z: 79.59003}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-389
+    label: Asteroid 390
+    asset: {fileID: 11400000, guid: 64f1bcfbcbcac4c4f9b4fed2c1ecc4f0, type: 2}
+    position: {x: 152.21292, y: -201.87836, z: -1485.5487}
+    eulerAngles: {x: 311.1317, y: 60.325203, z: 335.87845}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-390
+    label: Asteroid 391
+    asset: {fileID: 11400000, guid: 52851164936c4e4448ad1d015ad4bca8, type: 2}
+    position: {x: -604.2125, y: -270.9937, z: -692.7001}
+    eulerAngles: {x: 8.96713, y: 44.403538, z: 69.93661}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-391
+    label: Asteroid 392
+    asset: {fileID: 11400000, guid: 829bb7544c74dd641830fac5c0daaae1, type: 2}
+    position: {x: -793.3307, y: -397.1716, z: -930.58795}
+    eulerAngles: {x: 35.12669, y: 121.07732, z: 104.696594}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  - id: 115-rock-392
+    label: Asteroid 393
+    asset: {fileID: 11400000, guid: 829bb7544c74dd641830fac5c0daaae1, type: 2}
+    position: {x: -934.8534, y: -296.1539, z: -527.8025}
+    eulerAngles: {x: 320.28848, y: 286.12134, z: 53.780415}
+    scale: 1
+    driftVelocity: {x: 0, y: 0, z: 0}
+    angularVelocity: {x: 0, y: 0, z: 0}
+  assemblyLinks: []
