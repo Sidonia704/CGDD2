@@ -27,11 +27,11 @@ namespace Starframe.Construction.Tests
         [TestCase(WeaponActivationMode.ChargeRelease)]
         public void LockLostAfterPreparationCancelsStatefulShotWithoutStoppingIndependentGroup(WeaponActivationMode mode)
         {
-            var weapons = Create(mode, out var lockedPart);
+            var weapons = Create(mode, out var lockedPart, out int independentGroup);
             weapons.UseGroupedInput = true;
             weapons.HasValidTargetLock = true;
             weapons.SetGroupInput(0, true, true);
-            weapons.SetGroupInput(1, true, true);
+            weapons.SetGroupInput(independentGroup, true, true);
             Assert.That(weapons.Prepare(), Is.EqualTo(100));
             weapons.Execute(mode == WeaponActivationMode.ChargeRelease ? .25f : .05f, 1);
             Assert.That(weapons.ShotsFired, Is.Zero);
@@ -56,7 +56,7 @@ namespace Starframe.Construction.Tests
             Assert.That(projectiles.TotalSpawned, Is.EqualTo(2));
         }
 
-        ShipWeapons Create(WeaponActivationMode mode, out string lockedPart)
+        ShipWeapons Create(WeaponActivationMode mode, out string lockedPart, out int independentGroup)
         {
             var database = Own(ScriptableObject.CreateInstance<ModuleDatabase>());
             var tuning = Own(ScriptableObject.CreateInstance<FlightTuning>()); tuning.database = database;
@@ -89,6 +89,7 @@ namespace Starframe.Construction.Tests
             var independent = blueprint.parts.Find(part => part.shape == BlockShape.Thruster1).id;
             var group = WeaponGroups.AddGroup(blueprint, "Independent", new WeaponInputBinding { source = WeaponInputSource.MouseRight }, database);
             Assert.That(WeaponGroups.Assign(blueprint, independent, group.id, database), Is.True);
+            independentGroup=group.id;
             var runtime = root.AddComponent<FlightShipRuntime>(); runtime.Initialize(assembly, blueprint, tuning);
             Physics.SyncTransforms();
             projectiles = new ProjectileWorld(); projectiles.Initialize(null);

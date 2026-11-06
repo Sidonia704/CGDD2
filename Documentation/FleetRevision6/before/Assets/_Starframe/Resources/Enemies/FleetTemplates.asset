@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96062494c6c184d4384d79ed11054e78, type: 3}
+  m_Name: FleetTemplates
+  m_EditorClassIdentifier: Starframe.Construction::Starframe.Combat.EnemyFleetCatalog
+  enemies:
+  - {fileID: 11400000, guid: 17d9525da0c0d564cbbd7d6e4b09c59e, type: 2}
+  - {fileID: 11400000, guid: cf86914e43aa932479b93dacaf8dbf5d, type: 2}
+  - {fileID: 11400000, guid: d0513eb631966b0469d046c82720bc0c, type: 2}
+  - {fileID: 11400000, guid: 743a92afd4a1b354ba0b65261af2b240, type: 2}
+  - {fileID: 11400000, guid: bda2922a4627e28448ca7eb236ef59a3, type: 2}
+  - {fileID: 11400000, guid: cb3a9377fcc154949add91de4e80aa80, type: 2}
+  - {fileID: 11400000, guid: 3395df7867c60fa458fd152c5c09dcf0, type: 2}

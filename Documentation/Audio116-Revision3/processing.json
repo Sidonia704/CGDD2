@@ -1,0 +1,27 @@
+{
+  "rail": [
+    {
+      "name": "RailLarge",
+      "peakSeconds": 0.08,
+      "duration": 0.44761904761904764
+    },
+    {
+      "name": "RailSmallA",
+      "peakSeconds": 0.08,
+      "duration": 0.224875283446712
+    },
+    {
+      "name": "RailSmallB",
+      "peakSeconds": 0.08,
+      "duration": 0.42705215419501136
+    }
+  ],
+  "gatling": {
+    "startSeconds": 0.27,
+    "loopSeconds": 0.9650113378684807,
+    "endSeconds": 0.47,
+    "minimum10msRms": 0.025707789120429737,
+    "median10msRms": 0.057960480399765035,
+    "seamDelta": 0.007345986707329118
+  }
+}

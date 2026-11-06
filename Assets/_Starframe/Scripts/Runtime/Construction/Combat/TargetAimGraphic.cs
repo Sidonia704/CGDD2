@@ -1,4 +1,4 @@
-// @role Draw red discovered-target triangles, locked-target frames, directions and distinct projectile-lead markers.
+// @role Draw lock frames, edge directions and stable projectile lead offsets independent of camera motion.
 // @calls TargetLockSystem, TargetIndicatorProjection, AimProjection, ShipWeapons
 
 using System.Collections.Generic;
@@ -11,12 +11,15 @@ namespace Starframe.Combat
     [RequireComponent(typeof(CanvasRenderer))]
     public sealed class TargetAimGraphic : UnityEngine.UI.Graphic
     {
-        public static readonly Color EnemyTint = new Color(1f, .18f, .14f, 1f);
+        public static readonly Color EnemyTint = new Color32(255,50,39,255);
 
         Camera viewCamera;
         TargetLockSystem targeting;
         ShipWeapons weapons;
         Canvas ownerCanvas;
+        struct LeadPresentation{public Vector2 offset;public int frame;}
+        readonly Dictionary<WeaponDefinition,LeadPresentation> leadPresentation=new Dictionary<WeaponDefinition,LeadPresentation>();
+        FlightShipRuntime presentationTarget;int presentationLife;
         public bool EdgeIndicatorVisible{get;private set;}
 
         public void Initialize(Camera camera, TargetLockSystem lockSystem,ShipWeapons missileWeapons=null)
@@ -43,8 +46,9 @@ namespace Starframe.Combat
             float scale=1f/Mathf.Max(.01f,ownerCanvas.scaleFactor);
             foreach(var discovered in targeting.DetectedTargets)
                 if(discovered&&discovered.IsAlive&&(!targeting.HasTarget||discovered!=targeting.LockedTarget)&&TryProject(discovered.CorePosition,uiCamera,out var marker))
-                    DrawDetectionMarker(vh,marker,scale);
-            if(!targeting.HasTarget||!targeting.LockedTarget||!targeting.LockedTarget.IsAlive)return;
+                    {if(weapons!=null&&weapons.IsVlsLockedTarget(discovered))DrawVlsLockFrame(vh,marker,22f*scale,scale);else if(refined)DrawCornerFrame(vh,marker,19.875f,1.5f,15.75f,EnemyTint);else DrawDetectionMarker(vh,marker,scale);}
+            if(!targeting.HasTarget||!targeting.LockedTarget||!targeting.LockedTarget.IsAlive){leadPresentation.Clear();presentationTarget=null;return;}
+            if(presentationTarget!=targeting.LockedTarget||presentationLife!=targeting.LockedTarget.LifeId){leadPresentation.Clear();presentationTarget=targeting.LockedTarget;presentationLife=presentationTarget.LifeId;}
             Vector3 targetPosition = targeting.LockedTarget.CorePosition;
             if(TargetIndicatorProjection.TryEdge(viewCamera,targetPosition,rectTransform.rect,26f*scale,out var edge,out var direction)){
                 if(refined) DrawRefinedDirection(vh,edge,direction,scale,EnemyTint);
@@ -61,18 +65,19 @@ namespace Starframe.Combat
             float halfFrame = refined ? Mathf.Clamp(projectedRadius,18f*scale,76f*scale)
                 : Mathf.Clamp(projectedRadius,28f*scale,90f*scale);
             Color frameTint = EnemyTint;
-            if(refined) DrawRefinedFrame(vh,targetPoint,halfFrame,scale,frameTint);
+            float progress=weapons!=null&&weapons.HasMissileWeapons?Mathf.Clamp01(weapons.MissileLockProgress):1;
+            if(refined) DrawLockState(vh,targetPoint,Mathf.Max(19.875f,halfFrame),progress,frameTint);
             else DrawFrame(vh,targetPoint,halfFrame,scale,frameTint);
 
-            if(weapons!=null&&weapons.HasMissileWeapons)
+            if(!refined&&weapons!=null&&weapons.HasMissileWeapons)
             {
-                float progress=Mathf.Clamp01(weapons.MissileLockProgress);
+                float legacyProgress=Mathf.Clamp01(weapons.MissileLockProgress);
                 Color tint=EnemyTint;
                 float radius=halfFrame+14f*scale;
                 for(int i=0;i<32;i++)
                 {
                     float a=(i/32f)*Mathf.PI*2+Mathf.PI*.5f,b=((i+.78f)/32f)*Mathf.PI*2+Mathf.PI*.5f;
-                    Color segment=tint;segment.a=i/32f < progress ? .95f : .15f;
+                    Color segment=tint;segment.a=i/32f < legacyProgress ? .95f : .15f;
                     Line(vh,targetPoint+new Vector2(Mathf.Cos(a),Mathf.Sin(a))*radius,targetPoint+new Vector2(Mathf.Cos(b),Mathf.Sin(b))*radius,2.5f*scale,segment);
                 }
             }
@@ -85,6 +90,12 @@ namespace Starframe.Combat
                     lead.flightTime * Mathf.Max(.01f, lead.weapon.projectileSpeed) > lead.weapon.range)
                     continue;
                 if (lead.aimDirection.sqrMagnitude<.000001f||!TryScreenPoint(AimProjection.ScreenPoint(viewCamera,lead.aimDirection),uiCamera,out var point)) continue;
+                // Smooth only the lead offset, so camera/target motion remains responsive.
+                Vector2 desired=point-targetPoint;
+                if(!leadPresentation.TryGetValue(lead.weapon,out var shown)||shown.frame<Time.frameCount-1||(shown.offset-desired).sqrMagnitude>10000*scale*scale)
+                    shown=new LeadPresentation{offset=desired,frame=Time.frameCount};
+                else if(shown.frame!=Time.frameCount){shown.offset=Vector2.Lerp(shown.offset,desired,1-Mathf.Exp(-24*Time.unscaledDeltaTime));shown.frame=Time.frameCount;}
+                leadPresentation[lead.weapon]=shown;point=targetPoint+shown.offset;
                 Color tint = EnemyTint;
                 if(refined)
                 {
@@ -152,6 +163,36 @@ namespace Starframe.Combat
                     Line(vh,corner+Vector2.left*sx*arm,corner,2.75f*scale,tint);
                     Line(vh,corner+Vector2.down*sy*arm,corner,2.75f*scale,tint);
                 }
+        }
+
+        static void DrawCornerFrame(UnityEngine.UI.VertexHelper vh,Vector2 center,float radius,float width,float arm,Color tint)
+        {
+            for(int sx=-1;sx<=1;sx+=2)for(int sy=-1;sy<=1;sy+=2)
+            {Vector2 corner=center+new Vector2(sx*radius,sy*radius);Line(vh,corner+Vector2.left*sx*arm,corner,width,tint);Line(vh,corner+Vector2.down*sy*arm,corner,width,tint);}
+        }
+        static void DrawVlsLockFrame(UnityEngine.UI.VertexHelper vh,Vector2 center,float radius,float scale)
+        {
+            DrawCornerFrame(vh,center,radius,1.7f*scale,radius*.65f,EnemyTint);
+            for(int sx=-1;sx<=1;sx+=2)for(int sy=-1;sy<=1;sy+=2)
+                Line(vh,center+new Vector2(sx*radius*.25f,sy*radius*1.25f),center+new Vector2(sx*radius*1.25f,sy*radius*.25f),2.1f*scale,EnemyTint);
+        }
+        static void DrawLockState(UnityEngine.UI.VertexHelper vh,Vector2 center,float radius,float progress,Color tint)
+        {
+            if(progress>=.999f)
+            {
+                DrawLead(vh,center,radius,2.25f,tint,1);
+                DrawLead(vh,center,radius*1.273f,1.5f,tint,0);
+                return;
+            }
+            DrawCornerFrame(vh,center,radius,2.25f,15.75f,tint);
+            // Clockwise completion runs along the selected target's square border.
+            float remaining=progress*4;
+            Vector2 from=center+new Vector2(-radius,radius);
+            for(int i=0;i<4;i++)
+            {
+                Vector2 to=center+(i==0?new Vector2(radius,radius):i==1?new Vector2(radius,-radius):i==2?new Vector2(-radius,-radius):new Vector2(-radius,radius));
+                float amount=Mathf.Clamp01(remaining-i);if(amount>0)Line(vh,from,Vector2.Lerp(from,to,amount),2.25f,tint);from=to;
+            }
         }
 
         static void DrawRefinedLead(UnityEngine.UI.VertexHelper vh,Vector2 center,float radius,Color tint,int shape,float scale)

@@ -4,11 +4,55 @@ using System.IO;
 using NUnit.Framework;
 using UnityEngine;
 using Starframe.Flight;
+using Starframe.App;
 
 namespace Starframe.Construction.Tests
 {
     public sealed class WeaponGroupDatabaseCompatibilityTests
     {
+        [TestCase(BlockShape.Laser)]
+        [TestCase(BlockShape.Gun1)][TestCase(BlockShape.Gun2)][TestCase(BlockShape.Gun3)]
+        [TestCase(BlockShape.Laser2)][TestCase(BlockShape.Laser3)]
+        [TestCase(BlockShape.Railgun1)][TestCase(BlockShape.Railgun2)][TestCase(BlockShape.Railgun3)]
+        [TestCase(BlockShape.Missile1)][TestCase(BlockShape.Missile2)][TestCase(BlockShape.Missile3)]
+        [TestCase(BlockShape.Sword1)][TestCase(BlockShape.Sword2)]
+        public void NativeAssignmentSurvivesDatabaseGapAndWorkspaceReload(BlockShape shape)
+        {
+            var previous=BlockModules.ConfiguredDatabase;
+            string parent=Path.GetFullPath(Path.Combine(Application.dataPath,"..","Temp","WeaponGroupCompatibility"));
+            string directory=Path.Combine(parent,Guid.NewGuid().ToString("N"));
+            try
+            {
+                BlockModules.Configure(null);
+                using(ShipWorkspace.UseStorageRoot(directory))
+                {
+                    var data=new BlueprintData{name="Native assignment",parts=new List<BlockRecord>{
+                        new BlockRecord{id="weapon",shape=shape,position=Vector3.up*.5f}}};
+                    WeaponGroups.Normalize(data);
+                    Assert.That(WeaponGroups.Assign(data,"weapon",1),Is.True);
+                    ShipWorkspace.Set(data,true,"Native assignment.json");
+                    ShipWorkspace.Reload();
+                    Assert.That(WeaponGroups.GetGroupId(ShipWorkspace.Ship,"weapon"),Is.EqualTo(1),
+                        "Workspace upgrade must preserve the last assignment before database setup.");
+                    var repository=ShipWorkspace.Repository;
+                    var file=repository.Save(ShipWorkspace.Ship);
+                    var loaded=repository.Load(Path.GetFileName(file));
+                    Assert.That(WeaponGroups.GetGroupId(loaded,"weapon"),Is.EqualTo(1));
+                    Assert.That(loaded.weaponAssignments.Count,Is.EqualTo(1));
+                    Assert.That(WeaponGroups.FindGroup(loaded,1).binding.source,Is.EqualTo(WeaponInputSource.MouseRight));
+                }
+            }
+            finally
+            {
+                BlockModules.Configure(previous);
+                if(Directory.Exists(directory))
+                {
+                    Assert.That(Path.GetFullPath(directory).StartsWith(parent+Path.DirectorySeparatorChar,StringComparison.OrdinalIgnoreCase),Is.True);
+                    Directory.Delete(directory,true);
+                }
+            }
+        }
+
         [Test] public void ConfiguredWeaponModuleKeepsItsGroupThroughUpgradeAndRepositoryRoundTrip()
         {
             var previous = BlockModules.ConfiguredDatabase;

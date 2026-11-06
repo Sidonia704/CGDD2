@@ -1,7 +1,9 @@
 using System.Collections.Generic;
+using System.Linq;
 using NUnit.Framework;
 using UnityEngine;
 using Starframe.Combat;
+using Starframe.App;
 using Starframe.Flight;
 using Starframe.Maps;
 
@@ -13,6 +15,47 @@ namespace Starframe.Construction.Tests
         ModuleDatabase previous;Random.State randomState;
         [SetUp]public void Setup(){previous=BlockModules.ConfiguredDatabase;randomState=Random.state;world=new ProjectileWorld();world.Initialize(null);}
         [TearDown]public void Cleanup(){world.Clear();BlockModules.Configure(previous);for(int i=owned.Count-1;i>=0;i--)if(owned[i])Object.DestroyImmediate(owned[i]);owned.Clear();Random.state=randomState;}
+        [TestCase(0,90)][TestCase(0,-90)][TestCase(0,180)][TestCase(90,0)][TestCase(-90,0)]
+        public void OffAxisMissileCapturesAndHitsItsPrelockedTarget(float pitch,float yaw)
+        {
+            var profiles=UnityEditor.AssetDatabase.FindAssets("t:WeaponDefinition",new[]{"Assets/_Starframe"})
+                .Select(g=>UnityEditor.AssetDatabase.LoadAssetAtPath<WeaponDefinition>(UnityEditor.AssetDatabase.GUIDToAssetPath(g)))
+                .Where(w=>w.delivery==WeaponDelivery.GuidedMissile&&!w.IsVls).ToArray();
+            Assert.That(profiles.Length,Is.EqualTo(3));
+            for(int tier=0;tier<profiles.Length;tier++)
+            {
+                var weapon=Own(Object.Instantiate(profiles[tier]));
+                float height=3500+tier*200;
+                var owner=Ship(new Vector3(0,height,0),0,weapon);var target=Ship(new Vector3(0,height,600),1);
+                var gun=owner.GetComponent<ShipAssembly>().Blocks.First(b=>b.Record.id=="gun");
+                gun.transform.localRotation=Quaternion.Euler(pitch,yaw,0);Physics.SyncTransforms();
+                world.FireMissileTube(owner,weapon,gun.transform,new Vector3(0,0,.6f),gun.transform.forward,target,0);
+                for(int i=0;i<weapon.missileGuidanceSeconds/.02f&&world.ActiveMissileCount>0;i++)world.Step(.02f);
+                Assert.That(target.DamageTaken,Is.GreaterThan(0),profiles[tier].name+": actual side/rear/vertical launch must hit.");
+                world.Clear();
+            }
+        }
+
+        [Test]public void DirectWeaponsFollowCoreFacingWhileMissilesAndCountermeasuresRemainRotatable()
+        {
+            foreach(BlockShape shape in System.Enum.GetValues(typeof(BlockShape)))
+            {
+                if(!BlockModules.IsWeapon(shape))continue;
+                bool free=shape==BlockShape.Missile1||shape==BlockShape.Missile2||shape==BlockShape.Missile3||shape==BlockShape.VLS1||shape==BlockShape.VLS2||shape==BlockShape.FlareLauncher;
+                Assert.That(BlockPlacement.MountFacesForward(shape,Quaternion.identity,Vector3.forward),Is.True,shape.ToString());
+                Assert.That(BlockPlacement.MountFacesForward(shape,Quaternion.Euler(0,90,0),Vector3.forward),Is.EqualTo(free),shape.ToString());
+                Assert.That(BlockPlacement.MountFacesForward(shape,Quaternion.Euler(0,180,0),Vector3.forward),Is.EqualTo(free),shape.ToString());
+                Assert.That(BlockPlacement.MountFacesForward(shape,Quaternion.Euler(90,0,0),Vector3.forward),Is.EqualTo(free),shape.ToString());
+                Assert.That(BlockPlacement.MountFacesForward(shape,Quaternion.Euler(0,0,90),Vector3.forward),Is.True,"Roll retains muzzle direction: "+shape);
+            }
+            var owner=Ship(new Vector3(0,3550,0),0,Weapon(WeaponDelivery.Projectile));
+            var assembly=owner.GetComponent<ShipAssembly>();
+            Assert.That(assembly.RotateCore("core"),Is.False,"Rotating the core cannot bypass the installation rule.");
+            Assert.That(assembly.ShipForward,Is.EqualTo(Vector3.forward));
+            Assert.That(assembly.CanPlace(BlockShape.Laser,new Vector3(2,1.5f,0),Quaternion.Euler(0,90,0)),Is.False);
+            Assert.That(assembly.PlacementFailure,Is.EqualTo("非导弹武器必须朝向船头。"));
+        }
+
         [Test]public void MissileRequiresTwoSecondsOnSameTargetAndReloadCannotBeBypassedByReleasing()
         {
             var weapon=Weapon(WeaponDelivery.GuidedMissile);weapon.missileLockSeconds=2;weapon.reloadSeconds=4;
@@ -23,7 +66,8 @@ namespace Starframe.Construction.Tests
             guns.FireRequested=false;Tick(guns,10,.1f);float remaining=guns.MissileReloadRemaining;
             guns.FireRequested=true;Tick(guns,2,.1f);Assert.That(guns.ShotsFired,Is.EqualTo(1));Assert.That(guns.MissileReloadRemaining,Is.LessThan(remaining));
             guns.FireRequested=false;Tick(guns,40,.1f);Assert.That(guns.ReadyMissileCount,Is.EqualTo(1));
-            guns.FireRequested=true;Tick(guns,1,.1f);Assert.That(guns.ShotsFired,Is.EqualTo(2));
+            guns.FireRequested=true;Tick(guns,1,.1f);Assert.That(guns.ShotsFired,Is.EqualTo(1),"The reloaded launcher still needs a fresh acquisition.");
+            Tick(guns,10,.1f);Assert.That(guns.ShotsFired,Is.EqualTo(2));
         }
         [Test]public void ChangingTargetsRestartsMissileAcquisitionAndNoPowerPausesReload()
         {
@@ -122,7 +166,7 @@ namespace Starframe.Construction.Tests
         {
             var owner=Ship(new Vector3(0,3100,0),0);var target=Ship(new Vector3(0,3100,100),1);
             var weapon=Weapon(WeaponDelivery.GuidedMissile);weapon.missileLaunchSpeed=weapon.projectileSpeed=1000;
-            var asset=Own(ScriptableObject.CreateInstance<VoxelAssetDefinition>());asset.blockHealth=1000;
+            var asset=Own(ScriptableObject.CreateInstance<VoxelAssetDefinition>());
             for(int x=-4;x<=4;x++)asset.cells.Add(new VoxelCell{position=new Vector3Int(x,0,4)});
             for(int z=0;z<4;z++){
                 asset.cells.Add(new VoxelCell{position=new Vector3Int(-4,0,z)});
@@ -151,6 +195,46 @@ namespace Starframe.Construction.Tests
             var beam=Weapon(WeaponDelivery.Beam);beam.range=12;beam.damage=30;
             world.Fire(owner,beam,new Vector3(0,2800.5f,3),Vector3.forward);
             Assert.That(target.DamageTaken,Is.EqualTo(30).Within(.01f));Assert.That(far.DamageTaken,Is.Zero);Assert.That(world.ActiveCount,Is.Zero);
+        }
+        [Test]public void UnboundedBeamHitsBeyondOldSwordReachWithoutAFlightStep()
+        {
+            var owner=Ship(new Vector3(0,3500,0),0);var target=Ship(new Vector3(0,3500,600),1);
+            var beam=Weapon(WeaponDelivery.Beam);beam.unboundedBeam=true;beam.range=45;beam.damage=30;
+            world.Fire(owner,beam,new Vector3(0,3500.5f,3),Vector3.forward);
+            Assert.That(target.DamageTaken,Is.EqualTo(30).Within(.01f));Assert.That(world.ActiveCount,Is.Zero);
+        }
+        [Test]public void UnboundedBeamStopsAtNearbyShieldAndCannotLeakToDistantHull()
+        {
+            var owner=Ship(new Vector3(0,3550,0),0);var shielded=Ship(new Vector3(0,3550,20),1,null,true);var far=Ship(new Vector3(0,3550,600),1);
+            world.RegisterShields(shielded);float charge=shielded.Shields.Charge;
+            var beam=Weapon(WeaponDelivery.Beam);beam.unboundedBeam=true;beam.range=45;beam.damage=30;
+            world.Fire(owner,beam,new Vector3(0,3550.5f,3),Vector3.forward);
+            Assert.That(shielded.Shields.Charge,Is.EqualTo(charge-30).Within(.01f));
+            Assert.That(shielded.DamageTaken,Is.Zero);Assert.That(far.DamageTaken,Is.Zero);
+        }
+        [Test]public void MissileTubeStaggerLaunchesEightPerSecondWithoutLongFrameBurst()
+        {
+            var weapon=Weapon(WeaponDelivery.GuidedMissile);weapon.missileLockSeconds=0;weapon.reloadSeconds=10;
+            weapon.missileLaunchOffsets=Enumerable.Range(0,16).Select(i=>Vector3.right*(i%4)*.05f).ToArray();
+            var owner=Ship(new Vector3(0,3600,0),0,weapon);var target=Ship(new Vector3(0,3600,100),1);
+            var guns=new ShipWeapons();guns.Initialize(owner,world);guns.Target=target;guns.HasValidTargetLock=true;
+            Tick(guns,1,.001f);guns.FireRequested=true;Tick(guns,50,.02f);
+            Assert.That(guns.MissileLaunchesPerSecond,Is.EqualTo(8));Assert.That(guns.ShotsFired,Is.EqualTo(8));
+            Tick(guns,1,2);Assert.That(guns.ShotsFired,Is.EqualTo(9),"A long frame may launch one tube, never a catch-up burst.");
+            Tick(guns,1,.02f);Assert.That(guns.ShotsFired,Is.EqualTo(9),"The following normal frame must not pay obsolete launch debt.");
+        }
+        [Test]public void GatlingGroupDisableCoolsItsExistingHeatInsteadOfResettingIt()
+        {
+            var weapon=Weapon(WeaponDelivery.Projectile);weapon.family=WeaponFamily.Gatling;weapon.shotsPerSecond=20;
+            var owner=Ship(new Vector3(0,3650,0),0,weapon);var guns=new ShipWeapons();guns.Initialize(owner,world);guns.FireRequested=true;
+            Tick(guns,300,.02f);
+            var slots=(System.Collections.IList)typeof(ShipWeapons).GetField("guns",System.Reflection.BindingFlags.Instance|System.Reflection.BindingFlags.NonPublic).GetValue(guns);
+            var thermal=(GatlingThermalState)slots[0].GetType().GetField("thermal").GetValue(slots[0]);
+            Assert.That(thermal.HeatFraction,Is.EqualTo(.75f).Within(.001f),"Six powered seconds use six of the default eight-second heat budget.");
+            int group=guns.Groups[0].id;guns.SetGroupEnabled(group,false);Tick(guns,50,.02f);
+            Assert.That(thermal.HeatFraction,Is.EqualTo(7f/12f).Within(.001f),"One disabled second removes one sixth of full heat without resetting it.");
+            guns.SetGroupEnabled(group,true);Tick(guns,401,.02f);
+            Assert.That(thermal.IsOverheated,Is.True);Assert.That(guns.Prepare(),Is.Zero,"An overheated mount must release power to higher priority systems.");
         }
         [TestCase(WeaponDelivery.Projectile,0,66)]
         [TestCase(WeaponDelivery.Projectile,1,30)]
@@ -191,6 +275,65 @@ namespace Starframe.Construction.Tests
             for(int i=0;i<100&&world.ActiveCount>0;i++)world.Step(.01f);
             Assert.That(target.DamageTaken,Is.EqualTo(21.25f).Within(.05f));
         }
+        [Test]public void NativeWeaponProfilesSelectTheirApprovedAudioCategory()
+        {
+            var owner=Ship(new Vector3(0,9000,0),0);
+            var native=UnityEditor.AssetDatabase.LoadAssetAtPath<ModuleDatabase>("Assets/_Starframe/Settings/Modules/ModuleDatabase.asset");
+            Assert.That(native,Is.Not.Null);owner.Tuning.database=native;
+            var shapes=new[]{BlockShape.Gun1,BlockShape.Gun2,BlockShape.Gun3,BlockShape.Laser,BlockShape.Laser2,BlockShape.Laser3,
+                BlockShape.Railgun1,BlockShape.Railgun2,BlockShape.Railgun3,BlockShape.Missile1,BlockShape.Missile2,BlockShape.Missile3,BlockShape.Sword1,BlockShape.Sword2};
+            var cues=new[]{GameSound.Gatling,GameSound.Gatling,GameSound.Gatling,GameSound.LaserRapid,GameSound.LaserRapid,GameSound.LaserRapid,
+                GameSound.RailSmall,GameSound.RailSmall,GameSound.RailLarge,GameSound.MissileShot,GameSound.MissileShot,GameSound.MissileShot,GameSound.DirectLaser,GameSound.DirectLaser};
+            for(int i=0;i<shapes.Length;i++)Assert.That(GameAudioRuntime.ShotSound(owner,native.Get(shapes[i]).weapon),Is.EqualTo(cues[i]),shapes[i].ToString());
+        }
+        [Test]public void WeaponShotEventMatchesActualProjectileBeamAndMissileSpawns()
+        {
+            var owner=Ship(new Vector3(0,9100,0),0);var target=Ship(new Vector3(0,9100,50),1);
+            var position=new Vector3(0,9100,3);int legacy=0;var emitted=new List<WeaponDefinition>();
+            world.ShotFired+=(ship,origin)=>{Assert.That(ship,Is.SameAs(owner));legacy++;};
+            world.WeaponShotFired+=(ship,origin,weapon)=>{Assert.That(ship,Is.SameAs(owner));Assert.That(origin,Is.EqualTo(position));emitted.Add(weapon);};
+            var projectile=Weapon(WeaponDelivery.Projectile);var beam=Weapon(WeaponDelivery.Beam);var missile=Weapon(WeaponDelivery.GuidedMissile);
+            world.Fire(owner,projectile,position,Vector3.zero);
+            world.Fire(owner,missile,position,Vector3.forward);
+            Assert.That(emitted,Is.Empty,"Rejected zero-direction and unlocked missile requests are silent.");
+            world.Fire(owner,projectile,position,Vector3.forward);
+            world.Fire(owner,beam,position,Vector3.forward);
+            world.Fire(owner,missile,position,Vector3.forward,null,default,target);
+            Assert.That(emitted,Is.EqualTo(new[]{projectile,beam,missile}));
+            Assert.That(legacy,Is.EqualTo(3));Assert.That(world.TotalSpawned,Is.EqualTo(3));
+        }
+        [Test]public void RailWindupEmitsAudioBeforeProjectileAtConfiguredPeak()
+        {
+            var weapon=Weapon(WeaponDelivery.Projectile);weapon.family=WeaponFamily.Railgun;weapon.firstShotImmediate=true;
+            weapon.shotsPerSecond=1;weapon.fireWindupSeconds=.08f;
+            var owner=Ship(new Vector3(0,9200,0),0,weapon);var guns=new ShipWeapons();guns.Initialize(owner,world);guns.FireRequested=true;
+            int starts=0;System.Action<FlightShipRuntime,WeaponDefinition,Vector3> handler=(source,definition,origin)=>{
+                Assert.That(source,Is.SameAs(owner));Assert.That(definition,Is.SameAs(weapon));Assert.That(guns.ShotsFired,Is.Zero);starts++;
+            };
+            ShipWeapons.ShotWindupStarted+=handler;
+            try{
+                Tick(guns,1,.02f);Assert.That(starts,Is.EqualTo(1));Assert.That(guns.ShotsFired,Is.Zero);
+                Tick(guns,3,.02f);Assert.That(guns.ShotsFired,Is.Zero,"No discharge before the 80 ms audio peak.");
+                Tick(guns,1,.02f);Assert.That(guns.ShotsFired,Is.EqualTo(1));Assert.That(starts,Is.EqualTo(1));
+            }finally{ShipWeapons.ShotWindupStarted-=handler;}
+        }
+        [TestCase("release")][TestCase("power")][TestCase("group")][TestCase("reset")]
+        public void RailWindupCannotDischargeAfterCancellation(string reason)
+        {
+            var weapon=Weapon(WeaponDelivery.Projectile);weapon.family=WeaponFamily.Railgun;weapon.firstShotImmediate=true;
+            weapon.shotsPerSecond=1;weapon.fireWindupSeconds=.08f;
+            var owner=Ship(new Vector3(0,9300,0),0,weapon);var guns=new ShipWeapons();guns.Initialize(owner,world);guns.FireRequested=true;
+            int cancelled=0;System.Action<FlightShipRuntime,WeaponDefinition> handler=(source,definition)=>cancelled++;
+            ShipWeapons.ShotWindupCancelled+=handler;
+            try{
+                Tick(guns,1,.02f);
+                if(reason=="release")guns.FireRequested=false;
+                if(reason=="group")guns.SetGroupEnabled(guns.GetGroupId("gun"),false);
+                if(reason=="reset")guns.Reset();
+                Tick(guns,8,.02f,reason=="power"?0:1);
+                Assert.That(guns.ShotsFired,Is.Zero);Assert.That(cancelled,Is.EqualTo(1),"Cancelled preparation must stop its audio exactly once.");
+            }finally{ShipWeapons.ShotWindupCancelled-=handler;}
+        }
         void Tick(ShipWeapons guns,int count,float dt,float power=1){for(int i=0;i<count;i++){guns.Prepare();guns.Execute(dt,power);}}
         FlightShipRuntime Ship(Vector3 position,int team,WeaponDefinition weapon=null,bool shield=false)
         {
@@ -214,3 +357,4 @@ namespace Starframe.Construction.Tests
         T Own<T>(T value)where T:Object{owned.Add(value);return value;}
     }
 }
+

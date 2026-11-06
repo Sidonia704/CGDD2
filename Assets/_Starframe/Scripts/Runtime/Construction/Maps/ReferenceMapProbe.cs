@@ -47,7 +47,6 @@ namespace Starframe.Maps
             if(!report.loaded){report.error="Map did not finish loading within 240 seconds.";Finish(report);yield break;}
             report.structures=map.Structures.Count(s=>s);report.initialCells=map.Structures.Where(s=>s).Sum(s=>s.AliveCount);
             report.colliders=map.Structures.Where(s=>s).Sum(s=>s.ColliderCount);report.rigidbodies=map.Structures.Count(s=>s&&s.Body);
-            report.initialRecentDamage=map.Structures.Where(s=>s).Sum(s=>s.RecentDamageCount);
             report.initialActiveColliders=map.ActiveMapColliderCount;
             Debug.Log("ReferenceMapProbe loaded in "+report.loadSeconds+" seconds; colliders="+report.colliders);
             bool diagnostic=args.Contains("-sfMapDiagnostic");
@@ -91,12 +90,7 @@ namespace Starframe.Maps
                 for(int frame=0;frame<4;frame++){if(diagnostic){Physics.simulationMode=SimulationMode.Script;Physics.Simulate(Time.fixedDeltaTime);yield return null;}else yield return new WaitForFixedUpdate();}
                 if(diagnostic)Physics.simulationMode=originalSimulation;
                 report.pushedBodyMoved=Vector3.Distance(position,target.Body.position)>.005f;
-                var cell=target.Cells.Values.First(c=>c.Alive).position;int alive=target.AliveCount;
-                target.ApplyDamage(cell,target.asset.blockHealth*.25f);target.AdvanceDamageTime(target.asset.damageResetSeconds+.1);
-                bool reset=target.RecentDamageCount==0&&Mathf.Abs(target.GetHealth(cell)-target.asset.blockHealth*target.healthMultiplier)<.001f;
-                target.ApplyDamage(cell,1000000);target.FlushMeshChanges();target.AdvanceDamageTime(target.asset.damageResetSeconds+.1);
-                report.damageExpiredWithoutRestoringHole=reset&&target.GetHealth(cell)==0&&target.AliveCount<alive;
-                report.conservedSurvivingCells=map.Structures.Where(s=>s).Sum(s=>s.AliveCount)==report.initialCells-1;
+                report.conservedSurvivingCells=map.Structures.Where(s=>s).Sum(s=>s.AliveCount)==report.initialCells;
             }
             yield return null;Finish(report);
         }

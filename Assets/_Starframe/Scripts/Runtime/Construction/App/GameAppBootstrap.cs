@@ -37,6 +37,7 @@ namespace Starframe.App
             ui=gameObject.AddComponent<MenuSurface>();ui.Initialize(previewCamera);
             ui.OperationFailed+=error=>{if(page==AppPage.WeaponGroups&&weaponScreen){weaponScreen.ReportSaveFailure();return;}ConfirmDialog(T("app.errorTitle"),T("app.storageError"),T("app.ok"),()=>ShowPage(page),()=>ShowPage(page));};
             preview=gameObject.AddComponent<HangarShipPreview>();preview.Initialize(assemblyPrefab,tuning,previewCamera);
+            var grid=GetComponent<FigmaHangarGrid>();if(!grid)grid=gameObject.AddComponent<FigmaHangarGrid>();grid.Initialize(preview);
             BlockModules.Configure(tuning.database);
             selected=ShipWorkspace.Ship;preview.Show(selected);mission=catalog?catalog.Find(AppNavigation.SelectedMissionId):null;
             if(!mission&&catalog&&catalog.missions.Count>0)mission=catalog.missions[0];
@@ -82,26 +83,23 @@ namespace Starframe.App
         static string T(string key,params object[] args)=>L10n.T(key,args);
         public void ShowHome()
         {
-            Begin(AppPage.Home);selected=ShipWorkspace.Ship;preview.Show(selected);preview.SetFocus(.69f,.63f);
-            Header("",T("app.homeSubtitle"),false);
-            ui.Panel("ShipIdentityGlass",48,144,464,424);
-            ui.Label("ShipEyebrow",T("app.currentShip"),80,172,400,24,13,GlassUiPalette.Muted);
-            UserName("CurrentShipName",selected.name,80,213,400,78,32);
-            var stats=Summarize(selected);
-            ui.Label("ShipPartCount",T("app.parts",selected.parts.Count),80,305,400,28,18);
-            ui.Label("ShipMass",T("app.mass",stats.mass.ToString("N0")),80,343,400,28,18);
-            ui.Label("ShipCost",T("app.cost",stats.cost.ToString("N0")),80,381,400,28,18);
-            ui.Label("ShipWorkspace",ShipWorkspace.Dirty?T("app.workspaceDraft"):T("app.workspaceSaved"),80,424,400,34,14,ShipWorkspace.Dirty?UiTheme.Current.amber:GlassUiPalette.Muted);
-            ui.Button("EditShip",T("app.editShip"),80,482,190,54,OpenEditor,true);
-            ui.Button("ChooseShip",T("app.changeShip"),282,482,198,54,ShowShipPicker);
-            ui.Button("WeaponGroups",T("app.weaponGroups"),48,584,464,48,ShowWeaponGroups);
-            ui.Label("OrbitHint",T("app.orbitHint"),744,583,920,30,14,GlassUiPalette.Muted).alignment=TextAlignmentOptions.Center;
-            ui.Label("OperationsTitle",T("app.chooseOperation"),48,671,1000,40,25);
-            ui.Button("RangeSetup",T("app.practiceRange"),1578,659,294,54,()=>{AppNavigation.RangeReturnToEditor=false;ShowRangeSetup();});
-            // Keep the catalogue intact for future content while presenting one clear operation.
-            if(catalog){var homeOperation=catalog.missions.FirstOrDefault(value=>value);if(homeOperation)MissionCard(homeOperation,48,736);}
-            ui.Label("Footer",T("app.homeFooter"),48,1030,1450,26,13,GlassUiPalette.Muted);
-            if(notice.Length>0){ui.Label("Notice",notice,1100,1012,772,25,13,UiTheme.Current.amber);notice="";}
+            Begin(AppPage.Home);selected=ShipWorkspace.Ship;preview.Show(selected);preview.ResetView();preview.SetFocus(.53f,.64f);preview.FitViewport(.67f,.65f);
+            FigmaMenuHeader("",false);
+            var title=ui.Label("Brand","STAR FRAME",50,18,1350,200,165,Color.white);FigmaVisuals.SetFont(title,false,true);title.textWrappingMode=TextWrappingModes.NoWrap;
+            var stripeClip=MenuSurface.Rect(ui.Root,"BrandAccentClip",58.5f,166,323.25f,73.5f);stripeClip.gameObject.AddComponent<UnityEngine.UI.RectMask2D>();
+            var stripe=MenuSurface.Rect(ui.Root,"BrandAccent",0,0,1,1).gameObject.AddComponent<UnityEngine.UI.RawImage>();stripe.texture=Resources.Load<Texture2D>("UI/Figma/MainStripe");stripe.color=GlassUiPalette.Accent;stripe.raycastTarget=false;
+            stripe.rectTransform.SetParent(stripeClip,false);stripe.rectTransform.anchorMin=stripe.rectTransform.anchorMax=new Vector2(0,1);stripe.rectTransform.pivot=new Vector2(.5f,.5f);stripe.rectTransform.sizeDelta=new Vector2(115.676f,616.961f);stripe.rectTransform.anchoredPosition=new Vector2(174.980f,-55.412f);stripe.rectTransform.localRotation=Quaternion.Euler(0,0,90);
+            var stripeShader=Shader.Find("Starframe/UI/FigmaAlphaMask");if(stripeShader){stripe.material=new Material(stripeShader);stripe.gameObject.AddComponent<MenuIconMaterialOwner>().value=stripe.material;}
+            ui.Panel("ShipIdentityGlass",50,514,461,319);
+            ui.Label("ShipEyebrow",MenuCopy("当前舰船：","CURRENT SHIP:"),78,543,420,34,22,Color.white);
+            var name=ui.Label("CurrentShipName",selected.name,78,588,420,74,40,GlassUiPalette.Accent);FigmaVisuals.SetFont(name,true);L10n.ApplyUserContentFont(name);name.textWrappingMode=TextWrappingModes.NoWrap;
+            MenuShipMetrics.Summary(ui,"HomeStat",MenuShipMetrics.Calculate(selected,tuning,mission),86,687,411,22);
+            MenuButton("EditShip",MenuCopy("编辑舰船","EDIT SHIP"),50,857,224,56,OpenEditor,24);
+            MenuButton("ChooseShip",MenuCopy("蓝图库","BLUEPRINTS"),288,857,223,56,ShowShipPicker,24);
+            MenuButton("RangeSetup",MenuCopy("试飞","TEST FLIGHT"),50,929,461,56,()=>{AppNavigation.RangeReturnToEditor=false;ShowRangeSetup();},24);
+            var play=MenuButton("Play",MenuCopy("开始","PLAY"),1546,955,320,82,()=>{if(!mission&&catalog)mission=catalog.missions.FirstOrDefault(value=>value);ShowDeployment();},32,true);
+            play.interactable=mission||catalog&&catalog.missions.Any(value=>value);
+            if(notice.Length>0){ui.Label("Notice",notice,563,1010,800,42,18,GlassUiPalette.Accent);notice="";}
         }
         void MissionCard(MissionDefinition definition,float x,float y)
         {

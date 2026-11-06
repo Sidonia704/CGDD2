@@ -1,0 +1,76 @@
+{
+    "MonoBehaviour": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "Railgun1Weapon",
+        "m_EditorClassIdentifier": "Starframe.Construction::Starframe.Flight.WeaponDefinition",
+        "shotsPerSecond": 1.5,
+        "damage": 10800.0,
+        "projectileSpeed": 7500.0,
+        "projectileDiameter": 0.30000001192092898,
+        "firstShotImmediate": true,
+        "penetrationDepth": 2.0,
+        "secondLayerDamageMultiplier": 0.3499999940395355,
+        "range": 3800.0,
+        "unboundedBeam": false,
+        "visualLength": 70.0,
+        "tailLength": 400.0,
+        "visualWidth": 8.0,
+        "visualIntensity": 9.0,
+        "minimumVisualPixels": 4.5,
+        "tracerStyle": 1,
+        "smokeTrail": true,
+        "tracerLingerSeconds": 0.09000000357627869,
+        "sustainedPowerWatts": 140.0,
+        "energyPerShot": 100.0,
+        "delivery": 0,
+        "family": 3,
+        "effectColor": {
+            "r": 1.0,
+            "g": 0.6600000262260437,
+            "b": 0.11999999731779099,
+            "a": 1.0
+        },
+        "missileLockSeconds": 2.0,
+        "reloadSeconds": 4.0,
+        "missileTurnDegrees": 110.0,
+        "missileAcceleration": 160.0,
+        "missileTurnAcceleration": 180.0,
+        "missileGuidanceSeconds": 10.0,
+        "missileSeekerConeDegrees": 65.0,
+        "missileSeekerLossSeconds": 0.3499999940395355,
+        "missileLaunchSpeed": 35.0,
+        "explosionRadius": 3.0,
+        "launcherMesh": {
+            "instanceID": 0
+        },
+        "missileMesh": {
+            "instanceID": 0
+        },
+        "missileLaunchOffsets": [
+            {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        ],
+        "muzzleOffsets": [],
+        "projectileMaterial": {
+            "fileID": 2100000,
+            "guid": "8fa010cb395cefc458368aa8f928b19f",
+            "type": 2
+        },
+        "beamDuration": 0.11999999731779099,
+        "beamMesh": {
+            "instanceID": 0
+        },
+        "activationMode": 0,
+        "chargeSeconds": 1.0,
+        "requireTargetLock": false,
+        "gatlingSpinUpSeconds": 1.5,
+        "gatlingSpinDownSeconds": 0.5,
+        "gatlingMinimumRateFraction": 0.20000000298023225,
+        "gatlingHeatPerSecond": 0.25,
+        "gatlingCoolingPerSecond": 0.0833333358168602
+    }
+}

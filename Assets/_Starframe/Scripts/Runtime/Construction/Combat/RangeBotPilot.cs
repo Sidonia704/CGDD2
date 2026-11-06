@@ -1,4 +1,4 @@
-// @role Continuously steer range and mission opponents using role-based attack runs, bounded terrain probes and shared ship capabilities.
+// @role Steer range and mission opponents with role-based attack runs, bounded terrain probes, instantaneous beam aim and finite-speed projectile lead.
 // @calls BotBehaviorProfile, InterceptSolver, CylindricalHitQuery, ShipWeapons
 
 using System.Collections.Generic;
@@ -145,8 +145,8 @@ namespace Starframe.Combat
                 var matrix = CylindricalHitQuery.PhysicsMatrix(gun.view.GetComponent<Collider>());
                 aimOrigin = matrix.MultiplyPoint3x4(module.muzzleLocalPosition);
                 barrelDirection = matrix.MultiplyVector(Vector3.forward).normalized;
-                hasIntercept = InterceptSolver.TrySolve(aimOrigin, target.ship.CorePhysicsPosition,
-                    aimVelocity, weapon.projectileSpeed, weapon.range, out var intercept, out _);
+                hasIntercept = TryAimPoint(weapon, aimOrigin, target.ship.CorePhysicsPosition,
+                    aimVelocity, out var intercept);
                 if (hasIntercept) AimPoint = intercept;
             }
 
@@ -239,9 +239,9 @@ namespace Starframe.Combat
                 burst = EffectiveBurstSeconds(burst, weapon);
                 Fire=elapsed>=0&&elapsed%(burst+pause)<burst;
             }
-            float reserve = Mathf.Max(0, tuning.boostPowerWatts) * .5f;
+            float reserve = Mathf.Max(0, tuning.BoostPowerDemandWatts) * .5f;
             bool boostPower = rules.unlimitedRangePower || self.ship.Power.Energy > reserve
-                || self.ship.Power.Generation >= tuning.boostPowerWatts;
+                || self.ship.Power.Generation >= tuning.BoostPowerDemandWatts;
             Boost = !stationary && boostPower && error < 38 && smoothedAvoidance.sqrMagnitude < cruise * cruise * .16f
                 && (Phase == RangeBotPhase.Breakaway || Phase == RangeBotPhase.Reposition || Phase == RangeBotPhase.Cruise
                     || (Phase==RangeBotPhase.Attack&&targetAlive&&Vector3.Distance(self.body.position,target.body.position)>PreferredRange(self,target,weapon,rules)*1.4f))
@@ -294,8 +294,8 @@ namespace Starframe.Combat
                 if (missileRole == guided) score += 180;
                 if (target != null)
                 {
-                    bool solution = InterceptSolver.TrySolve(profile.origin, target.ship.CorePhysicsPosition,
-                        targetVelocity, profile.weapon.projectileSpeed, profile.weapon.range, out var point, out _);
+                    bool solution = TryAimPoint(profile.weapon, profile.origin, target.ship.CorePhysicsPosition,
+                        targetVelocity, out var point);
                     score += solution ? 1000 : 0;
                     score += Vector3.Dot(profile.direction, (point - profile.origin).normalized) * 100;
                 }
@@ -374,8 +374,8 @@ namespace Starframe.Combat
         float PreferredRange(RangeCombatWorld.Actor self, RangeCombatWorld.Actor target, WeaponDefinition weapon,BattleTuning rules)
         {
             float clearance = self.ship.HullRadius + target.ship.HullRadius + 30;
-            if (behavior) return Mathf.Max(clearance, weapon ? Mathf.Min(behavior.preferredRange, weapon.range * .7f) : behavior.preferredRange);
-            return weapon ? Mathf.Max(clearance, Mathf.Min(weapon.range * Mathf.Clamp(rules.botEngagementRangeFraction,.1f,.6f), 320)) : Mathf.Max(clearance, 120);
+            if (behavior) return Mathf.Max(clearance, weapon ? Mathf.Min(behavior.preferredRange, weapon.EffectiveRange * .7f) : behavior.preferredRange);
+            return weapon ? Mathf.Max(clearance, Mathf.Min(weapon.EffectiveRange * Mathf.Clamp(rules.botEngagementRangeFraction,.1f,.6f), 320)) : Mathf.Max(clearance, 120);
         }
 
         public static Vector3 AttackVelocity(Vector3 route, Vector3 targetVelocity, float separation,
@@ -555,12 +555,29 @@ namespace Starframe.Combat
             return true;
         }
 
+        static bool TryAimPoint(WeaponDefinition selected, Vector3 origin, Vector3 targetCore,
+            Vector3 targetVelocity, out Vector3 point)
+        {
+            point = targetCore;
+            if (!selected) return false;
+            if (selected.delivery == WeaponDelivery.Beam)
+            {
+                // Beam damage is instantaneous. A target's velocity and the legacy
+                // projectile-speed field must never displace its current aim point.
+                float distanceSquared = (targetCore - origin).sqrMagnitude;
+                float range = selected.EffectiveRange;
+                return range > 0 && !float.IsNaN(distanceSquared) && !float.IsInfinity(distanceSquared)
+                    && distanceSquared <= range * range;
+            }
+            return InterceptSolver.TrySolve(origin, targetCore, targetVelocity,
+                selected.projectileSpeed, selected.EffectiveRange, out point, out _);
+        }
+
         public static bool TryFiringSolution(WeaponAimProfile profile, Vector3 targetCore, Vector3 targetVelocity,
             float maxAngleDegrees, out Vector3 point,float targetRadius=.4f)
         {
             point = targetCore;
-            if (!profile.weapon || !InterceptSolver.TrySolve(profile.origin, targetCore, targetVelocity,
-                    profile.weapon.projectileSpeed, profile.weapon.range, out point, out _)) return false;
+            if (!TryAimPoint(profile.weapon, profile.origin, targetCore, targetVelocity, out point)) return false;
             Vector3 direction = point - profile.origin;
             if (direction.sqrMagnitude < .000001f || profile.direction.sqrMagnitude < .000001f) return false;
             float tolerance = Mathf.Atan2(Mathf.Max(.4f,targetRadius) + profile.weapon.projectileDiameter * .5f, direction.magnitude) * Mathf.Rad2Deg;

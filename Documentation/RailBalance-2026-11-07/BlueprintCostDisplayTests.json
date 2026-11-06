@@ -1,0 +1,31 @@
+{
+  "Summary": {
+    "Total": 2,
+    "Passed": 2,
+    "Failed": 0,
+    "Skipped": 0,
+    "Inconclusive": 0
+  },
+  "Results": [
+    {
+      "FullName": "Starframe.Construction.Tests.BlueprintCostDisplayTests.CardPricesUseModuleAndMissionRulesRatherThanComponentCount",
+      "Status": "Passed",
+      "Duration": 0.0028157,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.BlueprintCostDisplayTests.MissingOrInvalidEntryCannotBreakBlueprintGrid",
+      "Status": "Passed",
+      "Duration": 0.0006191,
+      "Message": null,
+      "StackTrace": null
+    }
+  ],
+  "Duration": 2.84,
+  "StatusPath": null,
+  "Mode": "EditMode",
+  "FilterApplied": "testname: BlueprintCostDisplayTests",
+  "success": true,
+  "result": null
+}

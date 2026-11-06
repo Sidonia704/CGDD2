@@ -80,6 +80,8 @@ namespace Starframe.Construction.Tests
             Assert.That(profiles.Count,Is.EqualTo(1));Assert.That(profiles[0].gunCount,Is.EqualTo(2));
             weapons.SetGroupInput(1,true,true);weapons.GetAimProfiles(profiles);
             Assert.That(profiles.Count,Is.EqualTo(1));Assert.That(profiles[0].gunCount,Is.EqualTo(1));Assert.That(profiles[0].partId,Is.EqualTo(rightId));
+            weapons.GetAimProfiles(profiles,filterToHeld:false);
+            Assert.That(profiles[0].gunCount,Is.EqualTo(2),"HUD profiles must remain visible when a different fire group is held.");
             weapons.SetGroupInput(1,false,false,true);weapons.GetAimProfiles(profiles);Assert.That(profiles[0].gunCount,Is.EqualTo(2));
             weapons.GetAimProfiles(profiles,1);Assert.That(profiles[0].partId,Is.EqualTo(rightId));
         }
@@ -153,7 +155,7 @@ namespace Starframe.Construction.Tests
             var launchTicks=new List<int>();int previous=0;
             for(int i=0;i<100;i++){weapons.Prepare();weapons.Execute(.01f,1);int count=world.TotalSpawned-previous;Assert.That(count,Is.InRange(0,1));if(count>0)launchTicks.Add(i);previous=world.TotalSpawned;}
             Assert.That(launchTicks.Count,Is.EqualTo(4));
-            for(int i=1;i<launchTicks.Count;i++)Assert.That(launchTicks[i]-launchTicks[i-1],Is.InRange(16,17));
+            for(int i=1;i<launchTicks.Count;i++)Assert.That(launchTicks[i]-launchTicks[i-1],Is.InRange(12,13));
             weapons.Reset();weapons.Target=target;weapons.HasValidTargetLock=true;weapons.FireRequested=true;
             weapons.Prepare();weapons.Execute(.01f,1);int beforeLoss=world.TotalSpawned;
             weapons.HasValidTargetLock=false;
@@ -180,7 +182,9 @@ namespace Starframe.Construction.Tests
             Assert.That(assembly.Place(BlockShape.Laser,new Vector3(-1,1.5f,0),Quaternion.identity),Is.True);
             Assert.That(assembly.Place(BlockShape.Laser,new Vector3(1,1.5f,0),Quaternion.identity),Is.True);
             blueprint=assembly.Export("group fixture");rightId=blueprint.parts.Find(p=>p.shape==BlockShape.Laser&&p.position.x>0).id;
-            var group=WeaponGroups.AddGroup(blueprint,"Secondary",new WeaponInputBinding{source=WeaponInputSource.MouseRight},database);
+            // New blueprints already contain the two default mouse groups.
+            Assert.That(WeaponGroups.ConfigureGroup(blueprint,1,"Secondary",new WeaponInputBinding{source=WeaponInputSource.MouseRight},database),Is.True);
+            var group=WeaponGroups.FindGroup(blueprint,1);
             Assert.That(WeaponGroups.Assign(blueprint,rightId,group.id,database),Is.True);
             runtime=go.AddComponent<FlightShipRuntime>();runtime.Initialize(assembly,blueprint,tuning);Physics.SyncTransforms();
             world=new ProjectileWorld();world.Initialize(null);var weapons=new ShipWeapons();weapons.Initialize(runtime,world);return weapons;

@@ -1,0 +1,81 @@
+{
+  "Summary": {
+    "Total": 9,
+    "Passed": 9,
+    "Failed": 0,
+    "Skipped": 0,
+    "Inconclusive": 0
+  },
+  "Results": [
+    {
+      "FullName": "Starframe.Tests.PowerPriorityTests.BatteryAndGenerationAreIntegratedOnceForTheCombinedPriorityDemand",
+      "Status": "Passed",
+      "Duration": 0.0026374,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.PowerPriorityTests.CombatExecuteRoutesDistinctRatiosForPlayerAndEnemy(0)",
+      "Status": "Passed",
+      "Duration": 0.0659763,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.PowerPriorityTests.CombatExecuteRoutesDistinctRatiosForPlayerAndEnemy(1)",
+      "Status": "Passed",
+      "Duration": 0.0030795,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.PowerPriorityTests.EmptySourcesStopConsumersWhileIdleRequestsAllowBatteryCharging",
+      "Status": "Passed",
+      "Duration": 0.0003609,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.PowerPriorityTests.ScarcityServesShieldsThenBoostThenWeapons(30.0f,0.5f,0.0f,0.0f)",
+      "Status": "Passed",
+      "Duration": 0.0004373,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.PowerPriorityTests.ScarcityServesShieldsThenBoostThenWeapons(80.0f,1.0f,0.4f,0.0f)",
+      "Status": "Passed",
+      "Duration": 0.0000812,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.PowerPriorityTests.ScarcityServesShieldsThenBoostThenWeapons(130.0f,1.0f,1.0f,0.5f)",
+      "Status": "Passed",
+      "Duration": 0.000072,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.PowerPriorityTests.ScarcityServesShieldsThenBoostThenWeapons(200.0f,1.0f,1.0f,1.0f)",
+      "Status": "Passed",
+      "Duration": 0.0000709,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.PowerPriorityTests.UnlimitedPowerDoesNotDebitBatteryAndZeroTimeDoesNotAdvanceIt",
+      "Status": "Passed",
+      "Duration": 0.0002866,
+      "Message": null,
+      "StackTrace": null
+    }
+  ],
+  "Duration": 2.82,
+  "StatusPath": null,
+  "Mode": "EditMode",
+  "FilterApplied": "testname: PowerPriorityTests",
+  "success": true,
+  "result": null
+}
+

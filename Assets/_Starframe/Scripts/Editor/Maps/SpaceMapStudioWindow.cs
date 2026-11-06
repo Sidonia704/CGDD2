@@ -15,12 +15,14 @@ namespace Starframe.EditorTools
     public sealed partial class SpaceMapStudioWindow : EditorWindow
     {
         public const string ContentRoot = "Assets/_Starframe/Maps";
+        const int MaximumUniformEditableCells = 2000000;
         const string UiRoot = "Assets/_Starframe/Scripts/Editor/Maps/UI/";
         [SerializeField] VoxelAssetDefinition asset;
         [SerializeField] SpaceMapDefinition map;
         [SerializeField] bool mapMode;
+        [SerializeField] bool authoredSurfacePreview = true;
         [SerializeField] int tool, surface, selectedInstance = -1;
-        [SerializeField] float planeHeight = -180, snap = 5, testDamage = 40;
+        [SerializeField] float planeHeight = -180, snap = 5;
         [SerializeField] Vector3Int brushSize = Vector3Int.one, stampSize = new Vector3Int(12, 8, 10), stampCenter;
         [SerializeField] VoxelStampShape stampShape = VoxelStampShape.Asteroid;
         [SerializeField] int stampSeed = 1701, scatterSeed = 42, scatterCount = 24;
@@ -110,10 +112,13 @@ namespace Starframe.EditorTools
             Button(toolbar, "示例资源", () => { SpaceMapStudioContent.InstallExamples(); RefreshLibrary(); });
             Button(toolbar, "定位文件", () => { Selection.activeObject = mapMode ? (UnityEngine.Object)map : asset; });
             viewportTools.Clear();
-            string[] names = mapMode ? new[] { "选择/移动", "摆放资产", "破坏预览" } : new[] { "放置", "删除", "涂材质", "破坏预览" };
+            string[] names = mapMode ? new[] { "选择/移动", "摆放资产" } : new[] { "放置", "删除", "涂材质" };
             for (int i = 0; i < names.Length; i++) { int value = i; Button(viewportTools, names[i], () => { EndStroke(); tool = value; BuildToolbar(); BuildInspector(); }, tool == i); }
             Button(viewportTools, "聚焦 F", FrameView); Button(viewportTools, "俯视", () => { orbit = new Vector2(90, 0); Repaint(); });
             Button(viewportTools, "等轴", () => { orbit = new Vector2(30, -35); Repaint(); });
+            var authoredToggle = new Toggle("体素合并缓存") { value = authoredSurfacePreview };
+            authoredToggle.RegisterValueChangedCallback(e => { authoredSurfacePreview = e.newValue; rebuildRequested = true; Repaint(); });
+            viewportTools.Add(authoredToggle);
             Button(viewportTools, "重置预览", () => { rebuildRequested = true; Repaint(); });
         }
         void RefreshLibrary()
@@ -165,22 +170,45 @@ namespace Starframe.EditorTools
             if (details == null) return; details.Clear();
             if (mapMode) BuildMapInspector(); else BuildAssetInspector();
         }
+        void BuildAuthoredSurfaceInspector()
+        {
+            details.Add(Section("体素合并缓存"));
+            var field = new ObjectField("合并 Mesh") { objectType = typeof(Mesh), allowSceneObjects = false, value = asset.initialLodMesh };
+            field.SetEnabled(false); details.Add(field);
+            bool valid = VoxelAssemblyBaker.IsVoxelAssemblyCache(asset);
+            string cacheInfo = valid ? "体块缓存符合合并工具的命名及签名约定；修改体块后会自动失效。" :
+                asset.initialLodMesh && asset.initialLodMesh.name != asset.name + " Voxel Assembly" ? "旧外部显示缓存，点击“从体块重建显示”以替换。" :
+                "当前没有匹配的体块缓存；视窗直接显示可编辑体块。";
+            details.Add(new HelpBox(cacheInfo, valid ? HelpBoxMessageType.Info : HelpBoxMessageType.Warning));
+            if (asset.initialLodMesh) details.Add(Hint($"{asset.initialLodMesh.vertexCount:N0} 顶点 · {VoxelAssemblyBaker.TriangleCount(asset.initialLodMesh):N0} 三角形"));
+            details.Add(Hint("场景由现有体素体块实际拼装，保留各块形状与方向。缓存只合并显示，不使用外加模型外壳；关闭视窗的“体素合并缓存”可直接检查体块。"));
+            Button(details, "从体块重建显示", () => Safe(() =>
+            {
+                string sourcePath = AssetDatabase.GetAssetPath(asset);
+                if (string.IsNullOrEmpty(sourcePath)) { SetStatus("请先保存体块资产，再重建显示。"); return; }
+                string path = AssetDatabase.GetAssetPath(asset.initialLodMesh);
+                if (!asset.initialLodMesh || asset.initialLodMesh.name != asset.name + " Voxel Assembly" ||
+                    string.IsNullOrEmpty(path) || !string.Equals(Path.GetExtension(path), ".asset", StringComparison.OrdinalIgnoreCase) ||
+                    AssetDatabase.IsSubAsset(asset.initialLodMesh) || AssetDatabase.LoadMainAssetAtPath(path) != asset.initialLodMesh)
+                    path = AssetDatabase.GenerateUniqueAssetPath(Path.ChangeExtension(sourcePath, null) + "_VoxelAssembly.asset");
+                var mesh = VoxelAssemblyBaker.Bake(asset, path);
+                rebuildRequested = true; BuildInspector(); MarkUnsaved(); Repaint();
+                SetStatus($"已从 {asset.cells.Count:N0} 个实际体块重建显示：{VoxelAssemblyBaker.TriangleCount(mesh):N0} 三角形。");
+            })).SetEnabled(!EditorApplication.isPlayingOrWillChangePlaymode);
+        }
         void BuildAssetInspector()
         {
             details.Add(Heading(asset ? asset.name : "体块资产"));
             if (!asset) { details.Add(Hint("新建资产，或从左侧资产库打开一个资产。")); return; }
-            var connectivity = VoxelConnectivityDiagnostics.ForAsset(asset);
-            if (connectivity.componentCount > 1)
-                details.Add(new HelpBox($"此资产包含 {connectivity.componentCount} 个六邻接连通组件。首次致命命中后，初始组件可能分离为 {connectivity.componentCount} 个刚体。建议按连通组件重新编辑资产。", HelpBoxMessageType.Warning));
-            Button(details, "重新检查连通性", BuildInspector);
+            BuildAuthoredSurfaceInspector();
             StringField(details, "分类", asset.category, v => ChangeAsset("修改资产分类", () => asset.category = v, false));
-            Float(details, "格子尺寸", asset.cellSize, .25f, 10, v => ChangeAsset("修改格子尺寸", () => asset.cellSize = v));
-            Float(details, "每格血量", asset.blockHealth, 1, 100000, v => ChangeAsset("修改体块血量", () => asset.blockHealth = v, false));
-            Float(details, "停火重置/秒", asset.damageResetSeconds, .1f, 60, v => ChangeAsset("修改受击记录时限", () => asset.damageResetSeconds = v, false));
+            if (IsUniformVoxelAsset(asset))
+            {
+                var unit = new FloatField("格子尺寸 / 米") { value = 1 }; unit.SetEnabled(false); details.Add(unit);
+                details.Add(Hint("统一体素资产固定为 1 米格。需要不同大小时，请选择或重建对应尺寸的资产；不会通过缩放拉伸体素。"));
+            }
+            else Float(details, "格子尺寸", asset.cellSize, .25f, 10, v => ChangeAsset("修改格子尺寸", () => asset.cellSize = v));
             Float(details, "体积质量密度", asset.massPerCell, .01f, 1000000, v => ChangeAsset("修改资产质量密度", () => asset.massPerCell = v, false));
-            Float(details, "碎块分离速度", asset.fragmentSeparationSpeed, 0, 10, v => ChangeAsset("修改断裂漂移", () => asset.fragmentSeparationSpeed = v, false));
-            details.Add(Hint("仅记录最近受击格子的临时血量；停止受击超时后直接视为满血。已打掉的格子保持消失。"));
-            details.Add(Hint("运行时整份资产是无重力刚体，会被碰撞推动；被打断后，断开的连通体成为独立刚体。"));
             details.Add(Section("笔刷"));
             Float(details, "长按等待/秒", brushRepeatDelay, .25f, 2, v => brushRepeatDelay = v);
             Float(details, "连续间隔/秒", brushRepeatInterval, .1f, 1, v => brushRepeatInterval = v);
@@ -201,7 +229,7 @@ namespace Starframe.EditorTools
                     }
                 }
                 Button(details, "旋转 R · " + ((brushTurns % 4 + 4) % 4 * 90) + "°", () => { brushTurns = (brushTurns + 1) % 4; BuildInspector(); Repaint(); });
-                details.Add(Hint("底面贴附光标格子面，R 绕此面旋转。双格薄板占 2 格，八格船体占 2×2×2；各格保留原模型切片，可单独涂色、删除和破坏。"));
+                details.Add(Hint("底面贴附光标格子面，R 绕此面旋转。双格薄板占 2 格，八格船体占 2×2×2；各格保留原模型切片，可单独涂色和编辑删除。"));
             }
             VectorInt(details, "笔刷尺寸", brushSize, v => brushSize = ClampSize(v, 12));
             if (asset.hullModules)
@@ -247,13 +275,14 @@ namespace Starframe.EditorTools
             details.Add(Section("工具"));
             Button(details, "把资产居中到原点", CenterAsset);
             Button(details, "复制当前资产", SaveAs);
-            if (tool == 3) Float(details, "预览伤害", testDamage, 1, 100000, v => testDamage = v);
-            details.Add(Hint("中键旋转 · Shift+中键平移 · 滚轮缩放\n左键笔刷 · R 旋转体块 · X 放置/删除 · F 聚焦\n破坏预览不保存损伤。"));
+            details.Add(Hint("中键旋转 · Shift+中键平移 · 滚轮缩放\n左键笔刷 · R 旋转体块 · X 放置/删除 · F 聚焦"));
         }
         void BuildMapInspector()
         {
             details.Add(Heading(map ? map.name : "地图布局"));
             if (!map) { details.Add(Hint("新建地图，或拖入一份 SpaceMapDefinition。")); return; }
+            if (map.enforceUniformGrid)
+                details.Add(new HelpBox("统一 1 米体素地图：对象缩放固定为 1。请从左侧选择所需尺寸的资产，位置和旋转仍可自由编辑。", HelpBoxMessageType.Info));
             var connectivity = VoxelConnectivityDiagnostics.ForMap(map);
             if (connectivity.disconnectedInstanceCount > 0)
                 details.Add(new HelpBox($"地图中有 {connectivity.disconnectedAssetCount} 份不连通资产，涉及 {connectivity.disconnectedInstanceCount} 个实例。首次致命命中后，这些实例可能分离为合计 {connectivity.possibleRigidBodyCount} 个刚体。建议按连通组件重新编辑对应资产。", HelpBoxMessageType.Warning));
@@ -273,11 +302,25 @@ namespace Starframe.EditorTools
                 var item = map.instances[selectedInstance];
                 StringField(details, "名称", item.label, v => ChangeMap("重命名地图对象", () => item.label = v, false));
                 var field = new ObjectField("资产") { objectType = typeof(VoxelAssetDefinition), value = item.asset, allowSceneObjects = false };
-                field.RegisterValueChangedCallback(e => { if (e.newValue) ChangeMap("替换地图对象", () => item.asset = (VoxelAssetDefinition)e.newValue); }); details.Add(field);
+                field.RegisterValueChangedCallback(e =>
+                {
+                    var replacement = e.newValue as VoxelAssetDefinition;
+                    if (!replacement || !CanPlaceAsset(replacement)) { field.SetValueWithoutNotify(item.asset); return; }
+                    ChangeMap("替换地图对象", () => { item.asset = replacement; if (map.enforceUniformGrid) item.scale = 1; });
+                    BuildInspector();
+                }); details.Add(field);
+                if (item.asset)
+                {
+                    var size = item.asset.LocalBounds.size;
+                    details.Add(Hint($"资产尺寸：{size.x:0.##} × {size.y:0.##} × {size.z:0.##} 米"));
+                }
                 Vector(details, "位置", item.position, v => MoveInstance(item, v, item.eulerAngles, item.scale));
                 Vector(details, "旋转", item.eulerAngles, v => MoveInstance(item, item.position, v, item.scale));
-                Float(details, "统一缩放", item.scale, .25f, 100, v => MoveInstance(item, item.position, item.eulerAngles, v));
-                Float(details, "血量倍率", item.healthMultiplier, .01f, 1000, v => ChangeMap("修改对象耐久", () => item.healthMultiplier = v));
+                if (map.enforceUniformGrid)
+                {
+                    var scale = new FloatField("统一缩放") { value = 1 }; scale.SetEnabled(false); details.Add(scale);
+                }
+                else Float(details, "统一缩放", item.scale, .25f, 100, v => MoveInstance(item, item.position, item.eulerAngles, v));
                 Vector(details, "漂移/米秒", item.driftVelocity, v => ChangeMap("修改漂移", () => item.driftVelocity = v, false));
                 Vector(details, "旋转/度秒", item.angularVelocity, v => ChangeMap("修改漂浮旋转", () => item.angularVelocity = v, false));
                 var row = Row(details); Button(row, "复制", DuplicateInstance); Button(row, "删除", DeleteInstance);
@@ -285,8 +328,13 @@ namespace Starframe.EditorTools
             details.Add(Section("下半区批量散布"));
             Integer(details, "数量", scatterCount, v => scatterCount = Mathf.Clamp(v, 1, 200));
             Integer(details, "种子", scatterSeed, v => scatterSeed = v);
-            Float(details, "最小缩放", scatterScaleMin, .25f, 100, v => scatterScaleMin = v);
-            Float(details, "最大缩放", scatterScaleMax, .25f, 100, v => scatterScaleMax = v);
+            if (map.enforceUniformGrid)
+                details.Add(Hint("按选中资产的实际尺寸散布，缩放固定为 1。不同大小请分别选择已有尺寸版本后散布。"));
+            else
+            {
+                Float(details, "最小缩放", scatterScaleMin, .25f, 100, v => scatterScaleMin = v);
+                Float(details, "最大缩放", scatterScaleMax, .25f, 100, v => scatterScaleMax = v);
+            }
             Button(details, "散布左侧选中的资产", Scatter);
             details.Add(Section("敌方出生点（供后续波次使用）"));
             for (int i = 0; i < map.enemySpawns.Count; i++)
@@ -295,13 +343,14 @@ namespace Starframe.EditorTools
             }
             var points = Row(details); Button(points, "添加", () => { ChangeMap("添加敌方出生点", () => map.enemySpawns.Add(pivot), false); BuildInspector(); });
             Button(points, "删除最后一个", () => { if (map.enemySpawns.Count > 0) { ChangeMap("删除敌方出生点", () => map.enemySpawns.RemoveAt(map.enemySpawns.Count - 1), false); BuildInspector(); } });
-            if (tool == 2) Float(details, "预览伤害", testDamage, 1, 100000, v => testDamage = v);
             details.Add(Hint("选择模式：左键选取并拖动 · R 旋转 90°\nCtrl+D 复制 · Delete 删除 · F 聚焦\n破坏预览不影响原始资产和已保存地图。"));
         }
 
         void ChangeAsset(string label, Action action, bool rebuild = true)
         {
-            if (!asset) return; Undo.RecordObject(asset, label); action(); asset.NotifyChanged(); EditorUtility.SetDirty(asset);
+            if (!asset) return; Undo.RecordObject(asset, label); action();
+            if (IsUniformVoxelAsset(asset)) asset.cellSize = 1;
+            asset.RebuildCellChunks(); asset.NotifyChanged(); EditorUtility.SetDirty(asset);
             if (!editedDefinitions.Contains(asset)) editedDefinitions.Add(asset);
             if (rebuild) rebuildRequested = true; MarkUnsaved(); Repaint();
         }
@@ -330,8 +379,8 @@ namespace Starframe.EditorTools
             SpaceMapStudioContent.EnsureFolders();
             string path = EditorUtility.SaveFilePanelInProject(mapMode ? "新建地图" : "新建体块资产", mapMode ? "SpaceMap" : "VoxelAsset", "asset", "保存开发数据", ContentRoot + (mapMode ? "/Layouts" : "/Assets"));
             if (string.IsNullOrEmpty(path)) return;
-            if (mapMode) { var value = CreateInstance<SpaceMapDefinition>(); AssetDatabase.CreateAsset(value, path); OpenMap(value); }
-            else { var value = CreateInstance<VoxelAssetDefinition>(); value.hullModules = SpaceMapStudioContent.HullDatabase; value.surfaces = SpaceMapStudioContent.DefaultSurfaces(); AssetDatabase.CreateAsset(value, path); OpenAsset(value); }
+            if (mapMode) { var value = CreateInstance<SpaceMapDefinition>(); value.enforceUniformGrid = true; AssetDatabase.CreateAsset(value, path); OpenMap(value); }
+            else { var value = CreateInstance<VoxelAssetDefinition>(); value.cellSize = 1; value.hullModules = SpaceMapStudioContent.HullDatabase; value.surfaces = SpaceMapStudioContent.DefaultSurfaces(); AssetDatabase.CreateAsset(value, path); OpenAsset(value); }
             SaveCurrent();
         }
         void SaveAs()
@@ -341,6 +390,15 @@ namespace Starframe.EditorTools
             if (string.IsNullOrEmpty(path) || path == AssetDatabase.GetAssetPath(source)) return;
             var copy = Instantiate(source); copy.name = Path.GetFileNameWithoutExtension(path); AssetDatabase.CreateAsset(copy, path);
             if (copy is SpaceMapDefinition level) OpenMap(level); else OpenAsset((VoxelAssetDefinition)copy); SaveCurrent();
+        }
+        static bool IsUniformVoxelAsset(VoxelAssetDefinition value) => value &&
+            AssetDatabase.GetAssetPath(value).Replace('\\', '/').IndexOf("/UniformVoxels/", StringComparison.OrdinalIgnoreCase) >= 0;
+        int EditableCellLimit => IsUniformVoxelAsset(asset) ? MaximumUniformEditableCells : VoxelAssetDefinition.MaximumCells;
+        bool CanPlaceAsset(VoxelAssetDefinition value)
+        {
+            if (map && map.enforceUniformGrid && value && value.cellSize != 1f)
+            { SetStatus("此地图只接受 1 米格资产。请选择对应实际尺寸的统一体素资产。"); return false; }
+            return true;
         }
         void SetStatus(string text) { if (status != null) status.text = text; }
         void Safe(Action action) { try { action(); } catch (Exception ex) { SetStatus(ex.Message); Debug.LogException(ex); } }

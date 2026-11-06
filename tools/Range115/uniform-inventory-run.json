@@ -1,0 +1,9 @@
+{
+  "diagnostics": [],
+  "compileMs": 88,
+  "executeMs": 722,
+  "assemblyName": "PipelineRunScript_UniformInventory_57da210166754ad3b1ed3e42240b96ee",
+  "success": false,
+  "error": "Runtime Error",
+  "errorDetails": "TargetInvocationException: Exception has been thrown by the target of an invocation.\n  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00083] in <d49d4cb128564ee1b54a84338c98d353>:0 \r\n  at System.Reflection.MethodBase.Invoke (System.Object obj, System.Object[] parameters) [0x00000] in <d49d4cb128564ee1b54a84338c98d353>:0 \r\n  at UniformInventory.Run () [0x0083d] in D:\\software\\unity\\CGDD26107\\tools\\Range115\\UniformInventory.cs:51 \r\n  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)\r\n  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <d49d4cb128564ee1b54a84338c98d353>:0 "
+}

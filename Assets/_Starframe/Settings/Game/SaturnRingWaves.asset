@@ -16,136 +16,173 @@ MonoBehaviour:
   deployment: {fileID: 11400000, guid: fcf15949678c8d243a1909ee0eea9d08, type: 2}
   defaultPlayerBlueprint: {fileID: 4900000, guid: 55829dc67afb397409a135ec22b834fc, type: 3}
   waves:
-  - nameZh: "\u7B2C\u4E00\u6CE2 \xB7 \u63A5\u89E6"
-    nameEn: "WAVE 1 \xB7 FIRST CONTACT"
+  - nameZh: "\u7B2C\u4E00\u6CE2 \xB7 \u524D\u54E8"
+    nameEn: "WAVE 1 \xB7 SCREEN"
     batches:
-    - enemy: {fileID: 11400000, guid: 17d9525da0c0d564cbbd7d6e4b09c59e, type: 2}
+    - enemy: {fileID: 11400000, guid: 1eba38d05d7fc2e47b0110507ebc07a2, type: 2}
       count: 3
       delaySeconds: 0
-    - enemy: {fileID: 11400000, guid: d0513eb631966b0469d046c82720bc0c, type: 2}
-      count: 1
-      delaySeconds: 8
     - enemy: {fileID: 11400000, guid: 17d9525da0c0d564cbbd7d6e4b09c59e, type: 2}
       count: 2
-      delaySeconds: 20
+      delaySeconds: 10
+    - enemy: {fileID: 11400000, guid: 66d74105807a8a84e8b9ee06241eca73, type: 2}
+      count: 2
+      delaySeconds: 22
     - enemy: {fileID: 11400000, guid: d0513eb631966b0469d046c82720bc0c, type: 2}
       count: 1
-      delaySeconds: 30
+      delaySeconds: 34
+    - enemy: {fileID: 11400000, guid: cfa1f1e13ceacff4b975baf659f58653, type: 2}
+      count: 2
+      delaySeconds: 44
     spawnInterval: 5
   - nameZh: "\u7B2C\u4E8C\u6CE2 \xB7 \u62E6\u622A"
     nameEn: "WAVE 2 \xB7 INTERCEPTION"
     batches:
-    - enemy: {fileID: 11400000, guid: 17d9525da0c0d564cbbd7d6e4b09c59e, type: 2}
+    - enemy: {fileID: 11400000, guid: 1eba38d05d7fc2e47b0110507ebc07a2, type: 2}
       count: 2
       delaySeconds: 0
-    - enemy: {fileID: 11400000, guid: cf86914e43aa932479b93dacaf8dbf5d, type: 2}
-      count: 1
-      delaySeconds: 10
-    - enemy: {fileID: 11400000, guid: d0513eb631966b0469d046c82720bc0c, type: 2}
-      count: 2
-      delaySeconds: 20
-    - enemy: {fileID: 11400000, guid: 743a92afd4a1b354ba0b65261af2b240, type: 2}
-      count: 1
-      delaySeconds: 30
     - enemy: {fileID: 11400000, guid: 17d9525da0c0d564cbbd7d6e4b09c59e, type: 2}
       count: 2
-      delaySeconds: 40
+      delaySeconds: 10
+    - enemy: {fileID: 11400000, guid: dd36cf464f313934696aa16730921cff, type: 2}
+      count: 2
+      delaySeconds: 20
     - enemy: {fileID: 11400000, guid: cf86914e43aa932479b93dacaf8dbf5d, type: 2}
       count: 1
-      delaySeconds: 48
-    - enemy: {fileID: 11400000, guid: d0513eb631966b0469d046c82720bc0c, type: 2}
+      delaySeconds: 32
+    - enemy: {fileID: 11400000, guid: 66d74105807a8a84e8b9ee06241eca73, type: 2}
+      count: 2
+      delaySeconds: 42
+    - enemy: {fileID: 11400000, guid: 743a92afd4a1b354ba0b65261af2b240, type: 2}
       count: 1
-      delaySeconds: 55
+      delaySeconds: 54
+    - enemy: {fileID: 11400000, guid: d0513eb631966b0469d046c82720bc0c, type: 2}
+      count: 2
+      delaySeconds: 64
     spawnInterval: 5
   - nameZh: "\u7B2C\u4E09\u6CE2 \xB7 \u4EA4\u53C9\u706B\u529B"
     nameEn: "WAVE 3 \xB7 CROSSFIRE"
     batches:
-    - enemy: {fileID: 11400000, guid: 17d9525da0c0d564cbbd7d6e4b09c59e, type: 2}
-      count: 2
+    - enemy: {fileID: 11400000, guid: cfa1f1e13ceacff4b975baf659f58653, type: 2}
+      count: 3
       delaySeconds: 0
-    - enemy: {fileID: 11400000, guid: d0513eb631966b0469d046c82720bc0c, type: 2}
-      count: 1
-      delaySeconds: 8
     - enemy: {fileID: 11400000, guid: 743a92afd4a1b354ba0b65261af2b240, type: 2}
       count: 1
-      delaySeconds: 16
-    - enemy: {fileID: 11400000, guid: cf86914e43aa932479b93dacaf8dbf5d, type: 2}
-      count: 1
-      delaySeconds: 24
-    - enemy: {fileID: 11400000, guid: d0513eb631966b0469d046c82720bc0c, type: 2}
+      delaySeconds: 12
+    - enemy: {fileID: 11400000, guid: 17d9525da0c0d564cbbd7d6e4b09c59e, type: 2}
       count: 2
-      delaySeconds: 32
+      delaySeconds: 24
+    - enemy: {fileID: 11400000, guid: dd36cf464f313934696aa16730921cff, type: 2}
+      count: 3
+      delaySeconds: 36
+    - enemy: {fileID: 11400000, guid: cf86914e43aa932479b93dacaf8dbf5d, type: 2}
+      count: 2
+      delaySeconds: 48
     - enemy: {fileID: 11400000, guid: bda2922a4627e28448ca7eb236ef59a3, type: 2}
       count: 1
-      delaySeconds: 42
-    - enemy: {fileID: 11400000, guid: 17d9525da0c0d564cbbd7d6e4b09c59e, type: 2}
-      count: 2
-      delaySeconds: 52
-    - enemy: {fileID: 11400000, guid: cf86914e43aa932479b93dacaf8dbf5d, type: 2}
+      delaySeconds: 60
+    - enemy: {fileID: 11400000, guid: d0513eb631966b0469d046c82720bc0c, type: 2}
       count: 1
-      delaySeconds: 62
-    - enemy: {fileID: 11400000, guid: 743a92afd4a1b354ba0b65261af2b240, type: 2}
-      count: 1
-      delaySeconds: 70
+      delaySeconds: 72
     spawnInterval: 5
   - nameZh: "\u7B2C\u56DB\u6CE2 \xB7 \u91CD\u88C5\u7F16\u961F"
     nameEn: "WAVE 4 \xB7 HEAVY FORMATION"
     batches:
-    - enemy: {fileID: 11400000, guid: 17d9525da0c0d564cbbd7d6e4b09c59e, type: 2}
-      count: 3
-      delaySeconds: 0
-    - enemy: {fileID: 11400000, guid: cf86914e43aa932479b93dacaf8dbf5d, type: 2}
-      count: 1
-      delaySeconds: 12
-    - enemy: {fileID: 11400000, guid: d0513eb631966b0469d046c82720bc0c, type: 2}
+    - enemy: {fileID: 11400000, guid: 1eba38d05d7fc2e47b0110507ebc07a2, type: 2}
       count: 2
-      delaySeconds: 24
+      delaySeconds: 0
     - enemy: {fileID: 11400000, guid: 743a92afd4a1b354ba0b65261af2b240, type: 2}
       count: 1
+      delaySeconds: 12
+    - enemy: {fileID: 11400000, guid: 66d74105807a8a84e8b9ee06241eca73, type: 2}
+      count: 2
+      delaySeconds: 24
+    - enemy: {fileID: 11400000, guid: 17d9525da0c0d564cbbd7d6e4b09c59e, type: 2}
+      count: 2
       delaySeconds: 36
     - enemy: {fileID: 11400000, guid: bda2922a4627e28448ca7eb236ef59a3, type: 2}
       count: 1
       delaySeconds: 48
+    - enemy: {fileID: 11400000, guid: cfa1f1e13ceacff4b975baf659f58653, type: 2}
+      count: 2
+      delaySeconds: 60
+    - enemy: {fileID: 11400000, guid: cb3a9377fcc154949add91de4e80aa80, type: 2}
+      count: 1
+      delaySeconds: 72
     - enemy: {fileID: 11400000, guid: cf86914e43aa932479b93dacaf8dbf5d, type: 2}
       count: 1
+      delaySeconds: 84
+    - enemy: {fileID: 11400000, guid: cb3a9377fcc154949add91de4e80aa80, type: 2}
+      count: 1
+      delaySeconds: 96
+    spawnInterval: 6
+  - nameZh: "\u7B2C\u4E94\u6CE2 \xB7 \u65D7\u8230\u536B\u961F"
+    nameEn: "WAVE 5 \xB7 FLAGSHIP GUARD"
+    batches:
+    - enemy: {fileID: 11400000, guid: 1eba38d05d7fc2e47b0110507ebc07a2, type: 2}
+      count: 2
+      delaySeconds: 0
+    - enemy: {fileID: 11400000, guid: 3395df7867c60fa458fd152c5c09dcf0, type: 2}
+      count: 1
+      delaySeconds: 12
+    - enemy: {fileID: 11400000, guid: 66d74105807a8a84e8b9ee06241eca73, type: 2}
+      count: 2
+      delaySeconds: 24
+    - enemy: {fileID: 11400000, guid: 17d9525da0c0d564cbbd7d6e4b09c59e, type: 2}
+      count: 2
+      delaySeconds: 36
+    - enemy: {fileID: 11400000, guid: 743a92afd4a1b354ba0b65261af2b240, type: 2}
+      count: 1
+      delaySeconds: 48
+    - enemy: {fileID: 11400000, guid: dd36cf464f313934696aa16730921cff, type: 2}
+      count: 2
       delaySeconds: 60
-    - enemy: {fileID: 11400000, guid: bda2922a4627e28448ca7eb236ef59a3, type: 2}
+    - enemy: {fileID: 11400000, guid: cf86914e43aa932479b93dacaf8dbf5d, type: 2}
       count: 1
       delaySeconds: 72
     - enemy: {fileID: 11400000, guid: cb3a9377fcc154949add91de4e80aa80, type: 2}
       count: 1
-      delaySeconds: 85
-    spawnInterval: 6
-  - nameZh: "\u7B2C\u4E94\u6CE2 \xB7 \u65D7\u8230"
-    nameEn: "WAVE 5 \xB7 THE FLAGSHIP"
-    batches:
-    - enemy: {fileID: 11400000, guid: 17d9525da0c0d564cbbd7d6e4b09c59e, type: 2}
-      count: 3
-      delaySeconds: 0
+      delaySeconds: 84
     - enemy: {fileID: 11400000, guid: d0513eb631966b0469d046c82720bc0c, type: 2}
-      count: 2
-      delaySeconds: 13
-    - enemy: {fileID: 11400000, guid: 743a92afd4a1b354ba0b65261af2b240, type: 2}
       count: 1
-      delaySeconds: 26
-    - enemy: {fileID: 11400000, guid: cf86914e43aa932479b93dacaf8dbf5d, type: 2}
+      delaySeconds: 96
+    - enemy: {fileID: 11400000, guid: 18c5840a301d4ea4e9a9ae6ef2b62110, type: 2}
+      count: 1
+      delaySeconds: 108
+    spawnInterval: 6
+  - nameZh: "\u7B2C\u516D\u6CE2 \xB7 \u541B\u4E3B\u65D7\u8230"
+    nameEn: "WAVE 6 \xB7 SOVEREIGN"
+    batches:
+    - enemy: {fileID: 11400000, guid: a4b5f94c1c708244dbf80cae8a07ab75, type: 2}
+      count: 1
+      delaySeconds: 0
+    - enemy: {fileID: 11400000, guid: cfa1f1e13ceacff4b975baf659f58653, type: 2}
       count: 2
-      delaySeconds: 39
+      delaySeconds: 6
+    - enemy: {fileID: 11400000, guid: 17d9525da0c0d564cbbd7d6e4b09c59e, type: 2}
+      count: 2
+      delaySeconds: 18
     - enemy: {fileID: 11400000, guid: bda2922a4627e28448ca7eb236ef59a3, type: 2}
       count: 1
-      delaySeconds: 52
+      delaySeconds: 30
+    - enemy: {fileID: 11400000, guid: dd36cf464f313934696aa16730921cff, type: 2}
+      count: 3
+      delaySeconds: 42
+    - enemy: {fileID: 11400000, guid: cf86914e43aa932479b93dacaf8dbf5d, type: 2}
+      count: 1
+      delaySeconds: 54
     - enemy: {fileID: 11400000, guid: cb3a9377fcc154949add91de4e80aa80, type: 2}
       count: 1
-      delaySeconds: 65
+      delaySeconds: 66
+    - enemy: {fileID: 11400000, guid: cfa1f1e13ceacff4b975baf659f58653, type: 2}
+      count: 2
+      delaySeconds: 78
     - enemy: {fileID: 11400000, guid: d0513eb631966b0469d046c82720bc0c, type: 2}
       count: 1
-      delaySeconds: 78
-    - enemy: {fileID: 11400000, guid: cb3a9377fcc154949add91de4e80aa80, type: 2}
+      delaySeconds: 90
+    - enemy: {fileID: 11400000, guid: 18c5840a301d4ea4e9a9ae6ef2b62110, type: 2}
       count: 1
-      delaySeconds: 91
-    - enemy: {fileID: 11400000, guid: 3395df7867c60fa458fd152c5c09dcf0, type: 2}
-      count: 1
-      delaySeconds: 105
+      delaySeconds: 102
     spawnInterval: 6
   maximumAlive: 10
   maximumLarge: 3

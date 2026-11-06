@@ -1,0 +1,183 @@
+[
+  {
+    "key": "LaserRapid",
+    "duration": 0.27136054421768707,
+    "peak": 0.4466835921509632,
+    "reason": {
+      "source": "1162.mp3",
+      "start": 0.055,
+      "end": 0.355,
+      "mode": "shot"
+    }
+  },
+  {
+    "key": "DirectLaser",
+    "duration": 1.8910657596371883,
+    "peak": 0.30094003245264184,
+    "reason": {
+      "source": "1162.mp3",
+      "start": 0.724,
+      "end": 2.665,
+      "mode": "loop"
+    }
+  },
+  {
+    "key": "MissileShot",
+    "duration": 0.9026303854875284,
+    "peak": 0.44668359215096315,
+    "reason": {
+      "source": "1162.mp3",
+      "start": 3.285,
+      "end": 4.23,
+      "mode": "shot"
+    }
+  },
+  {
+    "key": "SystemUIA",
+    "duration": 0.16598639455782313,
+    "peak": 0.26064106076955795,
+    "reason": {
+      "source": "1162.mp3",
+      "start": 4.644,
+      "end": 4.83,
+      "mode": "ui"
+    }
+  },
+  {
+    "key": "SystemUIB",
+    "duration": 0.041746031746031746,
+    "peak": 0.10289130955934524,
+    "reason": {
+      "source": "1162.mp3",
+      "start": 5.287,
+      "end": 5.36,
+      "mode": "ui"
+    }
+  },
+  {
+    "key": "RailLarge",
+    "duration": 0.65,
+    "peak": 0.5011872336272722,
+    "reason": "Remove pre-onset silence and shorten reverb tail"
+  },
+  {
+    "key": "RailSmallA",
+    "duration": 0.28,
+    "peak": 0.23804636428809953,
+    "reason": "Remove pre-onset silence and shorten reverb tail"
+  },
+  {
+    "key": "RailSmallB",
+    "duration": 0.4,
+    "peak": 0.5011872336272722,
+    "reason": "Remove pre-onset silence and shorten reverb tail"
+  },
+  {
+    "key": "FlareDeploy",
+    "duration": 0.14299319727891158,
+    "peak": 0.44668359215096315,
+    "reason": {
+      "source": "116声音.mp3",
+      "start": 28.05,
+      "end": 28.193,
+      "unit": 1
+    }
+  },
+  {
+    "key": "Flare02",
+    "duration": 0.13900226757369616,
+    "peak": 0.4466835921509631,
+    "reason": {
+      "source": "116声音.mp3",
+      "start": 28.193,
+      "end": 28.332,
+      "unit": 2
+    }
+  },
+  {
+    "key": "Flare03",
+    "duration": 0.14199546485260772,
+    "peak": 0.44668359215096315,
+    "reason": {
+      "source": "116声音.mp3",
+      "start": 28.332,
+      "end": 28.474,
+      "unit": 3
+    }
+  },
+  {
+    "key": "Flare04",
+    "duration": 0.14,
+    "peak": 0.44668359215096315,
+    "reason": {
+      "source": "116声音.mp3",
+      "start": 28.474,
+      "end": 28.614,
+      "unit": 4
+    }
+  },
+  {
+    "key": "Flare05",
+    "duration": 0.13498866213151928,
+    "peak": 0.4466835921509632,
+    "reason": {
+      "source": "116声音.mp3",
+      "start": 28.614,
+      "end": 28.749000000000002,
+      "unit": 5
+    }
+  },
+  {
+    "key": "Flare06",
+    "duration": 0.14201814058956916,
+    "peak": 0.44668359215096315,
+    "reason": {
+      "source": "116声音.mp3",
+      "start": 28.749000000000002,
+      "end": 28.891000000000002,
+      "unit": 6
+    }
+  },
+  {
+    "key": "LockAcquired",
+    "duration": 0.493015873015873,
+    "peak": 0.22630372196435927,
+    "reason": "Soften notification upper mids and harmonics"
+  },
+  {
+    "key": "EnemyDetected",
+    "duration": 0.5470068027210885,
+    "peak": 0.19992276355624197,
+    "reason": "Soften notification upper mids and harmonics"
+  },
+  {
+    "key": "TargetLost",
+    "duration": 0.4049886621315193,
+    "peak": 0.19737369567155838,
+    "reason": "Soften notification upper mids and harmonics"
+  },
+  {
+    "key": "EnemyLockWarning",
+    "duration": 0.7529931972789116,
+    "peak": 0.2107224553823471,
+    "reason": "Soften notification upper mids and harmonics"
+  },
+  {
+    "key": "HealthShieldWarning",
+    "duration": 0.8429931972789115,
+    "peak": 0.15459860563278197,
+    "reason": "Soften notification upper mids and harmonics"
+  },
+  {
+    "key": "OverheatWarning",
+    "duration": 0.9539909297052154,
+    "peak": 0.1616720527410507,
+    "reason": "Soften notification upper mids and harmonics"
+  },
+  {
+    "key": "MissileIncoming",
+    "duration": 0.10891156462585035,
+    "peak": 0.30179596841335293,
+    "reason": "Last short tone, pitch-preserving time compression to fit original120ms fastest cadence"
+  }
+]

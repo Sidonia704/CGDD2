@@ -94,6 +94,18 @@ namespace Starframe.Tests
             Assert.That(GameInput.Conflicts(settings,GameAction.Forward,"<Keyboard>/i"),Is.Empty);
             Assert.That(settings.bindings.Select(binding=>binding.action).Distinct().Count(),Is.EqualTo(12));
         }
+        [Test] public void CountermeasureDefaultAndOldRPreferencesUseTabWhileOtherRemapsSurvive()
+        {
+            var settings=new GameSettingsData();
+            Assert.That(GameInput.Get(GameAction.Countermeasure,settings).path,Is.EqualTo("<Keyboard>/tab"));
+            settings.version=1;GameInput.Get(GameAction.Countermeasure,settings).path="<Keyboard>/r";
+            settings.Validate();Assert.That(GameInput.Get(GameAction.Countermeasure,settings).path,Is.EqualTo("<Keyboard>/tab"));
+            settings.version=1;GameInput.Get(GameAction.Countermeasure,settings).path="<Keyboard>/g";
+            settings.Validate();Assert.That(GameInput.Get(GameAction.Countermeasure,settings).path,Is.EqualTo("<Keyboard>/g"));
+            GameInput.Get(GameAction.Countermeasure,settings).path="<Keyboard>/r";
+            settings.Validate();Assert.That(GameInput.Get(GameAction.Countermeasure,settings).path,Is.EqualTo("<Keyboard>/r"));
+        }
+
         [Test] public void DraftCloneDoesNotModifyAppliedSettings()
         {
             var applied=new GameSettingsData();var draft=applied.Clone();

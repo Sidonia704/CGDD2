@@ -1,0 +1,80 @@
+{
+    "MonoBehaviour": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "Missile3Weapon",
+        "m_EditorClassIdentifier": "Starframe.Construction::Starframe.Flight.WeaponDefinition",
+        "shotsPerSecond": 0.07692307978868485,
+        "damage": 32000.0,
+        "projectileSpeed": 250.0,
+        "projectileDiameter": 0.699999988079071,
+        "firstShotImmediate": false,
+        "penetrationDepth": 1.0,
+        "secondLayerDamageMultiplier": 0.3499999940395355,
+        "range": 3000.0,
+        "unboundedBeam": false,
+        "visualLength": 3.5,
+        "tailLength": 13.0,
+        "visualWidth": 0.5199999809265137,
+        "visualIntensity": 5.0,
+        "minimumVisualPixels": 0.0,
+        "tracerStyle": 0,
+        "smokeTrail": true,
+        "tracerLingerSeconds": 0.0,
+        "sustainedPowerWatts": 180.0,
+        "energyPerShot": 100.0,
+        "delivery": 1,
+        "family": 0,
+        "effectColor": {
+            "r": 1.0,
+            "g": 0.4000000059604645,
+            "b": 0.02500000037252903,
+            "a": 1.0
+        },
+        "missileLockSeconds": 1.399999976158142,
+        "reloadSeconds": 13.0,
+        "missileTurnDegrees": 80.0,
+        "missileAcceleration": 100.0,
+        "missileTurnAcceleration": 240.0,
+        "missileGuidanceSeconds": 16.0,
+        "missileSeekerConeDegrees": 50.0,
+        "missileSeekerLossSeconds": 0.30000001192092898,
+        "missileLaunchSpeed": 30.0,
+        "explosionRadius": 4.5,
+        "launcherMesh": {
+            "fileID": 4300000,
+            "guid": "14bac8bb356afc54f9d9ab530bf3f2d7",
+            "type": 2
+        },
+        "missileMesh": {
+            "fileID": 4300000,
+            "guid": "20c2a79822163fe48ba73d0b2ae30059",
+            "type": 2
+        },
+        "missileLaunchOffsets": [
+            {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        ],
+        "muzzleOffsets": [],
+        "projectileMaterial": {
+            "fileID": 2100000,
+            "guid": "060df83c9f5482f4ea424501392ac7de",
+            "type": 2
+        },
+        "beamDuration": 0.11999999731779099,
+        "beamMesh": {
+            "instanceID": 0
+        },
+        "activationMode": 0,
+        "chargeSeconds": 1.0,
+        "requireTargetLock": true,
+        "gatlingSpinUpSeconds": 1.5,
+        "gatlingSpinDownSeconds": 0.5,
+        "gatlingMinimumRateFraction": 0.20000000298023225,
+        "gatlingHeatPerSecond": 0.25,
+        "gatlingCoolingPerSecond": 0.0833333358168602
+    }
+}

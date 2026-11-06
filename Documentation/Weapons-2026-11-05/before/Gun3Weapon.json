@@ -1,0 +1,107 @@
+{
+    "MonoBehaviour": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "Gun3Weapon",
+        "m_EditorClassIdentifier": "Starframe.Construction::Starframe.Flight.WeaponDefinition",
+        "shotsPerSecond": 24.0,
+        "damage": 720.0,
+        "projectileSpeed": 2700.0,
+        "projectileDiameter": 0.699999988079071,
+        "firstShotImmediate": false,
+        "penetrationDepth": 1.0,
+        "secondLayerDamageMultiplier": 0.3499999940395355,
+        "range": 2200.0,
+        "unboundedBeam": false,
+        "visualLength": 6.0,
+        "tailLength": 100.0,
+        "visualWidth": 2.6000001430511476,
+        "visualIntensity": 6.5,
+        "minimumVisualPixels": 2.200000047683716,
+        "tracerStyle": 0,
+        "smokeTrail": true,
+        "tracerLingerSeconds": 0.0,
+        "sustainedPowerWatts": 55.0,
+        "energyPerShot": 100.0,
+        "delivery": 0,
+        "family": 0,
+        "effectColor": {
+            "r": 1.0,
+            "g": 0.6200000047683716,
+            "b": 0.054999999701976779,
+            "a": 1.0
+        },
+        "missileLockSeconds": 2.0,
+        "reloadSeconds": 4.0,
+        "missileTurnDegrees": 110.0,
+        "missileAcceleration": 160.0,
+        "missileTurnAcceleration": 180.0,
+        "missileGuidanceSeconds": 10.0,
+        "missileSeekerConeDegrees": 65.0,
+        "missileSeekerLossSeconds": 0.3499999940395355,
+        "missileLaunchSpeed": 35.0,
+        "explosionRadius": 3.0,
+        "launcherMesh": {
+            "instanceID": 0
+        },
+        "missileMesh": {
+            "instanceID": 0
+        },
+        "missileLaunchOffsets": [
+            {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        ],
+        "muzzleOffsets": [
+            {
+                "x": -5.066394805908203e-7,
+                "y": -0.2801194190979004,
+                "z": -2.384185791015625e-7
+            },
+            {
+                "x": 0.24258998036384583,
+                "y": -0.14006036520004273,
+                "z": -2.384185791015625e-7
+            },
+            {
+                "x": -0.2425895780324936,
+                "y": -0.14005959033966065,
+                "z": -2.384185791015625e-7
+            },
+            {
+                "x": -0.2425910085439682,
+                "y": 0.14005953073501588,
+                "z": -2.384185791015625e-7
+            },
+            {
+                "x": 0.24259135127067567,
+                "y": 0.14005959033966065,
+                "z": -2.384185791015625e-7
+            },
+            {
+                "x": -5.066394805908203e-7,
+                "y": 0.2801200747489929,
+                "z": -2.384185791015625e-7
+            }
+        ],
+        "projectileMaterial": {
+            "fileID": 2100000,
+            "guid": "060df83c9f5482f4ea424501392ac7de",
+            "type": 2
+        },
+        "beamDuration": 0.11999999731779099,
+        "beamMesh": {
+            "instanceID": 0
+        },
+        "activationMode": 0,
+        "chargeSeconds": 1.0,
+        "requireTargetLock": false,
+        "gatlingSpinUpSeconds": 1.5,
+        "gatlingSpinDownSeconds": 0.5,
+        "gatlingMinimumRateFraction": 0.20000000298023225,
+        "gatlingHeatPerSecond": 0.25,
+        "gatlingCoolingPerSecond": 0.0833333358168602
+    }
+}

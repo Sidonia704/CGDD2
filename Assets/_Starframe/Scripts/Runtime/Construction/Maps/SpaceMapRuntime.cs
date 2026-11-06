@@ -1,9 +1,9 @@
-// @role Load staged floating scenery with destruction off by default, budgeted visual LOD and exact collision preparation.
-// @calls SpaceMapDefinition, VoxelStructureRuntime, VoxelDetachedVisualFragments, SpaceMapVisuals, SpaceMapAssemblyLinks, SpaceMapPhysics
+// @role Load immutable staged floating scenery with budgeted visual LOD and exact collision preparation.
+// @calls SpaceMapDefinition, VoxelStructureRuntime, SpaceMapVisuals, SpaceMapAssemblyLinks, SpaceMapPhysics
 // @tune stageBuildOnStart:bool:0-1:Opt into staged startup when the caller waits for BuildIsComplete before gameplay.
 // @tune instancesPerFrame:int:1-1000:Maximum scenery bodies created in a staged startup frame.
 // @tune buildMillisecondsPerFrame:float:0-100:Soft CPU budget for staged startup; one body always finishes atomically.
-// @tune lazyFineVisuals:bool:0-1:Use signed borrowed coarse meshes at startup and generate exact meshes near the camera or after damage.
+// @tune lazyFineVisuals:bool:0-1:Use signed authored meshes at startup and generate exact meshes near the camera when enabled.
 // @tune visualLodDistance:float:0-100000:Camera distance where an authored coarse visual replaces an intact body's exact renderer.
 // @tune visualCullDistance:float:0-100000:Camera distance beyond which only scenery renderers are hidden; zero disables this cull.
 // @tune visualRefreshFrames:int:1-120:Frames between map-level visibility checks.
@@ -16,7 +16,6 @@
 // @tune physicsRefreshFrames:int:1-120:Frames between map physics distance and budget checks.
 // @tune colliderPreparationPerFrame:int:1-256:Maximum cold exact collider components prepared per frame beneath a live proxy.
 // @tune colliderPreparationMilliseconds:float:0-10:Soft collider preparation CPU budget; zero disables the time limit.
-// @tune lightweightDamageThreshold:int:0-131072:For lazy budgeted scenery at least this large retain primitive exterior cells after damage; zero disables.
 
 using System;
 using System.Collections.Generic;
@@ -28,8 +27,6 @@ namespace Starframe.Maps
     public sealed class SpaceMapRuntime : MonoBehaviour
     {
         public SpaceMapDefinition definition;
-        [Tooltip("Enable only for destruction development. Gameplay scenery is indestructible by default.")]
-        public bool allowDestruction;
         public bool stageBuildOnStart;
         [Min(1)] public int instancesPerFrame = 2;
         [Min(0)] public float buildMillisecondsPerFrame = 5;
@@ -47,7 +44,6 @@ namespace Starframe.Maps
         [Min(1)] public int physicsRefreshFrames = 12;
         [Range(1,256)] public int colliderPreparationPerFrame = 24;
         [Range(0,10)] public float colliderPreparationMilliseconds = 1.5f;
-        [Min(0)] public int lightweightDamageThreshold = 128;
         public List<SpaceMapVisualLodEntry> visualLods = new List<SpaceMapVisualLodEntry>();
         readonly List<VoxelStructureRuntime> structures = new List<VoxelStructureRuntime>();
         SpaceMapVisuals visuals;
@@ -64,14 +60,6 @@ namespace Starframe.Maps
         public int BuildTotalInstanceCount => pending?.Length ?? (built ? nextInstance : 0);
         public int ActiveAssemblyContactCount => assembly?.ActiveContactCount ?? 0;
         public int ActiveMapColliderCount => physicsBudget?.ActiveColliderCount ?? 0;
-        internal void RegisterFragment(VoxelStructureRuntime fragment)
-        {
-            physicsBudget?.Register(fragment);
-            structures.Add(fragment);
-            assembly?.Observe(fragment);
-            if (pending != null) assembly?.Freeze(fragment);
-            assembly?.Refresh();
-        }
         public static long ComputeGeometrySignature(VoxelAssetDefinition asset) => SpaceMapVisuals.ComputeGeometrySignature(asset);
         void Start()
         {
@@ -168,8 +156,6 @@ namespace Starframe.Maps
             BuildError=null;
             visuals?.Clear();
             assembly?.Clear(); assembly = null;
-            var detached = GetComponent<VoxelDetachedVisualFragments>();
-            if (detached) detached.Clear();
             foreach (var structure in structures) if (structure) { structure.gameObject.SetActive(false); if (Application.isPlaying) Destroy(structure.gameObject); else DestroyImmediate(structure.gameObject); }
             structures.Clear();
             physicsBudget?.Dispose(); physicsBudget = null;
@@ -199,14 +185,10 @@ namespace Starframe.Maps
                 root.transform.localScale = Vector3.one * item.scale;
                 if (!Application.isPlaying) root.hideFlags = HideFlags.DontSaveInEditor;
                 var structure = root.AddComponent<VoxelStructureRuntime>();
-                structure.damageEnabled = preview || allowDestruction;
-                structure.UsesLightweightDamageVisuals = physicsBudget != null && lazyFineVisuals && keepCoarseIntactVisuals && lightweightDamageThreshold > 0 && item.asset.cells.Count >= lightweightDamageThreshold;
-                structure.healthMultiplier = item.healthMultiplier;
                 structure.AuthoringId = item.id;
                 structure.driftVelocity = item.driftVelocity;
                 structure.angularVelocity = item.angularVelocity;
                 structure.Initialize(item.asset, preview, true, lazyFineVisuals, physicsBudget != null);
-                if (!preview) structure.PrewarmDamageVisuals();
                 if (!preview) physicsBudget?.Register(structure);
                 if (!preview) assembly?.Freeze(structure);
                 structures.Add(structure);

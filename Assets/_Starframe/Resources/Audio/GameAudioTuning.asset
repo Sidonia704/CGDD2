@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf108cd6c95cb5f49baa0be1fe9db9b9, type: 3}
   m_Name: GameAudioTuning
   m_EditorClassIdentifier: Starframe.Construction::Starframe.App.GameAudioTuning
-  workbenchMusic: {fileID: 8300000, guid: 141da3a2c2abcbb45a50380d510232bb, type: 3}
-  flightMusic: {fileID: 0}
-  musicGain: 0.6
+  workbenchMusic: {fileID: 8300000, guid: 6cf85cd64b76a454b997f33275bffde8, type: 3}
+  flightMusic: {fileID: 8300000, guid: 6cf85cd64b76a454b997f33275bffde8, type: 3}
+  musicGain: 0.3
   musicCrossfadeSeconds: 1.5
   menuEffectsMultiplier: 0.4
   thrusterLoop: {fileID: 8300000, guid: 201f968a908527945b5766a844383e51, type: 3}
@@ -41,14 +41,26 @@ MonoBehaviour:
   cues:
   - sound: 0
     clip: {fileID: 8300000, guid: 138ffa75e7b2e974394167f598c0b91e, type: 3}
+    startClip: {fileID: 0}
+    endClip: {fileID: 0}
+    alternateClip: {fileID: 0}
+    variants: []
+    loopWhileFiring: 0
+    releaseSeconds: 0.15
     bus: 1
-    gain: 0.42
+    gain: 0.294
     pitch: 1
     pitchVariation: 0.025
     minimumInterval: 0.045
     priority: 64
   - sound: 1
     clip: {fileID: 8300000, guid: 92724ec3cab784044a775aaada5a471b, type: 3}
+    startClip: {fileID: 0}
+    endClip: {fileID: 0}
+    alternateClip: {fileID: 0}
+    variants: []
+    loopWhileFiring: 0
+    releaseSeconds: 0.15
     bus: 1
     gain: 0.5
     pitch: 1
@@ -57,6 +69,12 @@ MonoBehaviour:
     priority: 48
   - sound: 2
     clip: {fileID: 8300000, guid: 3241f7ebd5edbab4595754e9f3e1398c, type: 3}
+    startClip: {fileID: 0}
+    endClip: {fileID: 0}
+    alternateClip: {fileID: 0}
+    variants: []
+    loopWhileFiring: 0
+    releaseSeconds: 0.15
     bus: 1
     gain: 0.42
     pitch: 1
@@ -65,6 +83,12 @@ MonoBehaviour:
     priority: 48
   - sound: 3
     clip: {fileID: 8300000, guid: c9dc3717c163b4549968a2bedd743077, type: 3}
+    startClip: {fileID: 0}
+    endClip: {fileID: 0}
+    alternateClip: {fileID: 0}
+    variants: []
+    loopWhileFiring: 0
+    releaseSeconds: 0.15
     bus: 0
     gain: 0.62
     pitch: 1
@@ -73,6 +97,12 @@ MonoBehaviour:
     priority: 128
   - sound: 4
     clip: {fileID: 8300000, guid: c9dc3717c163b4549968a2bedd743077, type: 3}
+    startClip: {fileID: 0}
+    endClip: {fileID: 0}
+    alternateClip: {fileID: 0}
+    variants: []
+    loopWhileFiring: 0
+    releaseSeconds: 0.15
     bus: 0
     gain: 0.62
     pitch: 1
@@ -81,6 +111,12 @@ MonoBehaviour:
     priority: 128
   - sound: 5
     clip: {fileID: 8300000, guid: 85a12408a16abe048a3e4c60c24e952e, type: 3}
+    startClip: {fileID: 0}
+    endClip: {fileID: 0}
+    alternateClip: {fileID: 0}
+    variants: []
+    loopWhileFiring: 0
+    releaseSeconds: 0.15
     bus: 0
     gain: 0.54
     pitch: 1
@@ -88,39 +124,69 @@ MonoBehaviour:
     minimumInterval: 0.07
     priority: 128
   - sound: 6
-    clip: {fileID: 8300000, guid: 16403acaafed39f4f9891bbc552765c9, type: 3}
-    bus: 0
+    clip: {fileID: 8300000, guid: 6de3f728e078c1a4189fd41b3963c340, type: 3}
+    startClip: {fileID: 0}
+    endClip: {fileID: 0}
+    alternateClip: {fileID: 0}
+    variants: []
+    loopWhileFiring: 0
+    releaseSeconds: 0.15
+    bus: 1
     gain: 0.3
     pitch: 1
-    pitchVariation: 0.025
-    minimumInterval: 0.055
+    pitchVariation: 0
+    minimumInterval: 0.08
     priority: 144
   - sound: 7
-    clip: {fileID: 8300000, guid: 38c4e6478d3192d4eb6aca490a58e966, type: 3}
-    bus: 0
-    gain: 0.4
+    clip: {fileID: 8300000, guid: 0be687f4a8a4e794d815495a1eebc0f7, type: 3}
+    startClip: {fileID: 0}
+    endClip: {fileID: 0}
+    alternateClip: {fileID: 0}
+    variants: []
+    loopWhileFiring: 0
+    releaseSeconds: 0.15
+    bus: 1
+    gain: 0.45
     pitch: 1
     pitchVariation: 0
-    minimumInterval: 0.22
+    minimumInterval: 0.08
     priority: 80
   - sound: 8
-    clip: {fileID: 8300000, guid: d6f32d742280f564f897e4955ead6c72, type: 3}
-    bus: 0
-    gain: 0.48
+    clip: {fileID: 8300000, guid: 0be687f4a8a4e794d815495a1eebc0f7, type: 3}
+    startClip: {fileID: 0}
+    endClip: {fileID: 0}
+    alternateClip: {fileID: 0}
+    variants: []
+    loopWhileFiring: 0
+    releaseSeconds: 0.15
+    bus: 1
+    gain: 0.45
     pitch: 1
     pitchVariation: 0
-    minimumInterval: 0.5
+    minimumInterval: 0.08
     priority: 80
   - sound: 9
-    clip: {fileID: 8300000, guid: 58b8286fa03a7014d8c128ea41966329, type: 3}
+    clip: {fileID: 0}
+    startClip: {fileID: 0}
+    endClip: {fileID: 0}
+    alternateClip: {fileID: 0}
+    variants: []
+    loopWhileFiring: 0
+    releaseSeconds: 0.15
     bus: 0
-    gain: 0.48
+    gain: 0
     pitch: 1
     pitchVariation: 0.025
     minimumInterval: 0.07
     priority: 112
   - sound: 10
-    clip: {fileID: 8300000, guid: 3ab1d53f8e104424ab48963e28a902e2, type: 3}
+    clip: {fileID: 0}
+    startClip: {fileID: 0}
+    endClip: {fileID: 0}
+    alternateClip: {fileID: 0}
+    variants: []
+    loopWhileFiring: 0
+    releaseSeconds: 0.15
     bus: 0
     gain: 0
     pitch: 1
@@ -128,7 +194,13 @@ MonoBehaviour:
     minimumInterval: 0.09
     priority: 136
   - sound: 11
-    clip: {fileID: 8300000, guid: c30e96d62ac3f6a409d7cfe0b569cf9f, type: 3}
+    clip: {fileID: 8300000, guid: cd134954c3c6f9947a919e862a36a2dd, type: 3}
+    startClip: {fileID: 0}
+    endClip: {fileID: 0}
+    alternateClip: {fileID: 0}
+    variants: []
+    loopWhileFiring: 0
+    releaseSeconds: 0.2
     bus: 0
     gain: 0.5
     pitch: 1
@@ -136,15 +208,27 @@ MonoBehaviour:
     minimumInterval: 0.3
     priority: 48
   - sound: 12
-    clip: {fileID: 8300000, guid: c30e96d62ac3f6a409d7cfe0b569cf9f, type: 3}
+    clip: {fileID: 8300000, guid: ca774e0c978777040a067b26c169a087, type: 3}
+    startClip: {fileID: 0}
+    endClip: {fileID: 0}
+    alternateClip: {fileID: 0}
+    variants: []
+    loopWhileFiring: 0
+    releaseSeconds: 0.2
     bus: 0
-    gain: 0.4
-    pitch: 0.75
+    gain: 0.45
+    pitch: 1
     pitchVariation: 0
     minimumInterval: 0.3
     priority: 48
   - sound: 13
     clip: {fileID: 8300000, guid: b47ca00c1910fd94ab98d8b9b97f5e25, type: 3}
+    startClip: {fileID: 0}
+    endClip: {fileID: 0}
+    alternateClip: {fileID: 0}
+    variants: []
+    loopWhileFiring: 0
+    releaseSeconds: 0.15
     bus: 0
     gain: 0
     pitch: 1
@@ -153,6 +237,12 @@ MonoBehaviour:
     priority: 144
   - sound: 14
     clip: {fileID: 8300000, guid: 8f0fbb2449ca13b44b6979230903ddb2, type: 3}
+    startClip: {fileID: 0}
+    endClip: {fileID: 0}
+    alternateClip: {fileID: 0}
+    variants: []
+    loopWhileFiring: 0
+    releaseSeconds: 0.15
     bus: 0
     gain: 0.44
     pitch: 1
@@ -161,6 +251,12 @@ MonoBehaviour:
     priority: 40
   - sound: 15
     clip: {fileID: 8300000, guid: 6706c71580bfa524cb002b1da22d36f3, type: 3}
+    startClip: {fileID: 0}
+    endClip: {fileID: 0}
+    alternateClip: {fileID: 0}
+    variants: []
+    loopWhileFiring: 0
+    releaseSeconds: 0.15
     bus: 0
     gain: 0.8
     pitch: 1
@@ -169,6 +265,12 @@ MonoBehaviour:
     priority: 32
   - sound: 16
     clip: {fileID: 8300000, guid: 3e2e1efd0ed758b4b92ce137f454c5c1, type: 3}
+    startClip: {fileID: 0}
+    endClip: {fileID: 0}
+    alternateClip: {fileID: 0}
+    variants: []
+    loopWhileFiring: 0
+    releaseSeconds: 0.15
     bus: 0
     gain: 0.45
     pitch: 1
@@ -176,34 +278,176 @@ MonoBehaviour:
     minimumInterval: 0.5
     priority: 64
   - sound: 17
-    clip: {fileID: 8300000, guid: 62a058d65e79f9a47b9349bc61104dc2, type: 3}
+    clip: {fileID: 8300000, guid: 6e64d8eb0110ea54183ef552800102c8, type: 3}
+    startClip: {fileID: 0}
+    endClip: {fileID: 0}
+    alternateClip: {fileID: 0}
+    variants: []
+    loopWhileFiring: 0
+    releaseSeconds: 0.2
     bus: 0
-    gain: 0.24
-    pitch: 1
+    gain: 0.24000001
+    pitch: 0.8
     pitchVariation: 0
     minimumInterval: 0.3
     priority: 48
   - sound: 18
-    clip: {fileID: 8300000, guid: dace560e780c58d479b270a4ca3f65e7, type: 3}
+    clip: {fileID: 8300000, guid: 781627f7dd62f6646b28c40c7d8b7ae7, type: 3}
+    startClip: {fileID: 0}
+    endClip: {fileID: 0}
+    alternateClip: {fileID: 0}
+    variants: []
+    loopWhileFiring: 0
+    releaseSeconds: 0.2
     bus: 0
-    gain: 0.3
+    gain: 0.5
     pitch: 1
     pitchVariation: 0
-    minimumInterval: 0.08
+    minimumInterval: 0.75
     priority: 28
   - sound: 19
-    clip: {fileID: 8300000, guid: d70bc2cc996165d409e28558f4f39644, type: 3}
+    clip: {fileID: 8300000, guid: 5ced36cc59b472b4e848835634a663c8, type: 3}
+    startClip: {fileID: 0}
+    endClip: {fileID: 0}
+    alternateClip: {fileID: 0}
+    variants: []
+    loopWhileFiring: 0
+    releaseSeconds: 0.2
     bus: 0
-    gain: 0.48
+    gain: 0.55
     pitch: 1
     pitchVariation: 0
     minimumInterval: 0.08
     priority: 20
   - sound: 20
-    clip: {fileID: 8300000, guid: 0c851ee7da73f8149a84479cdd0516ba, type: 3}
+    clip: {fileID: 8300000, guid: 09100af6f51bb9043b042b9b9844d685, type: 3}
+    startClip: {fileID: 0}
+    endClip: {fileID: 0}
+    alternateClip: {fileID: 0}
+    variants:
+    - {fileID: 8300000, guid: 09100af6f51bb9043b042b9b9844d685, type: 3}
+    - {fileID: 8300000, guid: abe68ea73684b894691fe0bb9a8de336, type: 3}
+    - {fileID: 8300000, guid: 34f72576dda164745aa62276bf3ee9ba, type: 3}
+    - {fileID: 8300000, guid: ecc2424ae1e330249a4492dddd4724c4, type: 3}
+    - {fileID: 8300000, guid: bfc1dfb665d550949a77006ac787eecd, type: 3}
+    - {fileID: 8300000, guid: 122e2cd6068548e42a091618c8106b71, type: 3}
+    loopWhileFiring: 0
+    releaseSeconds: 0.2
     bus: 0
-    gain: 0.4
-    pitch: 0.75
+    gain: 0.48
+    pitch: 1
     pitchVariation: 0
     minimumInterval: 0.05
+    priority: 75
+  - sound: 21
+    clip: {fileID: 8300000, guid: 0014d342f66a96f49af93e409014bede, type: 3}
+    startClip: {fileID: 0}
+    endClip: {fileID: 0}
+    alternateClip: {fileID: 0}
+    variants: []
+    loopWhileFiring: 0
+    releaseSeconds: 0.2
+    bus: 0
+    gain: 0.45
+    pitch: 1
+    pitchVariation: 0
+    minimumInterval: 0.07
     priority: 112
+  - sound: 22
+    clip: {fileID: 8300000, guid: 336765d8456387148b921565d27591a5, type: 3}
+    startClip: {fileID: 0}
+    endClip: {fileID: 0}
+    alternateClip: {fileID: 0}
+    variants: []
+    loopWhileFiring: 1
+    releaseSeconds: 0.2
+    bus: 0
+    gain: 0.43
+    pitch: 1
+    pitchVariation: 0
+    minimumInterval: 0.08
+    priority: 112
+  - sound: 23
+    clip: {fileID: 8300000, guid: 4b7ca5bfc41cea34fb1be847510526fe, type: 3}
+    startClip: {fileID: 0}
+    endClip: {fileID: 0}
+    alternateClip: {fileID: 0}
+    variants: []
+    loopWhileFiring: 0
+    releaseSeconds: 0.2
+    bus: 0
+    gain: 0.6
+    pitch: 1
+    pitchVariation: 0
+    minimumInterval: 0.1
+    priority: 100
+  - sound: 24
+    clip: {fileID: 8300000, guid: 4b7ca5bfc41cea34fb1be847510526fe, type: 3}
+    startClip: {fileID: 0}
+    endClip: {fileID: 0}
+    alternateClip: {fileID: 0}
+    variants: []
+    loopWhileFiring: 0
+    releaseSeconds: 0.2
+    bus: 0
+    gain: 0.6
+    pitch: 1
+    pitchVariation: 0
+    minimumInterval: 0.08
+    priority: 104
+  - sound: 25
+    clip: {fileID: 8300000, guid: 3fc1acd9faa1f2e4c87879ce0eaf8901, type: 3}
+    startClip: {fileID: 8300000, guid: cd78ca68c66a1e643b297a14a1d1be4d, type: 3}
+    endClip: {fileID: 8300000, guid: a71b647e70c6770489c61b5abb98455f, type: 3}
+    alternateClip: {fileID: 0}
+    variants: []
+    loopWhileFiring: 1
+    releaseSeconds: 0.28
+    bus: 0
+    gain: 0.44
+    pitch: 1
+    pitchVariation: 0
+    minimumInterval: 0.08
+    priority: 112
+  - sound: 26
+    clip: {fileID: 8300000, guid: 1783f1ccaef061c4db1bfd641da4068d, type: 3}
+    startClip: {fileID: 0}
+    endClip: {fileID: 0}
+    alternateClip: {fileID: 0}
+    variants: []
+    loopWhileFiring: 0
+    releaseSeconds: 0.2
+    bus: 0
+    gain: 0.301
+    pitch: 1
+    pitchVariation: 0
+    minimumInterval: 0.06
+    priority: 110
+  - sound: 27
+    clip: {fileID: 8300000, guid: 529dcc2e4d8d9954f82bcf7b92a72756, type: 3}
+    startClip: {fileID: 0}
+    endClip: {fileID: 0}
+    alternateClip: {fileID: 0}
+    variants: []
+    loopWhileFiring: 0
+    releaseSeconds: 0.2
+    bus: 0
+    gain: 0.5
+    pitch: 1
+    pitchVariation: 0
+    minimumInterval: 3
+    priority: 30
+  - sound: 28
+    clip: {fileID: 8300000, guid: a50624eb923106f4bbd83b7cce16834b, type: 3}
+    startClip: {fileID: 0}
+    endClip: {fileID: 0}
+    alternateClip: {fileID: 0}
+    variants: []
+    loopWhileFiring: 0
+    releaseSeconds: 0.2
+    bus: 0
+    gain: 0.45
+    pitch: 1
+    pitchVariation: 0
+    minimumInterval: 1
+    priority: 35

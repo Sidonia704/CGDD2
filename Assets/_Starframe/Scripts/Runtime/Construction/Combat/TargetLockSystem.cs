@@ -113,7 +113,10 @@ namespace Starframe.Combat
             ValidateTarget();points.Clear();if(!HasTarget)return;
             var core=target.ship.CorePhysicsPosition;
             coreMotion.Sample(core,Time.fixedTimeAsDouble,tuning.leadVelocitySampleWindow,tuning.leadVelocityResponse,target.flight.Velocity);
-            world.Player.weapons.GetAimProfiles(profiles);
+            // Display all enabled direct-fire profiles even while the missile group is held.
+            // Match the interpolated camera/target pose instead of mixing physics and render frames.
+            world.Player.weapons.GetAimProfiles(profiles,filterToHeld:false,renderPose:true);
+            core=target.ship.CorePosition;
             foreach(var profile in profiles)if(profile.weapon.delivery==WeaponDelivery.Projectile&&InterceptSolver.TrySolve(profile.origin,core,coreMotion.Velocity,profile.weapon.projectileSpeed,profile.weapon.range,out var point,out float time))points.Add(new LeadPoint{weapon=profile.weapon,point=point,aimDirection=(point-profile.origin).normalized,flightTime=time});
         }
     }

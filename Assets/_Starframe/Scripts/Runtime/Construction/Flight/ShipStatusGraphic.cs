@@ -13,7 +13,7 @@ namespace Starframe.Flight
     public sealed class ShipStatusGraphic : UnityEngine.UI.Graphic
     {
         const int MaxVertices = 65000;
-        const float RefreshInterval = .12f;
+        const double RefreshInterval = 1.0/60.0;
         static readonly Color[] FacePalette =
         {
             new Color(.08f, .42f, .78f, .96f), new Color(.035f, .22f, .48f, .96f),
@@ -60,7 +60,7 @@ namespace Starframe.Flight
         FlightShipRuntime ship;
         Transform relativeObserver;
         int lastStructureRevision = -1, lastHealthRevision = -1;
-        float nextRefresh;
+        double nextRefresh;
         Vector2 projectionCenter, panelCenter;
         float projectionScale = 1f;
         bool hasCore;
@@ -143,9 +143,11 @@ namespace Starframe.Flight
             // Own-ship projection is fixed: only damage, recovery or structure changes its geometry.
             if (!relativeObserver && lastStructureRevision == ship.StructureRevision && lastHealthRevision == ship.HealthRevision)
                 return;
-            if (Time.unscaledTime < nextRefresh && lastStructureRevision == ship.StructureRevision)
+            double now=Time.unscaledTimeAsDouble;
+            if (now+0.000001 < nextRefresh && lastStructureRevision == ship.StructureRevision)
                 return;
-            nextRefresh = Time.unscaledTime + (relativeObserver?(ship.Parts.Count>256?1f/15f:1f/30f):RefreshInterval);
+            nextRefresh=nextRefresh<=0?now+RefreshInterval:nextRefresh+RefreshInterval;
+            if(nextRefresh<=now)nextRefresh=now+RefreshInterval;
             if (relativeObserver||lastStructureRevision != ship.StructureRevision)
                 CacheBlueprintBounds();
             Rebuild();
@@ -292,7 +294,7 @@ namespace Starframe.Flight
                 Vector3 faceCenter = (a3 + b3 + c3) / 3f;
                 Vector2 a = Project(a3), b = Project(b3), c = Project(c3);
                 float shade=RefinedFaceShade[f%RefinedFaceShade.Length];
-                Color baseColor=monochrome ? new Color(.68f*shade,.68f*shade,.68f*shade,.98f) : lastRefinedStyle
+                Color baseColor=monochrome ? new Color(.86f*shade,.88f*shade,.90f*shade,.98f) : lastRefinedStyle
                     ? new Color(theme.accent.r*.36f*shade,theme.accent.g*.62f*shade,theme.accent.b*.80f*shade,.96f)
                     : FacePalette[f%FacePalette.Length];
                 Color damageColor=lastRefinedStyle?theme.danger:DamageColor;

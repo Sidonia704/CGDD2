@@ -1,0 +1,73 @@
+{
+  "Summary": {
+    "Total": 8,
+    "Passed": 8,
+    "Failed": 0,
+    "Skipped": 0,
+    "Inconclusive": 0
+  },
+  "Results": [
+    {
+      "FullName": "Starframe.Construction.Tests.VlsMountingTests.BottomAndSidesMountWhileLaunchLidNeverMounts(VLS1)",
+      "Status": "Passed",
+      "Duration": 0.0012035,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.VlsMountingTests.BottomAndSidesMountWhileLaunchLidNeverMounts(VLS2)",
+      "Status": "Passed",
+      "Duration": 0.0001172,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.VlsMountingTests.FullLaunchColumnBlockingRotatesWithModule(0,0)",
+      "Status": "Passed",
+      "Duration": 0.0005068,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.VlsMountingTests.FullLaunchColumnBlockingRotatesWithModule(0,90)",
+      "Status": "Passed",
+      "Duration": 0.0000826,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.VlsMountingTests.FullLaunchColumnBlockingRotatesWithModule(90,0)",
+      "Status": "Passed",
+      "Duration": 0.0000746,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.VlsMountingTests.FullLaunchColumnBlockingRotatesWithModule(180,0)",
+      "Status": "Passed",
+      "Duration": 0.0000659,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.VlsMountingTests.UnitOccupancyAndCompleteLaunchSurfaceAreReserved(VLS1,8,4)",
+      "Status": "Passed",
+      "Duration": 0.0008535,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.VlsMountingTests.UnitOccupancyAndCompleteLaunchSurfaceAreReserved(VLS2,4,2)",
+      "Status": "Passed",
+      "Duration": 0.0002737,
+      "Message": null,
+      "StackTrace": null
+    }
+  ],
+  "Duration": 3.24,
+  "StatusPath": null,
+  "Mode": "EditMode",
+  "FilterApplied": "testname: VlsMountingTests",
+  "success": true,
+  "result": null
+}

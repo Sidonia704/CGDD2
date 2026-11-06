@@ -43,7 +43,7 @@ namespace Starframe.App
             new GameBinding(GameAction.Up,"<Keyboard>/space"),new GameBinding(GameAction.Down,"<Keyboard>/leftCtrl","<Keyboard>/rightCtrl"),
             new GameBinding(GameAction.RollLeft,"<Keyboard>/q"),new GameBinding(GameAction.RollRight,"<Keyboard>/e"),
             new GameBinding(GameAction.Boost,"<Keyboard>/leftShift","<Keyboard>/rightShift"),new GameBinding(GameAction.TargetLock,"<Keyboard>/f"),
-            new GameBinding(GameAction.Countermeasure,"<Keyboard>/r"),new GameBinding(GameAction.WeaponCadence,"<Keyboard>/v")
+            new GameBinding(GameAction.Countermeasure,"<Keyboard>/tab"),new GameBinding(GameAction.WeaponCadence,"<Keyboard>/v")
         };
 
         public static GameBinding Get(GameAction action, GameSettingsData data=null)

@@ -1,5 +1,5 @@
-// @role Present the catalogue, blueprint dialogs, cached live ship handling/power readout and construction feedback.
-// @calls ShipEditorController, ShipAssembly, FlightTuning, FlightTuning, ModuleDatabase, BlockModules, WeaponDefinition, FlareDefinition, L10n, GlassUiPalette
+// @role Present the assembly workbench, native catalogue, blueprint dialogs, live ship performance and construction feedback.
+// @calls ShipEditorController, ShipAssembly, AssemblyModuleCatalogue, AssemblyWeaponGroups, FlightTuning, ModuleDatabase, BlockModules, WeaponDefinition, FlareDefinition, L10n, GlassUiPalette, FigmaVisuals
 
 using System;
 using System.Collections.Generic;
@@ -12,7 +12,7 @@ using UnityEngine.InputSystem.UI;
 using Palette=Starframe.Flight.GlassUiPalette;
 namespace Starframe.Construction
 {
-    public sealed class ShipEditorUI : MonoBehaviour
+    public sealed partial class ShipEditorUI : MonoBehaviour
     {
         [SerializeField] Shader backdropBlurShader;
         [SerializeField] Starframe.Flight.FlightTuning flightTuning;
@@ -42,7 +42,7 @@ namespace Starframe.Construction
         Starframe.Flight.FlightTuning cachedPerformanceTuning;
         Starframe.Flight.ModuleDatabase cachedPerformanceDatabase;
         Starframe.Flight.ShipPerformance cachedShipPerformance;
-        float cachedAssemblyCost,cachedGeneration,cachedEnergyCapacity,cachedWeaponDemand,cachedShieldDemand;
+        float cachedAssemblyCost,cachedGeneration,cachedEnergyCapacity,cachedWeaponDemand,cachedShieldDemand,cachedPropulsionDemand;
         int cachedWeaponPowerRevision;
         UnityEngine.UI.ScrollRect shipSummaryScroll;GameObject shipSummaryDetails;
         TextMeshProUGUI shipSummaryHeading,shipSummaryCompact,shipSummaryToggleText;
@@ -62,6 +62,7 @@ namespace Starframe.Construction
         int page,selectedFile;
         bool initialized,placementReasonShown;
         string lastPlacementFailure;
+        string rawStatusMessage;bool rawStatusError;
         GameObject modalRoot,saveDialog,loadDialog,actionConfirmRoot;
         TextMeshProUGUI modalError,emptyFiles,actionConfirmTitle,actionConfirmMessage;
         Action confirmAction;
@@ -78,7 +79,7 @@ namespace Starframe.Construction
         public bool IsDialogOpen=>modalRoot && modalRoot.activeSelf;
         public bool EditingName=>IsDialogOpen || (nameField && nameField.isFocused) || (moduleSearch && moduleSearch.isFocused);
         public string BlueprintName {get=>IsDialogOpen&&savingDialog?nameField.text:blueprintName??L10n.T("editor.blueprintDefault");set{blueprintName=value;UpdateBlueprintIdentity();}}
-        public void Initialize(ShipEditorController editor,Camera camera)
+        void InitializeLegacy(ShipEditorController editor,Camera camera)
         {
             controller=editor;worldCamera=camera;ObservePerformanceAssembly(controller.Assembly);
             assemblyLayout=Starframe.Presentation.UiTheme.Current.assemblyLayout;
@@ -189,6 +190,7 @@ namespace Starframe.Construction
         void RefreshModuleInfoHeight()
         {
             if(!moduleInfoScroll)return;
+            if(figmaRoot){float extent=Mathf.Max(174,moduleStatsText.GetPreferredValues(moduleStatsText.text,330,Mathf.Infinity).y+8);moduleInfoScroll.content.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical,extent);moduleStatsText.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical,extent);moduleInfoScroll.StopMovement();moduleInfoScroll.verticalNormalizedPosition=1;return;}
             float width=330;float height=Mathf.Max(198,moduleStatsText.GetPreferredValues(moduleStatsText.text,width,Mathf.Infinity).y+8);
             moduleInfoScroll.content.sizeDelta=new Vector2(0,height);moduleInfoScroll.StopMovement();moduleInfoScroll.verticalNormalizedPosition=1;
         }
@@ -334,7 +336,7 @@ namespace Starframe.Construction
                 BlockShape.Thruster1,BlockShape.Thruster2,BlockShape.Thruster3,BlockShape.Thruster4,BlockShape.Thruster5,BlockShape.Thruster6,
                 BlockShape.Core,BlockShape.Power,BlockShape.Power2,
                 BlockShape.Gun1,BlockShape.Gun2,BlockShape.Gun3,BlockShape.Laser,BlockShape.Laser2,BlockShape.Laser3,
-                BlockShape.Missile1,BlockShape.Missile2,BlockShape.Missile3,BlockShape.Railgun1,BlockShape.Railgun2,BlockShape.Railgun3,
+                BlockShape.Missile1,BlockShape.Missile2,BlockShape.Missile3,BlockShape.VLS2,BlockShape.VLS1,BlockShape.Railgun1,BlockShape.Railgun2,BlockShape.Railgun3,
                 BlockShape.Sword1,BlockShape.Sword2,BlockShape.Shield,BlockShape.Armor1,BlockShape.Armor2,BlockShape.Shield2,BlockShape.Armor4,BlockShape.Armor3};
             int index=Array.IndexOf(order,shape);return index<0?(int)shape:index;
         }
@@ -355,6 +357,8 @@ namespace Starframe.Construction
                 case BlockShape.Gun2:case BlockShape.Laser2:case BlockShape.Missile2:case BlockShape.Sword2:return new Vector2(156,56);
                 case BlockShape.Gun3:case BlockShape.Laser3:return new Vector2(220,88);
                 case BlockShape.Missile3:return new Vector2(250,64);
+                case BlockShape.VLS2:return new Vector2(88,120);
+                case BlockShape.VLS1:return new Vector2(120,120);
                 case BlockShape.Railgun1:return new Vector2(184,52);
                 case BlockShape.Railgun2:return new Vector2(240,60);
                 case BlockShape.Railgun3:return new Vector2(296,80);
@@ -388,7 +392,10 @@ namespace Starframe.Construction
             if(definition&&definition.shape==BlockShape.Thruster6)
                 directionalThrust=L10n.T("module.stat.multithrust",definition.localExhaustDirections.Length,thrust/1000,BlockModules.PlacementClearance(definition.shape));
             else if(thrust>0)entries.Add(L10n.T("module.stat.thrust",thrust/1000));
-            if(definition&&definition.thrusterPowerWatts>0)entries.Add(L10n.T("module.stat.power",definition.thrusterPowerWatts));
+            if(definition&&BlockModules.IsThruster(definition.shape)&&flightTuning){
+                entries.Add(Copy($"持续推进 {flightTuning.PropulsionPowerDemandWatts:N0} W（整舰）",$"SUSTAINED {flightTuning.PropulsionPowerDemandWatts:N0} W (SHIP)"));
+                entries.Add(Copy($"加力推进 {flightTuning.BoostPowerDemandWatts:N0} W（整舰）",$"BOOST {flightTuning.BoostPowerDemandWatts:N0} W (SHIP)"));
+            }
             if(definition)
             {
                 if(definition.storageJoules>0)entries.Add(L10n.T("module.stat.storage",definition.storageJoules));
@@ -514,7 +521,7 @@ namespace Starframe.Construction
             return field;
         }
 
-        public bool WorkspaceContains(Vector2 screen)
+        bool LegacyWorkspaceContains(Vector2 screen)
         {
             if(IsDialogOpen)return false;
             float x=screen.x/Mathf.Max(1,Screen.width),y=1-screen.y/Mathf.Max(1,Screen.height);
@@ -569,6 +576,7 @@ namespace Starframe.Construction
                     mark.color=Accent;mark.gameObject.SetActive(active&&shapeButtons.TryGetValue(pair.Key,out var slot)&&slot.gameObject.activeSelf);
                 }
             }
+            RefreshFigmaModule();
         }
         public void SetMode(bool delete)
         {
@@ -577,6 +585,7 @@ namespace Starframe.Construction
                 (delete?Starframe.Presentation.UiTheme.Current.danger:Starframe.Presentation.UiTheme.Current.accent):
                 (delete?new Color(1,.44f,.4f):Accent);
             RefreshModeTools(delete);
+            RefreshFigmaMode(delete);
         }
         void RefreshModeTools(bool delete)
         {
@@ -590,6 +599,7 @@ namespace Starframe.Construction
             L10n.Bind(assemblyCostText,"editor.assemblyCost",cachedAssemblyCost,ReferenceAssemblyBudget);
             RefreshShipReadout();
             if(showShipPerformance)ShowShipPerformance();
+            RefreshFigmaStats();
         }
         void BuildShipReadout(RectTransform parent)
         {
@@ -625,11 +635,12 @@ namespace Starframe.Construction
             if(!controller||!controller.Assembly||!flightTuning)return false;ObservePerformanceAssembly(controller.Assembly);
             if(PerformanceCacheIsCurrent())return true;
             cachedShipPerformance=Starframe.Flight.ShipPerformance.CalculateAssembly(performanceAssembly,flightTuning);
-            cachedAssemblyCost=cachedGeneration=cachedEnergyCapacity=cachedWeaponDemand=cachedShieldDemand=0;
+            cachedAssemblyCost=cachedGeneration=cachedEnergyCapacity=cachedWeaponDemand=cachedShieldDemand=cachedPropulsionDemand=0;
             foreach(var block in performanceAssembly.Blocks){
                 var definition=GetDefinition(block.Record.shape);if(!definition)continue;
                 cachedAssemblyCost+=Mathf.Max(0,definition.cost);cachedGeneration+=Mathf.Max(0,definition.generationWatts);cachedEnergyCapacity+=Mathf.Max(0,definition.storageJoules);
                 if(definition.weapon)cachedWeaponDemand+=Mathf.Max(0,definition.weapon.sustainedPowerWatts);
+                if(BlockModules.IsThruster(definition.shape))cachedPropulsionDemand=flightTuning.PropulsionPowerDemandWatts;
                 if(definition.shieldCapacity>0&&definition.shieldRecoveryPerSecond>0)cachedShieldDemand+=Mathf.Max(0,definition.shieldPowerWatts);
             }
             cachedPerformanceTuning=flightTuning;cachedPerformanceDatabase=flightTuning.database;
@@ -648,14 +659,14 @@ namespace Starframe.Construction
             if(!shipSummaryText||cachedShipPerformance==null)return;var p=cachedShipPerformance;
             const float gravity=9.80665f;var positive=p.accelerationPositive/gravity;var negative=p.accelerationNegative/gravity;
             var rates=WeakerAxes(p.angularRatePositive,p.angularRateNegative);var angular=WeakerAxes(p.angularAccelerationPositive,p.angularAccelerationNegative);
-            float boost=flightTuning?Mathf.Max(0,flightTuning.boostPowerWatts):0,peak=cachedWeaponDemand+cachedShieldDemand+boost;
+            float boost=flightTuning?Mathf.Max(0,flightTuning.BoostPowerDemandWatts):0,peak=cachedWeaponDemand+cachedShieldDemand+boost;
             string warning=ColorUtility.ToHtmlStringRGB(peak>cachedGeneration+.01f?UiTheme.Current.amber:Ink),muted=ColorUtility.ToHtmlStringRGB(Muted);
             string pair(string a,string b,float av,float ab,float bv,float bb)=>$"{a} {av:0.00} / {ab:0.00}  ·  {b} {bv:0.00} / {bb:0.00}";
             string rotation(string axis,float rate,float acceleration)=>$"{axis}  {rate:0.0} °/s  ·  {acceleration:0.0} °/s²";
             var rows=new List<string>{
                 Copy($"质量 {p.totalMass/1000f:0.0} t  ·  总耐久 {p.totalHp:N0} HP",$"MASS {p.totalMass/1000f:0.0} t  ·  TOTAL HULL {p.totalHp:N0} HP"),
                 Copy($"供电 {cachedGeneration:N0} W  ·  容量 {cachedEnergyCapacity:N0} J",$"OUTPUT {cachedGeneration:N0} W  ·  CAPACITY {cachedEnergyCapacity:N0} J"),
-                Copy($"持续需求 {cachedWeaponDemand:N0} W  ·  闲置 0 W",$"SUSTAINED {cachedWeaponDemand:N0} W  ·  IDLE 0 W"),
+                Copy($"持续需求 {cachedWeaponDemand+cachedPropulsionDemand:N0} W  ·  闲置 0 W",$"SUSTAINED {cachedWeaponDemand+cachedPropulsionDemand:N0} W  ·  IDLE 0 W"),
                 $"<color=#{warning}>"+Copy($"峰值需求 {peak:N0} W",$"PEAK DEMAND {peak:N0} W")+"</color>",
                 Copy($"峰值含加力 {boost:N0} W + 护盾回充 {cachedShieldDemand:N0} W",$"Includes boost {boost:N0} W + shield recharge {cachedShieldDemand:N0} W"),
                 Copy($"统一限速 {p.maxSpeed:0} m/s  ·  加力 ×{flightTuning.boostMultiplier:0.##}",$"SPEED CAP {p.maxSpeed:0} m/s  ·  BOOST ×{flightTuning.boostMultiplier:0.##}"),
@@ -680,7 +691,7 @@ namespace Starframe.Construction
             shipSummaryText.enableAutoSizing=false;
             float height=Mathf.Max(328,shipSummaryText.GetPreferredValues(shipSummaryText.text,388,Mathf.Infinity).y+6);shipSummaryScroll.content.sizeDelta=new Vector2(0,height);shipSummaryScroll.verticalNormalizedPosition=position;summaryScrollInitialized=true;
         }
-        void OnUiSettingsChanged(){summaryLayoutDirty=true;}
+        void OnUiSettingsChanged(){summaryLayoutDirty=true;RefreshFigmaStats();}
         void ShowShipPerformance()
         {
             if(!EnsurePerformanceCache())return;showShipPerformance=true;
@@ -890,18 +901,35 @@ namespace Starframe.Construction
         {
             string key=L10n.LegacyKey(message);
             if(key!=null){SetStatusKey(key,error);return;}
+            rawStatusMessage=message;rawStatusError=error;
+            if(error)message=L10n.DomainMessage(message);
+            ConfigureStatusLayout(error);
             L10n.Unbind(statusText);
             statusText.text=message;statusText.color=error?(assemblyLayout?Starframe.Presentation.UiTheme.Current.danger:new Color(1,.48f,.42f)):Ink;
             if(IsDialogOpen&&error){L10n.Unbind(modalError);modalError.text=message;}
         }
         public void SetStatusKey(string key,bool error=false,params object[] args)
         {
+            rawStatusMessage=null;
+            ConfigureStatusLayout(error);
             L10n.Bind(statusText,key,args);
             statusText.color=error?(assemblyLayout?Starframe.Presentation.UiTheme.Current.danger:new Color(1,.48f,.42f)):Ink;
             if(IsDialogOpen&&error)L10n.Bind(modalError,key,args);
         }
+        void ConfigureStatusLayout(bool error)
+        {
+            if(!figmaRoot||!statusText)return;
+            // The existing footer has room for two short warning lines without moving any controls.
+            statusText.enableAutoSizing=error;statusText.fontSizeMin=14;statusText.fontSizeMax=18;statusText.fontSize=18;
+            statusText.textWrappingMode=error?TextWrappingModes.Normal:TextWrappingModes.NoWrap;
+            statusText.maxVisibleLines=error?2:int.MaxValue;
+            statusText.overflowMode=error?TextOverflowModes.Truncate:TextOverflowModes.Ellipsis;
+            statusText.alignment=TextAlignmentOptions.MidlineLeft;
+        }
         void RefreshLocalizedContent()
         {
+            placementReasonShown=false;lastPlacementFailure=null;
+            if(rawStatusError&&rawStatusMessage!=null)SetStatus(rawStatusMessage,true);
             font=L10n.CurrentFont;
             if(nameField){nameField.fontAsset=font;L10n.ApplyUserContentFont(nameField.textComponent);}
             UpdateBlueprintIdentity();
@@ -913,6 +941,7 @@ namespace Starframe.Construction
             if(!initialized)return;
             bool restorePerformance=showShipPerformance;
             SetShape(localizedShape);if(restorePerformance)ShowShipPerformance();RefreshFileRows();if(controller&&controller.Assembly)UpdateStats(controller.Assembly.Count,controller.Dirty);
+            RefreshFigmaCopy();
         }
         public void SetFiles(string[] values){files=values??Array.Empty<string>();page=0;selectedFile=0;pendingDeleteFile=null;RefreshFileRows();}
         public void SelectFile(string file){int index=Array.IndexOf(files,file);if(index<0)return;selectedFile=index;page=index/6;RefreshFileRows();}

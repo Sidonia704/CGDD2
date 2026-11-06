@@ -1,0 +1,59 @@
+{
+  "Summary": {
+    "Total": 6,
+    "Passed": 6,
+    "Failed": 0,
+    "Skipped": 0,
+    "Inconclusive": 0
+  },
+  "Results": [
+    {
+      "FullName": "Starframe.Construction.Tests.AssemblyWeaponGroupGestureTests.EscapeOrFocusCancellationClearsThePendingWeapon",
+      "Status": "Passed",
+      "Duration": 0.0717921,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.AssemblyWeaponGroupGestureTests.FamilyDropCommitsEverySelectedPartOnceThenClearsAll",
+      "Status": "Passed",
+      "Duration": 0.0025008,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.AssemblyWeaponGroupGestureTests.InvalidReleaseDiscardsSelectionAndNeverArmsACardClick(-1)",
+      "Status": "Passed",
+      "Duration": 0.0036826,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.AssemblyWeaponGroupGestureTests.InvalidReleaseDiscardsSelectionAndNeverArmsACardClick(99)",
+      "Status": "Passed",
+      "Duration": 0.001119,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.AssemblyWeaponGroupGestureTests.ReleaseCommitsAndLaterGroupClickOnlyInspects",
+      "Status": "Passed",
+      "Duration": 0.0021387,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.AssemblyWeaponGroupGestureTests.SingleWeaponClickEndsAtMouseReleaseWithoutAssignment",
+      "Status": "Passed",
+      "Duration": 0.000764,
+      "Message": null,
+      "StackTrace": null
+    }
+  ],
+  "Duration": 3.18,
+  "StatusPath": null,
+  "Mode": "EditMode",
+  "FilterApplied": "testname: AssemblyWeaponGroupGestureTests",
+  "success": true,
+  "result": null
+}

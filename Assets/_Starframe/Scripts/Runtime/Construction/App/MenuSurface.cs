@@ -60,7 +60,7 @@ namespace Starframe.App
             for(int i=Root.childCount-1;i>=0;i--){var child=Root.GetChild(i).gameObject;child.SetActive(false);Destroy(child);}
             foreach(var value in materials)if(value)Destroy(value);materials.Clear();
             backgrounds.RemoveAll(x=>!x||x.name!="WorldView");
-            if(EventSystem.current)EventSystem.current.SetSelectedGameObject(null);
+            if(EventSystem.current&&!EventSystem.current.alreadySelecting)EventSystem.current.SetSelectedGameObject(null);
         }
         public static RectTransform Rect(RectTransform parent,string name,float x,float y,float w,float h)
         {
@@ -126,6 +126,7 @@ namespace Starframe.App
             button.colors=UiStyle.ControlColors();
             float padding=w<=64?3:14;
             var label=Local(rect,name+"Label",Vector2.zero,Vector2.one,new Vector2(padding,3),new Vector2(-padding,-3)).gameObject.AddComponent<TextMeshProUGUI>();ConfigureText(label,text,17,primary?GlassUiPalette.ActionInk:GlassUiPalette.Ink);label.alignment=TextAlignmentOptions.Center;label.textWrappingMode=TextWrappingModes.NoWrap;
+            FigmaVisuals.SetFont(label,true);
             button.onClick.AddListener(()=>{GameAudio.PlayUiClick();try{action?.Invoke();}catch(Exception error)when(error is System.IO.IOException||error is System.IO.InvalidDataException||error is UnauthorizedAccessException){if(OperationFailed!=null)OperationFailed(error);else Debug.LogWarning(error.Message);}});return button;
         }
         public TMP_InputField Input(string name,string value,float x,float y,float w,float h,Action<string> changed)
@@ -164,9 +165,11 @@ namespace Starframe.App
         }
         public UnityEngine.UI.Slider Slider(string name,float min,float max,float value,float x,float y,float w,float h,Action<float> changed)
         {
-            var rect=Rect(Root,name,x,y,w,h);var hit=rect.gameObject.AddComponent<UnityEngine.UI.Image>();hit.color=Color.clear;hit.canvasRenderer.cullTransparentMesh=false;var rail=Local(rect,"Track",new Vector2(0,.5f),new Vector2(1,.5f),new Vector2(0,-3),new Vector2(0,3));rail.gameObject.AddComponent<UnityEngine.UI.Image>().color=new Color(.55f,.65f,.65f,.18f);
+            var rect=Rect(Root,name,x,y,w,h);var hit=rect.gameObject.AddComponent<UnityEngine.UI.Image>();hit.color=Color.clear;hit.canvasRenderer.cullTransparentMesh=false;var rail=Local(rect,"Track",new Vector2(0,.5f),new Vector2(1,.5f),new Vector2(0,-2),new Vector2(0,2));rail.gameObject.AddComponent<UnityEngine.UI.Image>().color=new Color(.55f,.65f,.65f,.18f);
             var fill=Local(rail,"Fill",Vector2.zero,Vector2.one,Vector2.zero,Vector2.zero);fill.gameObject.AddComponent<UnityEngine.UI.Image>().color=GlassUiPalette.Accent;
-            var handle=Local(rect,"Handle",new Vector2(0,.5f),new Vector2(0,.5f),new Vector2(-6,-10),new Vector2(6,10));var image=handle.gameObject.AddComponent<UnityEngine.UI.Image>();image.color=GlassUiPalette.Ink;
+            // Slider drives its handle's vertical anchors to 0..1, so constrain the parent height.
+            var handleArea=Local(rect,"HandleArea",new Vector2(0,.5f),new Vector2(1,.5f),new Vector2(6,-11),new Vector2(-6,11));
+            var handle=Local(handleArea,"Handle",Vector2.zero,new Vector2(0,1),new Vector2(-6,0),new Vector2(6,0));var image=handle.gameObject.AddComponent<UnityEngine.UI.Image>();image.color=GlassUiPalette.Ink;
             var slider=rect.gameObject.AddComponent<UnityEngine.UI.Slider>();slider.fillRect=fill;slider.handleRect=handle;slider.targetGraphic=image;slider.minValue=min;slider.maxValue=max;slider.value=value;slider.onValueChanged.AddListener(v=>changed?.Invoke(v));return slider;
         }
         public UnityEngine.UI.Toggle Toggle(string name,string text,bool value,float x,float y,float w,float h,Action<bool> changed)
@@ -179,7 +182,7 @@ namespace Starframe.App
         void Update(){Resize();UpdateHint();RefreshPanelUvs();}
         void RefreshStyle()
         {
-            foreach(var image in backgrounds)if(image&&image.name!="WorldView"&&image.material)
+            foreach(var image in backgrounds)if(image&&image.name!="WorldView"&&image.material&&image.material.HasProperty("_Tint"))
                 GlassUiPalette.Apply(image.material,image.material.GetColor("_Tint"));
         }
         void RefreshPanelUvs()

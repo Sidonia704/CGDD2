@@ -1,0 +1,101 @@
+{
+  "Summary": {
+    "Total": 12,
+    "Passed": 12,
+    "Failed": 0,
+    "Skipped": 0,
+    "Inconclusive": 0
+  },
+  "Results": [
+    {
+      "FullName": "Starframe.Construction.Tests.MirrorEditingTests.AsymmetricCenterPlaneWedgeCannotOverlapItsReflection",
+      "Status": "Passed",
+      "Duration": 0.2941605,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.MirrorEditingTests.CenterPlaneSelfSymmetricPartIsPlacedOnlyOnce",
+      "Status": "Passed",
+      "Duration": 0.0104777,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.MirrorEditingTests.CoreRemainsSingleAndMirrorRequiresCoreForOtherParts",
+      "Status": "Passed",
+      "Duration": 0.0054454,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.MirrorEditingTests.MirroredDeleteCannotLeaveEitherOuterArmDisconnected",
+      "Status": "Passed",
+      "Duration": 0.013708,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.MirrorEditingTests.MirroredDeleteRemovesOnlyEquivalentCounterpartTogether",
+      "Status": "Passed",
+      "Duration": 0.0082671,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.MirrorEditingTests.MultiCellAnchorsReflectTheirEntireFootprint(VLS1)",
+      "Status": "Passed",
+      "Duration": 0.0129263,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.MirrorEditingTests.MultiCellAnchorsReflectTheirEntireFootprint(Gun2)",
+      "Status": "Passed",
+      "Duration": 0.0053825,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.MirrorEditingTests.MultiCellAnchorsReflectTheirEntireFootprint(Power2)",
+      "Status": "Passed",
+      "Duration": 0.0053374,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.MirrorEditingTests.OccupiedOppositeSideRejectsBothWithoutPartialPlacement",
+      "Status": "Passed",
+      "Duration": 0.0061016,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.MirrorEditingTests.PairUsesCoreAxisAndEmitsOneAtomicChange(False)",
+      "Status": "Passed",
+      "Duration": 0.0101999,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.MirrorEditingTests.PairUsesCoreAxisAndEmitsOneAtomicChange(True)",
+      "Status": "Passed",
+      "Duration": 0.0056,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.MirrorEditingTests.WedgeOrientationReflectsActualSlopeVertices",
+      "Status": "Passed",
+      "Duration": 0.012522,
+      "Message": null,
+      "StackTrace": null
+    }
+  ],
+  "Duration": 5,
+  "StatusPath": null,
+  "Mode": "EditMode",
+  "FilterApplied": "testname: MirrorEditingTests",
+  "success": true,
+  "result": null
+}

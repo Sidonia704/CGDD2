@@ -1,0 +1,241 @@
+{
+  "Summary": {
+    "Total": 32,
+    "Passed": 32,
+    "Failed": 0,
+    "Skipped": 0,
+    "Inconclusive": 0
+  },
+  "Results": [
+    {
+      "FullName": "Starframe.Construction.Tests.ExpandedWeaponTests.BeamDamagesImmediatelyWithinReachAndStopsAtFirstSurface",
+      "Status": "Passed",
+      "Duration": 0.0624343,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.ExpandedWeaponTests.CategoryAndFactionDamageApplyExactlyOnce(Projectile,0,66)",
+      "Status": "Passed",
+      "Duration": 0.010164,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.ExpandedWeaponTests.CategoryAndFactionDamageApplyExactlyOnce(Projectile,1,30)",
+      "Status": "Passed",
+      "Duration": 0.0051756,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.ExpandedWeaponTests.CategoryAndFactionDamageApplyExactlyOnce(Beam,0,66)",
+      "Status": "Passed",
+      "Duration": 0.0050468,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.ExpandedWeaponTests.CategoryAndFactionDamageApplyExactlyOnce(Beam,1,30)",
+      "Status": "Passed",
+      "Duration": 0.0058018,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.ExpandedWeaponTests.CategoryAndFactionDamageApplyExactlyOnce(GuidedMissile,0,21.25f)",
+      "Status": "Passed",
+      "Duration": 0.0090994,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.ExpandedWeaponTests.CategoryAndFactionDamageApplyExactlyOnce(GuidedMissile,1,12.5f)",
+      "Status": "Passed",
+      "Duration": 0.0052318,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.ExpandedWeaponTests.ChangingTargetsRestartsMissileAcquisitionAndNoPowerPausesReload",
+      "Status": "Passed",
+      "Duration": 0.0321607,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.ExpandedWeaponTests.DirectWeaponsFollowCoreFacingWhileMissilesAndCountermeasuresRemainRotatable",
+      "Status": "Passed",
+      "Duration": 0.0102441,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.ExpandedWeaponTests.ExpiredSeekerOnlyWarnsWhileItsCoastingPathCanStillHitTheOriginalTarget",
+      "Status": "Passed",
+      "Duration": 0.0091513,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.ExpandedWeaponTests.FlareBurstRollsOnlyOnceForEachMissileAcrossLaterFrames",
+      "Status": "Passed",
+      "Duration": 0.007887,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.ExpandedWeaponTests.GatlingGroupDisableCoolsItsExistingHeatInsteadOfResettingIt",
+      "Status": "Passed",
+      "Duration": 0.0056479,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.ExpandedWeaponTests.GuidedMissileTurnsTowardsOffsetTargetAndDealsExplosiveDamage",
+      "Status": "Passed",
+      "Duration": 0.0055778,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.ExpandedWeaponTests.InFlightMissileKeepsItsLaunchDamageWhenTuningChanges",
+      "Status": "Passed",
+      "Duration": 0.0056334,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.ExpandedWeaponTests.MissileBlastIsAbsorbedByShieldWithoutLeakingIntoHull",
+      "Status": "Passed",
+      "Duration": 0.0081488,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.ExpandedWeaponTests.MissileBreakingLastPointOfShieldCannotHurtHullButNextMissileCan",
+      "Status": "Passed",
+      "Duration": 0.0057712,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.ExpandedWeaponTests.MissilePassesEmptyProxyVolumeAndExplodesAtTheFirstOccupiedVoxel",
+      "Status": "Passed",
+      "Duration": 0.0359267,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.ExpandedWeaponTests.MissileRequiresTwoSecondsOnSameTargetAndReloadCannotBeBypassedByReleasing",
+      "Status": "Passed",
+      "Duration": 0.0063952,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.ExpandedWeaponTests.MissileTubeStaggerLaunchesEightPerSecondWithoutLongFrameBurst",
+      "Status": "Passed",
+      "Duration": 0.0071369,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.ExpandedWeaponTests.MultipleBarrelsAlternateActualShotOriginsWithoutMultiplyingCadence",
+      "Status": "Passed",
+      "Duration": 0.0033877,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.ExpandedWeaponTests.NativeWeaponProfilesSelectTheirApprovedAudioCategory",
+      "Status": "Passed",
+      "Duration": 0.0593558,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.ExpandedWeaponTests.OffAxisMissileCapturesAndHitsItsPrelockedTarget(0,90)",
+      "Status": "Passed",
+      "Duration": 0.095557,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.ExpandedWeaponTests.OffAxisMissileCapturesAndHitsItsPrelockedTarget(0,-90)",
+      "Status": "Passed",
+      "Duration": 0.0274178,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.ExpandedWeaponTests.OffAxisMissileCapturesAndHitsItsPrelockedTarget(0,180)",
+      "Status": "Passed",
+      "Duration": 0.0280467,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.ExpandedWeaponTests.OffAxisMissileCapturesAndHitsItsPrelockedTarget(90,0)",
+      "Status": "Passed",
+      "Duration": 0.0279396,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.ExpandedWeaponTests.OffAxisMissileCapturesAndHitsItsPrelockedTarget(-90,0)",
+      "Status": "Passed",
+      "Duration": 0.0266646,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.ExpandedWeaponTests.SuccessfulFlareDiversionCoastsAfterExpiryWithoutReacquiringTheShip",
+      "Status": "Passed",
+      "Duration": 0.0065644,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.ExpandedWeaponTests.TargetRespawnCannotRestoreTheOldMissilesSeekerOrWarning",
+      "Status": "Passed",
+      "Duration": 0.0051554,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.ExpandedWeaponTests.TwinRackFiresTwoMissilesWithOneVolleyDamageBudget",
+      "Status": "Passed",
+      "Duration": 0.0048129,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.ExpandedWeaponTests.UnboundedBeamHitsBeyondOldSwordReachWithoutAFlightStep",
+      "Status": "Passed",
+      "Duration": 0.0050385,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.ExpandedWeaponTests.UnboundedBeamStopsAtNearbyShieldAndCannotLeakToDistantHull",
+      "Status": "Passed",
+      "Duration": 0.0077717,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.ExpandedWeaponTests.WeaponShotEventMatchesActualProjectileBeamAndMissileSpawns",
+      "Status": "Passed",
+      "Duration": 0.0065149,
+      "Message": null,
+      "StackTrace": null
+    }
+  ],
+  "Duration": 4.43,
+  "StatusPath": null,
+  "Mode": "EditMode",
+  "FilterApplied": "testname: ExpandedWeaponTests",
+  "success": true,
+  "result": null
+}

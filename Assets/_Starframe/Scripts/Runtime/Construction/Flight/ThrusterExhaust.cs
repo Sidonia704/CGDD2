@@ -78,13 +78,14 @@ namespace Starframe.Flight
                 bool visible = e.throttle > .002f && scale > 0 && flight.Performance.coreAlive;
                 e.renderer.enabled = visible;
                 if (!visible) continue;
-                float length = Mathf.Max(.01f,Mathf.Min(tuning.exhaustMaxLength,tuning.exhaustLength * scale * (.25f + .75f * Mathf.Sqrt(e.throttle))));
+                float visualThrottle=Mathf.Clamp01(e.throttle);
+                float length = Mathf.Max(.01f,Mathf.Min(tuning.exhaustMaxLength,tuning.exhaustLength * scale * (.25f + .75f * Mathf.Sqrt(visualThrottle))));
                 if(e.part.record.shape==BlockShape.Thruster6)length=Mathf.Min(ManeuverPlumeRange,length);
-                float width = Mathf.Min(length * .45f,Mathf.Max(.01f,tuning.exhaustWidth * (.8f + .2f * scale) * Mathf.Sqrt(e.throttle)));
+                float width = Mathf.Min(length * .45f,Mathf.Max(.01f,tuning.exhaustWidth * (.8f + .2f * scale) * Mathf.Sqrt(visualThrottle)));
                 float crossScale=Mathf.Max(1,Mathf.Sqrt(e.aperture.x*e.aperture.y));
                 float widthX=width*Mathf.Clamp(e.aperture.x,.5f,4),widthZ=width*Mathf.Clamp(e.aperture.y,.5f,4);
                 if(e.part.record.shape==BlockShape.Thruster6){widthX=Mathf.Min(widthX,.3f);widthZ=Mathf.Min(widthZ,.3f);}
-                var nozzleScale=new Vector3(widthX,length*Mathf.Sqrt(crossScale),widthZ)*visualScale;
+                var nozzleScale=new Vector3(widthX,Mathf.Min(tuning.exhaustMaxLength,length*Mathf.Sqrt(crossScale)),widthZ)*visualScale;
                 if(e.part.record.shape==BlockShape.Thruster6){nozzleScale.x=Mathf.Min(.3f,nozzleScale.x);nozzleScale.z=Mathf.Min(.3f,nozzleScale.z);nozzleScale.y=Mathf.Min(ManeuverPlumeRange,nozzleScale.y);}
                 e.nozzle.localScale=nozzleScale;
                 // Keep each trailing voxel cubic while the centres spread with thrust.
@@ -97,7 +98,7 @@ namespace Starframe.Flight
                 e.properties.SetFloat(ProfileId,2);
                 e.properties.SetColor(HeadColorId,tuning.exhaustInnerColor);
                 e.properties.SetColor(ColorId,tuning.exhaustOuterColor);
-                e.properties.SetFloat(IntensityId,Mathf.Max(0,tuning.exhaustIntensity) * Mathf.Sqrt(scale) * e.throttle);
+                e.properties.SetFloat(IntensityId,Mathf.Max(0,tuning.exhaustIntensity) * Mathf.Sqrt(scale) * Mathf.Min(e.throttle,1.15f));
                 e.renderer.SetPropertyBlock(e.properties);
             }
         }

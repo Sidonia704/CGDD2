@@ -12,26 +12,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 709e20d8521834845a71b54704f53b46, type: 3}
   m_Name: Railgun2Weapon
   m_EditorClassIdentifier: Starframe.Construction::Starframe.Flight.WeaponDefinition
-  shotsPerSecond: 1.25
-  damage: 12000
-  projectileSpeed: 9000
+  shotsPerSecond: 1
+  damage: 18000
+  projectileSpeed: 10800
   projectileDiameter: 0.34
+  shotAudioGain: 0.8
   firstShotImmediate: 1
-  penetrationDepth: 3
-  secondLayerDamageMultiplier: 0.35
+  fireWindupSeconds: 0.20249434
+  penetrationDepth: 6
+  secondLayerDamageMultiplier: 0.45
   range: 4500
+  unboundedBeam: 0
   visualLength: 100
-  tailLength: 300
+  tailLength: 600
   visualWidth: 9
   visualIntensity: 10
   minimumVisualPixels: 5
   tracerStyle: 1
   smokeTrail: 1
   tracerLingerSeconds: 0.09
-  sustainedPowerWatts: 180
+  sustainedPowerWatts: 252
   energyPerShot: 100
   delivery: 0
+  family: 3
   effectColor: {r: 1, g: 0.66, b: 0.12, a: 1}
+  magazineSize: 1
+  salvoLaunchesPerSecond: 16
   missileLockSeconds: 2
   reloadSeconds: 4
   missileTurnDegrees: 110
@@ -53,3 +59,8 @@ MonoBehaviour:
   activationMode: 0
   chargeSeconds: 1
   requireTargetLock: 0
+  gatlingSpinUpSeconds: 1.5
+  gatlingSpinDownSeconds: 0.5
+  gatlingMinimumRateFraction: 0.2
+  gatlingHeatPerSecond: 0.25
+  gatlingCoolingPerSecond: 0.083333336

@@ -14,6 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Starframe.Construction::Starframe.Flight.FlightTuning
   database: {fileID: 11400000, guid: a8f876941c51d4f4d96d6e0970239e5e, type: 2}
   damageTuning: {fileID: 11400000, guid: 4c421b34da1d2dc4eae757174c82e02e, type: 2}
+  thrustMultiplier: 1
+  blockMassMultiplier: 1
+  heavyMassThresholdKg: 100000
+  heavySpeedExponent: 0.65
+  heavyManeuverExponent: 0.35
+  heavyMinimumSpeedFraction: 0.35
+  heavyMinimumManeuverFraction: 0.45
   modules:
   - shape: 0
     massKg: 300
@@ -56,6 +63,9 @@ MonoBehaviour:
   maxRollRate: 160
   rollBlendTime: 0.25
   boostPowerWatts: 140
+  boostPowerCostMultiplier: 4
+  boostSpeedLimitMultiplier: 2
+  overspeedRecoveryDeceleration: 40
   boostMultiplier: 1.5
   aimSensitivity: 1
   aimDistance: 1500
@@ -81,10 +91,10 @@ MonoBehaviour:
   cameraShipViewportY: 0.3
   exhaustShader: {fileID: 4800000, guid: 6bfe2c57de945414a85ba6c0e9eb126f, type: 3}
   exhaustReferenceThrust: 80000
-  exhaustLength: 3.2
-  exhaustMaxLength: 9
-  exhaustWidth: 0.7
-  exhaustIntensity: 3
+  exhaustLength: 2.1
+  exhaustMaxLength: 5.5
+  exhaustWidth: 0.42
+  exhaustIntensity: 1.6
   exhaustResponse: 14
   exhaustFlowSpeed: 1.6
   exhaustIdle: 0

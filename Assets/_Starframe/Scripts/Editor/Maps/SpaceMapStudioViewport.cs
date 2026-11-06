@@ -11,7 +11,19 @@ namespace Starframe.EditorTools
     public sealed partial class SpaceMapStudioWindow
     {
         sealed class PreviewItem { public VoxelStructureRuntime runtime; public int index; public VoxelPreviewInstances instances; public int renderRevision = -1; public bool overview; public Mesh damagedOverview; }
-        readonly Dictionary<VoxelAssetDefinition, (int revision, bool valid)> overviewSignatures = new Dictionary<VoxelAssetDefinition, (int, bool)>();
+        
+        readonly Dictionary<VoxelAssetDefinition, (int revision, Mesh mesh, long signature, bool valid)> overviewSignatures = new Dictionary<VoxelAssetDefinition, (int, Mesh, long, bool)>();
+        bool ValidOverview(VoxelAssetDefinition definition)
+        {
+            if (!definition.initialLodMesh || definition.initialLodMesh.vertexCount == 0 || definition.initialLodMesh.subMeshCount != definition.RenderMaterialCount) return false;
+            if (!overviewSignatures.TryGetValue(definition, out var cached) || cached.revision != definition.GeometryRevision ||
+                cached.mesh != definition.initialLodMesh || cached.signature != definition.initialLodSignature)
+            {
+                cached = (definition.GeometryRevision, definition.initialLodMesh, definition.initialLodSignature, definition.HasValidInitialLod);
+                overviewSignatures[definition] = cached;
+            }
+            return cached.valid;
+        }
         static bool RuntimeRenderResourcesValid(VoxelStructureRuntime runtime)
         {
             if (runtime.AliveCount == 0) return true;
@@ -84,32 +96,27 @@ namespace Starframe.EditorTools
                 for (int i = 0; i < map.instances.Count; i++)
                 {
                     var item = map.instances[i]; if (!item.asset) continue;
-                    var runtime = AddPreview(item.asset, item.label, item.position, Quaternion.Euler(item.eulerAngles), item.scale, item.healthMultiplier);
+                    var runtime = AddPreview(item.asset, item.label, item.position, Quaternion.Euler(item.eulerAngles), item.scale);
                     bool overview = runtime.DataOnlyPreview && runtime.GetComponent<MeshFilter>().sharedMesh;
                     previewItems.Add(new PreviewItem { runtime = runtime, index = i, overview = overview, instances = runtime.DataOnlyPreview && !overview ? new VoxelPreviewInstances(runtime) : null });
                 }
             }
             else if (asset)
             {
-                var runtime = AddPreview(asset, asset.name, Vector3.zero, Quaternion.identity, 1, 1);
-                previewItems.Add(new PreviewItem { runtime = runtime, index = 0, instances = runtime.DataOnlyPreview ? new VoxelPreviewInstances(runtime) : null });
+                var runtime = AddPreview(asset, asset.name, Vector3.zero, Quaternion.identity, 1);
+                bool overview = runtime.DataOnlyPreview && runtime.GetComponent<MeshFilter>().sharedMesh;
+                previewItems.Add(new PreviewItem { runtime = runtime, index = 0, overview = overview, instances = runtime.DataOnlyPreview && !overview ? new VoxelPreviewInstances(runtime) : null });
             }
             gridDirty = true;
             if (frameRequested) { frameRequested = false; FrameView(); }
         }
-        VoxelStructureRuntime AddPreview(VoxelAssetDefinition definition, string label, Vector3 position, Quaternion rotation, float scale, float health)
+        VoxelStructureRuntime AddPreview(VoxelAssetDefinition definition, string label, Vector3 position, Quaternion rotation, float scale)
         {
             var go = new GameObject(label); go.transform.SetParent(previewRoot.transform, false);
             go.transform.localPosition = position; go.transform.localRotation = rotation; go.transform.localScale = Vector3.one * scale;
-            bool overview = false;
-            if (mapMode && definition.initialLodMesh)
-            {
-                if (!overviewSignatures.TryGetValue(definition, out var signature) || signature.revision != definition.GeometryRevision)
-                { signature = (definition.GeometryRevision, definition.initialLodSignature == SpaceMapRuntime.ComputeGeometrySignature(definition)); overviewSignatures[definition] = signature; }
-                overview = signature.valid;
-            }
+            bool overview = authoredSurfacePreview && ValidOverview(definition);
             bool fastPreview = overview || definition.hullModules && definition.cells.Count >= 512;
-            var runtime = go.AddComponent<VoxelStructureRuntime>(); runtime.healthMultiplier = health; runtime.Initialize(definition, true, !fastPreview);
+            var runtime = go.AddComponent<VoxelStructureRuntime>(); runtime.Initialize(definition, true, !fastPreview);
             if (overview) { runtime.GetComponent<MeshFilter>().sharedMesh = definition.initialLodMesh; runtime.GetComponent<MeshRenderer>().enabled = true; }
             var shader = Shader.Find("Starframe/Tools/VoxelPreview");
             if (shader && !definition.hullModules)
@@ -193,10 +200,9 @@ namespace Starframe.EditorTools
                 if (!string.IsNullOrEmpty(capturePath)) SavePreviewImage(renderedPreview);
                 DrawOverlays(rect, inside, hit, hitCell, placeCell, hasPlane, planePoint);
             }
-            int cells = 0, recent = 0;
-            foreach (var item in previewItems) { cells += item.runtime.AliveCount; recent += item.runtime.RecentDamageCount; }
-            string hp = hit != null ? $" · 光标格 {hitCell} / HP {hit.runtime.GetHealth(hitCell):0.#}" : "";
-            info.text = $"{(mapMode ? "地图" : "资产")}  |  {cells:N0} 格 · {previewItems.Count} 个资产 · {recent} 条临时受击记录{hp}\n中键旋转 · Shift 中键平移 · 滚轮缩放 · F 聚焦";
+            int cells = 0;
+            foreach (var item in previewItems) { cells += item.runtime.AliveCount;  }
+            info.text = $"{(mapMode ? "地图" : "资产")}  |  {cells:N0} 格 · {previewItems.Count} 个资产\n中键旋转 · Shift 中键平移 · 滚轮缩放 · F 聚焦";
         }
         PreviewItem Pick(Ray ray, out Vector3Int cell, out Vector3Int normal, out float distanceHit)
         {
@@ -266,34 +272,14 @@ namespace Starframe.EditorTools
                     }
                 }
                 else if (tool == 1 && down && hasPlane) PlaceInstance(Snap(planePoint));
-                else if (tool == 2 && down && hit != null) DamagePreview(hit, hitCell);
             }
             else if (asset)
             {
-                if (tool == 3 && down && hit != null) DamagePreview(hit, hitCell);
-                else if (tool == 0 && (hit != null || hasPlane) && painted.Add(placeCell)) PaintCells(placeCell, 0);
+                if (tool == 0 && (hit != null || hasPlane) && painted.Add(placeCell)) PaintCells(placeCell, 0);
                 else if ((tool == 1 || tool == 2) && hit != null && painted.Add(hitCell)) { selectedCell = hitCell; PaintCells(hitCell, tool); }
             }
             if (!repeat) e.Use(); Repaint();
         }
-        void DamagePreview(PreviewItem item, Vector3Int cell)
-        {
-            item.runtime.ApplyDamage(cell, testDamage); item.runtime.FlushMeshChanges();
-            if (item.overview)
-            {
-                var cells = new Dictionary<Vector3Int, VoxelCellState>();
-                foreach (var state in item.runtime.Cells.Values) if (state.Alive)
-                    cells.Add(state.position, new VoxelCellState { position = state.position, shape = BlockShape.Cube, surface = state.surface * VoxelHullAppearance.ShapeCount + VoxelHullAppearance.ShapeIndex(state.shape) });
-                var next = VoxelGeometry.Build(cells, item.runtime.asset.SurfaceCount * VoxelHullAppearance.ShapeCount, item.runtime.asset.cellSize, null);
-                next.hideFlags = HideFlags.HideAndDontSave;
-                item.runtime.GetComponent<MeshFilter>().sharedMesh = next;
-                if (item.damagedOverview) DestroyImmediate(item.damagedOverview);
-                item.damagedOverview = next;
-            }
-            else item.instances?.Refresh();
-            renderDirty = true;
-        }
-
         void BuildGrid()
         {
             gridDirty = false; if (grid) DestroyImmediate(grid);

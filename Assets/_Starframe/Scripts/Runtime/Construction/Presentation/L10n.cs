@@ -31,7 +31,7 @@ namespace Starframe.Presentation
 
         public static bool IsEnglish => LocalizationSettings.SelectedLocale &&
             LocalizationSettings.SelectedLocale.Identifier.Code.StartsWith("en", StringComparison.OrdinalIgnoreCase);
-        public static TMP_FontAsset CurrentFont => FontForLocale(LocalizationSettings.SelectedLocale);
+        public static TMP_FontAsset CurrentFont => FigmaVisuals.BodyFont?FigmaVisuals.BodyFont:FontForLocale(LocalizationSettings.SelectedLocale);
         public static TMP_FontAsset Font => CurrentFont;
         static FontLease Lease(Locale locale)
         {
@@ -42,6 +42,7 @@ namespace Starframe.Presentation
         }
         public static TMP_FontAsset FontForLocale(Locale locale)
         {
+            if(FigmaVisuals.BodyFont)return FigmaVisuals.BodyFont;
             var lease=Lease(locale?locale:LocalizationSettings.SelectedLocale);if(lease==null)return null;
             return lease.font?lease.font:lease.reference.LoadAsset();
         }
@@ -54,6 +55,10 @@ namespace Starframe.Presentation
         {
             yield return LocalizationSettings.InitializationOperation;
             yield return LocalizationSettings.StringDatabase.GetTableAsync(StringTable);
+            foreach(string code in new[]{"en","zh-Hans"})
+                yield return LocalizationSettings.StringDatabase.GetTableAsync(StringTable,LocalizationSettings.AvailableLocales.GetLocale(code));
+            // The shared font stack owns Latin and pre-baked Chinese glyphs.
+            if(FigmaVisuals.BodyFont)yield break;
             yield return LocalizationSettings.AssetDatabase.GetTableAsync(AssetTable);
             // Keep the two asset-table fonts alive while screens and locales change. Per-label loads
             // could release the previous font during a locale-change callback in a bundled Player.
@@ -128,12 +133,21 @@ namespace Starframe.Presentation
             switch (message)
             {
                 case "必须对齐标准格子。": case "Part must fit one standard grid cell.": return "error.grid";
+                case "非导弹武器必须朝向船头。": return "error.weaponFacing";
                 case "每艘船只能有一个核心。": case "每个船体只能放置一个核心。": return "error.oneCore";
                 case "占用格或推进器净空已被占用。": case "实体或推进器喷口净空被占用。": return "error.clearance";
                 case "必须与现有船体通过面连接。": case "蓝图必须通过面连接组成一个整体。": return "error.connected";
                 case "实体模型发生重叠。": case "Two identical parts share the same pose.": return "error.overlap";
                 case "武器炮口前方被现有部件遮挡。": return "error.muzzleBlocked";
                 case "该部件会遮挡已有武器的开火路径。": return "error.blocksWeapon";
+                case "武器或装甲的宽度方向需要全部底部接触面。": return "error.mountSupport";
+                case "镜像两侧占用格或净空互相重叠。": return "error.mirrorClearance";
+                case "镜像实体模型互相重叠。": return "error.mirrorOverlap";
+                case "镜像组件会遮挡另一侧的开火路径。": return "error.mirrorBlocksWeapon";
+                case "镜像编辑需要先安装核心。": return "error.mirrorNeedCore";
+                case "此组件的镜像朝向无法保持标准格子。": return "error.mirrorGrid";
+                case "镜像删除会使舰体失去连接。": return "error.mirrorDisconnected";
+                case "镜像编辑失败：两侧必须同时满足安装条件。": return "error.mirrorInvalid";
                 case "已有同名蓝图。": return "error.duplicateBlueprint";
                 case "Blueprint was not found.": return "error.fileMissing";
                 case "Blueprint exceeds the 16 MiB file size limit.": return "error.fileTooLarge";
@@ -142,6 +156,15 @@ namespace Starframe.Presentation
                 case "Part quaternion must be normalized.": return "error.invalidBlueprint";
                 default: return null;
             }
+        }
+
+        /// <summary>Translate domain-owned placement text only; player names and other arbitrary text remain untouched.</summary>
+        public static string DomainMessage(string message)
+        {
+            const string mirrorPrefix="镜像另一侧无法安装：";
+            if(message!=null&&message.StartsWith(mirrorPrefix,StringComparison.Ordinal))
+                return T("error.mirrorOtherSide",DomainMessage(message.Substring(mirrorPrefix.Length)));
+            var key=LegacyKey(message);return key!=null?T(key):message;
         }
 
         public static string ErrorKey(Exception error)

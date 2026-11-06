@@ -129,6 +129,14 @@ namespace Starframe.App
                 if (overlaps) { Error(report, "deploy.error.overlap", part.id); invalidGeometry = true; }
             }
             if (cores != 1) Error(report, "deploy.error.coreCount", cores);
+            if (cores == 1 && snapshot.parts[coreIndex] != null)
+            {
+                var forward=snapshot.parts[coreIndex].rotation*Vector3.forward;
+                foreach(var part in snapshot.parts)
+                    if(part!=null&&definitions.TryGetValue(part.shape,out var definition)&&
+                        !BlockPlacement.MountFacesForward(part.shape,part.rotation,forward,definition))
+                        Error(report,"deploy.error.weaponFacing",part.id);
+            }
             if (cores == 1 && !invalidGeometry && !AllConnected(coreIndex, bodyCells, owners))
                 Error(report, "deploy.error.disconnected");
             if (applyMissionConstraints && (cost > float.MaxValue || mass > float.MaxValue)) Error(report, "deploy.error.totals");
@@ -151,10 +159,10 @@ namespace Starframe.App
         {
             if (!Enum.IsDefined(typeof(MissionDifficulty), difficulty) || !Nonnegative(mission.baseBudget)
                 || !Nonnegative(mission.maximumMassKg) || !Nonnegative(mission.relaxedBudgetMultiplier)
-                || !Nonnegative(mission.standardBudgetMultiplier) || !Nonnegative(mission.expertBudgetMultiplier)
+                || !Nonnegative(mission.standardBudgetMultiplier) || !Nonnegative(mission.expertBudgetMultiplier) || !Nonnegative(mission.hellBudgetMultiplier)
                 || (mission.useProvisionalPricing && !Positive(mission.unpricedPartCost))) return false;
             double multiplier = difficulty == MissionDifficulty.Relaxed ? mission.relaxedBudgetMultiplier
-                : difficulty == MissionDifficulty.Expert ? mission.expertBudgetMultiplier : mission.standardBudgetMultiplier;
+                : difficulty == MissionDifficulty.Expert ? mission.expertBudgetMultiplier : difficulty == MissionDifficulty.Hell ? mission.hellBudgetMultiplier : mission.standardBudgetMultiplier;
             return mission.baseBudget * multiplier <= float.MaxValue;
         }
 

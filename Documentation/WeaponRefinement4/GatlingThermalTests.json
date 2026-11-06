@@ -1,0 +1,66 @@
+{
+  "Summary": {
+    "Total": 7,
+    "Passed": 7,
+    "Failed": 0,
+    "Skipped": 0,
+    "Inconclusive": 0
+  },
+  "Results": [
+    {
+      "FullName": "Starframe.Construction.Tests.GatlingThermalTests.ContinuousFiringIncludesSimultaneousCoolingAndLocksAtEightSeconds",
+      "Status": "Passed",
+      "Duration": 0.0396207,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.GatlingThermalTests.EachMountOwnsItsHeatAndInputCancellationCannotClearIt",
+      "Status": "Passed",
+      "Duration": 0.0007992,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.GatlingThermalTests.GenericWeaponsRetainTheirOriginalCadenceAndBeamRangeIsExplicit",
+      "Status": "Passed",
+      "Duration": 0.001904,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.GatlingThermalTests.PausedAndInvalidStepsDoNotAdvanceThermalStateAndClearStartsANewLife",
+      "Status": "Passed",
+      "Duration": 0.0007218,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.GatlingThermalTests.PowerAllocationControlsSpinAndHeatingWhilePassiveCoolingNeedsNoPower",
+      "Status": "Passed",
+      "Duration": 0.000386,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.GatlingThermalTests.PoweredSpinReachesFullRateAfterOnePointFiveSecondsAndStopsInHalfSecond",
+      "Status": "Passed",
+      "Duration": 0.0003161,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.GatlingThermalTests.SpinIntegralAndThermalClockAgreeAcrossStepSizes",
+      "Status": "Passed",
+      "Duration": 0.0003993,
+      "Message": null,
+      "StackTrace": null
+    }
+  ],
+  "Duration": 4.67,
+  "StatusPath": null,
+  "Mode": "EditMode",
+  "FilterApplied": "testname: GatlingThermalTests",
+  "success": true,
+  "result": null
+}

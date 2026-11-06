@@ -1,0 +1,62 @@
+{
+  "status": "completed",
+  "duration": 5.9,
+  "summary": {
+    "total": 7,
+    "passed": 7,
+    "failed": 0,
+    "skipped": 0,
+    "inconclusive": 0
+  },
+  "results": [
+    {
+      "FullName": "Starframe.Tests.GameAudioTests.BurstLimitDoesNotSilenceWarningsAndVoicesRemainBounded",
+      "Status": "Passed",
+      "Duration": 0.7917872,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.GameAudioTests.PreviewRoutesVolumesAndDoesNotRewritePreferences",
+      "Status": "Passed",
+      "Duration": 0.756596,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.GameAudioTests.RealGatlingHeatWarnsOncePerOverheatAndRearmsAfterCooling",
+      "Status": "Passed",
+      "Duration": 0.8146649,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.GameAudioTests.RealShieldStateAndLowHullShareOneCriticalWarningCooldown",
+      "Status": "Passed",
+      "Duration": 0.7562491,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.GameAudioTests.SmallRailAlternatesOnlyAfterAdmittedPlayback",
+      "Status": "Passed",
+      "Duration": 0.8657777,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.GameAudioTests.SustainedFireRefreshesOneVoiceAndExpiresAfterLastShot",
+      "Status": "Passed",
+      "Duration": 1.1347256,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.GameAudioTests.UnreplacedLegacyCuesAreSilent",
+      "Status": "Passed",
+      "Duration": 0.7518463,
+      "Message": null,
+      "StackTrace": null
+    }
+  ]
+}

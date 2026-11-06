@@ -1,4 +1,4 @@
-// @role Display only the active stage fraction at the left, with text-only mission outcomes.
+// @role Display the active wave at top center, with text-only mission outcomes.
 // @calls ArcadeMissionDirector, RangeHUD, L10n, UiStyle
 
 using TMPro;
@@ -30,7 +30,7 @@ namespace Starframe.Combat
             if(modal)root.SetSiblingIndex(modal.GetSiblingIndex());
             visibility=root.gameObject.AddComponent<CanvasGroup>();
             visibility.interactable=visibility.blocksRaycasts=false;
-            stage=Label(root,"MissionStage",54,420,130,32,22,GlassUiPalette.Ink);
+            stage=Label(root,"MissionStage",800,24,320,32,22,GlassUiPalette.Ink);stage.alignment=TextAlignmentOptions.Center;
             terminal=Full(root,"MissionOutcome");
             outcome=Label(terminal,"MissionOutcomeTitle",684,310,552,38,28,GlassUiPalette.Ink);outcome.alignment=TextAlignmentOptions.Center;
             outcomeHint=Label(terminal,"MissionOutcomeHint",684,366,552,25,16,GlassUiPalette.Muted);outcomeHint.alignment=TextAlignmentOptions.Center;
@@ -50,7 +50,7 @@ namespace Starframe.Combat
             if(!built||!director)return;
             bool finished=director.State==ArcadeMissionState.Victory||director.State==ArcadeMissionState.Defeat||director.State==ArcadeMissionState.Aborted;
             stage.gameObject.SetActive(!finished);
-            stage.text=$"{Mathf.Max(1,director.WaveIndex)}/{director.WaveCount}";
+            stage.text=(GameSettings.Current.localeCode.StartsWith("zh")?"波次： ":"WAVE: ")+$"{Mathf.Max(1,director.WaveIndex)}/{director.WaveCount}";
             terminal.gameObject.SetActive(finished);
             if(finished){
                 outcome.text=L10n.T("app.outcome."+(director.State==ArcadeMissionState.Victory?"Victory":director.State==ArcadeMissionState.Defeat?"Defeat":"Aborted"));

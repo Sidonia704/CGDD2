@@ -21,10 +21,10 @@ namespace Starframe.Construction.Tests
         }
         [TearDown] public void TearDown()=>BlockModules.Configure(previous);
 
-        [Test] public void SevenDistinctArchetypesHaveEditableIndependentCopies()
+        [Test] public void ThirteenDistinctArchetypesHaveEditableIndependentCopies()
         {
             var ids=new HashSet<string>();var sizes=new Dictionary<EnemySize,int>();
-            foreach(var id in new[]{"needle","viper","wasp","bastion","harrier","halberd","citadel"})
+            foreach(var id in new[]{"scout-pulse","scout-rail","scout-beam","scout-mixed","needle","viper","wasp","bastion","harrier","halberd","citadel","citadel-missile","sovereign"})
             {
                 var value=AssetDatabase.LoadAssetAtPath<EnemyArchetypeDefinition>(Root+id+".asset");
                 Assert.That(value,Is.Not.Null,id);Assert.That(ids.Add(value.id),Is.True,id);
@@ -34,15 +34,18 @@ namespace Starframe.Construction.Tests
                 var a=value.CreateBlueprint();var b=value.CreateBlueprint();a.parts.RemoveAt(0);
                 Assert.That(b.parts.Count,Is.EqualTo(a.parts.Count+1),"Encounter copies must not mutate template data");
             }
-            Assert.That(sizes[EnemySize.Small],Is.EqualTo(3));Assert.That(sizes[EnemySize.Large],Is.EqualTo(3));Assert.That(sizes[EnemySize.Capital],Is.EqualTo(1));
+            Assert.That(sizes[EnemySize.Small],Is.EqualTo(7));Assert.That(sizes[EnemySize.Large],Is.EqualTo(5));Assert.That(sizes[EnemySize.Capital],Is.EqualTo(1));
+            CollectionAssert.AreEquivalent(ids,EnemyFleetLibrary.LoadTemplates().Select(enemy=>enemy.id));
         }
 
         [TestCase("needle",false)][TestCase("viper",false)][TestCase("wasp",false)][TestCase("bastion",false)]
-        [TestCase("harrier",false)][TestCase("halberd",false)][TestCase("citadel",false)][TestCase("citadel",true)]
+        [TestCase("harrier",false)][TestCase("halberd",false)][TestCase("citadel",false)]
+        [TestCase("scout-pulse",false)][TestCase("scout-rail",false)][TestCase("scout-beam",false)][TestCase("scout-mixed",false)]
+        [TestCase("citadel-missile",false)][TestCase("sovereign",false)]
         public void NativeFleetHasSupportedWeaponsRuntimeNozzleMasksAndSixAxisFlight(string id,bool alternate=false)
         {
             var archetype=AssetDatabase.LoadAssetAtPath<EnemyArchetypeDefinition>(Root+id+".asset");
-            Assert.That(archetype,Is.Not.Null);if(alternate)Assert.That(archetype.alternateBlueprint,Is.SameAs(archetype.blueprint),"Later-wave capital must use approved t7, not the obsolete siege hull.");
+            Assert.That(archetype,Is.Not.Null);
             var data=archetype.CreateBlueprint(alternate);var report=DeploymentValidator.ValidateForRange(data,database);
             Assert.That(report.IsValid,Is.True,string.Join(",",report.Errors.Select(e=>e.key)));
             Assert.That(BlockConnectivity.IsConnected(data),Is.True,"All parts need real contact faces");
@@ -106,20 +109,41 @@ namespace Starframe.Construction.Tests
         [Test] public void FinalWaveRosterUsesTheApprovedCompositionAndNativeBudget()
         {
             var config=AssetDatabase.LoadAssetAtPath<ArcadeMissionDefinition>("Assets/_Starframe/Settings/Game/SaturnRingWaves.asset");
-            Assert.That(config,Is.Not.Null);Assert.That(config.waves.Length,Is.EqualTo(5));Assert.That(config.TotalEnemies,Is.EqualTo(53));
-            string[] ids={"needle","viper","wasp","bastion","harrier","halberd","citadel"};
-            int[][] counts={new[]{5,0,2,0,0,0,0},new[]{4,2,3,1,0,0,0},new[]{4,2,3,2,1,0,0},new[]{3,2,2,1,2,1,0},new[]{3,2,3,1,1,2,1}};
-            for(int wave=0;wave<5;wave++){
+            Assert.That(config,Is.Not.Null);Assert.That(config.waves.Length,Is.EqualTo(6));Assert.That(config.TotalEnemies,Is.EqualTo(77));
+            string[] ids={"scout-pulse","scout-rail","scout-beam","scout-mixed","needle","viper","wasp","bastion","harrier","halberd","citadel","citadel-missile","sovereign"};
+            int[][] counts={new[]{3,2,2,0,2,0,1,0,0,0,0,0,0},new[]{2,2,0,2,2,1,2,1,0,0,0,0,0},new[]{0,0,3,3,2,2,1,1,1,0,0,0,0},new[]{2,2,2,0,2,1,0,1,1,2,0,0,0},new[]{2,2,0,2,2,1,1,1,0,1,1,1,0},new[]{0,0,4,3,2,1,1,0,1,1,0,1,1}};
+            for(int wave=0;wave<6;wave++){
                 var batches=config.waves[wave].batches;Assert.That(config.waves[wave].spawnInterval,Is.GreaterThan(0));
                 Assert.That(batches.All(batch=>batch!=null&&batch.enemy&&batch.count>0&&batch.delaySeconds>=0),Is.True);
                 for(int i=0;i<ids.Length;i++)Assert.That(batches.Where(batch=>batch.enemy.id==ids[i]).Sum(batch=>batch.count),Is.EqualTo(counts[wave][i]),"Wave "+(wave+1)+" "+ids[i]);
             }
+            Assert.That(config.waves.Take(5).SelectMany(w=>w.batches).Any(batch=>batch.enemy.size==EnemySize.Capital),Is.False,"The flagship belongs only to the final wave.");
+            Assert.That(config.waves[5].batches[0].enemy.id,Is.EqualTo("sovereign"),"The final boss arrives while its escorts are being deployed.");
+            Assert.That(config.waves[5].batches.Where(batch=>batch.enemy.size!=EnemySize.Capital).Sum(batch=>batch.count),Is.GreaterThan(0));
+            var progress=new ArcadeWaveProgress();progress.Begin(config.TotalEnemies);
+            for(int life=1;life<=config.TotalEnemies;life++)Assert.That(progress.Spawn(life),Is.True);
+            for(int life=2;life<=config.TotalEnemies;life++)Assert.That(progress.Defeat(life),Is.True);
+            Assert.That(progress.IsCleared,Is.False,"Surviving flagship/escort prevents victory even after all other ships die.");
+            Assert.That(progress.Defeat(1),Is.True);Assert.That(progress.IsCleared,Is.True);
             Assert.That(config.maximumAlive,Is.EqualTo(10));Assert.That(config.maximumLarge,Is.EqualTo(3));Assert.That(config.maximumAttackers,Is.EqualTo(3));
             Assert.That(config.emptyFieldReinforcementSeconds,Is.EqualTo(3));
             var mission=AssetDatabase.LoadAssetAtPath<MissionDefinition>("Assets/_Starframe/Settings/Game/ice.asset");
             Assert.That(config.deployment,Is.SameAs(mission));Assert.That(mission.BudgetFor(MissionDifficulty.Standard),Is.EqualTo(30000));
             var catalog=AssetDatabase.LoadAssetAtPath<MissionCatalog>("Assets/_Starframe/Settings/Game/Missions.asset");
             Assert.That(catalog.Find("ice"),Is.SameAs(mission),"The actual deployment path must use the same native mission budget.");
+        }
+
+        [Test] public void NewFleetSourcesPreserveEveryPartAndWeaponGroupByteForByte()
+        {
+            string[] sources={"t0-1","t0-2","t0-3","t0-4","t7-2","t8"};
+            string[] ids={"scout-pulse","scout-rail","scout-beam","scout-mixed","citadel-missile","sovereign"};
+            int[] counts={52,44,44,45,415,852};
+            for(int i=0;i<sources.Length;i++){
+                var enemy=AssetDatabase.LoadAssetAtPath<EnemyArchetypeDefinition>(Root+ids[i]+".asset");Assert.That(enemy,Is.Not.Null);
+                var data=enemy.CreateBlueprint();Assert.That(data.name,Is.EqualTo(sources[i]));Assert.That(data.parts.Count,Is.EqualTo(counts[i]));
+                string snapshot=Path.Combine(Application.dataPath,"..","Documentation","FleetRevision6","approved-blueprints",sources[i]+".json");
+                CollectionAssert.AreEqual(File.ReadAllBytes(snapshot),File.ReadAllBytes(AssetDatabase.GetAssetPath(enemy.blueprint)),sources[i]);
+            }
         }
 
         [Test] public void FinalBehaviorProfilesFollowTheApprovedBatteryTypes()

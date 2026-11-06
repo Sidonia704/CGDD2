@@ -13,24 +13,31 @@ MonoBehaviour:
   m_Name: Sword2Weapon
   m_EditorClassIdentifier: Starframe.Construction::Starframe.Flight.WeaponDefinition
   shotsPerSecond: 12
-  damage: 2700
+  damage: 8100
   projectileSpeed: 1400
   projectileDiameter: 0.82
+  shotAudioGain: 1
   firstShotImmediate: 0
+  fireWindupSeconds: 0
   penetrationDepth: 1
   secondLayerDamageMultiplier: 0.35
-  range: 60
+  range: 100000
+  unboundedBeam: 1
   visualLength: 40
   tailLength: 0
-  visualWidth: 0.7
+  visualWidth: 1.5
   visualIntensity: 5
   minimumVisualPixels: 0
   tracerStyle: 0
+  smokeTrail: 0
   tracerLingerSeconds: 0
-  sustainedPowerWatts: 220
+  sustainedPowerWatts: 550
   energyPerShot: 100
   delivery: 2
-  effectColor: {r: 0.1, g: 0.57, b: 1, a: 1}
+  family: 4
+  effectColor: {r: 0.08, g: 1, b: 0.24, a: 1}
+  magazineSize: 1
+  salvoLaunchesPerSecond: 16
   missileLockSeconds: 2
   reloadSeconds: 4
   missileTurnDegrees: 110
@@ -52,3 +59,8 @@ MonoBehaviour:
   activationMode: 0
   chargeSeconds: 1
   requireTargetLock: 0
+  gatlingSpinUpSeconds: 1.5
+  gatlingSpinDownSeconds: 0.5
+  gatlingMinimumRateFraction: 0.2
+  gatlingHeatPerSecond: 0.25
+  gatlingCoolingPerSecond: 0.083333336

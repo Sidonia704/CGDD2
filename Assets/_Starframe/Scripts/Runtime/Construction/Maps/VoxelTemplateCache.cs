@@ -1,5 +1,5 @@
-// @role Share generation-safe collision, exact hulls and lightweight damaged exterior templates without changing voxel health or occupancy.
-// @calls VoxelGeometry, VoxelAssetDefinition, VoxelStructureRuntime, VoxelTerrainRenderChunks, VoxelTerrainTopology, VoxelHullAppearance
+// @role Share generation-safe collision and immutable exact hull templates without changing voxel health or occupancy.
+// @calls VoxelGeometry, VoxelAssetDefinition, VoxelStructureRuntime, VoxelTerrainRenderChunks, VoxelHullAppearance
 
 using System.Collections.Generic;
 using Starframe.Construction;
@@ -14,15 +14,14 @@ namespace Starframe.Maps
         {
             public VoxelAssetDefinition asset;
             public int revision, users;
-            // Certified once from the authored cell set when this generation is built: exact cell count and
-            // six-neighbour connectivity. Warm instances seed their topology from this instead of re-running BFS.
+            // Fixed occupied-cell count for this immutable generation.
             public int cellCount;
-            public bool initialConnected;
             public bool current = true;
+            internal bool initialLodChecked, exactMeshBuilt;
             public Mesh mesh;
             // Borrowed imported mesh. Its owner is the asset; this cache never destroys it.
             public Mesh initialLodMesh;
-            internal Dictionary<Vector3Int, VoxelCellState> snapshot;
+            internal SharedVoxelCells snapshot;
             internal VoxelHullAppearance.ModelCache frozenModels;
             internal ModelGeneration modelGeneration;
             internal int materialCount;
@@ -30,7 +29,6 @@ namespace Starframe.Maps
             internal bool usesHullModels;
             public List<Bounds> boxes;
             public VoxelTerrainRenderChunks.SharedTemplate renderChunks;
-            internal VoxelTerrainRenderChunks.SharedTemplate lightweightChunks;
         }
         internal sealed class ModelGeneration
         {
@@ -42,55 +40,49 @@ namespace Starframe.Maps
         static readonly Dictionary<(ModuleDatabase, int), ModelGeneration> modelGenerations =
             new Dictionary<(ModuleDatabase, int), ModelGeneration>();
         public static Template Acquire(VoxelAssetDefinition asset) => Acquire(asset, false);
-        public static Template Acquire(VoxelAssetDefinition asset, bool lazyFineVisuals)
+        public static Template Acquire(VoxelAssetDefinition asset, bool lazyFineVisuals, bool dataOnly = false)
         {
-            if (!cache.TryGetValue(asset, out var template) ||
-                (template.snapshot == null && !template.mesh) || template.revision != asset.GeometryRevision)
+            if (!cache.TryGetValue(asset, out var template) || template.snapshot == null || (template.exactMeshBuilt && !template.mesh) || template.revision != asset.GeometryRevision)
             {
+                if (!asset.Validate(out var error)) throw new System.ArgumentException(error);
                 if (template != null) { template.current = false; if (template.users == 0) Dispose(template); }
-                template = new Template { asset = asset, revision = asset.GeometryRevision };
-                var states = new Dictionary<Vector3Int, VoxelCellState>();
-                foreach (var cell in asset.cells) states.Add(cell.position, new VoxelCellState { position = cell.position, surface = cell.surface, shape = cell.shape, quarterTurns = cell.quarterTurns, modelOffset = cell.modelOffset });
-                int materials = asset.SurfaceCount * (asset.UsesHullModels ? VoxelHullAppearance.ShapeCount : 1);
-                try
-                {
-                    // Connectivity certification is part of cold template construction (prewarm/initialization),
-                    // never of the warm instance path; it is computed once for this generation's cell set.
-                    template.cellCount = states.Count;
-                    template.initialConnected = new VoxelTerrainTopology().Reset(states);
-                    template.materialCount = materials; template.cellSize = asset.cellSize;
-                    template.usesHullModels = asset.UsesHullModels;
-                    if (lazyFineVisuals && ValidInitialLod(asset, materials))
-                    {
-                        template.snapshot = states;
-                        template.initialLodMesh = asset.initialLodMesh;
-                        template.modelGeneration = AcquireModels(asset.hullModules);
-                        template.frozenModels = template.modelGeneration.models.ForkFrozen();
-                    }
-                    else
-                    {
-                        // Default path retains the existing eager exact mesh and chunk prewarm.
-                        template.renderChunks = VoxelTerrainRenderChunks.AcquireTemplate(asset);
-                        template.mesh = template.renderChunks != null
-                            ? VoxelHullAppearance.BuildChunk(states, states, materials, asset.cellSize, template.renderChunks.models)
-                            : VoxelGeometry.Build(states, materials, asset.cellSize, asset.hullModules);
-                        template.mesh.hideFlags = HideFlags.HideAndDontSave;
-                    }
-                    template.boxes = VoxelGeometry.CollisionBoxes(states, asset.cellSize); cache[asset] = template;
-                }
-                catch { Dispose(template); throw; }
+                template = new Template { asset = asset, revision = asset.GeometryRevision,
+                    snapshot = new SharedVoxelCells(asset), materialCount = asset.RenderMaterialCount,
+                    cellSize = asset.cellSize, usesHullModels = asset.UsesHullModels };
+                template.cellCount = template.snapshot.Count;
+                cache[asset] = template;
             }
-            if (!lazyFineVisuals && template.snapshot != null)
+            template.users++;
+            try
             {
-                EnsureRenderChunks(template);
-                EnsureExactMesh(template);
+                if (!dataOnly)
+                {
+                    EnsureModels(template);
+                    if (lazyFineVisuals && !template.initialLodChecked)
+                    {
+                        template.initialLodChecked = true;
+                        if (asset.HasValidInitialLod) template.initialLodMesh = asset.initialLodMesh;
+                    }
+                    if (!lazyFineVisuals || !template.initialLodMesh) { EnsureRenderChunks(template); EnsureExactMesh(template); }
+                    if (template.boxes == null)
+                    {
+                        template.boxes = new List<Bounds>();
+                        // Bounded scratch partitions keep an oversized component as one body.
+                        for (int start = 0; start < template.cellCount; start += VoxelAssetDefinition.MaximumCells)
+                            template.boxes.AddRange(VoxelGeometry.CollisionBoxes(template.snapshot.Slice(start,
+                                System.Math.Min(VoxelAssetDefinition.MaximumCells, template.cellCount - start)), template.cellSize));
+                    }
+                }
+                return template;
             }
-            template.users++; return template;
+            catch { Release(template); throw; }
         }
-        static bool ValidInitialLod(VoxelAssetDefinition asset, int materials) => asset.UsesHullModels &&
-            asset.initialLodMesh && asset.initialLodMesh.vertexCount > 0 &&
-            asset.initialLodMesh.subMeshCount == materials &&
-            asset.initialLodSignature == SpaceMapVisuals.ComputeGeometrySignature(asset);
+        static void EnsureModels(Template template)
+        {
+            if (template.modelGeneration != null) return;
+            template.modelGeneration = AcquireModels(template.asset.hullModules);
+            template.frozenModels = template.modelGeneration.models.ForkFrozen();
+        }
         static ModelGeneration AcquireModels(ModuleDatabase database)
         {
             int revision = database ? database.Revision : 0;
@@ -124,10 +116,11 @@ namespace Starframe.Maps
         {
             if (template == null || template.users <= 0) throw new System.ObjectDisposedException(nameof(template));
             if (template.mesh) return template.mesh;
-            if (template.snapshot == null || template.frozenModels == null) throw new System.ObjectDisposedException(nameof(template));
-            template.mesh = VoxelHullAppearance.BuildChunk(template.snapshot, template.snapshot,
-                template.materialCount, template.cellSize, template.frozenModels);
-            template.mesh.hideFlags = HideFlags.HideAndDontSave;
+            if (template.snapshot == null || (template.usesHullModels && template.frozenModels == null)) throw new System.ObjectDisposedException(nameof(template));
+            template.mesh = template.usesHullModels
+                ? VoxelHullAppearance.BuildChunk(template.snapshot, template.snapshot, template.materialCount, template.cellSize, template.frozenModels)
+                : VoxelGeometry.Build(template.snapshot, template.materialCount, template.cellSize, null);
+            template.mesh.hideFlags = HideFlags.HideAndDontSave; template.exactMeshBuilt = true;
             return template.mesh;
         }
         public static VoxelTerrainRenderChunks.SharedTemplate EnsureRenderChunks(Template template)
@@ -140,17 +133,6 @@ namespace Starframe.Maps
                 : VoxelTerrainRenderChunks.CreateFromSnapshot(template.asset, template.snapshot,
                     template.materialCount, template.cellSize, template.revision, template.frozenModels);
             return template.renderChunks;
-        }
-        // Large coarse scenery must not expand into every bevelled interior ship mesh on its first hit.
-        // Keep source shape records/material slots intact, while displaying the same full-cell exterior LOD in larger render tiles.
-        public static VoxelTerrainRenderChunks.SharedTemplate EnsureLightweightRenderChunks(Template template)
-        {
-            if (template == null || template.users <= 0) throw new System.ObjectDisposedException(nameof(template));
-            if (template.lightweightChunks != null) return template.lightweightChunks;
-            if (template.snapshot == null) return EnsureRenderChunks(template);
-            template.lightweightChunks = VoxelTerrainRenderChunks.CreateFromSnapshot(template.asset, template.snapshot,
-                template.materialCount, template.cellSize, template.revision, template.frozenModels, 8, true);
-            return template.lightweightChunks;
         }
         // Retain this exact generation; a fragment must not acquire a newer edited source asset.
         public static Template Retain(Template template)
@@ -171,10 +153,9 @@ namespace Starframe.Maps
             if (template.mesh) { if (Application.isPlaying) Object.Destroy(template.mesh); else Object.DestroyImmediate(template.mesh); }
             template.mesh = null;
             VoxelTerrainRenderChunks.ReleaseTemplate(template.renderChunks); template.renderChunks = null;
-            VoxelTerrainRenderChunks.ReleaseTemplate(template.lightweightChunks); template.lightweightChunks = null;
             template.frozenModels?.Dispose(); template.frozenModels = null;
             ReleaseModels(template.modelGeneration); template.modelGeneration = null;
-            template.snapshot?.Clear(); template.snapshot = null;
+            template.snapshot = null;
         }
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)] static void Reset() => Clear();
     }

@@ -1,0 +1,46 @@
+{
+  "status": "restored on 2026-11-06; original placement rules active",
+  "modified": [
+    {
+      "path": "Assets/_Starframe/Scripts/Runtime/Construction/ShipAssembly.cs",
+      "beforeSHA256": "2CEC7F95AD1AD677604CD93DD4FA19F3E591E111036D977E83590EC70F5388D3",
+      "enabledSHA256": "0EFCDEEAC834677C95808504C594EF1C5FBDCFA4E0472803F8F3C90CFD8531E4"
+    },
+    {
+      "path": "Assets/_Starframe/Scripts/Runtime/Construction/BlockPlacement.cs",
+      "beforeSHA256": "DB7FDB2D4196DE26AB6713E3C665437E372244452968A88A56F2CFA6E25FC1EC",
+      "enabledSHA256": "6E344E696A495D8FC14B5F1DB656332AA96C37B9D634F3FC361452D77584834D"
+    },
+    {
+      "path": "Assets/_Starframe/Scripts/Runtime/Construction/BlueprintRepository.cs",
+      "beforeSHA256": "190F4533E2FB9717101F8CC102AB3E176C14D893C2637C4041F004FFF8DBF503",
+      "enabledSHA256": "826DA1DBDAB6B6E2526332B0BF0D70C25C4D7515FF624A052BCADFD7F8126681"
+    },
+    {
+      "path": "Assets/_Starframe/Scripts/Runtime/Construction/App/Missions/DeploymentValidator.cs",
+      "beforeSHA256": "744C57AA4FA5EB9E445E632B47E854C4CC4F74FCC4D340CBFE5CC451F9AA1CCF",
+      "enabledSHA256": "F39008A33F4C381D7AF2B2D5038D15FCD5BF65C24F7CE6B9E829515B520F13B9"
+    },
+    {
+      "path": "Assets/_Starframe/Scripts/Runtime/Construction/Flight/FlightShipRuntime.cs",
+      "beforeSHA256": "FB51A3CBD40DB82A3514235871104CA10ECCCEFCC7511241D953FC70410C9EBD",
+      "enabledSHA256": "3520DE72D6DE8A5AE768874BE3C0E03172BB439D95628D5FBEC1827A812EFB8E"
+    },
+    {
+      "path": "Assets/_Starframe/Scripts/Runtime/Construction/Flight/FlightTuning.cs",
+      "beforeSHA256": "17664ECA21AB5D0B4363DA22161BBFA9EA8A962406A37A6772D61E1CD4A1F904",
+      "enabledSHA256": "2FF262915D55C3F82720D92B19D670A3E97EFA800B00A79F6D1E6A3F79E37019"
+    }
+  ],
+  "created": [
+    {
+      "path": "Assets/_Starframe/Scripts/Runtime/Construction/PlacementTestMode.cs",
+      "enabledSHA256": "9FA5CE94D5926C42823F08FE8A0C8E1C79D71D6BA869933A5EDA7DDA94DDAF9C"
+    },
+    {
+      "path": "Assets/_Starframe/Scripts/Runtime/Construction/PlacementTestMode.cs.meta",
+      "enabledSHA256": "D7B158E40E52ABC60A48512FDDD33AE2B6CCE7E53EF13CD645989D204650F546"
+    }
+  ],
+  "verification": "All six restored source hashes match the pre-change baseline; temporary source and meta removed. No Unity invocation or tests."
+}

@@ -1,0 +1,83 @@
+{
+  "status": "completed",
+  "duration": 12.03,
+  "summary": {
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "skipped": 0,
+    "inconclusive": 0
+  },
+  "results": [
+    {
+      "FullName": "Starframe.Tests.GameAudioTests.BurstLimitDoesNotSilenceWarningsAndVoicesRemainBounded",
+      "Status": "Passed",
+      "Duration": 0.7994921,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.GameAudioTests.FlareVariantsCycleOneUnitPerAcceptedCue",
+      "Status": "Passed",
+      "Duration": 1.2506029,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.GameAudioTests.GatlingStartSustainEndFollowActualFireAndSurviveVoicePressure",
+      "Status": "Passed",
+      "Duration": 3.7397366,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.GameAudioTests.MissilePulseFitsOriginalFastCadenceWithoutOverlapping",
+      "Status": "Passed",
+      "Duration": 0.896516,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.GameAudioTests.OnlyExplicitlyDeletedLegacyCuesAreRemoved",
+      "Status": "Passed",
+      "Duration": 0.7532577,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.GameAudioTests.PreviewRoutesVolumesAndDoesNotRewritePreferences",
+      "Status": "Passed",
+      "Duration": 0.7560781,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.GameAudioTests.RealGatlingHeatWarnsOnceAndAudioRestartsAfterCoolingWithInputHeld",
+      "Status": "Passed",
+      "Duration": 1.1189523,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.GameAudioTests.RealShieldStateAndLowHullShareOneCriticalWarningCooldown",
+      "Status": "Passed",
+      "Duration": 0.7547831,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.GameAudioTests.SmallRailAlternatesOnlyAfterAdmittedPlayback",
+      "Status": "Passed",
+      "Duration": 0.8655928,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.GameAudioTests.SustainedFireRefreshesOneVoiceAndExpiresAfterLastShot",
+      "Status": "Passed",
+      "Duration": 1.0547179,
+      "Message": null,
+      "StackTrace": null
+    }
+  ]
+}

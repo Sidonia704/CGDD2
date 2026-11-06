@@ -12,14 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 709e20d8521834845a71b54704f53b46, type: 3}
   m_Name: Missile1Weapon
   m_EditorClassIdentifier: Starframe.Construction::Starframe.Flight.WeaponDefinition
-  shotsPerSecond: 0.125
+  shotsPerSecond: 0.1
   damage: 11200
   projectileSpeed: 240
   projectileDiameter: 0.7
+  shotAudioGain: 0.6
   firstShotImmediate: 0
+  fireWindupSeconds: 0
   penetrationDepth: 1
   secondLayerDamageMultiplier: 0.35
   range: 2200
+  unboundedBeam: 0
   visualLength: 1.5
   tailLength: 7
   visualWidth: 0.32
@@ -28,12 +31,15 @@ MonoBehaviour:
   tracerStyle: 0
   smokeTrail: 1
   tracerLingerSeconds: 0
-  sustainedPowerWatts: 70
+  sustainedPowerWatts: 98
   energyPerShot: 100
   delivery: 1
+  family: 5
   effectColor: {r: 1, g: 0.4, b: 0.025, a: 1}
+  magazineSize: 1
+  salvoLaunchesPerSecond: 16
   missileLockSeconds: 1
-  reloadSeconds: 8
+  reloadSeconds: 10
   missileTurnDegrees: 110
   missileAcceleration: 120
   missileTurnAcceleration: 360
@@ -53,3 +59,8 @@ MonoBehaviour:
   activationMode: 0
   chargeSeconds: 1
   requireTargetLock: 1
+  gatlingSpinUpSeconds: 1.5
+  gatlingSpinDownSeconds: 0.5
+  gatlingMinimumRateFraction: 0.2
+  gatlingHeatPerSecond: 0.25
+  gatlingCoolingPerSecond: 0.083333336

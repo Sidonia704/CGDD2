@@ -1,0 +1,73 @@
+{
+  "Summary": {
+    "Total": 8,
+    "Passed": 8,
+    "Failed": 0,
+    "Skipped": 0,
+    "Inconclusive": 0
+  },
+  "Results": [
+    {
+      "FullName": "Starframe.Construction.Tests.CombatBalanceWiringTests.BotForecastPreservesRoofObstructionAndSpendsNothingUntilTheMountIsClear",
+      "Status": "Passed",
+      "Duration": 0.067739,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.CombatBalanceWiringTests.BotSpacesFollowupBurstsAcrossInstalledLaunchersAndRetainsTheirCooldowns",
+      "Status": "Passed",
+      "Duration": 0.0131919,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.CombatBalanceWiringTests.BotUsesOnlyItsRealIncomingThreatAfterReactionAndInsideFlareReach",
+      "Status": "Passed",
+      "Duration": 0.0148366,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.CombatBalanceWiringTests.DeploymentRejectsMalformedLiveMissileFieldsButIgnoresUnusedMissileSettingsOnDirectWeapons",
+      "Status": "Passed",
+      "Duration": 0.0043214,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.CombatBalanceWiringTests.FastIncomingMissileTriggersARealAnticipatoryBurstAndCanBeDiverted(240.0f)",
+      "Status": "Passed",
+      "Duration": 0.0207198,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.CombatBalanceWiringTests.FastIncomingMissileTriggersARealAnticipatoryBurstAndCanBeDiverted(245.0f)",
+      "Status": "Passed",
+      "Duration": 0.0185045,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.CombatBalanceWiringTests.FastIncomingMissileTriggersARealAnticipatoryBurstAndCanBeDiverted(250.0f)",
+      "Status": "Passed",
+      "Duration": 0.0171883,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.CombatBalanceWiringTests.MissingLauncherNeverCreatesAFreeAiBurst",
+      "Status": "Passed",
+      "Duration": 0.0125323,
+      "Message": null,
+      "StackTrace": null
+    }
+  ],
+  "Duration": 3.08,
+  "StatusPath": null,
+  "Mode": "EditMode",
+  "FilterApplied": "testname: CombatBalanceWiringTests",
+  "success": true,
+  "result": null
+}

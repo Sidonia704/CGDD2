@@ -1,4 +1,4 @@
-// @role Handle placement, rotation, deletion and blueprint editing input.
+// @role Handle assembly placement, atomic core-axis mirrored editing, rotation, deletion, catalogue switching and Alt-copy input.
 // @calls ShipAssembly, WorkbenchOrbit, ShipEditorUI, BlueprintRepository, FlightSession, RangeLoadingOverlay
 
 using System;
@@ -22,6 +22,7 @@ namespace Starframe.Construction
         BlueprintRepository repository;
         Starframe.Combat.RangeTargetRoster targetRoster;
         GameObject ghost;
+        GameObject mirroredGhost;MeshRenderer mirroredGhostRenderer;
         MeshFilter ghostFilter,ghostEdgeFilter;
         MeshRenderer ghostRenderer;
         Transform clearancePreview;
@@ -36,11 +37,14 @@ namespace Starframe.Construction
         int rotation;
         BlockShape selected;
         bool deleting;
+        bool mirrorMode;
         string currentName;
+        Material copyHighlight;
         public ShipAssembly Assembly=>assembly;
         public WorkbenchOrbit Orbit=>orbit;
         MeshRenderer shieldPreview;
         public bool DeleteMode=>deleting;
+        public bool MirrorMode=>mirrorMode;
         public BlockShape SelectedShape=>selected;
         public Vector3Int PreviewCell=>previewCell;
         public bool HasValidPreview=>validPreview;
@@ -71,6 +75,7 @@ namespace Starframe.Construction
             }
             assembly.Changed+=OnAssemblyChanged;
             ui.SetShape(selected);ui.SetMode(false);ui.UpdateStats(assembly.Count,dirty);
+            orbit.Frame(assembly.ContentBounds());
             RefreshFiles();ui.SetStatusKey("editor.status.ready");
         }
         void CreateGhost()
@@ -94,6 +99,7 @@ namespace Starframe.Construction
         {selected=shape;deleting=false;ResetHover();UpdateGhostShape();ui.SetShape(shape);ui.SetMode(false);}
         void UpdateGhostShape()
         {
+            if(mirroredGhost){mirroredGhost.SetActive(false);Destroy(mirroredGhost);mirroredGhost=null;}
             if(!ghostFilter)return;if(corePreviewRay)corePreviewRay.SetActive(selected==BlockShape.Core);ghostFilter.sharedMesh=assembly.Solid(selected);ghostEdgeFilter.sharedMesh=assembly.Outline(selected);
             if(clearancePreview){clearancePreview.gameObject.SetActive(false);Destroy(clearancePreview.gameObject);}
             if(shieldPreview){shieldPreview.gameObject.SetActive(false);Destroy(shieldPreview.gameObject);shieldPreview=null;}
@@ -114,9 +120,16 @@ namespace Starframe.Construction
             }
         }
         public void ToggleDelete(){deleting=!deleting;ResetHover();ui.SetMode(deleting);ui.SetStatusKey(deleting?"editor.status.deleteMode":"editor.status.buildMode");Starframe.App.GameAudio.Click();}
+        public void ToggleMirror()
+        {
+            mirrorMode=!mirrorMode;ResetHover();validPreview=false;ui.SetMirror(mirrorMode);
+            ui.SetStatus(L10n.IsEnglish?(mirrorMode?"Mirror editing ON · core left/right plane":"Mirror editing OFF"):(mirrorMode?"镜像编辑已开启 · 按核心左右轴对称":"镜像编辑已关闭"));
+            Starframe.App.GameAudio.Click();
+        }
         void ResetHover(){if(hover && hover.Solid)hover.Solid.sharedMaterial=assembly.MaterialFor(hover.Record.shape);hover=null;}
         void Update()
         {
+            if(mirroredGhost)mirroredGhost.SetActive(false);
             if(!repositoryInitialized)return;
             var mouse=Mouse.current;var keyboard=Keyboard.current;
             bool editing=ui.EditingName;
@@ -126,9 +139,15 @@ namespace Starframe.Construction
                 if(mouse==null || (!mouse.leftButton.isPressed && !mouse.middleButton.isPressed))inputReady=true;
                 ghost.SetActive(false);ResetHover();return;
             }
+            if(!editing&&keyboard!=null){
+                if(keyboard.spaceKey.wasPressedThisFrame)ui.ToggleCatalogue();
+                if(keyboard.pKey.wasPressedThisFrame)ui.ToggleWeaponGroups();
+            }
+            if(ui.IsSpecialEditorMode){ResetHover();validPreview=false;ghost.SetActive(false);return;}
             if(!editing && keyboard!=null)
             {
                 if(keyboard.xKey.wasPressedThisFrame)ToggleDelete();
+                if(keyboard.mKey.wasPressedThisFrame)ToggleMirror();
                 if(keyboard.rKey.wasPressedThisFrame&&selected!=BlockShape.Core)RotatePreview();
                 if(keyboard.fKey.wasPressedThisFrame)orbit.Frame(assembly.ContentBounds());
             }
@@ -138,8 +157,17 @@ namespace Starframe.Construction
             var ray=orbit.Camera.ScreenPointToRay(mouse.position.ReadValue());
             BlockView hitPart=null;RaycastHit hit=default;
             if(Physics.Raycast(ray,out hit,1000,1))hitPart=hit.collider.GetComponent<BlockView>();
+            if(keyboard!=null&&(keyboard.leftShiftKey.isPressed||keyboard.rightShiftKey.isPressed)){ui.SetHover(null);return;}
+            if(keyboard!=null&&(keyboard.leftAltKey.isPressed||keyboard.rightAltKey.isPressed)){
+                if(hitPart){
+                    if(!copyHighlight){copyHighlight=new Material(assembly.BodyMaterial){name="AssemblyCopyHighlight"};if(copyHighlight.HasProperty("_BaseColor"))copyHighlight.SetColor("_BaseColor",new Color32(255,149,25,255));if(copyHighlight.HasProperty("_Color"))copyHighlight.SetColor("_Color",new Color32(255,149,25,255));}
+                    hover=hitPart;if(hover.Solid)hover.Solid.sharedMaterial=copyHighlight;ui.SetHover(hitPart.Record);
+                    if(mouse.leftButton.wasPressedThisFrame){SelectShape(hitPart.Record.shape);ui.SetStatus( L10n.IsEnglish?"Copied module · "+ShapeName(selected):"已复制组件 · "+ShapeName(selected));}
+                }else ui.SetHover(null);
+                return;
+            }
             if(keyboard!=null&&keyboard.rKey.wasPressedThisFrame&&selected==BlockShape.Core){
-                if(hitPart&&hitPart.Record.shape==BlockShape.Core){assembly.RotateCore(hitPart.Record.id);ui.SetStatusKey("editor.status.forward");Starframe.App.GameAudio.Play(Starframe.App.GameSound.RotatePart);}
+                if(hitPart&&hitPart.Record.shape==BlockShape.Core){if(assembly.RotateCore(hitPart.Record.id)){ui.SetStatusKey("editor.status.forward");Starframe.App.GameAudio.Play(Starframe.App.GameSound.RotatePart);}else{ui.SetStatusKey(L10n.LegacyKey(assembly.PlacementFailure)??"editor.status.cannotPlace",true);Starframe.App.GameAudio.Play(Starframe.App.GameSound.InvalidPlacement);}}
                 else RotatePreview();
             }
             if(deleting)
@@ -148,7 +176,7 @@ namespace Starframe.Construction
                 {
                     hover=hitPart;hover.Solid.sharedMaterial=deleteMaterial;
                     ui.SetHover(hitPart.Record);
-                    if(mouse.leftButton.wasPressedThisFrame){var id=hitPart.Record.id;ResetHover();if(assembly.Remove(id)){ui.SetStatusKey("editor.status.deletedPart");Starframe.App.GameAudio.Play(Starframe.App.GameSound.RemovePart);}else{ui.SetStatusKey("editor.status.cannotDelete",true);Starframe.App.GameAudio.Play(Starframe.App.GameSound.InvalidPlacement);}}
+                    if(mouse.leftButton.wasPressedThisFrame){var id=hitPart.Record.id;ResetHover();if(mirrorMode?assembly.RemoveMirrored(id):assembly.Remove(id)){ui.SetStatusKey("editor.status.deletedPart");Starframe.App.GameAudio.Play(Starframe.App.GameSound.RemovePart);}else{if(mirrorMode)ui.SetStatus(MirrorFailure(),true);else ui.SetStatusKey("editor.status.cannotDelete",true);Starframe.App.GameAudio.Play(Starframe.App.GameSound.InvalidPlacement);}}
                 }
                 else ui.SetHover(null);
                 return;
@@ -171,18 +199,26 @@ namespace Starframe.Construction
             var localPosition=assembly.transform.InverseTransformPoint(previewPose.position);
             var localRotation=Quaternion.Inverse(assembly.transform.rotation)*previewPose.rotation;
             previewCell=BlockPlacement.GridHint(localPosition);
-            validPreview=assembly.CanPlace(selected,localPosition,localRotation);
+            validPreview=mirrorMode?assembly.CanPlaceMirrored(selected,localPosition,localRotation):assembly.CanPlace(selected,localPosition,localRotation);
             ghost.transform.SetPositionAndRotation(previewPose.position,previewPose.rotation);
             ghostRenderer.sharedMaterial=validPreview?ghostMaterial:blockedMaterial;ghost.SetActive(true);
+            if(mirrorMode&&assembly.TryMirrorPose(selected,localPosition,localRotation,out var mirrored,out bool same)&&!same)
+            {
+                if(!mirroredGhost){mirroredGhost=Instantiate(ghost);mirroredGhost.name="MirroredPlacementPreview";mirroredGhostRenderer=mirroredGhost.GetComponent<MeshRenderer>();}
+                mirroredGhost.GetComponent<MeshFilter>().sharedMesh=ghostFilter.sharedMesh;
+                mirroredGhost.transform.SetPositionAndRotation(assembly.transform.TransformPoint(mirrored.position),assembly.transform.rotation*mirrored.rotation);
+                mirroredGhostRenderer.sharedMaterial=validPreview?ghostMaterial:blockedMaterial;mirroredGhost.SetActive(true);
+            }
             ui.SetHover(new BlockRecord{shape=selected,cell=previewCell,position=localPosition,rotation=localRotation,
                 yawQuarterTurns=rotation,id=hitPart?hitPart.Record.id:null});
             if(mouse.leftButton.wasPressedThisFrame && validPreview)
             {
-                var placed=assembly.Place(selected,localPosition,localRotation,rotation);
+                var placed=mirrorMode?assembly.PlaceMirrored(selected,localPosition,localRotation,rotation):assembly.Place(selected,localPosition,localRotation,rotation);
                 if(placed){Starframe.App.GameAudio.Play(selected==BlockShape.Core?Starframe.App.GameSound.CorePowerOn:(BlockModules.IsThruster(selected)||BlockModules.IsWeapon(selected)?Starframe.App.GameSound.PlaceModule:Starframe.App.GameSound.PlaceHull));ui.SetStatusKey("editor.status.placed",false,L10n.Value("module."+selected),localPosition.ToString("F2"));}
             }
-            else if(mouse.leftButton.wasPressedThisFrame){ui.SetStatusKey(L10n.LegacyKey(assembly.PlacementFailure)??"editor.status.cannotPlace",true);Starframe.App.GameAudio.Play(Starframe.App.GameSound.InvalidPlacement);}
+            else if(mouse.leftButton.wasPressedThisFrame){if(mirrorMode)ui.SetStatus(MirrorFailure(),true);else ui.SetStatusKey(L10n.LegacyKey(assembly.PlacementFailure)??"editor.status.cannotPlace",true);Starframe.App.GameAudio.Play(Starframe.App.GameSound.InvalidPlacement);}
         }
+        string MirrorFailure()=>assembly.PlacementFailure??"镜像编辑失败：两侧必须同时满足安装条件。";
         public void RotatePreview(){rotation=(rotation+1)%4;ui.SetRotation(rotation*90);Starframe.App.GameAudio.Play(Starframe.App.GameSound.RotatePart);}
         bool repositoryInitialized=>repository!=null;
         public static string ShapeName(BlockShape shape)=>L10n.T("module."+shape);
@@ -235,6 +271,6 @@ namespace Starframe.Construction
             try{targetRoster.SetCount(file,count);if(count>0)ui.SetStatusKey("editor.status.targetSet",false,Path.GetFileNameWithoutExtension(file),count);else ui.SetStatusKey("editor.status.targetCleared");return true;}
             catch(Exception e)when(e is IOException||e is InvalidDataException||e is ArgumentException||e is UnauthorizedAccessException){ui.SetStatusKey(L10n.ErrorKey(e),true);return false;}
         }
-        void OnDestroy(){ResetHover();if(assembly)assembly.Changed-=OnAssemblyChanged;if(ghost)Destroy(ghost);}
+        void OnDestroy(){ResetHover();if(assembly)assembly.Changed-=OnAssemblyChanged;if(ghost)Destroy(ghost);if(mirroredGhost)Destroy(mirroredGhost);if(copyHighlight)Destroy(copyHighlight);}
     }
 }

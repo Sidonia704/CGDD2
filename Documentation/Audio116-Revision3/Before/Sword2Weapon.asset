@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 709e20d8521834845a71b54704f53b46, type: 3}
+  m_Name: Sword2Weapon
+  m_EditorClassIdentifier: Starframe.Construction::Starframe.Flight.WeaponDefinition
+  shotsPerSecond: 12
+  damage: 4050
+  projectileSpeed: 1400
+  projectileDiameter: 0.82
+  firstShotImmediate: 0
+  penetrationDepth: 1
+  secondLayerDamageMultiplier: 0.35
+  range: 100000
+  unboundedBeam: 1
+  visualLength: 40
+  tailLength: 0
+  visualWidth: 1.5
+  visualIntensity: 5
+  minimumVisualPixels: 0
+  tracerStyle: 0
+  smokeTrail: 0
+  tracerLingerSeconds: 0
+  sustainedPowerWatts: 550
+  energyPerShot: 100
+  delivery: 2
+  family: 4
+  effectColor: {r: 0.08, g: 1, b: 0.24, a: 1}
+  missileLockSeconds: 2
+  reloadSeconds: 4
+  missileTurnDegrees: 110
+  missileAcceleration: 160
+  missileTurnAcceleration: 180
+  missileGuidanceSeconds: 10
+  missileSeekerConeDegrees: 65
+  missileSeekerLossSeconds: 0.35
+  missileLaunchSpeed: 35
+  explosionRadius: 3
+  launcherMesh: {fileID: 0}
+  missileMesh: {fileID: 0}
+  missileLaunchOffsets:
+  - {x: 0, y: 0, z: 0}
+  muzzleOffsets: []
+  projectileMaterial: {fileID: 2100000, guid: 06381e101fc192540a489ce251be5e65, type: 2}
+  beamDuration: 0.12
+  beamMesh: {fileID: 4300000, guid: f5d8bb3c04f076845860100113586ad6, type: 2}
+  activationMode: 0
+  chargeSeconds: 1
+  requireTargetLock: 0
+  gatlingSpinUpSeconds: 1.5
+  gatlingSpinDownSeconds: 0.5
+  gatlingMinimumRateFraction: 0.2
+  gatlingHeatPerSecond: 0.25
+  gatlingCoolingPerSecond: 0.083333336

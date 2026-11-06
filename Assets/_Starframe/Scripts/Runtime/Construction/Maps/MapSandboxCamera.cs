@@ -1,8 +1,7 @@
-// @role Provide a developer-only free-flight camera and instant damage probe in exported physics sandbox scenes.
+// @role Provide a developer-only free-flight camera and collision inspection in exported physics sandbox scenes.
 // @calls VoxelBodyHitbox, VoxelAuthoring, VoxelStructureRuntime
 // @tune flySpeed:float:1-500:Sandbox camera speed in metres per second.
 // @tune lookSensitivity:float:0.01-1:Degrees of camera rotation per mouse pixel.
-// @tune probeDamage:float:1-100000:Instant cell damage per left click in the development sandbox.
 // @tune pushSpeed:float:0.1-20:Velocity impulse applied by the sandbox's middle-click collision probe.
 
 using UnityEngine;
@@ -15,10 +14,9 @@ namespace Starframe.Maps
     {
         [Min(1)] public float flySpeed = 60;
         [Range(.01f, 1)] public float lookSensitivity = .12f;
-        [Min(1)] public float probeDamage = 40;
         [Range(.1f, 20)] public float pushSpeed = 3;
         Camera view;
-        string lastHit = "Aim at scenery and click to apply damage. Hold Shift for a stronger probe.";
+        string lastHit = "Aim at scenery and click to inspect a cell. Middle click applies an impulse.";
         void Awake() => view = GetComponent<Camera>();
         void Update()
         {
@@ -48,9 +46,7 @@ namespace Starframe.Maps
                     var target = hit.collider.GetComponent<VoxelBodyHitbox>();
                     if (target && VoxelAuthoring.Pick(target.Structure, ray, out var cell, out _, out _))
                     {
-                        target.Structure.ApplyDamage(cell, probeDamage * (keys.leftShiftKey.isPressed ? 100 : 1));
-                        target.Structure.FlushMeshChanges();
-                        lastHit = target.name + " | Cell " + cell + " | HP " + target.Structure.GetHealth(cell).ToString("0.#");
+                        lastHit = target.name + " | Cell " + cell;
                     }
                 }
             }
@@ -58,7 +54,7 @@ namespace Starframe.Maps
         // This overlay belongs to the development sandbox; it is not part of the player's game HUD.
         void OnGUI()
         {
-            GUI.Label(new Rect(18, 14, Screen.width - 36, 24), "MAP PHYSICS SANDBOX | RMB look | WASD move | Space/Ctrl up/down | Wheel speed | LMB damage | MMB push | Shift boost");
+            GUI.Label(new Rect(18, 14, Screen.width - 36, 24), "MAP PHYSICS SANDBOX | RMB look | WASD move | Space/Ctrl up/down | Wheel speed | LMB inspect | MMB push | Shift boost");
             GUI.Label(new Rect(18, 39, Screen.width - 36, 24), lastHit);
             GUI.Label(new Rect(Screen.width * .5f - 5, Screen.height * .5f - 10, 20, 20), "+");
         }

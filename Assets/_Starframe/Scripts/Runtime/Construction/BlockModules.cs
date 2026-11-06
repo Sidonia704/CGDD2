@@ -27,6 +27,7 @@ namespace Starframe.Construction
         }
         public static bool IsThruster(BlockShape shape)=>shape==BlockShape.Thruster1||shape==BlockShape.Thruster2||shape==BlockShape.Thruster3||shape==BlockShape.Thruster4||shape==BlockShape.Thruster5||shape==BlockShape.Thruster6;
         public static bool IsArmor(BlockShape shape)=>shape>=BlockShape.Armor1&&shape<=BlockShape.Armor4;
+        public static bool IsVerticalLaunch(BlockShape shape)=>shape==BlockShape.VLS1||shape==BlockShape.VLS2;
         public static bool IsCountermeasure(BlockShape shape)
         {
             var definition=database?database.Get(shape):null;
@@ -35,7 +36,7 @@ namespace Starframe.Construction
         public static bool IsWeapon(BlockShape shape)
         {
             var definition=database?database.Get(shape):null;
-            return definition&&(definition.weapon||definition.countermeasure) || shape==BlockShape.FlareLauncher || shape==BlockShape.Laser || shape>=BlockShape.Gun1&&shape<=BlockShape.Sword2;
+            return definition&&(definition.weapon||definition.countermeasure) || shape==BlockShape.FlareLauncher || shape==BlockShape.Laser || shape>=BlockShape.Gun1&&shape<=BlockShape.Sword2||IsVerticalLaunch(shape);
         }
         public static Vector3Int[] LocalCells(BlockShape shape)
         {
@@ -62,6 +63,8 @@ namespace Starframe.Construction
                 case BlockShape.Railgun3:size=new Vector3Int(2,2,6);break;
                 case BlockShape.Missile2:size=new Vector3Int(2,1,3);break;
                 case BlockShape.Missile3:size=new Vector3Int(1,1,5);break;
+                case BlockShape.VLS1:size=new Vector3Int(2,2,2);break;
+                case BlockShape.VLS2:size=new Vector3Int(1,2,2);break;
             }
             if(size==Vector3Int.one)return Single;
             var result=new List<Vector3Int>();for(int x=0;x<size.x;x++)for(int y=0;y<size.y;y++)for(int z=0;z<size.z;z++)result.Add(new Vector3Int(x,y,z));
@@ -70,7 +73,7 @@ namespace Starframe.Construction
         public static int BodyLength(BlockShape shape)=>LocalCells(shape).Length;
         public static bool FullCellConnection(BlockShape shape)=>shape==BlockShape.Cube||shape==BlockShape.Core||shape==BlockShape.Power||shape==BlockShape.Shield||shape==BlockShape.Block8||shape==BlockShape.Power2||shape==BlockShape.Shield2;
         public static Vector3 LocalCenter(BlockShape shape){var cells=LocalCells(shape);Vector3 sum=Vector3.zero;foreach(var cell in cells)sum+=(Vector3)cell;return sum/cells.Length;}
-        public static int Clearance(BlockShape shape)=>shape==BlockShape.Thruster1?2:shape==BlockShape.Thruster2?3:shape==BlockShape.Thruster3?3:shape==BlockShape.Thruster4?4:shape==BlockShape.Thruster5?4:shape==BlockShape.Thruster6?1:0;
+        public static int Clearance(BlockShape shape)=>shape==BlockShape.Thruster1?2:shape==BlockShape.Thruster2?3:shape==BlockShape.Thruster3?3:shape==BlockShape.Thruster4?4:shape==BlockShape.Thruster5?4:shape==BlockShape.Thruster6||IsVerticalLaunch(shape)?1:0;
         public static Vector3Int Direction(Quaternion rotation)=>Vector3Int.RoundToInt(rotation*Vector3.up);
         public static List<Vector3Int> BodyCells(BlockRecord part)
         {
@@ -150,6 +153,8 @@ namespace Starframe.Construction
         static readonly Vector3Int[] directions={Vector3Int.right,Vector3Int.left,Vector3Int.up,Vector3Int.down,Vector3Int.forward,Vector3Int.back};
         static List<Vector3[]> Patches(BlockShape shape,Vector3Int cell,Vector3Int normal)
         {
+            // VLS cell housing supports all exterior sides and its bottom; the launch lid is never a mounting face.
+            if(IsVerticalLaunch(shape))return normal==Vector3Int.up?null:FullFace(cell,normal);
             if((IsWeapon(shape)||IsArmor(shape)||shape==BlockShape.Thruster6)&&normal!=Vector3Int.down)return null;
             // Power modules keep their regular full-cell faces even when the decorative mesh
             // leaves an inset top or a hollow centre.

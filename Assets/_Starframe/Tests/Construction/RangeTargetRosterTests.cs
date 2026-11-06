@@ -23,6 +23,17 @@ namespace Starframe.Tests
             reloaded.SetCount("test.json",0);Assert.That(reloaded.Resolve(null).Count,Is.EqualTo(1));
             reloaded.SetCount("another.json",0);Assert.That(new RangeTargetRoster(directory,key).Resolve(null),Is.Empty);
         }
+        [Test]public void SelectingNewTargetReplacesEveryPreviousTargetAndPersistsCount()
+        {
+            repository.Save(Ship("test"));repository.Save(Ship("another"));
+            var roster=new RangeTargetRoster(directory,key);roster.SetCount("test.json",2);
+            roster.SelectOnly("another.json",2);
+            var loaded=new RangeTargetRoster(directory,key);var plans=loaded.Resolve(null);
+            Assert.That(loaded.GetCount("test.json"),Is.Zero);
+            Assert.That(plans.Count,Is.EqualTo(1));Assert.That(plans[0].blueprint.name,Is.EqualTo("another"));Assert.That(plans[0].count,Is.EqualTo(2));
+            Assert.Throws<FileNotFoundException>(()=>loaded.SelectOnly("missing.json",1));
+            Assert.That(new RangeTargetRoster(directory,key).GetCount("another.json"),Is.EqualTo(2));
+        }
         [Test]public void DefaultUsesSnapshotOnlyWhenSavedTestIsMissingAndRejectsShipsWithoutCore()
         {
             var snapshot=new TextAsset(JsonUtility.ToJson(Ship("test")));

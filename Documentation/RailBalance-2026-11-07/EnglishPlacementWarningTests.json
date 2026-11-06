@@ -1,0 +1,38 @@
+{
+  "Summary": {
+    "Total": 3,
+    "Passed": 3,
+    "Failed": 0,
+    "Skipped": 0,
+    "Inconclusive": 0
+  },
+  "Results": [
+    {
+      "FullName": "Starframe.Construction.Tests.EnglishPlacementWarningTests.DynamicMirrorPrefixKeepsAPlaceForItsLocalizedReason",
+      "Status": "Passed",
+      "Duration": 0.0101258,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.EnglishPlacementWarningTests.EveryAuthoredPlacementFailureHasAnEnglishTableEntry",
+      "Status": "Passed",
+      "Duration": 0.0034879,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.EnglishPlacementWarningTests.PlayerEnteredChineseNamesAreNotDomainWarnings",
+      "Status": "Passed",
+      "Duration": 0.0003306,
+      "Message": null,
+      "StackTrace": null
+    }
+  ],
+  "Duration": 2.76,
+  "StatusPath": null,
+  "Mode": "EditMode",
+  "FilterApplied": "testname: EnglishPlacementWarningTests",
+  "success": true,
+  "result": null
+}

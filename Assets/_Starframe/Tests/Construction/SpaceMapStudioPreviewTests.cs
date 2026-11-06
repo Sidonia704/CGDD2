@@ -39,6 +39,42 @@ namespace Starframe.Tests
             owned.Clear();
         }
 
+        [Test] public void SignedSurfaceAppearsInAssetAndMapPreviewAndVoxelEditsInvalidateIt()
+        {
+            OpenWindow(); var source = Source(2);
+            var mesh = new Mesh { vertices = new[] { Vector3.zero, Vector3.right, Vector3.up }, triangles = new[] { 0, 1, 2 } };
+            owned.Add(mesh); source.initialLodMesh = mesh;
+            source.initialLodSignature = SpaceMapRuntime.ComputeGeometrySignature(source);
+            Assert.That(source.HasValidInitialLod, Is.True);
+            Call("OpenAsset", source); Call("RebuildPreview");
+            Assert.That(PreviewBodies()[0].GetComponent<MeshFilter>().sharedMesh, Is.SameAs(mesh));
+            var map = ScriptableObject.CreateInstance<SpaceMapDefinition>(); owned.Add(map);
+            map.instances.Add(new VoxelMapInstance { asset = source });
+            Call("OpenMap", map); Call("RebuildPreview");
+            Assert.That(PreviewBodies()[0].GetComponent<MeshFilter>().sharedMesh, Is.SameAs(mesh));
+            source.cells.Add(new VoxelCell { position = Vector3Int.up }); source.NotifyChanged();
+            Assert.That(source.HasValidInitialLod, Is.False);
+            Call("OpenAsset", source); Call("RebuildPreview");
+            Assert.That(PreviewBodies()[0].GetComponent<MeshFilter>().sharedMesh, Is.Not.SameAs(mesh));
+        }
+
+        [Test] public void SignedCubeSurfaceUsesLazyTemplateAndExactFallbackRetainsMaterialSlots()
+        {
+            var source = Source(2);
+            var mesh = new Mesh { vertices = new[] { Vector3.zero, Vector3.right, Vector3.up }, triangles = new[] { 0, 1, 2 } };
+            owned.Add(mesh); source.initialLodMesh = mesh;
+            source.initialLodSignature = SpaceMapRuntime.ComputeGeometrySignature(source);
+            var template = VoxelTemplateCache.Acquire(source, true);
+            try
+            {
+                Assert.That(template.initialLodMesh, Is.SameAs(mesh));
+                Assert.That(VoxelTemplateCache.EnsureExactMesh(template).subMeshCount, Is.EqualTo(1));
+            }
+            finally { VoxelTemplateCache.Release(template); }
+            mesh.subMeshCount = 2;
+            Assert.That(source.HasValidInitialLod, Is.False);
+        }
+
         [Test] public void AcquiringAfterNativeMeshWasDestroyedBuildsAUsableReplacement()
         {
             var source = Source(3); var old = VoxelTemplateCache.Acquire(source);
@@ -91,16 +127,7 @@ namespace Starframe.Tests
             Assert.That(JsonUtility.ToJson(map), Is.EqualTo(original));
         }
 
-        [Test] public void DamagedPreviewDisposesItsPrivateMeshAndDoesNotModifyTheSource()
-        {
-            OpenWindow(); var source = Source(4); string original = JsonUtility.ToJson(source);
-            Call("OpenAsset", source); Call("RebuildPreview"); var runtime = PreviewBodies()[0];
-            runtime.ApplyDamage(Vector3Int.right, 1000); runtime.FlushMeshChanges();
-            var mesh = runtime.GetComponent<MeshFilter>().sharedMesh;
-            Assert.That(runtime.AliveCount, Is.EqualTo(3)); Assert.That((bool)mesh, Is.True);
-            Call("RebuildPreview"); Assert.That((bool)mesh, Is.False); Assert.That(PreviewBodies()[0].AliveCount, Is.EqualTo(4));
-            Assert.That(JsonUtility.ToJson(source), Is.EqualTo(original));
-        }
+
 
         [Test] public void ConnectivityWarningsCacheByGeometryRevisionAndCountMapAssetsAndInstances()
         {

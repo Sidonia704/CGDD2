@@ -1,5 +1,5 @@
 // @role Open live range options and settings while suppressing player input.
-// @calls RangeCombatWorld, RangeHUD, MenuSurface, SettingsScreen
+// @calls RangeCombatWorld, RangeHUD, MenuSurface, SettingsScreen, FigmaVisuals
 
 using System;
 using UnityEngine;
@@ -45,15 +45,25 @@ namespace Starframe.App
             overlay.Panel("PracticeOptionsGlass",140,196,1640,640,true);
             overlay.Label("PracticeTitle",L10n.T("app.rangeTitle"),180,228,1500,48,32);
             overlay.Label("PracticeHint",L10n.T("app.rangeLiveHint"),180,295,1500,66,17,GlassUiPalette.Muted);
-            for(int i=0;i<4;i++)
+            bool attack=world.BotMode==RangeBotMode.StationaryFire||world.BotMode==RangeBotMode.Combat;
+            bool move=world.BotMode==RangeBotMode.FlyOnly||world.BotMode==RangeBotMode.Combat;
+            void SetBehavior(bool nextAttack,bool nextMove)
             {
-                var mode=(RangeBotMode)i;float x=180+i*394;
-                bool active=world.BotMode==mode;
-                overlay.Panel("LiveModeCard_"+mode,x,376,368,228);
-                overlay.Label("LiveModeState_"+mode,(i+1).ToString("00")+(active?(L10n.IsEnglish?"  ·  ACTIVE":"  ·  已启用"):""),x+16,392,336,22,13,active?GlassUiPalette.Accent:GlassUiPalette.Muted);
-                overlay.Button("LiveMode_"+mode,L10n.T("app.mode."+mode),x+16,432,336,52,()=>{world.SetBotMode(mode);BuildPractice();},active);
-                overlay.Label("LiveModeDescription_"+mode,L10n.T("app.modeHint."+mode),x+16,506,336,78,17,GlassUiPalette.Muted);
+                world.SetBotMode(nextAttack?(nextMove?RangeBotMode.Combat:RangeBotMode.StationaryFire):(nextMove?RangeBotMode.FlyOnly:RangeBotMode.Stationary));BuildPractice();
             }
+            void Behavior(string name,string title,string description,bool enabled,float x,Action change)
+            {
+                overlay.Panel(name+"Card",x,376,754,228);
+                var heading=overlay.Label(name+"Title",title,x+28,400,500,42,28,GlassUiPalette.Accent);FigmaVisuals.SetFont(heading,true);
+                overlay.Label(name+"Description",description,x+28,478,494,88,18,GlassUiPalette.Muted);
+                var button=overlay.Button(name,"",x+610,438,90,44,change);
+                button.GetComponent<UnityEngine.UI.Image>().color=new Color(52/255f,57/255f,77/255f);
+                var thumb=MenuSurface.Rect(overlay.Root,name+"Thumb",x+(enabled?661:616),444,33,32).gameObject.AddComponent<UnityEngine.UI.Image>();
+                thumb.color=enabled?GlassUiPalette.Accent:new Color(.56f,.56f,.56f);thumb.raycastTarget=false;
+                overlay.Hint(button,title+": "+(enabled?(L10n.IsEnglish?"ON":"开启"):(L10n.IsEnglish?"OFF":"关闭")));
+            }
+            Behavior("LiveAttack",L10n.IsEnglish?"ATTACK":"攻击",L10n.IsEnglish?"Allow targets to fire. Movement is controlled separately.":"允许靶机开火。移动行为独立控制。",attack,180,()=>SetBehavior(!attack,move));
+            Behavior("LiveMove",L10n.IsEnglish?"MOVE":"移动",L10n.IsEnglish?"Allow targets to fly and maneuver. Attack is controlled separately.":"允许靶机飞行和机动。攻击行为独立控制。",move,974,()=>SetBehavior(attack,!move));
             overlay.Label("LiveTargetCount",L10n.T("app.rangeLiveCount",world.Bots.Count),180,636,1450,32,18);
             overlay.Label("LiveResetHint",L10n.T("app.rangeResetHint"),180,685,1450,42,15,GlassUiPalette.Muted);
             overlay.Button("ResetRangeTargets",L10n.T("app.rangeReset"),180,750,500,50,()=>{world.ResetTargets();BuildPractice();});

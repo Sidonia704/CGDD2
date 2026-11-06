@@ -1,0 +1,50 @@
+{
+  "diagnostics": [],
+  "compileMs": 78,
+  "executeMs": 31120,
+  "assemblyName": "PipelineRunScript_UniformAudit_c449ea761d2346c1807a5f882075a152",
+  "success": true,
+  "result": {
+    "stats": [
+      {
+        "map": "Range115Voxels",
+        "instances": 416,
+        "assets": 243,
+        "links": 0,
+        "uniqueCells": 3092545,
+        "expandedCells": 3488289,
+        "chunked": 1,
+        "maxMassRelativeError": 0,
+        "maxCOMError": 2.40389483e-7,
+        "checks": {
+          "assets": 243,
+          "cells": 3092545,
+          "triangles": 7786481,
+          "connected": 0,
+          "components": [],
+          "errors": []
+        }
+      },
+      {
+        "map": "SaturnRingVoxels",
+        "instances": 2854,
+        "assets": 2845,
+        "links": 125,
+        "uniqueCells": 5245886,
+        "expandedCells": 5245917,
+        "chunked": 2,
+        "maxMassRelativeError": 0,
+        "maxCOMError": 2.4575624e-7,
+        "checks": {
+          "assets": 2845,
+          "cells": 5245886,
+          "triangles": 14509060,
+          "connected": 0,
+          "components": [],
+          "errors": []
+        }
+      }
+    ],
+    "errors": []
+  }
+}

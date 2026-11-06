@@ -25,7 +25,7 @@ namespace Starframe.EditorTools
                 for (int x = 0; x < brushSize.x; x++) for (int y = 0; y < brushSize.y; y++) for (int z = 0; z < brushSize.z; z++) targets.Add(start + new Vector3Int(x, y, z));
                 if (operation == 0)
                 {
-                    foreach (var anchor in targets) changed += AddHullPiece(asset.cells, positions, anchor, brushShape, placementTurns, surface, asset.hullModules);
+                    foreach (var anchor in targets) changed += AddHullPiece(asset.cells, positions, anchor, brushShape, placementTurns, surface, asset.hullModules, EditableCellLimit);
                 }
                 else if (operation == 1) changed = asset.cells.RemoveAll(c => targets.Contains(c.position));
                 else foreach (var cell in asset.cells) if (targets.Contains(cell.position) && cell.surface != surface) { cell.surface = surface; changed++; }
@@ -44,17 +44,17 @@ namespace Starframe.EditorTools
                 else
                 {
                     var turns = new Vector3Int(0, (brushTurns % 4 + 4) % 4, 0);
-                    foreach (var anchor in stamp) AddHullPiece(next, positions, anchor.position, brushShape, turns, surface, asset.hullModules);
+                    foreach (var anchor in stamp) AddHullPiece(next, positions, anchor.position, brushShape, turns, surface, asset.hullModules, EditableCellLimit);
                 }
                 ChangeAsset(erase ? "挖空体块资产" : "生成体块造型", () => { asset.cells = next; });
                 frameRequested = true; SetStatus($"造型已应用，共 {asset.cells.Count:N0} 格。保存后可在地图中反复使用。");
             });
         }
-        public static int AddHullPiece(List<VoxelCell> output, HashSet<Vector3Int> occupied, Vector3Int anchor, BlockShape shape, Vector3Int turns, int color, Starframe.Flight.ModuleDatabase database = null)
+        public static int AddHullPiece(List<VoxelCell> output, HashSet<Vector3Int> occupied, Vector3Int anchor, BlockShape shape, Vector3Int turns, int color, Starframe.Flight.ModuleDatabase database = null, int maximumCells = VoxelAssetDefinition.MaximumCells)
         {
             var definition = database ? database.Get(shape) : null;
             var offsets = definition && definition.occupiedCells != null && definition.occupiedCells.Length > 0 ? definition.occupiedCells : BlockModules.LocalCells(shape);
-            if (output.Count + offsets.Length > VoxelAssetDefinition.MaximumCells) return 0;
+            if ((long)output.Count + offsets.Length > Mathf.Clamp(maximumCells, 1, MaximumUniformEditableCells)) return 0;
             var rotation = Quaternion.Euler((Vector3)turns * 90);
             foreach (var offset in offsets) if (occupied.Contains(anchor + Vector3Int.RoundToInt(rotation * (Vector3)offset))) return 0;
             foreach (var offset in offsets)
@@ -81,11 +81,13 @@ namespace Starframe.EditorTools
         void PlaceInstance(Vector3 position)
         {
             if (!map || !asset || asset.cells.Count == 0) { SetStatus("请先从左侧选择一份非空的体块资产。"); return; }
+            if (!CanPlaceAsset(asset)) return;
             ChangeMap("摆放地图资产", () => { map.instances.Add(new VoxelMapInstance { label = asset.name, asset = asset, position = position }); selectedInstance = map.instances.Count - 1; });
             BuildInspector(); SetStatus("已摆放 " + asset.name + "。在选择模式拖动，右侧可精确输入 XYZ 和旋转。");
         }
         void MoveInstance(VoxelMapInstance item, Vector3 position, Vector3 euler, float scale)
         {
+            if (map && map.enforceUniformGrid) scale = 1;
             ChangeMap("移动地图对象", () => { item.position = position; item.eulerAngles = euler; item.scale = scale; }, false);
             foreach (var previewItem in previewItems) if (previewItem.index < map.instances.Count && map.instances[previewItem.index] == item)
             { previewItem.runtime.transform.localPosition = position; previewItem.runtime.transform.localRotation = Quaternion.Euler(euler); previewItem.runtime.transform.localScale = Vector3.one * scale; }
@@ -94,7 +96,9 @@ namespace Starframe.EditorTools
         void DuplicateInstance()
         {
             if (!map || selectedInstance < 0 || selectedInstance >= map.instances.Count) return;
-            var copy = map.instances[selectedInstance].Copy(); copy.position += Vector3.right * snap; copy.label += " Copy";
+            var copy = map.instances[selectedInstance].Copy(); if (!CanPlaceAsset(copy.asset)) return;
+            if (map.enforceUniformGrid) copy.scale = 1;
+            copy.position += Vector3.right * snap; copy.label += " Copy";
             ChangeMap("复制地图对象", () => { map.instances.Add(copy); selectedInstance = map.instances.Count - 1; }); BuildInspector();
         }
         void DeleteInstance()
@@ -105,14 +109,17 @@ namespace Starframe.EditorTools
         void Scatter()
         {
             if (!map || !asset || asset.cells.Count == 0) { SetStatus("请先选择要散布的资产。"); return; }
+            if (!CanPlaceAsset(asset)) return;
             var random = new System.Random(scatterSeed); var add = new List<VoxelMapInstance>();
             float min = Mathf.Min(scatterScaleMin, scatterScaleMax), max = Mathf.Max(scatterScaleMin, scatterScaleMax);
+            var bounds = asset.LocalBounds;
+            float assetRadius = bounds.extents.magnitude + bounds.center.magnitude;
             for (int i = 0; i < Mathf.Clamp(scatterCount, 1, 200); i++)
             {
-                float scale = Mathf.Lerp(min, max, (float)random.NextDouble());
-                float radius = (asset.LocalBounds.extents.magnitude + asset.LocalBounds.center.magnitude) * scale;
+                float scale = map.enforceUniformGrid ? 1f : Mathf.Lerp(min, max, (float)random.NextDouble());
+                float radius = assetRadius * scale;
                 var half = map.size * .5f;
-                if (radius >= Mathf.Min(half.x, Mathf.Min(half.z, half.y * .5f))) { SetStatus("资产缩放过大，无法完全放在地图下半区。请减小缩放。"); return; }
+                if (radius >= Mathf.Min(half.x, Mathf.Min(half.z, half.y * .5f))) { SetStatus(map.enforceUniformGrid ? "资产实际尺寸过大，无法完全放在地图下半区。请选择更小的资产版本或扩大地图。" : "资产缩放过大，无法完全放在地图下半区。请减小缩放。"); return; }
                 float Range(float a, float b) => Mathf.Lerp(a, b, (float)random.NextDouble());
                 add.Add(new VoxelMapInstance { asset = asset, label = asset.name + " " + (i + 1), scale = scale,
                     position = new Vector3(Range(-half.x + radius, half.x - radius), Range(-half.y + radius, -radius), Range(-half.z + radius, half.z - radius)),
@@ -126,7 +133,7 @@ namespace Starframe.EditorTools
             if (!CanExport()) return;
             if (!asset || asset.cells.Count == 0) { SetStatus("资产为空。请先添加一些体块。"); return; }
             SaveCurrent(); SpaceMapStudioContent.EnsureFolders();
-            string path = EditorUtility.SaveFilePanelInProject("导出可破坏资产 Prefab", asset.name, "prefab", "Prefab 在运行时加载共享体块数据", ContentRoot + "/Prefabs");
+            string path = EditorUtility.SaveFilePanelInProject("导出漂浮资产 Prefab", asset.name, "prefab", "Prefab 在运行时加载共享体块数据", ContentRoot + "/Prefabs");
             if (string.IsNullOrEmpty(path)) return;
             var scene = EditorSceneManager.NewPreviewScene(); var root = new GameObject(asset.name);
             try
@@ -154,7 +161,7 @@ namespace Starframe.EditorTools
             SaveCurrent(); SpaceMapStudioContent.EnsureFolders();
             string path = ContentRoot + "/Scenes/StudioPhysicsPreview.unity";
             ExportScene(map, path, true); EditorSceneManager.OpenScene(path);
-            SetStatus("已打开独立物理试玩场景。按 Unity Play 后可自由飞行、观察碰撞和射击破坏；用 Stop 返回编辑。");
+            SetStatus("已打开独立物理试玩场景。按 Unity Play 后可自由飞行、观察碰撞和施加推力；用 Stop 返回编辑。");
         }
         public static void ExportScene(SpaceMapDefinition definition, string path, bool sandbox = false)
         {

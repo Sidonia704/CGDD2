@@ -1,0 +1,73 @@
+{
+  "Summary": {
+    "Total": 8,
+    "Passed": 8,
+    "Failed": 0,
+    "Skipped": 0,
+    "Inconclusive": 0
+  },
+  "Results": [
+    {
+      "FullName": "Starframe.Construction.Tests.GlobalBalanceMultiplierTests.GlobalDamageComposesOnceWithFactionAndCategory(Projectile)",
+      "Status": "Passed",
+      "Duration": 0.0019563,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.GlobalBalanceMultiplierTests.GlobalDamageComposesOnceWithFactionAndCategory(Beam)",
+      "Status": "Passed",
+      "Duration": 0.000099,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.GlobalBalanceMultiplierTests.GlobalDamageComposesOnceWithFactionAndCategory(GuidedMissile)",
+      "Status": "Passed",
+      "Duration": 0.0000766,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.GlobalBalanceMultiplierTests.HeavyPublishedAxesMatchActualAllocationAndStoppingDistance",
+      "Status": "Passed",
+      "Duration": 0.0196423,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.GlobalBalanceMultiplierTests.HeavySpeedIsContinuousAndSubstantiallyReduced(50000,1)",
+      "Status": "Passed",
+      "Duration": 0.0019982,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.GlobalBalanceMultiplierTests.HeavySpeedIsContinuousAndSubstantiallyReduced(100000,1)",
+      "Status": "Passed",
+      "Duration": 0.0001763,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.GlobalBalanceMultiplierTests.HeavySpeedIsContinuousAndSubstantiallyReduced(500000,0.3513f)",
+      "Status": "Passed",
+      "Duration": 0.0001439,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.GlobalBalanceMultiplierTests.ModuleMultipliersDoNotMutateNativeStatsAndReachMassInertiaAndThrust",
+      "Status": "Passed",
+      "Duration": 0.0014064,
+      "Message": null,
+      "StackTrace": null
+    }
+  ],
+  "Duration": 3.2,
+  "StatusPath": null,
+  "Mode": "EditMode",
+  "FilterApplied": "testname: GlobalBalanceMultiplierTests",
+  "success": true,
+  "result": null
+}

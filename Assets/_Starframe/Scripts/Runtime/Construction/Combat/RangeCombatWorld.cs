@@ -1,5 +1,5 @@
-// @role Coordinate shared combat, finite mission actors or practice respawns, AI weapons, power and persistent wreckage.
-// @calls FlightShipRuntime, RangeBotPilot, RangeBotWeaponInput, ShipWeapons, ProjectileWorld, DebrisWorld, ShipFlightController, RangeTargetRoster, TargetLockSystem, TargetSensorWorld, FlareWorld, ShipCountermeasureController
+// @role Coordinate shared combat, mission actors or practice respawns, AI weapons, shield-before-boost-before-weapon power and persistent wreckage.
+// @calls FlightShipRuntime, RangeBotPilot, RangeBotWeaponInput, ShipWeapons, ProjectileWorld, DebrisWorld, ShipFlightController, RangeTargetRoster, TargetLockSystem, TargetSensorWorld, FlareWorld, ShipCountermeasureController, ShipPowerBus
 
 using UnityEngine;
 using Unity.Profiling;
@@ -27,6 +27,7 @@ namespace Starframe.Combat
         Actor player;BattleTuning rules;RangeHUD hud;Camera view;double clock;
         readonly List<Actor> actors=new List<Actor>();CombatVfxPool destruction;
         readonly List<Actor> bots=new List<Actor>();
+        readonly List<FlightShipRuntime> areaVisibleTargets=new List<FlightShipRuntime>();
         readonly CoreVelocityEstimator playerCoreMotion=new CoreVelocityEstimator();int sampledPlayerLife=-1;
         public double MaximumBotCreationMilliseconds{get;private set;}
         public bool IsMission{get;private set;}
@@ -183,6 +184,12 @@ namespace Starframe.Combat
             Sensors?.Update(actors,dt);
             player.weapons.HasValidTargetLock=Targeting!=null&&Targeting.HasTarget;
             player.weapons.Target=player.weapons.HasValidTargetLock?Targeting.LockedTarget:null;
+            areaVisibleTargets.Clear();
+            if(view&&Sensors!=null&&player.ship.IsAlive)foreach(var detected in Sensors.GetDetectedTargets(player.ship)){
+                if(!detected||!detected.IsAlive)continue;var point=view.WorldToScreenPoint(detected.CorePosition);
+                if(point.z>0&&view.pixelRect.Contains(new Vector2(point.x,point.y)))areaVisibleTargets.Add(detected);
+            }
+            player.weapons.SetVlsVisibleTargets(areaVisibleTargets);
             if(sampledPlayerLife!=player.ship.LifeId||!player.ship.IsAlive){sampledPlayerLife=player.ship.LifeId;playerCoreMotion.Reset(player.ship.CorePhysicsPosition,clock,player.flight.Velocity);}
             else playerCoreMotion.Sample(player.ship.CorePhysicsPosition,clock,rules.leadVelocitySampleWindow,rules.leadVelocityResponse,player.flight.Velocity);
             using(AiMarker.Auto())foreach(var a in bots)
@@ -193,9 +200,13 @@ namespace Starframe.Combat
                 bool locked=detected&&hostile&&Sensors.UpdateEnemyLock(a.ship,player.ship,true,dt);
                 if(!hostile||!detected)Sensors?.ClearEnemyLock(a.ship);
                 a.weapons.Target=detected?player.ship:null;
+                areaVisibleTargets.Clear();
+                if(detected&&hostile&&Vector3.Dot(a.ship.CoreRotation*Vector3.forward,player.ship.CorePhysicsPosition-a.ship.CorePhysicsPosition)>0)areaVisibleTargets.Add(player.ship);
+                a.weapons.SetVlsVisibleTargets(areaVisibleTargets);
                 a.weaponInput.Apply(a.ship.IsAlive&&detected&&a.pilot.Fire,locked,clock);
                 UpdateCountermeasures(a,hostile);
             }
+            UpdatePlayerDirectAim();
             using(ExecutionMarker.Auto())foreach(var a in actors)Execute(a,dt);
             if(IsMission)RetireDefeatedEnemies();
         }
@@ -245,10 +256,24 @@ namespace Starframe.Combat
         {
             float weaponPower=a.weapons.Prepare();
             float shieldPower=a.ship.Shields.PrepareRecovery(dt);
-            float boostPower=a.flight.RequestedBoost?Mathf.Max(0,flightTuning.boostPowerWatts):0;
-            float ratio=a.ship.IsAlive?a.ship.Power.Allocate(dt,weaponPower+boostPower+shieldPower,rules.unlimitedRangePower):0;
-            a.ship.Shields.ExecuteRecovery(ratio);
-            a.flight.SetBoostPowerRatio(ratio);a.weapons.Execute(dt,ratio);
+            bool propulsion=a.ship.Performance.totalThrust>0&&a.flight.RequestedThrustFraction>.0001f;
+            // Boost is the total powered-propulsion cost, not an addition to normal propulsion.
+            float boostPower=a.flight.RequestedBoost?flightTuning.BoostPowerDemandWatts:
+                propulsion?flightTuning.PropulsionPowerDemandWatts*a.flight.RequestedThrustFraction:0;
+            float shieldRatio=0,boostRatio=0,weaponRatio=0;
+            if(a.ship.IsAlive)a.ship.Power.AllocatePrioritized(dt,shieldPower,boostPower,weaponPower,rules.unlimitedRangePower,
+                out shieldRatio,out boostRatio,out weaponRatio);
+            a.ship.Shields.ExecuteRecovery(shieldRatio);
+            a.flight.SetPropulsionPowerRatio(boostPower>0?boostRatio:1);
+            a.flight.SetBoostPowerRatio(a.flight.RequestedBoost?boostRatio:0);a.weapons.Execute(dt,weaponRatio);
+        }
+        void UpdatePlayerDirectAim()
+        {
+            if(!view||player==null||!player.ship.IsAlive){player?.weapons.SetDirectAimRay(default,false);return;}
+            // This is the forward firing reticle, not the displaced virtual-stick steering cursor.
+            Vector2 point;
+            if(!hud||!hud.TryGetForwardReticleScreenPoint(out point))point=AimProjection.ScreenPoint(view,player.flight.RenderForward);
+            player.weapons.SetDirectAimRay(view.ScreenPointToRay(point),!hud||!hud.ExitDialogOpen);
         }
         public void ConfigureMission(){IsMission=true;BotMode=RangeBotMode.Combat;}
         float missionAreaFraction=.62f;

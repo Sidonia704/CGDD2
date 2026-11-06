@@ -1,0 +1,46 @@
+{
+  "Summary": {
+    "Total": 4,
+    "Passed": 4,
+    "Failed": 0,
+    "Skipped": 0,
+    "Inconclusive": 0
+  },
+  "Results": [
+    {
+      "FullName": "Starframe.Construction.Tests.ContinuousRailTracerTests.ContinuousTracerHasSolidCoverageBetweenTailAndHead",
+      "Status": "Passed",
+      "Duration": 0.0271988,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.ContinuousRailTracerTests.GatlingWorldLengthCapIsAppliedAfterGlobalEffectScaling",
+      "Status": "Passed",
+      "Duration": 0.0032283,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.ContinuousRailTracerTests.GrowingBeamClipsAtMovingMuzzleAndImpactFadeFreezesBothEndpoints",
+      "Status": "Passed",
+      "Duration": 0.0015692,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.ContinuousRailTracerTests.OneStepFourteenThousandSpeedHitRetainsVisibleTraceThenFadesAndRecycles",
+      "Status": "Passed",
+      "Duration": 0.0473137,
+      "Message": null,
+      "StackTrace": null
+    }
+  ],
+  "Duration": 3.57,
+  "StatusPath": null,
+  "Mode": "EditMode",
+  "FilterApplied": "testname: ContinuousRailTracerTests",
+  "success": true,
+  "result": null
+}
+

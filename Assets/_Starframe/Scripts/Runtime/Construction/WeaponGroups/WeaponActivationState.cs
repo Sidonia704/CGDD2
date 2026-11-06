@@ -1,4 +1,5 @@
-// @role Apply hold, press, charge and toggle modes using allocated power and a persistent immediate-shot cadence.
+// @role Apply hold, press, charge and toggle modes using allocated power, external cadence scaling and a persistent immediate-shot cadence.
+// @calls WeaponDefinition
 
 using System;
 using Starframe.Flight;
@@ -50,7 +51,7 @@ namespace Starframe.Combat
             }
         }
 
-        public int Advance(WeaponDefinition definition,float dt,float powerRatio)
+        public int Advance(WeaponDefinition definition,float dt,float powerRatio,float rateMultiplier=1)
         {
             if(!definition||dt<=0||float.IsNaN(dt)||float.IsInfinity(dt))return 0;
             double ratio=float.IsNaN(powerRatio)||float.IsInfinity(powerRatio)?0:Mathf.Clamp01(powerRatio);
@@ -63,7 +64,7 @@ namespace Starframe.Combat
             }
             if(!active&&!pending){if(immediateHold)AdvanceInactive(dt);return 0;}
             if(ratio<=0)return 0;
-            float rate=definition.shotsPerSecond;if(rate<=0||float.IsNaN(rate)||float.IsInfinity(rate))return 0;
+            float rate=definition.shotsPerSecond*rateMultiplier;if(rate<=0||float.IsNaN(rate)||float.IsInfinity(rate)){if(immediateHold)AdvanceInactive(dt);return 0;}
             if(immediateHold){
                 // One clock owns the entire cycle. Do not add a second powered
                 // progress cycle after cooling, or sustained cadence is halved.

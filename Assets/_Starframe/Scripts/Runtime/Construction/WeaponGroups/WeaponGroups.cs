@@ -1,4 +1,4 @@
-// @role Validate and maintain exactly one group assignment per weapon part.
+// @role Initialize numbered weapon groups and preserve native weapon assignments across database initialization and saved snapshots.
 // @calls ModuleDatabase, BlockModules
 
 using System;
@@ -21,7 +21,10 @@ namespace Starframe.Construction
             if(!database)database=BlockModules.ConfiguredDatabase;
             var definition=database?database.Get(part.shape):null;
             if(part.shape==BlockShape.FlareLauncher||(definition&&definition.countermeasure))return false;
-            return part.shape==BlockShape.Laser||(definition&&(definition.weapon||definition.category==ModuleCategory.Weapon));
+            // Save/scene handoff can normalize before the module database is bound. Native weapon
+            // identities must not disappear in that window, otherwise saved assignments reset to 0.
+            bool native=part.shape==BlockShape.Laser||part.shape>=BlockShape.Gun1&&part.shape<=BlockShape.Sword2||part.shape==BlockShape.VLS1||part.shape==BlockShape.VLS2;
+            return native||(definition&&(definition.weapon||definition.category==ModuleCategory.Weapon));
         }
 
         /// <summary>Repairs optional metadata without changing geometry or existing valid IDs.</summary>
@@ -33,7 +36,9 @@ namespace Starframe.Construction
                 if(group==null||group.id<0||!ids.Add(group.id))continue;
                 groups.Add(new WeaponGroupRecord{id=group.id,name=CleanName(group.name,group.id),binding=CleanBinding(group.binding,group.id)});
             }
+            bool initializeDefaults=groups.Count==0;
             if(ids.Add(DefaultGroupId))groups.Insert(0,new WeaponGroupRecord{id=DefaultGroupId,name=DefaultName(DefaultGroupId),binding=WeaponInputBinding.MouseLeft()});
+            if(initializeDefaults){ids.Add(1);groups.Add(new WeaponGroupRecord{id=1,name=DefaultName(1),binding=new WeaponInputBinding{source=WeaponInputSource.MouseRight}});}
             groups.Sort((a,b)=>a.id.CompareTo(b.id));
 
             var assignments=new List<WeaponGroupAssignment>();
@@ -45,8 +50,16 @@ namespace Starframe.Construction
             var seen=new HashSet<string>(StringComparer.Ordinal);
             if(data.parts!=null)foreach(var part in data.parts){
                 if(!IsWeapon(part,database)||string.IsNullOrWhiteSpace(part.id)||!seen.Add(part.id))continue;
-                assignments.Add(new WeaponGroupAssignment{partId=part.id,groupId=byPart.TryGetValue(part.id,out int id)?id:DefaultGroupId});
+                int selected;
+                if(!byPart.TryGetValue(part.id,out selected)){
+                    var definition=database?database.Get(part.shape):BlockModules.ConfiguredDatabase?BlockModules.ConfiguredDatabase.Get(part.shape):null;
+                    bool missile=part.shape>=BlockShape.Missile1&&part.shape<=BlockShape.Missile3||part.shape==BlockShape.VLS1||part.shape==BlockShape.VLS2||definition&&definition.weapon&&definition.weapon.delivery==WeaponDelivery.GuidedMissile;
+                    selected=missile?1:DefaultGroupId;
+                    if(missile&&ids.Add(1))groups.Add(new WeaponGroupRecord{id=1,name=DefaultName(1),binding=new WeaponInputBinding{source=WeaponInputSource.MouseRight}});
+                }
+                assignments.Add(new WeaponGroupAssignment{partId=part.id,groupId=selected});
             }
+            groups.Sort((a,b)=>a.id.CompareTo(b.id));
             assignments.Sort((a,b)=>StringComparer.Ordinal.Compare(a.partId,b.partId));
             data.weaponGroups=groups;data.weaponAssignments=assignments;
         }

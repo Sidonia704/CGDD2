@@ -29,6 +29,7 @@ namespace Starframe.Construction
         static bool MountTouches(BlockRecord weapon,BlockRecord support)
         {
             if(!BlockModules.IsWeapon(weapon.shape))return false;
+            if(BlockModules.IsVerticalLaunch(weapon.shape))return VlsMountTouches(weapon,support);
             var local=BlockModules.LocalCells(weapon.shape);int bottom=int.MaxValue;
             foreach(var c in local)if(c.y<bottom)bottom=c.y;
             var anchor=BlockPlacement.GridHint(weapon.position);
@@ -51,6 +52,10 @@ namespace Starframe.Construction
         {
             if(!BlockModules.IsWeapon(candidate.shape)&&!BlockModules.IsArmor(candidate.shape))return true;
             var list=new List<BlockRecord>(blocks);if(list.Count==0)return true;
+            if(BlockModules.IsVerticalLaunch(candidate.shape)){
+                foreach(var block in list)if(!BlockModules.IsWeapon(block.shape)&&VlsMountTouches(candidate,block))return true;
+                return false;
+            }
             var local=BlockModules.LocalCells(candidate.shape);int bottom=int.MaxValue;
             foreach(var c in local)if(c.y<bottom)bottom=c.y;
             bool armor=BlockModules.IsArmor(candidate.shape);
@@ -79,6 +84,20 @@ namespace Starframe.Construction
                 if(!supported)return false;
             }
             return columns.Count>0;
+        }
+        static bool VlsMountTouches(BlockRecord weapon,BlockRecord support)
+        {
+            var local=new HashSet<Vector3Int>(BlockModules.LocalCells(weapon.shape));
+            var body=new HashSet<Vector3Int>(BlockModules.BodyCells(support));
+            var anchor=BlockPlacement.GridHint(weapon.position);
+            foreach(var cell in local)foreach(var normal in Directions)
+            {
+                if(normal==Vector3Int.up||local.Contains(cell+normal))continue;
+                var world=anchor+Vector3Int.RoundToInt(weapon.rotation*(Vector3)cell);
+                var direction=Vector3Int.RoundToInt(weapon.rotation*(Vector3)normal);var adjacent=world+direction;
+                if(body.Contains(adjacent)&&BlockModules.FacesContact(weapon,world,direction,support,adjacent))return true;
+            }
+            return false;
         }
 
         public static bool IsConnected(BlueprintData data,string excluded=null)

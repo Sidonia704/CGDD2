@@ -1,0 +1,87 @@
+{
+  "Summary": {
+    "Total": 10,
+    "Passed": 10,
+    "Failed": 0,
+    "Skipped": 0,
+    "Inconclusive": 0
+  },
+  "Results": [
+    {
+      "FullName": "Starframe.Construction.Tests.VlsMagazineRuntimeTests.ConventionalReloadMustFinishBeforeFreshAcquisitionBegins",
+      "Status": "Passed",
+      "Duration": 0.0770703,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.VlsMagazineRuntimeTests.DisablingGroupCancelsItsSalvoWithoutRefillingUnusedRounds",
+      "Status": "Passed",
+      "Duration": 0.0160523,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.VlsMagazineRuntimeTests.FullMagazineReloadWaitsForLastRoundAndNeedsPoweredTwentyFourSeconds",
+      "Status": "Passed",
+      "Duration": 0.0082741,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.VlsMagazineRuntimeTests.IndependentMagazinesBalanceWholeGroupAndKeepPerRoundDamage",
+      "Status": "Passed",
+      "Duration": 0.0219429,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.VlsMagazineRuntimeTests.InFlightVlsMarkerEndsWhenItsSeekerNoLongerTracksThisTarget(\"expired\")",
+      "Status": "Passed",
+      "Duration": 0.0083576,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.VlsMagazineRuntimeTests.InFlightVlsMarkerEndsWhenItsSeekerNoLongerTracksThisTarget(\"removed\")",
+      "Status": "Passed",
+      "Duration": 0.004376,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.VlsMagazineRuntimeTests.InFlightVlsMarkerEndsWhenItsSeekerNoLongerTracksThisTarget(\"respawned\")",
+      "Status": "Passed",
+      "Duration": 0.0051557,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.VlsMagazineRuntimeTests.InFlightVlsMarkerEndsWhenItsSeekerNoLongerTracksThisTarget(\"diverted\")",
+      "Status": "Passed",
+      "Duration": 0.0049942,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.VlsMagazineRuntimeTests.LateVisibleContactNeedsItsOwnFourSecondsAndLeavingViewClearsLock",
+      "Status": "Passed",
+      "Duration": 0.007131,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.VlsMagazineRuntimeTests.VlsIgnoresConventionalShipWideStaggerClock",
+      "Status": "Passed",
+      "Duration": 0.0053937,
+      "Message": null,
+      "StackTrace": null
+    }
+  ],
+  "Duration": 3.9,
+  "StatusPath": null,
+  "Mode": "EditMode",
+  "FilterApplied": "testname: VlsMagazineRuntimeTests",
+  "success": true,
+  "result": null
+}

@@ -16,11 +16,10 @@ namespace Starframe.Maps
         public VoxelAssetDefinition asset;
         public Vector3 position, eulerAngles;
         [Range(.25f, 100)] public float scale = 1;
-        [Min(.01f)] public float healthMultiplier = 1;
         public Vector3 driftVelocity, angularVelocity;
         public Matrix4x4 Matrix => Matrix4x4.TRS(position, Quaternion.Euler(eulerAngles), Vector3.one * scale);
         public VoxelMapInstance Copy() => new VoxelMapInstance { label = label, asset = asset, position = position,
-            eulerAngles = eulerAngles, scale = scale, healthMultiplier = healthMultiplier, driftVelocity = driftVelocity, angularVelocity = angularVelocity };
+            eulerAngles = eulerAngles, scale = scale, driftVelocity = driftVelocity, angularVelocity = angularVelocity };
     }
 
     [Serializable]
@@ -30,6 +29,9 @@ namespace Starframe.Maps
         public Vector3Int anchorCellA, anchorCellB;
         // Map-local world position in the saved layout, after its one global placement transform.
         public Vector3 worldAnchor;
+        // Optional retained pre-resampling cell volumes, in each scale-one instance's local metres.
+        public bool hasLegacyAnchorBounds;
+        public Bounds legacyAnchorBoundsA, legacyAnchorBoundsB;
         public bool createFixedJoint = true;
         public bool ignoreMutualCollision = true;
     }
@@ -37,6 +39,7 @@ namespace Starframe.Maps
     [CreateAssetMenu(menuName = "Starframe/Maps/Space map")]
     public sealed class SpaceMapDefinition : ScriptableObject
     {
+        public bool enforceUniformGrid;
         public Vector3 size = Vector3.one * 3000;
         public Vector3 playerSpawn = new Vector3(0, 150, -250);
         public Vector3 playerEulerAngles;
@@ -49,14 +52,16 @@ namespace Starframe.Maps
             { error = "地图尺寸或出生点无效。"; return false; }
             var ids = new HashSet<string>();
             var byId = new Dictionary<string, VoxelMapInstance>();
+            var validatedAssets = new HashSet<VoxelAssetDefinition>();
             foreach (var point in enemySpawns) if (!Finite(point)) { error = "敌方出生点无效。"; return false; }
             foreach (var item in instances)
             {
                 if (item == null || !item.asset || string.IsNullOrEmpty(item.id) || !ids.Add(item.id) || !Finite(item.position) ||
-                    !Finite(item.eulerAngles) || !Finite(item.driftVelocity) || !Finite(item.angularVelocity) || !Finite(item.scale) || item.scale < .25f || item.scale > 100 ||
-                    !Finite(item.healthMultiplier) || item.healthMultiplier <= 0)
+                    !Finite(item.eulerAngles) || !Finite(item.driftVelocity) || !Finite(item.angularVelocity) || !Finite(item.scale) || item.scale < .25f || item.scale > 100)
                 { error = "地图中存在缺失资产、重复标识或无效变换。"; return false; }
-                if (!item.asset.Validate(out error)) return false;
+                if (enforceUniformGrid && (item.asset.cellSize != 1f || item.scale != 1f))
+                { error = "统一体素地图要求所有资产使用 1 米格，且对象缩放为 1。"; return false; }
+                if (validatedAssets.Add(item.asset) && !item.asset.Validate(out error)) return false;
                 byId.Add(item.id, item);
             }
             if (assemblyLinks != null) foreach (var link in assemblyLinks)

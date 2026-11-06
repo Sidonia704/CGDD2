@@ -122,6 +122,52 @@ namespace Starframe.Construction.Tests
             Assert.That(combatFeedback,Is.EqualTo(2),"Ship hits keep their combat feedback after projectile reuse.");
         }
 
+        [TestCase("Railgun1Weapon",10800f,2,.35f,.5f,21600f,false)]
+        [TestCase("Railgun2Weapon",22500f,3,.35f,.45f,58500f,false)]
+        [TestCase("Railgun3Weapon",41600f,4,.4f,.45f,138112f,false)]
+        [TestCase("Railgun1Weapon",10800f,2,.35f,.5f,21600f,true)]
+        [TestCase("Railgun2Weapon",22500f,3,.35f,.45f,58500f,true)]
+        [TestCase("Railgun3Weapon",41600f,4,.4f,.45f,138112f,true)]
+        public void NativeRailTradesSurfaceDamageForAboutFiftyPercentMoreThickHullDamage(string name,float previousDamage,int originalDepth,float originalFalloff,float retained,float expectedTotal,bool smallSteps)
+        {
+            var native=UnityEditor.AssetDatabase.LoadAssetAtPath<WeaponDefinition>("Assets/_Starframe/Settings/Modules/"+name+".asset");
+            Assert.That(native,Is.Not.Null);
+            Assert.That(native.damage,Is.EqualTo(previousDamage*.8f),"Surface damage decreases by 20%.");
+            Assert.That(native.penetrationDepth,Is.EqualTo(originalDepth*2));
+            Assert.That(native.secondLayerDamageMultiplier,Is.EqualTo(retained));
+            Assert.That(retained,Is.GreaterThan(originalFalloff));
+            var weapon=Own(UnityEngine.Object.Instantiate(native));
+            var owner=CreateShip(false,new PartSpec(BlockShape.Core,100,0));
+            var specs=new PartSpec[10];specs[0]=new PartSpec(BlockShape.Core,-1,10);
+            for(int layer=0;layer<9;layer++)specs[layer+1]=new PartSpec(BlockShape.Cube,0,10+layer);
+            var target=CreateShip(false,specs);
+            var measured=new float[2,9];var total=new float[2];
+            for(int run=0;run<2;run++)
+            {
+                foreach(var part in target.runtime.Parts)part.hp=1000000f;
+                weapon.damage=run==0?previousDamage:native.damage;
+                weapon.penetrationDepth=run==0?originalDepth:native.penetrationDepth;
+                weapon.secondLayerDamageMultiplier=run==0?originalFalloff:native.secondLayerDamageMultiplier;
+                Sync();var world=NewWorld();
+                world.Fire(owner.runtime,weapon,new Vector3(0,.5f,0),Vector3.forward);
+                if(smallSteps)for(int step=0;step<50;step++)world.Step(.00005f);
+                else world.Step(.1f);
+                Assert.That(world.ActiveCount,Is.Zero);
+                for(int layer=0;layer<9;layer++)
+                {
+                    measured[run,layer]=1000000f-PartAt(target,0,.5f,10+layer).hp;
+                    total[run]+=measured[run,layer];
+                    float expected=layer>=weapon.penetrationDepth-.0001f?0:weapon.damage*(layer==0?1:weapon.secondLayerDamageMultiplier);
+                    Assert.That(measured[run,layer],Is.EqualTo(expected).Within(.1f),"Layer "+layer+", run "+run);
+                }
+            }
+            Assert.That(measured[1,0],Is.EqualTo(measured[0,0]*.8f).Within(.1f));
+            Assert.That(measured[0,originalDepth],Is.Zero);
+            Assert.That(measured[1,originalDepth],Is.GreaterThan(0),"Deeper unit-cube layers now take damage.");
+            Assert.That(measured[1,originalDepth*2],Is.Zero,"The new end plane still excludes the next layer.");
+            Assert.That(total[1],Is.EqualTo(expectedTotal).Within(.5f));
+            Assert.That(total[1]/total[0],Is.EqualTo(1.5f).Within(.03f),"Rounded retention profiles target approximately 150% original thick-hull damage.");
+        }
         [Test]public void MissesEnvironmentAndZeroDamageDoNotConfirmHits()
         {
             var owner=CreateShip(false,new PartSpec(BlockShape.Core,100,0));

@@ -1,0 +1,13 @@
+# 116 audio integration
+
+Source: `Assets/_Starframe/assetsForCodex/116/116声音.mp3`, 44.1 kHz stereo MP3, approximately258 seconds. Supplied order resolves to16 segments:15 effects (including2 small-rail alternatives) plus music. `segments.json` records exact intervals, gain adjustments, processed lengths, hashes and external backup path. Full unprocessed cuts are in `原始分段`; production WAVs are in `Assets/_Starframe/Audio/116`; editable copies are in `音效替换/116新素材`.
+
+Sustained laser, beam and Gatling sections use40ms equal-gain loop joins, with runtime10ms attack/25ms release. Music preserves stereo and uses a1.5s loop join after trimming the quiet ending. SFX are mono PCM and preloaded; music streams. No clipping found in individual processed signals. Eight-per-second missile layering at configured gain peaks at0.694 in the synthetic check; this does not guarantee every possible mixed battle is clipping-free.
+
+Runtime routing distinguishes weapon families and native large/small railgun definitions. Two small rail clips alternate without an additional gameplay random draw. Existing bounded audio pool prevents unbounded voice accumulation. Low hull or installed active shield charge below25% shares a10s warning cadence; overheat alerts on transition and rearms after cooling. Menu and flight use the new music. Retained old01/07/08/09/11 gain is0.7 times baseline; old11 remains silent. Unmatched cues and engine loop are disabled.23 retired runtime WAVs and18 retired editable copies were removed after byte-verified external backup. Historical source packs supplied by the user were not changed.
+
+Validation:32/32 EditMode ExpandedWeaponTests; final7/7 PlayMode GameAudioTests. These cover real weapon shot notification, native category mapping, voice bounds, variant alternation, loop timeout, muted unmatched cues, real shield/health shared cooldown and real Gatling overheat recovery. `installed.json` is the native importer and binding audit; `signal-checks.json` contains numerical checks. The stopped editor was restored after tests.
+
+Cut assignments use the supplied order and waveform/spectrum boundaries. No subjective headphone audition or standalone device-build audio assessment was performed. Original MP3 and unprocessed cuts remain available for precise adjustment if the intended small-rail or warning boundary differs.
+
+Retention correction: only old07/08/09/11 are deleted; only01 is reduced30%. All other original files restored; unmatched playback and engine loop restored at original settings. Matched116 replacements remain active. This supersedes the earlier cleanup/muting description above. See retention-audit.json.

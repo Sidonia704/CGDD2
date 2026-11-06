@@ -16,7 +16,7 @@ namespace Starframe.App
     /// <summary>Transactional loadout page operating on the supplied preview assembly.</summary>
     public sealed class WeaponGroupScreen:MonoBehaviour
     {
-        const int MaxGroups=8;
+        const int MaxGroups=6;
         static Color Ink=>GlassUiPalette.Ink;static Color Muted=>GlassUiPalette.Muted;static Color Warning=>UiTheme.Current.amber;
         static readonly Color[] GroupColors={new Color(.85f,.73f,.49f),new Color(.58f,.76f,.65f),new Color(.81f,.59f,.62f),new Color(.71f,.65f,.82f),new Color(.87f,.66f,.47f),new Color(.52f,.75f,.74f),new Color(.77f,.72f,.62f),new Color(.66f,.72f,.81f)};
         static readonly int BaseColor=Shader.PropertyToID("_BaseColor"),ColorProperty=Shader.PropertyToID("_Color"),Emission=Shader.PropertyToID("_EmissionColor");
@@ -64,7 +64,7 @@ namespace Starframe.App
         static string T(string key,params object[] args)=>L10n.T("ui.weaponGroups."+key,args);
         static Color GroupColor(int id)=>Color.Lerp(GlassUiPalette.Accent,GroupColors[(int)((uint)id%(uint)GroupColors.Length)],.32f);
         static string Copy(string zh,string en)=>L10n.IsEnglish?en:zh;
-        string GroupName(WeaponGroupRecord group)=>group.name=="Group "+((long)group.id+1)?T("groupDefault",(long)group.id+1):group.name;
+        string GroupName(WeaponGroupRecord group)=>"GROUP "+((long)group.id+1);
         int Number(string id)=>guns.FindIndex(view=>view.Record.id==id)+1;
         string WeaponName(string id)=>T("gun",Number(id).ToString("00"));
         int Count(int id)=>draft.weaponAssignments.FindAll(value=>value.groupId==id).Count;
@@ -112,7 +112,7 @@ namespace Starframe.App
             var input=surface.Input("GroupName_"+id,GroupName(group),0,0,nameWidth,42,value=>{
                 if(building)return;var current=WeaponGroups.FindGroup(draft,id);if(current==null)return;
                 current.name=value;RefreshStatus();
-            });input.characterLimit=WeaponGroups.MaxNameLength;input.lineType=TMP_InputField.LineType.SingleLine;
+            });input.readOnly=true;input.characterLimit=WeaponGroups.MaxNameLength;input.lineType=TMP_InputField.LineType.SingleLine;
             L10n.ApplyUserContentFont(input.textComponent);Nest((RectTransform)input.transform,card,18,48,nameWidth,42);
             float bindingX=compact?nameWidth+30:18,bindingY=compact?48:104,bindingWidth=compact?width-bindingX-18:width-36;
             Nest((RectTransform)surface.Button("GroupBinding_"+id,Copy("开火  ","FIRE  ")+BindingName(group.binding),0,0,bindingWidth,42,()=>OpenBinding(id)).transform,card,bindingX,bindingY,bindingWidth,42);
@@ -150,7 +150,7 @@ namespace Starframe.App
                 int index=draft.weaponGroups.FindIndex(value=>value.id==groupId);
                 var dropdown=surface.Dropdown("WeaponGroupChoice_"+id,options,index,0,0,151,44,value=>{
                     if(building||value<0||value>=draft.weaponGroups.Count)return;
-                    WeaponGroups.Assign(draft,id,draft.weaponGroups[value].id);selectedPart=id;selectedGroup=WeaponGroups.GetGroupId(draft,id);Build();
+                    WeaponGroups.Assign(draft,id,draft.weaponGroups[value].id);selectedPart=null;selectedGroup=WeaponGroups.GetGroupId(draft,id);Build();
                 });Nest((RectTransform)dropdown.transform,row,184,10,151,44);
                 L10n.ApplyUserContentFont(dropdown.captionText);L10n.ApplyUserContentFont(dropdown.itemText);
             }
@@ -167,7 +167,7 @@ namespace Starframe.App
         }
         void AssignToGroup(int id)
         {
-            if(modal||captureGroup>=0||selectedPart==null)return;WeaponGroups.Assign(draft,selectedPart,id);selectedGroup=id;Build();
+            if(modal||captureGroup>=0||selectedPart==null)return;WeaponGroups.Assign(draft,selectedPart,id);selectedPart=null;selectedGroup=id;Build();
         }
         void AddGroup()
         {

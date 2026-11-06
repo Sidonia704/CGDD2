@@ -136,7 +136,7 @@ namespace Starframe.EditorTools
             var w=AssetDatabase.LoadAssetAtPath<WeaponDefinition>(asset);
             if(!w){w=ScriptableObject.CreateInstance<WeaponDefinition>();w.name=shape+"Weapon";AssetDatabase.CreateAsset(w,asset);}
             w.tracerStyle=TracerStyle.Voxel;w.tracerLingerSeconds=0;w.minimumVisualPixels=0;w.delivery=WeaponDelivery.Projectile;w.activationMode=WeaponActivationMode.Hold;w.requireTargetLock=false;
-            w.effectColor=new Color(.10f,.57f,1f,1);w.visualIntensity=5;w.visualWidth=.25f;w.visualLength=8;w.tailLength=6;
+            w.effectColor=new Color(.08f,1f,.24f,1);w.visualIntensity=5;w.visualWidth=.25f;w.visualLength=8;w.tailLength=6;
             w.projectileDiameter=.18f;w.penetrationDepth=1;w.secondLayerDamageMultiplier=0;
             w.projectileMaterial=material;w.missileMesh=null;w.launcherMesh=null;w.missileLaunchOffsets=new[]{Vector3.zero};w.beamMesh=null;w.muzzleOffsets=Array.Empty<Vector3>();
             w.missileLockSeconds=2;w.reloadSeconds=4;w.missileTurnDegrees=110;w.missileAcceleration=160;w.missileLaunchSpeed=35;w.explosionRadius=3;w.beamDuration=.12f;
@@ -171,7 +171,7 @@ namespace Starframe.EditorTools
             {
                 bool large=shape==BlockShape.Sword2;w.delivery=WeaponDelivery.Beam;
                 Set(w,large?80:45,12,1400,40,large?220:125);
-                w.effectColor=new Color(.10f,.57f,1,1);w.visualLength=40;w.tailLength=0;w.visualWidth=large?.7f:.45f;w.projectileDiameter=large?1.1f:.75f;w.penetrationDepth=large?2:1.5f;w.secondLayerDamageMultiplier=.65f;
+                w.effectColor=new Color(.08f,1f,.24f,1);w.visualLength=40;w.tailLength=0;w.visualWidth=large?.7f:.45f;w.projectileDiameter=large?1.1f:.75f;w.penetrationDepth=large?2:1.5f;w.secondLayerDamageMultiplier=.65f;
             }
             EditorUtility.SetDirty(w);return w;
         }

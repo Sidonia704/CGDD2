@@ -1,4 +1,6 @@
-// @role Define sound cues, engine response, music levels and playback limits.
+// @role Define weapon and warning cues, Gatling start/end phases, alternating clips, engine response, music levels and playback limits.
+// @tune criticalHullFraction:float:0-1:Hull fraction triggering the shared health/shield warning
+// @tune criticalRepeatSeconds:float:1+:Seconds between shared health/shield warnings
 // @tune missileWarningFarDistance:float:1-5000:Distance for the slowest incoming missile pulse
 // @tune missileWarningNearDistance:float:1-500:Distance for the fastest incoming missile pulse
 // @tune missileWarningFarTimeToImpact:float:0.1-30:Impact estimate for the slowest incoming missile pulse
@@ -16,7 +18,9 @@ namespace Starframe.App
         Select, SaveBlueprint, ConfirmWarning, PlaceHull, PlaceModule, RemovePart,
         RotatePart, InvalidPlacement, CorePowerOn, LaserShot, LaserImpact,
         LockAcquired, TargetLost, ManeuverJet, BoundaryWarning, CoreDestroyed, Respawn,
-        EnemyDetected, EnemyLockWarning, MissileIncoming, FlareDeploy
+        EnemyDetected, EnemyLockWarning, MissileIncoming, FlareDeploy,
+        LaserRapid, DirectLaser, RailLarge, RailSmall, Gatling, MissileShot,
+        HealthShieldWarning, OverheatWarning
     }
     public enum GameSoundBus { Effects, Interface }
 
@@ -25,6 +29,15 @@ namespace Starframe.App
     {
         public GameSound sound;
         public AudioClip clip;
+        [Tooltip("Gatling intro and release; clip is the seamless sustain loop. State, not clip length, controls firing.")]
+        public AudioClip startClip,endClip;
+        [Tooltip("Optional second clip, alternated deterministically after each admitted playback.")]
+        public AudioClip alternateClip;
+        [Tooltip("Optional deterministic round-robin variants; when populated these replace clip/alternateClip selection.")]
+        public AudioClip[] variants=Array.Empty<AudioClip>();
+        [Tooltip("Keep one bounded voice running while actual shots refresh this cue/channel.")]
+        public bool loopWhileFiring;
+        [Min(.01f)] public float releaseSeconds=.15f;
         public GameSoundBus bus;
         [Range(0,1)] public float gain=.6f;
         [Range(.5f,2)] public float pitch=1;
@@ -48,7 +61,7 @@ namespace Starframe.App
         [Range(.5f,2)] public float idlePitch=.86f,fullThrustPitch=1.08f,boostPitch=1.18f;
         [Min(.02f)] public float thrustAttack=.12f,thrustRelease=.4f;
         [Header("Voice limits and distance")]
-        [Range(4,32)] public int effectVoices=16;
+        [Range(8,32)] public int effectVoices=16;
         [Min(1)] public float nearDistance=12,farDistance=500;
         [Min(0)] public float boundaryWarningDistance=90;
         [Min(.5f)] public float boundaryRepeatSeconds=3;

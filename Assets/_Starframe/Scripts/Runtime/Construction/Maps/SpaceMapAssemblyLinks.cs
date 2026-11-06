@@ -76,9 +76,7 @@ namespace Starframe.Maps
         public void Observe(VoxelStructureRuntime structure)
         {
             if (!structure || !observed.Add(structure)) return;
-            structure.CellDestroyed += OnCellDestroyed;
         }
-        void OnCellDestroyed(VoxelCellState cell) { if (anchors.Contains(cell)) Refresh(); }
         public void Refresh()
         {
             foreach (var link in contacts)
@@ -98,10 +96,20 @@ namespace Starframe.Maps
         }
         static bool AnchorBoxesOverlap(Contact link)
         {
-            var a = CellBounds(link.cellA.owner, link.cellA.position);
-            var b = CellBounds(link.cellB.owner, link.cellB.position);
+            var a = link.source.hasLegacyAnchorBounds ? TransformBounds(link.cellA.owner.PhysicsMatrix, link.source.legacyAnchorBoundsA) : CellBounds(link.cellA.owner, link.cellA.position);
+            var b = link.source.hasLegacyAnchorBounds ? TransformBounds(link.cellB.owner.PhysicsMatrix, link.source.legacyAnchorBoundsB) : CellBounds(link.cellB.owner, link.cellB.position);
             a.Expand(.05f); b.Expand(.05f);
             return a.Intersects(b);
+        }
+        static Bounds TransformBounds(Matrix4x4 matrix, Bounds local)
+        {
+            var x = matrix.MultiplyVector(Vector3.right * local.extents.x);
+            var y = matrix.MultiplyVector(Vector3.up * local.extents.y);
+            var z = matrix.MultiplyVector(Vector3.forward * local.extents.z);
+            return new Bounds(matrix.MultiplyPoint3x4(local.center), new Vector3(
+                Mathf.Abs(x.x) + Mathf.Abs(y.x) + Mathf.Abs(z.x),
+                Mathf.Abs(x.y) + Mathf.Abs(y.y) + Mathf.Abs(z.y),
+                Mathf.Abs(x.z) + Mathf.Abs(y.z) + Mathf.Abs(z.z)) * 2);
         }
         static Bounds CellBounds(VoxelStructureRuntime body, Vector3Int position)
         {
@@ -212,7 +220,6 @@ namespace Starframe.Maps
         {
             RestoreDepenetration();
             foreach (var link in contacts) RemoveJoint(link);
-            foreach (var body in observed) if (body) body.CellDestroyed -= OnCellDestroyed;
             contacts.Clear(); anchors.Clear(); observed.Clear(); frozen.Clear();
         }
     }

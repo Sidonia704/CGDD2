@@ -69,21 +69,7 @@ namespace Starframe.Tests
             var top = mesh.GetTriangles(2).Where(i => normals[i].y > .99f && Mathf.Abs(vertices[i].y) < .05f).ToArray();
             Assert.That(top.Length, Is.GreaterThanOrEqualTo(3), "The slab's internal-height top must not be culled by a neighbouring cube.");
         }
-        [Test] public void FractureRetainsEachSurvivorsShapeOrientationAndTint()
-        {
-            var source = Source(new VoxelCell { position = Vector3Int.left, shape = BlockShape.Wedge, quarterTurns = new Vector3Int(1, 0, 2) }, new VoxelCell(),
-                new VoxelCell { position = Vector3Int.right, shape = BlockShape.Pyramid, quarterTurns = new Vector3Int(2, 1, 0) });
-            source.baseColor = new Color(.8f, .9f, 1); var body = Body(source); body.ApplyDamage(Vector3Int.zero, 1000); body.FlushMeshChanges();
-            var pieces = root.GetComponentsInChildren<VoxelStructureRuntime>(); Assert.That(pieces.Length, Is.EqualTo(2));
-            foreach (var item in pieces)
-            {
-                var state = item.Cells.Values.Single(c => c.Alive); var expected = source.cells.Single(c => c.position == state.position);
-                Assert.That(state.shape, Is.EqualTo(expected.shape)); Assert.That(state.quarterTurns, Is.EqualTo(expected.quarterTurns));
-                Assert.That(item.GetComponent<MeshFilter>().sharedMesh.vertexCount, Is.GreaterThan(0));
-                var original = Database.Get(state.shape).material;
-                Assert.That(Vector4.Distance(item.GetComponent<MeshRenderer>().sharedMaterials[VoxelHullAppearance.ShapeIndex(state.shape)].GetColor("_BaseColor"), original.GetColor("_BaseColor") * source.baseColor), Is.LessThan(.000001f));
-            }
-        }
+
         [Test] public void ShapeAndRotationSurviveCopiesSerializationAndFallbackRendering()
         {
             var cell = new VoxelCell { shape = BlockShape.Wedge, quarterTurns = new Vector3Int(2, 3, 1), surface = 1 };

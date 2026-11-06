@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57c7601c94efac44dacfde24ada57da4, type: 3}
+  m_Name: VLS2
+  m_EditorClassIdentifier: Starframe.Construction::Starframe.Flight.ModuleDefinition
+  shape: 39
+  displayName: "\u5782\u53D1\u5355\u5143\uFF088\u53D1\uFF09"
+  category: 3
+  cost: 450
+  massKg: 900
+  maxHp: 1300
+  recoverySeconds: 6
+  thrustNewtons: 0
+  occupiedCells:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 1}
+  - {x: 0, y: 1, z: 0}
+  - {x: 0, y: 1, z: 1}
+  localExhaustDirections: []
+  localNozzlePositions: []
+  muzzleLocalPosition: {x: 0.0036833994, y: 1.5299999, z: 0.5090945}
+  muzzleClearanceDiameter: 0.32
+  mesh: {fileID: 4300000, guid: d39f1e68894831c4cbab50a4cbb7f586, type: 2}
+  outline: {fileID: 0}
+  drawOutline: 0
+  material: {fileID: 2100000, guid: 060df83c9f5482f4ea424501392ac7de, type: 2}
+  icon: {fileID: 5720108844242067911, guid: d077d559f4fc0a449b8f3f73e7c74239, type: 3}
+  selectedIcon: {fileID: 5720108844242067911, guid: d077d559f4fc0a449b8f3f73e7c74239, type: 3}
+  weapon: {fileID: 11400000, guid: c3ffae41c691f66478137ed35aeeb05b, type: 2}
+  countermeasure: {fileID: 0}
+  generationWatts: 0
+  storageJoules: 0
+  thrusterPowerWatts: 0
+  shieldPowerWatts: 0
+  shieldCapacity: 0
+  shieldRadius: 8
+  shieldRecoveryDelay: 2
+  shieldRecoveryPerSecond: 50
+  shieldSurfaceMaterial: {fileID: 0}
+  shieldSurfaceMesh: {fileID: 0}

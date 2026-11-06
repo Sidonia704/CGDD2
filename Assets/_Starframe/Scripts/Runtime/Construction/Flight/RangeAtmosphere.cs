@@ -31,7 +31,8 @@ namespace Starframe.Flight
             // The old nearby sphere appears pasted onto the giant planet and moves with flight parallax.
             // The simulation sky now draws the distant source using the same direction as this light.
             if(RenderSettings.skybox&&RenderSettings.skybox.shader&&
-                RenderSettings.skybox.shader.name=="Starframe/Environment/Simulation Sky")
+                (RenderSettings.skybox.shader.name=="Starframe/Environment/Simulation Sky"||
+                 RenderSettings.skybox.shader.name=="Starframe/Environment/Saturn Stylized Sky"))
                 foreach(var root in gameObject.scene.GetRootGameObjects())
                     if(root.name=="Star Direction Reference"&&root.TryGetComponent<MeshRenderer>(out var renderer))
                         renderer.enabled=false;

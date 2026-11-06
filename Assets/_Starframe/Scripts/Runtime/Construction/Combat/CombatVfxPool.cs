@@ -18,6 +18,7 @@ namespace Starframe.Combat
             public MaterialPropertyBlock properties;
             public Vector3 velocity, spin;
             public float age, duration, size, intensity;
+            public Vector3 stretch=Vector3.one;
             public Color startColor, endColor;
             public bool transitionsColor;
             public bool active, fragment;
@@ -53,23 +54,31 @@ namespace Starframe.Combat
         public void EmitLaserHit(Vector3 position)
         {
             if (!glow) return;
-            Emit(position, .75f, .23f, Vector3.zero, false, new Color(.45f,.9f,1), 7);
+            Emit(position, .75f, .23f, Vector3.zero, false, new Color(.06f,1,.18f), 4.5f);
             for (int i = 0; i < hitVoxelCount; i++)
             {
                 var direction = Random.onUnitSphere;
-                Emit(position + direction * (.14f*visualScale), Random.Range(.14f,.32f), Random.Range(.2f,.36f), direction * Random.Range(2f,5f)*visualScale, false, new Color(.08f,.65f,1), 4.5f);
+                Emit(position + direction * (.14f*visualScale), Random.Range(.14f,.32f), Random.Range(.2f,.36f), direction * Random.Range(2f,5f)*visualScale, false, new Color(.08f,1f,.24f), 4.5f);
             }
         }
 
         public void EmitMuzzle(Vector3 position,Vector3 direction,Starframe.Flight.WeaponDefinition weapon)
         {
             if(!glow||!weapon)return;
-            bool rail=weapon.tracerStyle==Starframe.Flight.TracerStyle.Continuous;
-            float width=rail?Mathf.Clamp(weapon.projectileDiameter*weapon.visualWidth*.45f,.45f,1.8f):Mathf.Clamp(weapon.projectileDiameter*.7f,.1f,.65f);
-            float coreDuration=weapon.delivery==Starframe.Flight.WeaponDelivery.GuidedMissile?.14f:rail?.09f:.07f;
-            Emit(position+direction*(width*.42f),width*.58f,coreDuration,Vector3.zero,false,Color.white,rail?12:8,weapon.effectColor);
+            bool rail=weapon.family==Starframe.Flight.WeaponFamily.Railgun;
+            bool missile=weapon.delivery==Starframe.Flight.WeaponDelivery.GuidedMissile;
+            bool laser=weapon.family==Starframe.Flight.WeaponFamily.RapidLaser||weapon.family==Starframe.Flight.WeaponFamily.BeamLaser;
+            float width=rail?Mathf.Clamp(weapon.projectileDiameter*weapon.visualWidth*.45f,.45f,1.8f):Mathf.Clamp(weapon.projectileDiameter*.9f,.16f,.8f);
+            width=LaserVisualPool.MinimumReadableWidth(Camera.main,position,width,rail?3:2.2f);
+            float coreDuration=missile?.14f:rail?.09f:laser?.065f:.055f;
+            var core=Emit(position+direction*(width*.8f),width*.58f,coreDuration,Vector3.zero,false,laser?Color.Lerp(weapon.effectColor,Color.white,.08f):Color.white,rail?12:laser?4.5f:8,weapon.effectColor);
+            if(!missile){
+                // One directional flash per real discharge, visible from front and side.
+                core.stretch=new Vector3(.72f,.72f,rail?5f:laser?4.5f:3.5f);core.spin=Vector3.zero;
+                core.transform.rotation=Quaternion.LookRotation(direction);core.transform.localScale=core.stretch*core.size;
+            }
             if(rail)Emit(position+direction*(width*.65f),width*.52f,.055f,direction*8,false,new Color(1,.9f,.55f),12);
-            int count=weapon.delivery==Starframe.Flight.WeaponDelivery.GuidedMissile?7:rail?12:2;
+            int count=missile?7:rail?12:laser?3:4;
             for(int i=0;i<count;i++){
                 float size=rail?Random.Range(.12f,.24f)*Mathf.Clamp(width,.7f,1.8f):Random.Range(.045f,.1f);
                 Vector3 velocity=rail?direction*Random.Range(24,50)+Random.insideUnitSphere*5:direction*Random.Range(3,10)+Random.insideUnitSphere*1.5f;
@@ -79,10 +88,11 @@ namespace Starframe.Combat
         public void EmitWeaponHit(Vector3 position,Starframe.Flight.WeaponDefinition weapon)
         {
             if(!glow||!weapon)return;
-            bool rail=weapon.tracerStyle==Starframe.Flight.TracerStyle.Continuous;
+            bool rail=weapon.family==Starframe.Flight.WeaponFamily.Railgun;
+            bool energy=weapon.family==Starframe.Flight.WeaponFamily.RapidLaser||weapon.family==Starframe.Flight.WeaponFamily.BeamLaser||weapon.delivery==Starframe.Flight.WeaponDelivery.Beam;
             float size=Mathf.Clamp(Mathf.Sqrt(Mathf.Max(0,weapon.damage))*(rail?.11f:.15f),rail?.85f:.6f,rail?4.4f:2.3f);
-            Emit(position,size,.18f,Vector3.zero,false,Color.Lerp(weapon.effectColor,Color.white,rail?.6f:.7f),rail?12:9);
-            Emit(position,size*.52f,.1f,Vector3.zero,false,rail?new Color(1,.94f,.7f):new Color(1,.9f,.6f),rail?15:12);
+            Emit(position,size,.18f,Vector3.zero,false,Color.Lerp(weapon.effectColor,Color.white,energy?.08f:rail?.6f:.7f),energy?4.5f:rail?12:9);
+            Emit(position,size*.52f,.1f,Vector3.zero,false,energy?weapon.effectColor:rail?new Color(1,.94f,.7f):new Color(1,.9f,.6f),energy?5:rail?15:12);
             int count=Mathf.Clamp(Mathf.RoundToInt(size*(rail?11:16)),rail?18:10,rail?36:26);
             for(int i=0;i<count;i++){
                 Vector3 direction=Random.onUnitSphere;
@@ -122,18 +132,18 @@ namespace Starframe.Combat
             }
         }
 
-        void Emit(Vector3 position, float size, float duration, Vector3 velocity, bool fragment, Color color, float intensity,Color? endColor=null)
+        Effect Emit(Vector3 position, float size, float duration, Vector3 velocity, bool fragment, Color color, float intensity,Color? endColor=null)
         {
             int index = free.Count > 0 ? free.Pop() : effects.Count < Mathf.Max(32,maximumVoxels) ? CreateSlot() : recycleCursor++ % effects.Count;
             var e = effects[index];
-            e.active = true; e.fragment = fragment; e.age = 0; e.duration = duration; e.size = size*visualScale;
+            e.active = true; e.fragment = fragment; e.age = 0; e.duration = duration; e.size = size*visualScale;e.stretch=Vector3.one;
             e.velocity = velocity; e.spin = Random.onUnitSphere * Random.Range(100,320); e.intensity = intensity;
             e.startColor=color;e.endColor=endColor??color;e.transitionsColor=endColor.HasValue;
             e.transform.SetPositionAndRotation(position, fragment ? Random.rotation : Quaternion.identity);
             e.transform.localScale = Vector3.one * e.size;
             e.renderer.sharedMaterial=fragment&&fragmentMaterial?fragmentMaterial:glow;
             e.properties.Clear();e.properties.SetColor(ColorId,color);e.properties.SetColor(BaseColorId,color); e.properties.SetFloat(IntensityId,intensity); e.properties.SetFloat(OpacityId,1);
-            e.renderer.SetPropertyBlock(e.properties); e.renderer.enabled = true;
+            e.renderer.SetPropertyBlock(e.properties); e.renderer.enabled = true;return e;
         }
 
         int CreateSlot()
@@ -159,7 +169,7 @@ namespace Starframe.Combat
                 e.transform.position += e.velocity * dt;
                 e.transform.Rotate(e.spin * dt,Space.Self);
                 float shrink = e.fragment ? Mathf.Lerp(1,.05f,Mathf.Clamp01((t-.55f)/.45f)) : Mathf.Lerp(1,.1f,t);
-                e.transform.localScale = Vector3.one * (e.size * shrink);
+                e.transform.localScale = e.stretch * (e.size * shrink);
                 e.properties.SetFloat(OpacityId,(1-t)*(1-t));
                 if(e.transitionsColor)
                 {

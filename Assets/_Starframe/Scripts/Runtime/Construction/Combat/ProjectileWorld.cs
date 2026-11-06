@@ -1,4 +1,4 @@
-// @role Resolve faction-scaled swept shots, finite seekers and bounded missile blasts blocked by charged shields.
+// @role Resolve faction-scaled swept shots, finite seekers and missile blasts with full VLS per-round payloads; notify actual shots for audio.
 // @calls CylindricalHitQuery, ShipShieldSystem, FlightShipRuntime, DebrisPartHitbox, LaserVisualPool, SpecialWeaponVisualPool, VoxelBodyHitbox, VoxelStructureRuntime, MissileGuidance, FlareWorld, ShipFlightController, CombatDamageTuning, WeaponSmokePool
 
 using System;
@@ -16,7 +16,7 @@ namespace Starframe.Combat
             public WeaponDefinition weapon;public FlightShipRuntime owner;public Vector3 origin,direction;
             public float distance,speed,radius,damage,range,depth,multiplier,firstHit=-1;
             public int visual=-1;public bool hitConfirmed,sceneryFeedback;public readonly HashSet<ShipPartState> hitParts=new HashSet<ShipPartState>();
-            public readonly HashSet<VoxelCellState> hitVoxels=new HashSet<VoxelCellState>();
+
         }
         sealed class Missile
         {
@@ -29,7 +29,6 @@ namespace Starframe.Combat
         readonly List<Missile> missiles=new List<Missile>();readonly Stack<Missile> freeMissiles=new Stack<Missile>();
         readonly HashSet<FlightShipRuntime> blastShieldedShips=new HashSet<FlightShipRuntime>();
         readonly HashSet<ShipPartState> blastParts=new HashSet<ShipPartState>();
-        readonly HashSet<VoxelStructureRuntime> blastStructures=new HashSet<VoxelStructureRuntime>();
         struct Contact{public Collider collider;public ShipPartHitbox hitbox;public DebrisPartHitbox debris;public ShipShieldSystem.Field shield;public VoxelStructureRuntime scenery;public VoxelCellState voxel;public float distance;}
         struct ShieldSample{public ShipShieldSystem.Field field;public Vector3 center;public float radius;}
         static readonly ProfilerMarker Marker=new ProfilerMarker("Starframe.Projectiles");
@@ -59,6 +58,7 @@ namespace Starframe.Combat
         public event Action<Vector3,WeaponDefinition> WeaponImpact,MissileExplosion;
         public event Action<Vector3,Vector3,WeaponDefinition> MuzzleFlash;
         public event Action<FlightShipRuntime,Vector3> ShotFired;
+        public event Action<FlightShipRuntime,Vector3,WeaponDefinition> WeaponShotFired;
         public bool EmittingMissileShot{get;private set;}
         // One confirmation per projectile, only after a damageable surface actually absorbs damage.
         public event Action<FlightShipRuntime> HitConfirmed;
@@ -82,17 +82,18 @@ namespace Starframe.Combat
                 var matrix=collider?CylindricalHitQuery.PhysicsMatrix(collider):muzzleSource?muzzleSource.localToWorldMatrix:Matrix4x4.Rotate(Quaternion.FromToRotation(Vector3.forward,direction));
                 for(int i=0;i<count;i++){
                     Vector3 launch=position+matrix.MultiplyVector(offsets!=null&&offsets.Length>0?offsets[i]:Vector3.zero);
-                    MuzzleFlash?.Invoke(launch,direction,weapon);FireMissile(owner,weapon,launch,direction,lockedTarget,1f/count);
+                    MuzzleFlash?.Invoke(launch,direction,weapon);FireMissile(owner,weapon,launch,direction,lockedTarget,weapon.IsVls?1:1f/count);
                 }
                 return;
             }
             MuzzleFlash?.Invoke(position,direction,weapon);
             if(weapon.delivery==WeaponDelivery.Beam){FireBeam(owner,weapon,position,direction.normalized,muzzleSource,muzzleLocalPosition);return;}
             if(smoke)smoke.EmitMuzzle(position,direction,weapon,owner.Team);
-            var b=free.Count>0?free.Pop():new Bolt();b.weapon=weapon;b.owner=owner;b.origin=position;b.direction=direction.normalized;b.distance=0;b.firstHit=-1;b.hitConfirmed=false;b.hitParts.Clear();b.hitVoxels.Clear();
+            var b=free.Count>0?free.Pop():new Bolt();b.weapon=weapon;b.owner=owner;b.origin=position;b.direction=direction.normalized;b.distance=0;b.firstHit=-1;b.hitConfirmed=false;b.hitParts.Clear();
             b.speed=Mathf.Max(.01f,weapon.projectileSpeed);b.radius=Mathf.Max(.001f,weapon.projectileDiameter*.5f);b.damage=DamageFor(owner,weapon);b.range=Mathf.Max(.1f,weapon.range);b.depth=Mathf.Max(.001f,weapon.penetrationDepth);b.multiplier=Mathf.Clamp01(weapon.secondLayerDamageMultiplier);
-            b.visual=visuals?visuals.Acquire(position,direction,weapon.projectileDiameter,weapon.visualLength,weapon.tailLength,muzzleSource,muzzleLocalPosition,weapon.visualWidth,weapon.visualIntensity,weapon.effectColor,weapon.minimumVisualPixels,weapon.tracerStyle,weapon.tracerLingerSeconds):-1;bolts.Add(b);TotalSpawned++;
-            ShotFired?.Invoke(owner,position);
+            float maximumVisualLength=weapon.family==WeaponFamily.Gatling?.70f*b.speed/Mathf.Max(.01f,weapon.shotsPerSecond):0;
+            b.visual=visuals?visuals.Acquire(position,direction,weapon.projectileDiameter,weapon.visualLength,weapon.tailLength,muzzleSource,muzzleLocalPosition,weapon.visualWidth,weapon.visualIntensity,weapon.effectColor,weapon.minimumVisualPixels,weapon.tracerStyle,weapon.tracerLingerSeconds,maximumVisualLength,weapon.family):-1;bolts.Add(b);TotalSpawned++;
+            ShotFired?.Invoke(owner,position);WeaponShotFired?.Invoke(owner,position,weapon);
         }
         /// <summary>Launch exactly one physical tube; ShipWeapons owns the ship-wide stagger clock.</summary>
         public void FireMissileTube(FlightShipRuntime owner,WeaponDefinition weapon,Transform source,Vector3 localMuzzle,Vector3 direction,FlightShipRuntime target,int tube)
@@ -100,8 +101,8 @@ namespace Starframe.Combat
             if(!owner||!owner.IsAlive||!weapon||weapon.delivery!=WeaponDelivery.GuidedMissile||!source||!target||!target.IsAlive||target.Team==owner.Team)return;
             var offsets=weapon.missileLaunchOffsets;int count=offsets!=null&&offsets.Length>0?offsets.Length:1;
             var collider=source.GetComponent<Collider>();var matrix=collider?CylindricalHitQuery.PhysicsMatrix(collider):source.localToWorldMatrix;
-            Vector3 launch=matrix.MultiplyPoint3x4(localMuzzle+(offsets!=null&&offsets.Length>0?offsets[Mathf.Clamp(tube,0,count-1)]:Vector3.zero));
-            MuzzleFlash?.Invoke(launch,direction,weapon);FireMissile(owner,weapon,launch,direction,target,1f/count);
+            Vector3 launch=matrix.MultiplyPoint3x4(localMuzzle+(offsets!=null&&offsets.Length>0?offsets[weapon.IsVls?Mathf.Abs(tube%count):Mathf.Clamp(tube,0,count-1)]:Vector3.zero));
+            MuzzleFlash?.Invoke(launch,direction,weapon);FireMissile(owner,weapon,launch,direction,target,weapon.IsVls?1:1f/count);
         }
         int Query(Vector3 from,Vector3 to,float radius)
         {
@@ -141,7 +142,7 @@ namespace Starframe.Combat
                     if(voxelBody){
                         if(!queriedScenery.Add(voxelBody.Structure))continue;
                         voxelContacts.Clear();voxelBody.CollectHits(b.origin,b.direction,b.radius,b.distance,next,geometry,voxelContacts);
-                        foreach(var contact in voxelContacts)if(!b.hitVoxels.Contains(contact.cell))contacts.Add(new Contact{scenery=contact.structure,voxel=contact.cell,distance=contact.distance});
+                        foreach(var contact in voxelContacts)contacts.Add(new Contact{scenery=contact.structure,voxel=contact.cell,distance=contact.distance});
                         continue;
                     }
                     if(geometry.TryHit(c,b.origin,b.direction,b.radius,b.distance,next,out float entry))contacts.Add(new Contact{collider=c,hitbox=h,debris=debris,distance=entry});
@@ -159,18 +160,9 @@ namespace Starframe.Combat
                         continue;
                     }
                     if(hit.scenery){
-                        if(!hit.voxel.Alive||b.hitVoxels.Contains(hit.voxel))continue;
-                        if(!hit.scenery.damageEnabled){
-                            ConfirmHit(b,true);EmitImpact(b,b.origin+b.direction*hit.distance);
-                            next=Mathf.Min(next,hit.distance);limit=next;break;
-                        }
-                        if(b.firstHit<0){b.firstHit=hit.distance;limit=Mathf.Min(b.range,b.firstHit+b.depth);}
-                        if(hit.distance>=limit-.0001f)continue;
-                        b.hitVoxels.Add(hit.voxel);
-                        float layer=hit.distance-b.firstHit<1-.0001f?1:b.multiplier;
-                        float damage=hit.scenery.ApplyDamage(hit.voxel.position,b.damage*layer);
-                        if(damage>0){b.owner.RecordDamageDealt(damage);ConfirmHit(b,true);EmitImpact(b,b.origin+b.direction*hit.distance);}
-                        continue;
+
+                        ConfirmHit(b,true);EmitImpact(b,b.origin+b.direction*hit.distance);
+                        next=Mathf.Min(next,hit.distance);limit=next;break;
                     }
                     if(!hit.hitbox&&!hit.debris){EmitImpact(b,hit.collider.ClosestPoint(b.origin+b.direction*hit.distance));next=Mathf.Min(next,hit.distance);limit=next;break;}
                     var target=hit.hitbox;var wreck=hit.debris;var collider=hit.collider;
@@ -219,17 +211,20 @@ namespace Starframe.Combat
         }
         void FireBeam(FlightShipRuntime owner,WeaponDefinition weapon,Vector3 position,Vector3 direction,Transform source,Vector3 localPosition)
         {
-            float length=Mathf.Max(.1f,weapon.range),damage=DamageFor(owner,weapon);
-            if(FirstContact(owner,position,direction,length,Mathf.Max(.001f,weapon.projectileDiameter*.5f),out var hit)){
+            float length=weapon.EffectiveRange,damage=DamageFor(owner,weapon);
+            bool hasContact=FirstContact(owner,position,direction,length,Mathf.Max(.001f,weapon.projectileDiameter*.5f),out var hit);
+            if(hasContact){
                 length=hit.distance;Vector3 point=position+direction*length;float dealt=0;
                 if(hit.shield!=null)dealt=hit.shield.ship.Shields.Absorb(hit.shield,damage,point);
-                else if(hit.scenery){dealt=hit.scenery.ApplyDamage(hit.voxel.position,damage);if(dealt>0)owner.RecordDamageDealt(dealt);}
                 else if(hit.hitbox)dealt=hit.hitbox.Ship.ApplyDamage(hit.hitbox.Part.record.id,damage,owner,true);
                 else if(hit.debris)dealt=hit.debris.ApplyDamage(damage);
-                Impact?.Invoke(point);WeaponImpact?.Invoke(point,weapon);if(dealt>0||(hit.scenery&&!hit.scenery.damageEnabled)){HitConfirmed?.Invoke(owner);HitFeedbackConfirmed?.Invoke(owner,hit.scenery);}
+                Impact?.Invoke(point);WeaponImpact?.Invoke(point,weapon);if(dealt>0||hit.scenery){HitConfirmed?.Invoke(owner);HitFeedbackConfirmed?.Invoke(owner,hit.scenery);}
             }
-            if(specialVisuals)specialVisuals.ShowBeam(weapon,position,direction,length,source,localPosition);
-            TotalSpawned++;ShotFired?.Invoke(owner,position);
+            // Query a finite world distance even for a horizon-reaching beam. Only the
+            // unobstructed visual extends beyond the camera; damage never depends on FOV.
+            if(!hasContact&&weapon.unboundedBeam){var camera=Camera.main;length=Mathf.Max(length,camera?camera.farClipPlane+1000f:100000f);}
+            if(specialVisuals)specialVisuals.ShowBeam(weapon,position,direction,length,source,localPosition,hasContact);
+            TotalSpawned++;ShotFired?.Invoke(owner,position);WeaponShotFired?.Invoke(owner,position,weapon);
         }
         void FireMissile(FlightShipRuntime owner,WeaponDefinition weapon,Vector3 position,Vector3 direction,FlightShipRuntime target,float damageScale)
         {
@@ -238,11 +233,11 @@ namespace Starframe.Combat
             missile.owner=owner;missile.weapon=weapon;missile.damage=DamageFor(owner,weapon)*damageScale;missile.target=target;missile.targetLife=target.LifeId;
             missile.targetFlight=target.GetComponent<ShipFlightController>();missile.targetBody=target.GetComponent<Rigidbody>();
             missile.position=position;missile.direction=direction.normalized;missile.speed=Mathf.Max(.01f,weapon.missileLaunchSpeed);missile.distance=missile.age=0;
-            missile.flareId=-1;missile.testedFlares.Clear();missile.guidance.Reset(missile.direction);
+            missile.flareId=-1;missile.testedFlares.Clear();missile.guidance.Reset(missile.direction,target.CorePhysicsPosition-position,weapon);
             missile.visual=specialVisuals?specialVisuals.AcquireMissile(weapon,position,missile.direction):-1;
             missiles.Add(missile);TotalSpawned++;
             EmittingMissileShot=true;
-            try{ShotFired?.Invoke(owner,position);}finally{EmittingMissileShot=false;}
+            try{ShotFired?.Invoke(owner,position);WeaponShotFired?.Invoke(owner,position,weapon);}finally{EmittingMissileShot=false;}
         }
         void StepMissiles(float dt)
         {
@@ -322,6 +317,14 @@ namespace Starframe.Combat
             if(Flares)foreach(var burst in Flares.Bursts)if(burst!=null&&burst.Id==id&&burst.Active){position=burst.Position;return true;}
             position=default;return false;
         }
+        /// <summary>Live VLS seeker tracking this ship life; coasting or flare-diverted missiles do not retain a lock marker.</summary>
+        public bool HasVlsSeekerTarget(FlightShipRuntime owner,FlightShipRuntime target)
+        {
+            if(!owner||!owner.IsAlive||!target||!target.IsAlive)return false;
+            foreach(var missile in missiles)if(missile.owner==owner&&missile.weapon&&missile.weapon.IsVls&&missile.target==target&&
+                missile.targetLife==target.LifeId&&missile.flareId<0&&missile.guidance.IsTracking&&missile.age<missile.weapon.missileGuidanceSeconds)return true;
+            return false;
+        }
         /// <summary>Most urgent hostile missile for this life, including credible coasting collision paths.</summary>
         public bool TryGetIncomingThreat(FlightShipRuntime target,out float distance,out float timeToImpact)
             =>TryGetIncomingThreat(target,out distance,out timeToImpact,out _,out _,out _);
@@ -391,14 +394,14 @@ namespace Starframe.Combat
                 if(absorbed>0)confirmed=combatConfirmed=true;
             }
             int count=Query(point,point,radius);
-            contacts.Clear();blastParts.Clear();blastStructures.Clear();
+            contacts.Clear();blastParts.Clear();
             for(int i=0;i<count;i++){
                 var c=candidates[i];if(!c)continue;
                 var h=c.GetComponent<ShipPartHitbox>();var d=c.GetComponent<DebrisPartHitbox>();
                 if(h&&(h.Ship==owner||!h.Ship.IsAlive||!h.Part.present))continue;
                 if(d&&!d.Part.present)continue;
                 var voxel=c.GetComponent<VoxelBodyHitbox>();
-                if(voxel){blastStructures.Add(voxel.Structure);continue;}
+                if(voxel){confirmed=true;continue;}
                 if(!h&&!d)continue;
                 var identity=h?h.Part:d.HitIdentity;if(!blastParts.Add(identity))continue;
                 float distance=Vector3.Distance(c.ClosestPoint(point),point);
@@ -415,21 +418,6 @@ namespace Starframe.Combat
                 float dealt=h&&h.Part.present&&h.Ship.IsAlive?h.Ship.ApplyDamage(h.Part.record.id,amount,owner,true):d&&d.Part.present?d.ApplyDamage(amount):0;
                 budget-=dealt;if(dealt>0)confirmed=combatConfirmed=true;
             }
-            foreach(var structure in blastStructures){
-                if(!structure)continue;
-                if(!structure.damageEnabled){confirmed=true;continue;}
-                if(budget<=.00001f)continue;
-                // A blast is infrequent; copy the local candidates before fragmentation mutates ownership.
-                var affected=new List<VoxelCellState>();
-                float cell=structure.asset.cellSize;
-                foreach(var pair in structure.Cells)if(pair.Value.Alive&&Vector3.Distance(structure.PhysicsMatrix.MultiplyPoint3x4((Vector3)pair.Key*cell),point)<radius+cell*.5f)affected.Add(pair.Value);
-                foreach(var state in affected){
-                    if(!structure||budget<=.00001f)break;
-                    float distance=Mathf.Max(0,Vector3.Distance(structure.PhysicsMatrix.MultiplyPoint3x4((Vector3)state.position*cell),point)-cell*.5f);
-                    float falloff=1-Mathf.Clamp01(distance/radius);float dealt=structure.ApplyDamage(state.position,Mathf.Min(budget,maximum*falloff*falloff));
-                    budget-=dealt;if(dealt>0){confirmed=true;owner.RecordDamageDealt(dealt);}
-                }
-            }
             if(confirmed){HitConfirmed?.Invoke(owner);HitFeedbackConfirmed?.Invoke(owner,!combatConfirmed);}
         }
         void ReleaseMissile(int index)
@@ -443,8 +431,9 @@ namespace Starframe.Combat
             if(bolt.hitConfirmed){if(bolt.sceneryFeedback&&!scenery){bolt.sceneryFeedback=false;HitFeedbackConfirmed?.Invoke(bolt.owner,false);}return;}
             bolt.hitConfirmed=true;bolt.sceneryFeedback=scenery;HitConfirmed?.Invoke(bolt.owner);HitFeedbackConfirmed?.Invoke(bolt.owner,scenery);
         }
-        void Release(int index){var b=bolts[index];if(visuals)visuals.Release(b.visual);b.owner=null;b.hitParts.Clear();b.hitVoxels.Clear();bolts[index]=bolts[bolts.Count-1];bolts.RemoveAt(bolts.Count-1);free.Push(b);}
+        void Release(int index){var b=bolts[index];if(visuals)visuals.Release(b.visual);b.owner=null;b.hitParts.Clear();bolts[index]=bolts[bolts.Count-1];bolts.RemoveAt(bolts.Count-1);free.Push(b);}
         public void RemoveOwned(FlightShipRuntime owner){for(int i=bolts.Count-1;i>=0;i--)if(bolts[i].owner==owner)Release(i);for(int i=missiles.Count-1;i>=0;i--)if(missiles[i].owner==owner)ReleaseMissile(i);}
         public void Clear(){for(int i=bolts.Count-1;i>=0;i--)Release(i);for(int i=missiles.Count-1;i>=0;i--)ReleaseMissile(i);shieldSamples.Clear();if(visuals)visuals.Clear();if(specialVisuals)specialVisuals.Clear();if(smoke)smoke.Clear();}
     }
 }
+

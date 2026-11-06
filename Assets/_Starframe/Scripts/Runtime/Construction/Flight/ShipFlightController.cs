@@ -1,4 +1,4 @@
-// @role Apply independent balanced flight axes, gradual steering, boost and collision-aware motion.
+// @role Apply power-limited normal and boost propulsion, temporary boost speed ceilings, overspeed recovery and collision-aware motion.
 // @calls FlightShipRuntime, FlightTuning, GameInput, ShipCollisionSweep, ShipSceneryCollision
 
 using UnityEngine;
@@ -17,6 +17,8 @@ namespace Starframe.Flight
         float rollInput,hullRadius;
         bool boostHeld;
         public float BoostPowerRatio{get;private set;}
+        public float PropulsionPowerRatio{get;private set;}=1;
+        public void SetPropulsionPowerRatio(float value)=>PropulsionPowerRatio=Mathf.Clamp01(value);
         public float Energy=>runtime?runtime.Power.Energy:0;
         public float MaxEnergy=>runtime?runtime.Power.Capacity:0;
         public bool RequestedBoost=>boostHeld&&runtime&&runtime.IsAlive&&(!hud||!hud.ExitDialogOpen)&&(ExternalControl||(Application.isFocused&&!GameInput.Suspended));
@@ -35,7 +37,7 @@ namespace Starframe.Flight
         public float HullRadius=>hullRadius;
         public FlightTuning Tuning=>tuning;
         public float CurrentSpeed=>velocity.magnitude;
-        public ShipPerformance Performance=>runtime.Performance;
+        public ShipPerformance Performance=>runtime?runtime.Performance:null;
         public bool ExternalControl;
         public bool MenuCursorMode {get;set;}
         [Tooltip("Skip compound collider sweeps in clear space; disable to compare the original collision path.")]
@@ -95,12 +97,12 @@ namespace Starframe.Flight
         }
         public float ThrusterThrottle(ShipPartState part,int nozzleIndex)
         {
-            if(!runtime||!Performance.coreAlive||part==null||!part.ExhaustAvailable(nozzleIndex))return 0;
-            return Performance.AllocatedThrottle(part,nozzleIndex)*BoostScale;
+            if(!runtime||Performance==null||!Performance.coreAlive||part==null||!part.ExhaustAvailable(nozzleIndex))return 0;
+            return Performance.AllocatedThrottle(part,nozzleIndex)*BoostScale*PropulsionPowerRatio;
         }
         void FixedUpdate()
         {
-            if(!body||!runtime)return;
+            if(!body||!runtime||Performance==null)return;
             runtime.FlushChanges();
             sceneryCollision.BeginStep();
             var p=Performance;float dt=Time.fixedDeltaTime,boost=BoostScale;mainThrustDemand=rotationDemand=Vector3.zero;
@@ -139,12 +141,16 @@ namespace Starframe.Flight
             // The performance allocator returns independent command axes. Translation never
             // injects body torque, and a turn never injects an unrequested translation axis.
             var linearAcceleration=p.AllocateWrench(mainThrustDemand,rotationDemand,tuning,out var angularAcceleration);
-            local+=linearAcceleration*boost*dt;
-            velocity=Vector3.ClampMagnitude(rotation*local,p.maxSpeed);
+            float speedLimit=p.maxSpeed*(1+(IsBoosting?Mathf.Max(0,tuning.boostSpeedLimitMultiplier-1)*BoostPowerRatio:0));
+            // Recover toward the normal ceiling after boost or power loss. Continued thrust cannot retain excess speed.
+            float previousSpeed=velocity.magnitude;
+            if(previousSpeed>speedLimit)speedLimit=Mathf.MoveTowards(previousSpeed,speedLimit,Mathf.Max(.01f,tuning.overspeedRecoveryDeceleration)*dt);
+            local+=linearAcceleration*boost*PropulsionPowerRatio*dt;
+            velocity=Vector3.ClampMagnitude(rotation*local,speedLimit);
             Vector3 step=Vector3.zero;
             for(int i=0;i<3;i++){
                 float previousRate=angularVelocity[i];
-                angularVelocity[i]+=angularAcceleration[i]*boost*dt;
+                angularVelocity[i]+=angularAcceleration[i]*boost*PropulsionPowerRatio*dt;
                 float positiveLimit=p.angularRatePositive[i]*boost,negativeLimit=p.angularRateNegative[i]*boost;
                 // Damage can remove authority without removing stored angular momentum.
                 // Clamp only new acceleration, and never pull an already over-limit rate back.

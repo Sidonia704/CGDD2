@@ -10,7 +10,7 @@ namespace Starframe.Flight
     [RequireComponent(typeof(CanvasRenderer))]
     public sealed class SphereRadarGraphic : Graphic
     {
-        const float RefreshInterval = .08f;
+        const float RefreshInterval = 1f/60f;
         const int CircleSegments = 64;
         const float EdgeInset = 8f;
 
@@ -50,12 +50,13 @@ namespace Starframe.Flight
             if (!world || world.Player == null || world.Player.body == null) return;
 
             Rect rect = GetPixelAdjustedRect();
-            // Reserve vertical room for altitude stems as well as the horizontal disk.
-            float radius = Mathf.Max(0f,Mathf.Min(rect.width*.5f-EdgeInset,(rect.height*.5f-EdgeInset)/.88f));
-            if (radius <= 0f) return;
-
             var theme = Starframe.Presentation.UiTheme.Current;
             bool refined = theme.tacticalRadar;
+            // Reserve vertical room for altitude stems as well as the horizontal disk.
+            float radius = refined?Mathf.Max(0f,Mathf.Min(rect.width*.5f-18f,(rect.height*.5f-EdgeInset)/.5f)):
+                Mathf.Max(0f,Mathf.Min(rect.width*.5f-EdgeInset,(rect.height*.5f-EdgeInset)/.88f));
+            if (radius <= 0f) return;
+
             Vector2 center = rect.center;
             if(refined) DrawRefinedDisk(vh,center,radius,theme.combatInstrument,theme.combatInstrument);
             else DrawDisk(vh, center, radius);
@@ -81,6 +82,7 @@ namespace Starframe.Flight
                 Vector2 baseOffset=horizontal>.001f?new Vector2(relative.x,relative.z*.4f)*(radial/horizontal):Vector2.zero;
                 float altitude=Mathf.Sign(relative.y)*ScaleDistance(Mathf.Abs(relative.y))*radius*.5f;
                 Vector2 projected=baseOffset+Vector2.up*altitude;
+                if(refined){projected.x=Mathf.Clamp(projected.x,-rect.width*.5f+EdgeInset,rect.width*.5f-EdgeInset);projected.y=Mathf.Clamp(projected.y,-rect.height*.5f+EdgeInset,rect.height*.5f-EdgeInset);}
                 Vector2 point = center + projected;
                 bool isLocked = locked == actor.ship;
                 Color tint = isLocked?new Color(1,.25f,.18f,1):new Color(.92f,.22f,.18f,.8f);
@@ -128,9 +130,11 @@ namespace Starframe.Flight
 
         static void DrawRefinedDisk(VertexHelper vh,Vector2 center,float radius,Color muted,Color accent)
         {
-            Color outer=new Color(muted.r,muted.g,muted.b,.65f);
-            Color middle=new Color(muted.r,muted.g,muted.b,.4f);
-            Color inner=new Color(muted.r,muted.g,muted.b,.26f);
+            Color outer=new Color(muted.r,muted.g,muted.b,.94f);
+            Color middle=new Color(muted.r,muted.g,muted.b,.84f);
+            Color inner=new Color(muted.r,muted.g,muted.b,.78f);
+            Color disk=new Color32(63,114,105,145);
+            for(int i=0;i<CircleSegments;i++){float a=i*Mathf.PI*2/CircleSegments,b=(i+1)*Mathf.PI*2/CircleSegments;Triangle(vh,center,center+new Vector2(Mathf.Cos(a)*radius,Mathf.Sin(a)*radius*.4f),center+new Vector2(Mathf.Cos(b)*radius,Mathf.Sin(b)*radius*.4f),disk);}
             // Preserve the flat three-ring ellipse; the upper and lower ticks clarify forward/back.
             Ellipse(vh,center,radius,radius*.4f,1.3f,outer);
             Ellipse(vh,center,radius*.7f,radius*.28f,1f,middle);

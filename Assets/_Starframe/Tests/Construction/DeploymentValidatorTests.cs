@@ -152,9 +152,22 @@ namespace Starframe.Construction.Tests
         [Test] public void FaceConnectionUsesRotatedCompleteBodyCellsAndRejectsDiagonalContact()
         {
             var gun = Part("gun", BlockShape.Laser, 1, 0, 0); gun.rotation = Quaternion.Euler(0, 90, 0);
-            Assert.That(Validate(Ship(gun, Part("far-end", BlockShape.Cube, 4, 0, 0))).IsValid, Is.True);
+            var connected=Ship(gun, Part("far-end", BlockShape.Cube, 4, 0, 0));
+            connected.parts[0].rotation=gun.rotation;
+            Assert.That(Validate(connected).IsValid, Is.True);
             Assert.That(Has(Validate(Ship(Part("diagonal", BlockShape.Cube, 1, 1, 0))).Errors, "deploy.error.disconnected"), Is.True);
             Assert.That(Has(Validate(Ship(gun, Part("overlap", BlockShape.Cube, 3, 0, 0))).Errors, "deploy.error.overlap"), Is.True);
+        }
+
+        [Test] public void NonMissileMountsMustFollowCoreFacingForBothMissionAndRange()
+        {
+            var gun=Part("gun",BlockShape.Laser,1,0,0);gun.rotation=Quaternion.Euler(0,90,0);
+            var blueprint=Ship(gun);
+            Assert.That(Has(Validate(blueprint).Errors,"deploy.error.weaponFacing"),Is.True);
+            Assert.That(Has(DeploymentValidator.ValidateForRange(blueprint,database).Errors,"deploy.error.weaponFacing"),Is.True);
+            blueprint.parts[0].rotation=gun.rotation;
+            Assert.That(Validate(blueprint).IsValid,Is.True);
+            Assert.That(DeploymentValidator.ValidateForRange(blueprint,database).IsValid,Is.True);
         }
 
         [TestCase(0)] [TestCase(1)] [TestCase(2)] public void FractionalOffAxisAndNonfinitePosesAreRejected(int kind)

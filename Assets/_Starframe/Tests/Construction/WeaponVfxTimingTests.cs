@@ -120,6 +120,31 @@ namespace Starframe.Tests
             Assert.That(contactRenderer.enabled, Is.False);
         }
 
+        [Test] public void UnobstructedLaserBeamHasNoFalseContactGlow()
+        {
+            var host=Own(new GameObject("Unbounded beam VFX fixture"));var pool=host.AddComponent<SpecialWeaponVisualPool>();pool.Initialize();
+            var weapon=Own(ScriptableObject.CreateInstance<WeaponDefinition>());weapon.delivery=WeaponDelivery.Beam;
+            pool.ShowBeam(weapon,Vector3.zero,Vector3.forward,100000,null,Vector3.zero,false);
+            var beams=(IList)typeof(SpecialWeaponVisualPool).GetField("beams",BindingFlags.Instance|BindingFlags.NonPublic).GetValue(pool);
+            var beam=beams[0];var type=beam.GetType();
+            Assert.That(((Renderer)type.GetField("contactRenderer").GetValue(beam)).enabled,Is.False);
+            Assert.That(((Renderer)type.GetField("shellRenderer").GetValue(beam)).enabled,Is.True);
+            pool.StepVisuals(.02f);
+            Assert.That(((Renderer)type.GetField("contactRenderer").GetValue(beam)).enabled,Is.False);
+        }
+        [TestCase(WeaponFamily.Gatling,5)][TestCase(WeaponFamily.RapidLaser,4)]
+        [TestCase(WeaponFamily.BeamLaser,4)][TestCase(WeaponFamily.Railgun,14)]
+        public void DirectMuzzleProfilesStayDirectionalAndOnlyRailUsesHeavySparks(WeaponFamily family,int count)
+        {
+            var host=Own(new GameObject("Weapon family muzzle fixture"));var pool=host.AddComponent<CombatVfxPool>();pool.Initialize();
+            var weapon=Own(ScriptableObject.CreateInstance<WeaponDefinition>());weapon.family=family;weapon.tracerStyle=TracerStyle.Continuous;
+            pool.EmitMuzzle(Vector3.zero,Vector3.forward,weapon);
+            var effects=(IList)typeof(CombatVfxPool).GetField("effects",BindingFlags.Instance|BindingFlags.NonPublic).GetValue(pool);
+            Assert.That(effects.Count,Is.EqualTo(count),"A continuous tracer is not automatically a railgun.");
+            var core=effects[0];var type=core.GetType();var stretch=(Vector3)type.GetField("stretch").GetValue(core);
+            Assert.That(stretch.z,Is.GreaterThan(stretch.x*3));
+            Assert.That(((Transform)type.GetField("transform").GetValue(core)).forward,Is.EqualTo(Vector3.forward));
+        }
         T Own<T>(T value) where T : Object { owned.Add(value); return value; }
     }
 }

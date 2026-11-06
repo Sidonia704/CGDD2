@@ -12,26 +12,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 709e20d8521834845a71b54704f53b46, type: 3}
   m_Name: Gun2Weapon
   m_EditorClassIdentifier: Starframe.Construction::Starframe.Flight.WeaponDefinition
-  shotsPerSecond: 20
-  damage: 510
-  projectileSpeed: 2450
+  shotsPerSecond: 24
+  damage: 637.5
+  projectileSpeed: 2700
   projectileDiameter: 0.6
+  shotAudioGain: 0.8
   firstShotImmediate: 0
+  fireWindupSeconds: 0
   penetrationDepth: 1
   secondLayerDamageMultiplier: 0.35
   range: 1800
-  visualLength: 5
-  tailLength: 100
+  unboundedBeam: 0
+  visualLength: 8
+  tailLength: 140
   visualWidth: 2.4
   visualIntensity: 6.5
   minimumVisualPixels: 2.2
-  tracerStyle: 0
+  tracerStyle: 1
   smokeTrail: 1
   tracerLingerSeconds: 0
-  sustainedPowerWatts: 32
+  sustainedPowerWatts: 44.8
   energyPerShot: 100
   delivery: 0
+  family: 1
   effectColor: {r: 1, g: 0.62, b: 0.055, a: 1}
+  magazineSize: 1
+  salvoLaunchesPerSecond: 16
   missileLockSeconds: 2
   reloadSeconds: 4
   missileTurnDegrees: 110
@@ -46,14 +52,15 @@ MonoBehaviour:
   missileMesh: {fileID: 0}
   missileLaunchOffsets:
   - {x: 0, y: 0, z: 0}
-  muzzleOffsets:
-  - {x: -0.2594668, y: -0.12439228, z: 0}
-  - {x: 0.25946662, y: -0.12344247, z: 0}
-  - {x: -0.2594654, y: 0.12344274, z: 0}
-  - {x: 0.2594656, y: 0.12439202, z: 0}
+  muzzleOffsets: []
   projectileMaterial: {fileID: 2100000, guid: 060df83c9f5482f4ea424501392ac7de, type: 2}
   beamDuration: 0.12
   beamMesh: {fileID: 0}
   activationMode: 0
   chargeSeconds: 1
   requireTargetLock: 0
+  gatlingSpinUpSeconds: 1.5
+  gatlingSpinDownSeconds: 0.5
+  gatlingMinimumRateFraction: 0.2
+  gatlingHeatPerSecond: 0.2916667
+  gatlingCoolingPerSecond: 0.16666667

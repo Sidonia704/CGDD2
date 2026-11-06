@@ -1,0 +1,38 @@
+{
+  "Summary": {
+    "Total": 3,
+    "Passed": 3,
+    "Failed": 0,
+    "Skipped": 0,
+    "Inconclusive": 0
+  },
+  "Results": [
+    {
+      "FullName": "Starframe.Tests.BalancedFlightAxisTests.DamageRecalculationCannotIntroduceUncommandedRotation",
+      "Status": "Passed",
+      "Duration": 0.003643,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.BalancedFlightAxisTests.EachSingleTranslationMatchesItsPublishedCapacityAndNeverInjectsTorque",
+      "Status": "Passed",
+      "Duration": 0.0013993,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.BalancedFlightAxisTests.RotationHasEqualOpposingAuthorityAndNoOtherMotionChannels",
+      "Status": "Passed",
+      "Duration": 0.0029161,
+      "Message": null,
+      "StackTrace": null
+    }
+  ],
+  "Duration": 3.05,
+  "StatusPath": null,
+  "Mode": "EditMode",
+  "FilterApplied": "testname: BalancedFlightAxisTests",
+  "success": true,
+  "result": null
+}

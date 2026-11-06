@@ -55,7 +55,7 @@ namespace Starframe.Tests
             return(assembly,ship,controller,world);
         }
 
-        [Test]public void SavedShapeAndActionNumbersStayStableAndOldBindingsGainRWithoutChangingF()
+        [Test]public void SavedShapeAndActionNumbersStayStableAndOldBindingsGainTabWithoutChangingF()
         {
             Assert.That((int)BlockShape.Thruster6,Is.EqualTo(36));Assert.That((int)BlockShape.FlareLauncher,Is.EqualTo(37));
             Assert.That((int)GameAction.TargetLock,Is.EqualTo(9));Assert.That((int)GameAction.Countermeasure,Is.EqualTo(10));
@@ -63,7 +63,7 @@ namespace Starframe.Tests
             old.Single(b=>b.action==GameAction.TargetLock).path="<Keyboard>/g";
             var normalized=GameInput.Normalize(old);
             Assert.That(normalized.Single(b=>b.action==GameAction.TargetLock).path,Is.EqualTo("<Keyboard>/g"));
-            Assert.That(normalized.Single(b=>b.action==GameAction.Countermeasure).path,Is.EqualTo("<Keyboard>/r"));
+            Assert.That(normalized.Single(b=>b.action==GameAction.Countermeasure).path,Is.EqualTo("<Keyboard>/tab"));
             Assert.That(GameInput.DefaultBindings().Single(b=>b.action==GameAction.TargetLock).path,Is.EqualTo("<Keyboard>/f"));
         }
         [Test]public void FlareDefaultsAreOneTwelveSparkSalvoWithTenSecondIndependentCooldown()
@@ -120,12 +120,16 @@ namespace Starframe.Tests
             Assert.That(fixture.world.GetComponentsInChildren<Rigidbody>(),Is.Empty);Assert.That(fixture.world.GetComponentsInChildren<Collider>(),Is.Empty);
             fixture.world.Step(.5f);var expected=start+(inherited+up*24)*.5f;
             Assert.That(Vector3.Distance(burst.Position,expected),Is.LessThan(.001f));
-            foreach(var renderer in fixture.world.GetComponentsInChildren<MeshRenderer>())Assert.That(Vector3.Distance(renderer.transform.position,expected),Is.LessThan(.001f));
+            foreach(var renderer in fixture.world.GetComponentsInChildren<MeshRenderer>())
+            {
+                var ejection=(renderer.transform.position-start)/.5f-inherited;
+                Assert.That(Vector3.Dot(ejection.normalized,up),Is.GreaterThanOrEqualTo(Mathf.Cos(22*Mathf.Deg2Rad)-.0001f));
+            }
             fixture.world.Step(2.5f);Assert.That(burst.Active,Is.False);Assert.That(fixture.world.Bursts,Is.Empty);Assert.That(fixture.world.ActiveSparkCount,Is.Zero);
             var next=fixture.world.EmitBurst(fixture.ship,flare,start,up,inherited);
             Assert.That(next.Id,Is.GreaterThan(firstId));Assert.That(fixture.world.PooledSparkCount,Is.EqualTo(12));
         }
-        [Test]public void EverySparkInheritsShipVelocityAndStaysInsideTheRotatedLaunchCone()
+        [Test]public void VisualSparksUseOriginalSpeedAndLaunchCone()
         {
             var fixture=Fixture();var inherited=new Vector3(80,30,-12);var up=new Vector3(1,2,3).normalized;
             fixture.world.EmitBurst(fixture.ship,flare,Vector3.zero,up,inherited);fixture.world.Step(.25f);
@@ -136,6 +140,64 @@ namespace Starframe.Tests
                 Assert.That(Vector3.Dot(ejection.normalized,up),Is.GreaterThanOrEqualTo(Mathf.Cos(22*Mathf.Deg2Rad)-.0001f));
             }
         }
+        [Test]public void VisualFlaresBurstAtVariedDistancesAndLeaveStationaryBrightPoints()
+        {
+            var fixture=Fixture();
+            fixture.world.EmitBurst(fixture.ship,flare,Vector3.zero,Vector3.forward,Vector3.zero);
+            fixture.world.Step(2);
+            var renderers=fixture.world.GetComponentsInChildren<MeshRenderer>();
+            var positions=renderers.Select(r=>r.transform.position).ToArray();
+            Assert.That(positions.Select(p=>Mathf.RoundToInt(p.magnitude)).Distinct().Count(),Is.GreaterThan(1));
+            Assert.That(positions.All(p=>p.z>0),Is.True);
+            Assert.That(fixture.world.GetComponentsInChildren<TrailRenderer>(),Is.Empty);
+            fixture.world.Step(.2f);
+            for(int i=0;i<positions.Length;i++)Assert.That(Vector3.Distance(positions[i],renderers[i].transform.position),Is.LessThan(.001f));
+            Assert.That(renderers.All(r=>r.enabled),Is.True);
+            Assert.That(fixture.world.Bursts.Count,Is.EqualTo(1));
+        }
+
+        [TestCase(30)][TestCase(60)][TestCase(144)]
+        public void MovingCameraSeesSmoothSparksAcrossPhysicsTicksAndBurst(int frameRate)
+        {
+            var fixture=Fixture();var inherited=new Vector3(350,70,-90);
+            var burst=fixture.world.EmitBurst(fixture.ship,flare,Vector3.zero,Vector3.up,inherited);
+            var present=typeof(FlareWorld).GetMethod("Present",System.Reflection.BindingFlags.Instance|System.Reflection.BindingFlags.NonPublic);
+            var renderers=fixture.world.GetComponentsInChildren<MeshRenderer>();
+            var previous=new Vector3[renderers.Length];float previousTime=0;int ticks=0;
+            for(int frame=1;frame<=frameRate*2.5f;frame++)
+            {
+                double now=(double)frame/frameRate;
+                while((ticks+1)*.02<=now+1e-9){fixture.world.Step(.02f);ticks++;}
+                var logical=burst.Position;
+                present.Invoke(fixture.world,new object[]{(float)((now-ticks*.02)/.02)});
+                float renderTime=Mathf.Max(0,(float)now-.02f);
+                for(int i=0;i<renderers.Length;i++)
+                {
+                    var relative=renderers[i].transform.position-inherited*renderTime;
+                    // Tracking inherited motion should leave only the original 24 m/s ejection.
+                    Assert.That(Vector3.Distance(relative,previous[i]),Is.LessThanOrEqualTo(24*(renderTime-previousTime)+.004f));
+                    var size=renderers[i].transform.localScale;
+                    Assert.That(size.x,Is.EqualTo(size.y));Assert.That(size.y,Is.EqualTo(size.z));
+                    previous[i]=relative;
+                }
+                Assert.That(burst.Position,Is.EqualTo(logical),"Rendering must not move the lure.");
+                previousTime=renderTime;
+            }
+        }
+        [Test]public void BurstFlashStartsContinuouslyInsteadOfPoppingToTripleSize()
+        {
+            var fixture=Fixture();fixture.world.EmitBurst(fixture.ship,flare,Vector3.zero,Vector3.up,Vector3.zero);
+            var flags=System.Reflection.BindingFlags.Instance|System.Reflection.BindingFlags.NonPublic;
+            var visuals=(System.Collections.IList)typeof(FlareWorld).GetField("visuals",flags).GetValue(fixture.world);
+            var visual=visuals[0];var sparks=(System.Collections.IList)visual.GetType().GetField("sparks").GetValue(visual);
+            var spark=sparks[0];float burstAt=(float)spark.GetType().GetField("burstAt").GetValue(spark);
+            var target=(Transform)spark.GetType().GetField("transform").GetValue(spark);
+            fixture.world.Step(burstAt-.0001f);float before=target.localScale.x;
+            fixture.world.Step(.0002f);
+            Assert.That(Mathf.Abs(target.localScale.x-before),Is.LessThan(.001f));
+            fixture.world.Step(.045f);Assert.That(target.localScale.x,Is.GreaterThan(before*2));
+        }
+
         [Test]public void PressesRotateLaunchersAndEachWaitsForItsOwnCooldown()
         {
             var fixture=Fixture(true);var launchers=fixture.ship.Parts.Where(p=>p.record.shape==BlockShape.FlareLauncher).ToArray();

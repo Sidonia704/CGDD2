@@ -1,0 +1,108 @@
+{
+  "Summary": {
+    "Total": 13,
+    "Passed": 13,
+    "Failed": 0,
+    "Skipped": 0,
+    "Inconclusive": 0
+  },
+  "Results": [
+    {
+      "FullName": "Starframe.Tests.ShieldMechanicsTests.ActualDamageToOtherPartDoesNotResetRepairOrReconstruction",
+      "Status": "Passed",
+      "Duration": 0.010866,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.ShieldMechanicsTests.HullHitsKeepEmptyShieldFieldsFromRegeneratingDuringContinuousCombat",
+      "Status": "Passed",
+      "Duration": 0.0038416,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.ShieldMechanicsTests.ReconstructionWaitsForExternalSolidToLeaveWithoutLosingProgress(False)",
+      "Status": "Passed",
+      "Duration": 0.0079829,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.ShieldMechanicsTests.ReconstructionWaitsForExternalSolidToLeaveWithoutLosingProgress(True)",
+      "Status": "Passed",
+      "Duration": 0.0031256,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.ShieldMechanicsTests.RecoveryWaitsTwoSecondsDrawsPowerAndStopsWhenEmpty",
+      "Status": "Passed",
+      "Duration": 0.0032809,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.ShieldMechanicsTests.RemovedGeneratorDropsShieldAndRespawnRestoresIt",
+      "Status": "Passed",
+      "Duration": 0.0033043,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.ShieldMechanicsTests.SameStepVolleyUsesRemainingShieldHealthForEachProjectile",
+      "Status": "Passed",
+      "Duration": 0.0068989,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.ShieldMechanicsTests.ShieldAbsorptionDoesNotInterruptProtectedHullHealing",
+      "Status": "Passed",
+      "Duration": 0.00325,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.ShieldMechanicsTests.ShieldAbsorptionPreservesDestroyedPartReconstruction",
+      "Status": "Passed",
+      "Duration": 0.0029223,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.ShieldMechanicsTests.ShieldInterceptsSweptFastShotBeforeHullAndIgnoresOwnOutgoingShot",
+      "Status": "Passed",
+      "Duration": 0.0059898,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.ShieldMechanicsTests.ShieldOverkillContinuesWithOnlyRemainingDamage",
+      "Status": "Passed",
+      "Duration": 0.0087927,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.ShieldMechanicsTests.ShieldSamplesFollowMovementBetweenPhysicsSteps",
+      "Status": "Passed",
+      "Duration": 0.0067969,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.ShieldMechanicsTests.SphereEntryHandlesGrazingInsideAndMisses",
+      "Status": "Passed",
+      "Duration": 0.0003583,
+      "Message": null,
+      "StackTrace": null
+    }
+  ],
+  "Duration": 2.78,
+  "StatusPath": null,
+  "Mode": "EditMode",
+  "FilterApplied": "testname: ShieldMechanicsTests",
+  "success": true,
+  "result": null
+}

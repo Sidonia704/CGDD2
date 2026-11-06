@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 1
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: ff3934da556a71c49baa42377ce5bb72, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 6fcbdac9325cf9649ae0decd1ee4313b, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -209,7 +209,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 152972725}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7e813905176439842bd547c5d77620b5, type: 3}
   m_Name: 
@@ -220,12 +220,47 @@ MonoBehaviour:
   distantRockA: {fileID: 4300000, guid: d4854fd70f117b341b196a386e6808b1, type: 2}
   distantRockB: {fileID: 4300000, guid: 827c0c31db09cf5419bcd62847154b9a, type: 2}
   rockMaterial: {fileID: 2100000, guid: 60a3887073fb2214cb65af2fa9bba626, type: 2}
+  uniformRockVariants:
+  - {fileID: 4300000, guid: eb62d744658b8ba4aa6a848edef40c5b, type: 2}
+  - {fileID: 4300000, guid: eb218fc04d4211244921798f6c8a1cee, type: 2}
+  - {fileID: 4300000, guid: c1a1013595134e3468e29f304cda738b, type: 2}
+  - {fileID: 4300000, guid: 24145d7fee426ae429137d6607937518, type: 2}
+  - {fileID: 4300000, guid: 7a56fed99a22bad4cb3dcdbc75da3fab, type: 2}
+  - {fileID: 4300000, guid: 8e1e6ccf2135852418f57f7b467c73b5, type: 2}
+  - {fileID: 4300000, guid: 9c30a308081050247947266633d82cb2, type: 2}
+  - {fileID: 4300000, guid: 50d92b181a1043d44b26c39260388aaa, type: 2}
+  - {fileID: 4300000, guid: 32e567f44ac277942bb6c2c63aaa48b6, type: 2}
+  - {fileID: 4300000, guid: 21b34e8bb7b761c4199dc9d598160af7, type: 2}
+  - {fileID: 4300000, guid: 7d29ab72c7fe67940b84534f6bba03ce, type: 2}
+  - {fileID: 4300000, guid: 7ca18bb3b98abfa4bb66fe0bc6c057eb, type: 2}
+  - {fileID: 4300000, guid: caf9bf41ad2671c409e40757007c5b45, type: 2}
+  - {fileID: 4300000, guid: 0b94a01893eef40449ae063c9ed3c166, type: 2}
+  - {fileID: 4300000, guid: 8f352a30938385145bfe1116d859d4f8, type: 2}
+  - {fileID: 4300000, guid: a5c50f313772b1f4a82134975ed4e796, type: 2}
+  uniformRockDiameters:
+  - 24
+  - 24
+  - 35
+  - 35
+  - 50
+  - 50
+  - 72
+  - 72
+  - 104
+  - 104
+  - 149
+  - 149
+  - 215
+  - 215
+  - 310
+  - 310
   seed: 261107
   nearFadeStart: 80
   nearFadeEnd: 350
   farFadeStart: 17000
   farFadeEnd: 25000
-  backdropEnabled: 1
+  maximumVisibleTriangles: 4000000
+  backdropEnabled: 0
 --- !u!1 &165187304
 GameObject:
   m_ObjectHideFlags: 0
@@ -392,8 +427,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 801078822}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.21643962, y: -0, z: -0, w: 0.976296}
-  m_LocalPosition: {x: 0, y: 500, z: -1100}
+  m_LocalRotation: {x: 0.21643962, y: 0, z: 0, w: 0.976296}
+  m_LocalPosition: {x: 0, y: 160, z: -450}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -555,9 +590,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9948d63c2865a2b4aad744c71ad9ba80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Starframe.Construction::Starframe.Maps.SpaceMapRuntime
-  definition: {fileID: 11400000, guid: 8f47393cece1296499d53d2849e6ab15, type: 2}
+  definition: {fileID: 11400000, guid: 95fd033f1e71a2d4f96cdcf5232b3d20, type: 2}
   stageBuildOnStart: 1
-  instancesPerFrame: 32
+  instancesPerFrame: 16
   buildMillisecondsPerFrame: 4
   lazyFineVisuals: 1
   visualCamera: {fileID: 1922303130}
@@ -573,7 +608,6 @@ MonoBehaviour:
   physicsRefreshFrames: 12
   colliderPreparationPerFrame: 24
   colliderPreparationMilliseconds: 1.5
-  lightweightDamageThreshold: 128
   visualLods: []
 --- !u!4 &1046338136
 Transform:
@@ -584,7 +618,7 @@ Transform:
   m_GameObject: {fileID: 1046338134}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1100, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

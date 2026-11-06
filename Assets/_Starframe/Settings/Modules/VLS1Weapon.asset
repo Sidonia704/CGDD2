@@ -1,0 +1,81 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 709e20d8521834845a71b54704f53b46, type: 3}
+  m_Name: VLS1Weapon
+  m_EditorClassIdentifier: Starframe.Construction::Starframe.Flight.WeaponDefinition
+  shotsPerSecond: 16
+  damage: 3360.0002
+  projectileSpeed: 196
+  projectileDiameter: 0.38
+  shotAudioGain: 1
+  firstShotImmediate: 0
+  fireWindupSeconds: 0
+  penetrationDepth: 1
+  secondLayerDamageMultiplier: 0.35
+  range: 6600
+  unboundedBeam: 0
+  visualLength: 0.8
+  tailLength: 5
+  visualWidth: 0.2
+  visualIntensity: 5
+  minimumVisualPixels: 0
+  tracerStyle: 0
+  smokeTrail: 1
+  tracerLingerSeconds: 0
+  sustainedPowerWatts: 140
+  energyPerShot: 100
+  delivery: 1
+  family: 6
+  effectColor: {r: 1, g: 0.4, b: 0.025, a: 1}
+  magazineSize: 16
+  salvoLaunchesPerSecond: 16
+  missileLockSeconds: 4
+  reloadSeconds: 24
+  missileTurnDegrees: 330
+  missileAcceleration: 200
+  missileTurnAcceleration: 1080
+  missileGuidanceSeconds: 30
+  missileSeekerConeDegrees: 110
+  missileSeekerLossSeconds: 0.8
+  missileLaunchSpeed: 24.5
+  explosionRadius: 1.375
+  launcherMesh: {fileID: 4300000, guid: 414b67f0544096946ab79f4b1b8289d5, type: 2}
+  missileMesh: {fileID: 4300000, guid: c7fb0235d2dff7f40ad31e0eb5b23786, type: 2}
+  missileLaunchOffsets:
+  - {x: -0.73337585, y: -0.00000011920929, z: -0.5483467}
+  - {x: -0.37380445, y: -0.00000011920929, z: -0.5483467}
+  - {x: 0.3753026, y: -0.00000011920929, z: -0.5483467}
+  - {x: 0.73187757, y: -0.00000011920929, z: -0.5483467}
+  - {x: -0.73337585, y: -0.00000011920929, z: -0.17978585}
+  - {x: -0.37380445, y: -0.00000011920929, z: -0.17978585}
+  - {x: 0.3753026, y: -0.00000011920929, z: -0.17978585}
+  - {x: 0.73187757, y: -0.00000011920929, z: -0.17978585}
+  - {x: -0.73337585, y: -0.00000011920929, z: 0.17978567}
+  - {x: -0.37380445, y: -0.00000011920929, z: 0.17978567}
+  - {x: 0.3753026, y: -0.00000011920929, z: 0.17978567}
+  - {x: 0.73187757, y: -0.00000011920929, z: 0.17978567}
+  - {x: -0.73337585, y: -0.00000011920929, z: 0.5483466}
+  - {x: -0.37380445, y: -0.00000011920929, z: 0.5483466}
+  - {x: 0.3753026, y: -0.00000011920929, z: 0.5483466}
+  - {x: 0.73187757, y: -0.00000011920929, z: 0.5483466}
+  muzzleOffsets: []
+  projectileMaterial: {fileID: 2100000, guid: 060df83c9f5482f4ea424501392ac7de, type: 2}
+  beamDuration: 0.12
+  beamMesh: {fileID: 0}
+  activationMode: 0
+  chargeSeconds: 1
+  requireTargetLock: 1
+  gatlingSpinUpSeconds: 1.5
+  gatlingSpinDownSeconds: 0.5
+  gatlingMinimumRateFraction: 0.2
+  gatlingHeatPerSecond: 0.25
+  gatlingCoolingPerSecond: 0.083333336

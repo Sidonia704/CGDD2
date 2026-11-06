@@ -1,0 +1,45 @@
+{
+  "Summary": {
+    "Total": 4,
+    "Passed": 4,
+    "Failed": 0,
+    "Skipped": 0,
+    "Inconclusive": 0
+  },
+  "Results": [
+    {
+      "FullName": "Starframe.Construction.Tests.VlsSideAttachmentTests.EveryNonLaunchFaceSupportsActualConnectivityAtAnyGridOrientation(0)",
+      "Status": "Passed",
+      "Duration": 0.0132279,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.VlsSideAttachmentTests.EveryNonLaunchFaceSupportsActualConnectivityAtAnyGridOrientation(90)",
+      "Status": "Passed",
+      "Duration": 0.0017261,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.VlsSideAttachmentTests.EveryNonLaunchFaceSupportsActualConnectivityAtAnyGridOrientation(180)",
+      "Status": "Passed",
+      "Duration": 0.001532,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.VlsSideAttachmentTests.EveryNonLaunchFaceSupportsActualConnectivityAtAnyGridOrientation(270)",
+      "Status": "Passed",
+      "Duration": 0.0016268,
+      "Message": null,
+      "StackTrace": null
+    }
+  ],
+  "Duration": 3.07,
+  "StatusPath": null,
+  "Mode": "EditMode",
+  "FilterApplied": "testname: VlsSideAttachmentTests",
+  "success": true,
+  "result": null
+}

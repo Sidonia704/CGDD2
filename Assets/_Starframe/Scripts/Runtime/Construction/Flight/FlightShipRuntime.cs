@@ -1,4 +1,4 @@
-// @role Track surviving parts, detachments, power and nozzle availability; actual hull damage delays only the affected part recovery.
+// @role Track surviving parts, detachments, power and original sortie cost; actual hull damage delays only the affected part recovery.
 // @calls ShipAssembly, BlockConnectivity, FlightTuning, ShipPowerBus, ShipShieldSystem, ShipInstanceRenderer
 
 using System;
@@ -28,13 +28,15 @@ namespace Starframe.Flight
         public ShipPerformance Performance{get;private set;}
         public ShipPowerBus Power{get;}=new ShipPowerBus();
         public ShipShieldSystem Shields{get;}=new ShipShieldSystem();
-        public bool IsAlive=>!dead&&coreIndex>=0&&Parts[coreIndex].present&&Parts[coreIndex].hp>0;
+        // Unity hot reload restores private scalar indices but reconstructs readonly runtime collections.
+        bool HasCoreState=>coreIndex>=0&&coreIndex<Parts.Count&&Parts[coreIndex]!=null;
+        public bool IsAlive=>!dead&&HasCoreState&&Parts[coreIndex].present&&Parts[coreIndex].hp>0;
         public int StructureRevision{get;private set;}
         public int HealthRevision{get;private set;}
         public int LifeId{get;private set;}
         public int Team;
-        public Vector3 CorePosition=>coreIndex>=0&&Parts[coreIndex].view?Parts[coreIndex].view.transform.position:transform.position;
-        public Vector3 CorePhysicsPosition{get{if(coreIndex>=0&&Parts[coreIndex].view){var collider=Parts[coreIndex].view.GetComponent<Collider>();if(collider)return CylindricalHitQuery.PhysicsMatrix(collider).MultiplyPoint3x4(Vector3.zero);}return CorePosition;}}
+        public Vector3 CorePosition=>HasCoreState&&Parts[coreIndex].view?Parts[coreIndex].view.transform.position:transform.position;
+        public Vector3 CorePhysicsPosition{get{if(HasCoreState&&Parts[coreIndex].view){var collider=Parts[coreIndex].view.GetComponent<Collider>();if(collider)return CylindricalHitQuery.PhysicsMatrix(collider).MultiplyPoint3x4(Vector3.zero);}return CorePosition;}}
         public float DamageTaken{get;private set;}
         public float DamageDealt{get;private set;}
         public void RecordDamageDealt(float amount){if(amount>0&&!float.IsNaN(amount)&&!float.IsInfinity(amount))DamageDealt+=amount;}
@@ -45,6 +47,8 @@ namespace Starframe.Flight
         public FlightTuning Tuning=>tuning;
         public BattleTuning Battle=>battle;
         public BlueprintData BlueprintSnapshot{get;private set;}
+        /// <summary>Full configuration cost captured for this sortie; damage, detachment and recovery never change it.</summary>
+        public float BlueprintCost{get;private set;}
         public event Action PerformanceChanged,Died;
         public event Action<ShipPartState> PartChanged;
         public event Action<IReadOnlyList<ShipPartState>> PartsDetached;
@@ -52,6 +56,9 @@ namespace Starframe.Flight
         {
             BlueprintSnapshot=JsonUtility.FromJson<BlueprintData>(JsonUtility.ToJson(blueprint));
             tuning=values;battle=rules;BlockModules.Configure(values.database);
+            BlueprintCost=0;
+            foreach(var record in BlueprintSnapshot.parts){var definition=values.GetDefinition(record.shape);
+                if(definition&&!float.IsNaN(definition.cost)&&!float.IsInfinity(definition.cost))BlueprintCost+=Mathf.Max(0,definition.cost);}
             var views=new Dictionary<string,BlockView>();foreach(var view in assembly.Blocks)views.Add(view.Record.id,view);
             Parts.Clear();byId.Clear();cellOwners.Clear();missing.Clear();damaged.Clear();coreIndex=-1;
             foreach(var record in blueprint.parts){

@@ -1,5 +1,5 @@
-// @role Manage saved ship blueprints on a dedicated searchable page with a 3D preview and confirmed file operations.
-// @calls MenuSurface, HangarShipPreview, ShipWorkspace, BlueprintRepository, EnemyFleetCatalog, UiModalScope, L10n
+// @role Manage saved ship blueprints in a paginated thumbnail grid with live metrics and confirmed file operations.
+// @calls MenuSurface, HangarShipPreview, MenuShipMetrics, ShipWorkspace, BlueprintRepository, EnemyFleetLibrary, UiModalScope, L10n
 
 using System;
 using System.Collections.Generic;
@@ -20,16 +20,17 @@ namespace Starframe.App
     {
         sealed class Entry{public string file;public BlueprintData data;public RectTransform row;}
         readonly List<Entry> entries=new List<Entry>();
-        MenuSurface surface;HangarShipPreview preview;ModuleDatabase database;Action closed;
-        RectTransform content,modal;UnityEngine.UI.ScrollRect scroll;
-        TextMeshProUGUI empty,status;TMP_InputField nameInput;
+        MenuSurface surface;HangarShipPreview preview;ModuleDatabase database;MissionDefinition mission;Action closed;
+        RectTransform modal;
+        int gridPage;bool renaming;
+        TextMeshProUGUI status;TMP_InputField nameInput;
         BlueprintData selection;string selectedFile,query="",notice="",pendingName;
         bool open;
         public string SelectedFile=>selectedFile;
         public bool ModalOpen=>modal;
-        public void Initialize(MenuSurface target,HangarShipPreview shipPreview,ModuleDatabase modules,Action onClose)
+        public void Initialize(MenuSurface target,HangarShipPreview shipPreview,ModuleDatabase modules,Action onClose,MissionDefinition operation=null)
         {
-            surface=target;preview=shipPreview;database=modules;closed=onClose;open=true;
+            surface=target;preview=shipPreview;database=modules;mission=operation;closed=onClose;open=true;
             selection=ShipWorkspace.Ship;L10n.Changed+=LocaleChanged;Build();
         }
         static string Copy(string zh,string en)=>L10n.IsEnglish?en:zh;
@@ -37,48 +38,61 @@ namespace Starframe.App
         void LocaleChanged(){if(open)Build();}
         void Build()
         {
-            if(!open||!surface)return;surface.Clear();modal=null;nameInput=null;entries.Clear();preview.AllowOrbit=true;
-            surface.Label("BlueprintLibraryTitle",Copy("蓝图库","Blueprint Library"),48,44,1300,54,32);
-            surface.Label("BlueprintLibrarySubtitle",Copy("预览、载入与管理舰船设计。训练靶机请在训练场设置中配置。","Preview, load and manage ship designs. Configure training targets in range setup."),50,112,1350,48,17,GlassUiPalette.Muted);
-            surface.Button("ClosePicker",Copy("返回","Back"),1580,48,292,52,Close);
-            surface.Panel("BlueprintLibraryGlass",48,202,544,790);
-            var search=surface.Input("ShipPickerSearch",query,72,230,496,48,Filter);
-            var placeholder=surface.Label("BlueprintSearchPlaceholder",L10n.T("app.ui.searchBlueprints"),0,0,1,1,16,GlassUiPalette.Muted);
-            placeholder.rectTransform.SetParent(search.textViewport,false);placeholder.rectTransform.anchorMin=Vector2.zero;placeholder.rectTransform.anchorMax=Vector2.one;placeholder.rectTransform.offsetMin=placeholder.rectTransform.offsetMax=Vector2.zero;search.placeholder=placeholder;
-            var current=surface.Button("LibraryCurrentShip",Copy("当前编辑中的舰船","Current working ship"),72,298,300,52,()=>{selectedFile=null;selection=ShipWorkspace.Ship;Build();},selectedFile==null);
-            var import=surface.Button("LibraryImportEnemies",Copy("导入敌舰模板","Import enemies"),384,298,184,52,ImportEnemyTemplates);
-            import.interactable=EnemyFleetLibrary.LoadTemplates().Length>0;
-            surface.Hint(import,Copy("复制七种敌舰及旗舰变体到蓝图库；同名自动编号，当前舰船不变。","Copy seven enemy types and the flagship variant into your library. Duplicate names are numbered; your working ship is preserved."));
-            surface.Hint(current,Copy("预览当前工作区，不会覆盖已保存的蓝图。","Preview your working ship without replacing a saved blueprint."));
-            scroll=surface.Scroll("ShipPickerScroll",72,376,496,518,out content);
-            empty=surface.Label("NoSearchResults",L10n.T("app.ui.noSearchResults"),96,533,448,90,18,GlassUiPalette.Muted);
-            try{
-                var files=ShipWorkspace.Repository.List();int index=0;
-                foreach(string file in files){
+            if(!open||!surface)return;surface.Clear();modal=null;nameInput=null;entries.Clear();preview.AllowOrbit=false;
+            var background=MenuSurface.Rect(surface.Root,"BlueprintBackground",0,0,1920,1080).gameObject.AddComponent<UnityEngine.UI.Image>();
+            background.color=FigmaVisuals.Background;background.raycastTarget=false;
+            var pageTitle=surface.Label("BlueprintLibraryTitle",Copy("蓝图库","BLUEPRINTS"),37,28,1300,100,48);FigmaVisuals.SetFont(pageTitle,true);pageTitle.textWrappingMode=TextWrappingModes.NoWrap;pageTitle.overflowMode=TextOverflowModes.Overflow;
+            try
+            {
+                foreach(string file in ShipWorkspace.Repository.List())
+                {
                     BlueprintData data=null;try{data=ShipWorkspace.Repository.Load(file);}catch(Exception error)when(StorageError(error)){}
-                    var entry=new Entry{file=file,data=data};entries.Add(entry);
-                    var button=surface.Button("PickShip_"+index,data!=null?data.name:Path.GetFileNameWithoutExtension(file),0,0,476,66,()=>Select(entry),selectedFile==file);
-                    button.interactable=data!=null;var rect=(RectTransform)button.transform;rect.SetParent(content,false);rect.anchorMin=new Vector2(0,1);rect.anchorMax=Vector2.one;rect.pivot=new Vector2(.5f,1);rect.sizeDelta=new Vector2(0,66);entry.row=rect;
-                    var label=button.GetComponentInChildren<TextMeshProUGUI>();label.alignment=TextAlignmentOptions.MidlineLeft;label.rectTransform.offsetMin=new Vector2(18,22);label.rectTransform.offsetMax=new Vector2(-18,-3);L10n.ApplyUserContentFont(label);
-                    var parts=surface.Label("LibraryPartCount_"+index,data!=null?L10n.T("app.parts",data.parts.Count):L10n.T("app.invalidBlueprint"),0,0,1,1,13,data!=null?GlassUiPalette.Muted:UiTheme.Current.amber);
-                    Local(parts,rect,18,39,430,23);index++;
+                    entries.Add(new Entry{file=file,data=data});
                 }
             }catch(Exception error)when(StorageError(error)){notice=L10n.T("app.storageError");}
-            surface.Label("ShipPickerCount",L10n.T("app.ui.blueprintCount",entries.Count),72,924,496,28,15,GlassUiPalette.Muted);
-            Filter(query);
+            var matching=entries.Where(e=>string.IsNullOrWhiteSpace(query)||(e.data?.name??Path.GetFileNameWithoutExtension(e.file)).IndexOf(query.Trim(),StringComparison.OrdinalIgnoreCase)>=0).ToArray();
+            int pages=Mathf.Max(1,(matching.Length+11)/12);gridPage=Mathf.Clamp(gridPage,0,pages-1);
+            for(int i=gridPage*12;i<Mathf.Min(matching.Length,(gridPage+1)*12);i++)
+            {
+                var entry=matching[i];int slot=i-gridPage*12;float x=46+(slot%4)*294,y=147+(slot/4)*238;
+                var card=surface.Button("PickShip_"+i,"",x,y,267,216,()=>Select(entry));card.interactable=entry.data!=null;entry.row=(RectTransform)card.transform;
+                card.GetComponent<UnityEngine.UI.Image>().color=new Color(27/255f,31/255f,45/255f);
+                var picture=MenuSurface.Rect(surface.Root,"BlueprintThumbnail_"+i,0,0,1,1).gameObject.AddComponent<UnityEngine.UI.RawImage>();Local(picture,entry.row,0,0,267,181);picture.raycastTarget=false;
+                if(entry.data!=null)picture.texture=preview.Thumbnail(entry.data);
+                var footer=MenuSurface.Rect(surface.Root,"BlueprintCardFooter",0,0,1,1).gameObject.AddComponent<UnityEngine.UI.Image>();Local(footer,entry.row,0,185,267,31);footer.color=new Color(53/255f,58/255f,74/255f);footer.raycastTarget=false;
+                var title=surface.Label("LibraryName_"+i,entry.data?.name??Path.GetFileNameWithoutExtension(entry.file),0,0,1,1,20,GlassUiPalette.Accent);Local(title,entry.row,8,185,136,31);L10n.ApplyUserContentFont(title);title.textWrappingMode=TextWrappingModes.NoWrap;title.alignment=TextAlignmentOptions.MidlineLeft;title.enableAutoSizing=true;title.fontSizeMin=15;title.fontSizeMax=20;
+                var cost=surface.Label("LibraryCost_"+i,entry.data!=null?BlueprintCostDisplay.Label(entry.data,database,mission):L10n.T("app.invalidBlueprint"),0,0,1,1,14,GlassUiPalette.Accent);Local(cost,entry.row,147,185,115,31);cost.alignment=TextAlignmentOptions.MidlineRight;cost.textWrappingMode=TextWrappingModes.NoWrap;cost.enableAutoSizing=true;cost.fontSizeMin=11;cost.fontSizeMax=14;
+                if(selectedFile==entry.file){var outline=card.gameObject.AddComponent<UnityEngine.UI.Outline>();outline.effectColor=GlassUiPalette.Accent;outline.effectDistance=new Vector2(3,3);}
+            }
+            if(matching.Length==0)surface.Label("NoSearchResults",entries.Count==0?L10n.T("app.noBlueprints"):L10n.T("app.ui.noSearchResults"),64,320,1000,100,28,Color.white);
+            Button("LibraryPreviousPage",Copy("上一页","PREVIOUS"),49,878,148,45,()=>{gridPage--;Build();},19).interactable=gridPage>0;
+            Button("LibraryNextPage",Copy("下一页","NEXT PAGE"),213,878,148,45,()=>{gridPage++;Build();},19).interactable=gridPage<pages-1;
+            surface.Label("LibraryPage",(gridPage+1)+"/"+pages,383,886,120,30,20);
+            var search=surface.Input("ShipPickerSearch",query,46,946,326,43,value=>query=value);
+            search.onEndEdit.AddListener(value=>{query=value;gridPage=0;Build();});
+            var placeholder=surface.Label("BlueprintSearchPlaceholder",L10n.T("app.ui.searchBlueprints"),0,0,1,1,18,GlassUiPalette.Muted);
+            placeholder.rectTransform.SetParent(search.textViewport,false);placeholder.rectTransform.anchorMin=Vector2.zero;placeholder.rectTransform.anchorMax=Vector2.one;placeholder.rectTransform.offsetMin=placeholder.rectTransform.offsetMax=Vector2.zero;search.placeholder=placeholder;
+            Button("LibraryCurrentShip",Copy("当前舰船","WORKING SHIP"),391,946,236,43,()=>{selectedFile=null;selection=ShipWorkspace.Ship;Build();},19);
+            Button("LibrarySaveCurrent",Copy("保存当前舰船…","SAVE WORKING SHIP…"),643,946,278,43,ShowSave,19);
+            var import=Button("LibraryImportEnemies",Copy("导入敌舰模板","IMPORT ENEMIES"),938,946,272,43,ImportEnemyTemplates,19);import.interactable=EnemyFleetLibrary.LoadTemplates().Length>0;
+            surface.Hint(import,Copy("复制敌舰模板到蓝图库；同名自动编号，当前舰船不变。","Copy enemy templates into the library. Duplicate names are numbered; your working ship is preserved."));
             if(selection==null)selection=ShipWorkspace.Ship;
-            preview.Show(selection);preview.SetFocus(.57f,.71f);
-            surface.Label("LibraryPreviewHint",L10n.T("app.orbitHint"),700,658,1080,30,14,GlassUiPalette.Muted).alignment=TextAlignmentOptions.Center;
-            surface.Panel("LibrarySelectionGlass",640,724,1232,268);
-            var title=surface.Label("LibrarySelectedName",selection.name,672,749,1168,50,29);L10n.ApplyUserContentFont(title);
-            float mass=0,cost=0;foreach(var part in selection.parts){var module=database?database.Get(part.shape):null;if(module){mass+=module.massKg;cost+=module.cost;}}
-            surface.Label("LibrarySelectedStats",L10n.T("app.parts",selection.parts.Count)+"   ·   "+L10n.T("app.mass",mass.ToString("N0"))+"   ·   "+L10n.T("app.cost",cost.ToString("N0")),672,814,1168,34,18,GlassUiPalette.Muted);
-            surface.Button("LibrarySaveCurrent",Copy("保存当前舰船…","Save working ship…"),672,890,354,58,ShowSave);
-            var delete=surface.Button("LibraryDelete",L10n.T("ui.delete"),1042,890,240,58,ConfirmDelete);delete.interactable=selectedFile!=null;
-            if(!delete.interactable)surface.Hint(delete,Copy("请先在列表中选择一份已保存蓝图。","Select a saved blueprint from the library first."));
-            surface.Button("LibraryLoad",selectedFile==null?Copy("使用当前舰船","Use working ship"):Copy("载入所选蓝图","Load selected ship"),1300,890,540,58,LoadSelection,true);
-            status=surface.Label("BlueprintLibraryStatus",notice,48,1024,1824,30,16,GlassUiPalette.Muted);
-            surface.Label("LibrarySelectionKind",selectedFile==null?Copy("工作区 · 未载入其他蓝图","WORKSPACE · saved designs remain independent"):Copy("蓝图预览 · 点击载入后使用","SAVED DESIGN · load to use this ship"),672,203,1168,30,14,GlassUiPalette.Muted);
+            surface.Panel("LibrarySelectionGlass",1432,37,462,208);
+            var name=surface.Label("LibrarySelectedName",selection.name,1449,54,425,66,36,GlassUiPalette.Accent);FigmaVisuals.SetFont(name,true);L10n.ApplyUserContentFont(name);name.textWrappingMode=TextWrappingModes.NoWrap;
+            var metrics=MenuShipMetrics.Calculate(selection,preview.Tuning,mission);MenuShipMetrics.Summary(surface,"LibraryStat",metrics,1457,138,426,20);
+            surface.Panel("LibraryPerformanceGlass",1432,255,462,728);
+            surface.Label("LibraryPerformanceHeading",Copy("舰船性能","SHIP PERFORMANCE"),1466,282,402,42,22);
+            var detail=surface.Label("LibraryPerformance",MenuShipMetrics.Detail(metrics),1469,330,401,630,18,Color.white);
+            detail.enableAutoSizing=true;detail.fontSizeMin=13;detail.fontSizeMax=18;detail.overflowMode=TextOverflowModes.Truncate;
+            Button("LibraryLoad",Copy("载入","LOAD"),1432,995,147,65,LoadSelection,22,GlassUiPalette.Accent);
+            var rename=Button("LibraryRename",Copy("重命名","RENAME"),1589,995,147,65,ShowRename,22);rename.interactable=selectedFile!=null;
+            var delete=Button("LibraryDelete",Copy("删除","DELETE"),1747,995,147,65,ConfirmDelete,22,UiTheme.Current.danger);delete.interactable=selectedFile!=null;
+            Button("ClosePicker",Copy("返回","BACK"),42,1008,115,45,Close,20);
+            status=surface.Label("BlueprintLibraryStatus",notice,190,1019,1190,34,18,GlassUiPalette.Accent);
+        }
+        UnityEngine.UI.Button Button(string name,string text,float x,float y,float width,float height,Action action,float size=20,Color? color=null)
+        {
+            var button=surface.Button(name,text,x,y,width,height,action);var label=button.GetComponentInChildren<TextMeshProUGUI>();UiStyle.ApplyText(label,size);label.color=color??Color.white;FigmaVisuals.SetFont(label,true);return button;
         }
         void ImportEnemyTemplates()
         {
@@ -91,15 +105,6 @@ namespace Starframe.App
         static void Local(Component child,RectTransform parent,float x,float y,float width,float height)
         {
             var rect=(RectTransform)child.transform;rect.SetParent(parent,false);rect.anchorMin=rect.anchorMax=new Vector2(0,1);rect.pivot=new Vector2(0,1);rect.anchoredPosition=new Vector2(x,-y);rect.sizeDelta=new Vector2(width,height);
-        }
-        void Filter(string value)
-        {
-            query=value??"";int visible=0;
-            foreach(var entry in entries){string name=entry.data?.name??Path.GetFileNameWithoutExtension(entry.file);bool show=string.IsNullOrWhiteSpace(query)||name.IndexOf(query.Trim(),StringComparison.OrdinalIgnoreCase)>=0;
-                entry.row.gameObject.SetActive(show);if(show)entry.row.anchoredPosition=new Vector2(0,-visible++*78);
-            }
-            if(content)content.sizeDelta=new Vector2(0,visible*78);if(scroll)scroll.verticalNormalizedPosition=1;
-            if(empty){empty.text=entries.Count==0?L10n.T("app.noBlueprints"):L10n.T("app.ui.noSearchResults");empty.gameObject.SetActive(visible==0);}
         }
         void Select(Entry entry){if(entry.data==null||modal)return;selectedFile=entry.file;selection=ShipWorkspace.Clone(entry.data);notice="";Build();}
         void LoadSelection()
@@ -125,16 +130,17 @@ namespace Starframe.App
         }
         void ShowSave()
         {
-            pendingName=ShipWorkspace.Ship.name;BuildSave();
+            renaming=false;pendingName=ShipWorkspace.Ship.name;BuildSave();
         }
+        void ShowRename(){if(selectedFile==null||modal)return;renaming=true;pendingName=selection.name;BuildSave();}
         void BuildSave()
         {
             ClearModal();CreateModal();
             InModal(surface.Panel("LibrarySaveGlass",520,324,880,432,true));
-            InModal(surface.Label("LibrarySaveTitle",Copy("保存当前舰船","Save working ship"),560,360,800,48,28));
+            InModal(surface.Label("LibrarySaveTitle",renaming?Copy("重命名蓝图","Rename blueprint"):Copy("保存当前舰船","Save working ship"),560,360,800,48,28));
             InModal(surface.Label("LibraryNameLabel",Copy("蓝图名称","Blueprint name"),560,432,800,28,17,GlassUiPalette.Muted));
             InModal(surface.Label("LibraryNameHint",Copy("输入名称。已有同名蓝图时会再次询问覆盖。","Enter a name. Existing designs require overwrite confirmation."),560,538,800,68,16,GlassUiPalette.Muted));
-            var save=InModal(surface.Button("LibrarySaveConfirm",Copy("保存蓝图","Save blueprint"),980,654,380,56,SaveNamed,true));
+            var save=InModal(surface.Button("LibrarySaveConfirm",renaming?Copy("重命名","Rename"):Copy("保存蓝图","Save blueprint"),980,654,380,56,SaveNamed,true));
             nameInput=InModal(surface.Input("LibraryNameInput",pendingName??"",560,474,800,48,value=>{pendingName=value;save.interactable=!string.IsNullOrWhiteSpace(value);}));
             nameInput.characterLimit=64;save.interactable=!string.IsNullOrWhiteSpace(pendingName);
             InModal(surface.Button("LibraryModalCancel",L10n.T("app.cancel"),560,654,396,56,ClearModal));
@@ -143,6 +149,7 @@ namespace Starframe.App
         void SaveNamed()
         {
             if(string.IsNullOrWhiteSpace(pendingName))return;
+            if(renaming){RenameNamed();return;}
             var data=ShipWorkspace.Ship;data.name=pendingName.Trim();
             try{
                 if(ShipWorkspace.Repository.NameExists(data.name)){
@@ -150,6 +157,21 @@ namespace Starframe.App
                 }
                 Save(data,false);
             }catch(Exception error)when(StorageError(error)){ClearModal();notice=L10n.T("app.storageError");Build();}
+        }
+        void RenameNamed()
+        {
+            string oldFile=selectedFile;var data=ShipWorkspace.Clone(selection);data.name=pendingName.Trim();
+            if(string.Equals(data.name,selection.name,StringComparison.Ordinal)){ClearModal();return;}
+            try
+            {
+                // Renaming may never overwrite another independent saved design.
+                if(ShipWorkspace.Repository.NameExists(data.name)){notice=Copy("名称已被使用，请选择其他名称。","That name is already used. Choose another name.");ClearModal();Build();return;}
+                string saved=Path.GetFileName(ShipWorkspace.Repository.Save(data));
+                if(!string.Equals(saved,oldFile,StringComparison.OrdinalIgnoreCase))ShipWorkspace.Repository.Delete(oldFile);
+                if(string.Equals(Path.GetFileName(ShipWorkspace.SourceFile),oldFile,StringComparison.OrdinalIgnoreCase))ShipWorkspace.Set(ShipWorkspace.Ship,ShipWorkspace.Dirty,saved);
+                selectedFile=saved;selection=data;notice=Copy("蓝图已重命名。","Blueprint renamed.");ClearModal();Build();
+            }
+            catch(Exception error)when(StorageError(error)){ClearModal();notice=L10n.T("app.storageError");Build();}
         }
         void Save(BlueprintData data,bool overwrite)
         {

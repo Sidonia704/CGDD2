@@ -1,0 +1,67 @@
+{
+  "Summary": {
+    "Total": 7,
+    "Passed": 7,
+    "Failed": 0,
+    "Skipped": 0,
+    "Inconclusive": 0
+  },
+  "Results": [
+    {
+      "FullName": "Starframe.Construction.Tests.FamilyTracerProfileTests.KineticCoreProfileRetainsThePostScaleWorldLengthCap",
+      "Status": "Passed",
+      "Duration": 0.039686,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.FamilyTracerProfileTests.KineticFamiliesRenderOnlyTheOriginalBrightCoreAtEightyPercentWidth(Gatling)",
+      "Status": "Passed",
+      "Duration": 0.0021587,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.FamilyTracerProfileTests.KineticFamiliesRenderOnlyTheOriginalBrightCoreAtEightyPercentWidth(Railgun)",
+      "Status": "Passed",
+      "Duration": 0.0008714,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.FamilyTracerProfileTests.LingerPreservesProfileAndEndpointsThenRecyclesBothLayers(Gatling)",
+      "Status": "Passed",
+      "Duration": 0.0034674,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.FamilyTracerProfileTests.LingerPreservesProfileAndEndpointsThenRecyclesBothLayers(RapidLaser)",
+      "Status": "Passed",
+      "Duration": 0.000582,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.FamilyTracerProfileTests.RapidLaserKeepsBlueAndOuterWidthWhileItsCoreBecomesExactlyOnePointFiveTimesWider",
+      "Status": "Passed",
+      "Duration": 0.0012305,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.FamilyTracerProfileTests.ReuseAndClearCannotLeakLaserOuterLayersOrKineticColorsIntoAnotherFamily",
+      "Status": "Passed",
+      "Duration": 0.0120566,
+      "Message": null,
+      "StackTrace": null
+    }
+  ],
+  "Duration": 3.1,
+  "StatusPath": null,
+  "Mode": "EditMode",
+  "FilterApplied": "testname: FamilyTracerProfileTests",
+  "success": true,
+  "result": null
+}
+

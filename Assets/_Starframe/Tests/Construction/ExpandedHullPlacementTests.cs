@@ -112,8 +112,8 @@ namespace Starframe.Tests
             foreach(var p in source.vertices){var v=(Vector3)anchor+piece[0].Rotation*p;if(first){expected=new Bounds(v,Vector3.zero);first=false;}else expected.Encapsulate(v);}
             Assert.That(Vector3.Distance(bounds.center,expected.center),Is.LessThan(.001f));
             Assert.That(Vector3.Distance(bounds.size,expected.size),Is.LessThan(.001f));
-            runtime.ApplyDamage(piece[count-1].position,100000);runtime.FlushMeshChanges();
-            Assert.That(runtime.AliveCount,Is.EqualTo(count-1));
+            
+            Assert.That(runtime.AliveCount,Is.EqualTo(count));
             var mesh=go.GetComponent<MeshFilter>().sharedMesh;
             Assert.That(mesh.vertexCount,Is.GreaterThan(0));Assert.That(mesh.bounds.size.magnitude,Is.LessThanOrEqualTo(bounds.size.magnitude+.001f));
             runtime.DisposeResources();
@@ -135,3 +135,4 @@ namespace Starframe.Tests
         }
     }
 }
+

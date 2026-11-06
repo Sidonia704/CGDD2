@@ -45,6 +45,17 @@ namespace Starframe.Construction.Tests
             Assert.That(properties.GetFloat("_Opacity"),Is.GreaterThan(0).And.LessThan(1));
             pool.StepVisuals(.06f);Assert.That(pool.ActiveVisualCount,Is.Zero);Assert.That(pool.GetComponentsInChildren<MeshRenderer>().Any(r=>r.enabled),Is.False);
         }
+        [Test]public void GatlingWorldLengthCapIsAppliedAfterGlobalEffectScaling()
+        {
+            var pool=Own(new GameObject("Scaled Gatling tracer pool")).AddComponent<LaserVisualPool>();
+            pool.Initialize(Shader.Find("Starframe/Combat/VoxelGlow"),3);
+            float cap=.7f*2700/24;
+            int handle=pool.Acquire(Vector3.zero,Vector3.forward,.7f,10,160,null,default,2.6f,6.5f,Color.yellow,2.2f,TracerStyle.Continuous,0,cap);
+            pool.Move(handle,Vector3.forward*1000,Vector3.forward);
+            var filter=pool.GetComponentInChildren<MeshFilter>();
+            Assert.That(filter.transform.localScale.y,Is.EqualTo(cap).Within(.001f));
+            Assert.That(filter.transform.localScale.y,Is.LessThan(2700/24f),"Full-speed shots must keep a visible gap.");
+        }
         [Test]public void GrowingBeamClipsAtMovingMuzzleAndImpactFadeFreezesBothEndpoints()
         {
             var pool=Pool();var muzzle=Own(new GameObject("Rail muzzle")).transform;

@@ -1,0 +1,46 @@
+{
+  "Summary": {
+    "Total": 4,
+    "Passed": 4,
+    "Failed": 0,
+    "Skipped": 0,
+    "Inconclusive": 0
+  },
+  "Results": [
+    {
+      "FullName": "Starframe.Tests.BeamVisualWidthTests.GenericShortBeamRetainsItsAuthoredShapeAndWidth",
+      "Status": "Passed",
+      "Duration": 0.0204129,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.BeamVisualWidthTests.HitAndMissWidthsStayAnchoredToTheOriginalShaftAcrossReuse(\"Sword1Weapon\")",
+      "Status": "Passed",
+      "Duration": 0.0040845,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.BeamVisualWidthTests.HitAndMissWidthsStayAnchoredToTheOriginalShaftAcrossReuse(\"Sword2Weapon\")",
+      "Status": "Passed",
+      "Duration": 0.0004762,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.BeamVisualWidthTests.UnobstructedLongShaftHasTheSameCrossSectionAtItsMuzzleAndFarEnd",
+      "Status": "Passed",
+      "Duration": 0.0023162,
+      "Message": null,
+      "StackTrace": null
+    }
+  ],
+  "Duration": 2.85,
+  "StatusPath": null,
+  "Mode": "EditMode",
+  "FilterApplied": "testname: BeamVisualWidthTests",
+  "success": true,
+  "result": null
+}
+

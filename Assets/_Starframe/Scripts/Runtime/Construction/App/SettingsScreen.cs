@@ -48,7 +48,7 @@ namespace Starframe.App
             if(!surface||!open)return;
             surface.Clear();modal=null;content=null;
             surface.Label("SettingsEyebrow",L10n.T("settings.eyebrow"),48,33,1200,24,13,GlassUiPalette.Muted);
-            surface.Label("SettingsTitle",L10n.T("settings.title"),48,67,1000,48,32);
+            FigmaVisuals.SetFont(surface.Label("SettingsTitle",L10n.T("settings.title").ToUpperInvariant(),48,54,1000,64,45),title:true);
             surface.Label("SettingsSubtitle",L10n.T("settings.subtitle"),48,123,1600,25,14,GlassUiPalette.Muted);
             surface.Panel("SettingsNavigation",48,174,284,742);
             surface.Panel("SettingsContent",356,174,1516,742,true);
@@ -58,7 +58,7 @@ namespace Starframe.App
                 var value=(Category)i;
                 surface.Button("SettingsTab"+value,L10n.T("settings.category."+value),68,198+i*68,244,52,()=>{category=value;Build();},category==value);
             }
-            surface.Label("SettingsTabNote",L10n.T("settings.stagedNote"),72,714,232,158,15,GlassUiPalette.Muted);
+            surface.Label("SettingsTabNote",L10n.T("settings.stagedNote"),72,690,232,210,15,GlassUiPalette.Muted);
             surface.Label("SettingsSectionTitle",L10n.T("settings.category."+category),396,204,1100,34,23);
             surface.Label("SettingsSectionDescription",L10n.T("settings.description."+category),396,247,1416,46,16,GlassUiPalette.Muted);
             surface.Scroll("SettingsScroll",396,308,1436,580,out content);
@@ -186,10 +186,39 @@ namespace Starframe.App
         void BuildAccessibility()
         {
             Row("interfaceHeading",null,58);
+            BackgroundColorPicker();
             SliderRow("uiScale",.85f,1.25f,draft.uiScale,value=>draft.uiScale=Mathf.Round(value*100)/100,Percent,"uiScaleHint");
             SliderRow("glassBlur",0,1,draft.glassBlur,value=>draft.glassBlur=value,Percent,"glassBlurHint");
             SliderRow("hudMotion",0,1,draft.hudMotion,value=>draft.hudMotion=value,Percent,"hudMotionHint");
             ToggleRow("reduceFlashes",draft.reduceFlashes,value=>draft.reduceFlashes=value,"reduceFlashesHint");Note("accessibilityNote");
+        }
+        void BackgroundColorPicker()
+        {
+            var go=new GameObject("BackgroundColorSetting",typeof(RectTransform),typeof(UnityEngine.UI.LayoutElement));go.layer=5;
+            var rect=(RectTransform)go.transform;rect.SetParent(content,false);
+            var layout=go.GetComponent<UnityEngine.UI.LayoutElement>();layout.minHeight=layout.preferredHeight=212;
+            Column(surface.Label("BackgroundColorTitle",L10n.IsEnglish?"BACKGROUND COLOR":"背景主色",0,0,1,1,22,FigmaVisuals.Accent),rect,0,.59f,6,34);
+            Column(surface.Label("BackgroundColorHint",L10n.IsEnglish?"Choose a swatch or adjust RGB. Applied to menu, assembly, mission and training backgrounds.":"选择色板或调节 RGB，应用到菜单、装配、关卡与训练场背景。",0,0,1,1,17,GlassUiPalette.Muted),rect,0,.59f,48,72);
+            var preview=surface.Panel("BackgroundColorPreview",0,0,1,1);Column(preview,rect,0,.12f,136,58);
+            var previewImage=preview.GetComponent<UnityEngine.UI.RawImage>();previewImage.material=null;previewImage.texture=Texture2D.whiteTexture;previewImage.color=draft.backgroundColor;
+            var hex=surface.Label("BackgroundColorHex","#"+ColorUtility.ToHtmlStringRGB(draft.backgroundColor),0,0,1,1,21);Column(hex,rect,.14f,.55f,151,35);
+            var sliders=new UnityEngine.UI.Slider[3];
+            Action refresh=()=>{previewImage.color=draft.backgroundColor;hex.text="#"+ColorUtility.ToHtmlStringRGB(draft.backgroundColor);for(int j=0;j<3;j++)if(sliders[j])sliders[j].SetValueWithoutNotify(draft.backgroundColor[j]);MarkChanged();};
+            string[] swatches={"0B3CA5","163F76","174D56","315B40","615029","713D31","713955","533A78"};
+            for(int i=0;i<swatches.Length;i++)
+            {
+                ColorUtility.TryParseHtmlString("#"+swatches[i],out var color);Color selected=color;
+                var swatch=surface.Button("BackgroundSwatch"+i,"",0,0,1,1,()=>{draft.backgroundColor=selected;refresh();});
+                swatch.GetComponent<UnityEngine.UI.Image>().color=color;
+                Column(swatch,rect,.64f+i*.045f,.68f+i*.045f,8,38);
+            }
+            for(int i=0;i<3;i++)
+            {
+                int channel=i;
+                Column(surface.Label("BackgroundChannel"+i,new[]{"R","G","B"}[i],0,0,1,1,18),rect,.64f,.69f,66+i*43,30);
+                sliders[i]=surface.Slider("BackgroundRGB"+i,0,1,draft.backgroundColor[i],0,0,1,1,value=>{var color=draft.backgroundColor;color[channel]=value;color.a=1;draft.backgroundColor=color;refresh();});
+                Column(sliders[i],rect,.69f,1,62+i*43,36);
+            }
         }
         void BuildLanguage()
         {

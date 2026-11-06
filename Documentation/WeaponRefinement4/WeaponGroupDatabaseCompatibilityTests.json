@@ -1,0 +1,122 @@
+{
+  "Summary": {
+    "Total": 15,
+    "Passed": 15,
+    "Failed": 0,
+    "Skipped": 0,
+    "Inconclusive": 0
+  },
+  "Results": [
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponGroupDatabaseCompatibilityTests.ConfiguredWeaponModuleKeepsItsGroupThroughUpgradeAndRepositoryRoundTrip",
+      "Status": "Passed",
+      "Duration": 0.0604925,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponGroupDatabaseCompatibilityTests.NativeAssignmentSurvivesDatabaseGapAndWorkspaceReload(Laser)",
+      "Status": "Passed",
+      "Duration": 0.0411804,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponGroupDatabaseCompatibilityTests.NativeAssignmentSurvivesDatabaseGapAndWorkspaceReload(Gun1)",
+      "Status": "Passed",
+      "Duration": 0.0178712,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponGroupDatabaseCompatibilityTests.NativeAssignmentSurvivesDatabaseGapAndWorkspaceReload(Gun2)",
+      "Status": "Passed",
+      "Duration": 0.0233975,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponGroupDatabaseCompatibilityTests.NativeAssignmentSurvivesDatabaseGapAndWorkspaceReload(Gun3)",
+      "Status": "Passed",
+      "Duration": 0.0130741,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponGroupDatabaseCompatibilityTests.NativeAssignmentSurvivesDatabaseGapAndWorkspaceReload(Laser2)",
+      "Status": "Passed",
+      "Duration": 0.0100811,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponGroupDatabaseCompatibilityTests.NativeAssignmentSurvivesDatabaseGapAndWorkspaceReload(Laser3)",
+      "Status": "Passed",
+      "Duration": 0.0276866,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponGroupDatabaseCompatibilityTests.NativeAssignmentSurvivesDatabaseGapAndWorkspaceReload(Railgun1)",
+      "Status": "Passed",
+      "Duration": 0.0372946,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponGroupDatabaseCompatibilityTests.NativeAssignmentSurvivesDatabaseGapAndWorkspaceReload(Railgun2)",
+      "Status": "Passed",
+      "Duration": 0.0196195,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponGroupDatabaseCompatibilityTests.NativeAssignmentSurvivesDatabaseGapAndWorkspaceReload(Railgun3)",
+      "Status": "Passed",
+      "Duration": 0.0100329,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponGroupDatabaseCompatibilityTests.NativeAssignmentSurvivesDatabaseGapAndWorkspaceReload(Missile1)",
+      "Status": "Passed",
+      "Duration": 0.0097878,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponGroupDatabaseCompatibilityTests.NativeAssignmentSurvivesDatabaseGapAndWorkspaceReload(Missile2)",
+      "Status": "Passed",
+      "Duration": 0.027484,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponGroupDatabaseCompatibilityTests.NativeAssignmentSurvivesDatabaseGapAndWorkspaceReload(Missile3)",
+      "Status": "Passed",
+      "Duration": 0.0330777,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponGroupDatabaseCompatibilityTests.NativeAssignmentSurvivesDatabaseGapAndWorkspaceReload(Sword1)",
+      "Status": "Passed",
+      "Duration": 0.0142589,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponGroupDatabaseCompatibilityTests.NativeAssignmentSurvivesDatabaseGapAndWorkspaceReload(Sword2)",
+      "Status": "Passed",
+      "Duration": 0.0263868,
+      "Message": null,
+      "StackTrace": null
+    }
+  ],
+  "Duration": 3.41,
+  "StatusPath": null,
+  "Mode": "EditMode",
+  "FilterApplied": "testname: WeaponGroupDatabaseCompatibilityTests",
+  "success": true,
+  "result": null
+}

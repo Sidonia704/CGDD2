@@ -1,0 +1,66 @@
+{
+  "diagnostics": [],
+  "compileMs": 51,
+  "executeMs": 24,
+  "assemblyName": "PipelineRunScript_VlsHudPreview_01fdac22bd2140e0bf9b3a70e622feb4",
+  "success": true,
+  "result": {
+    "path": "D:\\software\\unity\\CGDD26107\\Documentation\\WeaponVls5\\vls-hud.png",
+    "mounts": [
+      {
+        "name": "VLS2Weapon(Clone)",
+        "AmmoRemaining": 8,
+        "AmmoCapacity": 8,
+        "ReloadRemaining": 0
+      },
+      {
+        "name": "VLS1Weapon(Clone)",
+        "AmmoRemaining": 16,
+        "AmmoCapacity": 16,
+        "ReloadRemaining": 0
+      },
+      {
+        "name": "VLS1Weapon(Clone)",
+        "AmmoRemaining": 0,
+        "AmmoCapacity": 16,
+        "ReloadRemaining": 20
+      },
+      {
+        "name": "VLS2Weapon(Clone)",
+        "AmmoRemaining": 0,
+        "AmmoCapacity": 8,
+        "ReloadRemaining": 20
+      }
+    ],
+    "rects": [
+      {
+        "x": 78,
+        "y": 72,
+        "width": 24,
+        "height": 24
+      },
+      {
+        "x": 106,
+        "y": 72,
+        "width": 24,
+        "height": 51
+      },
+      {
+        "x": 78,
+        "y": 99,
+        "width": 24,
+        "height": 51
+      },
+      {
+        "x": 106,
+        "y": 126,
+        "width": 24,
+        "height": 24
+      }
+    ],
+    "timers": [
+      "20",
+      "20"
+    ]
+  }
+}

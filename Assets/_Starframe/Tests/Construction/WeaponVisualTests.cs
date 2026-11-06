@@ -15,7 +15,7 @@ namespace Starframe.Tests
         readonly List<Object> owned=new List<Object>();
         [TearDown]public void Cleanup(){BlockModules.Configure(null);for(int i=owned.Count-1;i>=0;i--)if(owned[i])Object.DestroyImmediate(owned[i]);owned.Clear();}
         [TestCase(BlockShape.Gun1)][TestCase(BlockShape.Gun2)][TestCase(BlockShape.Gun3)]
-        public void MultiBarrelGunKeepsBothSidesAtTheirRealMuzzles(BlockShape shape)
+        public void GatlingKeepsOneCenteredLongTracerStream(BlockShape shape)
         {
             var database=AssetDatabase.LoadAssetAtPath<ModuleDatabase>("Assets/_Starframe/Settings/Modules/ModuleDatabase.asset");
             var tuning=Own(ScriptableObject.CreateInstance<FlightTuning>());tuning.database=database;
@@ -36,9 +36,10 @@ namespace Starframe.Tests
             var weapons=new ShipWeapons();weapons.Initialize(runtime,world);
             var origins=new List<Vector3>();world.ShotFired+=(_,shotPosition)=>origins.Add(shotPosition);
             weapons.FireRequested=true;weapons.Prepare();weapons.Execute(.5f,1);
-            int barrels=module.weapon.muzzleOffsets.Length;
-            Assert.That(origins.Count,Is.GreaterThanOrEqualTo(barrels),shape+" should cycle every barrel in half a second.");
-            Assert.That(Mathf.Abs(origins[0].x-origins[1].x),Is.GreaterThan(.05f),shape+" adjacent barrels must not collapse to the same side.");
+            Assert.That(origins.Count,Is.GreaterThan(0),shape+" should fire while it spins up.");
+            Assert.That(module.weapon.family,Is.EqualTo(WeaponFamily.Gatling));
+            Assert.That(module.weapon.muzzleOffsets,Is.Empty,"Each gun emits one centered chain.");
+            foreach(var origin in origins)Assert.That((origin-origins[0]).sqrMagnitude,Is.LessThan(.00001f));
             world.Step(.5f);
             Assert.That(world.ActiveCount,Is.EqualTo(origins.Count));
             Assert.That(pool.ActiveVisualCount,Is.EqualTo(origins.Count),"Each live projectile must keep its own visual.");
@@ -54,7 +55,9 @@ namespace Starframe.Tests
                 var direction=(Vector3)type.GetField("direction").GetValue(visual);
                 var lastLength=(float)type.GetField("lastLength").GetValue(visual);
                 Assert.That(renderer.enabled,Is.True,"An active projectile must not have a hidden tracer.");
-                var head=transform.position+direction*lastLength;
+                Assert.That((bool)type.GetField("continuous").GetValue(visual),Is.True,"The chain uses elongated streaks, not separated cubes.");
+                Assert.That(transform.localScale.y/transform.localScale.x,Is.GreaterThan(10));
+                var head=transform.position+direction*(lastLength*.5f);
                 bool matched=false;
                 foreach(var origin in origins)if((head-(origin+Vector3.forward*travel)).sqrMagnitude<.05f){matched=true;break;}
                 Assert.That(matched,Is.True,shape+" tracer head must stay on its projectile after the ship is offset in the world.");

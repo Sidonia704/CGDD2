@@ -6,6 +6,15 @@ namespace Starframe.Construction
 {
     public static class BlockPlacement
     {
+        public static bool MountFacesForward(BlockShape shape,Quaternion rotation,Vector3 shipForward,Starframe.Flight.ModuleDefinition definition=null)
+        {
+            bool weapon=definition&&definition.weapon||shape==BlockShape.Laser||shape>=BlockShape.Gun1&&shape<=BlockShape.Sword2||BlockModules.IsVerticalLaunch(shape);
+            if(!weapon)return true;
+            bool missile=definition&&definition.weapon?definition.weapon.delivery==Starframe.Flight.WeaponDelivery.GuidedMissile:
+                shape==BlockShape.Missile1||shape==BlockShape.Missile2||shape==BlockShape.Missile3||BlockModules.IsVerticalLaunch(shape);
+            return missile||Vector3.Dot(rotation*Vector3.forward,shipForward.normalized)>.9999f;
+        }
+
         public static Quaternion FaceRotation(Vector3 faceNormal,int quarterTurns)
         {
             return Quaternion.AngleAxis(((quarterTurns%4)+4)%4*90,faceNormal)*

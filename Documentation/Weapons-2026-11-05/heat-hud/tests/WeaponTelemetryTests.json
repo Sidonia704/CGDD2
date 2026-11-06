@@ -1,0 +1,46 @@
+{
+  "Summary": {
+    "Total": 4,
+    "Passed": 4,
+    "Failed": 0,
+    "Skipped": 0,
+    "Inconclusive": 0
+  },
+  "Results": [
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponTelemetryTests.BlueprintCostIsPositiveAndRetainsFullSortieValueAfterDamageDetachmentAndRecovery",
+      "Status": "Passed",
+      "Duration": 0.1668894,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponTelemetryTests.DisplayPrioritizesAnOverheatedMountEvenWhileAnotherMountHasHigherHeat",
+      "Status": "Passed",
+      "Duration": 0.0164705,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponTelemetryTests.OverheatTelemetryRemainsVisibleUntilTheDisabledMountActuallyCoolsToZero",
+      "Status": "Passed",
+      "Duration": 0.0063414,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponTelemetryTests.TelemetryKeepsDisabledMountsAndDoesNotShareHeatBetweenMounts",
+      "Status": "Passed",
+      "Duration": 0.0064176,
+      "Message": null,
+      "StackTrace": null
+    }
+  ],
+  "Duration": 4.61,
+  "StatusPath": null,
+  "Mode": "EditMode",
+  "FilterApplied": "testname: WeaponTelemetryTests",
+  "success": true,
+  "result": null
+}
+

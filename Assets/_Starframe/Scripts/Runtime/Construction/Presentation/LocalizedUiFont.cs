@@ -22,7 +22,6 @@ namespace Starframe.Presentation
             bool first=!userContent;userContent=true;
             if(!target)target=GetComponent<TMP_Text>();
             if(first||!target||lastText!=target.text)RefreshUserContent();
-            else RefreshUserContent();
         }
         public void ApplyForContent(){if(userContent)EnableUserContent();else Apply(L10n.CurrentFont);}
         void LateUpdate(){if(userContent&&target&&target.text!=lastText)RefreshUserContent();}
@@ -31,6 +30,7 @@ namespace Starframe.Presentation
             if(!target)target=GetComponent<TMP_Text>();
             if(!target)return;
             lastText=target.text;
+            if(FigmaVisuals.BodyFont){Apply(FigmaVisuals.BodyFont);return;}
             bool cjk=false;
             foreach(char character in lastText??string.Empty)
                 if((character>='\u3400'&&character<='\u9fff')||(character>='\u3000'&&character<='\u30ff')||(character>='\uff00'&&character<='\uffef')){cjk=true;break;}
@@ -41,7 +41,9 @@ namespace Starframe.Presentation
         {
             if (!target) target = GetComponent<TMP_Text>();
             if (!target || !font) return;
-            target.font = font;
+            var resolved=FigmaVisuals.ResolveFont(target,font);
+            if(target.font==resolved&&target.characterWidthAdjustment==0)return;
+            target.font = resolved;
             // TMP's font asset setter also replaces the material with the matching atlas.
             // Do not compress Latin glyph widths to make translations fit.
             target.characterWidthAdjustment = 0;

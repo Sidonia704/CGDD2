@@ -16,7 +16,7 @@ namespace Starframe.Construction
             bool thruster=BlockModules.IsThruster(shape),weapon=BlockModules.IsWeapon(shape);
             if(!parent||!visualMesh||(!thruster&&!weapon))return null;
             var existing=parent.Find(AccentName);if(existing)return existing;
-            bool amber=((int)shape>=(int)BlockShape.Gun1&&(int)shape<=(int)BlockShape.Gun3)||((int)shape>=(int)BlockShape.Railgun1&&(int)shape<=(int)BlockShape.Missile3);
+            bool amber=((int)shape>=(int)BlockShape.Gun1&&(int)shape<=(int)BlockShape.Gun3)||((int)shape>=(int)BlockShape.Railgun1&&(int)shape<=(int)BlockShape.Missile3)||BlockModules.IsVerticalLaunch(shape);
             Material glow=amber?sharedAmber:sharedBlue;
             if(!glow)
             {

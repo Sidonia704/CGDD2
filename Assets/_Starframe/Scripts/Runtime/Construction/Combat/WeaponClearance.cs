@@ -1,4 +1,4 @@
-// @role Check weapon bores and the countermeasure's single upward cell column against ship geometry.
+// @role Check weapon bores, VLS launch surfaces and countermeasure upward columns against ship geometry.
 // @calls CylindricalHitQuery, BlockModules, BlockPlacement
 
 using UnityEngine;
@@ -14,6 +14,7 @@ namespace Starframe.Combat
             if(gun==null||obstacle==null)return false;
             if(gun.shape==BlockShape.FlareLauncher||module&&module.countermeasure)
                 return CountermeasurePathBlockedBy(gun,obstacle);
+            if(BlockModules.IsVerticalLaunch(gun.shape))return VerticalLaunchPathBlockedBy(gun,obstacle);
             if(!module||!module.weapon||!mesh)return false;
             var obstacleMatrix=Matrix4x4.TRS(obstacle.position,obstacle.rotation,Vector3.one);
             var offsets=module.weapon.muzzleOffsets;
@@ -33,6 +34,23 @@ namespace Starframe.Combat
             {
                 var delta=cell-origin;int distance=delta.x*up.x+delta.y*up.y+delta.z*up.z;
                 if(distance>0&&delta==up*distance)return true;
+            }
+            return false;
+        }
+        public static bool VerticalLaunchPathBlockedBy(BlockRecord launcher,BlockRecord obstacle)
+        {
+            if(launcher==null||obstacle==null||ReferenceEquals(launcher,obstacle))return false;
+            var local=BlockModules.LocalCells(launcher.shape);var cells=new System.Collections.Generic.HashSet<Vector3Int>(local);
+            var origin=BlockPlacement.GridHint(launcher.position);var up=Vector3Int.RoundToInt(launcher.rotation*Vector3.up);
+            if(up.sqrMagnitude!=1)return true;
+            foreach(var mouth in local)if(!cells.Contains(mouth+Vector3Int.up))
+            {
+                var baseCell=origin+Vector3Int.RoundToInt(launcher.rotation*(Vector3)mouth);
+                foreach(var cell in BlockModules.BodyCells(obstacle))
+                {
+                    var delta=cell-baseCell;int distance=delta.x*up.x+delta.y*up.y+delta.z*up.z;
+                    if(distance>0&&delta==up*distance)return true;
+                }
             }
             return false;
         }

@@ -15,9 +15,9 @@ namespace Starframe.Flight
         public static Color Accent=>Theme.refinedGlass?Theme.accent:new Color(.48f,.82f,1,1);
         public static Color Action
         {
-            get {if(!Theme.refinedGlass||!Theme.frostedFinish)return Accent;var color=Color.Lerp(Button,Accent,.19f);color.a=.94f;return color;}
+            get {return Starframe.Presentation.FigmaVisuals.Orange;}
         }
-        public static Color ActionInk=>Theme.refinedGlass&&Theme.frostedFinish?Ink:new Color(.045f,.075f,.08f,1);
+        public static Color ActionInk=>Color.white;
         public static void Apply(Material material,Color? tint=null)
         {
             material.SetColor("_Tint",tint??Glass);material.SetFloat("_BlurRadius",(Theme.refinedGlass?Theme.blurRadius:18)*Starframe.App.GameSettings.Current.glassBlur);

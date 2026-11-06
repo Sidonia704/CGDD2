@@ -1,0 +1,108 @@
+{
+  "Summary": {
+    "Total": 13,
+    "Passed": 13,
+    "Failed": 0,
+    "Skipped": 0,
+    "Inconclusive": 0
+  },
+  "Results": [
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponGroupDataTests.GroupEditsRejectUnknownPartsAndRemovingGroupReturnsWeaponsToDefault",
+      "Status": "Passed",
+      "Duration": 0.0045605,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponGroupDataTests.KeyboardBindingSurvivesSerializationAndInvalidKeyBecomesUnbound",
+      "Status": "Passed",
+      "Duration": 0.0027317,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponGroupDataTests.NewGroupsStartWithTwoButExplicitlyDeletedSecondStaysDeleted",
+      "Status": "Passed",
+      "Duration": 0.0003629,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponGroupDataTests.NewMissilesDefaultToSecondGroupAndExplicitAssignmentSurvives(Missile1)",
+      "Status": "Passed",
+      "Duration": 0.0007764,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponGroupDataTests.NewMissilesDefaultToSecondGroupAndExplicitAssignmentSurvives(Missile2)",
+      "Status": "Passed",
+      "Duration": 0.000261,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponGroupDataTests.NewMissilesDefaultToSecondGroupAndExplicitAssignmentSurvives(Missile3)",
+      "Status": "Passed",
+      "Duration": 0.0002083,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponGroupDataTests.NewMissilesDefaultToSecondGroupAndExplicitAssignmentSurvives(VLS1)",
+      "Status": "Passed",
+      "Duration": 0.0002365,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponGroupDataTests.NewMissilesDefaultToSecondGroupAndExplicitAssignmentSurvives(VLS2)",
+      "Status": "Passed",
+      "Duration": 0.0002124,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponGroupDataTests.NormalizeRepairsIdsAndDropsUnknownDeletedAndNonWeaponAssignments",
+      "Status": "Passed",
+      "Duration": 0.0024356,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponGroupDataTests.OldJsonWithoutOptionalFieldsGetsTwoMouseGroups(1)",
+      "Status": "Passed",
+      "Duration": 0.0007384,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponGroupDataTests.OldJsonWithoutOptionalFieldsGetsTwoMouseGroups(2)",
+      "Status": "Passed",
+      "Duration": 0.0001827,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponGroupDataTests.RepositoryRoundTripKeepsIndividualAssignmentsNamesAndMouseBindings",
+      "Status": "Passed",
+      "Duration": 0.0104887,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponGroupDataTests.UpgradeAndCopyDoNotShareMetadataObjectsWithSource",
+      "Status": "Passed",
+      "Duration": 0.0003546,
+      "Message": null,
+      "StackTrace": null
+    }
+  ],
+  "Duration": 2.95,
+  "StatusPath": null,
+  "Mode": "EditMode",
+  "FilterApplied": "testname: WeaponGroupDataTests",
+  "success": true,
+  "result": null
+}

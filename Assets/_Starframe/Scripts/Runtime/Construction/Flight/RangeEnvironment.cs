@@ -1,4 +1,4 @@
-// @role Build sparse, distance-culled spatial references and start the range's bounded atmosphere effects.
+// @role Show map boundary planes and start the range's bounded atmosphere effects.
 // @calls FlightTuning, RangeAtmosphere
 
 using System.Collections.Generic;
@@ -12,10 +12,9 @@ namespace Starframe.Flight
         Transform player;FlightTuning tuning;Mesh gridMesh,boundaryMesh;Material material;
         public void Initialize(Transform target,FlightTuning values,Camera view=null)
         {
-            player=target;tuning=values;block=new MaterialPropertyBlock();gridMesh=MeshPlane(values.gridPatchHalfExtent);boundaryMesh=MeshPlane(values.arenaHalfExtent);
+            player=target;tuning=values;block=new MaterialPropertyBlock();boundaryMesh=MeshPlane(values.arenaHalfExtent);
             material=new Material(Shader.Find("Starframe/Flight/RangeGrid")){name="RangeGrid"};
             for(int axis=0;axis<3;axis++){
-                for(int offset=-1;offset<=1;offset++)Add(axis,offset,false,0);
                 Add(axis,0,true,-1);Add(axis,0,true,1);
             }Update();
             var atmosphere=GetComponent<RangeAtmosphere>();if(atmosphere)atmosphere.Initialize(target,view);

@@ -1,5 +1,5 @@
-// @role Preserve the edited ship while navigating between construction and menus.
-// @calls ShipEditorController, ShipWorkspace, FlightSession, GameAudio
+// @role Preserve the edited ship while navigating from the workbench and route Escape through catalogue and weapon-group interactions.
+// @calls ShipEditorController, ShipEditorUI, ShipWorkspace, FlightSession, GameAudio, FigmaVisuals, MenuSurface
 
 using System;
 using System.Collections;
@@ -31,17 +31,14 @@ namespace Starframe.App
         {
             if(!canvas)return;if(toolbar){toolbar.gameObject.SetActive(false);Destroy(toolbar.gameObject);}
             toolbar=MenuSurface.Rect((RectTransform)canvas.transform,"AppNavigation",0,0,1920,1080);
-            Button("ReturnToHangar",L10n.T("app.backHangar"),628,32,190,44,ReturnToHangar);
-            Button("AssemblyWeaponGroups",L10n.T("app.weaponGroups"),834,32,228,44,()=>ReturnToPage(AppPage.WeaponGroups));
-            Button("AssemblySettings",L10n.T("app.settings"),1078,32,158,44,()=>ReturnToPage(AppPage.Settings));
-            if(AppNavigation.SelectedMissionId!=null)Button("ResumeDeployment",L10n.T("app.backDeployment"),1252,32,220,44,()=>ReturnToPage(AppPage.Deployment));
+            Button("ReturnToHangar",L10n.IsEnglish?"BACK":"返回",37.5f,897.75f,101.25f,44,()=>{if(!editorUi.ConsumeEditorEscape())ReturnToHangar();});
         }
         void Button(string name,string text,float x,float y,float w,float h,Action action)
         {
             var rect=MenuSurface.Rect(toolbar,name,x,y,w,h);var image=rect.gameObject.AddComponent<UnityEngine.UI.Image>();image.color=GlassUiPalette.Button;
             var button=rect.gameObject.AddComponent<UnityEngine.UI.Button>();button.targetGraphic=image;var colors=button.colors;colors.highlightedColor=new Color(1.14f,1.14f,1.14f,1);colors.pressedColor=new Color(.8f,.84f,.84f,1);colors.selectedColor=Color.white;colors.fadeDuration=.12f;button.colors=colors;button.onClick.AddListener(()=>{GameAudio.PlayUiClick();try{action();}catch(Exception e)when(e is System.IO.IOException||e is System.IO.InvalidDataException||e is UnauthorizedAccessException){editorUi.SetStatusKey(L10n.ErrorKey(e),true);}});
             var labelObject=new GameObject("Label",typeof(RectTransform),typeof(TextMeshProUGUI));labelObject.layer=5;var r=(RectTransform)labelObject.transform;r.SetParent(rect,false);r.anchorMin=Vector2.zero;r.anchorMax=Vector2.one;r.offsetMin=new Vector2(8,2);r.offsetMax=new Vector2(-8,-2);
-            var label=labelObject.GetComponent<TextMeshProUGUI>();label.font=L10n.CurrentFont;label.text=text;UiStyle.ApplyText(label,15);label.color=GlassUiPalette.Ink;label.alignment=TextAlignmentOptions.Center;label.raycastTarget=false;label.textWrappingMode=TextWrappingModes.NoWrap;
+            var label=labelObject.GetComponent<TextMeshProUGUI>();label.font=L10n.CurrentFont;label.text=text;UiStyle.ApplyText(label,20);FigmaVisuals.SetFont(label,true);label.color=GlassUiPalette.Ink;label.alignment=TextAlignmentOptions.Center;label.raycastTarget=false;label.textWrappingMode=TextWrappingModes.NoWrap;label.overflowMode=TextOverflowModes.Ellipsis;
         }
         void OnChanged(){changed=true;saveAt=Time.unscaledTime+.75f;}
         void Update()
@@ -51,7 +48,7 @@ namespace Starframe.App
                 var selected=EventSystem.current?EventSystem.current.currentSelectedGameObject:null;
                 var input=selected?selected.GetComponentInParent<TMP_InputField>():null;
                 if(input&&input.isFocused){input.DeactivateInputField();if(EventSystem.current)EventSystem.current.SetSelectedGameObject(null);}
-                else ReturnToHangar();
+                else if(!editorUi.ConsumeEditorEscape())ReturnToHangar();
             }
             dialogWasOpen=dialog;
             if(changed&&Time.unscaledTime>=saveAt){try{Capture();changed=false;}catch(Exception e)when(e is System.IO.IOException||e is System.IO.InvalidDataException||e is UnauthorizedAccessException){editorUi.SetStatusKey(L10n.ErrorKey(e),true);saveAt=Time.unscaledTime+10;}}

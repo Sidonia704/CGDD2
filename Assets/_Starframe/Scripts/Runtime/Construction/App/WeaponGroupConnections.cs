@@ -1,4 +1,4 @@
-// @role Draw links between weapon-group controls and selected weapons.
+// @role Draw canvas-space assignment links and diamond markers on visible or occluded native weapons.
 
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,6 +14,7 @@ namespace Starframe.App
             public Vector2 from,to;
             public Color color;
             public float width;
+            public bool markerOnly;
         }
         readonly List<Connection> connections=new List<Connection>();
         protected override void Awake(){base.Awake();raycastTarget=false;}
@@ -22,13 +23,14 @@ namespace Starframe.App
             int count=values!=null?Mathf.Min(values.Count,512):0;bool changed=connections.Count!=count;
             if(!changed)for(int i=0;i<count;i++){
                 var previous=connections[i];var current=values[i];
-                if((previous.from-current.from).sqrMagnitude>.01f||(previous.to-current.to).sqrMagnitude>.01f||previous.color!=current.color||!Mathf.Approximately(previous.width,current.width)){changed=true;break;}
+                if((previous.from-current.from).sqrMagnitude>.01f||(previous.to-current.to).sqrMagnitude>.01f||previous.color!=current.color||previous.markerOnly!=current.markerOnly||!Mathf.Approximately(previous.width,current.width)){changed=true;break;}
             }
             if(!changed)return;connections.Clear();for(int i=0;i<count;i++)connections.Add(values[i]);SetVerticesDirty();
         }
         protected override void OnPopulateMesh(UnityEngine.UI.VertexHelper mesh)
         {
             mesh.Clear();foreach(var link in connections){
+                if(link.markerOnly){Dot(mesh,link.to,Mathf.Max(3,link.width),link.color);continue;}
                 Vector2 previous=link.from;float bend=Mathf.Max(35,Mathf.Abs(link.to.y-link.from.y)*.4f);
                 var a=link.from+Vector2.down*bend;var b=link.to+Vector2.up*bend;b.y=Mathf.Min(link.from.y,b.y);
                 Segment(mesh,link.from+Vector2.up*5,link.from,Mathf.Max(1,link.width),link.color);
@@ -50,7 +52,7 @@ namespace Starframe.App
         static void Dot(UnityEngine.UI.VertexHelper mesh,Vector2 centre,float radius,Color color)
         {
             int index=mesh.currentVertCount;mesh.AddVert(centre,color,Vector2.zero);
-            const int sides=4;for(int i=0;i<sides;i++){float angle=i*(Mathf.PI*2/sides)+Mathf.PI*.25f;mesh.AddVert(centre+new Vector2(Mathf.Cos(angle),Mathf.Sin(angle))*radius,color,Vector2.zero);}
+            const int sides=4;for(int i=0;i<sides;i++){float angle=i*(Mathf.PI*2/sides);mesh.AddVert(centre+new Vector2(Mathf.Cos(angle),Mathf.Sin(angle))*radius,color,Vector2.zero);}
             for(int i=0;i<sides;i++)mesh.AddTriangle(index,index+1+i,index+1+(i+1)%sides);
         }
     }

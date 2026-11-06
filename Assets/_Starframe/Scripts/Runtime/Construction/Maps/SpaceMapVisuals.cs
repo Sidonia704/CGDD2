@@ -26,7 +26,6 @@ namespace Starframe.Maps
             public MeshRenderer sourceRenderer;
             public MeshFilter sourceFilter;
             public Material[] materials;
-            public Action<VoxelCellState> destroyedHandler;
             public int renderRevision, sourceRevision, originalCells;
             public bool damaged;
         }
@@ -53,8 +52,6 @@ namespace Starframe.Maps
                     state.sourceFilter = structure.GetComponent<MeshFilter>();
                     state.materials = state.sourceRenderer ? state.sourceRenderer.sharedMaterials : null;
                     state.exact = ExactRenderers(state);
-                    state.destroyedHandler = _ => Damage(state);
-                    structure.CellDestroyed += state.destroyedHandler;
                     states.Add(structure, state);
                 }
                 if (state.renderRevision != structure.RenderRevision)
@@ -164,7 +161,6 @@ namespace Starframe.Maps
         }
         static void Release(State state)
         {
-            if (state.structure) state.structure.CellDestroyed -= state.destroyedHandler;
             if (state.exact != null) foreach (var renderer in state.exact) if (renderer) renderer.forceRenderingOff = false;
             if (state.proxy)
             {

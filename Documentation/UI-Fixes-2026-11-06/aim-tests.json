@@ -1,0 +1,129 @@
+{
+  "Summary": {
+    "Total": 16,
+    "Passed": 7,
+    "Failed": 9,
+    "Skipped": 0,
+    "Inconclusive": 0
+  },
+  "Results": [
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponGroupRuntimeTests.AimProfilesFilterToHeldGroupAndRecoverAllWhenReleased",
+      "Status": "Failed",
+      "Duration": 0.0644665,
+      "Message": "  Expected: 1\r\n  But was:  0\r\n",
+      "StackTrace": "at Starframe.Construction.Tests.WeaponGroupRuntimeTests.AimProfilesFilterToHeldGroupAndRecoverAllWhenReleased () [0x00084] in D:\\software\\unity\\CGDD26107\\Assets\\_Starframe\\Tests\\Construction\\WeaponGroupRuntimeTests.cs:82\r\n"
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponGroupRuntimeTests.AlternatingAutomaticGunsSpreadPulsesWithoutChangingSustainedRateAndCanResynchronize",
+      "Status": "Passed",
+      "Duration": 0.0075326,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponGroupRuntimeTests.AlternatingEdgeWeaponsKeepTheirInputAndChargeButStaggerDischarges(Press)",
+      "Status": "Passed",
+      "Duration": 0.0040496,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponGroupRuntimeTests.AlternatingEdgeWeaponsKeepTheirInputAndChargeButStaggerDischarges(ChargeRelease)",
+      "Status": "Passed",
+      "Duration": 0.0029211,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponGroupRuntimeTests.ClearingInputsStopsLatchedToggleAndRouterBlockedStateStopsLegacyRequest",
+      "Status": "Failed",
+      "Duration": 0.0031869,
+      "Message": "  Expected: 2\r\n  But was:  0\r\n",
+      "StackTrace": "at Starframe.Construction.Tests.WeaponGroupRuntimeTests.ClearingInputsStopsLatchedToggleAndRouterBlockedStateStopsLegacyRequest () [0x0005e] in D:\\software\\unity\\CGDD26107\\Assets\\_Starframe\\Tests\\Construction\\WeaponGroupRuntimeTests.cs:70\r\n"
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponGroupRuntimeTests.DisablingBetweenPowerPreparationAndExecutionStopsTheShot",
+      "Status": "Failed",
+      "Duration": 0.0039334,
+      "Message": "  Expected: 50\r\n  But was:  0.0f\r\n",
+      "StackTrace": "at Starframe.Construction.Tests.WeaponGroupRuntimeTests.DisablingBetweenPowerPreparationAndExecutionStopsTheShot () [0x0001f] in D:\\software\\unity\\CGDD26107\\Assets\\_Starframe\\Tests\\Construction\\WeaponGroupRuntimeTests.cs:120\r\n"
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponGroupRuntimeTests.DisablingCancelsLatchedOrChargingWeapon(Toggle)",
+      "Status": "Passed",
+      "Duration": 0.003262,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponGroupRuntimeTests.DisablingCancelsLatchedOrChargingWeapon(Press)",
+      "Status": "Passed",
+      "Duration": 0.0029413,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponGroupRuntimeTests.DisablingCancelsLatchedOrChargingWeapon(ChargeRelease)",
+      "Status": "Passed",
+      "Duration": 0.002774,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponGroupRuntimeTests.GroupsStartEnabledAndDisabledGroupsDoNotFireDrawPowerOrProduceLeadPoints",
+      "Status": "Failed",
+      "Duration": 0.003926,
+      "Message": "  Expected: <empty>\r\n  But was:  < Starframe.Combat.WeaponAimProfile >\r\n",
+      "StackTrace": "at Starframe.Construction.Tests.WeaponGroupRuntimeTests.GroupsStartEnabledAndDisabledGroupsDoNotFireDrawPowerOrProduceLeadPoints () [0x00106] in D:\\software\\unity\\CGDD26107\\Assets\\_Starframe\\Tests\\Construction\\WeaponGroupRuntimeTests.cs:97\r\n"
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponGroupRuntimeTests.IdenticalWeaponPartsCanFireIndependentlyOrTogether",
+      "Status": "Failed",
+      "Duration": 0.0031226,
+      "Message": "  Expected: 50\r\n  But was:  0.0f\r\n",
+      "StackTrace": "at Starframe.Construction.Tests.WeaponGroupRuntimeTests.IdenticalWeaponPartsCanFireIndependentlyOrTogether () [0x00070] in D:\\software\\unity\\CGDD26107\\Assets\\_Starframe\\Tests\\Construction\\WeaponGroupRuntimeTests.cs:24\r\n"
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponGroupRuntimeTests.LegacyAiInputStillFiresEveryWeaponRegardlessOfAssignments",
+      "Status": "Passed",
+      "Duration": 0.0030298,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponGroupRuntimeTests.LockRequiredWeaponDrawsNothingUntilLockAndCannotFireAfterLockLost",
+      "Status": "Failed",
+      "Duration": 0.0031195,
+      "Message": "  Expected: 50\r\n  But was:  0.0f\r\n",
+      "StackTrace": "at Starframe.Construction.Tests.WeaponGroupRuntimeTests.LockRequiredWeaponDrawsNothingUntilLockAndCannotFireAfterLockLost () [0x0005d] in D:\\software\\unity\\CGDD26107\\Assets\\_Starframe\\Tests\\Construction\\WeaponGroupRuntimeTests.cs:53\r\n"
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponGroupRuntimeTests.MissileRacksStaggerEveryPhysicalTubeAcrossShipAndStopOnLockLoss",
+      "Status": "Failed",
+      "Duration": 0.0075634,
+      "Message": "  Expected: in range (16,17)\r\n  But was:  13\r\n",
+      "StackTrace": "at Starframe.Construction.Tests.WeaponGroupRuntimeTests.MissileRacksStaggerEveryPhysicalTubeAcrossShipAndStopOnLockLoss () [0x001a3] in D:\\software\\unity\\CGDD26107\\Assets\\_Starframe\\Tests\\Construction\\WeaponGroupRuntimeTests.cs:158\r\n"
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponGroupRuntimeTests.PressEdgesSurviveMultipleRenderUpdatesAndAreConsumedOnce",
+      "Status": "Failed",
+      "Duration": 0.003126,
+      "Message": "  Expected: 50\r\n  But was:  0.0f\r\n",
+      "StackTrace": "at Starframe.Construction.Tests.WeaponGroupRuntimeTests.PressEdgesSurviveMultipleRenderUpdatesAndAreConsumedOnce () [0x00030] in D:\\software\\unity\\CGDD26107\\Assets\\_Starframe\\Tests\\Construction\\WeaponGroupRuntimeTests.cs:62\r\n"
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponGroupRuntimeTests.RuntimeUsesSnapshotAndDestroyedGroupWeaponKeepsItsAssignmentForRecovery",
+      "Status": "Failed",
+      "Duration": 0.0031336,
+      "Message": "  Expected: 1\r\n  But was:  2\r\n",
+      "StackTrace": "at Starframe.Construction.Tests.WeaponGroupRuntimeTests.RuntimeUsesSnapshotAndDestroyedGroupWeaponKeepsItsAssignmentForRecovery () [0x00031] in D:\\software\\unity\\CGDD26107\\Assets\\_Starframe\\Tests\\Construction\\WeaponGroupRuntimeTests.cs:40\r\n"
+    }
+  ],
+  "Duration": 2.94,
+  "StatusPath": null,
+  "Mode": "EditMode",
+  "FilterApplied": "testname: WeaponGroupRuntimeTests",
+  "success": true,
+  "result": null
+}

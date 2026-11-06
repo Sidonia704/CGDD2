@@ -1,0 +1,87 @@
+{
+  "Summary": {
+    "Total": 10,
+    "Passed": 10,
+    "Failed": 0,
+    "Skipped": 0,
+    "Inconclusive": 0
+  },
+  "Results": [
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponBalanceVlsTests.AlertAndMissileLevelsUseSingleReductionAndLowerRadarPitch",
+      "Status": "Passed",
+      "Duration": 0.2546548,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponBalanceVlsTests.NativeCadenceSpeedAndSustainedDamageMatchApprovedProfile(\"Gun1Weapon\",12,2700,8640,0.6f)",
+      "Status": "Passed",
+      "Duration": 0.0009398,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponBalanceVlsTests.NativeCadenceSpeedAndSustainedDamageMatchApprovedProfile(\"Gun2Weapon\",24,2700,15300,0.8f)",
+      "Status": "Passed",
+      "Duration": 0.0002691,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponBalanceVlsTests.NativeCadenceSpeedAndSustainedDamageMatchApprovedProfile(\"Gun3Weapon\",32,2700,25920,1)",
+      "Status": "Passed",
+      "Duration": 0.0002157,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponBalanceVlsTests.NativeCadenceSpeedAndSustainedDamageMatchApprovedProfile(\"LaserRapidCannon\",10,6600,10080,0.6f)",
+      "Status": "Passed",
+      "Duration": 0.0002071,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponBalanceVlsTests.NativeCadenceSpeedAndSustainedDamageMatchApprovedProfile(\"Laser2Weapon\",8,6600,18630,0.8f)",
+      "Status": "Passed",
+      "Duration": 0.0003498,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponBalanceVlsTests.NativeCadenceSpeedAndSustainedDamageMatchApprovedProfile(\"Laser3Weapon\",6,6600,30780,1)",
+      "Status": "Passed",
+      "Duration": 0.000205,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponBalanceVlsTests.NativeCadenceSpeedAndSustainedDamageMatchApprovedProfile(\"Railgun1Weapon\",1.5f,10800,12960,0.6f)",
+      "Status": "Passed",
+      "Duration": 0.0004583,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponBalanceVlsTests.NativeCadenceSpeedAndSustainedDamageMatchApprovedProfile(\"Railgun2Weapon\",1,10800,18000,0.8f)",
+      "Status": "Passed",
+      "Duration": 0.0002625,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Construction.Tests.WeaponBalanceVlsTests.NativeCadenceSpeedAndSustainedDamageMatchApprovedProfile(\"Railgun3Weapon\",0.75f,10800,24960,1)",
+      "Status": "Passed",
+      "Duration": 0.0002439,
+      "Message": null,
+      "StackTrace": null
+    }
+  ],
+  "Duration": 3.07,
+  "StatusPath": null,
+  "Mode": "EditMode",
+  "FilterApplied": "testname: WeaponBalanceVlsTests",
+  "success": true,
+  "result": null
+}

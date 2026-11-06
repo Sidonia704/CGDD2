@@ -50,7 +50,7 @@ namespace Starframe.Tests
         VoxelStructureRuntime Scenery(float density, Vector3 position, params Vector3Int[] cells)
         {
             var source = ScriptableObject.CreateInstance<VoxelAssetDefinition>(); sources.Add(source);
-            source.massPerCell = density; source.fragmentSeparationSpeed = 0;
+            source.massPerCell = density;
             if (cells.Length == 0) cells = new[] { Vector3Int.zero };
             foreach (var cell in cells) source.cells.Add(new VoxelCell { position = cell });
             var result = Make("Scenery", position).AddComponent<VoxelStructureRuntime>(); result.Initialize(source);
@@ -126,25 +126,6 @@ namespace Starframe.Tests
             float expected = 10 * ship.mass / (ship.mass + target.Body.mass);
             Assert.That(target.Body.linearVelocity.x, Is.EqualTo(expected).Within(.01f));
         }
-        [Test] public void SeveredPiecesKeepScaledMassIndependentPhysicsAndDestructibility()
-        {
-            var source = Scenery(100, Vector3.zero, Vector3Int.zero, Vector3Int.right, Vector3Int.right * 2);
-            source.DisposeResources();
-            source.transform.localScale = new Vector3(2, 3, 4);
-            source.Initialize(sources[0]);
-            Assert.That(source.Body.mass, Is.EqualTo(7200).Within(.01f));
-            source.ApplyDamage(Vector3Int.right, 1000); source.FlushMeshChanges();
-            var pieces = root.GetComponentsInChildren<VoxelStructureRuntime>();
-            Assert.That(pieces.Length, Is.EqualTo(2));
-            Assert.That(pieces.Sum(p => p.Body.mass), Is.EqualTo(4800).Within(.01f));
-            foreach (var piece in pieces)
-            {
-                Assert.That(piece.Body.isKinematic || piece.Body.useGravity, Is.False);
-                Assert.That(piece.ColliderCount, Is.GreaterThan(0));
-                var remaining = piece.Cells.First(c => c.Value.Alive).Key;
-                Assert.That(piece.ApplyDamage(remaining, 1000), Is.EqualTo(100));
-                piece.FlushMeshChanges(); Assert.That(piece.AliveCount, Is.Zero);
-            }
-        }
+
     }
 }

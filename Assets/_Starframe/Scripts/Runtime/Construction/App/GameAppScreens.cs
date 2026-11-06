@@ -1,5 +1,5 @@
 // @role Implement deployment, blueprint selection and range-setup screens of the app.
-// @calls DeploymentValidator, ShipWorkspace, RangeTargetRoster, RangePracticeSettings, RangeLoadingOverlay
+// @calls DeploymentValidator, ShipWorkspace, RangeTargetRoster, RangePracticeSettings, RangeLoadingOverlay, MenuShipMetrics, FigmaVisuals
 
 using System;
 using System.Linq;
@@ -14,39 +14,47 @@ namespace Starframe.App
 {
     public sealed partial class GameAppBootstrap
     {
-        float rangeRosterPosition=1;
+        string rangeTargetFile,rangePickerFile;int rangePickerPage;
+        static string MenuCopy(string zh,string en)=>L10n.IsEnglish?en:zh;
+        UnityEngine.UI.Button MenuButton(string name,string text,float x,float y,float width,float height,Action action,float size=22,bool primary=false,Color? ink=null)
+        {
+            var button=ui.Button(name,text,x,y,width,height,action,primary);var label=button.GetComponentInChildren<TextMeshProUGUI>();UiStyle.ApplyText(label,size);label.color=ink??(primary?Color.white:GlassUiPalette.Accent);FigmaVisuals.SetFont(label,true);if(primary)MenuActionShape.Apply(button);return button;
+        }
+        void FigmaMenuHeader(string title,bool back=true)
+        {
+            if(!string.IsNullOrEmpty(title)){var heading=ui.Label("PageTitle",title,37,29,1430,108,48,Color.white);FigmaVisuals.SetFont(heading,true);heading.textWrappingMode=TextWrappingModes.NoWrap;heading.overflowMode=TextOverflowModes.Overflow;}
+            var help=MenuButton("Help","?",1748,37,56,56,ShowHelp,45);ui.Hint(help,T("app.helpTitle"));
+            var settings=MenuButton("Settings","",1817,37,56,56,ShowSettings,39);ui.Hint(settings,T("app.settings"));
+            var gear=MenuSurface.Rect(ui.Root,"SettingsIcon",1828,48,34,34).gameObject.AddComponent<UnityEngine.UI.RawImage>();gear.texture=Resources.Load<Texture2D>("UI/Figma/MenuSettings");gear.color=new Color32(205,253,81,255);gear.raycastTarget=false;
+            var maskShader=Shader.Find("Starframe/UI/FigmaAlphaMask");if(maskShader){gear.material=new Material(maskShader);var resource=gear.gameObject.AddComponent<MenuIconMaterialOwner>();resource.value=gear.material;}
+            if(back)MenuButton("Back",MenuCopy("返回","BACK"),50,1006,114,44,ShowHome,20,false,Color.white);
+        }
         public void ShowDeployment()
         {
             if(!mission){ShowHome();return;}
-            Begin(AppPage.Deployment);selected=ShipWorkspace.Ship;preview.Show(selected);preview.SetFocus(.52f,.32f);
-            Header(T("app.confirmDeployment"),T("app.deploymentSubtitle"));
-            ui.Label("SelectedOperation",T(mission.titleKey),48,254,1080,48,30);
-            ui.Label("OperationRegion",T(mission.regionKey),48,312,900,28,15,GlassUiPalette.Muted);
-            ui.Label("PreviewHint",T("app.orbitHint"),140,882,840,30,13,GlassUiPalette.Muted).alignment=TextAlignmentOptions.Center;
-            ui.Panel("DeploymentGlass",1190,240,682,776);
-            ui.Label("SelectedVesselLabel",T("app.deployingShip"),1224,268,610,24,13,GlassUiPalette.Muted);
-            UserName("DeployShipName",selected.name,1224,306,610,58,29);
-            var difficultyNames=new System.Collections.Generic.List<string>{T("app.difficulty.Relaxed"),T("app.difficulty.Standard"),T("app.difficulty.Expert")};
-            ui.Label("DifficultyLabel",T("app.ui.difficulty"),1224,382,240,28,15,GlassUiPalette.Muted);
-            ui.Dropdown("Difficulty",difficultyNames,(int)AppNavigation.Difficulty,1484,372,354,48,index=>{AppNavigation.Difficulty=(MissionDifficulty)index;ShowDeployment();});
-            CurrentDeployment=DeploymentValidator.Validate(selected,tuning.database,mission,AppNavigation.Difficulty);
-            var report=CurrentDeployment;
-            ui.Label("BudgetValue",T("app.budgetValue",report.Cost.ToString("N0"),report.Budget.ToString("N0")),1224,456,614,42,25,report.Cost>report.Budget?UiTheme.Current.danger:GlassUiPalette.Ink);
-            var track=MenuSurface.Rect(ui.Root,"BudgetTrack",1224,514,614,5).gameObject.AddComponent<UnityEngine.UI.Image>();track.color=new Color(1,1,1,.10f);track.raycastTarget=false;
-            var fill=MenuSurface.Rect(ui.Root,"BudgetFill",1224,514,614*Mathf.Clamp01(report.Budget>0?report.Cost/report.Budget:1),5).gameObject.AddComponent<UnityEngine.UI.Image>();fill.color=report.Cost>report.Budget?UiTheme.Current.danger:GlassUiPalette.Accent;fill.raycastTarget=false;
-            ui.Label("BudgetRemaining",T("app.budgetRemaining",Mathf.Max(0,report.Budget-report.Cost).ToString("N0")),1224,535,614,28,15,GlassUiPalette.Muted);
-            ui.Label("FlightReadiness",report.IsValid?T("app.readinessPassed"):T("app.readinessFailed"),1224,594,614,34,22,report.IsValid?UiTheme.Current.success:UiTheme.Current.danger);
-            var issues=report.Errors.Concat(report.Warnings).ToArray();
-            ui.Scroll("DeploymentIssuesScroll",1224,645,614,146,out var issueContent);
-            string issueText=issues.Length>0?string.Join("\n\n",issues.Select(issue=>"• "+T(issue.key,issue.args))):T("app.readinessBody");
-            var issueLabel=ui.Label("DeploymentIssues",issueText,0,0,1,1,17,report.Errors.Count>0?UiTheme.Current.danger:GlassUiPalette.Muted);
-            float issueHeight=Mathf.Max(144,issueLabel.GetPreferredValues(issueText,576,10000).y+16);
-            PlaceInRow(issueLabel.rectTransform,issueContent,0,0,576,issueHeight);issueContent.sizeDelta=new Vector2(0,issueHeight);
-            ui.Button("EditBeforeLaunch",T("app.editShip"),1224,815,295,50,OpenEditor);
-            ui.Button("ChangeBeforeLaunch",T("app.changeShip"),1535,815,303,50,ShowShipPicker);
-            var launch=ui.Button("ConfirmLaunch",T("app.confirmLaunch"),1224,889,614,60,()=>ConfirmLaunch(),true);launch.interactable=report.IsValid;
-            if(!report.IsValid)ui.Hint(launch,T("app.readinessFailed")+"\n"+string.Join("\n",report.Errors.Take(3).Select(issue=>T(issue.key,issue.args))));
-            ui.Label("LaunchHint",T(HasOperationScene(mission)?"app.launchHint":"app.ui.missionPendingHint"),1224,964,614,42,14,GlassUiPalette.Muted);
+            Begin(AppPage.Deployment);selected=ShipWorkspace.Ship;preview.Show(selected);preview.ResetView();preview.SetFocus(.51f,.43f);preview.FitViewport(.66f,.66f);
+            FigmaMenuHeader(MenuCopy("部署","DEPLOYMENT"));
+            var badge=MenuButton("MissionLevel",MenuCopy("关卡 1","LEVEL 1"),37,153,152,44,()=>{},22,false,Color.black);badge.GetComponent<UnityEngine.UI.Image>().color=GlassUiPalette.Accent;
+            var operation=ui.Label("SelectedOperation",T(mission.titleKey),218,153,620,76,24,Color.white);operation.textWrappingMode=TextWrappingModes.Normal;
+            ui.Panel("DeploymentGlass",1419,374,459,121);
+            ui.Label("SelectedVesselLabel",T("app.deployingShip"),1442,388,330,35,22,Color.white);
+            var name=ui.Label("DeployShipName",selected.name,1442,435,410,46,34,GlassUiPalette.Accent);L10n.ApplyUserContentFont(name);
+            CurrentDeployment=DeploymentValidator.Validate(selected,tuning.database,mission,AppNavigation.Difficulty);var report=CurrentDeployment;
+            var readiness=ui.Label("FlightReadiness",report.IsValid?MenuCopy("舰船就绪","Ship ready"):MenuCopy("检查舰船","Check ship"),1717,386,146,30,19,report.IsValid?GlassUiPalette.Accent:UiTheme.Current.danger);readiness.alignment=TextAlignmentOptions.MidlineRight;
+            ui.Panel("DifficultyGlass",1419,507,459,158);ui.Label("DifficultyLabel",MenuCopy("难度","DIFFICULTY"),1437,521,415,36,22);
+            string[] difficultyNames={MenuCopy("休闲","Relaxed"),MenuCopy("标准","Standard"),MenuCopy("专家","Expert"),MenuCopy("地狱","Hell")};
+            for(int i=0;i<4;i++){int step=i;MenuButton("DifficultyStep_"+i,difficultyNames[i],1429+i*111,574,108,35,()=>{AppNavigation.Difficulty=(MissionDifficulty)step;ShowDeployment();},18,false,Color.white);}
+            var difficulty=ui.Slider("Difficulty",0,3,(int)AppNavigation.Difficulty,1443,625,410,26,value=>{AppNavigation.Difficulty=(MissionDifficulty)Mathf.RoundToInt(value);ShowDeployment();});difficulty.wholeNumbers=true;
+            difficulty.handleRect.GetComponent<UnityEngine.UI.Image>().color=GlassUiPalette.Accent;
+            difficulty.fillRect.GetComponent<UnityEngine.UI.Image>().color=new Color(.75f,.75f,.75f);
+            ui.Panel("BudgetGlass",1419,677,459,121);ui.Label("BudgetHeading",MenuCopy("预算","BUDGET"),1437,691,175,38,22,GlassUiPalette.Accent);
+            var budget=ui.Label("BudgetValue","<color=#B9FF03>"+report.Cost.ToString("N0")+"</color>/"+report.Budget.ToString("N0"),1605,691,250,38,24,report.Cost>report.Budget?UiTheme.Current.danger:Color.white);budget.alignment=TextAlignmentOptions.MidlineRight;
+            var track=MenuSurface.Rect(ui.Root,"BudgetTrack",1442,756,410,22).gameObject.AddComponent<UnityEngine.UI.Image>();track.color=new Color(.82f,.82f,.82f);track.raycastTarget=false;
+            var fill=MenuSurface.Rect(ui.Root,"BudgetFill",1442,756,410*Mathf.Clamp01(report.Budget>0?report.Cost/report.Budget:1),22).gameObject.AddComponent<UnityEngine.UI.Image>();fill.color=report.Cost>report.Budget?UiTheme.Current.danger:GlassUiPalette.Accent;fill.raycastTarget=false;
+            MenuButton("EditBeforeLaunch",MenuCopy("编辑舰船","EDIT SHIP"),1419,810,224,64,OpenEditor,24,false,Color.white);
+            MenuButton("ChangeBeforeLaunch",MenuCopy("更换舰船","CHANGE SHIP"),1655,810,223,64,ShowShipPicker,24,false,Color.white);
+            var launch=MenuButton("ConfirmLaunch",MenuCopy("开始","START"),1550,952,320,82,()=>ConfirmLaunch(),32,true);launch.interactable=report.IsValid;
+            var issues=report.Errors.Concat(report.Warnings).ToArray();if(issues.Length>0){string issueText=string.Join("\n",issues.Select(issue=>"• "+T(issue.key,issue.args)));ui.Hint(readiness,issueText);ui.Hint(launch,issueText);ui.Label("DeploymentIssues",issueText,825,927,562,100,18,report.Errors.Count>0?UiTheme.Current.danger:Color.white);}
         }
         public bool ConfirmLaunch()
         {
@@ -79,7 +87,7 @@ namespace Starframe.App
         {
             Begin(AppPage.BlueprintLibrary);selected=ShipWorkspace.Ship;preview.Show(selected);preview.SetFocus(.57f,.71f);
             libraryScreen=gameObject.AddComponent<BlueprintLibraryScreen>();
-            libraryScreen.Initialize(ui,preview,tuning.database,CloseBlueprintLibrary);
+            libraryScreen.Initialize(ui,preview,tuning.database,CloseBlueprintLibrary,mission);
         }
         void CloseBlueprintLibrary()
         {
@@ -90,52 +98,66 @@ namespace Starframe.App
         public BattleTuning rangeBattleTuning;
         public void ShowRangeSetup()
         {
-            Begin(AppPage.RangeSetup);selected=ShipWorkspace.Ship;preview.Show(selected);preview.SetFocus(.68f,.77f);
-            Header(T("app.rangeTitle"),T("app.rangeSubtitle"));
-            ui.Label("DrillHeading",T("app.drillMode"),48,235,1200,35,20);
-            var modes=(RangeBotMode[])Enum.GetValues(typeof(RangeBotMode));
-            for(int i=0;i<modes.Length;i++){
-                var mode=modes[i];float x=48+i*462;bool active=RangePracticeSettings.Mode==mode;
-                ui.Panel("DrillMode_"+mode,x,286,438,140);
-                ui.Button("SelectDrill_"+mode,T("app.mode."+mode),x+20,302,398,48,()=>{RangePracticeSettings.Mode=mode;ShowRangeSetup();},active);
-                ui.Label("DrillModeHint",T("app.modeHint."+mode),x+20,363,398,50,15,GlassUiPalette.Muted);
-            }
-            ui.Panel("TargetRosterGlass",48,450,1138,508);
-            ui.Label("TargetRosterHeading",T("app.targetRoster"),78,478,1078,34,22);
-            ui.Label("TargetRosterHint",T("app.targetRosterHint"),78,524,1078,42,14,GlassUiPalette.Muted);
-            var roster=new RangeTargetRoster(ShipWorkspace.BlueprintDirectory);
-            var defaultTarget=rangeBattleTuning?rangeBattleTuning.defaultTargetBlueprint:null;
+            Begin(AppPage.RangeSetup);selected=ShipWorkspace.Ship;preview.Show(selected);preview.ResetView();preview.SetFocus(.51f,.63f);preview.FitViewport(.66f,.66f);
+            FigmaMenuHeader(MenuCopy("训练场","TRAINING RANGE"));
+            var roster=new RangeTargetRoster(ShipWorkspace.BlueprintDirectory);var defaultTarget=rangeBattleTuning?rangeBattleTuning.defaultTargetBlueprint:null;
             var targets=roster.AvailableTargets(defaultTarget);
-            var rosterScroll=ui.Scroll("TargetRosterScroll",78,589,1078,286,out var content);content.sizeDelta=new Vector2(0,targets.Count*70);
-            void RefreshRoster(){rangeRosterPosition=rosterScroll.verticalNormalizedPosition;ShowRangeSetup();}
-            int row=0,total=0;
-            foreach(var target in targets){
-                string chosen=target.file;int count=target.count;total+=count;
-                var line=MenuSurface.Rect(ui.Root,"RosterRow",0,0,1038,58);line.SetParent(content,false);line.anchorMin=new Vector2(0,1);line.anchorMax=Vector2.one;line.pivot=new Vector2(.5f,1);line.sizeDelta=new Vector2(0,58);line.anchoredPosition=new Vector2(0,-row*70);
-                var name=ui.Label("RosterShipName",target.builtIn?T("app.builtInTarget"):target.blueprint.name,0,0,730,48,17);PlaceInRow(name.rectTransform,line,0,0,700,58);if(!target.builtIn)L10n.ApplyUserContentFont(name);
-                var minus=ui.Button("RosterMinus_"+row,"−",0,0,52,48,()=>{roster.SetCount(chosen,Mathf.Max(0,count-1),defaultTarget);RefreshRoster();});PlaceInRow((RectTransform)minus.transform,line,750,0,52,48);minus.interactable=count>0;
-                var counter=ui.Label("RosterCount",count.ToString(),0,0,72,48,18);counter.alignment=TextAlignmentOptions.Center;PlaceInRow(counter.rectTransform,line,810,0,72,48);
-                var plus=ui.Button("RosterPlus_"+row,"+",0,0,52,48,()=>{roster.SetCount(chosen,count+1,defaultTarget);RefreshRoster();});PlaceInRow((RectTransform)plus.transform,line,890,0,52,48);plus.interactable=count<int.MaxValue;row++;
+            var target=targets.FirstOrDefault(t=>t.file==rangeTargetFile)??targets.FirstOrDefault(t=>t.count>0)??targets.FirstOrDefault();
+            if(target!=null)
+            {
+                rangeTargetFile=target.file;
+                ui.Panel("RangeTargetCard",56,218,257,211);var picture=MenuSurface.Rect(ui.Root,"RangeTargetThumbnail",56,225,257,166).gameObject.AddComponent<UnityEngine.UI.RawImage>();picture.texture=preview.Thumbnail(target.blueprint);picture.raycastTarget=false;
+                var name=ui.Label("RangeTargetName",target.blueprint.name,63,397,132,29,22,GlassUiPalette.Accent);L10n.ApplyUserContentFont(name);name.textWrappingMode=TextWrappingModes.NoWrap;name.alignment=TextAlignmentOptions.MidlineLeft;
+                var cost=ui.Label("RangeTargetCost",BlueprintCostDisplay.Label(target.blueprint,tuning.database,mission),198,399,111,24,14,GlassUiPalette.Accent);cost.alignment=TextAlignmentOptions.MidlineRight;cost.textWrappingMode=TextWrappingModes.NoWrap;cost.enableAutoSizing=true;cost.fontSizeMin=11;cost.fontSizeMax=14;
+                ui.Label("RangeCountLabel",MenuCopy("数量","Count"),172,356,66,30,18,Color.white);
+                var minus=MenuButton("RosterMinus","−",236,352,23,33,()=>{roster.SetCount(target.file,Mathf.Max(0,target.count-1),defaultTarget);ShowRangeSetup();},25);minus.interactable=target.count>0;
+                ui.Label("RosterCount",target.count.ToString(),264,356,24,30,21,GlassUiPalette.Accent).alignment=TextAlignmentOptions.Center;
+                var plus=MenuButton("RosterPlus","+",288,352,22,33,()=>{roster.SetCount(target.file,target.count+1,defaultTarget);ShowRangeSetup();},25);plus.interactable=target.count<int.MaxValue;
             }
-            if(row==0)ui.Label("EmptyTargets",T("app.noTargetBlueprints"),80,640,1070,90,17,GlassUiPalette.Muted);
-            content.sizeDelta=new Vector2(0,row*70);
-            Canvas.ForceUpdateCanvases();rosterScroll.verticalNormalizedPosition=rangeRosterPosition;
-            ui.Label("TotalTargets",T("app.targetTotal",total),78,903,1078,25,15,GlassUiPalette.Accent);
-            ui.Panel("RangeShipGlass",1210,450,662,508);
-            ui.Label("RangeShipHeading",T("app.deployingShip"),1242,480,596,24,13,GlassUiPalette.Accent);
-            UserName("RangeShipName",selected.name,1242,526,596,70,27);
-            ui.Label("RangeBudgetFree",T("app.rangeNoBudget"),1242,604,596,24,15,GlassUiPalette.Muted);
-            float generation=0,storage=0,weaponPower=0;
-            foreach(var part in selected.parts){
-                var module=tuning.database.Get(part.shape);if(!module)continue;
-                generation+=module.generationWatts;storage+=module.storageJoules;
-                if(module.weapon)weaponPower+=Mathf.Max(0,module.weapon.sustainedPowerWatts);
+            var targetBar=MenuSurface.Rect(ui.Root,"TargetBar",56,176,256,44).gameObject.AddComponent<UnityEngine.UI.Image>();targetBar.color=new Color(53/255f,58/255f,74/255f);targetBar.raycastTarget=false;
+            ui.Label("TargetLabel",MenuCopy("靶机：","TARGET:"),64,183,235,35,22);
+            var select=MenuButton("SelectTarget",MenuCopy("选择靶机","SELECT TARGET"),56,448,257,52,ShowRangeTargetPicker,22,false,Color.black);select.GetComponent<UnityEngine.UI.Image>().color=GlassUiPalette.Accent;select.interactable=targets.Count>0;
+            ui.Panel("TargetBehavior",56,521,257,179);ui.Label("TargetBehaviorTitle",MenuCopy("靶机行为","TARGET BEHAVIOR"),73,531,232,35,20,Color.white);
+            bool attack=RangePracticeSettings.Mode==RangeBotMode.StationaryFire||RangePracticeSettings.Mode==RangeBotMode.Combat;
+            bool move=RangePracticeSettings.Mode==RangeBotMode.FlyOnly||RangePracticeSettings.Mode==RangeBotMode.Combat;
+            void SetMode(bool a,bool m){RangePracticeSettings.Mode=a?(m?RangeBotMode.Combat:RangeBotMode.StationaryFire):(m?RangeBotMode.FlyOnly:RangeBotMode.Stationary);ShowRangeSetup();}
+            RangeBehaviorToggle("RangeAttack",MenuCopy("攻击","ATTACK"),attack,572,()=>SetMode(!attack,move));
+            RangeBehaviorToggle("RangeMove",MenuCopy("移动","MOVE"),move,635,()=>SetMode(attack,!move));
+            ui.Label("TotalTargets",MenuCopy("已配置靶机：","CONFIGURED TARGETS: ")+targets.Sum(t=>t.count),56,719,470,30,18,GlassUiPalette.Accent);
+            MenuButton("RangeEdit",MenuCopy("编辑舰船","EDIT SHIP"),56,767,257,46,OpenEditor,22);
+            MenuButton("RangeChangeShip",MenuCopy("更换舰船","CHANGE SHIP"),56,826,257,46,ShowShipPicker,22);
+            MenuButton("EnterRange",MenuCopy("进入","ENTER"),1550,952,320,82,EnterRange,32,true);
+        }
+        void RangeBehaviorToggle(string name,string text,bool enabled,float y,Action action)
+        {
+            ui.Label(name+"Label",text,80,y+4,130,32,20,GlassUiPalette.Accent).alignment=TextAlignmentOptions.MidlineLeft;
+            var button=MenuButton(name,"",238,y,66,36,action,1);button.GetComponent<UnityEngine.UI.Image>().color=new Color(52/255f,57/255f,77/255f);
+            var knob=MenuSurface.Rect(ui.Root,name+"Thumb",enabled?275:244,y+6,23,24).gameObject.AddComponent<UnityEngine.UI.Image>();knob.color=enabled?GlassUiPalette.Accent:new Color(.56f,.56f,.56f);knob.raycastTarget=false;
+        }
+        void ShowRangeTargetPicker()
+        {
+            var roster=new RangeTargetRoster(ShipWorkspace.BlueprintDirectory);var defaultTarget=rangeBattleTuning?rangeBattleTuning.defaultTargetBlueprint:null;var targets=roster.AvailableTargets(defaultTarget);
+            rangePickerFile=rangePickerFile??rangeTargetFile;int pages=Mathf.Max(1,(targets.Count+11)/12);rangePickerPage=Mathf.Clamp(rangePickerPage,0,pages-1);
+            // Replacing this modal rebuilds the setup behind it and removes every previous blocker.
+            ShowRangeSetup();dialogOpen=true;dialogCancel=()=>{rangePickerFile=null;ShowRangeSetup();};preview.AllowOrbit=false;
+            var modal=MenuSurface.Rect(ui.Root,"RangeTargetPicker",0,0,1920,1080);var blocker=modal.gameObject.AddComponent<UnityEngine.UI.Image>();blocker.color=new Color(0,0,0,.49f);blocker.raycastTarget=true;
+            void Attach(Component component){component.transform.SetParent(modal,false);}
+            var panel=MenuSurface.Rect(ui.Root,"TargetPickerBackground",306,133,1228,839).gameObject.AddComponent<UnityEngine.UI.Image>();panel.color=FigmaVisuals.Background;panel.raycastTarget=true;Attach(panel);
+            for(int i=rangePickerPage*12;i<Mathf.Min(targets.Count,(rangePickerPage+1)*12);i++)
+            {
+                var target=targets[i];int slot=i%12;float x=321+(slot%4)*303,y=155+(slot/4)*247;
+                var card=MenuButton("TargetPick_"+i,"",x,y,266,213,()=>{rangePickerFile=target.file;ShowRangeTargetPicker();},20);Attach(card);
+                var picture=MenuSurface.Rect(ui.Root,"TargetThumbnail_"+i,x,y,266,174).gameObject.AddComponent<UnityEngine.UI.RawImage>();picture.texture=preview.Thumbnail(target.blueprint);picture.raycastTarget=false;Attach(picture);
+                var name=ui.Label("TargetName_"+i,target.blueprint.name,x+6,y+174,137,39,20,GlassUiPalette.Accent);L10n.ApplyUserContentFont(name);name.alignment=TextAlignmentOptions.MidlineLeft;name.textWrappingMode=TextWrappingModes.NoWrap;name.enableAutoSizing=true;name.fontSizeMin=15;name.fontSizeMax=20;Attach(name);
+                var cost=ui.Label("TargetCost_"+i,BlueprintCostDisplay.Label(target.blueprint,tuning.database,mission),x+147,y+174,115,39,14,GlassUiPalette.Accent);cost.alignment=TextAlignmentOptions.MidlineRight;cost.textWrappingMode=TextWrappingModes.NoWrap;cost.enableAutoSizing=true;cost.fontSizeMin=11;cost.fontSizeMax=14;Attach(cost);
+                if(target.file==rangePickerFile){var outline=card.gameObject.AddComponent<UnityEngine.UI.Outline>();outline.effectColor=GlassUiPalette.Accent;outline.effectDistance=new Vector2(3,3);}
             }
-            ui.Label("RangePowerSummary",T("app.rangePowerSummary",generation,storage,weaponPower,tuning.boostPowerWatts),1242,636,596,48,14,GlassUiPalette.Muted);
-            ui.Button("RangeEdit",T("app.editShip"),1242,697,288,48,OpenEditor);
-            ui.Button("RangeChangeShip",T("app.changeShip"),1546,697,294,48,ShowShipPicker);
-            ui.Button("EnterRange",T("app.enterRange"),1242,796,598,64,EnterRange,true);
-            ui.Label("RangeExitHint",T("app.rangeExitHint"),1242,886,598,42,14,GlassUiPalette.Muted);
+            var last=MenuButton("TargetPreviousPage",MenuCopy("上一页","PREVIOUS"),321,905,148,45,()=>{rangePickerPage--;ShowRangeTargetPicker();},19,false,Color.white);last.interactable=rangePickerPage>0;Attach(last);
+            var next=MenuButton("TargetNextPage",MenuCopy("下一页","NEXT PAGE"),485,905,148,45,()=>{rangePickerPage++;ShowRangeTargetPicker();},19,false,Color.white);next.interactable=rangePickerPage<pages-1;Attach(next);
+            Attach(ui.Label("TargetPage",(rangePickerPage+1)+"/"+pages,655,914,120,30,20));
+            Attach(MenuButton("TargetPickerCancel",MenuCopy("取消","CANCEL"),1050,888,140,57,()=>{rangePickerFile=null;ShowRangeSetup();},22,false,Color.white));
+            Attach(MenuButton("TargetPickerConfirm",MenuCopy("确认","CONFIRM"),1343,888,167,57,()=>{if(!string.IsNullOrEmpty(rangePickerFile)){int count=Mathf.Max(1,roster.GetCount(rangeTargetFile));roster.SelectOnly(rangePickerFile,count,defaultTarget);rangeTargetFile=rangePickerFile;}rangePickerFile=null;ShowRangeSetup();},24));
+            UiModalScope.Protect(ui.Root,modal);
         }
         public void EnterRange()
         {

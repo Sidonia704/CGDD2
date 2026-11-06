@@ -1,4 +1,4 @@
-// @role Reuse exact ship hull models, bounded source-model caches and scenery surface overrides without changing authored normals or seams.
+// @role Reuse exact ship hull models and scenery surfaces, culling shared full-cell faces across source models.
 // @calls ModuleDatabase, BlockGeometry, VoxelGeometry, VoxelAssetDefinition, VoxelModelPartition, VoxelTerrainRenderChunks
 
 using System;
@@ -99,13 +99,6 @@ namespace Starframe.Maps
             }
             var model = new Model { vertices = mesh.vertices, normals = mesh.normals, uv = mesh.uv, tangents = mesh.tangents, indices = mesh.triangles };
             model.remap = new int[model.vertices.Length];
-            model.fillsCell = shape == BlockShape.Cube;
-            if (model.fillsCell)
-                foreach (var corner in BlockGeometry.Points(BlockShape.Cube))
-                {
-                    bool found = false; foreach (var point in model.vertices) if ((point - corner).sqrMagnitude < .0000000001f) { found = true; break; }
-                    if (!found) { model.fillsCell = false; break; }
-                }
             model.hiddenBy = new int[model.indices.Length / 3];
             for (int triangle = 0; triangle < model.hiddenBy.Length; triangle++)
             {
@@ -119,17 +112,41 @@ namespace Starframe.Maps
                     { model.hiddenBy[triangle] = face; break; }
                 }
             }
+            model.fillsCell = FillsUnitCell(model);
             if (owned) { if (Application.isPlaying) Object.Destroy(mesh); else Object.DestroyImmediate(mesh); }
             return model;
+        }
+        // A partition is a full cube only if its entire boundary consists of the six
+        // outward unit-square faces. Corner presence alone would accept bevels or cavities.
+        static bool FillsUnitCell(Model model)
+        {
+            const float epsilon = .00001f;
+            foreach (var point in model.vertices)
+                if (Mathf.Abs(point.x) > .5f + epsilon || Mathf.Abs(point.y) > .5f + epsilon || Mathf.Abs(point.z) > .5f + epsilon)
+                    return false;
+            var areas = new double[6];
+            for (int triangle = 0; triangle < model.hiddenBy.Length; triangle++)
+            {
+                var a = model.vertices[model.indices[triangle * 3]];
+                var b = model.vertices[model.indices[triangle * 3 + 1]];
+                var c = model.vertices[model.indices[triangle * 3 + 2]];
+                float twiceArea = Vector3.Cross(b - a, c - a).magnitude;
+                if (twiceArea <= .00000001f) continue;
+                int face = model.hiddenBy[triangle];
+                if (face < 0) return false;
+                areas[face] += twiceArea * .5;
+            }
+            for (int face = 0; face < 6; face++) if (Math.Abs(areas[face] - 1.0) > .0001) return false;
+            return true;
         }
         static bool SameSource(VoxelCellState a, VoxelCellState b) => a.shape == b.shape && Quaternion.Angle(a.Rotation, b.Rotation) < .01f &&
             a.position - Vector3Int.RoundToInt(a.Rotation * (Vector3)a.modelOffset) == b.position - Vector3Int.RoundToInt(b.Rotation * (Vector3)b.modelOffset);
         internal static int CoverageMask(VoxelCellState cell, IReadOnlyDictionary<Vector3Int, VoxelCellState> coverage, ModelCache cache)
         {
-            int mask = 0; bool cubeFillsCell = cache.Get(BlockShape.Cube, Vector3Int.zero).fillsCell;
+            int mask = 0;
             for (int face = 0; face < 6; face++)
                 if (coverage.TryGetValue(cell.position + VoxelGeometry.Directions[face], out var neighbor) && neighbor.Alive &&
-                    (cubeFillsCell && neighbor.shape == BlockShape.Cube || SameSource(cell, neighbor))) mask |= 1 << face;
+                    (cache.Get(neighbor.shape, neighbor.modelOffset).fillsCell || SameSource(cell, neighbor))) mask |= 1 << face;
             return mask;
         }
         public static Mesh CreateCellMesh(ModuleDatabase database, BlockShape shape, Vector3Int offset)

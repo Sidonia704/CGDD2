@@ -116,442 +116,31 @@ namespace Starframe.Tests
             Assert.That(JsonUtility.ToJson(source), Is.EqualTo(sourceBefore), "Initialization must not modify the source asset.");
         }
 
-        [TestCase(0, -1)] [TestCase(0, 0)] [TestCase(0, 1)]
-        [TestCase(1, -1)] [TestCase(1, 0)] [TestCase(1, 1)]
-        [TestCase(2, -1)] [TestCase(2, 0)] [TestCase(2, 1)]
-        public void BoundaryDeletionPreservesExactTrianglesNormalsUvTangentsAndMaterialSlots(int axis, int boundaryChunk)
-        {
-            var source = Grid(axis, true);
-            int boundary = boundaryChunk * ChunkEdge;
-            var turns = new Vector3Int(axis + 1, boundaryChunk + 2, axis + boundaryChunk + 2);
-            var piece = InsertBlock8AcrossBoundary(source, axis, boundary, turns);
-            var removed = piece.First(cell => cell.position[axis] == boundary).position;
-            Assert.That(PositiveMod(removed[axis], ChunkEdge), Is.Zero,
-                "The deleted Block8 cell must sit on a chunk boundary so partition caps cross chunk edges.");
-            Assert.That(piece.Count(cell => cell.position[axis] == removed[axis]), Is.EqualTo(4));
-            string sourceBefore = JsonUtility.ToJson(source);
-            var runtime = Body(source);
-            AssertEquivalentToOracle(runtime);
-            long revision = RenderRevision(runtime);
 
-            Kill(runtime, removed);
 
-            Assert.That(root.GetComponentsInChildren<VoxelStructureRuntime>().Length, Is.EqualTo(1), "A dense grid must not fragment after one deletion.");
-            var meshes = RenderMeshes(runtime);
-            Assert.That(meshes.Count, Is.GreaterThan(1), "The fixture must actually activate chunk rendering.");
-            AssertChunkBounds(meshes, source.cellSize);
-            Assert.That(RenderRevision(runtime), Is.GreaterThan(revision));
-            Assert.That(JsonUtility.ToJson(source), Is.EqualTo(sourceBefore), "Runtime chunking must not modify source cells or offsets.");
-            // Every one of the complete eight Block8 offsets must survive with its own rotation and model offset.
-            foreach (var cell in piece)
-            {
-                Assert.That(runtime.Cells.TryGetValue(cell.position, out var state), Is.True);
-                Assert.That(state.Alive, Is.EqualTo(cell.position != removed));
-                Assert.That(state.shape, Is.EqualTo(BlockShape.Block8));
-                Assert.That(state.quarterTurns, Is.EqualTo(cell.quarterTurns));
-                Assert.That(state.modelOffset, Is.EqualTo(cell.modelOffset));
-            }
-            AssertEquivalentToOracle(runtime, oracle => AssertExposedBlock8Cap(oracle, runtime, piece, removed));
-        }
 
-        [Test]
-        public void SecondLethalHitKeepsDistantChunkMeshReferencesAndContentsUnchanged()
-        {
-            var source = Grid(0, true);
-            string sourceBefore = JsonUtility.ToJson(source);
-            var runtime = Body(source);
-            Kill(runtime, new Vector3Int(-ChunkEdge, 1, 1));
-            var before = RenderMeshes(runtime).ToArray();
-            Assert.That(before.Length, Is.GreaterThan(1));
-            AssertChunkBounds(before, source.cellSize);
-            var second = new Vector3Int(ChunkEdge, 1, 1);
-            var secondChunk = ChunkMeshFor(before, second, source.cellSize);
-            var materials = RootMaterials(runtime);
-            var distant = before
-                .Where(mesh => mesh.bounds.max.x < (second.x - 2 * ChunkEdge) * source.cellSize)
-                .ToDictionary(mesh => mesh, mesh => Triangles(new[] { mesh }, materials));
-            Assert.That(distant.Count, Is.GreaterThan(0), "The fixture must include chunks beyond the second hit's neighbour halo.");
-            long revision = RenderRevision(runtime);
 
-            Kill(runtime, second);
 
-            Assert.That(RenderRevision(runtime), Is.GreaterThan(revision));
-            Assert.That(RenderMeshes(runtime).Count, Is.EqualTo(before.Length), "A local hit must not create or drop whole chunks.");
-            Assert.That(RenderMeshes(runtime).Any(mesh => ReferenceEquals(mesh, secondChunk)), Is.False, "The hit chunk must be rebuilt.");
-            foreach (var pair in distant)
-            {
-                Assert.That(RenderMeshes(runtime).Any(mesh => ReferenceEquals(mesh, pair.Key)), Is.True, "A distant mesh was replaced.");
-                AssertTrianglesEqual(pair.Value, Triangles(new[] { pair.Key }, materials), "A distant mesh was edited in place.");
-            }
-            Assert.That(runtime.AliveCount, Is.EqualTo(source.cells.Count - 2));
-            Assert.That(JsonUtility.ToJson(source), Is.EqualTo(sourceBefore), "Runtime chunk rebuilds must not modify the source asset.");
-            AssertEquivalentToOracle(runtime);
-        }
 
-        [Test]
-        public void SharedInitialChunksAreCopyOnWriteAcrossDamagedRuntimes()
-        {
-            var source = Grid(0, true);
-            var a = Body(source);
-            var b = Body(source);
-            var aggregate = a.GetComponent<MeshFilter>().sharedMesh;
-            var aggregateBefore = Triangles(new[] { aggregate }, RootMaterials(a));
-            var first = new Vector3Int(-ChunkEdge, 1, 1);
-            Kill(a, first);
-            Kill(b, first);
-            var aMeshes = RenderMeshes(a).ToArray();
-            var shared = aMeshes.Where(mesh => RenderMeshes(b).Any(other => ReferenceEquals(mesh, other))).ToArray();
-            Assert.That(shared.Length, Is.GreaterThan(0), "Unchanged chunks must reuse the shared initial template, not be independently rebuilt.");
-            Assert.That(aMeshes.Length - shared.Length, Is.LessThanOrEqualTo(4),
-                "One lethal hit may only replace the hit chunk and the chunks touching its six face neighbours.");
-            Assert.That(shared.All(mesh => (bool)mesh), Is.True);
-            AssertChunkBounds(shared, source.cellSize);
-            var second = new Vector3Int(ChunkEdge, 1, 1);
-            var affectedShared = shared.Where(mesh => mesh.bounds.Contains((Vector3)second * source.cellSize)).ToArray();
-            Assert.That(affectedShared.Length, Is.GreaterThan(0), "The second hit must target a still-shared chunk.");
-            var bMeshes = RenderMeshes(b).ToArray();
-            var bBefore = Triangles(bMeshes, RootMaterials(b));
-            long bRevision = RenderRevision(b);
 
-            Kill(a, second);
 
-            Assert.That(a.AliveCount, Is.EqualTo(source.cells.Count - 2));
-            Assert.That(b.AliveCount, Is.EqualTo(source.cells.Count - 1));
-            Assert.That(b.GetHealth(second), Is.EqualTo(source.blockHealth));
-            Assert.That(RenderRevision(b), Is.EqualTo(bRevision));
-            AssertSameMeshes(bMeshes, RenderMeshes(b));
-            AssertTrianglesEqual(bBefore, Triangles(RenderMeshes(b), RootMaterials(b)), "A hit on one runtime changed its peer.");
-            Assert.That(RenderMeshes(a).Count, Is.EqualTo(aMeshes.Length), "The dirty runtime must keep the same chunk partitioning.");
-            foreach (var mesh in affectedShared)
-            {
-                Assert.That(mesh, Is.Not.Null);
-                Assert.That(RenderMeshes(a).Any(current => ReferenceEquals(current, mesh)), Is.False, "The dirty runtime must release its shared version.");
-            }
-            Assert.That(RenderMeshes(a).Any(current => ReferenceEquals(current, aggregate)), Is.False, "The intact aggregate must not become a chunk.");
-            AssertTrianglesEqual(aggregateBefore, Triangles(new[] { aggregate }, RootMaterials(a)), "The shared intact aggregate was mutated.");
-            AssertEquivalentToOracle(a);
-            AssertEquivalentToOracle(b);
 
-            a.DisposeResources();
-            Object.DestroyImmediate(a.gameObject);
-            AssertSameMeshes(bMeshes, RenderMeshes(b));
-            AssertTrianglesEqual(bBefore, Triangles(RenderMeshes(b), RootMaterials(b)), "Disposing one owner invalidated another owner's chunks.");
-        }
 
-        [Test]
-        public void LocalLethalHitRebuildsNoChunkOutsideTheHitChunkAndItsFaceNeighbours()
-        {
-            var source = CubeBlock(8);
-            var runtime = Body(source);
-            var materials = RootMaterials(runtime);
-            Kill(runtime, new Vector3Int(-ChunkEdge, -ChunkEdge, -ChunkEdge));
-            var before = RenderMeshes(runtime).ToArray();
-            Assert.That(before.Length, Is.EqualTo(8), "An 8x8x8 hull must prewarm exactly eight non-empty 4x4x4 chunks.");
-            AssertChunkBounds(before, source.cellSize);
-            var hit = new Vector3Int(0, 0, 0);
-            var hitChunk = ChunkMeshFor(before, hit, source.cellSize);
-            var localCells = new[] { hit, hit + Vector3Int.left, hit + Vector3Int.down, hit + Vector3Int.back };
-            var local = new[] { hitChunk }.Concat(localCells.Select(cell => ChunkMeshFor(before, cell, source.cellSize))).Distinct().ToArray();
-            Assert.That(local.Length, Is.EqualTo(4), "A cell at a chunk corner touches its own chunk plus three face-neighbour chunks.");
-            var outside = before.Where(mesh => !local.Contains(mesh)).ToArray();
-            Assert.That(outside.Length, Is.EqualTo(4));
-            var outsideBefore = outside.ToDictionary(mesh => mesh, mesh => Triangles(new[] { mesh }, materials));
-            long revision = RenderRevision(runtime);
-            int alive = runtime.AliveCount;
 
-            Kill(runtime, hit);
 
-            var after = RenderMeshes(runtime).ToArray();
-            Assert.That(RenderRevision(runtime), Is.GreaterThan(revision));
-            Assert.That(runtime.AliveCount, Is.EqualTo(alive - 1));
-            Assert.That(after.Length, Is.EqualTo(before.Length), "A local removal must not create or drop whole chunks.");
-            var replaced = before.Where(mesh => after.All(current => !ReferenceEquals(current, mesh))).ToArray();
-            Assert.That(replaced.Length, Is.GreaterThan(0), "The damaged chunk must be rebuilt.");
-            Assert.That(replaced.Length, Is.LessThanOrEqualTo(local.Length));
-            foreach (var mesh in replaced) Assert.That(local.Contains(mesh), Is.True,
-                "Only the hit chunk and chunks containing a face neighbour of the removed cell may be rebuilt.");
-            Assert.That(after.Any(current => ReferenceEquals(current, hitChunk)), Is.False, "The damaged chunk kept its old mesh.");
-            foreach (var pair in outsideBefore)
-            {
-                Assert.That(after.Any(current => ReferenceEquals(current, pair.Key)), Is.True, "A chunk outside the local halo was replaced.");
-                AssertTrianglesEqual(pair.Value, Triangles(new[] { pair.Key }, materials), "A chunk outside the local halo was edited in place.");
-            }
-            AssertEquivalentToOracle(runtime);
-        }
 
-        [TestCase(false)] [TestCase(true)]
-        public void NonlethalDamageAndExpiryDoNotChangeRenderRevisionOrMeshIdentity(bool activateChunks)
-        {
-            var source = Grid(0, true);
-            var runtime = Body(source);
-            if (activateChunks) Kill(runtime, new Vector3Int(-ChunkEdge, 1, 1));
-            var meshes = RenderMeshes(runtime).ToArray();
-            int renderers = runtime.GetComponentsInChildren<MeshRenderer>(true).Length;
-            int filters = runtime.GetComponentsInChildren<MeshFilter>(true).Length;
-            var before = Triangles(meshes, RootMaterials(runtime));
-            long revision = RenderRevision(runtime);
-            long geometryBuilds = runtime.GeometryBuildCount;
-            var position = new Vector3Int(1, 1, 1);
-            Assert.That(runtime.GetHealth(position), Is.EqualTo(source.blockHealth));
 
-            runtime.ApplyDamage(position, source.blockHealth * .25f);
-            runtime.FlushMeshChanges();
-            Assert.That(runtime.GetHealth(position), Is.EqualTo(source.blockHealth * .75f));
-            Assert.That(runtime.RecentDamageCount, Is.EqualTo(1));
-            Assert.That(RenderRevision(runtime), Is.EqualTo(revision));
-            Assert.That(runtime.GeometryBuildCount, Is.EqualTo(geometryBuilds), "Nonlethal damage must not build geometry.");
-            Assert.That(runtime.GetComponentsInChildren<MeshRenderer>(true).Length, Is.EqualTo(renderers));
-            Assert.That(runtime.GetComponentsInChildren<MeshFilter>(true).Length, Is.EqualTo(filters),
-                "Nonlethal damage must not activate or create chunk views.");
-            AssertSameMeshes(meshes, RenderMeshes(runtime));
-            if (!activateChunks)
-            {
-                Assert.That(meshes.Length, Is.EqualTo(1), "An intact instance keeps its single aggregate mesh.");
-                Assert.That(renderers, Is.EqualTo(1), "Chunk activation belongs to the first lethal hit only.");
-            }
 
-            runtime.AdvanceDamageTime(source.damageResetSeconds + 1);
-            Assert.That(runtime.GetHealth(position), Is.EqualTo(source.blockHealth));
-            Assert.That(runtime.RecentDamageCount, Is.Zero);
-            runtime.FlushMeshChanges();
-            Assert.That(RenderRevision(runtime), Is.EqualTo(revision));
-            Assert.That(runtime.GeometryBuildCount, Is.EqualTo(geometryBuilds));
-            AssertSameMeshes(meshes, RenderMeshes(runtime));
-            AssertTrianglesEqual(before, Triangles(RenderMeshes(runtime), RootMaterials(runtime)), "Temporary health expiry must not trigger rendering work.");
-            AssertEquivalentToOracle(runtime);
-        }
 
-        [Test]
-        public void SourceAndFragmentDisposalReleaseOwnedResourcesWithoutInvalidatingTheSurvivor()
-        {
-            var source = SplitGrid();
-            source.baseColor = new Color(.8f, .9f, .7f);
-            string sourceBefore = JsonUtility.ToJson(source);
-            var original = Body(source);
-            var aggregate = original.GetComponent<MeshFilter>().sharedMesh;
-            var generated = new HashSet<Mesh> { aggregate };
-            var tintedMaterials = new HashSet<Material>(RootMaterials(original));
-            var shipMesh = database.Get(BlockShape.Cube).mesh;
-            var shipMaterial = database.Get(BlockShape.Cube).material;
-            Kill(original, Vector3Int.zero);
-            var pieces = root.GetComponentsInChildren<VoxelStructureRuntime>();
-            Assert.That(pieces.Length, Is.EqualTo(2));
-            Assert.That(pieces.All(piece => piece.AliveCount >= MinimumChunkCells), Is.True,
-                "Both the source island and fragment must exercise chunk ownership, not the small-fragment path.");
-            var fragment = pieces.Single(piece => piece != original);
-            foreach (var piece in pieces)
-            {
-                Assert.That(RenderMeshes(piece).Count, Is.GreaterThan(1));
-                AssertChunkBounds(RenderMeshes(piece), source.cellSize);
-                generated.UnionWith(RenderMeshes(piece));
-                tintedMaterials.UnionWith(RootMaterials(piece));
-                AssertEquivalentToOracle(piece);
-            }
-            var survivorMeshes = RenderMeshes(fragment).ToArray();
-            var survivorBefore = Triangles(survivorMeshes, RootMaterials(fragment));
-            long survivorRevision = RenderRevision(fragment);
-            int survivorAlive = fragment.AliveCount;
 
-            original.DisposeResources();
-            Object.DestroyImmediate(original.gameObject);
 
-            Assert.That(survivorMeshes.All(mesh => (bool)mesh), Is.True, "Destroying the source owner must not release live fragment meshes.");
-            AssertSameMeshes(survivorMeshes, RenderMeshes(fragment));
-            Assert.That(RenderRevision(fragment), Is.EqualTo(survivorRevision));
-            Assert.That(fragment.AliveCount, Is.EqualTo(survivorAlive));
-            AssertTrianglesEqual(survivorBefore, Triangles(RenderMeshes(fragment), RootMaterials(fragment)), "The remaining fragment's native resources changed.");
-            AssertEquivalentToOracle(fragment);
 
-            fragment.DisposeResources();
-            Object.DestroyImmediate(fragment.gameObject);
-
-            Assert.That(generated.All(mesh => !mesh), Is.True, "The final source/fragment owner must release aggregate, private and shared chunk meshes.");
-            Assert.That(tintedMaterials.All(material => !material), Is.True, "Runtime tint materials must not leak after their owners are destroyed.");
-            Assert.That((bool)shipMesh, Is.True, "Runtime disposal must not destroy source module meshes.");
-            Assert.That((bool)shipMaterial, Is.True, "Runtime disposal must not destroy source module materials.");
-            Assert.That(source.Validate(out var error), Is.True, error);
-            Assert.That(JsonUtility.ToJson(source), Is.EqualTo(sourceBefore), "Runtime disposal must not modify the source asset.");
-        }
-
-        [Test]
-        public void SourceGenerationChangeKeepsLeasedOldGenerationChunksAndFragmentsAlive()
-        {
-            var source = SplitGrid();
-            source.baseColor = new Color(.8f, .9f, .7f);
-            int generation = source.GeometryRevision;
-            var original = Body(source);
-            var peer = Body(source);
-            var aggregate = peer.GetComponent<MeshFilter>().sharedMesh;
-            var aggregateBefore = Triangles(new[] { aggregate }, RootMaterials(peer));
-            var peerMaterials = new HashSet<Material>(RootMaterials(peer));
-            Kill(original, Vector3Int.zero);
-            var pieces = root.GetComponentsInChildren<VoxelStructureRuntime>();
-            Assert.That(pieces.Length, Is.EqualTo(3), "Source island, physical fragment and intact peer must coexist.");
-            var fragment = pieces.Single(piece => piece != original && piece != peer);
-            var originalMeshes = RenderMeshes(original).ToArray();
-            var fragmentMeshes = RenderMeshes(fragment).ToArray();
-            Assert.That(originalMeshes.Length, Is.GreaterThan(1));
-            Assert.That(fragmentMeshes.Length, Is.GreaterThan(1));
-            var originalBefore = Triangles(originalMeshes, RootMaterials(original));
-            var fragmentBefore = Triangles(fragmentMeshes, RootMaterials(fragment));
-            var originalMaterials = new HashSet<Material>(RootMaterials(original));
-            var fragmentMaterials = new HashSet<Material>(RootMaterials(fragment));
-
-            // Lease-breaking source edit: mutate geometry and publish a new generation, then create a new instance.
-            source.cells[0].surface = PositiveMod(source.cells[0].surface + 1, source.surfaceColors.Count);
-            source.NotifyChanged();
-            Assert.That(source.GeometryRevision, Is.Not.EqualTo(generation), "The source edit must create a new geometry generation.");
-            var newer = Body(source);
-            var newerMeshes = RenderMeshes(newer).ToArray();
-            var newerMaterials = new HashSet<Material>(RootMaterials(newer));
-            Assert.That(newer.AliveCount, Is.EqualTo(source.cells.Count));
-            Assert.That(newerMeshes.Length, Is.EqualTo(1), "A fresh large instance is intact until its first lethal hit.");
-            Assert.That(newerMeshes[0], Is.Not.SameAs(aggregate), "A new source generation must get its own aggregate mesh.");
-            Assert.That(newerMeshes[0].vertexCount, Is.GreaterThan(0));
-
-            // The old generation is still leased, so nothing it owns may be destroyed or silently re-generated.
-            Assert.That((bool)aggregate, Is.True, "A newer generation must not release the intact peer's aggregate mesh.");
-            AssertSameMeshes(originalMeshes, RenderMeshes(original));
-            AssertSameMeshes(fragmentMeshes, RenderMeshes(fragment));
-            AssertTrianglesEqual(originalBefore, Triangles(RenderMeshes(original), RootMaterials(original)), "The old-generation source island changed.");
-            AssertTrianglesEqual(fragmentBefore, Triangles(RenderMeshes(fragment), RootMaterials(fragment)), "The old-generation fragment changed.");
-            AssertTrianglesEqual(aggregateBefore, Triangles(new[] { aggregate }, RootMaterials(peer)), "The old-generation aggregate changed.");
-            AssertEquivalentToOracle(original);
-            AssertEquivalentToOracle(fragment);
-            AssertEquivalentToOracle(peer);
-
-            original.DisposeResources();
-            Object.DestroyImmediate(original.gameObject);
-            Assert.That((bool)aggregate, Is.True, "Disposing the damaged source owner must not release the peer's old-generation aggregate.");
-            AssertSameMeshes(fragmentMeshes, RenderMeshes(fragment));
-            AssertEquivalentToOracle(fragment);
-
-            peer.DisposeResources();
-            Object.DestroyImmediate(peer.gameObject);
-            Assert.That((bool)aggregate, Is.True, "The fragment still leases the old generation, so its aggregate must survive.");
-            AssertSameMeshes(fragmentMeshes, RenderMeshes(fragment));
-
-            newer.DisposeResources();
-            Object.DestroyImmediate(newer.gameObject);
-            AssertEquivalentToOracle(fragment);
-
-            fragment.DisposeResources();
-            Object.DestroyImmediate(fragment.gameObject);
-
-            Assert.That(originalMeshes.Concat(fragmentMeshes).Concat(newerMeshes).Concat(new[] { aggregate }).All(mesh => !mesh), Is.True,
-                "The final old-generation and new-generation owners must release every aggregate, damaged and shared chunk mesh.");
-            Assert.That(originalMaterials.Union(fragmentMaterials).Union(peerMaterials).Union(newerMaterials).All(material => !material), Is.True,
-                "Runtime tint materials must not leak across generations.");
-            Assert.That((bool)database.Get(BlockShape.Cube).mesh, Is.True, "Generation churn must not destroy source module meshes.");
-            Assert.That((bool)database.Get(BlockShape.Cube).material, Is.True, "Generation churn must not destroy source module materials.");
-        }
-
-        [Test]
-        public void OldGenerationCanSplitAfterSourceShrinksBelowChunkThreshold()
-        {
-            var source = SplitGrid();
-            source.baseColor = new Color(.8f, .9f, .7f);
-            var original = Body(source);
-            int originalGeneration = source.GeometryRevision;
-            var originalPalette = RootMaterials(original).ToArray();
-            var originalColor = originalPalette[0].GetColor("_BaseColor");
-
-            // The live body still owns its 1025-cell generation; authoring a smaller source must not
-            // make its future fragments use the new source's chunk eligibility or reject the old lease.
-            source.cells.RemoveRange(0, source.cells.Count - 1);
-            source.baseColor = new Color(.2f, .3f, .4f);
-            source.NotifyChanged();
-            Assert.That(source.GeometryRevision, Is.Not.EqualTo(originalGeneration));
-            Assert.That(VoxelTerrainRenderChunks.IsSupported(source), Is.False);
-
-            Kill(original, Vector3Int.zero);
-
-            var pieces = root.GetComponentsInChildren<VoxelStructureRuntime>();
-            Assert.That(pieces.Length, Is.EqualTo(2));
-            Assert.That(pieces.Sum(piece => piece.AliveCount), Is.EqualTo(1024));
-            var fragment = pieces.Single(piece => piece != original);
-            var fragmentPalette = RootMaterials(fragment);
-            Assert.That(fragmentPalette[0], Is.Not.SameAs(originalPalette[0]),
-                "A tinted fragment must own its old-generation material independently of the donor.");
-            Assert.That(fragmentPalette[0].GetColor("_BaseColor"), Is.EqualTo(originalColor),
-                "Editing the source tint must not recolor an old body when it fractures.");
-            foreach (var piece in pieces)
-            {
-                Assert.That(piece.AliveCount, Is.EqualTo(MinimumChunkCells));
-                Assert.That(piece.Body.isKinematic, Is.False);
-                Assert.That(piece.Body.useGravity, Is.False);
-                Assert.That(piece.ColliderCount, Is.GreaterThan(0));
-                Assert.That(RenderMeshes(piece).Count, Is.GreaterThan(1),
-                    "Both live islands must keep the retained old-generation chunk path.");
-                AssertEquivalentToOracle(piece);
-            }
-            original.DisposeResources();
-            Object.DestroyImmediate(original.gameObject);
-            Assert.That((bool)fragmentPalette[0], Is.True, "The fragment's palette must survive donor disposal.");
-            AssertEquivalentToOracle(fragment);
-        }
-
-        [Test]
-        public void AuthoredBevelledCubeTrianglesSurviveIntactAndChunkedRendering()
-        {
-            var source = CubeBlock(8);
-            var cube = database.Get(BlockShape.Cube).mesh;
-            Assert.That((bool)cube, Is.True, "The real module database must provide the authored cube model.");
-            var extent = cube.bounds.extents;
-            Assert.That(extent.x, Is.LessThan(.5f), "The authored hull cube is bevelled inside its cell, so no face sits on a cell boundary.");
-            Assert.That(extent.y, Is.LessThan(.5f));
-            Assert.That(extent.z, Is.LessThan(.5f));
-            var runtime = Body(source);
-            Assert.That(RenderMeshes(runtime).Count, Is.EqualTo(1));
-
-            AssertCubeCellsMatchAuthoredModels(runtime, source.cellSize,
-                "The intact aggregate dropped authored bevelled cube triangles (seam cull).");
-            AssertEquivalentToOracle(runtime);
-
-            Kill(runtime, new Vector3Int(-ChunkEdge, -ChunkEdge, -ChunkEdge));
-
-            Assert.That(RenderMeshes(runtime).Count, Is.GreaterThan(1), "The large cube hull must render through chunks after its first lethal hit.");
-            AssertChunkBounds(RenderMeshes(runtime), source.cellSize);
-            AssertCubeCellsMatchAuthoredModels(runtime, source.cellSize,
-                "Chunked rendering dropped authored bevelled cube triangles (seam cull).");
-            AssertEquivalentToOracle(runtime);
-        }
-
-        [TestCase(511, false)] [TestCase(512, true)]
-        public void MinimumCellCountSeparatesChunkedAndSingleMeshRendering(int cells, bool chunked)
-        {
-            var source = CubeBlock(8);
-            if (cells < source.cells.Count) source.cells.RemoveAll(cell => cell.position == new Vector3Int(-ChunkEdge, -ChunkEdge, -ChunkEdge));
-            Assert.That(source.cells.Count, Is.EqualTo(cells));
-            Assert.That(VoxelTerrainRenderChunks.IsSupported(source), Is.EqualTo(chunked),
-                "The 512-cell support threshold is part of the large-hull contract.");
-            var runtime = Body(source);
-            var meshes = RenderMeshes(runtime);
-            Assert.That(meshes.Count, Is.EqualTo(1), "An intact instance always shows one aggregate mesh.");
-            var aggregate = meshes[0];
-
-            Kill(runtime, new Vector3Int(-ChunkEdge + 1, -ChunkEdge + 1, -ChunkEdge + 1));
-
-            meshes = RenderMeshes(runtime);
-            if (chunked)
-            {
-                Assert.That(meshes.Count, Is.GreaterThan(1), "A >=512 cell hull must activate prewarmed chunks on the first lethal hit.");
-                AssertChunkBounds(meshes, source.cellSize);
-            }
-            else
-            {
-                Assert.That(meshes.Count, Is.EqualTo(1), "Below 512 cells the runtime must stay on the single rebuilt mesh path.");
-                Assert.That(meshes[0], Is.Not.SameAs(aggregate), "The damaged single mesh is rebuilt, not shared.");
-            }
-            AssertEquivalentToOracle(runtime);
-        }
 
         VoxelAssetDefinition NewSource()
         {
             var source = ScriptableObject.CreateInstance<VoxelAssetDefinition>();
             owned.Add(source);
             source.hullModules = database;
-            source.fragmentSeparationSpeed = 0;
             source.cellSize = 1.25f;
             source.surfaceColors.Add(new Color(.7f, .9f, 1));
             source.surfaceColors.Add(new Color(1, .7f, .8f));
@@ -600,7 +189,6 @@ namespace Starframe.Tests
         VoxelAssetDefinition CubeBlock(int size)
         {
             var source = NewSource();
-            source.fragmentSeparationSpeed = 0;
             int half = size / 2;
             var turns = new Vector3Int(1, 2, 3);
             for (int x = -half; x < size - half; x++)
@@ -652,13 +240,7 @@ namespace Starframe.Tests
 
         static int PositiveMod(int value, int modulus) => (value % modulus + modulus) % modulus;
 
-        static void Kill(VoxelStructureRuntime runtime, Vector3Int position)
-        {
-            Assert.That(runtime.GetHealth(position), Is.GreaterThan(0), "The requested deletion must hit an alive occupied cell.");
-            runtime.ApplyDamage(position, runtime.asset.blockHealth * runtime.healthMultiplier * 2);
-            runtime.FlushMeshChanges();
-            Assert.That(runtime.GetHealth(position), Is.Zero);
-        }
+
 
         // Reflection keeps this test file compilable while the runtime diagnostics land.
         // Required contract: RenderMeshes : IReadOnlyList<Mesh>, RenderRevision, RenderMeshCount, TotalVertices.

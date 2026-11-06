@@ -1,0 +1,74 @@
+{
+  "Summary": {
+    "Total": 8,
+    "Passed": 8,
+    "Failed": 0,
+    "Skipped": 0,
+    "Inconclusive": 0
+  },
+  "Results": [
+    {
+      "FullName": "Starframe.Tests.WeaponVfxTimingTests.BeamHasVisibleContactPointAndFadesBeforeRelease",
+      "Status": "Passed",
+      "Duration": 0.0019684,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.WeaponVfxTimingTests.DirectMuzzleProfilesStayDirectionalAndOnlyRailUsesHeavySparks(Gatling,5)",
+      "Status": "Passed",
+      "Duration": 0.0047914,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.WeaponVfxTimingTests.DirectMuzzleProfilesStayDirectionalAndOnlyRailUsesHeavySparks(RapidLaser,4)",
+      "Status": "Passed",
+      "Duration": 0.0003779,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.WeaponVfxTimingTests.DirectMuzzleProfilesStayDirectionalAndOnlyRailUsesHeavySparks(BeamLaser,4)",
+      "Status": "Passed",
+      "Duration": 0.0003442,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.WeaponVfxTimingTests.DirectMuzzleProfilesStayDirectionalAndOnlyRailUsesHeavySparks(Railgun,14)",
+      "Status": "Passed",
+      "Duration": 0.0006588,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.WeaponVfxTimingTests.MissileTrailIgnitesAfterShortDelayAndFadesIn",
+      "Status": "Passed",
+      "Duration": 0.0043668,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.WeaponVfxTimingTests.MuzzleCoreTransitionsFromWhiteToWeaponColour",
+      "Status": "Passed",
+      "Duration": 0.0028623,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "Starframe.Tests.WeaponVfxTimingTests.UnobstructedLaserBeamHasNoFalseContactGlow",
+      "Status": "Passed",
+      "Duration": 0.000766,
+      "Message": null,
+      "StackTrace": null
+    }
+  ],
+  "Duration": 2.93,
+  "StatusPath": null,
+  "Mode": "EditMode",
+  "FilterApplied": "testname: WeaponVfxTimingTests",
+  "success": true,
+  "result": null
+}
+

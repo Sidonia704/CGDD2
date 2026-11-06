@@ -12,25 +12,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 709e20d8521834845a71b54704f53b46, type: 3}
   m_Name: LaserRapidCannon
   m_EditorClassIdentifier: Starframe.Construction::Starframe.Flight.WeaponDefinition
-  shotsPerSecond: 9
-  damage: 840
-  projectileSpeed: 1800
+  shotsPerSecond: 10
+  damage: 1008
+  projectileSpeed: 6600
   projectileDiameter: 0.75
+  shotAudioGain: 0.6
   firstShotImmediate: 0
+  fireWindupSeconds: 0
   penetrationDepth: 1
   secondLayerDamageMultiplier: 0.35
   range: 2800
-  visualLength: 18
-  tailLength: 10
+  unboundedBeam: 0
+  visualLength: 140
+  tailLength: 80
   visualWidth: 0.75
   visualIntensity: 5
-  minimumVisualPixels: 0
-  tracerStyle: 0
+  minimumVisualPixels: 2
+  tracerStyle: 1
+  smokeTrail: 0
   tracerLingerSeconds: 0
-  sustainedPowerWatts: 55
+  sustainedPowerWatts: 137.5
   energyPerShot: 100
   delivery: 0
-  effectColor: {r: 0.08, g: 0.65, b: 1, a: 1}
+  family: 2
+  effectColor: {r: 0.08, g: 1, b: 0.24, a: 1}
+  magazineSize: 1
+  salvoLaunchesPerSecond: 16
   missileLockSeconds: 2
   reloadSeconds: 4
   missileTurnDegrees: 110
@@ -52,3 +59,8 @@ MonoBehaviour:
   activationMode: 0
   chargeSeconds: 1
   requireTargetLock: 0
+  gatlingSpinUpSeconds: 1.5
+  gatlingSpinDownSeconds: 0.5
+  gatlingMinimumRateFraction: 0.2
+  gatlingHeatPerSecond: 0.25
+  gatlingCoolingPerSecond: 0.083333336

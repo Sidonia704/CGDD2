@@ -1,4 +1,4 @@
-// @role Pool visible missile bodies, curved orange voxel trails and short continuous beam blades.
+// @role Pool visible missile bodies, curved orange voxel trails and immediate muzzle-following laser beams.
 // @calls VoxelFxGeometry, WeaponDefinition
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,7 +24,7 @@ namespace Starframe.Combat
             public Transform shell,core,contact,source;public MeshRenderer shellRenderer,coreRenderer,contactRenderer;public MeshFilter shellFilter,coreFilter;public bool shaped;
             public MaterialPropertyBlock properties=new MaterialPropertyBlock();
             public Vector3 origin,direction,localPosition,localDirection;
-            public float length,width,remaining,duration,intensity;public Color color;public bool active;
+            public float length,width,remaining,duration,intensity;public Color color;public bool active,hasContact;
         }
         readonly List<MissileVisual> missiles=new List<MissileVisual>();
         readonly Stack<int> freeMissiles=new Stack<int>();
@@ -88,23 +88,30 @@ namespace Starframe.Combat
             if(slot<0||slot>=missiles.Count)return;var v=missiles[slot];if(!v.active)return;
             v.active=false;v.renderer.enabled=false;foreach(var r in v.trailRenderers)r.enabled=false;freeMissiles.Push(slot);ActiveMissiles--;
         }
-        public void ShowBeam(WeaponDefinition weapon,Vector3 origin,Vector3 direction,float length,Transform source,Vector3 localPosition)
+        public void ShowBeam(WeaponDefinition weapon,Vector3 origin,Vector3 direction,float length,Transform source,Vector3 localPosition,bool hasContact=true)
         {
             if(!glow)return;BeamVisual b=null;
             foreach(var beam in beams)if(beam.active&&beam.source==source&&source){b=beam;break;}
             if(b==null)foreach(var beam in beams)if(!beam.active){b=beam;break;}
             if(b==null){b=new BeamVisual();b.shellRenderer=Renderer("Beam sheath",out b.shell);b.coreRenderer=Renderer("Beam white core",out b.core);b.contactRenderer=Renderer("Beam contact glow",out b.contact);b.shellFilter=b.shell.GetComponent<MeshFilter>();b.coreFilter=b.core.GetComponent<MeshFilter>();beams.Add(b);}
-            b.shaped=weapon.beamMesh;b.shellFilter.sharedMesh=b.coreFilter.sharedMesh=b.shaped?weapon.beamMesh:VoxelFxGeometry.Cube;
-            b.active=true;b.origin=origin;b.direction=direction.normalized;b.source=source;b.localPosition=localPosition;
+            bool constantShaft=weapon.family==WeaponFamily.BeamLaser||weapon.unboundedBeam;
+            b.shaped=weapon.beamMesh&&!constantShaft;b.shellFilter.sharedMesh=b.coreFilter.sharedMesh=b.shaped?weapon.beamMesh:VoxelFxGeometry.Cube;
+            b.active=true;b.hasContact=hasContact;b.origin=origin;b.direction=direction.normalized;b.source=source;b.localPosition=localPosition;
             b.localDirection=source?source.InverseTransformDirection(b.direction):b.direction;
             b.length=Mathf.Max(.01f,length);b.width=Mathf.Max(.06f,weapon.projectileDiameter*weapon.visualWidth);
-            b.duration=b.remaining=Mathf.Max(.02f,weapon.beamDuration);b.color=weapon.effectColor;b.intensity=weapon.visualIntensity;
+            if(constantShaft){
+                // Anchor both states to the previous hit shaft, never to the last
+                // pooled visual. A horizon-length ray must keep its muzzle width.
+                float section=weapon.beamMesh?Mathf.Max(weapon.beamMesh.bounds.size.x,weapon.beamMesh.bounds.size.y):1f;
+                b.width*=section*(hasContact?1.95f:1.30f);
+            }
+            b.duration=b.remaining=Mathf.Max(.02f,weapon.beamDuration);b.color=weapon.effectColor;b.intensity=weapon.visualIntensity*.8f;
             b.properties.Clear();
-            b.properties.SetColor(ColorId,weapon.effectColor);b.properties.SetFloat(IntensityId,weapon.visualIntensity);b.properties.SetFloat(OpacityId,.55f);
+            b.properties.SetColor(ColorId,weapon.effectColor);b.properties.SetFloat(IntensityId,b.intensity);b.properties.SetFloat(OpacityId,.55f);
             b.shellRenderer.SetPropertyBlock(b.properties);
-            b.properties.SetColor(ColorId,Color.Lerp(weapon.effectColor,Color.white,.85f));b.properties.SetFloat(IntensityId,weapon.visualIntensity*1.5f);b.properties.SetFloat(OpacityId,1);
+            b.properties.SetColor(ColorId,Color.Lerp(weapon.effectColor,Color.white,.08f));b.properties.SetFloat(IntensityId,b.intensity);b.properties.SetFloat(OpacityId,1);
             b.coreRenderer.SetPropertyBlock(b.properties);
-            b.properties.SetColor(ColorId,weapon.effectColor);b.properties.SetFloat(IntensityId,weapon.visualIntensity*1.35f);b.properties.SetFloat(OpacityId,.85f);
+            b.properties.SetColor(ColorId,weapon.effectColor);b.properties.SetFloat(IntensityId,b.intensity*1.1f);b.properties.SetFloat(OpacityId,.85f);
             b.contactRenderer.SetPropertyBlock(b.properties);
             UpdateBeam(b);
         }
@@ -117,7 +124,7 @@ namespace Starframe.Combat
             b.shell.localScale=new Vector3(b.width,b.width,b.length);b.core.localScale=new Vector3(b.width*.32f,b.width*.32f,b.length);
             b.contact.SetPositionAndRotation(b.origin+b.direction*b.length,rotation);
             float contactSize=Mathf.Max(.12f,b.width*.52f);b.contact.localScale=Vector3.one*contactSize;
-            b.shellRenderer.enabled=b.coreRenderer.enabled=b.contactRenderer.enabled=true;
+            b.shellRenderer.enabled=b.coreRenderer.enabled=true;b.contactRenderer.enabled=b.hasContact;
         }
         static float BeamFade(float remainingFraction)
         {
@@ -134,9 +141,9 @@ namespace Starframe.Combat
                 float fade=BeamFade(b.remaining/Mathf.Max(.001f,b.duration));
                 b.properties.SetColor(ColorId,b.color);b.properties.SetFloat(IntensityId,b.intensity);b.properties.SetFloat(OpacityId,.55f*fade);
                 b.shellRenderer.SetPropertyBlock(b.properties);
-                b.properties.SetColor(ColorId,Color.Lerp(b.color,Color.white,.85f));b.properties.SetFloat(IntensityId,b.intensity*1.5f);b.properties.SetFloat(OpacityId,fade);
+                b.properties.SetColor(ColorId,Color.Lerp(b.color,Color.white,.08f));b.properties.SetFloat(IntensityId,b.intensity);b.properties.SetFloat(OpacityId,fade);
                 b.coreRenderer.SetPropertyBlock(b.properties);
-                b.properties.SetColor(ColorId,b.color);b.properties.SetFloat(IntensityId,b.intensity*1.35f);b.properties.SetFloat(OpacityId,.85f*fade);
+                b.properties.SetColor(ColorId,b.color);b.properties.SetFloat(IntensityId,b.intensity*1.1f);b.properties.SetFloat(OpacityId,.85f*fade);
                 b.contactRenderer.SetPropertyBlock(b.properties);
                 UpdateBeam(b);
             }

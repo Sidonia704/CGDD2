@@ -1,4 +1,4 @@
-// @role Stream finite enemy formations through five overlapping stages, with continuous flight, fair attack windows and mission outcomes.
+// @role Stream authored finite enemy formations through overlapping stages, with continuous flight, fair attack windows and mission outcomes.
 // @calls RangeCombatWorld, ArcadeMissionDefinition, ArcadeWaveProgress, MissionResults, MissionHUD
 
 using System;
@@ -40,8 +40,8 @@ namespace Starframe.Combat
         ArcadeWave DisplayWave=>definition&&WaveCount>0?definition.waves[Mathf.Clamp((State==ArcadeMissionState.Intro||State==ArcadeMissionState.Intermission)?WaveIndex:WaveIndex-1,0,WaveCount-1)]:null;
         public string WaveNameZh=>DisplayWave?.nameZh??"";
         public string WaveNameEn=>DisplayWave?.nameEn??"";
-        public string WaveIncomingHintZh=>State==ArcadeMissionState.Intro?"消灭五波敌军。核心被毁则出击失败。":ReinforcementsIncoming?"本批敌军已清除，增援正在接近，准备迎战。":"下一批敌军正在接近，可等待修复或提前迎战。";
-        public string WaveIncomingHintEn=>State==ArcadeMissionState.Intro?"Defeat five waves. Loss of your core ends the sortie.":ReinforcementsIncoming?"Formation cleared. Reinforcements approaching; prepare to engage.":"Reinforcements approaching. Recover, or start the next wave early.";
+        public string WaveIncomingHintZh=>State==ArcadeMissionState.Intro?$"消灭 {WaveCount} 波敌军。核心被毁则出击失败。":ReinforcementsIncoming?"本批敌军已清除，增援正在接近，准备迎战。":"下一批敌军正在接近，可等待修复或提前迎战。";
+        public string WaveIncomingHintEn=>State==ArcadeMissionState.Intro?$"Defeat {WaveCount} waves. Loss of your core ends the sortie.":ReinforcementsIncoming?"Formation cleared. Reinforcements approaching; prepare to engage.":"Reinforcements approaching. Recover, or start the next wave early.";
         public ArcadeMissionDefinition Definition=>definition;
         public RangeCombatWorld World=>world;
         public event Action Changed;

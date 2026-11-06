@@ -28,33 +28,33 @@ namespace Starframe.Presentation
         [InspectorName("平面战术雷达")]public bool tacticalRadar=true;
         [InspectorName("船体状态图")]public bool statusSchematic=true;
         [Header("基础色：未来首页、设置与内页共用")]
-        public Color glassTint=new Color(.075f,.09f,.105f,.68f);
-        public Color dialogTint=new Color(.055f,.065f,.075f,.86f);
-        public Color buttonTint=new Color(.12f,.15f,.16f,.82f);
-        public Color text=new Color(.93f,.95f,.95f,1);
-        public Color muted=new Color(.64f,.69f,.71f,1);
-        public Color accent=new Color(.66f,.82f,.83f,1);
-        public Color amber=new Color(1,.76f,.43f,1);
+        public Color glassTint=new Color32(27,31,45,255);
+        public Color dialogTint=new Color32(27,31,45,255);
+        public Color buttonTint=new Color32(27,31,45,255);
+        public Color text=Color.white;
+        public Color muted=new Color(.78f,.80f,.84f,1);
+        public Color accent=new Color32(185,255,3,255);
+        public Color amber=new Color32(255,191,0,255);
         public Color danger=new Color(1,.35f,.30f,1);
         public Color success=new Color(.55f,.84f,.70f,1);
         [Header("飞行 HUD：独立于背景与菜单的高对比配色")]
-        [InspectorName("关键仪表与准星")]public Color combatInstrument=new Color(.84f,1f,.18f,1f);
+        [InspectorName("关键仪表与准星")]public Color combatInstrument=new Color32(185,255,3,255);
         [Header("磨砂玻璃：均匀表面，无面板渐变")]
-        [InspectorName("第二轮精修：磨砂光学")]public bool frostedFinish=true;
+        [InspectorName("第二轮精修：磨砂光学")]public bool frostedFinish=false;
         [Range(4,36)]public float blurRadius=28;
-        [Range(0,.03f)]public float grainStrength=.0008f;
+        [Range(0,.03f)]public float grainStrength=0;
         [HideInInspector]public float sheenStrength;
         [InspectorName("透过背景的饱和度"),Range(0,1)]public float backdropSaturation=.25f;
         [InspectorName("透光亮度"),Range(.3f,1.2f)]public float backdropTransmission=.86f;
         [InspectorName("轻微折射（像素）"),Range(0,4)]public float refractionPixels=1.6f;
         [Header("武器命中反馈：实时可调")]
         [InspectorName("启用命中反馈")]public bool hitFeedbackEnabled=true;
-        [InspectorName("每秒最大反馈次数"),Range(1,20)]public float hitFeedbackMaxRate=8;
+        [InspectorName("每秒最大反馈次数"),Range(1,20)]public float hitFeedbackMaxRate=12;
         [InspectorName("反馈时长（秒）"),Range(.12f,.6f)]public float hitFeedbackDuration=.24f;
-        [InspectorName("未命中十字间距（像素）"),Range(3,24)]public float reticleIdleGap=11;
-        [InspectorName("命中十字间距（像素）"),Range(0,16)]public float reticleHitGap=3;
-        [InspectorName("十字臂长度（像素）"),Range(5,20)]public float reticleArmLength=10;
-        [InspectorName("命中线段最大长度（像素）"),Range(5,24)]public float hitMarkerLength=12;
+        [InspectorName("未命中十字间距（像素）"),Range(3,24)]public float reticleIdleGap=9.9f;
+        [InspectorName("命中十字间距（像素）"),Range(0,16)]public float reticleHitGap=2.7f;
+        [InspectorName("十字臂长度（像素）"),Range(5,20)]public float reticleArmLength=9;
+        [InspectorName("命中线段最大长度（像素）"),Range(5,24)]public float hitMarkerLength=10.8f;
         [InspectorName("命中反馈颜色")]public Color hitMarkerColor=new Color(1,.27f,.19f,1);
         [InspectorName("地图白色命中反馈强度"),Range(0,1)]public float sceneryHitFeedbackStrength=.3f;
         [TextArea(2,4)]public string usage="更改布局开关后重新进入对应页面即可生效。关闭某项只恢复对应 UI 外观；不会修改游戏参数或蓝图。";

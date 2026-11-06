@@ -13,11 +13,18 @@ namespace Starframe.Combat
         public Vector3 AngularVelocityDegrees { get; private set; }
         public bool IsTracking { get; private set; }
         public float OutsideConeSeconds { get; private set; }
+        bool acquiringLaunchTarget;
 
         public void Reset(Vector3 direction)
         {
             Direction=direction.sqrMagnitude>.000001f?direction.normalized:Vector3.forward;
-            AngularVelocityDegrees=Vector3.zero;OutsideConeSeconds=0;IsTracking=true;
+            AngularVelocityDegrees=Vector3.zero;OutsideConeSeconds=0;IsTracking=true;acquiringLaunchTarget=false;
+        }
+
+        public void Reset(Vector3 direction,Vector3 launchTargetOffset,WeaponDefinition weapon)
+        {
+            Reset(direction);
+            acquiringLaunchTarget=weapon&&!InSeekerCone(launchTargetOffset,weapon);
         }
 
         public void LoseLock()
@@ -38,7 +45,11 @@ namespace Starframe.Combat
             if(age<=EjectionSeconds)return;
             dt=Mathf.Min(dt,age-EjectionSeconds);
             // Cone loss is measured against the target itself, not the velocity lead point.
-            OutsideConeSeconds=InSeekerCone(targetOffset,weapon)?0:OutsideConeSeconds+dt;
+            bool visible=InSeekerCone(targetOffset,weapon);
+            // The ship's pre-launch lock supplies the initial bearing for side/rear racks.
+            // Once captured, normal seeker-cone loss applies for the rest of this missile's life.
+            if(visible)acquiringLaunchTarget=false;
+            OutsideConeSeconds=visible||acquiringLaunchTarget?0:OutsideConeSeconds+dt;
             if(OutsideConeSeconds>0&&OutsideConeSeconds+.000001f>=Mathf.Max(0,weapon.missileSeekerLossSeconds)){
                 LoseLock();return;
             }

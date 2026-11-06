@@ -15,18 +15,18 @@ RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 10
   m_Fog: 1
-  m_FogColor: {r: 0.012, g: 0.032, b: 0.075, a: 1}
+  m_FogColor: {r: 0.026, g: 0.04, b: 0.065, a: 1}
   m_FogMode: 3
-  m_FogDensity: 0.00016
+  m_FogDensity: 0.00002
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.27, g: 0.39, b: 0.62, a: 1}
-  m_AmbientEquatorColor: {r: 0.14, g: 0.22, b: 0.38, a: 1}
-  m_AmbientGroundColor: {r: 0.06, g: 0.1, b: 0.19, a: 1}
+  m_AmbientSkyColor: {r: 0.2, g: 0.27, b: 0.4, a: 1}
+  m_AmbientEquatorColor: {r: 0.1, g: 0.15, b: 0.24, a: 1}
+  m_AmbientGroundColor: {r: 0.05, g: 0.075, b: 0.12, a: 1}
   m_AmbientIntensity: 1
   m_AmbientMode: 1
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: ff3934da556a71c49baa42377ce5bb72, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 58cb89bd57b72da4d9e6c97a3f85a6ef, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -198,7 +198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf90e4e3077f6bf4bb1b0179b4f2bf64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Starframe.Construction::Starframe.Flight.RangeAtmosphere
-  tuning: {fileID: 11400000, guid: c0b0b97911912fa468c10b7d40f306c9, type: 2}
+  tuning: {fileID: 11400000, guid: 32458294e4766564fbf7bb9c35d1298c, type: 2}
   volume: {fileID: 2085678313}
   starLight: {fileID: 165187305}
   beltAnchor: {fileID: 1046338136}
@@ -215,16 +215,86 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Starframe.Construction::Starframe.Flight.RangeAsteroidBackdrop
   targetCamera: {fileID: 1922303130}
-  detailedRockA: {fileID: 4300000, guid: 2044fefc3ad74a540a74344ed937c939, type: 2}
-  detailedRockB: {fileID: 4300000, guid: 9857ce36f9cf7e04c952df9c14e88ea0, type: 2}
-  distantRockA: {fileID: 4300000, guid: d4854fd70f117b341b196a386e6808b1, type: 2}
-  distantRockB: {fileID: 4300000, guid: 827c0c31db09cf5419bcd62847154b9a, type: 2}
-  rockMaterial: {fileID: 2100000, guid: 60a3887073fb2214cb65af2fa9bba626, type: 2}
+  detailedRockA: {fileID: 4300000, guid: 9cd91610ae6c15246b32ea45002ed98d, type: 2}
+  detailedRockB: {fileID: 4300000, guid: 5b7f19466bee54e4093233c2e43fe865, type: 2}
+  distantRockA: {fileID: 4300000, guid: 633f38daaa7dcca42a58fd7bbb52ecac, type: 2}
+  distantRockB: {fileID: 4300000, guid: 3f7fd05ef9eb67444b6b10b647df9c87, type: 2}
+  rockMaterial: {fileID: 2100000, guid: 75f558f2bd74d5e40b70cbbd67ff281f, type: 2}
+  uniformRockVariants:
+  - {fileID: 4300000, guid: f4ec97c13ca25c847972740992894dbf, type: 2}
+  - {fileID: 4300000, guid: f10f32d92bb9a554bae4b8769088ee47, type: 2}
+  - {fileID: 4300000, guid: 2060b94e5a610f54abdb15574575da31, type: 2}
+  - {fileID: 4300000, guid: 253f24b0c95e9154e89631a7ac10c67b, type: 2}
+  - {fileID: 4300000, guid: 683700aa68f3d2c4db20095851de4742, type: 2}
+  - {fileID: 4300000, guid: 38f2c3700994c6a4da5ade29443a0bb7, type: 2}
+  - {fileID: 4300000, guid: b11e7f3c245c29c4781ed8b062122e96, type: 2}
+  - {fileID: 4300000, guid: e4136614e7c3b7e469fc1a0e489428af, type: 2}
+  - {fileID: 4300000, guid: 21f6f2a2999859148b3846958f8a68bc, type: 2}
+  - {fileID: 4300000, guid: 82cc019af6da06a40bff07ed6793baec, type: 2}
+  - {fileID: 4300000, guid: d8aeee0c3fa4b90448a5257c4d108ad2, type: 2}
+  - {fileID: 4300000, guid: 9c835b964cd2d5b4fb0ab066bf7e18e2, type: 2}
+  - {fileID: 4300000, guid: 2179655de7a91a8438a39a29d7dfbdc0, type: 2}
+  - {fileID: 4300000, guid: 6e37828aadbc4ee4c94597414c775f3a, type: 2}
+  - {fileID: 4300000, guid: ccf78f943a67c2d4d99a9fd3d08258b8, type: 2}
+  - {fileID: 4300000, guid: 28020a74c590e5a41a2c4999e950096f, type: 2}
+  uniformRockMidLods:
+  - {fileID: 4300000, guid: 0c45294218ef58944bb74c043be11059, type: 2}
+  - {fileID: 4300000, guid: 53d7ebcca86dd4844ba122f6b9e15cb0, type: 2}
+  - {fileID: 4300000, guid: 714d739c3a87a874097f89c9271ba481, type: 2}
+  - {fileID: 4300000, guid: 026abbeccd582714eaa222069fa7ac8f, type: 2}
+  - {fileID: 4300000, guid: c63ab3f3653312349a751c6cb22266df, type: 2}
+  - {fileID: 4300000, guid: c801ec55f3a5f9648a9b5ea8d42a78bf, type: 2}
+  - {fileID: 4300000, guid: 2966cf47bdf1d5a438c3f9c9beb33d8a, type: 2}
+  - {fileID: 4300000, guid: 7b98e320f7084ba4fbbfbe5bb8673d8e, type: 2}
+  - {fileID: 4300000, guid: 30f849ee9cfb8ab4bbe5a249a76b5b9d, type: 2}
+  - {fileID: 4300000, guid: ecb23b0560fb0164cad29c858b749666, type: 2}
+  - {fileID: 4300000, guid: bf23ec2b8357552468811dd94cd8ac06, type: 2}
+  - {fileID: 4300000, guid: f55741314dce828468cec097a6f64fd1, type: 2}
+  - {fileID: 4300000, guid: c85e7eba11ec1e5479369024f6ec40b4, type: 2}
+  - {fileID: 4300000, guid: 0b38e36a509379c42984421946cd1050, type: 2}
+  - {fileID: 4300000, guid: 403f3b4010850cc428f7038f550aa7b1, type: 2}
+  - {fileID: 4300000, guid: ee427d93fcf1bc248a3e275dfff11e5f, type: 2}
+  uniformRockFarLods:
+  - {fileID: 4300000, guid: 03dee053126bca94d9dd3f594bbc926a, type: 2}
+  - {fileID: 4300000, guid: a115a61a3cb0d444e923657603dc8ec0, type: 2}
+  - {fileID: 4300000, guid: 788c809606e51034c93b6e6b8927d0f3, type: 2}
+  - {fileID: 4300000, guid: 364d06ae859761c499628aa3c68783a5, type: 2}
+  - {fileID: 4300000, guid: 7ed64abae4bc6ee4083740e34214fe54, type: 2}
+  - {fileID: 4300000, guid: 8b08e621bb0451c49b23d39d1ae2e2e0, type: 2}
+  - {fileID: 4300000, guid: e1c631df5f125fe4ca364637510e8cfd, type: 2}
+  - {fileID: 4300000, guid: 72cd73a5c31d4f04d924b94214ddb3b7, type: 2}
+  - {fileID: 4300000, guid: e748b71e83edd7a409a7d775df5a2707, type: 2}
+  - {fileID: 4300000, guid: b2eed8e2fe6964946bc8201b0a8db86b, type: 2}
+  - {fileID: 4300000, guid: 35fc6252f242af44ea0ec98da5e7d3a8, type: 2}
+  - {fileID: 4300000, guid: e5f59e22e5c0bcb4b9d10e60c577864c, type: 2}
+  - {fileID: 4300000, guid: db486168737a10846918838cb848b74b, type: 2}
+  - {fileID: 4300000, guid: 64e10088c32cba54c826c381aa69652f, type: 2}
+  - {fileID: 4300000, guid: bf3cdbb5190c912488427992bee8b843, type: 2}
+  - {fileID: 4300000, guid: 801a85aca8cd14144a0d744fe408f63e, type: 2}
+  uniformRockDiameters:
+  - 17
+  - 17
+  - 24
+  - 24
+  - 35
+  - 35
+  - 50
+  - 50
+  - 73
+  - 73
+  - 104
+  - 104
+  - 150
+  - 150
+  - 217
+  - 217
   seed: 261107
   nearFadeStart: 80
   nearFadeEnd: 350
-  farFadeStart: 17000
-  farFadeEnd: 25000
+  farFadeStart: 28000
+  farFadeEnd: 35000
+  maximumVisibleTriangles: 12000000
+  densityMultiplier: 1
   backdropEnabled: 1
 --- !u!1 &165187304
 GameObject:
@@ -255,7 +325,7 @@ Light:
   serializedVersion: 12
   m_Type: 1
   m_Color: {r: 1, g: 0.94, b: 0.86, a: 1}
-  m_Intensity: 2.1
+  m_Intensity: 1.8
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -428,7 +498,7 @@ Light:
   serializedVersion: 12
   m_Type: 1
   m_Color: {r: 0.58, g: 0.73, b: 1, a: 1}
-  m_Intensity: 0.38
+  m_Intensity: 0.18
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -555,7 +625,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9948d63c2865a2b4aad744c71ad9ba80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Starframe.Construction::Starframe.Maps.SpaceMapRuntime
-  definition: {fileID: 11400000, guid: 8f47393cece1296499d53d2849e6ab15, type: 2}
+  definition: {fileID: 11400000, guid: e9e0845bf830c0e478b0e6607bc393a6, type: 2}
   stageBuildOnStart: 1
   instancesPerFrame: 32
   buildMillisecondsPerFrame: 4
@@ -573,7 +643,6 @@ MonoBehaviour:
   physicsRefreshFrames: 12
   colliderPreparationPerFrame: 24
   colliderPreparationMilliseconds: 1.5
-  lightweightDamageThreshold: 128
   visualLods: []
 --- !u!4 &1046338136
 Transform:
@@ -694,7 +763,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.15
-  far clip plane: 28000
+  far clip plane: 35000
   field of view: 65
   orthographic: 0
   orthographic size: 5

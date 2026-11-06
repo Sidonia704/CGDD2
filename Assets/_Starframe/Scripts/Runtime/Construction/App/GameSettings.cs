@@ -15,7 +15,7 @@ namespace Starframe.App
     [Serializable]
     public sealed class GameSettingsData
     {
-        public int version=1;
+        public int version=2;
         public string localeCode="en";
         public int fullscreenMode=(int)FullScreenMode.FullScreenWindow;
         public int resolutionWidth=1920,resolutionHeight=1080,refreshRate=60;
@@ -23,6 +23,7 @@ namespace Starframe.App
         public float fieldOfView=65,bloomIntensity=.65f;
         public bool bloomEnabled=true,reduceFlashes;
         public float uiScale=1,glassBlur=.75f,hudMotion=1;
+        public Color backgroundColor=new Color(11/255f,60/255f,165/255f,1);
         public float masterVolume=.8f,musicVolume=.22f,sfxVolume=.6f,uiVolume=.6f;
         public bool muteWhenUnfocused=true;
         public float mouseSensitivity=1,aimSmoothing=1;
@@ -32,7 +33,12 @@ namespace Starframe.App
         public GameSettingsData Clone()=>JsonUtility.FromJson<GameSettingsData>(JsonUtility.ToJson(this));
         public void Validate()
         {
-            version=1;
+            // Adopt the requested Tab default for old R-bound preferences once.
+            // Other bindings, and explicit remaps saved with this version, stay intact.
+            if(version<2&&bindings!=null)foreach(var binding in bindings)
+                if(binding!=null&&binding.action==GameAction.Countermeasure&&string.Equals(binding.path,"<Keyboard>/r",StringComparison.OrdinalIgnoreCase))
+                    binding.path="<Keyboard>/tab";
+            version=2;
             localeCode=localeCode!=null&&localeCode.StartsWith("zh",StringComparison.OrdinalIgnoreCase)?"zh-Hans":"en";
             if(fullscreenMode!=(int)FullScreenMode.ExclusiveFullScreen&&fullscreenMode!=(int)FullScreenMode.FullScreenWindow&&fullscreenMode!=(int)FullScreenMode.Windowed)
                 fullscreenMode=(int)FullScreenMode.FullScreenWindow;
@@ -43,6 +49,7 @@ namespace Starframe.App
             fieldOfView=Finite(fieldOfView,65,45,100);bloomIntensity=Finite(bloomIntensity,.65f,0,2);
             mouseSensitivity=Finite(mouseSensitivity,1,.2f,3);aimSmoothing=Finite(aimSmoothing,1,0,3);
             uiScale=Finite(uiScale,1,.85f,1.25f);glassBlur=Finite(glassBlur,.75f,0,1);hudMotion=Finite(hudMotion,1,0,1);
+            backgroundColor=new Color(Finite(backgroundColor.r,11/255f,0,1),Finite(backgroundColor.g,60/255f,0,1),Finite(backgroundColor.b,165/255f,0,1),1);
             masterVolume=Finite(masterVolume,.8f,0,1);musicVolume=Finite(musicVolume,.22f,0,1);
             sfxVolume=Finite(sfxVolume,.6f,0,1);uiVolume=Finite(uiVolume,.6f,0,1);
             bindings=GameInput.Normalize(bindings);
@@ -132,7 +139,7 @@ namespace Starframe.App
             if(!File.Exists(path))return (fallback??new GameSettingsData()).Clone();
             if(new FileInfo(path).Length>1024*1024)throw new InvalidDataException("Preferences file is too large.");
             var value=JsonUtility.FromJson<GameSettingsData>(File.ReadAllText(path,Encoding.UTF8));
-            if(value==null||value.version!=1)throw new InvalidDataException("Preferences version is unsupported.");
+            if(value==null||value.version<1||value.version>2)throw new InvalidDataException("Preferences version is unsupported.");
             value.Validate();return value;
         }
         public static void Write(string path,GameSettingsData data)
@@ -151,12 +158,14 @@ namespace Starframe.App
 
     public sealed class GameSettingsRuntime:MonoBehaviour
     {
+        Material sourceSky,ownedSky;
         void OnEnable(){SceneManager.sceneLoaded+=Loaded;}
         void OnDisable(){SceneManager.sceneLoaded-=Loaded;}
         void Loaded(Scene scene,LoadSceneMode mode){StartCoroutine(ApplyAfterStart());}
         System.Collections.IEnumerator ApplyAfterStart(){yield return null;ApplyToScene();}
         public void ApplyToScene()
         {
+            ApplyBackground();
             foreach(var volume in FindObjectsByType<Volume>(FindObjectsInactive.Include,FindObjectsSortMode.None))
             {
                 var profile=volume.HasInstantiatedProfile()?volume.profile:volume.sharedProfile;
@@ -166,6 +175,19 @@ namespace Starframe.App
                 binding.Apply();
             }
         }
+        void ApplyBackground()
+        {
+            var sky=RenderSettings.skybox;
+            if(!sky||!sky.HasProperty("_Background"))return;
+            if(sky!=ownedSky)
+            {
+                if(ownedSky)Destroy(ownedSky);
+                sourceSky=sky;ownedSky=new Material(sourceSky){name=sourceSky.name+" (Background preference)"};
+                RenderSettings.skybox=ownedSky;
+            }
+            ownedSky.SetColor("_Background",GameSettings.Current.backgroundColor);
+        }
+        void OnDestroy(){if(RenderSettings.skybox==ownedSky)RenderSettings.skybox=sourceSky;if(ownedSky)Destroy(ownedSky);}
     }
     [RequireComponent(typeof(Volume))]
     public sealed class SettingsPostProcessing:MonoBehaviour
@@ -186,6 +208,10 @@ namespace Starframe.App
             var settings=GameSettings.Current;
             bloom.active=settings.bloomEnabled;
             bloom.intensity.Override(settings.reduceFlashes?Mathf.Min(settings.bloomIntensity,.15f):settings.bloomIntensity);
+            // Authoring/menu backgrounds use the palette directly; combat keeps its scene grading.
+            if(FindFirstObjectByType<GameAppBootstrap>()||FindFirstObjectByType<Starframe.Construction.ShipEditorController>())
+                foreach(var component in owned.components)
+                    if(component is Tonemapping||component is ColorAdjustments||component is Vignette)component.active=false;
         }
         void OnDestroy()
         {

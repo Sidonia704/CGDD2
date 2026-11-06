@@ -1,4 +1,4 @@
-// @role Load target blueprints and configured target counts for the range.
+// @role Load range target blueprints and counts, replacing the active roster when selecting a new target.
 // @calls BlueprintRepository
 
 using System;
@@ -32,6 +32,14 @@ namespace Starframe.Combat
             ValidateFile(file);if(count<0)throw new ArgumentOutOfRangeException(nameof(count));
             if(count>0)LoadTarget(file,defaultTest);
             settings.entries.RemoveAll(e=>string.Equals(e.file,file,StringComparison.OrdinalIgnoreCase));if(count>0)settings.entries.Add(new Selection{file=file,count=count});
+            PlayerPrefs.SetString(key,JsonUtility.ToJson(settings));PlayerPrefs.Save();
+        }
+        public void SelectOnly(string file,int count,TextAsset defaultTest=null)
+        {
+            ValidateFile(file);if(count<1)throw new ArgumentOutOfRangeException(nameof(count));
+            // Validate before removing the previous selection, then persist once.
+            LoadTarget(file,defaultTest);
+            settings.entries.Clear();settings.entries.Add(new Selection{file=file,count=count});
             PlayerPrefs.SetString(key,JsonUtility.ToJson(settings));PlayerPrefs.Save();
         }
         public List<TargetOption> AvailableTargets(TextAsset defaultTest)

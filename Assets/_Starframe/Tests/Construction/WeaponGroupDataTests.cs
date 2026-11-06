@@ -12,7 +12,7 @@ namespace Starframe.Construction.Tests
         [SetUp]public void SetUp(){BlockModules.Configure(null);directory=Path.Combine(Application.dataPath,"..","Temp","WeaponGroupTests",Guid.NewGuid().ToString("N"));}
         [TearDown]public void TearDown(){BlockModules.Configure(null);if(Directory.Exists(directory))Directory.Delete(directory,true);}
 
-        static BlueprintData Example()=>new BlueprintData{name="Weapon groups",parts=new List<BlockRecord>{
+        static BlueprintData Example()=>new BlueprintData{name="Weapon groups",weaponGroups=new List<WeaponGroupRecord>{new WeaponGroupRecord{id=0,name="Group 1",binding=WeaponInputBinding.MouseLeft()}},parts=new List<BlockRecord>{
             new BlockRecord{id="core",shape=BlockShape.Core,position=new Vector3(0,.5f,0)},
             new BlockRecord{id="mount-left",shape=BlockShape.Cube,position=new Vector3(-1,.5f,0)},
             new BlockRecord{id="mount-right",shape=BlockShape.Cube,position=new Vector3(1,.5f,0)},
@@ -21,14 +21,34 @@ namespace Starframe.Construction.Tests
         }};
 
         [TestCase(1)][TestCase(2)]
-        public void OldJsonWithoutOptionalFieldsGetsOneLeftMouseGroup(int version)
+        public void OldJsonWithoutOptionalFieldsGetsTwoMouseGroups(int version)
         {
             string json="{\"version\":"+version+",\"name\":\"legacy\",\"parts\":[{\"id\":\"gun\",\"shape\":7,\"cell\":{\"x\":0,\"y\":0,\"z\":0},\"position\":{\"x\":0,\"y\":0.5,\"z\":0},\"rotation\":{\"x\":0,\"y\":0,\"z\":0,\"w\":1}}]}";
             var original=JsonUtility.FromJson<BlueprintData>(json);var data=BlueprintRepository.Upgrade(original);
-            Assert.That(data.version,Is.EqualTo(2));Assert.That(data.weaponGroups.Count,Is.EqualTo(1));
+            Assert.That(data.version,Is.EqualTo(2));Assert.That(data.weaponGroups.Count,Is.EqualTo(2));
             Assert.That(data.weaponGroups[0].id,Is.Zero);Assert.That(data.weaponGroups[0].binding.source,Is.EqualTo(WeaponInputSource.MouseLeft));
+            Assert.That(data.weaponGroups[1].binding.source,Is.EqualTo(WeaponInputSource.MouseRight));
             Assert.That(data.weaponAssignments.Count,Is.EqualTo(1));Assert.That(data.weaponAssignments[0].partId,Is.EqualTo("gun"));
             Assert.That(data.weaponAssignments[0].groupId,Is.Zero);
+        }
+
+        [Test]public void NewGroupsStartWithTwoButExplicitlyDeletedSecondStaysDeleted()
+        {
+            var data=new BlueprintData();WeaponGroups.Normalize(data);
+            Assert.That(data.weaponGroups.Count,Is.EqualTo(2));
+            Assert.That(WeaponGroups.RemoveGroup(data,1),Is.True);WeaponGroups.Normalize(data);
+            Assert.That(data.weaponGroups.Count,Is.EqualTo(1));
+        }
+
+        [TestCase(BlockShape.Missile1)][TestCase(BlockShape.Missile2)][TestCase(BlockShape.Missile3)]
+        [TestCase(BlockShape.VLS1)][TestCase(BlockShape.VLS2)]
+        public void NewMissilesDefaultToSecondGroupAndExplicitAssignmentSurvives(BlockShape shape)
+        {
+            var data=new BlueprintData{parts=new List<BlockRecord>{new BlockRecord{id="missile",shape=shape}}};
+            WeaponGroups.Normalize(data);Assert.That(WeaponGroups.GetGroupId(data,"missile"),Is.EqualTo(1));
+            Assert.That(WeaponGroups.FindGroup(data,1).binding.source,Is.EqualTo(WeaponInputSource.MouseRight));
+            WeaponGroups.Assign(data,"missile",0);WeaponGroups.Normalize(data);
+            Assert.That(WeaponGroups.GetGroupId(data,"missile"),Is.Zero,"An explicit player assignment must not be migrated.");
         }
 
         [Test]public void RepositoryRoundTripKeepsIndividualAssignmentsNamesAndMouseBindings()

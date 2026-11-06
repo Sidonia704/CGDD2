@@ -11,6 +11,20 @@ namespace Starframe.Construction.Tests
         [SetUp]public void Setup(){weapon=ScriptableObject.CreateInstance<WeaponDefinition>();}
         [TearDown]public void Cleanup(){Object.DestroyImmediate(weapon);}
 
+        [Test]public void OffAxisLaunchAssistanceEndsAfterCaptureAndResetClearsIt()
+        {
+            var guidance=new MissileGuidance();guidance.Reset(Vector3.back,Vector3.forward*600,weapon);
+            for(int i=0;i<250&&Vector3.Angle(guidance.Direction,Vector3.forward)>10;i++)
+                guidance.Step(weapon,.2f+i*.02f,Vector3.forward*600,Vector3.zero,100,.02f);
+            Assert.That(guidance.IsTracking,Is.True);
+            Assert.That(Vector3.Angle(guidance.Direction,Vector3.forward),Is.LessThanOrEqualTo(10));
+            guidance.Step(weapon,6,-guidance.Direction*600,Vector3.zero,100,.4f);
+            Assert.That(guidance.IsTracking,Is.False,"Captured seekers must still lose unseen targets.");
+            guidance.Reset(Vector3.forward,Vector3.forward*600,weapon);
+            guidance.Step(weapon,1,Vector3.back*600,Vector3.zero,100,.4f);
+            Assert.That(guidance.IsTracking,Is.False,"Pooled missiles must not inherit launch assistance.");
+        }
+
         [Test]public void AngularSpeedAndAccelerationStayBoundedWhenTheTurnAxisChanges()
         {
             weapon.missileTurnDegrees=90;weapon.missileTurnAcceleration=180;

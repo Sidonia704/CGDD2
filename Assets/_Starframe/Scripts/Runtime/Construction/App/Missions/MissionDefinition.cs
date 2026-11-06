@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace Starframe.App
 {
-    public enum MissionDifficulty { Relaxed, Standard, Expert }
+    public enum MissionDifficulty { Relaxed, Standard, Expert, Hell }
 
     [CreateAssetMenu(menuName = "Starframe/Mission Definition")]
     public sealed class MissionDefinition : ScriptableObject
@@ -29,6 +29,7 @@ namespace Starframe.App
         [Min(0)] public float relaxedBudgetMultiplier = 1.25f;
         [Min(0)] public float standardBudgetMultiplier = 1;
         [Min(0)] public float expertBudgetMultiplier = .75f;
+        [Min(0)] public float hellBudgetMultiplier = .5f;
 
         public float CostFor(ModuleDefinition definition)
         {
@@ -44,6 +45,7 @@ namespace Starframe.App
                 case MissionDifficulty.Relaxed: multiplier = relaxedBudgetMultiplier; break;
                 case MissionDifficulty.Standard: multiplier = standardBudgetMultiplier; break;
                 case MissionDifficulty.Expert: multiplier = expertBudgetMultiplier; break;
+                case MissionDifficulty.Hell: multiplier = hellBudgetMultiplier; break;
                 default: throw new ArgumentOutOfRangeException(nameof(difficulty));
             }
             if (baseBudget < 0 || multiplier < 0) return 0;

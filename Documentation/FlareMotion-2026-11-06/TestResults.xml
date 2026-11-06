@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="17" result="Passed" total="17" passed="17" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-06 02:03:11Z" end-time="2026-11-06 02:03:11Z" duration="0.6544485">
+  <test-suite type="TestSuite" id="1698" name="CGDD26107" fullname="CGDD26107" runstate="Runnable" testcasecount="555" result="Passed" start-time="2026-11-06 02:03:11Z" end-time="2026-11-06 02:03:11Z" duration="0.654449" total="17" passed="17" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1680" name="Starframe.Construction.Tests.dll" fullname="D:/software/unity/CGDD26107/Library/ScriptAssemblies/Starframe.Construction.Tests.dll" runstate="Runnable" testcasecount="554" result="Passed" start-time="2026-11-06 02:03:11Z" end-time="2026-11-06 02:03:11Z" duration="0.543977" total="17" passed="17" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="25424" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1681" name="Starframe" fullname="Starframe" runstate="Runnable" testcasecount="554" result="Passed" start-time="2026-11-06 02:03:11Z" end-time="2026-11-06 02:03:11Z" duration="0.538346" total="17" passed="17" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1682" name="Tests" fullname="Starframe.Tests" runstate="Runnable" testcasecount="238" result="Passed" start-time="2026-11-06 02:03:11Z" end-time="2026-11-06 02:03:11Z" duration="0.428575" total="17" passed="17" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1111" name="FlareCountermeasureTests" fullname="Starframe.Tests.FlareCountermeasureTests" classname="Starframe.Tests.FlareCountermeasureTests" runstate="Runnable" testcasecount="17" result="Passed" start-time="2026-11-06 02:03:11Z" end-time="2026-11-06 02:03:11Z" duration="0.426119" total="17" passed="17" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="ParameterizedMethod" id="1118" name="AssemblyRejectsRoofBeforeOrAfterLauncherWithoutRejectingSideTower" fullname="Starframe.Tests.FlareCountermeasureTests.AssemblyRejectsRoofBeforeOrAfterLauncherWithoutRejectingSideTower" classname="Starframe.Tests.FlareCountermeasureTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-06 02:03:11Z" end-time="2026-11-06 02:03:11Z" duration="0.109402" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1116" name="AssemblyRejectsRoofBeforeOrAfterLauncherWithoutRejectingSideTower(False)" fullname="Starframe.Tests.FlareCountermeasureTests.AssemblyRejectsRoofBeforeOrAfterLauncherWithoutRejectingSideTower(False)" methodname="AssemblyRejectsRoofBeforeOrAfterLauncherWithoutRejectingSideTower" classname="Starframe.Tests.FlareCountermeasureTests" runstate="Runnable" seed="1456706096" result="Passed" start-time="2026-11-06 02:03:11Z" end-time="2026-11-06 02:03:11Z" duration="0.095001" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1117" name="AssemblyRejectsRoofBeforeOrAfterLauncherWithoutRejectingSideTower(True)" fullname="Starframe.Tests.FlareCountermeasureTests.AssemblyRejectsRoofBeforeOrAfterLauncherWithoutRejectingSideTower(True)" methodname="AssemblyRejectsRoofBeforeOrAfterLauncherWithoutRejectingSideTower" classname="Starframe.Tests.FlareCountermeasureTests" runstate="Runnable" seed="690604023" result="Passed" start-time="2026-11-06 02:03:11Z" end-time="2026-11-06 02:03:11Z" duration="0.005327" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1126" name="BurstFlashStartsContinuouslyInsteadOfPoppingToTripleSize" fullname="Starframe.Tests.FlareCountermeasureTests.BurstFlashStartsContinuouslyInsteadOfPoppingToTripleSize" methodname="BurstFlashStartsContinuouslyInsteadOfPoppingToTripleSize" classname="Starframe.Tests.FlareCountermeasureTests" runstate="Runnable" seed="1284121115" result="Passed" start-time="2026-11-06 02:03:11Z" end-time="2026-11-06 02:03:11Z" duration="0.035609" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1130" name="DestroyedLaunchersAreSkippedAndRespawnClearsIndependentCooldowns" fullname="Starframe.Tests.FlareCountermeasureTests.DestroyedLaunchersAreSkippedAndRespawnClearsIndependentCooldowns" methodname="DestroyedLaunchersAreSkippedAndRespawnClearsIndependentCooldowns" classname="Starframe.Tests.FlareCountermeasureTests" runstate="Runnable" seed="687025339" result="Passed" start-time="2026-11-06 02:03:11Z" end-time="2026-11-06 02:03:11Z" duration="0.021945" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1115" name="EveryMountingRotationChecksOnlyTheOneCellWideUpwardColumnIncludingOtherWeapons" fullname="Starframe.Tests.FlareCountermeasureTests.EveryMountingRotationChecksOnlyTheOneCellWideUpwardColumnIncludingOtherWeapons" methodname="EveryMountingRotationChecksOnlyTheOneCellWideUpwardColumnIncludingOtherWeapons" classname="Starframe.Tests.FlareCountermeasureTests" runstate="Runnable" seed="529811736" result="Passed" start-time="2026-11-06 02:03:11Z" end-time="2026-11-06 02:03:11Z" duration="0.001869" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1113" name="FlareDefaultsAreOneTwelveSparkSalvoWithTenSecondIndependentCooldown" fullname="Starframe.Tests.FlareCountermeasureTests.FlareDefaultsAreOneTwelveSparkSalvoWithTenSecondIndependentCooldown" methodname="FlareDefaultsAreOneTwelveSparkSalvoWithTenSecondIndependentCooldown" classname="Starframe.Tests.FlareCountermeasureTests" runstate="Runnable" seed="638861500" result="Passed" start-time="2026-11-06 02:03:11Z" end-time="2026-11-06 02:03:11Z" duration="0.002943" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1114" name="FlareIsMountedEquipmentButNeverEntersPrimaryWeaponsOrAimProfiles" fullname="Starframe.Tests.FlareCountermeasureTests.FlareIsMountedEquipmentButNeverEntersPrimaryWeaponsOrAimProfiles" methodname="FlareIsMountedEquipmentButNeverEntersPrimaryWeaponsOrAimProfiles" classname="Starframe.Tests.FlareCountermeasureTests" runstate="Runnable" seed="1987598753" result="Passed" start-time="2026-11-06 02:03:11Z" end-time="2026-11-06 02:03:11Z" duration="0.016557" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1125" name="MovingCameraSeesSmoothSparksAcrossPhysicsTicksAndBurst" fullname="Starframe.Tests.FlareCountermeasureTests.MovingCameraSeesSmoothSparksAcrossPhysicsTicksAndBurst" classname="Starframe.Tests.FlareCountermeasureTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-06 02:03:11Z" end-time="2026-11-06 02:03:11Z" duration="0.076536" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1122" name="MovingCameraSeesSmoothSparksAcrossPhysicsTicksAndBurst(30)" fullname="Starframe.Tests.FlareCountermeasureTests.MovingCameraSeesSmoothSparksAcrossPhysicsTicksAndBurst(30)" methodname="MovingCameraSeesSmoothSparksAcrossPhysicsTicksAndBurst" classname="Starframe.Tests.FlareCountermeasureTests" runstate="Runnable" seed="1548773591" result="Passed" start-time="2026-11-06 02:03:11Z" end-time="2026-11-06 02:03:11Z" duration="0.015713" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1123" name="MovingCameraSeesSmoothSparksAcrossPhysicsTicksAndBurst(60)" fullname="Starframe.Tests.FlareCountermeasureTests.MovingCameraSeesSmoothSparksAcrossPhysicsTicksAndBurst(60)" methodname="MovingCameraSeesSmoothSparksAcrossPhysicsTicksAndBurst" classname="Starframe.Tests.FlareCountermeasureTests" runstate="Runnable" seed="1327607427" result="Passed" start-time="2026-11-06 02:03:11Z" end-time="2026-11-06 02:03:11Z" duration="0.019038" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1124" name="MovingCameraSeesSmoothSparksAcrossPhysicsTicksAndBurst(144)" fullname="Starframe.Tests.FlareCountermeasureTests.MovingCameraSeesSmoothSparksAcrossPhysicsTicksAndBurst(144)" methodname="MovingCameraSeesSmoothSparksAcrossPhysicsTicksAndBurst" classname="Starframe.Tests.FlareCountermeasureTests" runstate="Runnable" seed="1648671501" result="Passed" start-time="2026-11-06 02:03:11Z" end-time="2026-11-06 02:03:11Z" duration="0.040453" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1127" name="PressesRotateLaunchersAndEachWaitsForItsOwnCooldown" fullname="Starframe.Tests.FlareCountermeasureTests.PressesRotateLaunchersAndEachWaitsForItsOwnCooldown" methodname="PressesRotateLaunchersAndEachWaitsForItsOwnCooldown" classname="Starframe.Tests.FlareCountermeasureTests" runstate="Runnable" seed="1408666967" result="Passed" start-time="2026-11-06 02:03:11Z" end-time="2026-11-06 02:03:11Z" duration="0.008291" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1128" name="RuntimeBlockedLauncherSpendsNoCooldownAndFiresImmediatelyWhenCleared" fullname="Starframe.Tests.FlareCountermeasureTests.RuntimeBlockedLauncherSpendsNoCooldownAndFiresImmediatelyWhenCleared" methodname="RuntimeBlockedLauncherSpendsNoCooldownAndFiresImmediatelyWhenCleared" classname="Starframe.Tests.FlareCountermeasureTests" runstate="Runnable" seed="1199535446" result="Passed" start-time="2026-11-06 02:03:11Z" end-time="2026-11-06 02:03:11Z" duration="0.005646" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1119" name="SalvoSharesOneMovingBurstAndTwelvePooledVoxelsWithoutPhysicsComponents" fullname="Starframe.Tests.FlareCountermeasureTests.SalvoSharesOneMovingBurstAndTwelvePooledVoxelsWithoutPhysicsComponents" methodname="SalvoSharesOneMovingBurstAndTwelvePooledVoxelsWithoutPhysicsComponents" classname="Starframe.Tests.FlareCountermeasureTests" runstate="Runnable" seed="1907802555" result="Passed" start-time="2026-11-06 02:03:11Z" end-time="2026-11-06 02:03:11Z" duration="0.009707" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1112" name="SavedShapeAndActionNumbersStayStableAndOldBindingsGainTabWithoutChangingF" fullname="Starframe.Tests.FlareCountermeasureTests.SavedShapeAndActionNumbersStayStableAndOldBindingsGainTabWithoutChangingF" methodname="SavedShapeAndActionNumbersStayStableAndOldBindingsGainTabWithoutChangingF" classname="Starframe.Tests.FlareCountermeasureTests" runstate="Runnable" seed="78249966" result="Passed" start-time="2026-11-06 02:03:11Z" end-time="2026-11-06 02:03:11Z" duration="0.002353" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1129" name="ThreatForecastRejectsRecedingUnreachableAndOutOfConeBurstsWithoutSpendingCooldown" fullname="Starframe.Tests.FlareCountermeasureTests.ThreatForecastRejectsRecedingUnreachableAndOutOfConeBurstsWithoutSpendingCooldown" methodname="ThreatForecastRejectsRecedingUnreachableAndOutOfConeBurstsWithoutSpendingCooldown" classname="Starframe.Tests.FlareCountermeasureTests" runstate="Runnable" seed="1885374871" result="Passed" start-time="2026-11-06 02:03:11Z" end-time="2026-11-06 02:03:11Z" duration="0.007636" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1121" name="VisualFlaresBurstAtVariedDistancesAndLeaveStationaryBrightPoints" fullname="Starframe.Tests.FlareCountermeasureTests.VisualFlaresBurstAtVariedDistancesAndLeaveStationaryBrightPoints" methodname="VisualFlaresBurstAtVariedDistancesAndLeaveStationaryBrightPoints" classname="Starframe.Tests.FlareCountermeasureTests" runstate="Runnable" seed="860743951" result="Passed" start-time="2026-11-06 02:03:11Z" end-time="2026-11-06 02:03:11Z" duration="0.010512" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1120" name="VisualSparksUseOriginalSpeedAndLaunchCone" fullname="Starframe.Tests.FlareCountermeasureTests.VisualSparksUseOriginalSpeedAndLaunchCone" methodname="VisualSparksUseOriginalSpeedAndLaunchCone" classname="Starframe.Tests.FlareCountermeasureTests" runstate="Runnable" seed="582919927" result="Passed" start-time="2026-11-06 02:03:11Z" end-time="2026-11-06 02:03:11Z" duration="0.006304" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: C:/Users/34808/AppData/LocalLow/DefaultCompany/CGDD26107\TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

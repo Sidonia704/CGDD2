@@ -1,5 +1,5 @@
-// @role Present a compact flight HUD with peripheral ship monitors, shared glass controls and explicit combat states.
-// @calls RangeCombatWorld, ShipFlightController, ShipWeapons, ShipStatusGraphic, FlightInstrumentGraphic, SphereRadarGraphic, TargetAimGraphic, TargetSilhouetteOutline, ShipCountermeasureController, ReticleHitFeedback, UiStyle, UiTheme, GameSettings
+// @role Present the Figma combat instruments with live per-mount readiness, heat, reloads, target states and peripheral ship schematics.
+// @calls RangeCombatWorld, ShipFlightController, ShipWeapons, ShipStatusGraphic, CombatWeaponStatusGraphic, FlightInstrumentGraphic, GatlingHeatGraphic, SphereRadarGraphic, TargetAimGraphic, TargetSilhouetteOutline, ShipCountermeasureController, ReticleHitFeedback, FigmaVisuals, UiStyle, UiTheme, GameSettings
 
 using System;
 using System.Collections.Generic;
@@ -17,8 +17,11 @@ namespace Starframe.Flight
         ShipFlightController flight;Camera worldCamera,displayCamera;RenderTexture sceneTexture;
         Starframe.Combat.RangeCombatWorld combat;
         TMP_FontAsset font;Canvas canvas;GameObject modal;
-        TextMeshProUGUI info,lockLabel,leadLabel,energyLabel,boostLabel;RawImage energyFill;float nextTelemetry;readonly List<RawImage> glass=new List<RawImage>();readonly List<Material> materials=new List<Material>();
+        TextMeshProUGUI info,lockLabel,leadLabel,energyLabel,boostLabel;RawImage energyFill;double nextTelemetry;readonly List<RawImage> glass=new List<RawImage>();readonly List<Material> materials=new List<Material>();
+        const double TelemetryInterval=1.0/60.0;
         readonly List<TextMeshProUGUI> targetLabels=new List<TextMeshProUGUI>();
+        readonly List<TextMeshProUGUI> targetDistances=new List<TextMeshProUGUI>();
+        readonly HashSet<RectTransform> scaledHudElements=new HashSet<RectTransform>();
         readonly List<string> leadNames=new List<string>(8);
         sealed class WeaponGroupHudEntry{public int id;public Image tile;public TextMeshProUGUI label;}
         readonly List<WeaponGroupHudEntry> weaponGroupHud=new List<WeaponGroupHudEntry>();
@@ -33,6 +36,8 @@ namespace Starframe.Flight
         RawImage telemetryPanel;RectTransform telemetryShadow;
         bool refinedFlightLayout,diagnosticsExpanded;
         FlightInstrumentGraphic instruments;TextMeshProUGUI instrumentShield,instrumentEnergy;
+        GatlingHeatGraphic gatlingHeat;TextMeshProUGUI gatlingHeatValue,gatlingHeatState;
+        CombatWeaponStatusGraphic weaponStatus;
         const float EnergyWidth=316,TelemetryWidth=360;
         static readonly Color HudInk=Color.white,HudMuted=new Color(.84f,.84f,.84f,.94f);
         bool inputOverlayOpen,missionPresentation;int ignoreEscapeThroughFrame=-1;
@@ -88,7 +93,8 @@ namespace Starframe.Flight
             targetAimGraphic=graphicObject.AddComponent<Starframe.Combat.TargetAimGraphic>();targetAimGraphic.Initialize(worldCamera,combat.Targeting,combat.Player.weapons);
             overlay.transform.SetSiblingIndex(modal.transform.GetSiblingIndex());modal.transform.SetAsLastSibling();
             BuildWeaponGroupHud(root,combat.Player.weapons);
-            float missileX=refinedFlightLayout?620:510,missileY=refinedFlightLayout?846:116;
+            if(refinedFlightLayout){weaponStatus=Rect(root,"WeaponMountStatus",348.75f,414,282,243).gameObject.AddComponent<CombatWeaponStatusGraphic>();weaponStatus.Bind(combat.Player.ship,combat.Player.weapons,combat.Player.countermeasures);}
+            float missileX=refinedFlightLayout?407:510,missileY=refinedFlightLayout?640:116;
             missileLabel=Text(root,"MissileStatus","",missileX,missileY,680,24,14);
             if(refinedFlightLayout)missileLabel.alignment=TextAlignmentOptions.Center;
             missileLockTrack=Rect(root,"MissileLockTrack",refinedFlightLayout?840:510,missileY+30,240,3).gameObject.AddComponent<UnityEngine.UI.Image>();
@@ -96,9 +102,11 @@ namespace Starframe.Flight
             missileLockFill=Rect(root,"MissileLockFill",refinedFlightLayout?840:510,missileY+30,240,3).gameObject.AddComponent<UnityEngine.UI.Image>();
             missileLockFill.raycastTarget=false;missileLockFill.rectTransform.SetParent(missileLockTrack.rectTransform,false);SetProgress(missileLockFill.rectTransform,0);
             RefreshMissileHud(combat.Player.weapons);
-            flareLabel=Text(root,"CountermeasureStatus","",refinedFlightLayout?620:510,refinedFlightLayout?902:166,refinedFlightLayout?680:900,26,14);flareLabel.color=HudMuted;if(refinedFlightLayout)flareLabel.alignment=TextAlignmentOptions.Center;
+            if(refinedFlightLayout){missileLabel.gameObject.SetActive(false);missileLockTrack.gameObject.SetActive(false);missileLockFill.gameObject.SetActive(false);}
+            flareLabel=Text(root,"CountermeasureStatus","",refinedFlightLayout?348:510,refinedFlightLayout?660:166,refinedFlightLayout?282:900,26,14);flareLabel.color=HudMuted;if(refinedFlightLayout)flareLabel.gameObject.SetActive(false);
             threatLabel=Text(root,"ThreatStatus","",refinedFlightLayout?620:510,refinedFlightLayout?44:204,refinedFlightLayout?680:900,30,18);threatLabel.color=UiTheme.Current.danger;if(refinedFlightLayout)threatLabel.alignment=TextAlignmentOptions.Center;
             modal.transform.SetAsLastSibling();
+            ApplyHudElementScale();
         }
         public void Initialize(Camera camera,ShipFlightController controller,FlightTuning tuning)
         {
@@ -120,13 +128,15 @@ namespace Starframe.Flight
             flightAim=Rect(root,"FlightAim",0,0,1920,1080).gameObject.AddComponent<FlightAimGraphic>();flightAim.Initialize(worldCamera,flight);
             if(refinedFlightLayout)BuildRefinedFlightLayout(root);
             else BuildLegacyFlightLayout(root);
-            int radarTop=refinedFlightLayout?32:28;float radarHeight=refinedFlightLayout?240:312;
-            Panel(root,"RadarGlass",1576,radarTop,312,radarHeight);Text(root,"RadarTitle",refinedFlightLayout?"hud.radarTitle":"hud.radarLegacyTitle",1596,radarTop+14,272,25,refinedFlightLayout?16:17);
-            radar=Rect(root,"SphericalRadar",1608,radarTop+(refinedFlightLayout?41:45),248,refinedFlightLayout?164:225).gameObject.AddComponent<SphereRadarGraphic>();
-            radarLabel=Text(root,"RadarContacts","hud.radarInitial",1596,radarTop+(refinedFlightLayout?211:280),272,22,13);
+            if(!refinedFlightLayout)BuildGatlingHeatHud(root);
+            int radarTop=refinedFlightLayout?24:28;float radarHeight=refinedFlightLayout?240:312;
+            Panel(root,"RadarGlass",refinedFlightLayout?1602:1576,radarTop,refinedFlightLayout?282:312,radarHeight);
+            var radarTitle=Text(root,"RadarTitle",refinedFlightLayout?"RADAR":"hud.radarLegacyTitle",refinedFlightLayout?1740:1596,radarTop,refinedFlightLayout?144:272,27,refinedFlightLayout?21:17);if(refinedFlightLayout)radarTitle.alignment=TextAlignmentOptions.Right;
+            radar=Rect(root,"SphericalRadar",refinedFlightLayout?1602:1608,refinedFlightLayout?92:radarTop+45,refinedFlightLayout?282:248,refinedFlightLayout?143:225).gameObject.AddComponent<SphereRadarGraphic>();
+            radarLabel=Text(root,"RadarContacts","hud.radarInitial",refinedFlightLayout?1602:1596,refinedFlightLayout?264:radarTop+280,refinedFlightLayout?282:272,22,13);if(refinedFlightLayout){radarLabel.color=HudMuted;radarLabel.alignment=TextAlignmentOptions.Right;HudBrackets(root,"RadarBrackets",1602,81.75f,282,175.5f);}
             if(refinedFlightLayout)
             {
-                var controls=Text(root,"ControlsCombat","hud.combatHelp",420,1048,1080,22,13);controls.alignment=TextAlignmentOptions.Center;controls.color=HudMuted;
+                var controls=Text(root,"ControlsCombat","hud.combatHelp",420,1048,1080,22,13);controls.alignment=TextAlignmentOptions.Center;controls.color=HudMuted;controls.gameObject.SetActive(false);
             }
             else Text(root,"Controls","hud.allHelp",32,1030,1830,28,15);
             var group=Rect(root,"ExitModal",0,0,1920,1080);modal=group.gameObject;
@@ -144,6 +154,7 @@ namespace Starframe.Flight
                 if(label)L10n.Unbind(label);
             modal.SetActive(false);Resize();Canvas.ForceUpdateCanvases();
             foreach(var child in go.GetComponentsInChildren<Transform>(true))child.gameObject.layer=5;
+            ApplyHudElementScale();
         }
         void BuildLegacyFlightLayout(RectTransform root)
         {
@@ -164,34 +175,95 @@ namespace Starframe.Flight
         }
         void BuildRefinedFlightLayout(RectTransform root)
         {
-            telemetryShadow=Panel(root,"TelemetryGlass",32,32,TelemetryWidth,180);
+            telemetryShadow=Panel(root,"TelemetryGlass",32,300,360,180);
             telemetryPanel=root.Find("TelemetryGlass")?.GetComponent<RawImage>();
-            Text(root,"Title","hud.systemsTitle",54,48,146,24,14).color=HudMuted;
-            diagnosticHint=Text(root,"DiagnosticHint","hud.diagnosticsOpen",214,48,156,24,12);diagnosticHint.color=HudMuted;diagnosticHint.alignment=TextAlignmentOptions.Right;
-            speedReadout=Text(root,"SpeedReadout","0.0 m/s",54,80,316,48,34);
-            summaryReadout=Text(root,"FlightSummary","hud.summaryInitial",54,140,316,45,14);summaryReadout.textWrappingMode=TextWrappingModes.Normal;summaryReadout.color=HudMuted;
-            info=Text(root,"Telemetry","",54,204,316,188,12);info.textWrappingMode=TextWrappingModes.Normal;info.color=HudMuted;
-            alertReadout=Text(root,"FlightAlert","",54,190,316,26,13);alertReadout.gameObject.SetActive(false);
-            lockLabel=Text(root,"TargetLockStatus","hud.lockHint",660,84,600,26,15);lockLabel.color=HudMuted;lockLabel.alignment=TextAlignmentOptions.Center;
-            Panel(root,"OwnStatusGlass",32,694,360,222);Text(root,"OwnStatusTitle","hud.ownTitle",54,710,316,25,16);
-            ownStatus=Rect(root,"OwnShipSchematic",52,746,320,116).gameObject.AddComponent<ShipStatusGraphic>();
-            ownCondition=Text(root,"OwnShipCondition","hud.coreOnline",54,878,316,22,13);
-            Panel(root,"EnergyGlass",32,932,360,116);
-            shieldLabel=Text(root,"ShieldValue","hud.shieldInitial",54,942,316,20,14);
-            CreateShieldFill(root,54,967,EnergyWidth,8);
-            energyLabel=Text(root,"EnergyValue","hud.energyInitial",54,982,316,20,14);
-            CreateEnergyFill(root,54,1008,EnergyWidth,10);
-            boostLabel=Text(root,"BoostStatus","hud.boost",54,1025,316,18,12);boostLabel.color=HudInk;boostLabel.gameObject.SetActive(false);
-            BuildTargetMonitor(root,1528,694,360,222,1550,710,1548,760,1550,878,13,102,16,30);
+            diagnosticHint=Text(root,"DiagnosticHint","hud.diagnosticsOpen",32,300,310,24,12);diagnosticHint.gameObject.SetActive(false);
+            info=Text(root,"Telemetry","",32,332,360,188,12);info.textWrappingMode=TextWrappingModes.Normal;info.gameObject.SetActive(false);
+            summaryReadout=Text(root,"FlightSummary","",32,300,316,45,14);summaryReadout.gameObject.SetActive(false);
+            alertReadout=Text(root,"FlightAlert","",720,95,480,26,16);alertReadout.alignment=TextAlignmentOptions.Center;alertReadout.gameObject.SetActive(false);
+            lockLabel=Text(root,"TargetLockStatus","hud.lockHint",720,68,480,26,15);lockLabel.color=HudMuted;lockLabel.alignment=TextAlignmentOptions.Center;lockLabel.gameObject.SetActive(false);
+            Panel(root,"OwnStatusGlass",1309.5f,421.5f,260,210);
+            Text(root,"OwnStatusTitle",L10n.IsEnglish?"SHIP STATUS":"舰船状态",1309.5f,421.5f,260,30,21);
+            ownCondition=Text(root,"OwnShipCondition","",1311,447,260,23,16.5f);
+            ownStatus=Rect(root,"OwnShipSchematic",1329.75f,489,222,131.25f).gameObject.AddComponent<ShipStatusGraphic>();
+            HudBrackets(root,"OwnShipBrackets",1314.75f,473.25f,252,158.25f);
+            BuildTargetMonitor(root,45,30.75f,282,233,45,30.75f,60.75f,93.75f,45,268,14,146.25f,21,29);
+            var targetTitle=root.Find("TargetStatusTitle")?.GetComponent<TMP_Text>();if(targetTitle){L10n.Unbind(targetTitle);targetTitle.text=L10n.IsEnglish?"TARGET STATUS":"目标状态";}
+            HudBrackets(root,"TargetShipBrackets",45.75f,78,282,185.25f);
+            var targetRect=targetStatus.rectTransform;SetRect(targetRect,60.75f,93.75f,247.5f,146.25f);
+            targetCondition.gameObject.SetActive(false);
+            // Retain telemetry components for the legacy path and diagnostics; the graphical instruments carry the flight view.
+            shieldLabel=Text(root,"ShieldValue","",0,0,1,1,14);shieldLabel.gameObject.SetActive(false);CreateShieldFill(root,0,0,1,1);root.Find("ShieldTrack").gameObject.SetActive(false);
+            energyLabel=Text(root,"EnergyValue","",0,0,1,1,14);energyLabel.gameObject.SetActive(false);CreateEnergyFill(root,0,0,1,1);root.Find("EnergyTrack").gameObject.SetActive(false);
+            boostLabel=Text(root,"BoostStatus","",0,0,1,1,12);boostLabel.gameObject.SetActive(false);
+            instruments=Rect(root,"FlightInstruments",0,0,1920,1080).gameObject.AddComponent<FlightInstrumentGraphic>();instruments.raycastTarget=false;
+            speedReadout=Text(root,"SpeedReadout","0",645,663,64,35,27);speedReadout.alignment=TextAlignmentOptions.Center;
+            var unit=Text(root,"SpeedUnit","m/s",645,699,64,19,13.5f);unit.alignment=TextAlignmentOptions.Center;
+            instrumentShield=Text(root,"ShieldGaugeValue","",1160,663,64,27,18);instrumentShield.alignment=TextAlignmentOptions.Center;
+            instrumentEnergy=Text(root,"EnergyGaugeValue","",1218.75f,663,64,27,18);instrumentEnergy.alignment=TextAlignmentOptions.Center;
+            string[] titles={"FLARE","MISSILE","LASER","AMMO","GROUPS"};float[] titleX={351.75f,409.5f,464.25f,519,577.5f};
+            for(int i=0;i<titles.Length;i++)Text(root,"WeaponColumnTitle"+i,titles[i],titleX[i],392.25f,58,18,13.5f);
+            BuildHudIcons(root);
             SetDiagnosticsExpanded(false);
-            instruments=Rect(root,"FlightInstruments",620,340,680,350).gameObject.AddComponent<FlightInstrumentGraphic>();instruments.raycastTarget=false;
-            SetRect(speedReadout.rectTransform,620,662,80,36);speedReadout.fontSize=27;speedReadout.alignment=TextAlignmentOptions.Center;
-            var unit=Text(root,"SpeedUnit","",620,699,80,20,12);unit.text="m/s";unit.alignment=TextAlignmentOptions.Center;
-            instrumentShield=Text(root,"ShieldGaugeValue","",1168,665,64,28,17);instrumentShield.alignment=TextAlignmentOptions.Center;
-            instrumentEnergy=Text(root,"EnergyGaugeValue","",1228,665,64,28,17);instrumentEnergy.alignment=TextAlignmentOptions.Center;
-            foreach(var name in new[]{"Title","FlightSummary","EnergyValue","ShieldValue","ShieldTrack","EnergyTrack"}){var child=root.Find(name);if(child)child.gameObject.SetActive(false);}
-
         }
+        void HudBrackets(RectTransform root,string name,float x,float y,float width,float height)
+        {
+            Color tint=new Color32(185,255,3,255);const float arm=15.75f,stroke=2.25f;
+            for(int sx=0;sx<2;sx++)for(int sy=0;sy<2;sy++)
+            {
+                float cx=x+sx*(width-stroke),cy=y+sy*(height-stroke);
+                var vertical=Rect(root,name+sx+sy+"V",cx,y+sy*(height-arm),stroke,arm).gameObject.AddComponent<Image>();vertical.raycastTarget=false;vertical.color=tint;
+                var horizontal=Rect(root,name+sx+sy+"H",x+sx*(width-arm),cy,arm,stroke).gameObject.AddComponent<Image>();horizontal.raycastTarget=false;horizontal.color=tint;
+            }
+        }
+        void HudAsset(RectTransform root,string asset,float x,float y,float width,float height,float angle=0,float boundsWidth=0,float boundsHeight=0,bool mirror=false)
+        {
+            if(boundsWidth>0)x+=(boundsWidth-width)*.5f;if(boundsHeight>0)y+=(boundsHeight-height)*.5f;
+            var image=Rect(root,"HudIcon"+asset+x, x*.75f,y*.75f,width*.75f,height*.75f).gameObject.AddComponent<RawImage>();
+            image.texture=Resources.Load<Texture2D>("UI/Figma/Hud"+asset);image.raycastTarget=false;image.color=Color.white;image.rectTransform.localEulerAngles=new Vector3(0,0,-angle);
+            if(mirror)image.uvRect=new UnityEngine.Rect(1,0,-1,1);
+        }
+        void BuildHudIcons(RectTransform root)
+        {
+            for(int i=0;i<3;i++)HudAsset(root,"Rectangle133",479,559+i*13,28,10,-20.64f,29.728f,19.23f);
+            HudAsset(root,"Rectangle99",564,548,14,61);HudAsset(root,"Polygon9",560,589,4,17);HudAsset(root,"Polygon10",578,589,4,17);
+            for(int i=0;i<3;i++){HudAsset(root,"Polygon8",701+i*13,563,10,16);HudOutlineBox(root,"AmmoIcon"+i,(701+i*13)*.75f,581*.75f,7.5f,16.5f,Color.white,2.25f);}
+            HudAsset(root,"Line98",637.93f,574.62f,30.967f,4,-130.39f,20.066f,23.586f);HudAsset(root,"Line99",640.9f,560,11.794f,4,-83.08f,1.42f,11.709f);
+            HudAsset(root,"Line101",619,579.51f,11.794f,4,-177.69f,11.785f,.475f);HudAsset(root,"Line100",644.39f,572.12f,11.794f,4,-28.28f,10.387f,5.588f);HudAsset(root,"Line102",628.97f,584.39f,11.794f,4,127.5f,7.18f,9.357f);
+            for(int i=0;i<3;i++){HudAsset(root,"Rectangle166",872+i*12,508,12,15);HudAsset(root,"Rectangle167",872+i*12,523,12,15,0,0,0,true);}
+            HudAsset(root,"Rectangle85",1576,532,10,34,90,34,10);HudAsset(root,"Rectangle87",1575,512.38f,9.259f,33.041f,-150,24.539f,33.244f);HudAsset(root,"Rectangle88",1585.49f,512,10.016f,33.478f,-30,25.413f,34);
+        }
+        void HudOutlineBox(RectTransform root,string name,float x,float y,float width,float height,Color tint,float stroke)
+        {
+            for(int i=0;i<4;i++){var image=Rect(root,name+i,x+(i==1?width-stroke:0),y+(i==3?height-stroke:0),i<2?stroke:width,i<2?height:stroke).gameObject.AddComponent<Image>();image.color=tint;image.raycastTarget=false;}
+        }
+        void BuildGatlingHeatHud(RectTransform root)
+        {
+            gatlingHeat=Rect(root,"GatlingHeatGauge",refinedFlightLayout?1296:408,refinedFlightLayout?340:932,
+                refinedFlightLayout?64:150,refinedFlightLayout?350:64).gameObject.AddComponent<GatlingHeatGraphic>();
+            gatlingHeat.raycastTarget=false;gatlingHeat.SetHorizontal(!refinedFlightLayout);
+            gatlingHeatState=Text(root,"GatlingHeatState","",refinedFlightLayout?1284:408,refinedFlightLayout?364:932,
+                refinedFlightLayout?88:150,18,11);gatlingHeatState.alignment=TextAlignmentOptions.Center;
+            gatlingHeatValue=Text(root,"GatlingHeatValue","",refinedFlightLayout?1296:408,refinedFlightLayout?665:992,
+                refinedFlightLayout?64:150,28,17);gatlingHeatValue.alignment=TextAlignmentOptions.Center;
+            gatlingHeat.gameObject.SetActive(false);gatlingHeatState.gameObject.SetActive(false);gatlingHeatValue.gameObject.SetActive(false);
+        }
+        void RefreshGatlingHeatHud(Starframe.Combat.ShipWeapons weapons)
+        {
+            if(!gatlingHeat||weapons==null)return;
+            var telemetry=weapons.GatlingHeat;
+            bool visible=telemetry.Count>0;
+            gatlingHeat.gameObject.SetActive(visible);gatlingHeatState.gameObject.SetActive(visible);gatlingHeatValue.gameObject.SetActive(visible);
+            if(!visible)return;
+            // Aggregation and the unlock condition belong to the actual mount states.
+            // Switching groups or releasing fire must not clear cooling overheated guns.
+            gatlingHeat.SetTelemetry(telemetry.DisplayHeatFraction,telemetry.AnyOverheated);
+            Color tint=telemetry.AnyOverheated?GatlingHeatGraphic.OverheatColor:UiTheme.Current.combatInstrument;
+            gatlingHeatState.color=gatlingHeatValue.color=tint;
+            gatlingHeatState.text=telemetry.AnyOverheated?(L10n.IsEnglish?"OVERHEAT":"过热"):(L10n.IsEnglish?"HEAT":"热量");
+            gatlingHeatValue.text=$"{100*telemetry.DisplayHeatFraction:0}%";
+        }
+
         void CreateShieldFill(RectTransform root,float x,float y,float width,float height)
         {
             var track=Rect(root,"ShieldTrack",x,y,width,height).gameObject.AddComponent<Image>();track.color=refinedFlightLayout?new Color(HudInk.r,HudInk.g,HudInk.b,.16f):new Color(.035f,.12f,.18f,.9f);track.raycastTarget=false;
@@ -206,7 +278,7 @@ namespace Starframe.Flight
         }
         void BuildTargetMonitor(RectTransform root,float px,float py,float pw,float ph,float tx,float ty,float sx,float sy,float cx,float cy,float identitySize=15,float schematicHeight=164,float titleSize=18,float identityOffset=35)
         {
-            Panel(root,"TargetStatusGlass",px,py,pw,ph);Text(root,"TargetStatusTitle","hud.targetTitle",tx,ty,316,28,titleSize);
+            Panel(root,"TargetStatusGlass",px,py,pw,ph);Text(root,"TargetStatusTitle","hud.targetTitle",tx,ty,178,28,titleSize);
             targetIdentity=Text(root,"TargetIdentity","hud.noTarget",tx,ty+identityOffset,316,18,identitySize);targetIdentity.overflowMode=TextOverflowModes.Ellipsis;
             targetStatus=Rect(root,"TargetShipSchematic",sx,sy,320,schematicHeight).gameObject.AddComponent<ShipStatusGraphic>();
             targetCondition=Text(root,"TargetShipCondition","hud.targetHint",cx,cy,316,22,14);
@@ -216,6 +288,23 @@ namespace Starframe.Flight
             foreach(var entry in weaponGroupHud)if(entry.tile)Destroy(entry.tile.gameObject);
             weaponGroupHud.Clear();
             if(weapons==null||weapons.Groups==null||weapons.Groups.Count==0)return;
+            if(refinedFlightLayout)
+            {
+                Panel(root,"WeaponGroupHudGlass",575.25f,414,54,222);
+                var ordered=new List<Starframe.Construction.WeaponGroupRecord>(weapons.Groups);ordered.Sort((a,b)=>a.id.CompareTo(b.id));
+                float rowHeight=Mathf.Min(57,222f/Mathf.Max(1,ordered.Count));int row=0;
+                foreach(var group in ordered)
+                {
+                    if(group.id<0||group.id>=8)continue;
+                    float y=414+row++*rowHeight;
+                    var tile=Rect(root,"WeaponGroupHud_"+group.id,575.25f,y,54,rowHeight-4).gameObject.AddComponent<Image>();tile.raycastTarget=false;
+                    var stripe=new GameObject("ActiveLine",typeof(RectTransform),typeof(Image));stripe.layer=5;stripe.transform.SetParent(tile.transform,false);var stripeRect=(RectTransform)stripe.transform;stripeRect.anchorMin=Vector2.zero;stripeRect.anchorMax=new Vector2(1,0);stripeRect.offsetMin=Vector2.zero;stripeRect.offsetMax=new Vector2(0,2);stripe.GetComponent<Image>().raycastTarget=false;
+                    var label=Text(root,"WeaponGroupHudLabel_"+group.id,"",576,y+3,53,rowHeight-8,Mathf.Min(13.5f,(rowHeight-10)*.4f));label.alignment=TextAlignmentOptions.Center;label.textWrappingMode=TextWrappingModes.Normal;label.overflowMode=TextOverflowModes.Overflow;
+                    weaponGroupHud.Add(new WeaponGroupHudEntry{id=group.id,tile=tile,label=label});
+                }
+                cadenceLabel=Text(root,"DirectFireCadence","",348.75f,667,282,20,12);cadenceLabel.color=HudMuted;
+                RefreshWeaponGroupHud(weapons);return;
+            }
             const float tileWidth=102,tileHeight=44,gap=8;
             var groups=new List<Starframe.Construction.WeaponGroupRecord>(weapons.Groups);
             groups.Sort((a,b)=>a.id.CompareTo(b.id));
@@ -251,12 +340,13 @@ namespace Starframe.Flight
                 bool active=weapons.IsGroupEnabled(entry.id);int count=weapons.GetGroupGunCount(entry.id,true);
                 entry.tile.color=Color.clear;
                 var line=entry.tile.transform.Find("ActiveLine")?.GetComponent<Image>();if(line)line.color=active?UiTheme.Current.combatInstrument:disabled;
-                entry.label.text="<b>"+(entry.id+1)+"  "+L10n.T(active?"hud.weaponGroupOn":"hud.weaponGroupOff")+"</b>\n<size=92%>"+L10n.T("hud.weaponGroupGuns",count)+"</size>";
-                entry.label.color=active?UiTheme.Current.combatInstrument:HudMuted;
+                entry.label.text=refinedFlightLayout?(entry.id+1)+"  "+(active?"ON":"OFF")+"\n"+count+" WPN":"<b>"+(entry.id+1)+"  "+L10n.T(active?"hud.weaponGroupOn":"hud.weaponGroupOff")+"</b>\n<size=92%>"+L10n.T("hud.weaponGroupGuns",count)+"</size>";
+                entry.label.color=active?HudInk:new Color(1,1,1,.35f);
             }
         }
         void RefreshMissileHud(Starframe.Combat.ShipWeapons weapons)
         {
+            if(refinedFlightLayout){if(weaponStatus)weaponStatus.Refresh();return;}
             if(!missileLabel||!missileLockTrack||!missileLockFill)return;
             bool visible=weapons!=null&&weapons.HasMissileWeapons;
             missileLabel.gameObject.SetActive(visible);missileLockTrack.gameObject.SetActive(visible);missileLockFill.gameObject.SetActive(visible);
@@ -273,6 +363,7 @@ namespace Starframe.Flight
         void SetDiagnosticsExpanded(bool expanded)
         {
             diagnosticsExpanded=expanded;
+            if(refinedFlightLayout){if(info){SetRect(info.rectTransform,32,332,360,260);info.gameObject.SetActive(expanded);}if(diagnosticHint)diagnosticHint.gameObject.SetActive(expanded);return;}
             float height=expanded?424:184;
             SetPanelHeight(telemetryPanel,32,height);SetRect(telemetryShadow,35,36,TelemetryWidth,height);
             SetRect(info.rectTransform,54,204,316,188);
@@ -286,6 +377,7 @@ namespace Starframe.Flight
             var rect=image.rectTransform;rect.anchorMin=new Vector2(32/1920f,(1080f-y-height)/1080f);rect.anchorMax=new Vector2((32+TelemetryWidth)/1920f,(1080f-y)/1080f);rect.offsetMin=rect.offsetMax=Vector2.zero;
             var uv=new UnityEngine.Rect(32/1920f,(1080f-y-height)/1080f,TelemetryWidth/1920f,height/1080f);image.uvRect=uv;
             if(image.material)image.material.SetVector("_PanelUVRect",new Vector4(uv.x,uv.y,uv.width,uv.height));
+            if(scaledHudElements.Contains(rect))ScaleHudAnchors(rect);
         }
         static void SetProgress(RectTransform fill,float value)
         {
@@ -296,16 +388,24 @@ namespace Starframe.Flight
         static void SetRect(RectTransform rect,float x,float y,float width,float height)
         {
             rect.anchorMin=new Vector2(x/1920f,(1080f-y-height)/1080f);rect.anchorMax=new Vector2((x+width)/1920f,(1080f-y)/1080f);rect.offsetMin=rect.offsetMax=Vector2.zero;
+            var hud=rect.GetComponentInParent<RangeHUD>();if(hud&&hud.scaledHudElements.Contains(rect))ScaleHudAnchors(rect);
         }
         public void OpenExit(){modal.SetActive(true);if(EventSystem.current){var resume=modal.transform.Find("CancelExit");if(resume)EventSystem.current.SetSelectedGameObject(resume.gameObject);}}
         public void CloseExit(){modal.SetActive(false);if(EventSystem.current)EventSystem.current.SetSelectedGameObject(null);}
         void Update()
         {
-            if(!flight)return;Resize();
+            // Actor snapshots are runtime-only and may be absent while surviving component references reload.
+            if(!flight||!canvas||!worldCamera||!info)return;
+            var p=flight.Performance;
+            if(p==null||(combat&&(combat.Player==null||!combat.Player.ship)))return;
+            Resize();
             if(!inputOverlayOpen&&Time.frameCount>ignoreEscapeThroughFrame&&Keyboard.current!=null&&Keyboard.current.escapeKey.wasPressedThisFrame){if(ExitDialogOpen)CloseExit();else OpenExit();}
             if(refinedFlightLayout&&!ExitDialogOpen&&Keyboard.current!=null&&Keyboard.current.f1Key.wasPressedThisFrame)SetDiagnosticsExpanded(!diagnosticsExpanded);
-            if(Time.unscaledTime<nextTelemetry)return;nextTelemetry=Time.unscaledTime+.12f;
-            var p=flight.Performance;var a=p.accelerationPositive/9.81f;var b=p.accelerationNegative/9.81f;
+            double telemetryNow=Time.unscaledTimeAsDouble;
+            if(telemetryNow+0.000001<nextTelemetry)return;
+            nextTelemetry=nextTelemetry<=0?telemetryNow+TelemetryInterval:nextTelemetry+TelemetryInterval;
+            if(nextTelemetry<=telemetryNow)nextTelemetry=telemetryNow+TelemetryInterval;
+            var a=p.accelerationPositive/9.81f;var b=p.accelerationNegative/9.81f;
             string performanceDetails=(!refinedFlightLayout||diagnosticsExpanded)?L10n.T("hud.performance",p.totalMass,a.z,b.z,a.x,b.x,a.y,b.y,p.angularRate,p.pitchAcceleration,p.rollSpeed):"";
             if(!refinedFlightLayout)info.text=L10n.T("hud.speed",flight.CurrentSpeed,p.maxSpeed,performanceDetails);
             if(speedReadout)speedReadout.text=refinedFlightLayout?$"{flight.CurrentSpeed:0}":"";
@@ -317,7 +417,7 @@ namespace Starframe.Flight
             if(boostLabel)boostLabel.gameObject.SetActive(flight.IsBoosting);
             if(refinedFlightLayout){info.text="";if(alertReadout){alertReadout.text="";alertReadout.gameObject.SetActive(false);}}
             if(combat){var player=combat.Player;int present=0,live=0;foreach(var part in player.ship.Parts)if(part.present)present++;foreach(var bot in combat.Bots)if(bot.ship.IsAlive)live++;
-                RefreshWeaponGroupHud(player.weapons);RefreshMissileHud(player.weapons);
+                RefreshWeaponGroupHud(player.weapons);RefreshMissileHud(player.weapons);RefreshGatlingHeatHud(player.weapons);
                 var flares=player.countermeasures;
                 if(flareLabel&&flares)flareLabel.text=flares.LauncherCount==0?L10n.T("hud.flaresMissing",Starframe.App.GameInput.BindingLabel(Starframe.App.GameAction.Countermeasure)):
                     L10n.T("hud.flaresStatus",Starframe.App.GameInput.BindingLabel(Starframe.App.GameAction.Countermeasure),flares.ReadyCount,flares.LauncherCount,flares.NextReadySeconds);
@@ -333,10 +433,11 @@ namespace Starframe.Flight
                 SetProgress(shieldFill.rectTransform,capacity>0?charge/capacity:0);
                 if(instruments){instruments.SetTelemetry(flight.CurrentSpeed,p.maxSpeed,ratio,capacity>0?charge/capacity:0,flight.IsBoosting);instrumentShield.text=capacity>0?$"{100*charge/capacity:0}%":"—";instrumentEnergy.text=$"{100*ratio:0}%";instrumentShield.color=instrumentEnergy.color=UiTheme.Current.combatInstrument;}
                 var targeting=combat.Targeting;bool locked=targeting&&targeting.HasTarget;
+                var target=locked?targeting.LockedTarget:null;
                 if(lockLabel){lockLabel.text=locked?L10n.T("hud.unlock",targeting.TargetDistance):(L10n.IsEnglish?"F  Lock target ahead":"F  锁定前方目标");lockLabel.color=locked?UiTheme.Current.danger:HudMuted;}
-                ownStatus.Bind(player.ship);ownCondition.text=Condition(player.ship);ownCondition.color=player.ship.IsAlive?(refinedFlightLayout?HudInk:new Color(.48f,.85f,1)):(refinedFlightLayout?Starframe.Presentation.UiTheme.Current.danger:new Color(1,.25f,.2f));
-                var target=locked?targeting.LockedTarget:null;targetStatus.Bind(target);
-                targetIdentity.text=target?L10n.T("hud.targetIdentity",TargetName(target),targeting.TargetDistance):L10n.T("hud.noTarget");
+                ownStatus.Bind(player.ship);ownCondition.text=refinedFlightLayout?(L10n.IsEnglish?"PARTS: ":"部件：")+present+"/"+player.ship.Parts.Count:Condition(player.ship);ownCondition.color=player.ship.IsAlive?(refinedFlightLayout?HudInk:new Color(.48f,.85f,1)):(refinedFlightLayout?Starframe.Presentation.UiTheme.Current.danger:new Color(1,.25f,.2f));
+                targetStatus.Bind(target);
+                targetIdentity.text=target?(refinedFlightLayout?TargetName(target):L10n.T("hud.targetIdentity",TargetName(target),targeting.TargetDistance)):L10n.T("hud.noTarget");
                 L10n.ApplyUserContentFont(targetIdentity);
                 targetCondition.text=target?Condition(target):L10n.T("hud.targetHint");
                 int detected=targeting?targeting.DetectedTargets.Count:0;
@@ -359,6 +460,8 @@ namespace Starframe.Flight
                 }
             }
         }
+        static string BlueprintCostText(float cost)
+            =>(L10n.IsEnglish?"COST ":"造价 ")+Mathf.Max(0,cost).ToString("#,0",System.Globalization.CultureInfo.InvariantCulture);
         string TargetName(FlightShipRuntime ship){foreach(var actor in combat.Actors)if(actor.ship==ship)return actor.blueprintName??L10n.T("hud.enemyShip");return L10n.T("hud.enemyShip");}
         string Condition(FlightShipRuntime ship)
         {
@@ -376,17 +479,50 @@ namespace Starframe.Flight
         }
         void LateUpdate()
         {
-            if(!combat)return;
+            if(!combat||combat.Player==null||!combat.Player.ship||!canvas||!modal||!worldCamera)return;
             while(targetLabels.Count<combat.Bots.Count){
-                int i=targetLabels.Count;var label=Text((RectTransform)canvas.transform,"BotMarker"+i,"",0,0,360,28,18);label.alignment=TextAlignmentOptions.Center;label.fontStyle=FontStyles.Bold;
-                label.rectTransform.anchorMin=label.rectTransform.anchorMax=new Vector2(.5f,.5f);label.rectTransform.sizeDelta=new Vector2(360,28);label.transform.SetSiblingIndex(modal.transform.GetSiblingIndex());targetLabels.Add(label);
+                int i=targetLabels.Count;var label=Text((RectTransform)canvas.transform,"BotMarker"+i,"",0,0,190,42,refinedFlightLayout?14.25f:18);label.alignment=TextAlignmentOptions.Bottom;label.fontStyle=FontStyles.Bold;
+                label.rectTransform.anchorMin=label.rectTransform.anchorMax=new Vector2(.5f,.5f);label.rectTransform.pivot=new Vector2(.5f,0);label.rectTransform.sizeDelta=new Vector2(190,42);label.rectTransform.localScale=Vector3.one;label.transform.SetSiblingIndex(modal.transform.GetSiblingIndex());targetLabels.Add(label);
+                var distance=Text((RectTransform)canvas.transform,"BotDistance"+i,"",0,0,140,22,14.25f);distance.alignment=TextAlignmentOptions.Top;distance.rectTransform.anchorMin=distance.rectTransform.anchorMax=new Vector2(.5f,.5f);distance.rectTransform.pivot=new Vector2(.5f,1);distance.rectTransform.sizeDelta=new Vector2(140,22);distance.transform.SetSiblingIndex(modal.transform.GetSiblingIndex());targetDistances.Add(distance);
             }
             for(int i=0;i<targetLabels.Count;i++){
-                var label=targetLabels[i];if(i>=combat.Bots.Count){label.gameObject.SetActive(false);continue;}
-                var bot=combat.Bots[i];var point=worldCamera.WorldToScreenPoint(bot.body.position+Vector3.up*(bot.ship.HullRadius+1));
-                bool visible=bot.ship.IsAlive&&combat.Targeting.HasTarget&&combat.Targeting.LockedTarget==bot.ship&&point.z>0&&point.x>0&&point.x<Screen.width&&point.y>0&&point.y<Screen.height;label.gameObject.SetActive(visible);label.color=new Color(1,.24f,.18f,.9f);
-                if(visible){label.text=bot.blueprintName+" · "+(i+1);L10n.ApplyUserContentFont(label);if(RectTransformUtility.ScreenPointToLocalPointInRectangle((RectTransform)canvas.transform,point,displayCamera,out var local))label.rectTransform.anchoredPosition=local;}
+                var label=targetLabels[i];var distance=targetDistances[i];if(i>=combat.Bots.Count){label.gameObject.SetActive(false);distance.gameObject.SetActive(false);continue;}
+                var bot=combat.Bots[i];var point=worldCamera.WorldToScreenPoint(refinedFlightLayout?bot.ship.CorePosition:bot.body.position+Vector3.up*(bot.ship.HullRadius+1));
+                bool main=combat.Targeting.HasTarget&&combat.Targeting.LockedTarget==bot.ship;
+                bool area=combat.Player.weapons.IsVlsLockedTarget(bot.ship);
+                bool visible=bot.ship.IsAlive&&(main||area)&&point.z>0&&point.x>0&&point.x<Screen.width&&point.y>0&&point.y<Screen.height;label.gameObject.SetActive(visible);label.color=new Color(1,.24f,.18f,.9f);
+                distance.gameObject.SetActive(visible&&refinedFlightLayout);
+                if(visible)
+                {
+                    label.text=BlueprintCostText(bot.ship.BlueprintCost)+"\n"+bot.blueprintName;L10n.ApplyUserContentFont(label);label.color=new Color32(255,46,34,255);
+                    if(RectTransformUtility.ScreenPointToLocalPointInRectangle((RectTransform)canvas.transform,point,displayCamera,out var local))
+                    {
+                        float screenRadius=Mathf.Abs(worldCamera.WorldToScreenPoint(bot.ship.CorePosition+worldCamera.transform.right*combat.Targeting.LockedTargetRadius).x-point.x)/Mathf.Max(.01f,canvas.scaleFactor);
+                        float frameRadius=main?Mathf.Max(19.875f,Mathf.Clamp(screenRadius,18/Mathf.Max(.01f,canvas.scaleFactor),76/Mathf.Max(.01f,canvas.scaleFactor))):22/Mathf.Max(.01f,canvas.scaleFactor);
+                        label.rectTransform.anchoredPosition=local+(refinedFlightLayout?new Vector2(-18,frameRadius+12):Vector2.zero);
+                        distance.rectTransform.anchoredPosition=local+new Vector2(-18,-frameRadius-12);distance.text=Vector3.Distance(combat.Player.ship.CorePosition,bot.ship.CorePosition).ToString("0")+"M";distance.color=label.color;
+                    }
+                }
             }
+        }
+        void ApplyHudElementScale()
+        {
+            if(!canvas)return;
+            if(refinedFlightLayout)return;
+            foreach(Transform child in canvas.transform)
+            {
+                if(child.name=="FlightView"||child.name=="ExitModal"||child.name=="TargetAimCanvas"||child.name.StartsWith("BotMarker")||child.GetComponent<FlightAimGraphic>()||child.GetComponent<Starframe.Combat.TargetSilhouetteOutline>())continue;
+                var rect=child as RectTransform;if(!rect||!scaledHudElements.Add(rect))continue;
+                rect.localScale=Vector3.one*.95f;ScaleHudAnchors(rect);
+            }
+        }
+        static void ScaleHudAnchors(RectTransform rect)
+        {
+            // Apply the same screen-centred scale to positions and sizes, keeping
+            // separate instrument graphics and their text readouts aligned.
+            Vector2 centre=(rect.anchorMin+rect.anchorMax)*.5f;
+            Vector2 shift=(centre-new Vector2(.5f,.5f))*(-.05f);
+            rect.anchorMin+=shift;rect.anchorMax+=shift;
         }
         void Resize()
         {
@@ -406,14 +542,15 @@ namespace Starframe.Flight
             var t=Rect(parent,name,x,y,w,h).gameObject.AddComponent<TextMeshProUGUI>();t.font=font;t.fontSize=size;t.color=HudInk;
             if(L10n.IsKey(value))L10n.Bind(t,value);else{t.text=value;L10n.ApplyFont(t);}
             t.raycastTarget=false;t.textWrappingMode=TextWrappingModes.NoWrap;t.overflowMode=TextOverflowModes.Ellipsis;UiStyle.ApplyText(t,size);
+            if(refinedFlightLayout)FigmaVisuals.SetFont(t,true);
             if(name=="ExitHint"||name.StartsWith("Controls",StringComparison.Ordinal))t.textWrappingMode=TextWrappingModes.Normal;
             return t;
         }
         RectTransform Panel(RectTransform parent,string name,float x,float y,float w,float h)
         {
-            bool monitor=name=="OwnStatusGlass"||name=="TargetStatusGlass";
+            bool monitor=!refinedFlightLayout&&(name=="OwnStatusGlass"||name=="TargetStatusGlass");
             bool floating=name!="ExitGlass"&&!monitor;
-            if(floating){var empty=Rect(parent,name,x,y,w,h).gameObject.AddComponent<RawImage>();empty.color=Color.clear;empty.raycastTarget=false;return empty.rectTransform;}
+            if(floating){var empty=Rect(parent,name,x,y,w,h).gameObject.AddComponent<RawImage>();empty.color=Color.clear;empty.raycastTarget=false;if(name=="OwnStatusGlass"||name=="TargetStatusGlass")glass.Add(empty);return empty.rectTransform;}
             var shadow=Rect(parent,name+"Shadow",x+3,y+4,w,h).gameObject.AddComponent<Image>();shadow.color=new Color(0,0,0,.08f);shadow.raycastTarget=false;
             var image=Rect(parent,name,x,y,w,h).gameObject.AddComponent<RawImage>();image.raycastTarget=false;
             var material=new Material(Shader.Find("Starframe/UI/BackdropBlur"));GlassUiPalette.Apply(material,name=="ExitGlass"?GlassUiPalette.Dialog:GlassUiPalette.Glass);

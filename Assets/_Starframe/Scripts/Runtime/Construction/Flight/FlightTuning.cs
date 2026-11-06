@@ -2,6 +2,11 @@
 // @calls ModuleDatabase, BlockModules, ShipAssembly
 // @tune maneuverThrustFraction:float:0-0.8:Legacy bot assistance summary fraction; does not set player propulsion allocation.
 // @tune maxSpeed:float:0+:Soft flight speed ceiling in metres per second.
+// @tune thrustMultiplier:float:0+:Global multiplier of all module thrust without changing native module stats.
+// @tune blockMassMultiplier:float:0.01+:Global multiplier of all module mass, including center of mass and inertia.
+// @tune heavyMassThresholdKg:float:1+:Mass above which extra speed and mobility penalties start.
+// @tune heavySpeedExponent:float:0+:Exponent of the inverse-mass speed limit curve.
+// @tune heavyManeuverExponent:float:0+:Exponent of the inverse-mass acceleration and turning curve.
 // @tune maxLinearAcceleration:float:0+:Soft ceiling applied to each independent translation axis.
 // @tune angularAccelerationGain:float:0+:Legacy serialized compatibility setting; unused by the current flight controller.
 // @tune angularAuthorityReferenceAcceleration:float:0.01+:Legacy serialized compatibility setting; unused by the current flight controller.
@@ -14,6 +19,9 @@
 // @tune rollBlendTime:float:0+:Roll input response duration in seconds.
 // @tune minimumTurnAuthority:float:0-1:Legacy serialized compatibility setting; unused by the current flight controller.
 // @tune boostPowerWatts:float:0+:Requested power while holding boost.
+// @tune boostPowerCostMultiplier:float:1+:Multiplier of authored boost power demand; normal propulsion requests one eighth of this boost demand.
+// @tune boostSpeedLimitMultiplier:float:1+:Speed ceiling during fully powered boost, relative to the ship's mass-adjusted normal ceiling.
+// @tune overspeedRecoveryDeceleration:float:0.01+:Speed removed per second above the current ceiling, even while continuing to thrust.
 // @tune boostMultiplier:float:1+:Boost multiplier at full allocated power.
 // @tune mouseDegreesPerPixel:float:0+:Virtual-stick sensitivity before the settings multiplier.
 // @tune maxAimOffsetDegrees:float:5-45:Maximum persistent virtual-stick offset.
@@ -42,6 +50,17 @@ namespace Starframe.Flight
         public ModuleDatabase database;
         [Tooltip("Player-facing damage readouts share the combat world's category tuning asset.")]
         public Starframe.Combat.CombatDamageTuning damageTuning;
+        [Header("Global mobility balance / both factions")]
+        [Min(0)]public float thrustMultiplier=1;
+        [Min(.01f)]public float blockMassMultiplier=1;
+        [Min(1)]public float heavyMassThresholdKg=100000;
+        [Min(0)]public float heavySpeedExponent=.65f,heavyManeuverExponent=.35f;
+        [Range(.01f,1)]public float heavyMinimumSpeedFraction=.35f,heavyMinimumManeuverFraction=.45f;
+        public float HeavySpeedScale(float mass)=>HeavyScale(mass,heavySpeedExponent,heavyMinimumSpeedFraction);
+        public float HeavyManeuverScale(float mass)=>HeavyScale(mass,heavyManeuverExponent,heavyMinimumManeuverFraction);
+        float HeavyScale(float mass,float exponent,float minimum)
+        {float ratio=Mathf.Max(1,Safe(mass)/Mathf.Max(1,Safe(heavyMassThresholdKg)));return Mathf.Max(Mathf.Clamp01(Safe(minimum)),Mathf.Pow(ratio,-Safe(exponent)));}
+        static float Safe(float value)=>float.IsNaN(value)||float.IsInfinity(value)?0:Mathf.Max(0,value);
         [HideInInspector]
         public ModuleStats[] modules={
             new ModuleStats(BlockShape.Cube,300,60),new ModuleStats(BlockShape.Wedge,150,30),
@@ -70,6 +89,11 @@ namespace Starframe.Flight
         public float rollBlendTime=.25f;
         [Header("Hold Shift / shared power")]
         [Min(0)]public float boostPowerWatts=100;
+        [Min(1)]public float boostPowerCostMultiplier=4;
+        [Min(1)]public float boostSpeedLimitMultiplier=2;
+        [Min(.01f)]public float overspeedRecoveryDeceleration=40;
+        public float BoostPowerDemandWatts=>Mathf.Max(0,boostPowerWatts)*Mathf.Max(1,boostPowerCostMultiplier);
+        public float PropulsionPowerDemandWatts=>BoostPowerDemandWatts/8f;
         [Min(1)]public float boostMultiplier=1.5f;
         public float aimSensitivity=1;
         [HideInInspector]public float aimDistance=1500,aimDeadZone=.12f;
@@ -95,8 +119,8 @@ namespace Starframe.Flight
         [Range(.15f,.45f)]public float cameraShipViewportY=.30f;
         [Header("Flowing white / cyan / blue voxel exhaust")]
         public Shader exhaustShader;
-        public float exhaustReferenceThrust=80000,exhaustLength=3.2f,exhaustMaxLength=9,exhaustWidth=.7f;
-        public float exhaustIntensity=3,exhaustResponse=14;
+        public float exhaustReferenceThrust=80000,exhaustLength=2.1f,exhaustMaxLength=5.5f,exhaustWidth=.42f;
+        public float exhaustIntensity=1.6f,exhaustResponse=14;
         [Tooltip("Exhaust particle travel cycles per second at full throttle and reference thrust.")]
         [Min(.05f)]public float exhaustFlowSpeed=1.6f;
         [Range(0,.2f)]public float exhaustIdle=0;
@@ -108,9 +132,17 @@ namespace Starframe.Flight
         public float gridWallSpacing=600,gridCellSize=12,gridFadeNear=30,gridFadeFar=130,gridPatchHalfExtent=220;
         [Range(0,1)]public float gridOpacity=.42f;
         public int Revision {get;private set;}
+        readonly System.Collections.Generic.Dictionary<BlockShape,ModuleStats> scaledStats=new System.Collections.Generic.Dictionary<BlockShape,ModuleStats>();
         void OnValidate(){Revision++;}
         public ModuleDefinition GetDefinition(BlockShape shape)=>database?database.Get(shape):null;
-        public ModuleStats Get(BlockShape shape){var d=GetDefinition(shape);if(d)return d.Stats;foreach(var m in modules)if(m.shape==shape)return m;return new ModuleStats(shape,300,60);}
+        public ModuleStats Get(BlockShape shape)
+        {
+            var d=GetDefinition(shape);ModuleStats raw=d?d.Stats:null;
+            if(raw==null)foreach(var m in modules)if(m.shape==shape){raw=m;break;}
+            if(raw==null)raw=new ModuleStats(shape,300,60);
+            if(!scaledStats.TryGetValue(shape,out var result)){result=new ModuleStats(shape,0,0);scaledStats.Add(shape,result);}
+            result.massKg=raw.massKg*Mathf.Max(.01f,Safe(blockMassMultiplier));result.maxHp=raw.maxHp;result.thrustNewtons=raw.thrustNewtons*Safe(thrustMultiplier);return result;
+        }
     }
     [Serializable] public sealed class ShipPartState
     {
@@ -121,6 +153,7 @@ namespace Starframe.Flight
     public sealed class ShipPerformance
     {
         public float totalMass,totalHp,currentHp,totalThrust,assistAcceleration,pitchAcceleration,yawAcceleration,rollSpeed,angularRate,maxSpeed;
+        public float massManeuverScale=1;
         public Vector3 accelerationPositive,accelerationNegative;
         public Vector3 centerOfMass,inertiaTensorKgM2;
         public Vector3 angularAccelerationPositive,angularAccelerationNegative;
@@ -181,7 +214,7 @@ namespace Starframe.Flight
             foreach(var part in parts)if(part.present)source.Add(part);
             var inverse=Quaternion.Inverse(coreRotation);float totalMass=0;Vector3 weightedCenter=Vector3.zero;
             foreach(var part in source){var m=tuning.Get(part.record.shape);float mass=Mathf.Max(0,m.massKg);totalMass+=mass;weightedCenter+=(part.record.position+part.record.rotation*BlockModules.LocalCenter(part.record.shape))*mass;}
-            p.totalMass=totalMass;float safeMass=Mathf.Max(1,totalMass);p.centerOfMass=totalMass>0?weightedCenter/totalMass:Vector3.zero;
+            p.totalMass=totalMass;p.maxSpeed=tuning.maxSpeed*tuning.HeavySpeedScale(totalMass);p.massManeuverScale=tuning.HeavyManeuverScale(totalMass);float safeMass=Mathf.Max(1,totalMass);p.centerOfMass=totalMass>0?weightedCenter/totalMass:Vector3.zero;
             Vector3 centerInCore=inverse*p.centerOfMass;
             // Distribute each module's mass over its occupied unit cells. Unit cubes contribute
             // their own 1/6 m r^2 inertia in addition to the parallel-axis term.
@@ -236,10 +269,11 @@ namespace Starframe.Flight
             }
             // Keep this summary for older bot-navigation heuristics; player flight uses the
             // per-module axis allocation below and no longer reserves a fixed assist share.
-            p.assistAcceleration=p.totalThrust*Mathf.Clamp01(tuning.maneuverThrustFraction)/safeMass;
-            p.linearCapacityPositive=p.accelerationPositive/safeMass;p.linearCapacityNegative=p.accelerationNegative/safeMass;
+            p.assistAcceleration=p.totalThrust*Mathf.Clamp01(tuning.maneuverThrustFraction)/safeMass*p.massManeuverScale;
+            p.linearCapacityPositive=p.accelerationPositive/safeMass*p.massManeuverScale;p.linearCapacityNegative=p.accelerationNegative/safeMass*p.massManeuverScale;
             p.angularCapacityPositive=new Vector3(torquePositive.x/Mathf.Max(.001f,p.inertiaTensorKgM2.x),torquePositive.y/Mathf.Max(.001f,p.inertiaTensorKgM2.y),torquePositive.z/Mathf.Max(.001f,p.inertiaTensorKgM2.z))*Mathf.Rad2Deg;
             p.angularCapacityNegative=new Vector3(torqueNegative.x/Mathf.Max(.001f,p.inertiaTensorKgM2.x),torqueNegative.y/Mathf.Max(.001f,p.inertiaTensorKgM2.y),torqueNegative.z/Mathf.Max(.001f,p.inertiaTensorKgM2.z))*Mathf.Rad2Deg;
+            p.angularCapacityPositive*=p.massManeuverScale;p.angularCapacityNegative*=p.massManeuverScale;
             // Use the weaker direction for both acceleration and braking on each rotation
             // axis. This is a stable performance model, not a free-running nozzle simulation.
             for(int axis=0;axis<3;axis++){
@@ -257,8 +291,8 @@ namespace Starframe.Flight
                 p.angularAccelerationNegative[axis]=SoftLimit(p.angularCapacityNegative[axis],tuning.maxAngularAcceleration);
                 p.angularRatePositive[axis]=RateFromAcceleration(p.angularAccelerationPositive[axis],tuning,axis);
                 p.angularRateNegative[axis]=RateFromAcceleration(p.angularAccelerationNegative[axis],tuning,axis);
-                p.maxSpeedStoppingDistancePositive[axis]=StoppingDistance(tuning.maxSpeed,p.accelerationNegative[axis]);
-                p.maxSpeedStoppingDistanceNegative[axis]=StoppingDistance(tuning.maxSpeed,p.accelerationPositive[axis]);
+                p.maxSpeedStoppingDistancePositive[axis]=StoppingDistance(p.maxSpeed,p.accelerationNegative[axis]);
+                p.maxSpeedStoppingDistanceNegative[axis]=StoppingDistance(p.maxSpeed,p.accelerationPositive[axis]);
             }
             // Pitch turns use vertical authority; yaw turns use lateral authority. Both the
             // rotational rate and the available centripetal acceleration bound the radius.
@@ -267,8 +301,8 @@ namespace Starframe.Flight
                 int lateralAxis=turn==0?1:0,angularAxis=turn;
                 float rate=Mathf.Min(p.angularRatePositive[angularAxis],p.angularRateNegative[angularAxis]);
                 float lateralAcceleration=Mathf.Min(p.accelerationPositive[lateralAxis],p.accelerationNegative[lateralAxis]);
-                float rateRadius=rate>.001f?tuning.maxSpeed/(rate*Mathf.Deg2Rad):float.PositiveInfinity;
-                float accelerationRadius=lateralAcceleration>.001f?tuning.maxSpeed*tuning.maxSpeed/lateralAcceleration:float.PositiveInfinity;
+                float rateRadius=rate>.001f?p.maxSpeed/(rate*Mathf.Deg2Rad):float.PositiveInfinity;
+                float accelerationRadius=lateralAcceleration>.001f?p.maxSpeed*p.maxSpeed/lateralAcceleration:float.PositiveInfinity;
                 p.turningRadiusAtMaxSpeed[turn]=Mathf.Max(rateRadius,accelerationRadius);
             }
             p.pitchAcceleration=Mathf.Min(p.angularAccelerationPositive.x,p.angularAccelerationNegative.x);
@@ -310,8 +344,8 @@ namespace Starframe.Flight
             }
             for(int axis=0;axis<3;axis++)
             {
-                linearAcceleration[axis]=SoftLimitSigned(linearAcceleration[axis],tuning.maxLinearAcceleration);
-                angularAcceleration[axis]=SoftLimitSigned(angularAcceleration[axis]*Mathf.Rad2Deg,tuning.maxAngularAcceleration);
+                linearAcceleration[axis]=SoftLimitSigned(linearAcceleration[axis]*massManeuverScale,tuning.maxLinearAcceleration);
+                angularAcceleration[axis]=SoftLimitSigned(angularAcceleration[axis]*Mathf.Rad2Deg*massManeuverScale,tuning.maxAngularAcceleration);
             }
             return linearAcceleration;
         }

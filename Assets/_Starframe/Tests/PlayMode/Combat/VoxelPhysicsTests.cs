@@ -40,20 +40,7 @@ namespace Starframe.Tests
             Assert.That(b.AliveCount, Is.EqualTo(2)); Assert.That(b.GetComponents<Rigidbody>().Length, Is.EqualTo(1));
             Assert.That(a.Body.useGravity || b.Body.useGravity, Is.False);
         }
-        [UnityTest] public IEnumerator BreakingBridgeMakesSurvivingBodiesDriftIndependentlyAndRemainDamageable()
-        {
-            var body = Body(Vector3.zero, Vector3Int.left, Vector3Int.zero, Vector3Int.right);
-            body.ApplyDamage(Vector3Int.zero, 1000); body.FlushMeshChanges(); yield return null;
-            var pieces = scene.GetRootGameObjects().SelectMany(go => go.GetComponentsInChildren<VoxelStructureRuntime>()).ToArray();
-            Assert.That(pieces.Length, Is.EqualTo(2)); Assert.That(pieces.Sum(p => p.AliveCount), Is.EqualTo(2));
-            float initialDistance = Vector3.Distance(pieces[0].Body.worldCenterOfMass, pieces[1].Body.worldCenterOfMass);
-            for (int i = 0; i < 50; i++) physics.Simulate(.02f);
-            Assert.That(Vector3.Distance(pieces[0].Body.worldCenterOfMass, pieces[1].Body.worldCenterOfMass), Is.GreaterThan(initialDistance + .1f));
-            var victim = pieces[0]; var cell = victim.Cells.First(pair => pair.Value.Alive).Key;
-            victim.ApplyDamage(cell, 1000); victim.FlushMeshChanges();
-            Assert.That(pieces.Sum(p => p.AliveCount), Is.EqualTo(1)); Assert.That(pieces[1].ColliderCount, Is.GreaterThan(0));
-            yield return null;
-        }
+
         [UnityTest] public IEnumerator EditorPreviewNeverCreatesAnActivePhysicsBodyOrCollider()
         {
             var asset = ScriptableObject.CreateInstance<VoxelAssetDefinition>(); assets.Add(asset); asset.cells.Add(new VoxelCell());

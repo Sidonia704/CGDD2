@@ -1,0 +1,87 @@
+{
+    "MonoBehaviour": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "Sword1",
+        "m_EditorClassIdentifier": "Starframe.Construction::Starframe.Flight.ModuleDefinition",
+        "shape": 34,
+        "displayName": "光束刃 1",
+        "category": 3,
+        "cost": 180.0,
+        "massKg": 600.0,
+        "maxHp": 1344.0,
+        "recoverySeconds": 6.0,
+        "thrustNewtons": 0.0,
+        "occupiedCells": [
+            {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            {
+                "x": 0,
+                "y": 0,
+                "z": 1
+            },
+            {
+                "x": 0,
+                "y": 0,
+                "z": 2
+            }
+        ],
+        "localExhaustDirections": [],
+        "localNozzlePositions": [],
+        "muzzleLocalPosition": {
+            "x": -0.008112262934446335,
+            "y": 0.07542693614959717,
+            "z": 2.4284467697143556
+        },
+        "muzzleClearanceDiameter": 0.30000001192092898,
+        "mesh": {
+            "fileID": 4300000,
+            "guid": "683b65357924a784ca0b793a9fcccbf5",
+            "type": 2
+        },
+        "outline": {
+            "instanceID": 0
+        },
+        "drawOutline": false,
+        "material": {
+            "fileID": 2100000,
+            "guid": "06381e101fc192540a489ce251be5e65",
+            "type": 2
+        },
+        "icon": {
+            "fileID": 21300000,
+            "guid": "92e0c5c222f8cd1428b9966cce131458",
+            "type": 3
+        },
+        "selectedIcon": {
+            "fileID": 21300000,
+            "guid": "fc41e31ec76e35f428b9eea8d3ce8f1c",
+            "type": 3
+        },
+        "weapon": {
+            "fileID": 11400000,
+            "guid": "d7aa6dfe0182df4499df169cddf14600",
+            "type": 2
+        },
+        "countermeasure": {
+            "instanceID": 0
+        },
+        "generationWatts": 0.0,
+        "storageJoules": 0.0,
+        "thrusterPowerWatts": 0.0,
+        "shieldPowerWatts": 0.0,
+        "shieldCapacity": 0.0,
+        "shieldRadius": 8.0,
+        "shieldRecoveryDelay": 2.0,
+        "shieldRecoveryPerSecond": 50.0,
+        "shieldSurfaceMaterial": {
+            "instanceID": 0
+        },
+        "shieldSurfaceMesh": {
+            "instanceID": 0
+        }
+    }
+}
