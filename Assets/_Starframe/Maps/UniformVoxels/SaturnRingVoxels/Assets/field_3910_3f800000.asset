@@ -1,0 +1,1200 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ad3e4160fab09e458ddaf739f4ec310, type: 3}
+  m_Name: field_3910_3f800000
+  m_EditorClassIdentifier: Starframe.Construction::Starframe.Maps.VoxelAssetDefinition
+  category: Reference rock
+  cellSize: 1
+  massPerCell: 189.69957
+  surfaces:
+  - {fileID: 2100000, guid: 93ba0aa92397b3b4db826f6d74509662, type: 2}
+  hullModules: {fileID: 11400000, guid: 3969fbf1ef6f55a439fe7bd50b39da4a, type: 2}
+  initialLodMesh: {fileID: 4300000, guid: 2ffc8ed1827da7b48a8ed292c6730290, type: 2}
+  initialLodSignature: 477749287695691923
+  baseColor: {r: 1, g: 1, b: 1, a: 1}
+  surfaceColors:
+  - {r: 1, g: 1, b: 1, a: 1}
+  cells:
+  - position: {x: -1, y: -1, z: -4}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 1, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 0, y: -1, z: -4}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 1, y: -1, z: -4}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 0, z: 3}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -1, y: 0, z: -4}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 2, z: 2}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 0, y: 0, z: -4}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 1, y: 0, z: -4}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 0, z: 3}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -1, y: 1, z: -4}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 0, y: 1, z: -4}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -2, y: -3, z: -3}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 0, z: 2}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -1, y: -3, z: -3}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 0, z: 2}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 0, y: -3, z: -3}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 0, z: 2}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 1, y: -3, z: -3}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 0, z: 2}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -1, y: -2, z: -3}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 0, y: -2, z: -3}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 1, y: -2, z: -3}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 2, y: -2, z: -3}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 0, z: 3}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -1, y: -1, z: -3}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 1, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 0, y: -1, z: -3}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 1, y: -1, z: -3}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 2, y: -1, z: -3}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 0, z: 3}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 0, y: 0, z: -3}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 1, y: 0, z: -3}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 2, y: 0, z: -3}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 0, z: 3}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -1, y: 1, z: -3}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 2, z: 2}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 0, y: 1, z: -3}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 1, y: 1, z: -3}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 2, y: 1, z: -3}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 0, z: 3}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -1, y: 2, z: -3}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 0, y: 2, z: -3}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 1, y: 2, z: -3}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -1, y: -4, z: -2}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 0, z: 2}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 0, y: -4, z: -2}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 0, z: 2}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -2, y: -3, z: -2}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -1, y: -3, z: -2}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 0, y: -3, z: -2}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 1, y: -3, z: -2}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 2, y: -3, z: -2}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 3, z: 2}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -2, y: -2, z: -2}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 1, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -1, y: -2, z: -2}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 0, y: -2, z: -2}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 1, y: -2, z: -2}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 2, y: -2, z: -2}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -1, y: -1, z: -2}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 1, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 0, y: -1, z: -2}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 1, y: -1, z: -2}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 2, y: -1, z: -2}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 3, y: -1, z: -2}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 0, z: 3}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 0, y: 0, z: -2}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 1, y: 0, z: -2}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 2, y: 0, z: -2}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 3, y: 0, z: -2}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 0, z: 3}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 0, y: 1, z: -2}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 1, y: 1, z: -2}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 2, y: 1, z: -2}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -2, y: 2, z: -2}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 0, z: 2}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -1, y: 2, z: -2}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 0, y: 2, z: -2}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 1, y: 2, z: -2}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 2, y: 2, z: -2}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 3, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -1, y: 3, z: -2}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 0, y: 3, z: -2}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -2, y: -4, z: -1}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 1, z: 2}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -1, y: -4, z: -1}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 0, y: -4, z: -1}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 1, y: -4, z: -1}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 3, z: 2}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -2, y: -3, z: -1}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -1, y: -3, z: -1}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 0, y: -3, z: -1}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 1, y: -3, z: -1}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 2, y: -3, z: -1}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 3, z: 2}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -2, y: -2, z: -1}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 1, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -1, y: -2, z: -1}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 0, y: -2, z: -1}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 1, y: -2, z: -1}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 2, y: -2, z: -1}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 3, y: -2, z: -1}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 3, z: 2}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -1, y: -1, z: -1}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 1, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 0, y: -1, z: -1}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 1, y: -1, z: -1}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 2, y: -1, z: -1}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 3, y: -1, z: -1}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 0, y: 0, z: -1}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 1, y: 0, z: -1}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 2, y: 0, z: -1}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 3, y: 0, z: -1}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 0, y: 1, z: -1}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 1, y: 1, z: -1}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 2, y: 1, z: -1}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 3, y: 1, z: -1}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 3, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -2, y: 2, z: -1}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -1, y: 2, z: -1}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 0, y: 2, z: -1}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 1, y: 2, z: -1}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 2, y: 2, z: -1}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 3, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -2, y: 3, z: -1}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 1, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -1, y: 3, z: -1}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 0, y: 3, z: -1}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 1, y: 3, z: -1}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 3, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -2, y: -4, z: 0}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 1, z: 2}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -1, y: -4, z: 0}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 0, y: -4, z: 0}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 1, y: -4, z: 0}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 3, z: 2}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -3, y: -3, z: 0}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 1, z: 2}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -2, y: -3, z: 0}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -1, y: -3, z: 0}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 0, y: -3, z: 0}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 1, y: -3, z: 0}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 2, y: -3, z: 0}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 3, z: 2}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -4, y: -2, z: 0}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 1, z: 2}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -3, y: -2, z: 0}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -2, y: -2, z: 0}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -1, y: -2, z: 0}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 1, y: -2, z: 0}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 2, y: -2, z: 0}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 3, y: -2, z: 0}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 3, z: 2}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -4, y: -1, z: 0}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -3, y: -1, z: 0}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -2, y: -1, z: 0}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -1, y: -1, z: 0}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 0, y: -1, z: 0}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 2, y: -1, z: 0}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 3, y: -1, z: 0}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -4, y: 0, z: 0}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -3, y: 0, z: 0}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -2, y: 0, z: 0}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -1, y: 0, z: 0}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 0, y: 0, z: 0}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 2, y: 0, z: 0}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 3, y: 0, z: 0}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -4, y: 1, z: 0}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 1, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -3, y: 1, z: 0}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -2, y: 1, z: 0}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -1, y: 1, z: 0}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 0, y: 1, z: 0}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 1, y: 1, z: 0}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 2, y: 1, z: 0}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 3, y: 1, z: 0}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 3, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -3, y: 2, z: 0}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 1, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -2, y: 2, z: 0}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -1, y: 2, z: 0}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 0, y: 2, z: 0}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 1, y: 2, z: 0}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 2, y: 2, z: 0}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 3, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -2, y: 3, z: 0}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 1, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -1, y: 3, z: 0}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 0, y: 3, z: 0}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 1, y: 3, z: 0}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 3, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -1, y: -4, z: 1}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 2, z: 2}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 0, y: -4, z: 1}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 2, z: 2}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -3, y: -3, z: 1}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 1, z: 2}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -2, y: -3, z: 1}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -1, y: -3, z: 1}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 0, y: -3, z: 1}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 1, y: -3, z: 1}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 2, y: -3, z: 1}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 3, z: 2}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -3, y: -2, z: 1}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -2, y: -2, z: 1}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -1, y: -2, z: 1}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 0, y: -2, z: 1}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 1, y: -2, z: 1}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 2, y: -2, z: 1}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -4, y: -1, z: 1}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 1, z: 1}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -3, y: -1, z: 1}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -2, y: -1, z: 1}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -1, y: -1, z: 1}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 1, y: -1, z: 1}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 2, y: -1, z: 1}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 3, y: -1, z: 1}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 2, z: 1}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -4, y: 0, z: 1}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 1, z: 1}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -3, y: 0, z: 1}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -2, y: 0, z: 1}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -1, y: 0, z: 1}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 1, y: 0, z: 1}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 2, y: 0, z: 1}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 3, y: 0, z: 1}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 2, z: 1}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -3, y: 1, z: 1}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -2, y: 1, z: 1}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -1, y: 1, z: 1}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 0, y: 1, z: 1}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 1, y: 1, z: 1}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 2, y: 1, z: 1}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -3, y: 2, z: 1}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 1, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -2, y: 2, z: 1}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -1, y: 2, z: 1}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 0, y: 2, z: 1}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 1, y: 2, z: 1}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 2, y: 2, z: 1}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 3, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -1, y: 3, z: 1}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 2, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 0, y: 3, z: 1}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 2, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -2, y: -3, z: 2}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 2, z: 2}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -1, y: -3, z: 2}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 2, z: 2}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 0, y: -3, z: 2}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 2, z: 2}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 1, y: -3, z: 2}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 2, z: 2}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -3, y: -2, z: 2}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 1, z: 1}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -2, y: -2, z: 2}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -1, y: -2, z: 2}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 0, y: -2, z: 2}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 1, y: -2, z: 2}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 2, y: -2, z: 2}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 2, z: 1}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -3, y: -1, z: 2}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 1, z: 1}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -2, y: -1, z: 2}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -1, y: -1, z: 2}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 0, y: -1, z: 2}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 1, y: -1, z: 2}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 2, y: -1, z: 2}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 2, z: 1}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -3, y: 0, z: 2}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 1, z: 1}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -2, y: 0, z: 2}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -1, y: 0, z: 2}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 0, y: 0, z: 2}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 1, y: 0, z: 2}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 2, y: 0, z: 2}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 2, z: 1}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -3, y: 1, z: 2}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 1, z: 1}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -2, y: 1, z: 2}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -1, y: 1, z: 2}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 0, y: 1, z: 2}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 1, y: 1, z: 2}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 2, y: 1, z: 2}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 2, z: 1}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -2, y: 2, z: 2}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 2, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -1, y: 2, z: 2}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 2, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 0, y: 2, z: 2}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 2, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 1, y: 2, z: 2}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 2, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -1, y: -2, z: 3}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 2, z: 2}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 0, y: -2, z: 3}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 2, z: 2}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -2, y: -1, z: 3}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 1, z: 1}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -1, y: -1, z: 3}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 0, y: -1, z: 3}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 1, y: -1, z: 3}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 2, z: 1}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -2, y: 0, z: 3}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 1, z: 1}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -1, y: 0, z: 3}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 0, y: 0, z: 3}
+    surface: 0
+    shape: 0
+    quarterTurns: {x: 0, y: 0, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 1, y: 0, z: 3}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 2, z: 1}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: -1, y: 1, z: 3}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 2, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  - position: {x: 0, y: 1, z: 3}
+    surface: 0
+    shape: 1
+    quarterTurns: {x: 0, y: 2, z: 0}
+    modelOffset: {x: 0, y: 0, z: 0}
+  cellChunks:
+  - start: 0
+    count: 233
+  authoredPhysics:
+    valid: 1
+    mass: 44200
+    centerOfMass: {x: 0.12334366, y: 0.1567802, z: 0.26749226}
+    inertiaTensor: {x: 319097.53, y: 379767.25, z: 436684.4}
+    inertiaTensorRotation: {x: 0.12318229, y: -0.3822772, z: -0.18561827, w: 0.8967922}
