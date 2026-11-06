@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8287298db17d962428b8b5da3ce473ae, type: 3}
+  m_Name: SceneVoxelModules
+  m_EditorClassIdentifier: Starframe.Construction::Starframe.Flight.ModuleDatabase
+  modules:
+  - {fileID: 11400000, guid: 44e756b93a192f04f8c8ea06424d374b, type: 2}
+  - {fileID: 11400000, guid: 967e266deb8b9db44811de1d9e1da5a6, type: 2}
+  - {fileID: 11400000, guid: c1681bacbabaf4d49a2c89042b0d9223, type: 2}
+  - {fileID: 11400000, guid: fc68f635ad55dfa48be1f52c8933e76c, type: 2}
+  - {fileID: 11400000, guid: 0c1e9829d7682c04cbcb951958d76b26, type: 2}
+  - {fileID: 11400000, guid: 04523d495b8c82c45a655afc0c83a465, type: 2}
+  - {fileID: 11400000, guid: 8a98bfccc1e65d147a1398e80ab4eb6d, type: 2}
+  - {fileID: 11400000, guid: 5154050812e4854449892857decbd76b, type: 2}

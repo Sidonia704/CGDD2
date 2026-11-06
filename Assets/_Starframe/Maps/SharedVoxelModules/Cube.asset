@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57c7601c94efac44dacfde24ada57da4, type: 3}
+  m_Name: Scene Cube
+  m_EditorClassIdentifier: Starframe.Construction::Starframe.Flight.ModuleDefinition
+  shape: 0
+  displayName: "\u6B63\u65B9\u4F53"
+  category: 0
+  cost: 0
+  massKg: 150
+  maxHp: 461.99997
+  recoverySeconds: 4
+  thrustNewtons: 0
+  occupiedCells:
+  - {x: 0, y: 0, z: 0}
+  localExhaustDirections: []
+  localNozzlePositions: []
+  muzzleLocalPosition: {x: 0, y: 0.27, z: 1.52}
+  muzzleClearanceDiameter: 0.25
+  mesh: {fileID: 4300000, guid: 1088d44afc5020b4eb0df4eb6c7deffb, type: 2}
+  outline: {fileID: 0}
+  drawOutline: 0
+  material: {fileID: 2100000, guid: 3aeba4f838df3a74696d5ef96009c903, type: 2}
+  icon: {fileID: 21300000, guid: ce242cc95539ffc449c26854b09c182a, type: 3}
+  selectedIcon: {fileID: 21300000, guid: f07fcf7732e89af4c8886a4c1f1112e1, type: 3}
+  weapon: {fileID: 0}
+  countermeasure: {fileID: 0}
+  generationWatts: 0
+  storageJoules: 0
+  thrusterPowerWatts: 0
+  shieldPowerWatts: 0
+  shieldCapacity: 0
+  shieldRadius: 8
+  shieldRecoveryDelay: 2
+  shieldRecoveryPerSecond: 50
+  shieldSurfaceMaterial: {fileID: 0}
+  shieldSurfaceMesh: {fileID: 0}
