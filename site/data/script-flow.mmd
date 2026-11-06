@@ -3,21 +3,25 @@
 flowchart TD
   AimProjection("<b>AimProjection</b><br/>Project an aiming direction into screen coordinates.")
   ArcadeMissionDefinition("<b>ArcadeMissionDefinition</b><br/>Configure editable enemy batches, deployment rhythm and attack concurrency for one arcade mission.")
-  ArcadeMissionDirector("<b>ArcadeMissionDirector</b><br/>Stream finite enemy formations through five overlapping stages, with continuous flight, fair attack windows and mission outcomes.")
+  ArcadeMissionDirector("<b>ArcadeMissionDirector</b><br/>Stream authored finite enemy formations through overlapping stages, with continuous flight, fair attack windows and mission outcomes.")
   ArcadeWaveProgress("<b>ArcadeWaveProgress</b><br/>Track finite wave queues and idempotent enemy defeats independently of presentation and physics.")
-  AssemblyAppNavigation("<b>AssemblyAppNavigation</b><br/>Preserve the edited ship while navigating between construction and menus.")
+  AssemblyAppNavigation("<b>AssemblyAppNavigation</b><br/>Preserve the edited ship while navigating from the workbench and route Escape through catalogue and weapon-group interactions.")
+  AssemblyModuleCatalogue("<b>AssemblyModuleCatalogue</b><br/>Show the real module meshes as a selectable three-dimensional catalogue with an independent camera view.")
   AssemblyShieldPreview("<b>AssemblyShieldPreview</b><br/>Preview shield-generator coverage while editing a ship.")
+  AssemblyWeaponGroups("<b>AssemblyWeaponGroups</b><br/>Commit live weapon assignments only on drag release, then clear transient selection; group cards inspect membership.")
   BattleTuning("<b>BattleTuning</b><br/>Define recovery, target-lock, opponent behavior and respawn defaults.")
   BlockConnectivity("<b>BlockConnectivity</b><br/>Check physically supported face connections and reject equipment stacked onto other weapons.")
   BlockGeometry("<b>BlockGeometry</b><br/>Build reusable solid, outline and collision meshes for modular parts.")
   BlockModules("<b>BlockModules</b><br/>Resolve full-cell occupancy, equipment mounting faces and independent nozzle clearances.")
   BlockPlacement("<b>BlockPlacement</b><br/>Convert grid poses, reject empty support faces and copy modular-part records.")
+  BlueprintCostDisplay("<b>BlueprintCostDisplay</b><br/>Price blueprint thumbnail cards using the same mission/module cost rules as deployment.")
   BlueprintData("<b>BlueprintData</b><br/>Store editable ship parts and weapon groups separately from battle damage.")
-  BlueprintLibraryScreen("<b>BlueprintLibraryScreen</b><br/>Manage saved ship blueprints on a dedicated searchable page with a 3D preview and confirmed file operations.")
+  BlueprintLibraryScreen("<b>BlueprintLibraryScreen</b><br/>Manage saved ship blueprints in a paginated thumbnail grid with live metrics and confirmed file operations.")
   BlueprintRepository("<b>BlueprintRepository</b><br/>Validate, migrate, save and load player blueprints.")
   BotBehaviorProfile("<b>BotBehaviorProfile</b><br/>Define editable enemy piloting, engagement distance and firing cadence without overriding ship performance.")
-  CombatDamageTuning("<b>CombatDamageTuning</b><br/>Expose independent live non-missile and missile damage multipliers without rewriting weapon definitions.")
+  CombatDamageTuning("<b>CombatDamageTuning</b><br/>Compose live global, category and player damage multipliers without rewriting weapon definitions.")
   CombatVfxPool("<b>CombatVfxPool</b><br/>Pool coloured muzzle flashes, weapon impacts, missile explosions and destruction fragments.")
+  CombatWeaponStatusGraphic("<b>CombatWeaponStatusGraphic</b><br/>Present per-mount readiness, compact 8/16-round VLS magazines, missile reload seconds and Gatling heat.")
   CoreVelocityEstimator("<b>CoreVelocityEstimator</b><br/>Estimate target-core motion for projectile lead calculations.")
   CylindricalHitQuery("<b>CylindricalHitQuery</b><br/>Intersect cylindrical projectile volumes with transformed collider meshes.")
   DebrisCluster("<b>DebrisCluster</b><br/>Track detached-part clusters and stable collision bounds from freely spinning physics poses.")
@@ -25,81 +29,90 @@ flowchart TD
   DebrisPartHitbox("<b>DebrisPartHitbox</b><br/>Apply projectile damage to detached wreckage parts.")
   DebrisWorld("<b>DebrisWorld</b><br/>Simulate destructible ship wreckage and clear it 90 simulation seconds after detachment, including later fragments.")
   DeploymentValidator("<b>DeploymentValidator</b><br/>Validate ship structure, delivery-specific weapon and countermeasure configuration, budget and flight readiness.")
+  DirectAimAssist("<b>DirectAimAssist</b><br/>Resolve player reticle hull hits and bounded muzzle-parallax convergence without target acquisition.")
   EnemyArchetypeDefinition("<b>EnemyArchetypeDefinition</b><br/>Describe an editable enemy blueprint, size, score and pilot behavior for authored encounters.")
   EnemyFleetCatalog("<b>EnemyFleetCatalog</b><br/>Make authored enemy blueprints available as safe, editable player-library copies.")
+  FigmaHangarGrid("<b>FigmaHangarGrid</b><br/>Place the native construction grid beneath the live hangar ship and cover the camera's visible floor as the preview orbits or zooms.")
+  FigmaVisuals("<b>FigmaVisuals</b><br/>Resolve the shared Figma palette and Latin typography with a smaller Chinese fallback.")
   FlareDefinition("<b>FlareDefinition</b><br/>Define the countermeasure salvo, lifetime, missile decoy chance and voxel appearance.")
-  FlareWorld("<b>FlareWorld</b><br/>Pool yellow voxel sparks and expose each timed salvo as one moving missile decoy.")
-  FlightInstrumentGraphic("<b>FlightInstrumentGraphic</b><br/>Draw minimal speed, shield and energy instruments without enclosing panels or decorative geometry.")
+  FlareWorld("<b>FlareWorld</b><br/>Present frame-interpolated yellow flares and continuous burst flashes, preserving fixed-step decoy movement.")
+  FlightInstrumentGraphic("<b>FlightInstrumentGraphic</b><br/>Draw the Figma speed tape, shield and energy bars from live flight telemetry.")
   FlightRangeBootstrap("<b>FlightRangeBootstrap</b><br/>Create the range player, camera, flight systems and combat world, with an optional temporary scenery spawn and arena size.")
   FlightSession("<b>FlightSession</b><br/>Transfer a blueprint snapshot between the editor and test range.")
-  FlightShipRuntime("<b>FlightShipRuntime</b><br/>Track surviving parts, detachments, power and nozzle availability; actual hull damage delays only the affected part recovery.")
+  FlightShipRuntime("<b>FlightShipRuntime</b><br/>Track surviving parts, detachments, power and original sortie cost; actual hull damage delays only the affected part recovery.")
   FlightTuning("<b>FlightTuning</b><br/>Cache independent balanced flight axes from surviving nozzle layout, mass and inertia.")
   FrameworkSmokeRun("<b>FrameworkSmokeRun</b><br/>Run opt-in development checks using isolated preferences and blueprints.")
   GameAppBootstrap("<b>GameAppBootstrap</b><br/>Initialize the hangar, selected ship and application screens.")
   GameAppScreens("<b>GameAppScreens</b><br/>Implement deployment, blueprint selection and range-setup screens of the app.")
-  GameAudio("<b>GameAudio</b><br/>Route gameplay sounds, music and engine loops through shared audio settings, reserving one bounded voice for incoming missiles.")
-  GameAudioTuning("<b>GameAudioTuning</b><br/>Define sound cues, engine response, music levels and playback limits.")
+  GameAudio("<b>GameAudio</b><br/>Route weapon sounds and warnings; reserve DSP-scheduled Gatling start/sustain/end channels and one missile-warning voice.")
+  GameAudioTuning("<b>GameAudioTuning</b><br/>Define weapon and warning cues, Gatling start/end phases, alternating clips, engine response, music levels and playback limits.")
   GameInput("<b>GameInput</b><br/>Resolve configurable actions and capture valid input bindings.")
   GameResultsScreen("<b>GameResultsScreen</b><br/>Present reported mission results without rewriting the saved blueprint.")
   GameSettings("<b>GameSettings</b><br/>Validate and persist display, audio, language and input preferences.")
+  GatlingHeatGraphic("<b>GatlingHeatGraphic</b><br/>Draw a separate Gatling heat gauge using reported heat and the real per-mount overheat state.")
+  GatlingThermalState("<b>GatlingThermalState</b><br/>Preserve each Gatling mount's powered spin-up, simultaneous heating/cooling and overheat lockout.")
   GlassUiPalette("<b>GlassUiPalette</b><br/>Provide shared UI colors, materials, glass effects and text setup.")
   HangarShipPreview("<b>HangarShipPreview</b><br/>Display and orbit the selected blueprint in the hangar.")
   InterceptSolver("<b>InterceptSolver</b><br/>Solve a finite-speed projectile interception against a moving target.")
   L10n("<b>L10n</b><br/>Resolve UI language, localized strings and language-owned fonts.")
-  LaserVisualPool("<b>LaserVisualPool</b><br/>Pool muzzle-clipped voxel tracers or continuous bright beams with fixed-endpoint impact fading.")
+  LaserVisualPool("<b>LaserVisualPool</b><br/>Pool muzzle-clipped tracers with family-specific single kinetic cores or layered green lasers and fixed-endpoint impact fading.")
   LocalizedUiFont("<b>LocalizedUiFont</b><br/>Apply localized fallback fonts to user-supplied UI text.")
   LocalizedUiText("<b>LocalizedUiText</b><br/>Bind localized table entries and formatting arguments to UI labels.")
-  MapSandboxCamera("<b>MapSandboxCamera</b><br/>Provide a developer-only free-flight camera and instant damage probe in exported physics sandbox scenes.")
+  MapSandboxCamera("<b>MapSandboxCamera</b><br/>Provide a developer-only free-flight camera and collision inspection in exported physics sandbox scenes.")
+  MenuActionShape("<b>MenuActionShape</b><br/>Render the Figma menu action silhouette and release owned icon materials.")
+  MenuShipMetrics("<b>MenuShipMetrics</b><br/>Compute read-only menu ship statistics from the real blueprint, propulsion and combat definitions.")
   MenuSurface("<b>MenuSurface</b><br/>Build shared menu controls, dialogs and glass panels.")
   MissileGuidance("<b>MissileGuidance</b><br/>Steer finite visible-target missile seekers with bounded turns, braking through cone grace before permanent lock loss.")
   MissionCatalog("<b>MissionCatalog</b><br/>Find configured missions by stable identifier.")
   MissionDefinition("<b>MissionDefinition</b><br/>Define mission identity and difficulty-dependent deployment budgets.")
-  MissionHUD("<b>MissionHUD</b><br/>Display only the active stage fraction at the left, with text-only mission outcomes.")
+  MissionHUD("<b>MissionHUD</b><br/>Display the active wave at top center, with text-only mission outcomes.")
   MissionResults("<b>MissionResults</b><br/>Record a level-reported outcome and return to the result screen.")
   ModuleDatabase("<b>ModuleDatabase</b><br/>Index configured module definitions by part shape.")
   ModuleDefinition("<b>ModuleDefinition</b><br/>Define per-part mass, durability, thrust, weapons, countermeasures, power and shields.")
   ModuleGlowAccents("<b>ModuleGlowAccents</b><br/>Attach shared glow accents to every physical engine nozzle and to every weapon bore, not just the averaged muzzle.")
-  ProjectileWorld("<b>ProjectileWorld</b><br/>Resolve faction-scaled swept shots, finite seekers and bounded missile blasts blocked by charged shields.")
+  ProjectileWorld("<b>ProjectileWorld</b><br/>Resolve faction-scaled swept shots, finite seekers and missile blasts with full VLS per-round payloads; notify actual shots for audio.")
   RangeAppNavigation("<b>RangeAppNavigation</b><br/>Open live range options and settings while suppressing player input.")
   RangeAsteroidBackdrop("<b>RangeAsteroidBackdrop</b><br/>Draw a fixed, decorative continuation of the range's asteroid belt using bounded, camera-culled mesh instances and no physics.")
   RangeAtmosphere("<b>RangeAtmosphere</b><br/>Render bounded dust/haze and align the distant sky sun with the key light, away from the planet.")
   RangeAtmosphereTuning("<b>RangeAtmosphereTuning</b><br/>Define bounded dust, thin haze and scene-depth atmosphere independently from flight balance.")
-  RangeBotPilot("<b>RangeBotPilot</b><br/>Continuously steer range and mission opponents using role-based attack runs, bounded terrain probes and shared ship capabilities.")
+  RangeBotPilot("<b>RangeBotPilot</b><br/>Steer range and mission opponents with role-based attack runs, bounded terrain probes, instantaneous beam aim and finite-speed projectile lead.")
   RangeBotWeaponInput("<b>RangeBotWeaponInput</b><br/>Convert bot firing intent into weapon-group activation events.")
-  RangeCombatWorld("<b>RangeCombatWorld</b><br/>Coordinate shared combat, finite mission actors or practice respawns, AI weapons, power and persistent wreckage.")
-  RangeEnvironment("<b>RangeEnvironment</b><br/>Build sparse, distance-culled spatial references and start the range's bounded atmosphere effects.")
-  RangeHUD("<b>RangeHUD</b><br/>Present a compact flight HUD with peripheral ship monitors, shared glass controls and explicit combat states.")
+  RangeCombatWorld("<b>RangeCombatWorld</b><br/>Coordinate shared combat, mission actors or practice respawns, AI weapons, shield-before-boost-before-weapon power and persistent wreckage.")
+  RangeEnvironment("<b>RangeEnvironment</b><br/>Show map boundary planes and start the range's bounded atmosphere effects.")
+  RangeHUD("<b>RangeHUD</b><br/>Present the Figma combat instruments with live per-mount readiness, heat, reloads, target states and peripheral ship schematics.")
   RangeLoadingOverlay("<b>RangeLoadingOverlay</b><br/>Show scene/scenery progress; flight readiness explicitly releases menu input suspension after loading.")
   RangePracticeSettings("<b>RangePracticeSettings</b><br/>Persist the selected stationary, flying or combat drill mode.")
-  RangeTargetRoster("<b>RangeTargetRoster</b><br/>Load target blueprints and configured target counts for the range.")
+  RangeTargetRoster("<b>RangeTargetRoster</b><br/>Load range target blueprints and counts, replacing the active roster when selecting a new target.")
   ReferenceMapProbe("<b>ReferenceMapProbe</b><br/>Measure the standalone reference-map sandbox only when explicit command-line probe flags are supplied.")
   ReticleHitFeedback("<b>ReticleHitFeedback</b><br/>Coalesce confirmed hits into bounded-duration reticle feedback.")
   SettingsScreen("<b>SettingsScreen</b><br/>Present readable, staged display, interface and input settings with conflict and storage feedback.")
   ShapeIconGraphic("<b>ShapeIconGraphic</b><br/>Draw modular-part icons in the construction interface.")
+  SharedVoxelCells("<b>SharedVoxelCells</b><br/>Keep one compact immutable occupancy generation and bounded owner-aware lookup states.")
   ShieldSurfaceVisibility("<b>ShieldSurfaceVisibility</b><br/>Control shield-surface renderer visibility for the active camera.")
-  ShipAssembly("<b>ShipAssembly</b><br/>Place and remove parts, validate occupancy and rebuild the assembled ship.")
+  ShipAssembly("<b>ShipAssembly</b><br/>Place and remove parts atomically, validate occupancy and mirrored pairs, and rebuild the assembled ship.")
   ShipCollisionSweep("<b>ShipCollisionSweep</b><br/>Skip expensive compound-body sweeps when the broad phase finds clear space.")
   ShipCountermeasureController("<b>ShipCountermeasureController</b><br/>Deploy ready clear surviving launchers with independent cooldowns; forecast real moving burst reach for AI threats.")
-  ShipEditorController("<b>ShipEditorController</b><br/>Handle placement, rotation, deletion and blueprint editing input.")
-  ShipEditorUI("<b>ShipEditorUI</b><br/>Present the catalogue, blueprint dialogs, cached live ship handling/power readout and construction feedback.")
-  ShipFlightController("<b>ShipFlightController</b><br/>Apply independent balanced flight axes, gradual steering, boost and collision-aware motion.")
+  ShipEditorController("<b>ShipEditorController</b><br/>Handle assembly placement, atomic core-axis mirrored editing, rotation, deletion, catalogue switching and Alt-copy input.")
+  ShipEditorUI("<b>ShipEditorUI</b><br/>Present the assembly workbench, native catalogue, blueprint dialogs, live ship performance and construction feedback.")
+  ShipEditorUI.Figma("<b>ShipEditorUI.Figma</b><br/>Render the Figma assembly workbench, native catalogue and integrated weapon groups.")
+  ShipFlightController("<b>ShipFlightController</b><br/>Apply power-limited normal and boost propulsion, temporary boost speed ceilings, overspeed recovery and collision-aware motion.")
   ShipInstanceRenderer("<b>ShipInstanceRenderer</b><br/>Render surviving hull parts with shared instanced geometry.")
   ShipPartHitbox("<b>ShipPartHitbox</b><br/>Bind a hull collider to its runtime part and cached collision mesh.")
-  ShipPowerBus("<b>ShipPowerBus</b><br/>Allocate generated and stored power proportionally across consumers.")
+  ShipPowerBus("<b>ShipPowerBus</b><br/>Allocate one ship energy budget with shield recovery before boost before weapons, retaining proportional allocation for legacy callers.")
   ShipSceneryCollision("<b>ShipSceneryCollision</b><br/>Bound kinematic ship contacts by finite ship momentum so scenery responds to its real mass.")
   ShipShieldSystem("<b>ShipShieldSystem</b><br/>Maintain component-owned shields; absorbed hits delay shields without interrupting protected hull repair.")
   ShipShieldVisual("<b>ShipShieldVisual</b><br/>Render shield fields and hit feedback from runtime shield state.")
   ShipStatusGraphic("<b>ShipStatusGraphic</b><br/>Draw the blueprint and currently surviving ship parts as an isometric diagram.")
-  ShipWeapons("<b>ShipWeapons</b><br/>Fire grouped weapons with synchronized or alternating projectile cadence and ship-wide six-per-second missile tube staggering.")
+  ShipWeapons("<b>ShipWeapons</b><br/>Fire grouped weapons with per-mount Gatling heat, powered audio heartbeat, peak-synchronized rails, fresh conventional locks and independent area-lock VLS magazines.")
   ShipWorkspace("<b>ShipWorkspace</b><br/>Preserve the working ship and independent deployment snapshots across scenes.")
   SpaceMapAssemblyLinks("<b>SpaceMapAssemblyLinks</b><br/>Hold authored station contacts through staged loading, physical damage and fragment ownership changes.")
   SpaceMapDefinition("<b>SpaceMapDefinition</b><br/>Store scenery instances, authored physical assembly contacts, drift settings and future encounter spawn positions.")
   SpaceMapPhysics("<b>SpaceMapPhysics</b><br/>Budget active map colliders by camera distance and isolate their mutual contacts while retaining exterior collisions and exact voxel shot data.")
-  SpaceMapRuntime("<b>SpaceMapRuntime</b><br/>Load staged floating scenery with destruction off by default, budgeted visual LOD and exact collision preparation.")
+  SpaceMapRuntime("<b>SpaceMapRuntime</b><br/>Load immutable staged floating scenery with budgeted visual LOD and exact collision preparation.")
   SpaceMapVisuals("<b>SpaceMapVisuals</b><br/>Select authored coarse or exact meshes for intact scenery and cull whole-object renderers without touching physics or voxel state.")
-  SpecialWeaponVisualPool("<b>SpecialWeaponVisualPool</b><br/>Pool visible missile bodies, curved orange voxel trails and short continuous beam blades.")
+  SpecialWeaponVisualPool("<b>SpecialWeaponVisualPool</b><br/>Pool visible missile bodies, curved orange voxel trails and immediate muzzle-following laser beams.")
   SphereRadarGraphic("<b>SphereRadarGraphic</b><br/>Draw range contacts, relative height and the selected target.")
-  TargetAimGraphic("<b>TargetAimGraphic</b><br/>Draw red discovered-target triangles, locked-target frames, directions and distinct projectile-lead markers.")
+  TargetAimGraphic("<b>TargetAimGraphic</b><br/>Draw lock frames, edge directions and stable projectile lead offsets independent of camera motion.")
   TargetIndicatorProjection("<b>TargetIndicatorProjection</b><br/>Project offscreen targets onto the HUD boundary.")
   TargetLockSystem("<b>TargetLockSystem</b><br/>Deduplicate lock presses per InputSystem update and acquire at presented steering/forward reticles while retaining valid targets and leads.")
   TargetSensorWorld("<b>TargetSensorWorld</b><br/>Cache surviving ship signatures, share discovery hysteresis and maintain real opponent target locks.")
@@ -111,30 +124,32 @@ flowchart TD
   UiStyle("<b>UiStyle</b><br/>Share readable typography, safe canvas sizing and control colours across game screens.")
   UiTextScale("<b>UiTextScale</b><br/>Apply the user's readable text size with bounded fitting inside existing controls.")
   UiTheme("<b>UiTheme</b><br/>Define visual styles and independently switchable interface features.")
-  VoxelAssetDefinition("<b>VoxelAssetDefinition</b><br/>Store reusable hull-shaped scenery, colour channels, voxel durability and an optional borrowed coarse visual mesh.")
+  VoxelAssetDefinition("<b>VoxelAssetDefinition</b><br/>Store reusable hull-shaped scenery, colour channels, immutable occupancy and an optional signed authored surface mesh.")
   VoxelAuthoring("<b>VoxelAuthoring</b><br/>Generate deterministic voxel stamps and rotated multi-cell hull pieces, and ray-pick live scenery cells.")
   VoxelBodyHitbox("<b>VoxelBodyHitbox</b><br/>Resolve projectile cylinders against live cells in a freely moving compound rigidbody asset.")
-  VoxelDetachedVisualFragments("<b>VoxelDetachedVisualFragments</b><br/>Own persistent render-only detached scenery meshes and analytically drift/spin them with one shared renderer, without cell simulation or physics.")
   VoxelFxGeometry("<b>VoxelFxGeometry</b><br/>Build shared voxel-effect meshes and glow materials.")
   VoxelGeometry("<b>VoxelGeometry</b><br/>Combine shared hull models or legacy cube surfaces and merge complete occupied cells into compound box colliders.")
-  VoxelHullAppearance("<b>VoxelHullAppearance</b><br/>Reuse exact ship hull models, bounded source-model caches and scenery surface overrides without changing authored normals or seams.")
+  VoxelHullAppearance("<b>VoxelHullAppearance</b><br/>Reuse exact ship hull models and scenery surfaces, culling shared full-cell faces across source models.")
   VoxelModelPartition("<b>VoxelModelPartition</b><br/>Partition a multi-cell hull mesh into closed per-cell pieces while preserving authored surface normals and UVs.")
-  VoxelStructureRuntime("<b>VoxelStructureRuntime</b><br/>Simulate sparse-damage drifting terrain, with optional coarse startup visuals and deferred exact collision components.")
-  VoxelTemplateCache("<b>VoxelTemplateCache</b><br/>Share generation-safe collision, exact hulls and lightweight damaged exterior templates without changing voxel health or occupancy.")
+  VoxelStructureRuntime("<b>VoxelStructureRuntime</b><br/>Simulate immutable drifting scenery with signed surface visuals and deferred collision components.")
+  VoxelTemplateCache("<b>VoxelTemplateCache</b><br/>Share generation-safe collision and immutable exact hull templates without changing voxel health or occupancy.")
   VoxelTerrainColliders("<b>VoxelTerrainColliders</b><br/>Cache exact scenery box partitions, materialize their components on demand, and subtract destroyed cells without filling holes.")
   VoxelTerrainRenderChunks("<b>VoxelTerrainRenderChunks</b><br/>Share exterior render tiles, optionally prewarm hidden views during loading, and rebuild only damaged neighbourhoods while preserving source leases.")
   VoxelTerrainTopology("<b>VoxelTerrainTopology</b><br/>Certify unchanged scenery connectivity locally and enumerate exact islands only when a deletion disconnects them.")
-  WeaponActivationState("<b>WeaponActivationState</b><br/>Apply hold, press, charge and toggle modes using allocated power and a persistent immediate-shot cadence.")
-  WeaponClearance("<b>WeaponClearance</b><br/>Check weapon bores and the countermeasure's single upward cell column against ship geometry.")
-  WeaponDefinition("<b>WeaponDefinition</b><br/>Define direct shots, guided missile reload and lock, beam reach and coloured effects.")
-  WeaponGroupConnections("<b>WeaponGroupConnections</b><br/>Draw links between weapon-group controls and selected weapons.")
+  WeaponActivationState("<b>WeaponActivationState</b><br/>Apply hold, press, charge and toggle modes using allocated power, external cadence scaling and a persistent immediate-shot cadence.")
+  WeaponClearance("<b>WeaponClearance</b><br/>Check weapon bores, VLS launch surfaces and countermeasure upward columns against ship geometry.")
+  WeaponDefinition("<b>WeaponDefinition</b><br/>Define direct weapons, Gatling heat, conventional seekers and independent area-lock VLS magazines with shared visuals and audio gains.")
+  WeaponGroupConnections("<b>WeaponGroupConnections</b><br/>Draw canvas-space assignment links and diamond markers on visible or occluded native weapons.")
   WeaponGroupData("<b>WeaponGroupData</b><br/>Serialize weapon-group membership and control bindings with the blueprint.")
   WeaponGroupInputRouter("<b>WeaponGroupInputRouter</b><br/>Read configured group controls and pass latched events to ship weapons.")
   WeaponGroupScreen("<b>WeaponGroupScreen</b><br/>Assign weapons to named groups and edit their input bindings.")
-  WeaponGroups("<b>WeaponGroups</b><br/>Validate and maintain exactly one group assignment per weapon part.")
+  WeaponGroups("<b>WeaponGroups</b><br/>Initialize numbered weapon groups and preserve native weapon assignments across database initialization and saved snapshots.")
   WeaponSmokePool("<b>WeaponSmokePool</b><br/>Pool visible world-space muzzle, solid-round path and missile smoke with reserved budgets for both factions.")
   WorkbenchEnvironment("<b>WorkbenchEnvironment</b><br/>Create construction-bay floor markings and orientation references.")
   WorkbenchOrbit("<b>WorkbenchOrbit</b><br/>Orbit, pan and zoom the construction camera.")
+  BlockView("<b>BlockView</b><br/>script missing")
+  EnemyFleetLibrary("<b>EnemyFleetLibrary</b><br/>script missing")
+  ShipPerformance("<b>ShipPerformance</b><br/>script missing")
 
   ArcadeMissionDefinition --> EnemyArchetypeDefinition
   ArcadeMissionDefinition --> ArcadeMissionDirector
@@ -145,12 +160,23 @@ flowchart TD
   ArcadeMissionDirector --> MissionHUD
   ArcadeWaveProgress --> ArcadeMissionDefinition
   AssemblyAppNavigation --> ShipEditorController
+  AssemblyAppNavigation --> ShipEditorUI
   AssemblyAppNavigation --> ShipWorkspace
   AssemblyAppNavigation --> FlightSession
   AssemblyAppNavigation --> GameAudio
+  AssemblyAppNavigation --> FigmaVisuals
+  AssemblyAppNavigation --> MenuSurface
+  AssemblyModuleCatalogue --> ShipEditorUI
+  AssemblyModuleCatalogue --> ShipEditorController
+  AssemblyModuleCatalogue --> WorkbenchOrbit
+  AssemblyModuleCatalogue --> ShipAssembly
   AssemblyShieldPreview --> ShipAssembly
   AssemblyShieldPreview --> ModuleDatabase
   AssemblyShieldPreview --> ShipShieldVisual
+  AssemblyWeaponGroups --> ShipEditorUI
+  AssemblyWeaponGroups --> ShipAssembly
+  AssemblyWeaponGroups --> WeaponGroups
+  AssemblyWeaponGroups --> WeaponGroupConnections
   BlockConnectivity --> BlockModules
   BlockGeometry --> BlockModules
   BlockModules --> ModuleDatabase
@@ -158,11 +184,15 @@ flowchart TD
   BlockModules --> BlockGeometry
   BlockPlacement --> BlockModules
   BlockPlacement --> BlockGeometry
+  BlueprintCostDisplay --> MissionDefinition
+  BlueprintCostDisplay --> ModuleDatabase
+  BlueprintCostDisplay --> L10n
   BlueprintLibraryScreen --> MenuSurface
   BlueprintLibraryScreen --> HangarShipPreview
+  BlueprintLibraryScreen --> MenuShipMetrics
   BlueprintLibraryScreen --> ShipWorkspace
   BlueprintLibraryScreen --> BlueprintRepository
-  BlueprintLibraryScreen --> EnemyFleetCatalog
+  BlueprintLibraryScreen --> EnemyFleetLibrary
   BlueprintLibraryScreen --> UiModalScope
   BlueprintLibraryScreen --> L10n
   BlueprintRepository --> BlockPlacement
@@ -172,6 +202,10 @@ flowchart TD
   CombatDamageTuning --> WeaponDefinition
   CombatDamageTuning --> ProjectileWorld
   CombatVfxPool --> VoxelFxGeometry
+  CombatWeaponStatusGraphic --> ShipWeapons
+  CombatWeaponStatusGraphic --> ShipCountermeasureController
+  CombatWeaponStatusGraphic --> FlightShipRuntime
+  CombatWeaponStatusGraphic --> FigmaVisuals
   DebrisCluster --> DebrisWorld
   DebrisInstanceRenderer --> DebrisWorld
   DebrisInstanceRenderer --> DebrisCluster
@@ -184,10 +218,16 @@ flowchart TD
   DebrisWorld --> DebrisInstanceRenderer
   DeploymentValidator --> BlockPlacement
   DeploymentValidator --> MissionDefinition
+  DirectAimAssist --> ShipPartHitbox
+  DirectAimAssist --> FlightShipRuntime
   EnemyArchetypeDefinition --> BlueprintRepository
   EnemyArchetypeDefinition --> BotBehaviorProfile
   EnemyFleetCatalog --> EnemyArchetypeDefinition
   EnemyFleetCatalog --> BlueprintRepository
+  FigmaHangarGrid --> HangarShipPreview
+  FigmaHangarGrid --> ShipAssembly
+  FigmaVisuals --> GameSettings
+  FigmaVisuals --> LocalizedUiFont
   FlareWorld --> FlareDefinition
   FlareWorld --> FlightShipRuntime
   FlareWorld --> VoxelFxGeometry
@@ -222,10 +262,15 @@ flowchart TD
   GameAppScreens --> RangeTargetRoster
   GameAppScreens --> RangePracticeSettings
   GameAppScreens --> RangeLoadingOverlay
+  GameAppScreens --> MenuShipMetrics
+  GameAppScreens --> FigmaVisuals
   GameAudio --> GameSettings
   GameAudio --> GameAudioTuning
   GameAudio --> ThreatAudioDriver
   GameAudio --> FlightRangeBootstrap
+  GameAudio --> ProjectileWorld
+  GameAudio --> ShipWeapons
+  GameAudio --> ShipShieldSystem
   GameInput --> GameSettings
   GameResultsScreen --> GameAppBootstrap
   GameResultsScreen --> MissionResults
@@ -235,14 +280,23 @@ flowchart TD
   GameSettings --> GameInput
   GameSettings --> GameAudio
   GameSettings --> L10n
+  GatlingHeatGraphic --> UiTheme
+  GatlingThermalState --> WeaponDefinition
   GlassUiPalette --> UiTheme
   HangarShipPreview --> ShipAssembly
+  HangarShipPreview --> BlockView
+  HangarShipPreview --> ModuleGlowAccents
   LaserVisualPool --> VoxelFxGeometry
   LocalizedUiFont --> L10n
   LocalizedUiText --> L10n
   MapSandboxCamera --> VoxelBodyHitbox
   MapSandboxCamera --> VoxelAuthoring
   MapSandboxCamera --> VoxelStructureRuntime
+  MenuActionShape --> FigmaVisuals
+  MenuShipMetrics --> ShipPerformance
+  MenuShipMetrics --> BlockModules
+  MenuShipMetrics --> CombatDamageTuning
+  MenuShipMetrics --> MissionDefinition
   MenuSurface --> L10n
   MenuSurface --> GlassUiPalette
   MissileGuidance --> WeaponDefinition
@@ -273,6 +327,7 @@ flowchart TD
   RangeAppNavigation --> RangeHUD
   RangeAppNavigation --> MenuSurface
   RangeAppNavigation --> SettingsScreen
+  RangeAppNavigation --> FigmaVisuals
   RangeAtmosphere --> RangeAtmosphereTuning
   RangeAtmosphere --> RangeEnvironment
   RangeAtmosphere --> GameSettings
@@ -293,18 +348,22 @@ flowchart TD
   RangeCombatWorld --> TargetSensorWorld
   RangeCombatWorld --> FlareWorld
   RangeCombatWorld --> ShipCountermeasureController
+  RangeCombatWorld --> ShipPowerBus
   RangeEnvironment --> FlightTuning
   RangeEnvironment --> RangeAtmosphere
   RangeHUD --> RangeCombatWorld
   RangeHUD --> ShipFlightController
   RangeHUD --> ShipWeapons
   RangeHUD --> ShipStatusGraphic
+  RangeHUD --> CombatWeaponStatusGraphic
   RangeHUD --> FlightInstrumentGraphic
+  RangeHUD --> GatlingHeatGraphic
   RangeHUD --> SphereRadarGraphic
   RangeHUD --> TargetAimGraphic
   RangeHUD --> TargetSilhouetteOutline
   RangeHUD --> ShipCountermeasureController
   RangeHUD --> ReticleHitFeedback
+  RangeHUD --> FigmaVisuals
   RangeHUD --> UiStyle
   RangeHUD --> UiTheme
   RangeHUD --> GameSettings
@@ -321,6 +380,8 @@ flowchart TD
   SettingsScreen --> GameInput
   SettingsScreen --> GameAudio
   ShapeIconGraphic --> BlockGeometry
+  SharedVoxelCells --> VoxelAssetDefinition
+  SharedVoxelCells --> VoxelStructureRuntime
   ShipAssembly --> BlockModules
   ShipAssembly --> BlockConnectivity
   ShipAssembly --> BlockPlacement
@@ -341,6 +402,8 @@ flowchart TD
   ShipEditorController --> RangeLoadingOverlay
   ShipEditorUI --> ShipEditorController
   ShipEditorUI --> ShipAssembly
+  ShipEditorUI --> AssemblyModuleCatalogue
+  ShipEditorUI --> AssemblyWeaponGroups
   ShipEditorUI --> FlightTuning
   ShipEditorUI --> ModuleDatabase
   ShipEditorUI --> BlockModules
@@ -348,6 +411,15 @@ flowchart TD
   ShipEditorUI --> FlareDefinition
   ShipEditorUI --> L10n
   ShipEditorUI --> GlassUiPalette
+  ShipEditorUI --> FigmaVisuals
+  ShipEditorUI.Figma --> ShipEditorController
+  ShipEditorUI.Figma --> AssemblyModuleCatalogue
+  ShipEditorUI.Figma --> AssemblyWeaponGroups
+  ShipEditorUI.Figma --> ShipPerformance
+  ShipEditorUI.Figma --> FigmaVisuals
+  ShipEditorUI.Figma --> MenuShipMetrics
+  ShipEditorUI.Figma --> MissionCatalog
+  ShipEditorUI.Figma --> MissionDefinition
   ShipFlightController --> FlightShipRuntime
   ShipFlightController --> FlightTuning
   ShipFlightController --> GameInput
@@ -360,9 +432,12 @@ flowchart TD
   ShipStatusGraphic --> FlightShipRuntime
   ShipWeapons --> ProjectileWorld
   ShipWeapons --> WeaponActivationState
+  ShipWeapons --> GatlingThermalState
   ShipWeapons --> WeaponGroups
   ShipWeapons --> BlockPlacement
   ShipWeapons --> SpecialWeaponVisualPool
+  ShipWeapons --> DirectAimAssist
+  ShipWeapons --> WeaponClearance
   ShipWorkspace --> BlueprintRepository
   ShipWorkspace --> DeploymentValidator
   ShipWorkspace --> MissionResults
@@ -375,7 +450,6 @@ flowchart TD
   SpaceMapPhysics --> VoxelStructureRuntime
   SpaceMapRuntime --> SpaceMapDefinition
   SpaceMapRuntime --> VoxelStructureRuntime
-  SpaceMapRuntime --> VoxelDetachedVisualFragments
   SpaceMapRuntime --> SpaceMapVisuals
   SpaceMapRuntime --> SpaceMapAssemblyLinks
   SpaceMapRuntime --> SpaceMapPhysics
@@ -420,6 +494,8 @@ flowchart TD
   UiTextScale --> GameSettings
   VoxelAssetDefinition --> VoxelStructureRuntime
   VoxelAssetDefinition --> ModuleDatabase
+  VoxelAssetDefinition --> SpaceMapVisuals
+  VoxelAssetDefinition --> VoxelHullAppearance
   VoxelAuthoring --> VoxelAssetDefinition
   VoxelAuthoring --> VoxelStructureRuntime
   VoxelAuthoring --> VoxelGeometry
@@ -428,8 +504,6 @@ flowchart TD
   VoxelBodyHitbox --> VoxelStructureRuntime
   VoxelBodyHitbox --> CylindricalHitQuery
   VoxelBodyHitbox --> VoxelGeometry
-  VoxelDetachedVisualFragments --> VoxelStructureRuntime
-  VoxelDetachedVisualFragments --> SpaceMapRuntime
   VoxelGeometry --> VoxelAssetDefinition
   VoxelGeometry --> VoxelStructureRuntime
   VoxelGeometry --> VoxelHullAppearance
@@ -445,16 +519,13 @@ flowchart TD
   VoxelStructureRuntime --> VoxelBodyHitbox
   VoxelStructureRuntime --> VoxelTemplateCache
   VoxelStructureRuntime --> VoxelHullAppearance
-  VoxelStructureRuntime --> VoxelTerrainTopology
   VoxelStructureRuntime --> VoxelTerrainColliders
   VoxelStructureRuntime --> VoxelTerrainRenderChunks
-  VoxelStructureRuntime --> VoxelDetachedVisualFragments
   VoxelStructureRuntime --> ShipSceneryCollision
   VoxelTemplateCache --> VoxelGeometry
   VoxelTemplateCache --> VoxelAssetDefinition
   VoxelTemplateCache --> VoxelStructureRuntime
   VoxelTemplateCache --> VoxelTerrainRenderChunks
-  VoxelTemplateCache --> VoxelTerrainTopology
   VoxelTemplateCache --> VoxelHullAppearance
   VoxelTerrainColliders --> VoxelGeometry
   VoxelTerrainColliders --> VoxelStructureRuntime
@@ -464,6 +535,7 @@ flowchart TD
   VoxelTerrainRenderChunks --> VoxelTemplateCache
   VoxelTerrainTopology --> VoxelGeometry
   VoxelTerrainTopology --> VoxelStructureRuntime
+  WeaponActivationState --> WeaponDefinition
   WeaponClearance --> CylindricalHitQuery
   WeaponClearance --> BlockModules
   WeaponClearance --> BlockPlacement
@@ -485,6 +557,6 @@ flowchart TD
   classDef other fill:#efe6cf,stroke:#1a140e,color:#1a140e,stroke-width:2px
   class ShipCountermeasureController,ShipEditorController,ShipFlightController,ShipShieldSystem,TargetLockSystem manager
   class ProjectileWorld actor
-  class DebrisWorld,EnemyArchetypeDefinition,EnemyFleetCatalog,FlareWorld,ModuleDatabase,RangeCombatWorld,RangeEnvironment,TargetSensorWorld,WorkbenchEnvironment world
-  class GameResultsScreen,GlassUiPalette,LocalizedUiFont,LocalizedUiText,MenuSurface,MissileGuidance,MissionHUD,MissionResults,RangeHUD,ShipEditorUI,UiControlHint,UiModalScope,UiStyle,UiTextScale,UiTheme ui
-  class AimProjection,ArcadeMissionDefinition,ArcadeMissionDirector,ArcadeWaveProgress,AssemblyAppNavigation,AssemblyShieldPreview,BattleTuning,BlockConnectivity,BlockGeometry,BlockModules,BlockPlacement,BlueprintData,BlueprintLibraryScreen,BlueprintRepository,BotBehaviorProfile,CombatDamageTuning,CombatVfxPool,CoreVelocityEstimator,CylindricalHitQuery,DebrisCluster,DebrisInstanceRenderer,DebrisPartHitbox,DeploymentValidator,FlareDefinition,FlightInstrumentGraphic,FlightRangeBootstrap,FlightSession,FlightShipRuntime,FlightTuning,FrameworkSmokeRun,GameAppBootstrap,GameAppScreens,GameAudio,GameAudioTuning,GameInput,GameSettings,HangarShipPreview,InterceptSolver,L10n,LaserVisualPool,MapSandboxCamera,MissionCatalog,MissionDefinition,ModuleDefinition,ModuleGlowAccents,RangeAppNavigation,RangeAsteroidBackdrop,RangeAtmosphere,RangeAtmosphereTuning,RangeBotPilot,RangeBotWeaponInput,RangeLoadingOverlay,RangePracticeSettings,RangeTargetRoster,ReferenceMapProbe,ReticleHitFeedback,SettingsScreen,ShapeIconGraphic,ShieldSurfaceVisibility,ShipAssembly,ShipCollisionSweep,ShipInstanceRenderer,ShipPartHitbox,ShipPowerBus,ShipSceneryCollision,ShipShieldVisual,ShipStatusGraphic,ShipWeapons,ShipWorkspace,SpaceMapAssemblyLinks,SpaceMapDefinition,SpaceMapPhysics,SpaceMapRuntime,SpaceMapVisuals,SpecialWeaponVisualPool,SphereRadarGraphic,TargetAimGraphic,TargetIndicatorProjection,TargetSilhouetteOutline,ThreatAudioDriver,ThrusterExhaust,VoxelAssetDefinition,VoxelAuthoring,VoxelBodyHitbox,VoxelDetachedVisualFragments,VoxelFxGeometry,VoxelGeometry,VoxelHullAppearance,VoxelModelPartition,VoxelStructureRuntime,VoxelTemplateCache,VoxelTerrainColliders,VoxelTerrainRenderChunks,VoxelTerrainTopology,WeaponActivationState,WeaponClearance,WeaponDefinition,WeaponGroupConnections,WeaponGroupData,WeaponGroupInputRouter,WeaponGroupScreen,WeaponGroups,WeaponSmokePool,WorkbenchOrbit other
+  class DebrisWorld,EnemyArchetypeDefinition,EnemyFleetCatalog,FlareWorld,ModuleDatabase,RangeCombatWorld,RangeEnvironment,TargetSensorWorld,WorkbenchEnvironment,EnemyFleetLibrary world
+  class GameResultsScreen,GlassUiPalette,LocalizedUiFont,LocalizedUiText,MenuActionShape,MenuShipMetrics,MenuSurface,MissileGuidance,MissionHUD,MissionResults,RangeHUD,ShipEditorUI,ShipEditorUI.Figma,UiControlHint,UiModalScope,UiStyle,UiTextScale,UiTheme ui
+  class AimProjection,ArcadeMissionDefinition,ArcadeMissionDirector,ArcadeWaveProgress,AssemblyAppNavigation,AssemblyModuleCatalogue,AssemblyShieldPreview,AssemblyWeaponGroups,BattleTuning,BlockConnectivity,BlockGeometry,BlockModules,BlockPlacement,BlueprintCostDisplay,BlueprintData,BlueprintLibraryScreen,BlueprintRepository,BotBehaviorProfile,CombatDamageTuning,CombatVfxPool,CombatWeaponStatusGraphic,CoreVelocityEstimator,CylindricalHitQuery,DebrisCluster,DebrisInstanceRenderer,DebrisPartHitbox,DeploymentValidator,DirectAimAssist,FigmaHangarGrid,FigmaVisuals,FlareDefinition,FlightInstrumentGraphic,FlightRangeBootstrap,FlightSession,FlightShipRuntime,FlightTuning,FrameworkSmokeRun,GameAppBootstrap,GameAppScreens,GameAudio,GameAudioTuning,GameInput,GameSettings,GatlingHeatGraphic,GatlingThermalState,HangarShipPreview,InterceptSolver,L10n,LaserVisualPool,MapSandboxCamera,MissionCatalog,MissionDefinition,ModuleDefinition,ModuleGlowAccents,RangeAppNavigation,RangeAsteroidBackdrop,RangeAtmosphere,RangeAtmosphereTuning,RangeBotPilot,RangeBotWeaponInput,RangeLoadingOverlay,RangePracticeSettings,RangeTargetRoster,ReferenceMapProbe,ReticleHitFeedback,SettingsScreen,ShapeIconGraphic,SharedVoxelCells,ShieldSurfaceVisibility,ShipAssembly,ShipCollisionSweep,ShipInstanceRenderer,ShipPartHitbox,ShipPowerBus,ShipSceneryCollision,ShipShieldVisual,ShipStatusGraphic,ShipWeapons,ShipWorkspace,SpaceMapAssemblyLinks,SpaceMapDefinition,SpaceMapPhysics,SpaceMapRuntime,SpaceMapVisuals,SpecialWeaponVisualPool,SphereRadarGraphic,TargetAimGraphic,TargetIndicatorProjection,TargetSilhouetteOutline,ThreatAudioDriver,ThrusterExhaust,VoxelAssetDefinition,VoxelAuthoring,VoxelBodyHitbox,VoxelFxGeometry,VoxelGeometry,VoxelHullAppearance,VoxelModelPartition,VoxelStructureRuntime,VoxelTemplateCache,VoxelTerrainColliders,VoxelTerrainRenderChunks,VoxelTerrainTopology,WeaponActivationState,WeaponClearance,WeaponDefinition,WeaponGroupConnections,WeaponGroupData,WeaponGroupInputRouter,WeaponGroupScreen,WeaponGroups,WeaponSmokePool,WorkbenchOrbit,BlockView,ShipPerformance other

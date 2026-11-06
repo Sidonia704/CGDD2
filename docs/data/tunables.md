@@ -41,6 +41,7 @@ Generated from `@tune` headers by the menu `CGDD/Export Trace Docs`. Hand edits 
 | BotBehaviorProfile | terrainProbeSeconds | float | 0.05-1 | 0.18 | Interval between bounded non-allocating terrain probes. |
 | CombatDamageTuning | nonMissileDamageMultiplier | float | 0+ | 0.6 | Global damage scale for projectile and beam weapons. |
 | CombatDamageTuning | missileDamageMultiplier | float | 0+ | 0.25 | Global missile volley damage scale before faction scaling. |
+| CombatDamageTuning | globalDamageMultiplier | float | 0+ | 1 | Debug multiplier for every weapon and faction, composed once with category scaling. |
 | DebrisWorld | physicsBudgetInterval | float | 0.05-2 | 0.5 | Seconds between whole-island distance evaluations against living ships. |
 | DebrisWorld | farPhysicsDistance | float | 350+ | 800 | Distance from every living ship before disabling speculative CCD and render interpolation. |
 | DebrisWorld | nearPhysicsDistance | float | 1+ | 350 | Distance to any living ship that restores speculative CCD and interpolation, expanded for closing speed. |
@@ -57,6 +58,11 @@ Generated from `@tune` headers by the menu `CGDD/Export Trace Docs`. Hand edits 
 | FlightRangeBootstrap | sandboxArenaHalfExtent | float | 0-100000 | 0 | Optional half-width used only while the referenced sandbox spawn is active; zero keeps the existing flight tuning. |
 | FlightTuning | maneuverThrustFraction | float | 0-0.8 | 0.2 | Legacy bot assistance summary fraction; does not set player propulsion allocation. |
 | FlightTuning | maxSpeed | float | 0+ | 250 | Soft flight speed ceiling in metres per second. |
+| FlightTuning | thrustMultiplier | float | 0+ | 1 | Global multiplier of all module thrust without changing native module stats. |
+| FlightTuning | blockMassMultiplier | float | 0.01+ | 1 | Global multiplier of all module mass, including center of mass and inertia. |
+| FlightTuning | heavyMassThresholdKg | float | 1+ | 100000 | Mass above which extra speed and mobility penalties start. |
+| FlightTuning | heavySpeedExponent | float | 0+ | 0.65 | Exponent of the inverse-mass speed limit curve. |
+| FlightTuning | heavyManeuverExponent | float | 0+ | 0.35 | Exponent of the inverse-mass acceleration and turning curve. |
 | FlightTuning | maxLinearAcceleration | float | 0+ | 100 | Soft ceiling applied to each independent translation axis. |
 | FlightTuning | angularAccelerationGain | float | 0+ | 10 | Legacy serialized compatibility setting; unused by the current flight controller. |
 | FlightTuning | angularAuthorityReferenceAcceleration | float | 0.01+ | 10 | Legacy serialized compatibility setting; unused by the current flight controller. |
@@ -69,6 +75,9 @@ Generated from `@tune` headers by the menu `CGDD/Export Trace Docs`. Hand edits 
 | FlightTuning | rollBlendTime | float | 0+ | 0.25 | Roll input response duration in seconds. |
 | FlightTuning | minimumTurnAuthority | float | 0-1 | 0.75 | Legacy serialized compatibility setting; unused by the current flight controller. |
 | FlightTuning | boostPowerWatts | float | 0+ | 100 | Requested power while holding boost. |
+| FlightTuning | boostPowerCostMultiplier | float | 1+ | 4 | Multiplier of authored boost power demand; normal propulsion requests one eighth of this boost demand. |
+| FlightTuning | boostSpeedLimitMultiplier | float | 1+ | 2 | Speed ceiling during fully powered boost, relative to the ship's mass-adjusted normal ceiling. |
+| FlightTuning | overspeedRecoveryDeceleration | float | 0.01+ | 40 | Speed removed per second above the current ceiling, even while continuing to thrust. |
 | FlightTuning | boostMultiplier | float | 1+ | 1.5 | Boost multiplier at full allocated power. |
 | FlightTuning | mouseDegreesPerPixel | float | 0+ | 0.085 | Virtual-stick sensitivity before the settings multiplier. |
 | FlightTuning | maxAimOffsetDegrees | float | 5-45 | 25 | Maximum persistent virtual-stick offset. |
@@ -80,6 +89,8 @@ Generated from `@tune` headers by the menu `CGDD/Export Trace Docs`. Hand edits 
 | FlightTuning | gridWallSpacing | float | 1+ | 600 | Separation between spatial reference planes in metres. |
 | FlightTuning | gridCellSize | float | 0.1+ | 12 | Small reference-grid cell spacing in metres. |
 | FlightTuning | gridOpacity | float | 0-1 | 0.42 | Reference-grid opacity; boundary warning keeps its own visibility. |
+| GameAudioTuning | criticalHullFraction | float | 0-1 | 0.25 | Hull fraction triggering the shared health/shield warning |
+| GameAudioTuning | criticalRepeatSeconds | float | 1+ | 10 | Seconds between shared health/shield warnings |
 | GameAudioTuning | missileWarningFarDistance | float | 1-5000 | 600 | Distance for the slowest incoming missile pulse |
 | GameAudioTuning | missileWarningNearDistance | float | 1-500 | 40 | Distance for the fastest incoming missile pulse |
 | GameAudioTuning | missileWarningFarTimeToImpact | float | 0.1-30 | 4 | Impact estimate for the slowest incoming missile pulse |
@@ -88,7 +99,6 @@ Generated from `@tune` headers by the menu `CGDD/Export Trace Docs`. Hand edits 
 | GameAudioTuning | missileWarningNearInterval | float | 0.1-5 | 0.12 | Minimum seconds between imminent incoming missile pulses |
 | MapSandboxCamera | flySpeed | float | 1-500 | 60 | Sandbox camera speed in metres per second. |
 | MapSandboxCamera | lookSensitivity | float | 0.01-1 | 0.12 | Degrees of camera rotation per mouse pixel. |
-| MapSandboxCamera | probeDamage | float | 1-100000 | 40 | Instant cell damage per left click in the development sandbox. |
 | MapSandboxCamera | pushSpeed | float | 0.1-20 | 3 | Velocity impulse applied by the sandbox's middle-click collision probe. |
 | MissionDefinition | unpricedPartCost | float | 0.01+ | 10 | Optional provisional cost for an otherwise zero-cost functional part; ordinary hull remains free. |
 | MissionDefinition | relaxedBudgetMultiplier | float | 0+ | 1.25 | Budget multiplier for relaxed difficulty. |
@@ -109,10 +119,10 @@ Generated from `@tune` headers by the menu `CGDD/Export Trace Docs`. Hand edits 
 | ModuleDefinition | shieldRecoveryPerSecond | float | 0+ | 50 | Shield recovery per second. |
 | RangeAsteroidBackdrop | backdropEnabled | bool | 0-1 | true | Show or hide the decorative belts without changing their deterministic positions. |
 | RangeAsteroidBackdrop | seed | int | 0-2147483647 | 261107 | Stable placement seed for all three world-anchored belts. |
-| RangeAsteroidBackdrop | nearFadeStart | float | 0-10000 | 80 | Camera distance within which an approached decorative rock is invisible. |
-| RangeAsteroidBackdrop | nearFadeEnd | float | 0-10000 | 350 | Camera distance beyond which an approached decorative rock is fully visible. |
-| RangeAsteroidBackdrop | farFadeStart | float | 0-50000 | 17000 | Camera distance where horizon rocks begin fading out. |
-| RangeAsteroidBackdrop | farFadeEnd | float | 0-50000 | 25000 | Camera distance where horizon rocks disappear. |
+| RangeAsteroidBackdrop | farFadeStart | float | 0-50000 | 17000 | Camera distance where horizon rocks begin blending toward the distant atmosphere. |
+| RangeAsteroidBackdrop | farFadeEnd | float | 0-50000 | 25000 | Camera distance where horizon rocks reach their distant atmosphere colour. |
+| RangeAsteroidBackdrop | maximumVisibleTriangles | int | 1-20000000 | 4000000 | Diagnostic triangle target; reaching it never removes permanent decorative rocks. |
+| RangeAsteroidBackdrop | densityMultiplier | int | 1-8 | 1 | Legacy procedural-rock density only; native uniform belts use fixed stratified world slots. |
 | RangeAtmosphereTuning | dustLimit | int | 0-320 | 160 | Hard dust-particle cap; low quality caps this at 64. |
 | RangeAtmosphereTuning | hazeLimit | int | 0-16 | 12 | Hard haze-billboard cap; low quality disables haze. |
 | RangeAtmosphereTuning | dustRadius | float | 10-150 | 65 | World-space dust emission radius around the camera. |
@@ -128,7 +138,7 @@ Generated from `@tune` headers by the menu `CGDD/Export Trace Docs`. Hand edits 
 | SpaceMapRuntime | stageBuildOnStart | bool | 0-1 | false | Opt into staged startup when the caller waits for BuildIsComplete before gameplay. |
 | SpaceMapRuntime | instancesPerFrame | int | 1-1000 | 2 | Maximum scenery bodies created in a staged startup frame. |
 | SpaceMapRuntime | buildMillisecondsPerFrame | float | 0-100 | 5 | Soft CPU budget for staged startup; one body always finishes atomically. |
-| SpaceMapRuntime | lazyFineVisuals | bool | 0-1 | false | Use signed borrowed coarse meshes at startup and generate exact meshes near the camera or after damage. |
+| SpaceMapRuntime | lazyFineVisuals | bool | 0-1 | false | Use signed authored meshes at startup and generate exact meshes near the camera when enabled. |
 | SpaceMapRuntime | visualLodDistance | float | 0-100000 | 800 | Camera distance where an authored coarse visual replaces an intact body's exact renderer. |
 | SpaceMapRuntime | visualCullDistance | float | 0-100000 | 0 | Camera distance beyond which only scenery renderers are hidden; zero disables this cull. |
 | SpaceMapRuntime | visualRefreshFrames | int | 1-120 | 4 | Frames between map-level visibility checks. |
@@ -141,24 +151,19 @@ Generated from `@tune` headers by the menu `CGDD/Export Trace Docs`. Hand edits 
 | SpaceMapRuntime | physicsRefreshFrames | int | 1-120 | 12 | Frames between map physics distance and budget checks. |
 | SpaceMapRuntime | colliderPreparationPerFrame | int | 1-256 | 24 | Maximum cold exact collider components prepared per frame beneath a live proxy. |
 | SpaceMapRuntime | colliderPreparationMilliseconds | float | 0-10 | 1.5 | Soft collider preparation CPU budget; zero disables the time limit. |
-| SpaceMapRuntime | lightweightDamageThreshold | int | 0-131072 | 128 | For lazy budgeted scenery at least this large retain primitive exterior cells after damage; zero disables. |
 | TargetSilhouetteOutline | resolutionScale | float | 0.25-1 | 0.5 | Selected-target mask resolution relative to the existing world view. |
 | TargetSilhouetteOutline | outlinePixels | float | 1-6 | 2 | Exterior silhouette thickness in world-view pixels. |
 | UiTheme | sceneryHitFeedbackStrength | float | 0-1 | 0.3 | Relative brightness and contraction of the white terrain-hit confirmation. |
-| UiTheme | combatInstrument | Color | 0-1 | new Color(.84f,1f,.18f,1f) | Independent high-contrast flight instrument, reticle and player-radar colour. |
+| UiTheme | combatInstrument | Color | 0-1 | new Color32(185,255,3,255) | Independent high-contrast flight instrument, reticle and player-radar colour. |
 | VoxelAssetDefinition | cellSize | float | 0.25-10 | 1 | World metres per voxel before instance scaling. |
-| VoxelAssetDefinition | blockHealth | float | 1-100000 | 100 | Default health of each scenery cell. |
-| VoxelAssetDefinition | damageResetSeconds | float | 0.1-60 | 2 | Forget temporary cell damage after this many seconds without a hit. |
 | VoxelAssetDefinition | massPerCell | float | 0.01-1000000 | 100 | Kilograms per cubic metre of solid scenery cells. |
-| VoxelAssetDefinition | fragmentSeparationSpeed | float | 0-10 | 0.5 | Small outward drift added when an island separates. |
 | VoxelAssetDefinition | baseColor | Color | 0-1 | Color.white | Scenery-only tint multiplied with the original ship hull material and each colour slot; white preserves the source appearance. |
-| VoxelStructureRuntime | healthMultiplier | float | 0.01-1000 | 1 | Instance multiplier for the default cell health. |
 | VoxelStructureRuntime | driftVelocity | Vector3 | -100-100 | 0 | Initial world-space velocity; collisions subsequently control movement. |
 | VoxelStructureRuntime | angularVelocity | Vector3 | -180-180 | 0 | Initial local angular velocity in degrees per second. |
-| VoxelStructureRuntime | tinyFragmentMaxCells | int | 0-4 | 0 | Optional detached render-only fragment limit; zero preserves fully physical fragments. |
-| VoxelStructureRuntime | tinyFragmentMaxWorldExtent | float | 0-2 | 2 | Maximum world-axis extent eligible for the optional render-only fragment policy. |
+| WeaponDefinition | fireWindupSeconds | float | 0+ | 0 | Delay from accepted rail audio onset to physical discharge; zero preserves immediate shots. |
 | WeaponDefinition | shotsPerSecond | float | 0.01+ | 5 | Nominal shot cadence before energy allocation. |
 | WeaponDefinition | damage | float | 0.01+ | 40 | Damage of one complete projectile. |
+| WeaponDefinition | shotAudioGain | float | 0-1 | 1 | Relative firing loudness by weapon size; small 0.6, medium 0.8, large 1. |
 | WeaponDefinition | projectileSpeed | float | 0.01+ | 160 | Projectile speed used for travel and interception. |
 | WeaponDefinition | projectileDiameter | float | 0.01+ | 1 | Physical projectile hit-volume diameter. |
 | WeaponDefinition | penetrationDepth | float | 0.01+ | 2 | Maximum hull penetration depth. |
@@ -167,8 +172,13 @@ Generated from `@tune` headers by the menu `CGDD/Export Trace Docs`. Hand edits 
 | WeaponDefinition | tracerLingerSeconds | float | 0+ | 0 | Visual-only fade after a shot resolves; zero releases immediately. |
 | WeaponDefinition | minimumVisualPixels | float | 0+ | 0 | Minimum projected tracer thickness; zero keeps authored world width. |
 | WeaponDefinition | range | float | 1+ | 800 | Maximum projectile travel distance. |
+| WeaponDefinition | unboundedBeam | bool | 0-1 | false | Use the 100km operational query reach for an effectively unlimited beam. |
 | WeaponDefinition | sustainedPowerWatts | float | 0+ | 50 | Shared power requested per firing weapon. |
+| WeaponDefinition | magazineSize | int | 1+ | 1 | Rounds in one VLS magazine; tube offsets describe physical cells independently. |
+| WeaponDefinition | salvoLaunchesPerSecond | float | 0.01+ | 16 | Independent VLS mount launch cadence. |
 | WeaponDefinition | missileLockSeconds | float | 0+ | 2 | Seconds holding one valid target before missile launch. |
+| WeaponDefinition | magazineSize | int | 1+ | 1 | VLS rounds available before a complete magazine reload. |
+| WeaponDefinition | salvoLaunchesPerSecond | float | 0.01+ | 16 | Independent per-module VLS launch cadence. |
 | WeaponDefinition | reloadSeconds | float | 0.1+ | 4 | Powered automatic missile reload duration. |
 | WeaponDefinition | missileTurnDegrees | float | 0+ | 110 | Maximum guided turn rate in degrees per second. |
 | WeaponDefinition | missileTurnAcceleration | float | 0+ | 180 | Maximum guided angular acceleration in degrees per second squared. |
@@ -180,6 +190,11 @@ Generated from `@tune` headers by the menu `CGDD/Export Trace Docs`. Hand edits 
 | WeaponDefinition | explosionRadius | float | 0.1+ | 4 | Missile blast radius with radial damage falloff. |
 | WeaponDefinition | beamDuration | float | 0.01+ | 0.12 | Persistence of one continuous beam tick. |
 | WeaponDefinition | chargeSeconds | float | 0.01+ | 1 | Charge time for charge-release activation. |
+| WeaponDefinition | gatlingSpinUpSeconds | float | 0.01+ | 1.5 | Powered seconds to reach maximum Gatling rate. |
+| WeaponDefinition | gatlingSpinDownSeconds | float | 0.01+ | 0.5 | Unpowered seconds to stop fully spun barrels. |
+| WeaponDefinition | gatlingMinimumRateFraction | float | 0-1 | 0.2 | Gatling rate at the beginning of powered spin-up. |
+| WeaponDefinition | gatlingHeatPerSecond | float | 0+ | 1f/8f+1f/6f | Heat gained per fully powered firing second before simultaneous cooling; defaults overheat after 8 seconds. |
+| WeaponDefinition | gatlingCoolingPerSecond | float | 0+ | 1f/6f | Passive heat removed per simulation second in every state; defaults recover full heat in 6 seconds. |
 | WeaponSmokePool | missileLifetime | float | 0.1-10 | 6 | Seconds missile smoke remains after the missile passes. |
 | WeaponSmokePool | ballisticLifetime | float | 0.1-10 | 4.5 | Seconds solid-round flight smoke stays in world space. |
 | WeaponSmokePool | ballisticOpacity | float | 0-0.5 | 0.32 | Peak opacity of each solid-round path wisp. |

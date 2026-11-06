@@ -1,5 +1,7 @@
 # STATUS
 
+- 2026-11-07 current snapshot: six mixed waves / 77 enemies with final t8 flagship; VLS magazines, core-oriented mirror editing and power-limited propulsion are installed. Blueprint thumbnail cards show deployment cost; English placement/mirror warnings localized. Final rail tuning reduces base damage20%, doubles penetration4/6/8m and retains50/45/45% internal damage, yielding about150% former thick-hull aggregate budget. This round49focused checks pass; diagrams/tunables/process/challenge evidence exported for publication. No full six-wave human pacing claim.
+
 - 2026-11-03 debris lifetime / pilot guide: detached ship wreckage expires after90 active simulation seconds; splitting inherits original deadline, pause adds no age, removal invalidates instance topology and disables physics immediately.12 debris EditMode tests pass. One-page English/Chinese beginner PDFs in output/pdf and website guides; trace export synchronized for publication.
 
 

@@ -246,3 +246,159 @@ Add `## Stage Reflection NNN — title` only when you ask for one: Keep / Change
 - What changed: Added solid-round swept-path smoke alongside the existing short muzzle plume, with wider and denser smoke and longer lifetimes: ballistic4.5s, missile6s, muzzle6.5s. Both factions have reserved missile/ballistic/muzzle pools and per-frame quotas, so one source cannot consume the other source's smoke allocation. Distant projected-size support helps smoke remain visible.
 - Result: Real gun and missile paths now leave conspicuous lingering smoke bands; energy weapons are excluded. Weapon speed, cadence, damage, guidance, input and outcomes are unchanged.
 - Validation: Smoke sampling, residency, independent faction/type budgets, random-state isolation and expiry/reuse checks pass; projectile15/15 pass. Controlled native4ship review fires256 solid shots and48 missiles across496frames with all six smoke categories populated. No standalone performance claim. Evidence: Documentation/WeaponSmokeDense-2026-11-03/README.md.
+
+## Interaction 027 — Reference-driven game UI
+
+- Date: 2026-11-06
+- Who asked: student
+- Request: Implement the supplied Frame 23 UI reference, complete missing data interfaces and Hell difficulty, support Chinese, and verify the result with screenshots. Follow-up: reduce Chinese text by approximately 30%.
+- What changed: Rebuilt the home, blueprint library, assembly, module catalogue, integrated weapon groups, training setup, deployment and combat HUD around the supplied reference. Views show real ship statistics and rendered previews. Added independent attack/move training toggles, six-group editing with left/right mouse bindings, background colour settings, and a Hell deployment budget multiplier of 0.5. Added Sulphur Point/Dolce Vita fonts and a Chinese fallback with glyph scale 0.7. HUD displays per-weapon availability, heat and missile reload, target cost and lock state. Core and armour presentation follows the reference.
+- Result: The game now uses the reference's blue backgrounds, dark flat panels, lime indicators and orange primary actions. Existing combat rules and ship placement constraints remain. Real ship data replaces placeholder values. Visual review used an isolated workspace; the original current-ship SHA256 remains 35E972847D7AE8E25F7BBF661CCCD92406AA78EC48384D777FEEA3CCEBDEDC35.
+- Validation: 40 focused EditMode cases pass (settings 8, deployment 25, weapon groups 7). Native checks cover six-group limits/bindings, independent catalogue state, four training toggle combinations, Hell budget, Chinese scale, actual missile reload and Gatling overheat/recovery. Multiple native GameView screenshots were inspected across English/Chinese menus, assembly and combat. Play is stopped. No standalone performance or other-aspect-ratio claim. Evidence: Documentation/FigmaUI-2026-11-06/README.md.
+
+## Interaction 028 — Fullscreen UI sizing and numbered weapon groups
+
+- Date: 2026-11-06
+- Who asked: student
+- Request: Independently polish oversized fullscreen text/buttons/sliders and clipped or misaligned labels, retaining the UI framework and gameplay except numbered default weapon groups and the countermeasure key change.
+- What changed: Standardized menu and assembly typography, compacted primary/secondary/test-flight actions and range switches, centered card footers/button labels, widened pagination, fitted long blueprint names and expanded the settings note. Sliders now use a fixed-height parent to retain 12 by 22 handles after Unity slider updates. Weapon-group views show GROUP numbers; new or unconfigured blueprints initialize two left/right-mouse groups, while saved group assignments remain. Countermeasure default is Tab; version-1 R preferences migrate once to Tab, other keys remain, and subsequent explicit remaps are retained.
+- Result: Fullscreen-size menus and assembly use restrained, readable controls. Existing screen architecture, game balance, mission rules and ship geometry remain. The user's working ship hash before/after is recorded in Documentation/UI-Polish-2026-11-06/README.md.
+- Validation: WeaponGroupDataTests 8/8 and GameSettingsTests 9/9. Two visual iterations at a maximized 2560 by 1440 Game view; English and Chinese captures cover home, range, blueprints, deployment, settings, assembly and numbered groups. Final settings/library/target-picker audits report no truncated text; all six settings handles are 12 by 22. Astra reviewed screenshots and accepted the final result. Play stopped. No broad gameplay regression or standalone build claim.
+
+## Interaction 029 — Stable targeting, Chinese fonts and weapon presentation
+
+- Date: 2026-11-06
+- Request: Repair clipped menu backgrounds, stale range target selection, disappearing/jittering lead markers and Chinese-language stalls; compact railgun HUD, orange ballistic status and green energy effects.
+- Changes: Removed opaque full-height menu side strips; target confirmation replaces the roster atomically after validation. Lead presentation keeps enabled projectile profiles while missile groups fire and uses rendered positions with relative-offset smoothing. A static 715-character Chinese UI atlas precedes the dynamic fallback, shared fonts bypass obsolete locale-font loads, and unchanged text avoids redundant font/layout work. Railgun blocks use missile-like compact rows; only Gatling mounts have heat columns with orange readiness and distinct cooling colours. Five native energy weapon definitions and laser impact effects now use green.
+- Validation: RangeTargetRosterTests6/6, CoreLeadBallisticsTests4/4, WeaponGroupRuntimeTests16/16 after updating obsolete two-group fixture and 6/s missile assumptions to existing defaults. Native Chinese range/deployment and mixed-weapon screenshots inspected; two actual Gatlings recorded overheated at0.71 heat during cooling. Compilation passed. No cold standalone two-minute performance benchmark was run; font bottlenecks were removed but this does not establish the absence of all stutter.
+- Evidence: Documentation/UI-Fixes-2026-11-06. Original current-ship SHA256 before review:31EC27E3C2DEE08AB6175CCD9C450BB4754B627C80FCF6E0FFF96621DC9AD54E. Review used an isolated profile; Play stopped.
+
+## Interaction 030 — Saturated green energy and firework decoy visuals
+
+- Date: 2026-11-06
+- Request: Reduce pale/white energy-weapon green. Double flare visual speed and visible duration, narrow initial scatter and give every spark a larger trail, with no functional change.
+- Changes: Reduced white mixing and excess energy-core intensity in projectiles, beams, muzzle and impact effects. Flare visuals now travel approximately twice as fast for twice the original visible duration, initially form a tighter cone and progressively fan outward with individual yellow/orange tapered trails. Original random draws, decoy movement, active lifetime, chance, radius, launcher cooldown and forecast logic are retained. Logical bursts expire separately from pooled visual salvos. Trail geometry has an explicit vertex-colour shader profile.
+- Validation:12/12 FlareCountermeasureTests pass, including unchanged decoy centre/expiry and extended visual positions/lifetime/reuse. An old R-key expectation was updated to the previously requested Tab default. Compilation passes. No native firing screenshot review or standalone performance measurement in this pass. Evidence: Documentation/FlareVisuals-2026-11-06/tests-final.json. Editor remains stopped.
+
+## Interaction 031 — Balanced random flare fan toward upper rear
+
+- Date: 2026-11-06
+- Request: Place flare visuals between the last two versions, restore randomness, and launch toward the ship's upper rear rather than its front.
+- Changes: Visual ejection uses ship up and blueprint heading to form an upper-rear fan. Speed and visible lifetime now sit at1.5 times original, with individual speed variation; initial spread is less constrained and trails are moderately shorter/thinner with varied duration. Existing simulation trajectories, random draw sequence, lure expiry, chance, range and launcher cooldown remain.
+- Validation:12/12 countermeasure tests pass, including upper/rear visual direction, varied spark speeds, original logical motion/expiry and visual pool reuse. Compilation clean; Editor stopped. Report: Documentation/FlareVisuals-2026-11-06/balanced-tests.json.
+
+## Interaction 032 — Ship-relative rear flares and randomized burst points
+
+- Date: 2026-11-06
+- Request: Ignore component facing for rearward flare presentation and burst into bright points after randomized flight distance.
+- Changes: Visual emission uses the opposite of the blueprint's ship heading in world space, independent of launcher rotation. Each spark travels a varied distance (approximately20–45m relative to inherited ship motion), then stops ejection travel and flashes into a lingering bright point; trail emission stops and the existing trail fades. Existing sampled values derive distance variance without extra gameplay RNG consumption. Simulation/decoy paths and functional parameters remain unchanged under the prior visual-only scope.
+- Validation:13/13 countermeasure checks pass, including rear direction, distinct burst distances, stationary post-burst points, preserved active lure lifetime, cooldowns and visual pooling. Compilation clean. Editor remains stopped. Evidence: Documentation/FlareVisuals-2026-11-06/rear-burst-tests.json.
+
+## Interaction 033 — Restore original flares with burst points only
+
+- Date: 2026-11-06
+- Request: Keep only the burst effect and otherwise restore the initial version.
+- Changes: Restored original ejection direction, speed, random cone, visible lifetime and inherited motion. Removed added trails, speed variation, rear/up direction overrides and extended visual duration. Retained random-distance flashes into lingering points; logical decoy behaviour remains original. Removed the now-unused flare trail shader profile.
+- Validation:13/13 flare tests pass, covering original speed/cone/expiry and retained randomized burst points. Compilation clean; Editor stopped. Report: Documentation/FlareVisuals-2026-11-06/original-plus-burst-tests.json.
+
+## Interaction 034 — Yellow flare colour
+
+- Date: 2026-11-06
+- Request: Keep flares yellow rather than white.
+- Changes: Removed pale flash mixing, used saturated yellow for flight and burst points, and capped visual glow to reduce overexposure. Countermeasure functionality unchanged.
+- Validation: No gameplay tests for this colour-only adjustment.
+
+## Interaction 035 — Stable flare presentation during flight
+
+- Date: 2026-11-06
+- Request: Resolve blurred, line-like and unstable flare effects while moving.
+- Changes: Flare render positions and flash appearance now sample between physics updates in LateUpdate, matching the interpolated ship/camera clock. Both inherited ship travel and spark ejection use the same sampled age. Burst size/brightness rises continuously over 45 ms instead of jumping instantly. Original yellow colour, random cone, speed, lure positions, expiry, cooldown and decoy chance remain.
+- Validation: Compilation passes; all 17 focused FlareCountermeasureTests pass, including 30/60/144 Hz samples at high inherited velocity, no render-side lure movement and continuous flash onset. Six Unity offscreen renders sample 350 m/s translation before/during burst using the native shader and range post-processing profile. This is an isolated rendering check, not a full interactive flight or standalone performance test. Editor remains stopped.
+- Evidence: Documentation/FlareMotion-2026-11-06.
+
+## Interaction 036 — 116 weapon audio and combat warnings
+
+- Date: 2026-11-06
+- Request: Split the supplied MP3 by its listed uses, replace matching game sounds, retain old01/07/08/09/11 at70% volume and silence unmatched uses.
+- Changes: Prepared16 WAV assets (15 SFX including two small-rail variants, plus music). Rapid laser, direct beam and Gatling use bounded sustained loops with10ms attack/25ms release envelopes; other cues are individual events. Actual-shot notifications now carry the weapon definition, allowing native categories to use distinct sounds. Small rail variants alternate. Added merged25% hull/shield warning with10s cooldown and transition-only Gatling overheat warning. Music is assigned to menus and flight; unmatched old cues/engine are disabled. Removed23 retired runtime WAV assets after verified external backup; retained5 old assets with gains at70% (old11 remains0). Editable pack and mappings updated.
+- Validation:32/32 ExpandedWeaponTests and final7/7 GameAudioTests pass, including actual shot types, bounded voices, loop expiry, small-rail alternation, real shield/health warning cooldown and real Gatling overheat/cooling transitions. Signal checks found no clipped samples in prepared files; a synthetic8/s missile salvo peak was0.694 with no clipping. Native importer audit verifies16 files, mono PCM SFX and stereo streaming music. Segment assignment uses supplied order, waveform/spectrum and silence boundaries; this is not a claim of subjective headphone listening or a standalone device-build audio assessment.
+- Evidence: Documentation/Audio116-2026-11-06. Source MP3 retained; external original-material backup path is recorded in segments.json. The earlier17-clip estimate was corrected to16 after counting the supplied list. Win/loss and player actions are unchanged.
+
+## Interaction 037 — Correct old audio retention
+
+- Date: 2026-11-06
+- Request: Delete only old07/08/09/11; reduce only01 by30%; restore the other mistakenly removed originals.
+- Changes: Restored original assets and editable copies from the external backup. Restored unmatched cue playback and engine loop at original settings. Retained installed116 replacements for matched uses. Removed RotatePart, InvalidPlacement, CorePowerOn and LaserImpact assets/references. Select stays0.294 (0.42x0.7), without applying the reduction twice. This supersedes Interaction036's old-material removal/muting rule.
+- Validation: Native configuration readback confirms four deleted bindings, restored legacy cue levels, original engine loop, and all16 new116 assets. Inventory regenerated. No flight test required for this asset-reference correction.
+
+## Interaction 038 — Refine weapon audio and Gatling thermal cycle
+
+- Date: 2026-11-06
+- Request: Fix interrupted Gatling playback; use 12 s held fire / 6 s cooling; remove railgun onset delay and excess tail; soften alerts; use the last short missile-warning tone with existing proximity cadence; split six flare swells; install the new weapon/UI recording.
+- Changes: Gatling loop heartbeat follows actual powered firing state and ordinary gun/UI voices cannot steal its own-ship loop. Heat generation is 0.25/s with simultaneous cooling 1/6/s, yielding net 12 s to overheat and 6 s to zero. Rail clips have trimmed attacks/tails. Notification audio has reduced high-frequency energy. Missile warning uses the final isolated short tone (109 ms), preserving 0.9–0.12 s proximity cadence. Six individual flare swells cycle one per admitted deployment cue. New recording replaces rapid laser, direct laser and missile audio; its two UI clips fill rotation, invalid placement and core activation feedback. Earlier deleted original assets remain deleted; Select gain stays 0.294.
+- Validation: 43 focused EditMode tests and 10 unique GameAudio PlayMode tests pass. Initial PlayMode runner stalled before starting; retry completed all 10 in 9.58 s. Native readback confirms thermal settings, clip references, six flare variants and preload/import settings. No subjective headphone audition or standalone build assessment is claimed. Editor stopped; session auto-tick disabled. Win/loss and player actions unchanged.
+- Evidence: Documentation/Audio116-Revision2; editable copies and mapping in 音效替换.
+
+## Interaction 039 — Three-phase Gatling and peak-synchronized rail audio
+
+- Date: 2026-11-06
+- Request: Align rail discharge to the audio peak, replace interrupted Gatling sound with start/sustain/end driven by real firing, and double direct-laser damage.
+- Changes: Gatling material is recut into 0.27 s start, 0.965 s stable periodic loop and 0.47 s end; the previous loop's repeated startup and decaying tail are removed. Bounded reserved own/enemy voices schedule start-to-loop on the DSP clock and end from actual fire/power/overheat state, independently of thermal duration. Existing 12 s heating / 6 s cooling remains. All three rail audio peaks align at 80 ms with matching weapon windup; cancellation suppresses pending bangs when no other same-category mount is waiting, and discharge does not duplicate audio. Sword1/Sword2 damage doubles from 2250/4050 to 4500/8100 for the shared profiles.
+- Validation: Compilation clean; 37 ExpandedWeaponTests, 7 GatlingThermalTests and 10 GameAudioTests pass. Playback tests cover three phases across multiple loops under gun/UI/critical-warning voice pressure, release, power loss and held-input overheat recovery. One initial test failure was its duplicated cooling time after a coarse overheat step; test now accounts for actual remaining heat. WAV readback confirms all rail peaks at 0.080 s. Native asset readback confirms damage, windup and retained thermal values. No subjective headphone audition or standalone output-latency claim. Editor stopped and session auto-tick disabled. Win/loss and player actions unchanged.
+- Evidence: Documentation/Audio116-Revision3; editable audio and mappings updated in 音效替换.
+
+## Interaction 040 — Eight-second Gatling, stable groups and light parallax assistance
+
+- Date: 2026-11-06
+- Request: Gatling8s firing/6s cooling; fix occasionally unapplied weapon groups; lightly compensate direct-weapon mounting parallax; share the new full rail sound and align discharge to its peak.
+- Changes: Gatling gross heat1/8+1/6 per second with unchanged1/6 cooling produces8 seconds from cold to overheat and6 seconds to zero. Group normalization now recognizes all native weapon types even while the module database is unbound, preserving assignments through workspace/repository handoffs. Player direct-fire muzzles converge up to4 degrees only when the actual firing reticle ray hits hostile hull; no nearby acquisition, lead prediction, enemy buff or missile change. Collision and obstruction checks remain. New full0.757551-second rail recording is shared by both sound categories and all rail sizes, with no cropping and peak-derived0.202494-second windup; old clips backed up and replaced.
+- Validation:39 EditMode tests pass (7thermal,9aim including real beam/projectile hits and occlusion,15database compatibility,8group data) and10 GameAudio PlayMode tests pass. Native readback confirms all3Gatling profiles, all3rail delays and complete shared clip. Corrected test fixture bottom mounting and float boundary representation during validation. Astra planning/final scope review found no blocker; 4-degree limit intentionally leaves extreme close-range/wide-offset shots unassisted. No subjective headphone audition or standalone performance claim. Editor stopped; auto-tick disabled. Win/loss and player actions unchanged.
+- Evidence: Documentation/WeaponRefinement4; editable audio/mapping updated in 音效替换.
+
+## Interaction 041 — Weapon cadence, fresh missile locks and vertical launch magazines
+
+- Date: 2026-11-06
+- Request: Lower/deepen radar entry cue; unify direct-family speeds and set tier cadences while preserving damage output; size-scaled firing volume; quieter missiles; reacquire after missile reload; add independent area-lock VLS magazines, mount rules, icons and compact HUD; default new missiles to Group2.
+- Changes: Rail/rapid-laser/Gatling rates are1.5/1/.75,10/8/6,12/24/32 with each prior theoretical DPS preserved through per-shot damage. Family speeds use previous largest tier10800/6600/2700. Large rapid-laser width+20%. Tier shot gain.6/.8/1; missile cue*.7; radar cue*.6/pitch.8. Conventional launchers acquire per ready slot after reload; progress0 when none available, maximum completed eligible slot signals lock. New VLS1/VLS2 occupy8/4 standard cells,16/8 rounds,4s area acquisition,independent16/s discharge and24s full reload after last shot. Group magazines divide rounds evenly over visible radar contacts; per-round damage30%Missile1, radius55%, turn330deg/s versus110, range6600/guidance30s. Launch local-up with any grid orientation, bottom/side attachment and whole-top clearance. New catalogue entries/icons and compact8/16-cell HUD with cooldown seconds; acquired and active seeker targets get red corner-diamond frames. New missile assignments default Group2; explicit existing assignments survive.
+- Validation:98 unique EditMode cases pass:10balance,8mounting,10VLS runtime,1HUD packing,13group data,16group runtime,3stateful lock,37expanded weapons (36 initial plus1 focused fixture correction).10 audio PlayMode cases pass. Corrected stale fixture group IDs/thermal expectations. Native FBX meshes/icons and actual HUD offscreen render inspected; no overlapping slots/interior holes. Astra planning/runtime/final acceptance completed with no blocker. No standalone performance or subjective headphone-audition claim. Win/loss and firing inputs unchanged. Editor stopped, auto-tick disabled.
+- Evidence: Documentation/WeaponVls5 and Documentation/VlsExpansion; runtime-audit.json and balance-installed.json hold current native settings. Original supplied FBX/audio retained.
+
+## Interaction 042 — Mirror construction, group gestures and six-wave flagship fleet
+
+- Date: 2026-11-06
+- Request: All VLS sides except launch lid must attach; VLS speed-30%; expose global damage/thrust/mass controls; core-oriented M mirror editing with atomic rejection; commit group assignment on release and restore delete minus; six mixed waves from new t0/t7/t8 sources; delete the invalid warship; reduce heavy-ship mobility and speed.
+- Changes: VLS connectivity now checks every nonlocal-up exterior face in both graph connection and complete-mount validation. VLS cruise/ejection speed196/24.5 (was280/35), turn/agility unchanged. CombatDamageTuning.globalDamageMultiplier and FlightTuning.thrustMultiplier/blockMassMultiplier default1, compose once and keep native module stats intact. Above100000kg, speed uses inverse-mass exponent.65 with.35 floor; extra translation/rotation uses exponent.35 with.45 floor. Published stopping distances/turn radii and actual controls share the effective speed/authority. M button/key besideP/X mirrors around corelocalX plane; exact grid coordinates, paired validation and single commit, centerline deduplication and failure feedback. Mirror deletion remains paired/atomic. Group cards inspect only; release commits and clears selection. Visible minus uses a centered11x2pixel white bar in27x27button.13 exact source enemy designs now compose6waves10/12/13/13/14/15=77, finalt8 with escorts. Invalid 战舰.json was backed up and deleted; all other player files/workspace preserved.
+- Validation:67 focused EditMode checks pass (12mirror,6groupgesture,4VLSside,8globalbalance,3balancedaxes,18fleet,8combatwiring,8VLSmount).4 actual BalancedShipControl PlayMode checks pass55.22s, including current player read-only and3references, six translation axes, rotation/braking and damaged boost. Native readback t7speed149.56m/s,t8speed88.09m/s from250base. Offscreen realUI screenshots verify Mposition/green state and visible groupminus. Initial rotatedmirror exact-vector failure fixed by canonical grid snapping; screenshot found nestedminus anchor issue and fixed it. Astra planning/review/acceptance completed. No full human six-wave playthrough or standalone performance claim.
+- User-authorized challenge change: six waves instead of five with t8 as final boss; existing win/loss rules preserved, victory requires the sixth wave and all survivors cleared. New M editor action explicitly requested; flight firing controls unchanged. No Stage Reflection requested.
+- Evidence: Documentation/FleetRevision6, including exact source hashes, native backups, removed blueprint backup, test JSON and UI images. Debug field locations documented in DebugMultipliers.md. Editor stopped; session auto-tick disabled.
+
+## Interaction 043 — Remove interior floating reference grids
+
+- Date: 2026-11-06
+- Request: Remove floating map grids except map boundaries; no tests and finish immediately.
+- Changes: RangeEnvironment no longer creates the nine interior ReferenceGrid planes or their patch mesh. Six boundary planes retain their existing fade and rendering behavior.
+- Validation: None, explicitly requested. No Unity commands or trace export run to honor immediate finish. Win/loss and player actions unchanged.
+
+## Interaction 044 — Powered boost speed ceiling and increased energy cost
+
+- Date: 2026-11-06
+- Request: Boost temporarily permits200%normal speed; release must recover the normal limit even while thrusting; greatly increase boost energy demand; code changes only, no tests.
+- Changes: Fully powered boost permits2x the existing mass-adjusted speed cap, proportionally reduced by allocated boost power. Above the current cap, mandatory40m/s² recovery applies independently of continued propulsion after release or power loss. New FlightTuning defaults boostPowerCostMultiplier8, boostSpeedLimitMultiplier2, overspeedRecoveryDeceleration40. Shared BoostPowerDemandWatts feeds real power allocation, bot reserve checks and UI/preview demand readouts, preserving category priority.
+- Validation: None per explicit instruction; no Unity commands, tests or trace export. Existing flight actions and win/loss rules unchanged.
+
+## Interaction 045 — Propulsion power labels and luminous core supply
+
+- Date: 2026-11-07
+- Request: Show normal/boost propulsion consumption, reduce boost cost multiplier to4, give core a stronger green glow and half the small generator's supply/storage; normal propulsion actually consumes one eighth of boost demand. Verify UI/visuals only.
+- Changes: FlightTuning boostPowerCostMultiplier4; PropulsionPowerDemandWatts=BoostPowerDemandWatts/8. Native boost560W, normal maximum70W for the whole ship. Normal demand follows requested thrust fraction; boost replaces normal demand rather than adding both. Shared propulsion allocation remains after shield recovery and before weapons, and allocated power scales actual linear/angular thrust and exhaust. Detail and ship-summary readouts show sustained/boost demand, including explicit whole-ship scope; separate rows fix REGEN/THRUST concatenation. Smaller detail text keeps all8thruster/7core rows visible. Core supplies50W and stores700J (half native small Power100W/1400J). Actual core material now enables emission/GI flags and HDR saturated green; existing scene bloom unchanged. Source authoring helper matches native configuration.
+- Validation: Code compiles; only UI/visual verification performed, no gameplay/numeric tests or Play run. Offscreen nativeUI screenshots confirm complete sustained70W/boost560W and core50W/700J labels. Actual core mesh/material rendered with native assembly/flight post FX; HDR, bloom.65/threshold1.2, saturated glow and restrained halos visually accepted by Astra. Initial preview-frame and volume-stack setup issues were corrected in the external capture helper only. Editor remains stopped.
+- Evidence: Documentation/CoreEnergy-2026-11-07. Win/loss and control bindings unchanged; normal propulsion power consumption explicitly requested by user.
+
+## Interaction 046 — Blueprint prices, localized warnings and thick-hull rail tuning
+
+- Date: 2026-11-07
+- Request: Blueprint thumbnail views show cost instead of parts; diagnose weak rail penetration; final steering reduces base damage20%, increases penetration and internal damage retention for about150% large-target output; remove Chinese warnings from English UI.
+- Changes: Library, target picker and target summary cards use deployment/module pricing and fit five-digit costs. Missing support, VLS and mirror errors now have English mappings, including nested failure reasons, while user ship names retain their language. Red footer warnings fit two lines. Rail base damage8640/18000/33280, depth4/6/8m and retained internal damage50/45/45%; previous damage10800/22500/41600, depth2/3/4m and retention35/35/40%. Existing user-edited global/category/player multipliers are preserved. No swept-contact bug found; old short reach and steep internal falloff explain weak thick-hull coverage.
+- Validation:49 focused EditMode tests pass (21projectile including6thick-hull rail cases,10nativebalance,13shield,2cost,3Englishwarning). Thick aligned unit-cube aggregate budgets148.15/152.94/150.91% of former values; HP caps, shielding and topology mean this is not a guaranteed kill-time ratio. Actual frontend target/library screenshots show cost without truncation; red warning screenshots verified English text. Compilation clean; Editor left stopped. No full mission balance playthrough.
+- Challenge confirmation: The user answered “两者都不变（仅伤害与界面调整）” when asked under AGENTS.md; victory/defeat conditions and player verbs remain unchanged this round. No Stage Reflection requested.
+- Evidence: Documentation/RailBalance-2026-11-07, Documentation/BlueprintCostReview, Documentation/BlueprintWarnings-2026-11-07. Prior game interactions remain append-only.

@@ -77,3 +77,13 @@ The same-script extreme Editor approach still has short frame peaks; it is not a
 ## 2026-11-03 — Lock input reliability and editable enemy copies
 
 F remains lock/unlock. Victory/defeat rules and player verbs are unchanged. Input pulses are deduplicated by InputSystem update; a fresh post-focus press is accepted, while held blocked-state input stays suppressed. A queued F tries the steering cursor, then the actual forward crosshair, using the existing discovery and acquisition radius. This repairs input/acquisition reliability rather than changing sensor balance. Seven primary enemy blueprints are exported as t1–t7 for student editing; encounter assets remain the current source until the final revisions are applied. Verification:18 focused cases plus two actual range entries with20 complete taps each. Documentation/LockRepair-2026-11-03/README.md.
+
+## 2026-11-07 — Current consolidated game baseline and rail revision
+
+This section supersedes older numerical baselines above without removing history. Formal missions now contain six finite mixed waves (77 enemies, including t0 escorts and the final t8 flagship). Victory requires clearing all six stages and remaining enemies; player core destruction remains defeat. Practice respawn remains separate. The previously user-requested M action provides core-oriented, atomic mirror editing; firing/group inputs retain their established controls.
+
+Current mechanics include independent 8/16-round VLS area-lock magazines, conventional missile reacquisition after reload, power-limited normal/boost propulsion, mass-dependent handling and speed ceilings, and a core with half a small generator's supply/storage. These were explicitly requested in prior interactions; DEVLOG records implementation and verification scope.
+
+For this revision the student was asked whether win/loss or player verbs changed and explicitly answered “两者都不变（仅伤害与界面调整）”: neither changes. Rail base damage is multiplied0.8, penetration extends from2/3/4m to4/6/8m, and retained damage beyond the first metre rises from35/35/40% to50/45/45%. Thick aligned unit-cube aggregate damage becomes148.15/152.94/150.91% of the prior budget. This controls distribution through thick hulls and does not promise a150% kill rate or a fixed TTK. Native WeaponDefinition assets remain authoritative; existing user-edited global/category/player multipliers are preserved.
+
+Blueprint views use deployment prices rather than part counts, and English construction warnings are localized; neither changes the challenge loop. Validation:49 focused tests, live frontend screenshots and localized warning previews. Full human six-wave pacing remains uncalibrated. No Stage Reflection was requested or invented.
