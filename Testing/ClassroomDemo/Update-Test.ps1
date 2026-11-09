@@ -1,5 +1,5 @@
 [CmdletBinding()]
-param([string]$InstallRoot=(Join-Path $env:LOCALAPPDATA 'CGDD2-Classroom-Test'))
+param([string]$InstallRoot=(Join-Path $env:LOCALAPPDATA 'CGDD2-Classroom-Test'),[string]$ArchivePath)
 $ErrorActionPreference='Stop'
 $channelUrl='https://raw.githubusercontent.com/Sidonia704/CGDD2/codex/classroom-demo-test-channel/Testing/ClassroomDemo/channel.json'
 $root=[IO.Path]::GetFullPath($InstallRoot).TrimEnd('\','/')
@@ -52,11 +52,12 @@ $oldProgress=$ProgressPreference
 try{
  $ProgressPreference='SilentlyContinue'
  Write-Host 'Reading the CGDD2 classroom-test channel...'
- $channel=(Invoke-WebRequest -UseBasicParsing -Uri $channelUrl -UserAgent 'CGDD2-Classroom-TestUpdater/1' -TimeoutSec 60).Content|ConvertFrom-Json
+ $channelRequest=$channelUrl+'?nocache='+[DateTime]::UtcNow.Ticks
+ $channel=(Invoke-WebRequest -UseBasicParsing -Uri $channelRequest -UserAgent 'CGDD2-Classroom-TestUpdater/1' -TimeoutSec 60).Content|ConvertFrom-Json
  if($channel.schemaVersion -ne 1 -or $channel.channel -ne 'classroom-test' -or $channel.buildGuid -notmatch '^[a-f0-9]{32}$' -or $channel.tag -notmatch '^test-classroom-[a-zA-Z0-9.-]+$' -or $channel.sha256 -notmatch '^[a-f0-9]{64}$' -or $channel.gameDllSha256 -notmatch '^[a-f0-9]{64}$'){throw 'Invalid test-channel metadata.'}
  if($channel.bytes -le 0 -or $channel.bytes -gt 2000000000){throw 'Unexpected download size.'}
  $expectedPrefix='https://github.com/Sidonia704/CGDD2/releases/download/'+$channel.tag+'/'
- if(-not ([string]$channel.url).StartsWith($expectedPrefix,[StringComparison]::Ordinal) -or $channel.url -match '[?#]' -or $channel.asset -notmatch '^ClassroomDemo-Test-[a-f0-9]{8}\.zip$' -or $channel.url -ne ($expectedPrefix+$channel.asset)){throw 'Download URL is outside the explicit CGDD2 test channel.'}
+ if(-not ([string]$channel.url).StartsWith($expectedPrefix,[StringComparison]::Ordinal) -or $channel.url -match '[?#]' -or $channel.asset -notmatch '^ClassroomDemo-Test-[a-f0-9]{8}(?:-r[2-9][0-9]*)?\.zip$' -or $channel.url -ne ($expectedPrefix+$channel.asset)){throw 'Download URL is outside the explicit CGDD2 test channel.'}
  $versions=Inside $root (Join-Path $root 'Versions');$destination=Inside $versions (Join-Path $versions $channel.buildGuid)
  if(Test-Path -LiteralPath $destination){
   Write-Host 'This version already exists; verifying it before selecting it.';VerifyPackage $destination $channel
@@ -64,12 +65,20 @@ try{
   $staging=[IO.Path]::GetFullPath((Join-Path ([IO.Path]::GetTempPath()) ('CGDD2-Classroom-Test-'+[guid]::NewGuid().ToString('N'))))
   NoLinks $staging;[IO.Directory]::CreateDirectory($staging)|Out-Null
   $archive=Inside $staging (Join-Path $staging $channel.asset)
-  Write-Host ('Downloading test version '+$channel.buildGuid+'...')
-  Invoke-WebRequest -UseBasicParsing -Uri $channel.url -UserAgent 'CGDD2-Classroom-TestUpdater/1' -OutFile $archive -TimeoutSec 1800
+  if($ArchivePath){
+   $existingArchive=[IO.Path]::GetFullPath($ArchivePath)
+   if(-not(Test-Path -LiteralPath $existingArchive -PathType Leaf)){throw 'The supplied ZIP does not exist.'}
+   Write-Host 'Checking the supplied ZIP against the public channel...'
+   Copy-Item -LiteralPath $existingArchive -Destination $archive
+  }else{
+   Write-Host ('Downloading test version '+$channel.buildGuid+'...')
+   Invoke-WebRequest -UseBasicParsing -Uri $channel.url -UserAgent 'CGDD2-Classroom-TestUpdater/1' -OutFile $archive -TimeoutSec 1800
+  }
   if((Get-Item -LiteralPath $archive).Length -ne [long]$channel.bytes -or (Get-FileHash -LiteralPath $archive -Algorithm SHA256).Hash -ne $channel.sha256){throw 'ZIP size or SHA256 verification failed. The active version was not changed.'}
   Add-Type -AssemblyName System.IO.Compression.FileSystem
   $extract=Inside $staging (Join-Path $staging 'Extracted');[IO.Directory]::CreateDirectory($extract)|Out-Null
-  $zip=[IO.Compression.ZipFile]::OpenRead($archive)
+  # Legacy Windows ZIP names use CP936; entries carrying the UTF-8 flag still use UTF-8.
+  $zip=[IO.Compression.ZipFile]::Open($archive,[IO.Compression.ZipArchiveMode]::Read,[Text.Encoding]::GetEncoding(936))
   try{
    $entries=@($zip.Entries);$total=0L;$fileCount=0;$names=[Collections.Generic.HashSet[string]]::new([StringComparer]::OrdinalIgnoreCase)
    foreach($entry in $entries){
